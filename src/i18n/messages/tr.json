@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "Audit Platform",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "empty": "Veri yok",
+    "retry": "Tekrar dene"
+  },
+  "shell": {
+    "header": "Başlık",
+    "footer": "Audit Platform — Kurumsal denetim ve UFRS raporlama platformu",
+    "navigation": "Gezinme",
+    "foundation": "Platform temeli hazır"
+  },
+  "auth": {
+    "signIn": "Giriş yap",
+    "signOut": "Çıkış yap"
+  }
+}

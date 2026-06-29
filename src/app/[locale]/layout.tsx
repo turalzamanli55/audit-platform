@@ -1,0 +1,27 @@
+import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
+import { isValidLocale, type Locale } from "@/i18n";
+import { AppProviders } from "@/providers";
+import { getServerSession } from "@/lib/auth/session";
+
+type LocaleLayoutProps = {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { locale: localeParam } = await params;
+
+  if (!isValidLocale(localeParam)) {
+    notFound();
+  }
+
+  const locale = localeParam as Locale;
+  const session = await getServerSession();
+
+  return (
+    <AppProviders locale={locale} initialSession={session}>
+      {children}
+    </AppProviders>
+  );
+}

@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "Audit Platform",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "empty": "No data",
+    "retry": "Retry"
+  },
+  "shell": {
+    "header": "Header",
+    "footer": "Audit Platform — Enterprise audit and IFRS reporting platform",
+    "navigation": "Navigation",
+    "foundation": "Platform foundation is ready"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out"
+  }
+}

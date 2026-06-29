@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "Audit Platform",
+    "loading": "Yüklənir...",
+    "error": "Xəta baş verdi",
+    "empty": "Məlumat yoxdur",
+    "retry": "Yenidən cəhd et"
+  },
+  "shell": {
+    "header": "Başlıq",
+    "footer": "Audit Platform — Müəssisə audit və IFRS hesabat platforması",
+    "navigation": "Naviqasiya",
+    "foundation": "Platforma əsasları hazırdır"
+  },
+  "auth": {
+    "signIn": "Daxil ol",
+    "signOut": "Çıxış"
+  }
+}

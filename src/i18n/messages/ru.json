@@ -1,0 +1,19 @@
+{
+  "common": {
+    "appName": "Audit Platform",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "empty": "Нет данных",
+    "retry": "Повторить"
+  },
+  "shell": {
+    "header": "Заголовок",
+    "footer": "Audit Platform — Корпоративная платформа аудита и отчётности МСФО",
+    "navigation": "Навигация",
+    "foundation": "Основа платформы готова"
+  },
+  "auth": {
+    "signIn": "Войти",
+    "signOut": "Выйти"
+  }
+}
