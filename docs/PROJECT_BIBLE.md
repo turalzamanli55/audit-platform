@@ -4471,4 +4471,1807 @@ Every module ships with **defined quality attribute compliance** — not merely 
 
 ---
 
-*End of Part 6. Await further instruction for Part 7.*
+*End of Part 6.*
+
+---
+
+## Part 7 — Global Experience & Interface Philosophy
+
+### Table of Contents — Part 7
+
+33. [Localization & Internationalization Philosophy](#33-localization--internationalization-philosophy)
+34. [Regionalization Strategy](#34-regionalization-strategy)
+35. [Accessibility Philosophy](#35-accessibility-philosophy)
+36. [User Experience Philosophy](#36-user-experience-philosophy)
+37. [User Interface Philosophy](#37-user-interface-philosophy)
+
+---
+
+## 33. Localization & Internationalization Philosophy
+
+Localization and internationalization (L10n and i18n) are **architectural commitments**, not translation projects scheduled for a future phase. The platform is built for global enterprise deployment from inception — serving firms and organizations operating across Azerbaijan, the broader region, Europe, and international markets where Azerbaijani, English, Russian, and Turkish are primary professional languages.
+
+### 33.1 Supported Languages
+
+| Code | Language | Role |
+|------|----------|------|
+| `az` | Azerbaijani | **Default platform locale** — primary language for initial market and platform shell |
+| `en` | English | International business language; IFRS and ISA authoritative standard language |
+| `ru` | Russian | Regional professional language for CIS and Eastern European operations |
+| `tr` | Turkish | Regional professional language for shared market and cross-border firms |
+
+Azerbaijani as default reflects the platform's **origin market and primary deployment geography**. English serves as the **professional lingua franca** for international standards and cross-border engagements. Russian and Turkish address **regional firm and enterprise requirements** without requiring language as a barrier to adoption.
+
+### 33.2 Why Multilingual Support Exists from Day One
+
+| Driver | Explanation |
+|--------|-------------|
+| **Market reality** | Target customers operate in multilingual environments — staff, clients, and regulators use different languages |
+| **Professional standards** | IFRS and ISA authoritative text is English; professionals require local language for daily work |
+| **Architectural cost** | Retrofitting i18n into a mature monolingual codebase is exponentially more expensive than building it from foundation |
+| **Regulatory presentation** | Financial statements and audit reports may require specific language for statutory filing |
+| **Talent accessibility** | Professionals work most effectively in their native or preferred professional language |
+| **AI trust** | AI assistance in the user's working language increases comprehension and adoption |
+| **Competitive positioning** | Global enterprise platforms deliver multilingual capability at launch — not as a roadmap promise |
+
+Multilingual support from day one is Core Principle 31 (Part 1) expressed as product and experience philosophy.
+
+### 33.3 Translation Philosophy
+
+| Principle | Description |
+|-----------|-------------|
+| **Professional translation over machine translation** | UI, documentation, and professional terminology translated by qualified translators — not raw machine output |
+| **Context-aware translation** | Translations account for professional context (audit vs. general business usage) |
+| **Key-based architecture** | All user-visible strings externalized from presentation logic — no hardcoded display text |
+| **Fallback hierarchy** | Missing translation falls back to Azerbaijani (default), then English for standards terminology |
+| **Translation completeness gates** | Features do not ship to production with incomplete translation in supported locales |
+| **Continuous translation** | New features include translation as part of delivery — not a post-release task |
+| **Glossary governance** | Centralized terminology glossary ensures consistency across all translated surfaces |
+
+Translation is treated as a **product deliverable**, not a localization afterthought.
+
+### 33.4 Business Terminology Consistency
+
+| Requirement | Description |
+|-------------|-------------|
+| **Unified glossary** | Business terms (engagement, workspace, entity, period, adjustment) have one approved translation per locale |
+| **Cross-surface consistency** | A term translated one way in navigation must match the same term in notifications, errors, and help |
+| **Role name alignment** | Professional role names (Engagement Partner, Audit Manager) translated consistently with firm industry usage |
+| **No colloquial variation** | Informal synonyms prohibited in professional contexts |
+| **Glossary versioning** | Terminology updates versioned and communicated to translators |
+
+Inconsistent business terminology erodes trust — professionals notice when the same concept has different names on different screens.
+
+### 33.5 Accounting Terminology Consistency
+
+| Requirement | Description |
+|-------------|-------------|
+| **Standards-aligned terms** | Accounting terms follow recognized translations used in each locale's professional practice |
+| **Chart of accounts neutrality** | Account codes and names preserve client terminology; platform labels use standard accounting vocabulary |
+| **Trial balance vocabulary** | Debit, credit, balance, adjustment — translated per locale accounting convention |
+| **No improvised translations** | Accounting terms not translated without glossary approval |
+| **Bilingual display where helpful** | Complex terms may show locale translation with English standard term in parentheses during transition |
+
+Accounting terminology errors cause **professional misunderstanding** — a mislabeled debit as credit in Russian is not a cosmetic defect.
+
+### 33.6 IFRS Terminology Consistency
+
+| Requirement | Description |
+|-------------|-------------|
+| **Official standard terminology** | IFRS terms use translations aligned with IASB-published or nationally adopted standard translations |
+| **Presentation line items** | Statement line items use IFRS-aligned labels per locale |
+| **Note headings** | Disclosure note titles match IFRS requirement naming in each language |
+| **English authority preserved** | Where locale translation is ambiguous, English IFRS term available as reference |
+| **Standards version alignment** | Terminology updates when standards translations are updated |
+
+IFRS terminology consistency ensures that **financial statements produced in any supported language** use professionally recognized labels.
+
+### 33.7 ISA Terminology Consistency
+
+| Requirement | Description |
+|-------------|-------------|
+| **Audit procedure vocabulary** | Planning, fieldwork, review, opinion — translated per ISA professional usage in each locale |
+| **Working paper terminology** | Standard audit documentation terms consistent across platform and firm templates |
+| **Opinion types** | Unmodified, qualified, adverse, disclaimer — use locale-appropriate professional equivalents |
+| **Materiality and risk terms** | ISA-defined concepts translated consistently with auditing education standards in each locale |
+
+ISA terminology ensures the platform speaks the **language of the auditing profession** in every supported locale.
+
+### 33.8 AI Response Localization
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Response language** | AI Copilot and AI capabilities respond in the user's active platform locale |
+| **Citation language** | Source documents displayed in original language; AI narrative in user's locale |
+| **Standards references** | ISA and IFRS citations may include bilingual reference (locale + English paragraph) |
+| **Professional tone per locale** | AI maintains professional register appropriate to each language's business convention |
+| **Finding descriptions** | AI findings generated with locale-appropriate professional vocabulary |
+| **Limitation** | AI does not translate client-submitted documents — it analyzes them in original language and responds in user locale |
+
+AI localization extends the Copilot philosophy (Part 4, Section 22) into multilingual professional practice.
+
+### 33.9 Localization Surface Catalog
+
+| Surface | Localization Requirement |
+|---------|---------------------------|
+| **User interface** | 100% of platform chrome, navigation, labels, buttons, and menus in all four languages |
+| **Documentation** | User guides, help content, and onboarding materials available in all supported languages |
+| **Error messages** | All user-facing errors translated with actionable professional language — never raw system messages |
+| **Notifications** | In-platform and system notifications in user's preferred locale |
+| **Email** | Transactional and workflow emails in user's preferred locale with organization branding |
+| **Reports** | Report templates support locale-specific labels; export respects locale formatting conventions |
+
+### 33.10 Report Localization
+
+Report localization extends beyond UI translation:
+
+| Element | Localization Behavior |
+|---------|----------------------|
+| **Statement labels** | IFRS line items in selected report language |
+| **Note headings and content** | Draft notes composable in report language |
+| **Auditor's report** | Opinion templates available per locale with ISA-aligned terminology |
+| **Date and number formatting** | Per regionalization settings (Section 34) |
+| **Currency presentation** | Functional currency displayed per locale convention |
+| **Comparative labels** | Prior year, current year — locale-appropriate |
+
+Report language may differ from UI language — a user working in Azerbaijani UI may generate an English financial statement for international stakeholders.
+
+### 33.11 Future Language Expansion
+
+The platform architecture supports additional languages **without structural redesign**:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              Locale-Agnostic Application Core             │
+├─────────────────────────────────────────────────────────┤
+│  Message Catalogs · Glossary · Regional Config · Fonts   │
+├─────────────────────────────────────────────────────────┤
+│  az │ en │ ru │ tr │ [future locales added here]        │
+└─────────────────────────────────────────────────────────┘
+```
+
+| Expansion Requirement | Architectural Readiness |
+|-----------------------|------------------------|
+| **New locale registration** | Locale code added to supported locale registry |
+| **Message catalog** | New translation files per surface (UI, errors, notifications, email) |
+| **Glossary extension** | Professional terminology translated and approved |
+| **Regional defaults** | Date, number, currency defaults configured for new locale |
+| **Report templates** | Statement and note templates localized |
+| **AI response** | AI capabilities respond in new locale without model retraining |
+| **No code changes** | Adding a language is a content and configuration exercise — not an architectural change |
+
+Future languages (e.g., Arabic, German, French) follow the same pattern: **register locale, translate catalogs, approve glossary, configure regional defaults, validate**.
+
+---
+
+## 34. Regionalization Strategy
+
+Regionalization adapts the platform to **country-specific conventions** without embedding regional logic into business rules. Where localization addresses language, regionalization addresses **format, calendar, regulatory context, and local professional practice**.
+
+### 34.1 Regionalization vs. Localization
+
+| Dimension | Localization | Regionalization |
+|-----------|---------------|-----------------|
+| **Addresses** | Language and text | Format, convention, and regulatory context |
+| **Example** | "Trial Balance" → "Sınaq balansı" | Date displayed as DD.MM.YYYY |
+| **Changes** | Words | Numbers, dates, calendars, rules |
+| **Per user** | User language preference | Organization/entity jurisdiction configuration |
+
+Both are independent dimensions — a Russian-speaking auditor in Azerbaijan uses Russian UI with Azerbaijani regional defaults.
+
+### 34.2 Regional Configuration Elements
+
+#### Date Formats
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Display format** | Configurable per organization: DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD, and locale defaults |
+| **Input parsing** | Accepts multiple formats with unambiguous resolution |
+| **Period labels** | Reporting period names respect regional convention (e.g., "FY 2026" vs. "2026-cı il") |
+| **Separation from logic** | Business rules reference ISO dates internally; display format is presentation layer |
+
+#### Number Formats
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Decimal separator** | Comma or period per locale configuration |
+| **Thousands separator** | Space, comma, or period per locale |
+| **Negative presentation** | Parentheses or minus sign per convention |
+| **Precision** | Decimal places governed by account type and reporting framework — not locale |
+| **Separation from logic** | Calculations use numeric types; formatting is presentation |
+
+#### Currency Formats
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Functional currency** | Declared per entity — not inferred from locale |
+| **Display symbol** | Currency symbol and position per locale convention (₼, $, €, ₽, ₺) |
+| **Multi-currency** | Entities with foreign operations display translation per IFRS requirements |
+| **Separation from logic** | Currency conversion rules are business configuration — not locale configuration |
+
+#### Time Zones
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Organization default** | Organization sets default time zone |
+| **User override** | Users may set personal time zone for display |
+| **Audit timestamps** | Stored in UTC; displayed in user's time zone |
+| **Deadline calculations** | Engagement deadlines respect configured time zone |
+| **Separation from logic** | All temporal business rules reference UTC internally |
+
+#### Week Definitions
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Week start day** | Configurable: Monday (default for professional context) or Sunday where required |
+| **Working week** | Organization defines working days for deadline calculations |
+| **Calendar views** | Respect week start configuration |
+| **Separation from logic** | Business day calculations use configured calendar — not hardcoded |
+
+#### Fiscal Years
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Entity-level configuration** | Each entity declares fiscal year end (not assumed December 31) |
+| **Period generation** | Reporting periods generated from fiscal year configuration |
+| **Comparative handling** | Prior period alignment respects entity fiscal calendar |
+| **Separation from logic** | Period management reads fiscal configuration — does not assume calendar year |
+
+### 34.3 Regulatory Differences
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Jurisdiction declaration** | Entity declares operating jurisdiction(s) |
+| **Compliance packs** | Jurisdiction-specific templates, disclosures, and audit programs activated per configuration |
+| **Regulatory knowledge** | Jurisdiction-specific guidance in knowledge platform, filtered by entity jurisdiction |
+| **No hardcoded jurisdiction** | Regulatory rules are configuration and knowledge — not conditional code branches |
+| **Multi-jurisdiction entities** | Group structures may span jurisdictions; each entity carries its own regulatory context |
+
+### 34.4 Industry Terminology
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Industry classification** | Entity classified by industry (banking, insurance, construction, manufacturing, government) |
+| **Industry packs** | Specialized terminology, templates, and audit programs activated per industry configuration |
+| **Glossary extension** | Industry-specific terms added to glossary per locale |
+| **Separation from logic** | Industry behavior driven by template and configuration selection — not industry-specific code paths |
+
+### 34.5 Local Reporting Expectations
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Reporting framework** | Entity declares IFRS, local GAAP, or other applicable framework |
+| **Statutory formats** | Regional compliance packs provide locally required report formats |
+| **Filing language** | Report language configurable independently of UI language |
+| **Local note requirements** | Jurisdiction-specific disclosure requirements added via compliance packs |
+| **Separation from logic** | Report structure driven by template configuration — not regional code branches |
+
+### 34.6 Regional Independence from Business Logic
+
+Regional configuration must remain **strictly separated** from business logic:
+
+```
+┌─────────────────────────────────────────┐
+│         Presentation Layer               │
+│  (Locale formatting, labels, layout)     │
+├─────────────────────────────────────────┤
+│         Regional Configuration           │
+│  (Dates, numbers, currency, timezone)    │
+├─────────────────────────────────────────┤
+│         Business Logic Layer             │
+│  (Rules, calculations, workflows)        │
+│  → Operates on normalized data types     │
+│  → UTC dates, decimal numbers, ISO codes │
+├─────────────────────────────────────────┤
+│         Data Layer                       │
+│  (Stored in canonical format)            │
+└─────────────────────────────────────────┘
+```
+
+| Rule | Description |
+|------|-------------|
+| **Business logic uses canonical formats** | Dates as ISO, numbers as decimal, currencies as ISO 4217 codes |
+| **Regional config affects display only** | Formatting applied at presentation boundary |
+| **Regulatory rules are configuration** | Jurisdiction behavior via compliance packs, not regional if-statements in code |
+| **Entity configuration drives context** | Regional behavior resolved from entity and organization settings |
+| **Testing uses canonical data** | Business rule tests independent of locale formatting |
+
+This separation ensures that adding a new country or locale **never requires modifying calculation or workflow logic**.
+
+---
+
+## 35. Accessibility Philosophy
+
+Accessibility is a **professional obligation and enterprise requirement** — not a compliance checkbox. The platform serves auditors, accountants, controllers, and executives who spend long hours in complex software. Excluding professionals with disabilities from full platform capability is unacceptable for an enterprise product aspiring to global deployment.
+
+### 35.1 Why Accessibility Is Essential
+
+| Reason | Explanation |
+|--------|-------------|
+| **Legal requirement** | Enterprise procurement mandates WCAG compliance in many jurisdictions |
+| **Professional inclusion** | Qualified auditors and accountants with disabilities must perform their work without barrier |
+| **Cognitive sustainability** | Accessibility practices (clear structure, contrast, focus management) benefit all users during long sessions |
+| **Enterprise procurement** | RFP evaluations include accessibility as pass/fail criteria |
+| **Quality attribute** | Accessibility is a platform quality attribute (Part 6, Section 32) — not optional |
+| **Ethical commitment** | Equal access to professional tools is a design responsibility |
+
+### 35.2 WCAG Readiness
+
+| Aspect | Philosophy |
+|--------|------------|
+| **Target standard** | WCAG 2.1 Level AA across all platform surfaces |
+| **Conformance scope** | Platform chrome, workflows, forms, tables, reports, and notifications |
+| **Testing discipline** | Automated scanning plus manual assistive technology testing per release |
+| **Regression prevention** | Accessibility checks in quality gates for UI changes |
+| **Documentation** | Accessibility conformance documented for enterprise procurement |
+
+WCAG readiness is the **minimum bar** — the platform aspires to exceed it where professional context demands.
+
+### 35.3 Accessibility Principles
+
+#### Keyboard Navigation
+
+| Requirement | Description |
+|-------------|-------------|
+| **Full keyboard operability** | Every interactive element reachable and operable via keyboard |
+| **Logical tab order** | Focus sequence follows visual and logical workflow order |
+| **No keyboard traps** | Users can navigate into and out of all components including modals and panels |
+| **Shortcut discipline** | Keyboard shortcuts documented and do not conflict with assistive technology |
+
+Professionals who navigate by keyboard — whether by preference or necessity — must complete full workflows without mouse dependency.
+
+#### Screen Reader Compatibility
+
+| Requirement | Description |
+|-------------|-------------|
+| **Semantic structure** | Headings, landmarks, lists, and tables use correct semantic markup |
+| **ARIA where necessary** | Custom components provide appropriate ARIA roles, states, and properties |
+| **Meaningful labels** | All form fields, buttons, and interactive elements have accessible names |
+| **Live regions** | Dynamic content updates (notifications, validation, AI responses) announced appropriately |
+| **Table navigation** | Financial and audit tables navigable by row and column with header association |
+
+Screen reader users must be able to **review a trial balance, navigate working papers, and complete approval workflows** with full information access.
+
+#### Color Contrast
+
+| Requirement | Description |
+|-------------|-------------|
+| **Minimum contrast** | Text and interactive elements meet WCAG AA contrast ratios |
+| **Non-color indicators** | Status, severity, and validation never conveyed by color alone |
+| **Dark mode parity** | Dark theme maintains equivalent contrast standards |
+| **Professional palette** | Color choices support both aesthetics and accessibility |
+
+#### Focus Management
+
+| Requirement | Description |
+|-------------|-------------|
+| **Visible focus** | Focus indicator clearly visible on all interactive elements |
+| **Focus on open** | Dialogs and drawers receive focus on open; focus trapped within |
+| **Focus on close** | Focus returns to triggering element on close |
+| **Focus on navigation** | Route changes move focus to main content area |
+
+#### Responsive Typography
+
+| Requirement | Description |
+|-------------|-------------|
+| **Scalable text** | Text resizes up to 200% without loss of content or functionality |
+| **Relative units** | Typography based on relative sizing — not fixed pixels |
+| **Line height and spacing** | Readable line height for dense professional content |
+| **No text in images** | Information never conveyed solely through images of text |
+
+#### Touch Targets
+
+| Requirement | Description |
+|-------------|-------------|
+| **Minimum size** | Touch targets meet minimum size for reliable interaction on tablet and mobile |
+| **Adequate spacing** | Interactive elements spaced to prevent accidental activation |
+| **Tablet fieldwork** | Audit fieldwork on tablet requires comfortable touch interaction for evidence upload and review |
+
+#### Reduced Motion Support
+
+| Requirement | Description |
+|-------------|-------------|
+| **Respect preference** | System reduced-motion preference honored |
+| **Essential motion only** | Animation limited to meaningful feedback — not decorative |
+| **No vestibular triggers** | No parallax, auto-playing, or large motion effects |
+
+#### Accessible Forms
+
+| Requirement | Description |
+|-------------|-------------|
+| **Label association** | Every input has a visible, programmatically associated label |
+| **Error identification** | Validation errors identified in text — not color alone |
+| **Error suggestion** | Errors include actionable correction guidance |
+| **Required field indication** | Required fields indicated accessibly |
+| **Grouping** | Related fields grouped with fieldset and legend semantics |
+
+Forms are the primary data entry mechanism — inaccessible forms block professional work.
+
+#### Accessible Tables
+
+| Requirement | Description |
+|-------------|-------------|
+| **Header association** | Column and row headers programmatically associated with data cells |
+| **Caption and summary** | Complex tables include caption or summary where helpful |
+| **Sortable indication** | Sort state announced to assistive technology |
+| **Large table navigation** | Trial balances and lead sheets with hundreds of rows remain navigable |
+| **Responsive table strategy** | Tables adapt for smaller screens without losing data access |
+
+Financial and audit professionals live in tables — table accessibility is **non-negotiable**.
+
+### 35.4 Accessibility Governance
+
+| Mechanism | Application |
+|-----------|-------------|
+| **Design system standards** | All shared components meet accessibility requirements by default |
+| **Component review** | New components accessibility-reviewed before publication |
+| **Regression testing** | Automated accessibility scans in continuous integration |
+| **Manual testing** | Assistive technology testing for major workflow releases |
+| **User feedback** | Accessibility issues treated as defects — not enhancement requests |
+
+---
+
+## 36. User Experience Philosophy
+
+User experience philosophy defines **how professionals should feel and perform** when using the platform. Enterprise audit and reporting software is used for hours at a time, under deadline pressure, by experts who demand precision. The UX must respect their expertise while reducing unnecessary burden.
+
+### 36.1 UX Principles
+
+#### Simplicity
+
+| Principle | Application |
+|-----------|-------------|
+| **Reduce visible complexity** | Show what is needed for the current task; hide advanced options until requested |
+| **One primary action per screen** | Each view has a clear primary purpose and primary action |
+| **Eliminate redundancy** | No duplicate paths to the same action without reason |
+| **Clean information hierarchy** | Most important information most prominent |
+
+Simplicity does not mean **limited capability** — it means capability without clutter.
+
+#### Consistency
+
+| Principle | Application |
+|-----------|-------------|
+| **Predictable patterns** | Same interaction patterns across modules — approval works the same everywhere |
+| **Consistent terminology** | Glossary terms used uniformly (aligned with Section 33) |
+| **Consistent layout** | Navigation, headers, and action placement stable across the platform |
+| **Consistent feedback** | Success, warning, and error patterns identical across modules |
+
+Consistency reduces learning curve and prevents errors in high-stakes professional work.
+
+#### Predictability
+
+| Principle | Application |
+|-----------|-------------|
+| **No surprises** | Actions produce expected results; destructive actions require confirmation |
+| **Status visibility** | Users always know the state of their work — draft, in review, approved |
+| **Workflow transparency** | Users understand what step they are in and what comes next |
+| **AI predictability** | AI behavior consistent with documented philosophy — not random |
+
+Predictability builds **trust** — professionals stake their reputation on platform outputs.
+
+#### Efficiency
+
+| Principle | Application |
+|-----------|-------------|
+| **Minimize mechanical steps** | Common workflows optimized for fewest actions |
+| **Keyboard efficiency** | Power users accomplish tasks without excessive pointing device use |
+| **Bulk operations** | Where safe, batch actions reduce repetitive work |
+| **Smart defaults** | Sensible defaults based on context reduce configuration burden |
+| **AI acceleration** | AI reduces search, drafting, and cross-referencing time |
+
+Efficiency honors the mission (Part 1): **restore time to professional judgment**.
+
+#### Discoverability
+
+| Principle | Application |
+|-----------|-------------|
+| **Clear navigation** | Users find modules and features through logical information architecture |
+| **Contextual help** | Help available where users need it — not only in a separate documentation site |
+| **Empty state guidance** | New engagements, empty data sets, and first-use screens guide next actions |
+| **Search prominence** | Global and contextual search easily accessible |
+
+#### Professional Appearance
+
+| Principle | Application |
+|-----------|-------------|
+| **Enterprise gravitas** | Visual design conveys seriousness appropriate for audit and financial reporting |
+| **No consumer playfulness** | No gamification, novelty animations, or casual visual language |
+| **Client-presentable** | Screens suitable for sharing in client meetings without embarrassment |
+| **Print and export quality** | Outputs reflect professional document standards |
+
+#### Low Cognitive Load
+
+| Principle | Application |
+|-----------|-------------|
+| **Progressive information** | Details revealed as needed — not all at once |
+| **Chunked workflows** | Complex processes broken into manageable steps with clear progress |
+| **Visual calm** | Information density managed — not overwhelming |
+| **Consistent mental model** | Organization → Workspace → Engagement → Entity hierarchy intuitive throughout |
+
+Long sessions demand **sustainable cognitive demand** — not exhausting interfaces.
+
+#### Progressive Disclosure
+
+| Principle | Application |
+|-----------|-------------|
+| **Essential first** | Primary workflow visible; advanced options behind deliberate expansion |
+| **Expert access** | Power features available without cluttering default experience |
+| **Layered detail** | Summary views drill down to detail — trial balance → account → transaction |
+| **Configurable complexity** | Experienced users access depth; new users see guided simplicity |
+
+Progressive disclosure implements Clarity Over Complexity (Part 1, Section 4).
+
+#### Human-Centered Workflows
+
+| Principle | Application |
+|-----------|-------------|
+| **Workflow follows professional practice** | Platform mirrors how auditors and accountants actually work — not arbitrary software logic |
+| **Role-appropriate views** | Auditors see audit workflows; controllers see reporting workflows |
+| **Collaboration visible** | Review notes, assignments, and status visible to team members |
+| **Human actions prominent** | Approve, reject, sign-off are deliberate, visible human acts |
+
+#### Minimal Clicks
+
+| Principle | Application |
+|-----------|-------------|
+| **Direct paths** | Frequent tasks reachable in minimal steps from dashboard |
+| **Context preservation** | Navigation does not lose user's place in workflow |
+| **Inline actions** | Actions available where the object is visible — not only in separate menus |
+| **No unnecessary confirmation** | Confirm only destructive or irreversible actions |
+
+Minimal clicks is a **heuristic**, not a dogma — correctness always precedes speed.
+
+### 36.2 Enterprise User Experience
+
+Enterprise users experience the platform as **professional infrastructure** — not as a consumer app or a generic business tool:
+
+| Experience Quality | Description |
+|--------------------|-------------|
+| **Confidence** | Users trust that the platform preserves data integrity and audit trail |
+| **Control** | Users feel in command of their work — AI assists but does not override |
+| **Orientation** | Users always know where they are, what state their work is in, and what to do next |
+| **Competence support** | Platform makes junior staff more effective and senior staff more efficient |
+| **Respect for expertise** | Platform does not patronize professionals with oversimplified workflows that hide necessary detail |
+| **Deadline readiness** | Platform performs reliably during close and fieldwork crunch periods |
+| **Continuity** | Work persists across sessions, devices, and team handoffs without loss |
+
+```
+Professional enters platform
+        ↓
+Oriented immediately (where am I, what needs attention)
+        ↓
+Executes work efficiently (minimal mechanical burden)
+        ↓
+Collaborates naturally (review, assignment, status)
+        ↓
+Approves with confidence (clear human authorization)
+        ↓
+Delivers defensible output (traceable, approved, exportable)
+```
+
+---
+
+## 37. User Interface Philosophy
+
+User interface philosophy defines the **visual and interaction language** of the platform. The UI is the surface through which professionals experience every principle in this document — security, traceability, AI governance, and enterprise quality. The interface must earn trust through visual professionalism and sustained usability.
+
+### 37.1 Design Identity
+
+| Attribute | Description |
+|-----------|-------------|
+| **Modern enterprise design** | Contemporary visual language aligned with leading enterprise SaaS — not legacy accounting software aesthetics |
+| **Premium visual identity** | Quality craftsmanship in spacing, typography, and color — reflecting the platform's ambition |
+| **Professional restraint** | Visual richness without ornamentation; every element serves function |
+| **Trust through clarity** | Clean, organized layouts that communicate control and reliability |
+
+The platform competes with CaseWare, AuditBoard, and Workiva — the UI must signal **equal or superior enterprise maturity**.
+
+### 37.2 Layout Philosophy
+
+#### Clean Layouts
+
+| Principle | Application |
+|-----------|-------------|
+| **Generous whitespace** | Breathing room between elements — dense data without dense clutter |
+| **Grid discipline** | Consistent alignment and column structure |
+| **Content priority** | Primary content area dominant; navigation and secondary panels subordinate |
+| **Panel architecture** | List-detail and master-detail patterns for engagement files and data exploration |
+
+#### Responsive Interface
+
+| Principle | Application |
+|-----------|-------------|
+| **Desktop-first** | Primary design optimized for large screens where professionals do most complex work |
+| **Laptop ready** | Full workflow capability on standard laptop resolutions |
+| **Tablet support** | Fieldwork, review, and evidence upload fully functional on tablet — especially iPad-class devices |
+| **Mobile support** | Status monitoring, approvals, notifications, and essential read access on mobile — iPhone and Android |
+| **Adaptive layout** | Layout restructures for viewport — not merely shrinks desktop |
+
+```
+Desktop (primary)  →  Full workflow, multi-panel, dense data views
+Laptop             →  Full workflow, adapted panel layout
+Tablet             →  Fieldwork-optimized, touch-friendly, review-capable
+Mobile             →  Monitoring, approval, notification, essential read
+```
+
+Desktop-first does not mean **desktop-only** — it means design priority starts at desktop and scales down with intentional adaptation.
+
+### 37.3 Component Consistency
+
+| Principle | Application |
+|-----------|-------------|
+| **Shared component library** | All modules use the same UI components (Part 6, Section 30) |
+| **Consistent behavior** | A button, table, or dialog behaves identically everywhere |
+| **Consistent states** | Loading, empty, error, and success states uniform across modules |
+| **Consistent density** | Data-dense views (tables, lead sheets) and form views share spacing rhythm |
+
+Component consistency eliminates the **"which module am I in?"** disorientation common in enterprise software assembled from acquisitions.
+
+### 37.4 Design Token Philosophy
+
+Design tokens are the **foundational variables** from which all visual elements are constructed:
+
+| Token Category | Purpose |
+|----------------|---------|
+| **Color tokens** | Semantic colors (primary, secondary, success, warning, error, neutral) — not hardcoded values |
+| **Typography tokens** | Font families, sizes, weights, line heights |
+| **Spacing tokens** | Consistent spacing scale applied to padding, margin, and gap |
+| **Radius tokens** | Border radius consistency for cards, buttons, inputs |
+| **Shadow tokens** | Elevation levels for layering hierarchy |
+| **Motion tokens** | Duration and easing for purposeful animation |
+
+| Token Principle | Description |
+|-----------------|-------------|
+| **Semantic naming** | Tokens named by purpose (`color-text-primary`) not appearance (`color-gray-700`) |
+| **Theme support** | Tokens enable light and dark theme from single definition |
+| **Single source of truth** | All components reference tokens — never raw values |
+| **Accessibility embedded** | Contrast-compliant color pairs defined at token level |
+
+Design tokens enable **global visual changes** (rebrand, theme, accessibility improvement) without per-component modification.
+
+### 37.5 Iconography
+
+| Principle | Application |
+|-----------|-------------|
+| **Consistent icon set** | Single icon library across platform |
+| **Semantic clarity** | Icons reinforce meaning — never replace text labels for primary actions |
+| **Professional style** | Clean, outlined or subtly filled — not cartoonish |
+| **Localized icons** | Directional icons (arrows, navigation) respect reading direction where applicable |
+| **Status icons** | Combined with text — never color and icon alone for critical status |
+
+### 37.6 Typography
+
+| Principle | Application |
+|-----------|-------------|
+| **Professional typeface** | Clean, highly legible sans-serif for UI; monospace for data codes and figures |
+| **Hierarchy** | Clear heading levels (H1–H4) with distinct size and weight |
+| **Data readability** | Tabular figures for financial data alignment |
+| **Multilingual support** | Typefaces support Azerbaijani, Latin, and Cyrillic character sets |
+| **Sustained reading** | Body text optimized for long document and working paper reading |
+
+### 37.7 Spacing System
+
+| Principle | Application |
+|-----------|-------------|
+| **Consistent scale** | Spacing based on defined scale (e.g., 4px base unit) |
+| **Rhythm** | Vertical rhythm creates visual calm in dense interfaces |
+| **Density modes** | Optional compact density for data-heavy views (tables, lead sheets) |
+| **Responsive spacing** | Spacing adapts proportionally for smaller viewports |
+
+### 37.8 Supporting Long Professional Sessions
+
+The UI must support **hours of continuous professional use**:
+
+| Factor | UI Response |
+|--------|-------------|
+| **Visual fatigue** | Calm color palette; dark mode option; adequate contrast without harshness |
+| **Information density** | Dense where data demands it (tables); spacious where decisions are made (approvals) |
+| **Orientation fatigue** | Persistent navigation context; breadcrumbs; clear page titles |
+| **Error recovery** | Clear error messages with recovery paths — not dead ends |
+| **Save confidence** | Auto-save and explicit status indicators — users never fear losing work |
+| **Session continuity** | State preserved across navigation; return to exact context |
+
+### 37.9 Trust, Professionalism, and UI
+
+The UI reinforces trust through:
+
+| Trust Signal | UI Expression |
+|--------------|---------------|
+| **Data integrity** | Version indicators, approval badges, lock icons on approved artifacts |
+| **AI transparency** | AI-generated content visually distinguished from human-authored content |
+| **Audit trail access** | History and audit log accessible from artifacts — not hidden |
+| **Status clarity** | Draft, in review, approved, archived — always visible and unambiguous |
+| **Professional tone** | No gamification, badges, streaks, or consumer engagement patterns |
+| **Precision** | Financial figures displayed with correct precision and alignment |
+| **Consistency** | Same visual language in month one and year five — no jarring redesigns |
+
+```
+Visual Professionalism + Interaction Consistency + Accessibility
+                              ↓
+                    Perceived Enterprise Trust
+                              ↓
+              Professionals stake reputation on platform outputs
+```
+
+The UI is not decoration — it is the **visible expression of the platform's constitutional principles**.
+
+---
+
+## Document Control — Part 7
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.7.0 | 2026-06-30 | Chief Product Architect | Part 7 — Global Experience & Interface Philosophy complete |
+
+---
+
+*End of Part 7.*
+
+---
+
+## Part 8 — Enterprise Domain Model & Business Vocabulary
+
+### Table of Contents — Part 8
+
+38. [Enterprise Domain Model](#38-enterprise-domain-model)
+39. [Domain Relationships](#39-domain-relationships)
+40. [Business Object Lifecycle](#40-business-object-lifecycle)
+41. [Domain Boundaries](#41-domain-boundaries)
+42. [Enterprise Business Vocabulary](#42-enterprise-business-vocabulary)
+
+---
+
+## 38. Enterprise Domain Model
+
+The enterprise domain model defines the **business entities** that constitute the platform's conceptual universe. These are not database tables or API objects — they are the professional concepts that auditors, accountants, and enterprise administrators recognize, discuss, and govern.
+
+Entities are grouped by domain territory. Cross-cutting entities (Version, Approval, Review) apply across multiple domains.
+
+### 38.1 Tenancy & Administration Entities
+
+---
+
+#### Organization
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Represents the top-level customer tenant — a firm, enterprise, or institution that subscribes to and operates the platform |
+| **Business Responsibility** | Owns subscription, global policies, billing relationship, and organizational administration |
+| **Relationships** | Contains workspaces, users, and organizational policies; parent of all customer data |
+| **Lifecycle** | Provisioned → Active → Suspended → Terminated (with data retention) |
+| **Business Ownership** | Organization Owner |
+| **Business Importance** | Fundamental — the tenancy boundary protecting all customer data |
+
+---
+
+#### Workspace
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Operational subdivision within an organization — firm office, business unit, or client portal |
+| **Business Responsibility** | Contains companies, engagements, methodology templates, and workspace-scoped users |
+| **Relationships** | Belongs to organization; contains companies and engagements; isolates client confidentiality |
+| **Lifecycle** | Created → Active → Archived |
+| **Business Ownership** | Workspace Administrator |
+| **Business Importance** | Critical — enforces client isolation and operational boundaries within large firms |
+
+---
+
+#### Company
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A legal reporting entity — the unit for which financial data is managed and reports are prepared |
+| **Business Responsibility** | Declares reporting framework, currency, fiscal year, and jurisdiction; owns financial periods and data |
+| **Relationships** | Belongs to workspace; may have parent company (group); has financial periods, engagements, and chart of accounts |
+| **Lifecycle** | Registered → Active → Inactive → Archived (soft — never hard-deleted with data) |
+| **Business Ownership** | Workspace Administrator (registration); Financial Controller (data) |
+| **Business Importance** | Fundamental — anchor for all financial and reporting activity |
+
+---
+
+#### User
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | An individual professional or administrator with platform identity |
+| **Business Responsibility** | Performs professional work, approves artifacts, and administers configuration within granted permissions |
+| **Relationships** | Belongs to organization; assigned roles, teams, and engagements; author of actions and artifacts |
+| **Lifecycle** | Invited → Active → Deactivated (never deleted — actions remain attributed) |
+| **Business Ownership** | Organization Owner / Workspace Administrator (provisioning); individual (profile) |
+| **Business Importance** | Critical — all accountability traces to user identity |
+
+---
+
+#### Team
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A group of users assigned to shared professional work — typically an engagement team |
+| **Business Responsibility** | Defines collective responsibility for engagement execution and internal collaboration |
+| **Relationships** | Composed of users with roles; assigned to engagements; led by Engagement Partner and Audit Manager |
+| **Lifecycle** | Formed at engagement acceptance → Modified during engagement → Dissolved at closure |
+| **Business Ownership** | Audit Manager (composition); Engagement Partner (accountability) |
+| **Business Importance** | High — structures professional collaboration and responsibility |
+
+---
+
+#### Role
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A named professional or administrative function defining a bundle of capabilities |
+| **Business Responsibility** | Determines what actions a user may perform within a given scope |
+| **Relationships** | Assigned to users; binds permissions; scoped to organization, workspace, or engagement |
+| **Lifecycle** | Defined (platform or firm) → Assigned → Modified → Revoked |
+| **Business Ownership** | Organization Owner (custom roles); platform (canonical roles) |
+| **Business Importance** | Critical — implements least privilege and separation of duties |
+
+---
+
+#### Permission
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A specific authorization for an action on a resource type within a scope |
+| **Business Responsibility** | Enforces access control at the granularity required for professional confidentiality |
+| **Relationships** | Bound to roles; evaluated against organization, workspace, engagement, and entity scope |
+| **Lifecycle** | Granted → Active → Revoked (all changes logged) |
+| **Business Ownership** | Organization Owner / Workspace Administrator |
+| **Business Importance** | Critical — security and confidentiality depend on precise permissions |
+
+---
+
+#### Client
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | The organization being served — the subject of audit, reporting, or assurance work |
+| **Business Responsibility** | Provides financial data, representations, and evidence; receives deliverables |
+| **Relationships** | Represented by company entity; linked to engagements; client users access client portal |
+| **Lifecycle** | Onboarded → Active → Offboarded (engagement history retained) |
+| **Business Ownership** | Workspace Administrator (firm side); Client organization (their data) |
+| **Business Importance** | High — the reason audit and reporting engagements exist |
+
+---
+
+### 38.2 Financial Domain Entities
+
+---
+
+#### Financial Period
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A defined reporting time boundary for a company (e.g., year ending 31 December 2026) |
+| **Business Responsibility** | Governs which data belongs to which reporting cycle; controls open/closed status for imports and adjustments |
+| **Relationships** | Belongs to company; contains trial balance, general ledger, statements, and notes |
+| **Lifecycle** | Open → In Close → Closed → Archived |
+| **Business Ownership** | Financial Controller |
+| **Business Importance** | Fundamental — all financial data is period-bound |
+
+---
+
+#### Trial Balance
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Period-end aggregation of all account balances — the foundation for classification, reporting, and audit |
+| **Business Responsibility** | Represents the financial position and performance summary before and after adjustments |
+| **Relationships** | Belongs to financial period; composed of accounts; linked to general ledger, classifications, adjustments, lead sheets |
+| **Lifecycle** | Imported → Validated → Classified → Adjusted → Approved → Locked |
+| **Business Ownership** | Financial Controller |
+| **Business Importance** | Fundamental — central financial artifact connecting data to reports and audit |
+
+---
+
+#### General Ledger
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Detailed transaction-level record underlying the trial balance |
+| **Business Responsibility** | Provides drill-down from account balances to individual transactions for analysis and substantive testing |
+| **Relationships** | Belongs to financial period; transactions reference accounts; supports trial balance reconciliation |
+| **Lifecycle** | Imported → Validated → Available for analysis → Archived with period |
+| **Business Ownership** | Financial Controller |
+| **Business Importance** | High — enables transaction-level traceability and audit testing |
+
+---
+
+#### Chart of Accounts
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | The structured catalog of accounts used by a company for financial recording |
+| **Business Responsibility** | Defines the account hierarchy and codes used for import mapping and classification |
+| **Relationships** | Belongs to company; accounts map to IFRS classifications; referenced by trial balance and general ledger |
+| **Lifecycle** | Configured → Active → Modified (versioned) → Superseded |
+| **Business Ownership** | Financial Controller |
+| **Business Importance** | High — bridge between client accounting and platform reporting |
+
+---
+
+#### Account
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | An individual ledger account with code, name, and balance within the trial balance |
+| **Business Responsibility** | Atomic unit of financial data aggregation; target of classification, adjustment, and audit testing |
+| **Relationships** | Belongs to chart of accounts and trial balance; classified under IFRS category; linked to lead sheets and working papers |
+| **Lifecycle** | Imported → Mapped → Classified → Tested → Reported |
+| **Business Ownership** | Financial Controller (data); Auditor (testing) |
+| **Business Importance** | Fundamental — every reported figure traces to accounts |
+
+---
+
+#### IFRS Classification
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Mapping of accounts to IFRS presentation categories for financial statement composition |
+| **Business Responsibility** | Determines how trial balance amounts appear in primary financial statements and notes |
+| **Relationships** | Applied to accounts; drives financial statement line items; governed by mapping rules |
+| **Lifecycle** | Suggested → Reviewed → Approved → Overridden (with justification) → Locked with period |
+| **Business Ownership** | Financial Controller (execution); Finance Director (approval) |
+| **Business Importance** | Critical — incorrect classification produces incorrect financial statements |
+
+---
+
+#### Adjustment
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A journal entry modifying the trial balance — audit or reporting adjustment |
+| **Business Responsibility** | Records corrections, accruals, reclassifications, and audit misstatement corrections with documentation |
+| **Relationships** | Applied to trial balance accounts; linked to evidence; distinguished as audit or management adjustment |
+| **Lifecycle** | Drafted → Submitted → Approved → Posted → (Reversed via new adjustment) |
+| **Business Ownership** | Auditor or Financial Controller (create); Audit Manager or Finance Director (approve) |
+| **Business Importance** | Critical — adjustments directly affect reported figures and audit conclusions |
+
+---
+
+#### Financial Statement
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A primary financial report (statement of financial position, profit or loss, cash flows, changes in equity) |
+| **Business Responsibility** | Presents classified financial information for stakeholder communication and statutory filing |
+| **Relationships** | Composed from classified trial balance; linked to IFRS notes; subject of audit opinion |
+| **Lifecycle** | Generated → Draft → In Review → Approved → Published → Archived |
+| **Business Ownership** | Financial Controller (prepare); CFO (approve) |
+| **Business Importance** | Fundamental — primary output of financial reporting |
+
+---
+
+#### IFRS Note
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A disclosure note accompanying financial statements explaining accounting policies and detailed balances |
+| **Business Responsibility** | Provides IFRS-required narrative and supporting detail for financial statement line items |
+| **Relationships** | Linked to financial statement lines; populated from trial balance and classifications; reviewed with statements |
+| **Lifecycle** | Generated → Draft → In Review → Approved → Published → Archived |
+| **Business Ownership** | Financial Controller (prepare); Finance Director (review); CFO (approve) |
+| **Business Importance** | Critical — incomplete notes invalidate financial statement compliance |
+
+---
+
+### 38.3 Audit & Assurance Entities
+
+---
+
+#### Audit Engagement
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A bounded professional assignment to perform audit or assurance work for a client company and period |
+| **Business Responsibility** | Contains the complete audit file — planning, fieldwork, review, opinion, and deliverables |
+| **Relationships** | Belongs to workspace; linked to company and financial period; contains team, working papers, evidence, risks, findings, opinion |
+| **Lifecycle** | Acceptance → Planning → Fieldwork → Review → Completion → Closure → Archived |
+| **Business Ownership** | Engagement Partner (accountability); Audit Manager (operations) |
+| **Business Importance** | Fundamental — the primary container for assurance work |
+
+---
+
+#### Working Paper
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Structured documentation of an audit procedure, its evidence, results, and conclusion |
+| **Business Responsibility** | Demonstrates that sufficient appropriate audit evidence was obtained for a specific assertion |
+| **Relationships** | Belongs to engagement; linked to audit program procedure, evidence, lead sheet, and findings |
+| **Lifecycle** | Created → In Progress → Submitted for Review → Reviewed → Signed Off |
+| **Business Ownership** | Auditor (prepare); Audit Senior / Manager (review) |
+| **Business Importance** | Fundamental — the evidentiary core of the audit file |
+
+---
+
+#### Lead Sheet
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | Summary schedule linking trial balance account balances to detailed audit testing and conclusions |
+| **Business Responsibility** | Provides navigable bridge from financial data to working paper evidence |
+| **Relationships** | Maps accounts to working papers; reconciles to trial balance; organized by financial statement area |
+| **Lifecycle** | Generated → Populated → Reviewed → Signed Off |
+| **Business Ownership** | Audit Senior (prepare); Audit Manager (review) |
+| **Business Importance** | High — essential navigation structure in the audit file |
+
+---
+
+#### Evidence
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A document, data extract, or record supporting an audit conclusion or working paper |
+| **Business Responsibility** | Provides the factual basis for professional judgments and audit opinions |
+| **Relationships** | Attached to working papers; may link to accounts, transactions, or findings; marked as client-provided or auditor-prepared |
+| **Lifecycle** | Uploaded → Indexed → Linked → Referenced in conclusions → Archived |
+| **Business Ownership** | Auditor (collection); Engagement team (custody) |
+| **Business Importance** | Fundamental — no evidence means no defensible conclusion |
+
+---
+
+#### Risk
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A identified threat of material misstatement at financial statement or assertion level |
+| **Business Responsibility** | Drives audit planning, procedure selection, and resource allocation |
+| **Relationships** | Assessed within engagement; linked to accounts, assertions, and planned procedures; informed by AI indicators |
+| **Lifecycle** | Identified → Assessed → Linked to procedures → Reassessed (if needed) → Concluded |
+| **Business Ownership** | Audit Manager (assessment); Engagement Partner (significant risks) |
+| **Business Importance** | Critical — risk assessment is the foundation of audit strategy |
+
+---
+
+#### Control
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | An internal control over financial reporting — designed to prevent or detect misstatement |
+| **Business Responsibility** | Documented, tested, and evaluated for design and operating effectiveness |
+| **Relationships** | Mapped to processes and accounts; tested in working papers; deficiencies linked to findings |
+| **Lifecycle** | Documented → Walkthrough → Tested → Evaluated → Concluded |
+| **Business Ownership** | Auditor (evaluation); client management (design and operation) |
+| **Business Importance** | High — control reliance affects audit approach and extent of substantive testing |
+
+---
+
+#### Finding
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A documented audit observation — misstatement, control deficiency, or recommendation |
+| **Business Responsibility** | Communicates issues identified during audit to management and governance |
+| **Relationships** | Linked to working papers and evidence; may drive adjustments; tracked through remediation; included in management letter |
+| **Lifecycle** | Identified → Documented → Agreed with management → Communicated → Remediated (tracked) |
+| **Business Ownership** | Auditor (identify); Audit Manager (evaluate); Engagement Partner (communicate) |
+| **Business Importance** | Critical — findings drive adjustments, opinions, and management communication |
+
+---
+
+#### Audit Opinion
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | The auditor's formal conclusion on whether financial statements are free from material misstatement |
+| **Business Responsibility** | Expresses professional judgment on fair presentation in accordance with applicable framework |
+| **Relationships** | Issued for engagement; references financial statement version; reflects findings and evidence |
+| **Lifecycle** | Drafted → Reviewed → Authorized by Partner → Issued → Archived |
+| **Business Ownership** | Engagement Partner (authorize and issue) |
+| **Business Importance** | Fundamental — the ultimate output of external audit |
+
+---
+
+### 38.4 Knowledge & Intelligence Entities
+
+---
+
+#### Knowledge Document
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A curated piece of firm or regulatory knowledge — methodology, standard, guidance, or precedent |
+| **Business Responsibility** | Provides authoritative reference for professional decisions and AI retrieval |
+| **Relationships** | Belongs to knowledge platform; decomposed into knowledge chunks; versioned and domain-tagged |
+| **Lifecycle** | Ingested → Curated → Published → Superseded → Archived |
+| **Business Ownership** | Firm knowledge owner / technical function |
+| **Business Importance** | High — institutional knowledge preservation and AI grounding |
+
+---
+
+#### Knowledge Chunk
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A semantically indexed segment of a knowledge document for retrieval and AI context |
+| **Business Responsibility** | Atomic unit of knowledge retrieval — enables precise RAG context assembly |
+| **Relationships** | Derived from knowledge document; retrieved by AI and knowledge search |
+| **Lifecycle** | Indexed at publication → Updated on document version change → Retired on document supersession |
+| **Business Ownership** | System (indexing); firm knowledge owner (source content) |
+| **Business Importance** | High — precision of AI and search depends on chunk quality |
+
+---
+
+#### AI Session
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A bounded interaction context for AI Copilot or AI capability use within an engagement or entity |
+| **Business Responsibility** | Contains conversation history, permission scope, and interaction log for the session |
+| **Relationships** | Initiated by user; scoped to engagement or entity; produces AI findings and interaction records |
+| **Lifecycle** | Started → Active → Ended (history logged; session memory cleared) |
+| **Business Ownership** | Initiating user (accountability for accepted outputs) |
+| **Business Importance** | High — governs AI interaction boundaries and audit trail |
+
+---
+
+#### AI Finding
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A structured, persistent AI-generated observation requiring human disposition |
+| **Business Responsibility** | Converts AI analysis into a governed professional object with evidence and lifecycle |
+| **Relationships** | Generated by AI capability; linked to evidence; accepted or rejected by user; may link to working papers |
+| **Lifecycle** | Generated → Presented → Accepted / Rejected / Deferred / Escalated → Resolved → Archived |
+| **Business Ownership** | AI (generation); accepting professional (incorporated conclusions) |
+| **Business Importance** | Critical — bridges AI assistance and professional accountability |
+
+---
+
+### 38.5 Cross-Domain & Output Entities
+
+---
+
+#### Report
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A composed output artifact — financial statement package, auditor's report, management letter, or governance report |
+| **Business Responsibility** | Delivers authorized professional output to stakeholders |
+| **Relationships** | Composed from statements, notes, opinions, or findings; subject to approval; exported for distribution |
+| **Lifecycle** | Composed → Draft → Approved → Published → Distributed → Archived |
+| **Business Ownership** | Varies by type: CFO (financial), Engagement Partner (audit) |
+| **Business Importance** | Fundamental — the deliverable stakeholders receive |
+
+---
+
+#### Export
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A recorded act of extracting an approved artifact from the platform in a specific format |
+| **Business Responsibility** | Governs controlled distribution with full audit trail |
+| **Relationships** | References report or engagement package; performed by authorized user; logged immutably |
+| **Lifecycle** | Requested → Authorized → Generated → Delivered (single event — immutable record) |
+| **Business Ownership** | Requesting user (accountability); platform (execution) |
+| **Business Importance** | High — controls data leaving the platform boundary |
+
+---
+
+#### Notification
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A message alerting a user to a workflow event, assignment, deadline, or status change |
+| **Business Responsibility** | Keeps professionals informed without requiring constant platform monitoring |
+| **Relationships** | Triggered by workflow events; delivered to user; localized per user preference |
+| **Lifecycle** | Generated → Delivered → Read (optional) → Archived |
+| **Business Ownership** | Platform (delivery); recipient (action) |
+| **Business Importance** | Medium — supports workflow efficiency and deadline management |
+
+---
+
+#### Task
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | An assigned professional action with owner, deadline, and completion status |
+| **Business Responsibility** | Drives workflow execution and accountability for specific deliverables |
+| **Relationships** | Assigned to user; linked to engagement, working paper, or approval; may trigger notifications |
+| **Lifecycle** | Created → Assigned → In Progress → Completed / Overdue |
+| **Business Ownership** | Assignee (execution); assigner (accountability for assignment) |
+| **Business Importance** | High — operationalizes engagement team coordination |
+
+---
+
+#### Comment
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A professional remark attached to an artifact — review note, query, or discussion point |
+| **Business Responsibility** | Enables collaborative review and issue resolution without modifying primary content |
+| **Relationships** | Attached to working papers, statements, findings, or adjustments; authored by user; resolvable |
+| **Lifecycle** | Posted → Open → Responded → Resolved / Closed |
+| **Business Ownership** | Author (content); addressee (response) |
+| **Business Importance** | High — primary mechanism for review communication |
+
+---
+
+#### Attachment
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A file linked to a platform object — evidence, import source, or supporting schedule |
+| **Business Responsibility** | Preserves original documents and supporting materials within governed storage |
+| **Relationships** | Linked to evidence, working papers, adjustments, or imports; preserved immutably for source files |
+| **Lifecycle** | Uploaded → Indexed → Linked → Referenced → Archived |
+| **Business Ownership** | Uploading user (provenance); engagement team (custody) |
+| **Business Importance** | High — physical evidence of professional work |
+
+---
+
+#### Version
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A point-in-time snapshot of an artifact capturing its state at a specific moment |
+| **Business Responsibility** | Enables history, comparison, and defensible reconstruction of prior states |
+| **Relationships** | Applied to trial balances, statements, working papers, templates, configurations, and knowledge |
+| **Lifecycle** | Created on modification → Retained indefinitely → Comparable with other versions |
+| **Business Ownership** | Modifying user (creation); platform (preservation) |
+| **Business Importance** | Critical — versioning is foundational to traceability and audit integrity |
+
+---
+
+#### Approval
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A formal authorization by a qualified professional that an artifact meets requirements for its next state |
+| **Business Responsibility** | Implements separation of duties and governance over significant professional outputs |
+| **Relationships** | Applied to adjustments, classifications, statements, notes, opinions, and exports; chain of sequential approvers |
+| **Lifecycle** | Requested → Pending → Approved / Rejected → Recorded immutably |
+| **Business Ownership** | Approver (decision and accountability) |
+| **Business Importance** | Critical — no significant artifact reaches published state without approval |
+
+---
+
+#### Review
+
+| Dimension | Description |
+|-----------|-------------|
+| **Business Purpose** | A quality examination of professional work by a reviewer independent of or senior to the preparer |
+| **Business Responsibility** | Ensures work meets firm standards before sign-off or approval |
+| **Relationships** | Applied to working papers, lead sheets, planning, and engagement sections; produces review notes (comments) |
+| **Lifecycle** | Submitted → Under Review → Cleared / Returned with notes |
+| **Business Ownership** | Reviewer (quality judgment); preparer (remediation) |
+| **Business Importance** | Critical — quality control is a professional and regulatory requirement |
+
+---
+
+## 39. Domain Relationships
+
+Domain relationships define **how business territories connect** without collapsing into a monolith. Relationships are governed, directional, and respect the domain boundaries defined in Part 6 (Section 29) and below (Section 41).
+
+### 39.1 Relationship Philosophy
+
+| Principle | Description |
+|-----------|-------------|
+| **Hierarchy, not network chaos** | Primary relationships follow a clear hierarchy from organization to deliverable |
+| **Read downstream, write through workflow** | Upstream domains provide context; modifications flow through governed workflows |
+| **No silent cross-domain mutation** | One domain does not modify another domain's authoritative state without explicit workflow |
+| **Shared objects, not shared internals** | Domains interact through business objects (trial balance, engagement) — not internal logic |
+| **AI reads all, writes through findings** | AI domain reads across domains; writes only through AI findings and drafts |
+
+### 39.2 Primary Hierarchy
+
+```
+Organization
+     ↓
+ Workspace
+     ↓
+  Company
+     ↓
+Financial Period
+     ↓
+Financial Data (Trial Balance · General Ledger · Accounts)
+     ↓
+Classification & Adjustments
+     ↓
+Financial Statements & IFRS Notes
+     ↓
+Audit Engagement
+     ↓
+Audit Execution (Working Papers · Evidence · Lead Sheets)
+     ↓
+Findings & Opinion
+     ↓
+Reports & Exports
+```
+
+### 39.3 Cross-Domain Relationship Map
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│ Organization │────→│  Workspace   │────→│   Company    │
+└──────────────┘     └──────────────┘     └──────┬───────┘
+                                                  │
+                    ┌─────────────────────────────┼─────────────────────────────┐
+                    ▼                             ▼                             ▼
+           ┌──────────────┐            ┌──────────────┐            ┌──────────────┐
+           │  Financial   │            │    Audit     │            │  Governance  │
+           │    Data      │←──────────→│  Engagement  │───────────→│   & Control  │
+           └──────┬───────┘            └──────┬───────┘            └──────────────┘
+                  │                           │
+                  ▼                           ▼
+           ┌──────────────┐            ┌──────────────┐
+           │  Reporting   │←───────────│   Findings   │
+           └──────┬───────┘            └──────────────┘
+                  │
+                  ▼
+           ┌──────────────┐
+           │   Exports    │
+           └──────────────┘
+
+     ┌──────────────┐            ┌──────────────┐
+     │  Knowledge   │───────────→│      AI      │
+     └──────────────┘            └──────────────┘
+            ↑                           │
+            └───────────────────────────┘
+                  (AI retrieves knowledge;
+                   AI reads financial & audit data)
+```
+
+### 39.4 Key Relationship Definitions
+
+| Relationship | Direction | Nature |
+|--------------|-----------|--------|
+| Organization → Workspace | One-to-many | Containment; workspace inherits org policies |
+| Workspace → Company | One-to-many | Containment; company is reporting unit |
+| Company → Financial Period | One-to-many | Temporal segmentation |
+| Financial Period → Trial Balance | One-to-one (active) | Primary financial summary per period |
+| Trial Balance → Account | One-to-many | Composition |
+| Account → IFRS Classification | Many-to-one | Mapping |
+| Trial Balance → Adjustment | One-to-many | Modifications |
+| Classified TB → Financial Statement | One-to-many | Composition (multiple statements) |
+| Financial Statement → IFRS Note | One-to-many | Disclosure linkage |
+| Company → Audit Engagement | One-to-many | Assurance assignments |
+| Engagement → Working Paper | One-to-many | Documentation |
+| Working Paper → Evidence | Many-to-many | Support |
+| Trial Balance → Lead Sheet | One-to-many | Audit summary linkage |
+| Lead Sheet → Working Paper | One-to-many | Detail linkage |
+| Engagement → Risk | One-to-many | Assessment |
+| Engagement → Control | One-to-many | Evaluation |
+| Engagement → Finding | One-to-many | Observations |
+| Engagement → Audit Opinion | One-to-one | Conclusion |
+| Knowledge Document → Knowledge Chunk | One-to-many | Decomposition |
+| AI Session → AI Finding | One-to-many | Generation |
+| Report → Export | One-to-many | Distribution |
+| Any artifact → Version | One-to-many | History |
+| Any artifact → Approval | One-to-many | Authorization chain |
+| Any artifact → Review | One-to-many | Quality examination |
+
+### 39.5 User & Permission Relationships
+
+```
+User ──assigned──→ Role ──grants──→ Permission
+  │                                      │
+  └──member of──→ Team ──assigned to──→ Engagement
+  │                                      │
+  └──scoped to──→ Organization / Workspace / Engagement
+```
+
+Permissions flow **downward through scope** — never widening access at lower levels.
+
+---
+
+## 40. Business Object Lifecycle
+
+Business objects evolve through **governed state transitions**. Lifecycle definitions ensure that professional artifacts progress through creation, review, approval, and preservation in a controlled, auditable manner. Lifecycle patterns are consistent across domains while respecting domain-specific requirements.
+
+### 40.1 Universal Lifecycle Pattern
+
+```
+Create → Modify → Review → Approve → Publish/Use → Archive
+   ↑         ↑                                    │
+   └─────────┴──── New Version (prior preserved) ──┘
+```
+
+Modification of approved objects creates **new versions** — prior states are never destroyed.
+
+### 40.2 Company Lifecycle
+
+| Stage | Description | Responsible |
+|-------|-------------|-------------|
+| **Registration** | Company created with legal identity, framework, and currency | Workspace Administrator |
+| **Configuration** | Chart of accounts, fiscal year, and compliance packs applied | Financial Controller |
+| **Active** | Receiving financial data and engagements | Financial Controller / Audit Manager |
+| **Inactive** | No current period activity; historical data retained | Organization policy |
+| **Archived** | Read-only; retained per policy | Workspace Administrator |
+
+**Retention:** Company records retained for duration of firm/regulatory policy — never hard-deleted with financial or engagement data.
+
+### 40.3 Engagement Lifecycle
+
+| Stage | Description | Gate |
+|-------|-------------|------|
+| **Acceptance** | Client and engagement accepted; team assigned | Partner approval |
+| **Planning** | Risk assessed; plan and program approved | Manager approval |
+| **Fieldwork** | Procedures executed; working papers prepared | — |
+| **Review** | Multi-level review cleared | Review sign-offs |
+| **Completion** | Opinion issued; deliverables exported | Partner authorization |
+| **Closure** | Engagement locked | Closure checklist |
+| **Archived** | Read-only preservation | Retention policy |
+
+**Retention:** Engagement files retained per firm and regulatory requirements — typically minimum 7 years.
+
+### 40.4 Financial Statement Lifecycle
+
+| Stage | Description | Gate |
+|-------|-------------|------|
+| **Generation** | Composed from classified adjusted trial balance | Validated data required |
+| **Draft** | Editable; versioned | — |
+| **In Review** | Submitted for finance review | Controller submission |
+| **Approved** | CFO authorization | Approval chain |
+| **Published** | Authorized for stakeholder distribution | Export governance |
+| **Archived** | Locked with financial period | Period closure |
+
+**Modification after approval:** Requires new version and full re-approval.
+
+### 40.5 Finding Lifecycle
+
+| Stage | Description | Gate |
+|-------|-------------|------|
+| **Identified** | Observation documented with evidence | Working paper linkage |
+| **Evaluated** | Severity and impact assessed | Manager review |
+| **Communicated** | Shared with management | Partner approval (material) |
+| **Remediation Tracked** | Management response and corrective action monitored | Governance module |
+| **Closed** | Resolved or accepted by management | Documented rationale |
+| **Archived** | Preserved in engagement file | Engagement closure |
+
+### 40.6 Knowledge Lifecycle
+
+| Stage | Description | Gate |
+|-------|-------------|------|
+| **Ingestion** | Content submitted to knowledge platform | — |
+| **Curation** | Reviewed for accuracy and relevance | Knowledge owner approval |
+| **Publication** | Active and retrievable by AI and users | Approval |
+| **Supersession** | Replaced by newer version; old marked superseded | New version published |
+| **Archival** | Removed from active retrieval; preserved for history | Retention policy |
+
+### 40.7 Report Lifecycle
+
+| Stage | Description | Gate |
+|-------|-------------|------|
+| **Composition** | Assembled from approved components | Component approval |
+| **Draft** | Editable package | — |
+| **Approved** | Authorized for distribution | Role-appropriate approval |
+| **Exported** | Generated in output format | Export permission |
+| **Distributed** | Delivered to recipients | Distribution log |
+| **Archived** | Preserved immutably | Retention policy |
+
+### 40.8 Version Lifecycle
+
+| Stage | Description |
+|-------|-------------|
+| **Creation** | New version created on any material modification |
+| **Active** | Current working version |
+| **Superseded** | Replaced by newer version; retained in history |
+| **Comparable** | Any two versions may be compared |
+| **Retained** | Never deleted — archived with parent object |
+
+Versions have no terminal state — they persist indefinitely.
+
+### 40.9 Approval Lifecycle
+
+| Stage | Description |
+|-------|-------------|
+| **Requested** | Preparer submits artifact for approval |
+| **Pending** | Awaiting designated approver action |
+| **Approved** | Approver authorizes; artifact transitions to approved state |
+| **Rejected** | Approver returns with comments; preparer must remediate |
+| **Recorded** | Decision immutably logged with attribution and timestamp |
+
+Approvals are **events**, not versions — they attach to specific artifact versions.
+
+### 40.10 Lifecycle Governance Summary
+
+| Lifecycle Dimension | Rule |
+|---------------------|------|
+| **Creation** | Attributed to creating user; initial version automatically created |
+| **Modification** | Creates new version; prior preserved |
+| **Review** | Required before approval for professional artifacts |
+| **Approval** | Required before publication or reliance |
+| **Archiving** | Read-only; reversible only with authorization |
+| **Retention** | Governed by organization policy and legal hold |
+
+---
+
+## 41. Domain Boundaries
+
+Domain boundaries define **where one business territory ends and another begins**. Clear boundaries prevent architectural erosion, enable independent evolution, and ensure that professional responsibilities remain correctly attributed.
+
+### 41.1 Domain Boundary Map
+
+| Domain | Starts | Ends | Owns | Does Not Own |
+|--------|--------|------|------|--------------|
+| **Tenancy & Administration** | Organization provisioning | Permission enforcement | Organizations, workspaces, users, roles | Professional content |
+| **Financial Data** | Data import | Classified adjusted trial balance | Trial balance, GL, accounts, classifications, adjustments | Statement presentation, audit procedures |
+| **Financial Reporting** | Statement generation | Approved publication | Statements, notes, report packages | Trial balance creation, audit opinion |
+| **Audit & Assurance** | Engagement acceptance | Engagement closure | Engagements, working papers, evidence, lead sheets, risks, controls, findings, opinions | Financial data creation, published statements |
+| **Governance** | Oversight setup | Remediation tracking | Board/committee views, control frameworks, remediation | Audit fieldwork, financial preparation |
+| **Knowledge** | Content ingestion | Knowledge retrieval | Knowledge documents, chunks, glossary | Client data, engagement content |
+| **AI & Intelligence** | AI invocation | Finding disposition | AI sessions, findings, interaction logs | Business conclusions, approved artifacts |
+| **Integration** | External connection | Data delivery to import | Connections, credentials, delivery | Business validation, classification |
+| **Output & Distribution** | Export request | Delivery confirmation | Exports, distribution records | Artifact content creation |
+
+### 41.2 Ownership Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Single authoritative owner** | Every entity has one domain that owns its state |
+| **Read access via contract** | Other domains read through governed interfaces — not direct state access |
+| **Write through workflow** | Cross-domain effects occur through defined workflows (e.g., adjustment posting) |
+| **AI reads, humans write conclusions** | AI domain reads all; professional domains own conclusions |
+| **Administration governs, not content** | Administration configures who can act — not what the professional conclusion is |
+
+### 41.3 Dependency Rules
+
+| Dependent Domain | Depends On | Dependency Nature |
+|------------------|------------|-------------------|
+| Financial Reporting | Financial Data | Consumes classified trial balance |
+| Audit | Financial Data | Reads trial balance and GL for procedures |
+| Audit | Financial Reporting | Reads statements under audit |
+| Reporting (audit reports) | Audit | Consumes opinion and findings |
+| AI | All content domains | Reads through permission-filtered access |
+| AI | Knowledge | Retrieves for RAG context |
+| Governance | Audit + Financial | Reads status and findings for oversight |
+| Integration | Financial Data | Delivers imported data |
+| Output | Reporting + Audit | Exports approved artifacts |
+
+Dependencies are **unidirectional** where possible — circular dependencies are prohibited.
+
+### 41.4 Integration Boundaries
+
+| Boundary | Rule |
+|----------|------|
+| **ERP → Platform** | Integration delivers raw data; Financial Data domain validates and governs |
+| **Platform → Client** | Export delivers approved artifacts; Output domain governs |
+| **Knowledge → AI** | Knowledge provides retrieval context; AI does not modify knowledge |
+| **AI → Audit** | AI delivers findings; Audit domain owns acceptance and incorporation |
+| **Admin → All** | Administration configures access; does not alter professional content |
+
+### 41.5 Independence with Collaboration
+
+Domains remain independent through **contracted interaction**:
+
+```
+Domain A (owner)                    Domain B (consumer)
+     │                                    │
+     │  publishes business object         │
+     │  ─────────────────────────────────→│  reads via contract
+     │                                    │
+     │  ←──────── workflow request ───────│  requests action
+     │  (adjustment, approval)            │  (through A's workflow)
+     │                                    │
+```
+
+Collaboration occurs through **shared business objects and workflows** — not shared internal state. This model supports independent module development, separate release cadences, and contained failure domains.
+
+---
+
+## 42. Enterprise Business Vocabulary
+
+This glossary is the **official business vocabulary** of the platform. All documentation, user interfaces, AI responses, and professional communications should use these terms consistently. Definitions are enterprise-grade and aligned with professional practice.
+
+### 42.1 Tenancy & Administration
+
+| Term | Definition |
+|------|------------|
+| **Organization** | The top-level customer tenant subscribing to and operating the platform |
+| **Workspace** | An operational subdivision within an organization — office, unit, or client portal |
+| **Company** | A legal reporting entity for which financial data and reports are managed |
+| **Entity** | Synonym for company in group reporting contexts |
+| **Group Structure** | Parent-subsidiary hierarchy of companies within an organization |
+| **Tenant** | The technical isolation boundary corresponding to an organization |
+| **Subscription** | The commercial entitlement defining modules, seats, and tier |
+| **Module Entitlement** | Licensed access to a specific platform capability |
+| **Organization Owner** | The user with highest administrative authority over an organization |
+| **Workspace Administrator** | The user managing a specific workspace's users, templates, and configuration |
+
+### 42.2 Identity & Access
+
+| Term | Definition |
+|------|------------|
+| **User** | An individual with platform identity who performs or administers work |
+| **Role** | A named professional or administrative function with defined capabilities |
+| **Permission** | A specific authorization to perform an action within a scope |
+| **Capability** | A granular action type — read, create, edit, review, approve, export, administer, configure |
+| **Scope** | The organizational boundary within which a permission applies |
+| **Team** | A group of users collectively assigned to professional work |
+| **Assignment** | The act of granting a user access to a specific engagement or entity |
+| **Elevation** | Temporary granting of higher permissions with expiry and justification |
+| **Separation of Duties** | Requirement that preparer and approver are distinct individuals |
+| **Least Privilege** | Principle of granting minimum necessary access |
+
+### 42.3 Client & Engagement
+
+| Term | Definition |
+|------|------------|
+| **Client** | The organization receiving audit, reporting, or assurance services |
+| **Engagement** | A bounded professional assignment for a client company and period |
+| **Engagement Acceptance** | Formal decision to undertake an engagement with documented prerequisites |
+| **Engagement Partner** | The professional with ultimate accountability for engagement quality and opinion |
+| **Audit Manager** | The professional supervising engagement planning, execution, and review |
+| **Audit Senior** | The professional supervising fieldwork and reviewing junior staff |
+| **Auditor** | The professional executing assigned audit procedures |
+| **Reviewer** | An independent professional performing quality review of engagement documentation |
+| **Client User** | A user from the client organization with portal access |
+| **Engagement File** | The complete collection of documentation for an engagement |
+| **Engagement Closure** | Formal locking of a completed engagement file |
+| **Archive** | Read-only preserved state for completed engagements and periods |
+
+### 42.4 Financial Data
+
+| Term | Definition |
+|------|------------|
+| **Financial Period** | A defined reporting time boundary for a company |
+| **Reporting Period** | Synonym for financial period in reporting contexts |
+| **Trial Balance** | Period-end aggregation of all account debit and credit balances |
+| **General Ledger** | Detailed transaction-level accounting record |
+| **Chart of Accounts** | Structured catalog of account codes and names for a company |
+| **Account** | An individual ledger account within the chart of accounts |
+| **Debit** | An accounting entry increasing assets or expenses |
+| **Credit** | An accounting entry increasing liabilities, equity, or revenue |
+| **Import** | The act of bringing external financial data into the platform |
+| **Source File** | The original uploaded file preserved immutably |
+| **Validation** | Verification that imported data meets integrity requirements |
+| **Mapping** | Association of imported account codes to chart of accounts |
+| **Reconciliation** | Verification that related data sets agree (e.g., GL to trial balance) |
+| **Functional Currency** | The primary currency in which a company measures its financial performance |
+| **Comparative Period** | The prior period used for year-over-year comparison |
+| **Consolidation** | Combination of financial data from multiple entities in a group |
+
+### 42.5 Classification & Adjustments
+
+| Term | Definition |
+|------|------------|
+| **Classification** | Assignment of accounts to financial statement presentation categories |
+| **IFRS Classification** | Mapping of accounts to IFRS presentation line items |
+| **Mapping Rule** | A configured rule associating account patterns with classifications |
+| **Override** | A manual classification change with documented justification |
+| **Adjustment** | A journal entry modifying the trial balance |
+| **Audit Adjustment** | An adjustment proposed by auditors to correct misstatement |
+| **Management Adjustment** | An adjustment made by the reporting entity |
+| **Reclassification** | An adjustment moving amounts between accounts without net effect |
+| **Accrual** | An adjustment recognizing revenue or expense in the correct period |
+| **Posting** | The act of applying an approved adjustment to the trial balance |
+
+### 42.6 Financial Reporting
+
+| Term | Definition |
+|------|------------|
+| **Financial Statement** | A structured report presenting financial position, performance, or cash flows |
+| **Statement of Financial Position** | Balance sheet showing assets, liabilities, and equity |
+| **Statement of Profit or Loss** | Income statement showing revenue, expenses, and profit |
+| **Statement of Cash Flows** | Report of cash receipts and payments by category |
+| **Statement of Changes in Equity** | Report of movements in equity components |
+| **IFRS Note** | A disclosure note accompanying financial statements |
+| **Disclosure** | Information required by reporting standards to accompany statements |
+| **Accounting Policy** | The specific principles applied by an entity in preparing statements |
+| **Materiality (Reporting)** | The threshold above which information influences economic decisions |
+| **Comparative Information** | Prior period figures presented alongside current period |
+| **Rounding** | Convention for presenting figures at appropriate precision |
+| **Publication** | Authorization of financial statements for stakeholder distribution |
+| **Draft** | An unapproved version not authorized for distribution |
+
+### 42.7 Audit & Assurance
+
+| Term | Definition |
+|------|------------|
+| **Audit** | Systematic examination of evidence to express an opinion on financial statements |
+| **Assurance** | Broad category of engagements providing confidence about subject matter |
+| **Working Paper** | Documented audit procedure, evidence, and conclusion |
+| **Lead Sheet** | Summary schedule linking trial balance to detailed testing |
+| **Evidence** | Information supporting an audit conclusion |
+| **Sufficient Appropriate Evidence** | Evidence adequate in quantity and quality for the audit opinion |
+| **Assertion** | A management claim about financial statement components |
+| **Audit Procedure** | A specific test designed to obtain audit evidence |
+| **Substantive Procedure** | Direct testing of financial statement amounts |
+| **Test of Controls** | Evaluation of internal control operating effectiveness |
+| **Analytical Procedure** | Evaluation of financial information through analysis of relationships |
+| **Sampling** | Selection of a subset of a population for testing |
+| **Materiality (Audit)** | The magnitude of misstatement that would influence audit strategy |
+| **Performance Materiality** | Materiality threshold for individual procedures |
+| **Risk Assessment** | Evaluation of risks of material misstatement |
+| **Inherent Risk** | Susceptibility of an assertion to misstatement before controls |
+| **Control Risk** | Risk that controls will not prevent or detect misstatement |
+| **Detection Risk** | Risk that audit procedures will not detect existing misstatement |
+| **Significant Risk** | Risk requiring special audit consideration per ISA |
+| **Fraud Risk** | Risk of misstatement due to fraudulent action |
+| **Audit Program** | The set of planned procedures for an engagement |
+| **Fieldwork** | Execution of audit procedures and evidence gathering |
+| **Sign-Off** | Formal reviewer approval of completed work |
+| **Quality Review** | Independent examination of engagement quality (EQR) |
+
+### 42.8 Controls & Governance
+
+| Term | Definition |
+|------|------------|
+| **Internal Control** | A process designed to prevent or detect misstatement |
+| **Control Environment** | The tone and culture regarding internal control |
+| **Control Deficiency** | A shortcoming in control design or operation |
+| **Material Weakness** | A deficiency creating reasonable possibility of material misstatement |
+| **Significant Deficiency** | A less severe but important control deficiency |
+| **Walkthrough** | Tracing a transaction through the control process |
+| **Remediation** | Corrective action taken to address a identified deficiency |
+| **Governance** | Structures and processes for organizational oversight |
+| **Audit Committee** | Board subcommittee overseeing financial reporting and audit |
+| **Management Representation** | Formal written confirmation from management to auditors |
+| **Management Letter** | Auditor communication of findings and recommendations to management |
+| **Independence** | Freedom from relationships that compromise objectivity |
+| **Those Charged with Governance** | Persons responsible for overseeing financial reporting |
+
+### 42.9 Findings & Opinions
+
+| Term | Definition |
+|------|------------|
+| **Finding** | A documented audit observation requiring communication or action |
+| **Misstatement** | A difference between reported and correct amounts |
+| **Uncorrected Misstatement** | A misstatement not adjusted in the financial statements |
+| **Emphasis of Matter** | Audit report paragraph highlighting a significant matter |
+| **Modified Opinion** | An audit opinion other than unmodified |
+| **Qualified Opinion** | Opinion with exception for a specific matter |
+| **Adverse Opinion** | Opinion that statements are materially misstated |
+| **Disclaimer of Opinion** | Unable to express an opinion due to scope limitation |
+| **Audit Opinion** | The auditor's formal conclusion on financial statements |
+| **Auditor's Report** | The complete formal report containing the audit opinion |
+
+### 42.10 Knowledge & AI
+
+| Term | Definition |
+|------|------------|
+| **Knowledge Base** | The governed repository of firm and regulatory knowledge |
+| **Knowledge Document** | A curated knowledge artifact — standard, guidance, or methodology |
+| **Knowledge Chunk** | A semantically indexed segment of a knowledge document |
+| **RAG** | Retrieval-Augmented Generation — AI grounded in retrieved context |
+| **AI Session** | A bounded AI interaction context within an engagement or entity |
+| **AI Finding** | A structured AI-generated observation requiring human disposition |
+| **AI Copilot** | The conversational AI assistant for natural language inquiry |
+| **Citation** | A reference to source evidence supporting an AI response or finding |
+| **Confidence** | The AI's assessed reliability of a finding or suggestion |
+| **Human-in-the-Loop** | Requirement for explicit human validation of AI outputs |
+| **Hallucination** | AI generation of plausible but unsupported information |
+| **Prompt** | The natural language input submitted to an AI capability |
+
+### 42.11 Cross-Cutting Concepts
+
+| Term | Definition |
+|------|------------|
+| **Traceability** | The ability to follow any figure from report to original source |
+| **Lineage** | The chain of transformations from source data to reported output |
+| **Version** | A point-in-time snapshot of an artifact's state |
+| **Approval** | Formal authorization by a qualified professional |
+| **Review** | Quality examination of work by an independent or senior professional |
+| **Workflow** | A governed sequence of steps producing a professional outcome |
+| **Status** | The current lifecycle state of a business object |
+| **Lock** | Read-only enforcement on approved or archived artifacts |
+| **Retention** | Policy governing how long data is preserved |
+| **Legal Hold** | Suspension of retention/destruction due to litigation or investigation |
+| **Export** | Controlled extraction of approved artifacts from the platform |
+| **Notification** | Alert to a user about a workflow event or deadline |
+| **Task** | An assigned action with owner and deadline |
+| **Comment** | A professional remark attached to an artifact |
+| **Attachment** | A file linked to a platform object |
+| **Audit Trail** | Immutable record of actions performed on the platform |
+| **Compliance Pack** | Jurisdiction or industry-specific configuration and templates |
+| **Methodology** | Firm-defined audit and reporting procedures and standards |
+| **Template** | A reusable structure for working papers, statements, or reports |
+| **Configuration** | Organization or workspace settings governing platform behavior |
+| **Locale** | Language and regional formatting preference |
+| **Accessibility** | Design ensuring usability for professionals with diverse abilities |
+
+---
+
+## Document Control — Part 8
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.8.0 | 2026-06-30 | Chief Domain Architect | Part 8 — Enterprise Domain Model & Business Vocabulary complete |
+
+---
+
+*End of Part 8. Await further instruction for Part 9.*
