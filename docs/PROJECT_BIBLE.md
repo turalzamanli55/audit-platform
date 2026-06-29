@@ -2744,4 +2744,1731 @@ All paths converge on the same professional control framework.
 
 ---
 
-*End of Part 4. Await further instruction for Part 5.*
+*End of Part 4.*
+
+---
+
+## Part 5 — Security, Governance & Compliance
+
+### Table of Contents — Part 5
+
+23. [Security Philosophy](#23-security-philosophy)
+24. [Identity & Access Management Philosophy](#24-identity--access-management-philosophy)
+25. [Auditability & Accountability](#25-auditability--accountability)
+26. [Compliance Philosophy](#26-compliance-philosophy)
+27. [Data Governance](#27-data-governance)
+
+---
+
+## 23. Security Philosophy
+
+Security is not a feature of this platform — it is a **precondition for existence**. Organizations entrust the platform with financial statements, audit working papers, client confidential information, regulatory submissions, and AI interaction records. A single security failure can destroy firm reputation, trigger regulatory sanction, breach client contracts, and invalidate years of professional work.
+
+The security philosophy defined here governs every product, engineering, and operational decision. It extends the Security First product philosophy (Part 1) into a comprehensive enterprise security charter.
+
+### 23.1 Why Audit Software Demands Exceptional Security
+
+Enterprise audit and financial reporting software carries security obligations that exceed ordinary SaaS categories:
+
+| Factor | Ordinary SaaS | This Platform |
+|--------|---------------|---------------|
+| **Data sensitivity** | Business operational data | Financial statements, audit evidence, client privileged information |
+| **Regulatory exposure** | Industry-dependent | Mandatory professional standards, securities regulation, data protection law |
+| **Adversary interest** | Moderate | High — financial fraud, insider trading, competitive intelligence |
+| **Professional liability** | Limited | Auditors and firms carry legal and ethical liability for data handling |
+| **Retention horizon** | Years | Often decades — engagement files subject to long retention |
+| **Multi-party access** | Internal users only | Firm staff, client personnel, reviewers, governance bodies — with strict isolation |
+| **Inspection readiness** | Optional | Regulators and quality inspectors may examine access and control records |
+
+The platform must therefore be designed to the security standard of **regulated financial infrastructure**, not general business productivity software.
+
+### 23.2 Zero Trust
+
+The platform adopts a **Zero Trust** security model: no user, device, service, or network location is trusted by default. Every access request is authenticated, authorized, and logged — regardless of origin.
+
+| Zero Trust Principle | Platform Application |
+|----------------------|------------------------|
+| **Never trust, always verify** | Every request validated against identity, permissions, and context |
+| **Assume breach** | Architecture limits blast radius through tenant isolation and least privilege |
+| **Explicit authorization** | No implicit access from network position or prior session alone |
+| **Continuous validation** | Session integrity checked throughout user activity |
+| **Micro-segmentation** | Organization, workspace, engagement, and entity boundaries enforced independently |
+
+Zero Trust applies equally to human users, service integrations, and AI retrieval operations.
+
+### 23.3 Least Privilege
+
+Users, services, and integrations receive the **minimum permissions** necessary to perform their function — for the **minimum duration** required.
+
+| Scope | Least Privilege Expression |
+|-------|---------------------------|
+| **Role assignment** | Default roles grant minimal capability; elevation requires explicit grant |
+| **Engagement access** | Team members access only assigned engagement sections |
+| **Client isolation** | Client users see only their organization's data |
+| **Administrative functions** | Admin capabilities separated from professional workflows |
+| **AI retrieval** | AI accesses only data within the invoking user's permission boundary |
+| **Integration credentials** | API access scoped to declared operations and entities |
+| **Temporary elevation** | Time-bound grants with mandatory expiry and justification |
+
+Least privilege is enforced structurally — not through policy documents that rely on user compliance alone.
+
+### 23.4 Defense in Depth
+
+Security controls operate at **multiple independent layers**. Failure of one layer does not compromise the entire system.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Operational Security  — Monitoring, incident response, SDLC │
+├─────────────────────────────────────────────────────────────┤
+│  Application Security  — RBAC, input validation, audit logs  │
+├─────────────────────────────────────────────────────────────┤
+│  Data Security         — Encryption, classification, masking  │
+├─────────────────────────────────────────────────────────────┤
+│  Identity Security     — Authentication, MFA, session control │
+├─────────────────────────────────────────────────────────────┤
+│  Infrastructure Security — Network segmentation, hardening    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+No single control is treated as sufficient. Encryption does not replace access control. Access control does not replace audit logging. Audit logging does not replace monitoring.
+
+### 23.5 Secure by Default
+
+Every platform configuration, feature, and deployment posture defaults to the **most secure viable option**:
+
+| Default | Rationale |
+|---------|-----------|
+| Access denied unless explicitly granted | Prevents accidental exposure |
+| MFA required for elevated roles | Protects high-privilege accounts |
+| Encryption enabled for all data | No opt-in security for sensitive data |
+| Session timeout enforced | Limits abandoned session risk |
+| Audit logging active from first action | No gap in accountability record |
+| Client workspace isolation enabled | Confidentiality by default |
+| AI interaction logging enabled | AI governance from first use |
+| Export requires explicit permission | Prevents data exfiltration by default |
+
+Customers may configure policies within boundaries, but cannot disable foundational security controls that would compromise tenant isolation or audit integrity.
+
+### 23.6 Privacy by Design
+
+Privacy protections are **embedded in architecture**, not added as compliance checkboxes:
+
+| Principle | Application |
+|-----------|-------------|
+| **Data minimization** | Collect and retain only data necessary for professional workflows |
+| **Purpose limitation** | Data used only for declared professional and operational purposes |
+| **Tenant data sovereignty** | Customer data not used for platform training without explicit consent |
+| **Transparency** | Users informed of what data is collected, processed, and retained |
+| **Individual rights readiness** | Architecture supports data subject access and deletion requests within legal constraints |
+| **Pseudonymization in analytics** | Platform usage analytics do not expose client-identifiable information |
+
+Privacy by design intersects with professional confidentiality obligations — auditors and accountants are bound by ethical duties that exceed legal minimums.
+
+### 23.7 Compliance by Design
+
+Regulatory and professional compliance requirements are **anticipated in product design** rather than retrofitted:
+
+| Compliance Domain | Design Integration |
+|-------------------|-------------------|
+| **Professional standards** | ISA and IFRS workflows embedded in engagement structure |
+| **Internal control frameworks** | Control documentation and testing supported natively |
+| **Data protection** | GDPR-ready data handling, retention, and subject rights |
+| **Security certification** | SOC 2 and ISO 27001 control alignment in architecture |
+| **Securities regulation** | SOX-relevant control and audit trail capabilities |
+| **Retention obligations** | Configurable retention with legal hold support |
+
+Compliance by design means the platform **enables** customer compliance — it does not certify compliance on behalf of customers.
+
+### 23.8 Enterprise Identity
+
+Identity is the **root of trust** for all platform access:
+
+| Identity Principle | Description |
+|--------------------|-------------|
+| **Authoritative identity** | Enterprise identity providers may serve as source of truth via SSO |
+| **Unique attribution** | Every action attributable to an individual identity — no shared accounts |
+| **Identity lifecycle** | Provisioning, modification, and deactivation governed with audit trail |
+| **Separation of identities** | Platform administration identities separated from professional user identities |
+| **Non-repudiation** | Identity binding sufficient to support professional accountability |
+
+Enterprise identity integration is a requirement for large firm and corporate deployments — not an optional convenience.
+
+### 23.9 Security Monitoring
+
+Continuous monitoring detects, alerts on, and supports investigation of security events:
+
+| Monitoring Domain | Purpose |
+|-------------------|---------|
+| **Authentication events** | Failed logins, MFA challenges, anomalous login patterns |
+| **Authorization events** | Permission changes, elevation grants, access denials |
+| **Data access patterns** | Unusual download volumes, cross-entity access attempts |
+| **AI interaction patterns** | High-volume queries, scope boundary violations |
+| **Integration activity** | API usage anomalies, credential misuse indicators |
+| **Administrative actions** | Configuration changes, user provisioning, policy modifications |
+
+Monitoring produces **actionable alerts** — not merely logs. Security operations must be able to detect and respond to threats in timeframes commensurate with data sensitivity.
+
+### 23.10 Threat Prevention
+
+The platform actively prevents threats rather than relying solely on detection:
+
+| Threat Category | Prevention Approach |
+|-----------------|---------------------|
+| **Unauthorized access** | Zero Trust, MFA, session controls, permission enforcement |
+| **Cross-tenant leakage** | Architectural tenant isolation at data and application layers |
+| **Data exfiltration** | Export controls, download monitoring, bulk export authorization |
+| **Injection attacks** | Input validation, content sanitization, parameterized operations |
+| **Privilege escalation** | Separation of duties, elevation controls, admin action logging |
+| **AI manipulation** | Retrieval boundaries, output validation, prompt injection mitigation |
+| **Insider threat** | Least privilege, audit trails, behavioral monitoring |
+| **Supply chain risk** | Dependency governance, secure development lifecycle |
+
+Threat prevention is a shared responsibility between platform operators and customer organizations.
+
+### 23.11 Secure Development Lifecycle
+
+Security is integrated into the **software development lifecycle** from design through deployment:
+
+| SDLC Phase | Security Activity |
+|------------|-------------------|
+| **Design** | Threat modeling for new features and modules |
+| **Development** | Secure coding standards, dependency scanning, secret management |
+| **Review** | Security review for authentication, authorization, and data handling changes |
+| **Testing** | Security testing including penetration testing and vulnerability assessment |
+| **Deployment** | Secure configuration baselines, change management, rollback capability |
+| **Operations** | Patch management, incident response, continuous monitoring |
+
+No feature ships without security consideration. Features that cannot meet the security bar are deferred — not released with known unacceptable risk.
+
+### 23.12 Security Philosophy Summary
+
+```
+Zero Trust + Least Privilege + Defense in Depth + Secure by Default
+                              ↓
+              Privacy by Design + Compliance by Design
+                              ↓
+         Enterprise Identity + Monitoring + Threat Prevention + SDLC
+                              ↓
+                    Enterprise-Grade Trust
+```
+
+---
+
+## 24. Identity & Access Management Philosophy
+
+Identity and Access Management (IAM) is the **control plane** of the platform. It determines who may enter the system, what they may see, what they may change, and what they may approve. IAM design directly implements the permission philosophy established in Part 2 (Section 10) and the security philosophy above.
+
+### 24.1 IAM Model Overview
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                        Identity Layer                           │
+│   Authentication · MFA · SSO · Session · Device Trust           │
+├────────────────────────────────────────────────────────────────┤
+│                      Authorization Layer                          │
+│   RBAC · Scope (Org/Workspace/Engagement) · Capabilities        │
+├────────────────────────────────────────────────────────────────┤
+│                      Isolation Layer                            │
+│   Organization · Workspace · Entity · Client Boundaries         │
+├────────────────────────────────────────────────────────────────┤
+│                      Audit Layer                                │
+│   Access Grants · Denials · Changes · Elevation Events          │
+└────────────────────────────────────────────────────────────────┘
+```
+
+### 24.2 Authentication
+
+Authentication verifies **who** is requesting access:
+
+| Principle | Description |
+|-----------|-------------|
+| **Strong identity verification** | Credentials meet enterprise strength requirements |
+| **Multi-factor readiness** | MFA supported and mandated for elevated roles |
+| **Enterprise SSO** | SAML and OIDC integration with customer identity providers |
+| **No shared credentials** | Individual accounts mandatory; shared logins prohibited |
+| **Account lockout** | Brute force protection with configurable lockout policy |
+| **Credential recovery** | Secure, audited password reset and account recovery flows |
+
+Authentication establishes identity. It does not grant access — authorization follows separately.
+
+### 24.3 Authorization
+
+Authorization determines **what** an authenticated identity may do:
+
+| Principle | Description |
+|-----------|-------------|
+| **Explicit grant** | No access without defined permission assignment |
+| **Scope-bound** | Permissions limited to organization, workspace, engagement, or entity |
+| **Capability-granular** | Read, create, edit, review, approve, export, administer, configure — applied per module |
+| **Deny by default** | Unspecified access is denied |
+| **Real-time enforcement** | Permission changes take effect without requiring re-authentication delay |
+| **Separation of duties** | Conflicting capabilities cannot be combined without policy exception |
+
+Authorization decisions are evaluated on every protected action — not cached beyond session policy limits in ways that could permit stale access.
+
+### 24.4 Role-Based Access Control (RBAC)
+
+RBAC is the **primary authorization model**. Users are assigned roles; roles bind capabilities within scopes:
+
+| RBAC Element | Description |
+|--------------|-------------|
+| **Role** | Named professional or administrative function (e.g., Auditor, Engagement Partner) |
+| **Capability** | Specific permission on a module or object type |
+| **Scope** | Organizational boundary within which the capability applies |
+| **Binding** | Role + Capability + Scope = effective permission |
+
+Roles defined in Part 2 (Section 10) are the canonical RBAC catalog. Custom roles may be configured at organization level within platform-defined capability boundaries.
+
+### 24.5 Future ABAC Readiness
+
+The platform is architected for **Attribute-Based Access Control (ABAC)** evolution without disrupting the current RBAC model:
+
+| ABAC Attribute Category | Examples |
+|-------------------------|----------|
+| **User attributes** | Role, department, clearance level, engagement assignment |
+| **Resource attributes** | Entity, engagement, data classification, sensitivity label |
+| **Environmental attributes** | Time of access, device trust level, geographic location |
+| **Action attributes** | Read, export, approve, AI query |
+
+RBAC serves as the **baseline**. ABAC readiness allows future policies such as "Financial Controller may export only from assigned entities during business hours from trusted devices" without architectural rework. Attribute evaluation layers are designed to complement — not replace — role definitions.
+
+### 24.6 Multi-Tenant Isolation
+
+Multi-tenancy is the platform's foundational isolation boundary:
+
+| Isolation Guarantee | Description |
+|---------------------|-------------|
+| **Data separation** | No organization can access another organization's data under any circumstance |
+| **Configuration separation** | Policies, templates, and settings isolated per organization |
+| **Identity separation** | User accounts scoped to organization; no cross-organization identity without explicit federation |
+| **Operational separation** | Platform administration access to tenant data subject to strict controls and enhanced logging |
+| **AI separation** | Retrieval and analysis strictly bounded to tenant context |
+
+Cross-tenant data leakage is a **zero-tolerance** event — architecturally prevented, monitored, and subject to incident response.
+
+### 24.7 Organization Isolation
+
+Within the platform, the **organization** is the top-level customer boundary:
+
+| Aspect | Isolation Behavior |
+|--------|-------------------|
+| **Data** | All entities, engagements, financial data, and documents belong to one organization |
+| **Users** | User identities are organization-scoped unless enterprise federation applies |
+| **Policies** | Security, retention, and AI policies configured at organization level |
+| **Administration** | Organization Owner has highest customer-side authority |
+| **Billing** | Subscription and entitlements per organization |
+
+Organization isolation implements tenancy for customer data protection and contractual boundaries.
+
+### 24.8 Workspace Isolation
+
+**Workspaces** subdivide organizations into operational units — firm offices, business units, or client portals:
+
+| Aspect | Isolation Behavior |
+|--------|-------------------|
+| **Client confidentiality** | Client workspaces isolated from other client workspaces |
+| **Methodology** | Workspace-level templates and configuration |
+| **Administration** | Workspace Administrators cannot cross workspace boundaries |
+| **User assignment** | Users may hold roles in multiple workspaces with independent scope |
+| **Engagement containment** | Engagements belong to a workspace |
+
+Workspace isolation protects the **professional confidentiality** obligation between audit firm clients.
+
+### 24.9 Session Management
+
+Sessions control the **duration and integrity** of authenticated access:
+
+| Session Control | Description |
+|-----------------|-------------|
+| **Timeout** | Configurable inactivity and absolute session limits |
+| **Renewal** | Secure session renewal without re-exposing credentials |
+| **Termination** | Immediate session invalidation on logout, deactivation, or security event |
+| **Concurrent sessions** | Configurable limits on simultaneous sessions per user |
+| **Session binding** | Sessions bound to authenticated identity; no session transfer |
+| **Elevation within session** | Temporary elevation does not persist beyond defined expiry |
+
+Abandoned sessions on shared or public devices are a recognized risk — timeout defaults are conservative.
+
+### 24.10 Device Trust
+
+Device trust evaluates the **security posture of the accessing device**:
+
+| Trust Level | Description |
+|-------------|------------|
+| **Trusted** | Managed device meeting organization policy (MDM-enrolled, compliant) |
+| **Registered** | Known device registered to user but not fully managed |
+| **Untrusted** | Unknown or non-compliant device — access may be restricted |
+
+Device trust is **readiness architecture** — organizations may enforce policies requiring trusted devices for sensitive operations (export, approval, administration). Device posture may serve as an ABAC attribute in future policy enforcement.
+
+### 24.11 MFA Readiness
+
+Multi-factor authentication strengthens identity verification:
+
+| MFA Aspect | Description |
+|------------|-------------|
+| **Supported methods** | Authenticator apps, hardware tokens, SMS (where permitted), SSO-enforced MFA |
+| **Mandatory roles** | Organization Owner, Workspace Administrator, Engagement Partner — minimum mandated set |
+| **Configurable policy** | Organizations may extend MFA requirements to additional roles |
+| **Step-up authentication** | Sensitive operations may require fresh MFA challenge within session |
+| **Recovery** | MFA recovery flows secured and audited |
+
+MFA readiness is built into the authentication architecture from foundation — not retrofitted.
+
+### 24.12 Password Policy Philosophy
+
+Where password authentication is used (non-SSO users):
+
+| Policy Element | Philosophy |
+|----------------|------------|
+| **Length and complexity** | Minimum standards aligned with enterprise best practice |
+| **Rotation** | Discouraged forced rotation where MFA is present; compromise-triggered rotation mandatory |
+| **History** | Password reuse prevented |
+| **Breach detection** | Known compromised credentials rejected |
+| **SSO preference** | Enterprise customers encouraged to use SSO as primary authentication |
+
+Password policy balances security with usability — excessive rotation requirements that encourage weak passwords are avoided.
+
+### 24.13 API Authentication Philosophy
+
+Programmatic access via integrations follows the same security principles as human access:
+
+| Principle | Description |
+|-----------|-------------|
+| **Distinct credentials** | API credentials separate from user passwords |
+| **Scoped authorization** | API tokens granted specific capabilities and entity scope |
+| **No elevated by default** | Integration credentials receive minimum necessary permissions |
+| **Rotation** | Credentials support rotation without service disruption |
+| **Auditability** | All API actions logged with credential identity |
+| **Revocation** | Immediate credential revocation capability |
+
+API authentication is not a backdoor around RBAC — it is RBAC expressed for machine identities.
+
+### 24.14 Permission Cascade: Organization → Workspace → Engagement
+
+Permissions cascade through a **hierarchy of narrowing scope**:
+
+```
+Organization (ceiling)
+       ↓
+   Workspace (subdivision)
+       ↓
+   Engagement (assignment)
+       ↓
+   Entity / Section (granular)
+```
+
+| Cascade Rule | Description |
+|--------------|-------------|
+| **Organization sets the ceiling** | Maximum permissions any user can hold within the organization |
+| **Workspace narrows** | Workspace assignment may restrict below organization ceiling |
+| **Engagement narrows further** | Engagement team assignment grants access only to that engagement |
+| **Entity/section narrows most** | Fieldwork assignment may limit to specific accounts or working paper sections |
+| **Cannot widen at lower level** | Workspace permissions cannot exceed organization grant; engagement cannot exceed workspace |
+| **Explicit at each level** | Each cascade level requires explicit assignment — no automatic inheritance of write access |
+
+**Example cascade:**
+
+| Level | User | Effective Access |
+|-------|------|------------------|
+| Organization | Auditor role granted | Read financial data module organization-wide |
+| Workspace | Assigned to Client A workspace | Financial data access limited to Client A entities |
+| Engagement | Assigned to 2026 audit engagement | Access limited to 2026 engagement file and linked financial data |
+| Section | Assigned to Revenue working papers | Write access limited to Revenue section; read elsewhere in engagement |
+
+This cascade implements least privilege across the professional hierarchy and ensures client confidentiality at every level.
+
+---
+
+## 25. Auditability & Accountability
+
+Auditability is the platform's capacity to produce a **complete, tamper-evident record** of who did what, when, why, and with what effect. Accountability is the **professional and organizational responsibility** that flows from that record.
+
+In a platform where the product itself serves the audit profession, the platform's own audit trail must meet the **same standard of rigor** expected of engagement documentation.
+
+### 25.1 What Must Always Be Auditable
+
+The following categories are **unconditionally auditable** — no configuration can disable their logging:
+
+| Category | Examples |
+|----------|----------|
+| **Authentication** | Login, logout, MFA events, failed attempts, session termination |
+| **Authorization** | Permission grants, revocations, role changes, elevation events |
+| **Financial data** | Import, validation, classification, adjustment, approval |
+| **Professional artifacts** | Working paper creation, edit, review, sign-off |
+| **Reports** | Statement generation, approval, export, distribution |
+| **AI interactions** | Prompts, retrievals, outputs, accept/reject decisions |
+| **Administrative actions** | User provisioning, policy changes, configuration modifications |
+| **Data export** | Every export event with scope and format |
+| **Engagement lifecycle** | Acceptance, closure, archive, reopen |
+| **Client portal** | Document upload, representation acknowledgment |
+
+If an action can affect financial reporting integrity, professional conclusions, or data confidentiality — it is auditable.
+
+### 25.2 What Events Must Be Logged
+
+Every auditable action produces a log event containing:
+
+| Event Field | Description |
+|-------------|-------------|
+| **Event type** | Categorized action identifier |
+| **Actor** | User identity or system service identity |
+| **Timestamp** | UTC timestamp with sufficient precision |
+| **Scope** | Organization, workspace, engagement, entity affected |
+| **Object** | Specific resource acted upon |
+| **Action** | Create, read, update, delete, approve, reject, export, etc. |
+| **Outcome** | Success, failure, denial |
+| **Correlation** | Session and request correlation for investigation |
+
+### 25.3 The Accountability Record
+
+For significant state-changing events, the audit record includes the full accountability dimensions:
+
+#### Who Performed the Action
+
+| Requirement | Description |
+|-------------|-------------|
+| **Individual identity** | Named user account — never anonymous or shared |
+| **Role at time of action** | Role context when action occurred |
+| **On behalf of** | If acting as delegate, both delegator and delegate recorded |
+| **System attribution** | Automated actions attributed to system identity with triggering user where applicable |
+
+#### When
+
+| Requirement | Description |
+|-------------|-------------|
+| **Precise timestamp** | UTC with timezone display for user context |
+| **Sequence ordering** | Events orderable for reconstruction |
+| **Duration** | For long-running operations, start and completion timestamps |
+
+#### Why
+
+| Requirement | Description |
+|-------------|-------------|
+| **Justification text** | Required for overrides, rejections, elevation, and policy exceptions |
+| **Reference linkage** | Link to triggering finding, review note, or approval request |
+| **Business context** | Engagement, period, and artifact context automatically captured |
+
+#### Previous Value
+
+| Requirement | Description |
+|-------------|-------------|
+| **State before change** | Prior value of modified fields |
+| **Version reference** | Version identifier before modification |
+| **Snapshot availability** | For significant artifacts, prior version retrievable |
+
+#### New Value
+
+| Requirement | Description |
+|-------------|-------------|
+| **State after change** | New value of modified fields |
+| **Version reference** | New version identifier created |
+| **Diff availability** | Comparison between previous and new state |
+
+#### Approval History
+
+| Requirement | Description |
+|-------------|-------------|
+| **Approval chain** | Sequential record of all approvers |
+| **Approval decision** | Approve or reject with timestamp |
+| **Approval comments** | Reviewer comments preserved |
+| **Rejection rationale** | Mandatory for rejections |
+
+### 25.4 Immutable Audit History
+
+Platform audit history is **immutable**:
+
+| Property | Description |
+|----------|-------------|
+| **Append-only** | New events added; existing events never modified |
+| **Non-deletable** | No user — including administrators — can delete audit history |
+| **Tamper-evident** | Integrity mechanisms detect unauthorized modification of log stores |
+| **Retained** | Audit history retained beyond engagement retention where regulations require |
+| **Searchable** | Authorized administrators can search and export audit history |
+| **Independent** | Audit log storage logically separated from operational data |
+
+Immutability is what transforms a log from a **convenience record** into **trustworthy evidence**. If audit history can be altered, the platform cannot support professional accountability.
+
+### 25.5 Why Enterprise Trust Depends on Accountability
+
+| Stakeholder | Accountability Dependency |
+|-------------|---------------------------|
+| **Engagement Partner** | Must demonstrate engagement file integrity under inspection |
+| **Organization Owner** | Must demonstrate who accessed client data and when |
+| **Client** | Must trust that confidential information handling is documented |
+| **Regulator** | Must verify platform controls support professional standards |
+| **Quality reviewer** | Must reconstruct review and sign-off chain |
+| **Litigation** | Must produce records showing state of data at historical points |
+| **AI governance** | Must prove human oversight of AI-influenced conclusions |
+
+Enterprise customers do not purchase software — they purchase **trustworthy professional infrastructure**. Accountability is the mechanism that makes trust verifiable rather than assumed.
+
+### 25.6 Accountability Model Summary
+
+```
+Action → Identity Attribution → Context Capture → State Change Record
+                                                        ↓
+                                              Immutable Audit History
+                                                        ↓
+                                    Professional / Organizational Accountability
+```
+
+---
+
+## 26. Compliance Philosophy
+
+Compliance is not a certification sticker applied to the platform — it is a **continuous capability** that enables customers to meet their professional, regulatory, and legal obligations. The platform is designed so that compliant professional work is the **path of least resistance**, not an additional burden.
+
+### 26.1 Compliance as Platform Capability
+
+| Traditional Approach | This Platform |
+|---------------------|---------------|
+| Compliance documented in external policies | Compliance supported by workflow structure and controls |
+| Manual evidence of control operation | Platform generates control operation evidence |
+| Retrofit compliance for audits | Compliance designed into product architecture |
+| Customer builds compliance layer | Platform provides compliance-enabling capabilities |
+
+The platform **enables** compliance — customers remain responsible for their professional and regulatory obligations.
+
+### 26.2 IFRS Alignment
+
+| Compliance Aspect | Platform Support |
+|-------------------|------------------|
+| **Presentation requirements** | IFRS classification and statement templates |
+| **Disclosure requirements** | Note templates mapped to IFRS disclosure checklist |
+| **Recognition and measurement** | Configurable rules with firm interpretation memos in knowledge base |
+| **Framework declaration** | Entity-level reporting framework explicitly declared |
+| **Change management** | Standards updates propagated through knowledge platform |
+
+IFRS alignment supports **correct financial reporting** — not authoritative standards interpretation.
+
+### 26.3 ISA Alignment
+
+| Compliance Aspect | Platform Support |
+|-------------------|------------------|
+| **Engagement structure** | ISA-aligned engagement lifecycle and documentation |
+| **Audit documentation** | Working paper structure supporting ISA 230 requirements |
+| **Risk assessment** | Documented risk assessment linked to planned procedures |
+| **Evidence** | Evidence linkage supporting sufficiency evaluation |
+| **Reporting** | Opinion formation workflow supporting ISA 700 series |
+
+ISA alignment supports **defensible audit documentation** — professional judgment remains with the auditor.
+
+### 26.4 COSO Alignment
+
+| Compliance Aspect | Platform Support |
+|-------------------|------------------|
+| **Control environment** | Control documentation and ownership assignment |
+| **Risk assessment** | Enterprise and engagement risk registers |
+| **Control activities** | Control testing workflows and deficiency evaluation |
+| **Information and communication** | Financial data lineage and reporting workflows |
+| **Monitoring** | Remediation tracking and governance dashboards |
+
+COSO alignment supports **internal control over financial reporting** documentation — particularly relevant for SOX and ICFR contexts.
+
+### 26.5 SOX Readiness
+
+| SOX-Relevant Capability | Platform Support |
+|-------------------------|------------------|
+| **ICFR documentation** | Control framework module |
+| **Management assessment support** | Control testing results and deficiency classification |
+| **Audit trail integrity** | Immutable logs for financial data changes |
+| **Segregation of duties** | RBAC with separation of preparer and approver |
+| **Access controls** | IAM with least privilege and monitoring |
+| **Change management** | Versioned configurations with approval workflows |
+
+SOX readiness means the platform **can support** SOX compliance programs — it does not perform management's assessment or auditor's attestation.
+
+### 26.6 ISO 27001 Alignment
+
+| ISO 27001 Domain | Platform Alignment |
+|------------------|-------------------|
+| **Information security policies** | Organization-configurable security policies |
+| **Access control** | IAM philosophy (Section 24) |
+| **Cryptography** | Encryption in transit and at rest |
+| **Operations security** | Monitoring, logging, change management |
+| **Supplier relationships** | Platform operator security commitments |
+| **Incident management** | Incident response capability |
+| **Business continuity** | Disaster recovery architecture |
+
+ISO 27001 alignment positions the platform for customers requiring **information security management system** evidence.
+
+### 26.7 GDPR Readiness
+
+| GDPR Principle | Platform Readiness |
+|----------------|-------------------|
+| **Lawfulness and transparency** | Data processing documented; privacy notices supported |
+| **Purpose limitation** | Data used for declared professional purposes |
+| **Data minimization** | Architecture avoids unnecessary data collection |
+| **Accuracy** | Financial data validation and correction workflows |
+| **Storage limitation** | Configurable retention with deletion upon expiry (subject to legal hold) |
+| **Integrity and confidentiality** | Security philosophy (Section 23) |
+| **Accountability** | Auditability model (Section 25) |
+| **Data subject rights** | Architecture supports access, rectification, and erasure requests within legal constraints |
+
+GDPR readiness is essential for **European operations** and demonstrates privacy maturity globally.
+
+### 26.8 SOC 2 Readiness
+
+| Trust Service Criteria | Platform Readiness |
+|------------------------|-------------------|
+| **Security** | Zero Trust, defense in depth, monitoring |
+| **Availability** | Enterprise SLA architecture |
+| **Processing integrity** | Financial data validation and workflow controls |
+| **Confidentiality** | Tenant isolation, encryption, access control |
+| **Privacy** | Privacy by design, GDPR readiness |
+
+SOC 2 Type II readiness demonstrates **operational effectiveness** of controls over time — a standard expectation for enterprise SaaS procurement.
+
+### 26.9 Regulatory Reporting
+
+| Capability | Description |
+|------------|-------------|
+| **Jurisdiction-specific templates** | Compliance packs for regional reporting requirements |
+| **Regulatory knowledge base** | Regulatory guidance indexed and retrievable |
+| **Filing support** | Export formats aligned with regulatory submission requirements |
+| **Change monitoring** | Regulatory updates flagged for impact assessment |
+| **Audit trail for submissions** | Record of who prepared, approved, and exported regulatory filings |
+
+Regulatory reporting support varies by jurisdiction — delivered through **compliance packs** rather than monolithic global assumptions.
+
+### 26.10 Compliance Philosophy Summary
+
+```
+Professional Standards (IFRS · ISA)
+           +
+Control Frameworks (COSO · SOX)
+           +
+Security & Privacy (ISO 27001 · GDPR · SOC 2)
+           +
+Regulatory Reporting (Jurisdiction Packs)
+           ↓
+    Compliance-Enabling Platform
+```
+
+Compliance is continuous, multi-dimensional, and embedded — not a one-time audit of the vendor.
+
+---
+
+## 27. Data Governance
+
+Data governance defines **who owns data, how it is classified, how long it is retained, and how it is protected** throughout its lifecycle. In a platform handling financial statements, audit evidence, and personal information across multiple jurisdictions, governance is as critical as security.
+
+### 27.1 Data Ownership
+
+| Data Category | Owner | Custodian |
+|---------------|-------|-----------|
+| **Client financial data** | Client organization | Platform (processor); firm (controller in audit context) |
+| **Engagement working papers** | Audit firm | Platform (processor) |
+| **Firm knowledge base** | Audit firm / enterprise | Platform (processor) |
+| **Platform audit logs** | Platform operator | Platform operator |
+| **User identity data** | Organization | Platform (processor) |
+| **AI interaction records** | Organization | Platform (processor) |
+
+Ownership determines **rights and responsibilities**. The platform operates as a **data processor** for customer content under defined contractual terms. Ownership does not confer platform operator rights to use customer data for unrelated purposes.
+
+### 27.2 Data Classification
+
+All platform data is classified to drive handling requirements:
+
+| Classification | Description | Handling Requirements |
+|----------------|-------------|----------------------|
+| **Public** | Information intended for public disclosure | Standard protection |
+| **Internal** | Firm operational data not client-specific | Access restricted to organization users |
+| **Confidential** | Client financial data, engagement files | Encryption, strict RBAC, audit logging |
+| **Highly Confidential** | Privileged communications, fraud investigations, personnel matters | Enhanced access controls, limited assignment, enhanced logging |
+| **Restricted** | Credentials, encryption keys, security configurations | Platform operator access only; dual control |
+
+Classification is applied at **object level** — an engagement file is Confidential; a published financial statement may be Public.
+
+### 27.3 Sensitive Financial Data
+
+Sensitive financial data requires the highest governance standard:
+
+| Data Type | Governance Requirement |
+|-----------|------------------------|
+| **Unpublished financial statements** | Confidential; approval workflow before disclosure |
+| **Trial balances and general ledger** | Confidential; access scoped to engagement and entity |
+| **Audit adjustments** | Confidential; full audit trail |
+| **Management representations** | Highly Confidential; restricted access |
+| **Partner review notes** | Highly Confidential; restricted to review chain |
+| **Going concern assessments** | Highly Confidential; restricted access |
+
+Sensitive financial data never appears in AI training, analytics, or cross-tenant contexts.
+
+### 27.4 Personally Identifiable Information (PII)
+
+| PII Category | Examples | Governance |
+|--------------|----------|------------|
+| **User identity** | Name, email, authentication credentials | GDPR-ready handling; subject rights support |
+| **Client personnel** | Names in representations, confirmations | Confidential; minimization applied |
+| **Third parties** | Counterparty names in transactions | Retained as part of financial records; access controlled |
+
+PII is minimized — only retained where necessary for professional workflow or legal obligation.
+
+### 27.5 Retention
+
+| Retention Aspect | Description |
+|------------------|-------------|
+| **Configurable periods** | Organization defines retention per data category |
+| **Regulatory minimums** | Retention cannot be set below jurisdictional requirements |
+| **Engagement retention** | Closed engagements retained per firm policy — often 7+ years |
+| **Audit log retention** | Exceeds engagement retention where regulations require |
+| **Expiry processing** | Automated retention expiry with pre-destruction notification |
+| **Destruction authorization** | Data destruction is a logged, authorized event |
+
+Retention balances **storage cost** against **professional and legal obligation** to preserve records.
+
+### 27.6 Archiving
+
+Archiving transitions data from **active** to **preserved** state:
+
+| Archiving Principle | Description |
+|---------------------|-------------|
+| **Read-only** | Archived data cannot be modified |
+| **Discoverable** | Archived data remains searchable by authorized users |
+| **Complete** | Archive includes all engagement artifacts, metadata, and audit history |
+| **Reopenable** | Authorized reopen creates audit event; does not destroy archive integrity |
+| **Indexed** | Archive metadata supports retrieval for inspection and litigation |
+
+Archiving implements the engagement closure workflow (Part 3, Workflow 25) at the data governance level.
+
+### 27.7 Legal Hold
+
+Legal hold **suspends normal retention and destruction**:
+
+| Legal Hold Aspect | Description |
+|-------------------|-------------|
+| **Trigger** | Organization Owner or legal counsel initiates hold |
+| **Scope** | Specific engagements, entities, date ranges, or users |
+| **Effect** | Retention expiry suspended; destruction blocked |
+| **Duration** | Until hold explicitly released by authorized party |
+| **Audit trail** | Hold placement and release fully logged |
+| **Notification** | Administrators notified of active holds |
+
+Legal hold overrides retention policy — it does not override security or access controls.
+
+### 27.8 Data Lifecycle Governance
+
+Data lifecycle governance connects the data lifecycle (Part 3, Section 17) with governance controls:
+
+```
+Create/Import → Classify → Use → Review → Approve → Retain → [Hold] → Archive → [Destroy]
+     ↑            ↑        ↑       ↑         ↑        ↑        ↑        ↑         ↑
+  Ownership   Sensitivity  Access  Quality  Authority  Policy  Legal   Preserve  Authorized
+  assigned    labeled      controlled        chain     applied  hold    intact    only
+```
+
+| Lifecycle Stage | Governance Control |
+|-----------------|-------------------|
+| **Create/Import** | Classification assigned; ownership established |
+| **Use** | Access controlled per RBAC; usage logged |
+| **Review** | Quality and accuracy verification |
+| **Approve** | Authorization chain for publication |
+| **Retain** | Retention policy applied |
+| **Hold** | Legal hold suspends destruction |
+| **Archive** | Read-only preservation |
+| **Destroy** | Authorized destruction with audit record |
+
+### 27.9 Cross-Border Considerations
+
+Global deployment introduces **data residency and transfer** governance:
+
+| Consideration | Governance Approach |
+|---------------|---------------------|
+| **Data residency** | Customer selects deployment region where available |
+| **Transfer mechanisms** | Cross-border transfer subject to contractual safeguards |
+| **Jurisdictional requirements** | Regional compliance packs address local obligations |
+| **Government access** | Transparency commitments on lawful access requests |
+| **Multi-region architecture** | Tenant data location deterministic and documented |
+
+Cross-border governance is a **customer contractual and legal matter** enabled by platform architecture — not decided unilaterally by the platform operator.
+
+### 27.10 Data Governance Summary
+
+| Pillar | Function |
+|--------|----------|
+| **Ownership** | Clear rights and responsibilities |
+| **Classification** | Appropriate handling per sensitivity |
+| **Retention & Archive** | Preserved per obligation; accessible when needed |
+| **Legal Hold** | Protected during litigation or investigation |
+| **Lifecycle** | Governed from creation through destruction |
+| **Cross-border** | Residency and transfer controls for global operations |
+
+Data governance completes the trust framework: security protects data, IAM controls access, auditability records actions, compliance enables obligations, and data governance **manages data as a governed asset** throughout its life.
+
+---
+
+## Document Control — Part 5
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.5.0 | 2026-06-30 | Chief Enterprise Security Architect | Part 5 — Security, Governance & Compliance complete |
+
+---
+
+*End of Part 5.*
+
+---
+
+## Part 6 — Enterprise & Platform Architecture
+
+### Table of Contents — Part 6
+
+28. [Enterprise Architecture Principles](#28-enterprise-architecture-principles)
+29. [Platform Architecture Philosophy](#29-platform-architecture-philosophy)
+30. [Modularization Strategy](#30-modularization-strategy)
+31. [Service Philosophy](#31-service-philosophy)
+32. [Platform Quality Attributes](#32-platform-quality-attributes)
+
+---
+
+## 28. Enterprise Architecture Principles
+
+Enterprise architecture principles are the **structural beliefs** that govern how the platform is designed, decomposed, evolved, and operated. They translate the product philosophy (Part 1) and core principles (Part 1, Section 5) into architectural decision-making criteria. Every architect, engineer, and AI agent making structural decisions must apply these principles.
+
+When principles conflict, **correctness, security, and auditability take precedence** over speed and convenience.
+
+### 28.1 Principle Catalog
+
+---
+
+#### Domain-Driven Design
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Align software structure with the professional domains the platform serves — audit, financial reporting, governance, knowledge, and intelligence |
+| **Business Value** | Software organization mirrors how firms think and operate; reduces translation overhead between business and technology |
+| **Architectural Impact** | Bounded contexts for audit, financial data, reporting, AI, and administration; domain language used consistently across modules and documentation |
+| **Long-Term Benefits** | New features land in the correct domain; domain experts can reason about system structure; reduced architectural erosion as the platform grows |
+
+---
+
+#### Modular Architecture
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Decompose the platform into independently developable, deployable, and governable modules rather than a single undifferentiated system |
+| **Business Value** | Firms enable only the capabilities they need; development teams work in parallel; failures are contained |
+| **Architectural Impact** | Clear module boundaries with defined responsibilities; modules communicate through contracts, not shared mutable state |
+| **Long-Term Benefits** | Platform scales organizationally (more teams) and commercially (module-based licensing) without re-architecture |
+
+---
+
+#### Layered Architecture
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Separate presentation, application logic, domain logic, and data access into distinct layers with defined dependency direction |
+| **Business Value** | Changes in one layer do not cascade unpredictably; professional rules remain independent of user interface choices |
+| **Architectural Impact** | UI depends on application services; application services depend on domain logic; domain logic does not depend on UI or infrastructure |
+| **Long-Term Benefits** | Interface technologies can evolve; domain rules remain stable; testing can target layers independently |
+
+---
+
+#### Separation of Concerns
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Ensure each architectural component addresses a single category of responsibility |
+| **Business Value** | Audit logic does not mingle with notification logic; security does not depend on UI enforcement alone |
+| **Architectural Impact** | Authentication separated from authorization; AI orchestration separated from business rules; import separated from reporting |
+| **Long-Term Benefits** | Reduced defect propagation; clearer ownership; simpler compliance demonstration per concern |
+
+---
+
+#### Single Responsibility
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Every module, service, and component has one reason to change |
+| **Business Value** | Modifications to IFRS classification do not risk audit opinion logic; AI changes do not destabilize financial data |
+| **Architectural Impact** | Small, focused units of functionality; rejection of god-modules that accumulate unrelated capabilities |
+| **Long-Term Benefits** | Predictable change impact; faster onboarding for engineers; reduced regression surface |
+
+---
+
+#### High Cohesion
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Related functionality grouped together within module and service boundaries |
+| **Business Value** | Working paper features live with audit features; trial balance features live with financial data — professionals find cohesive experiences |
+| **Architectural Impact** | Domain operations colocated; shared domain models within boundaries; minimal split of related logic across distant components |
+| **Long-Term Benefits** | Intuitive codebase navigation; efficient feature development; coherent user experiences per domain |
+
+---
+
+#### Low Coupling
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Minimize dependencies between modules so changes in one module do not force changes in others |
+| **Business Value** | Firms can adopt financial reporting without audit; AI capabilities can evolve without rewriting financial import |
+| **Architectural Impact** | Modules interact through published contracts and events; no direct database access across module boundaries |
+| **Long-Term Benefits** | Independent release cadences; reduced integration risk; partner extensions without core modification |
+
+---
+
+#### Configuration over Hardcoding
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Express accounting, audit, and reporting rules as configurable data rather than immutable code |
+| **Business Value** | Firms adapt methodology without vendor intervention; regulatory changes absorbed through configuration updates |
+| **Architectural Impact** | Rules engines, template systems, and mapping configurations as first-class architectural elements; Core Principle 13 enforced structurally |
+| **Long-Term Benefits** | Platform longevity as standards evolve; firm differentiation through configuration; reduced custom development |
+
+---
+
+#### Reusability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Design components and services for use across multiple modules and contexts without duplication |
+| **Business Value** | Consistent behavior for versioning, approval, and audit logging everywhere; reduced time-to-market for new features |
+| **Architectural Impact** | Shared platform capabilities (identity, notifications, versioning, audit logging) provided as horizontal services |
+| **Long-Term Benefits** | Uniform quality attributes; single point of improvement for cross-cutting capabilities; lower maintenance burden |
+
+---
+
+#### Extensibility
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Enable the platform to grow through new modules, integrations, and partner extensions without modifying core foundations |
+| **Business Value** | Ecosystem of certified integrations; industry compliance packs; firm-specific extensions |
+| **Architectural Impact** | Extension points at module boundaries; plugin readiness; integration platform as first-class domain |
+| **Long-Term Benefits** | Market expansion without core bloat; partner revenue channels; customer-specific needs met without forking |
+
+---
+
+#### Maintainability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Ensure the platform can be understood, modified, and corrected efficiently over a multi-year horizon |
+| **Business Value** | Lower total cost of ownership; faster defect resolution; sustainable engineering velocity |
+| **Architectural Impact** | Consistent patterns; comprehensive documentation; manageable module sizes; technical debt governance |
+| **Long-Term Benefits** | Platform remains comprehensible at scale; engineering teams rotate without knowledge loss; Longevity Over Trends philosophy realized |
+
+---
+
+#### Testability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Design every module and service so its behavior can be verified through automated and manual testing |
+| **Business Value** | Financial calculations and business rules verified before production; regression detected before customers |
+| **Architectural Impact** | Domain logic isolated from infrastructure; deterministic behavior for rules; testable contracts between modules |
+| **Long-Term Benefits** | Confidence in releases; reduced production incidents; compliance evidence for control operation |
+
+---
+
+#### Observability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Ensure platform behavior is measurable, diagnosable, and auditable in production |
+| **Business Value** | Incidents resolved quickly; performance degradation detected before user impact; operational transparency for enterprise customers |
+| **Architectural Impact** | Structured logging, metrics, and tracing as architectural requirements; correlation across modules |
+| **Long-Term Benefits** | Operational maturity at scale; data-driven performance optimization; SLA accountability |
+
+---
+
+#### Scalability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Support growth in users, engagements, data volume, and document count without architectural redesign |
+| **Business Value** | Large firms and enterprises deploy without performance anxiety; platform grows with customer success |
+| **Architectural Impact** | Stateless application design; horizontal scaling; tenant-aware resource allocation; asynchronous processing for heavy operations |
+| **Long-Term Benefits** | Thousands of enterprise customers on shared infrastructure; economies of scale; no re-platforming at growth inflection points |
+
+---
+
+#### Reliability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Purpose** | Ensure the platform operates correctly and consistently under normal and adverse conditions |
+| **Business Value** | Professionals trust the platform during critical reporting and audit deadlines; data integrity preserved |
+| **Architectural Impact** | Idempotent operations; graceful degradation; retry strategies; disaster recovery; data consistency guarantees |
+| **Long-Term Benefits** | Enterprise SLA achievement; customer retention; professional reputation protected |
+
+---
+
+### 28.2 Principle Interaction Model
+
+```
+Domain-Driven Design
+        ↓
+Modular + Layered + Separation of Concerns
+        ↓
+Single Responsibility · High Cohesion · Low Coupling
+        ↓
+Configuration · Reusability · Extensibility
+        ↓
+Maintainability · Testability · Observability
+        ↓
+Scalability · Reliability
+```
+
+Structural principles (top) define shape. Quality principles (bottom) define operational maturity. All are necessary; none alone is sufficient.
+
+---
+
+## 29. Platform Architecture Philosophy
+
+The platform is not a single application — it is a **composition of platform domains**, each owning a distinct responsibility within the enterprise ecosystem. Platform domains are architectural territories; they map to but are not identical with business domains (Part 2, Section 11) or core modules (Part 2, Section 12).
+
+### 29.1 Platform Domain Model
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                     Administration Platform                          │
+├──────────┬──────────┬──────────┬──────────┬──────────┬──────────────┤
+│Foundation│ Identity │Organization│Financial │  Audit   │  Governance  │
+├──────────┴──────────┴──────────┴──────────┴──────────┴──────────────┤
+│    Knowledge Platform  ·  AI Platform  ·  Reporting Platform          │
+├───────────────────────────────────────────────────────────────────────┤
+│                     Integration Platform                               │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+Each platform domain is **independently conceivable, ownable, and evolvable** — yet collaborates through defined interaction patterns.
+
+### 29.2 Platform Domain Responsibilities
+
+#### Foundation Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Core runtime capabilities shared by all domains: tenancy context, event infrastructure, configuration management, notification framework, versioning engine, and shared domain object definitions |
+| **Owns** | Cross-cutting primitives that every other platform depends upon |
+| **Does Not Own** | Business rules, professional workflows, or domain-specific data |
+
+Foundation is the **bedrock** — invisible when working correctly, catastrophic when failing.
+
+#### Identity Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Authentication, session management, credential lifecycle, MFA, SSO integration, and identity federation |
+| **Owns** | Who is accessing the platform |
+| **Does Not Own** | What they may access (Authorization belongs to Administration and domain platforms) |
+
+Identity establishes trust at the front door. It implements the IAM authentication layer (Part 5, Section 24).
+
+#### Organization Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Organization, workspace, company (entity), and group hierarchy management; organizational policies; subscription and entitlement context |
+| **Owns** | The structural boundaries within which all professional work occurs |
+| **Does Not Own** | Engagement execution, financial data, or reporting content |
+
+Organization Platform defines **where** work happens in the tenancy hierarchy.
+
+#### Financial Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Financial data import, general ledger, trial balance, adjustments, IFRS classification, and period management |
+| **Owns** | The financial data lifecycle from ingestion through classified adjusted trial balance |
+| **Does Not Own** | Financial statement presentation (Reporting Platform) or audit procedures (Audit Platform) |
+
+Financial Platform is the **source of truth** for numbers that flow into reporting and audit.
+
+#### Audit Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Engagement lifecycle, audit planning, risk assessment, working papers, lead sheets, evidence management, review workflows, and opinion formation |
+| **Owns** | The assurance lifecycle and professional audit documentation |
+| **Does Not Own** | Financial data creation (Financial Platform) or published reports (Reporting Platform) |
+
+Audit Platform is the **professional heart** of the product for external and internal assurance.
+
+#### Governance Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Board and audit committee oversight, control frameworks, finding and remediation tracking, management representations, and governance reporting |
+| **Owns** | Oversight structures and compliance posture visibility |
+| **Does Not Own** | Audit fieldwork execution or financial data management |
+
+Governance Platform serves **those charged with governance** — distinct from the auditor's working environment.
+
+#### Knowledge Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Firm knowledge base management, standards content, methodology libraries, regulatory guidance, and knowledge versioning |
+| **Owns** | Institutional knowledge as a governed, searchable asset |
+| **Does Not Own** | Engagement-specific client data or AI model execution |
+
+Knowledge Platform is the **institutional memory** defined in Part 4 (Section 21).
+
+#### AI Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | AI capability orchestration, RAG retrieval, finding generation, copilot interaction, AI governance enforcement, and interaction logging |
+| **Owns** | How intelligence is applied within professional boundaries |
+| **Does Not Own** | Business conclusions, knowledge content, or permission policy |
+
+AI Platform is the **intelligence layer** — assistive, evidence-first, and governed (Part 4).
+
+#### Reporting Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Financial statement composition, IFRS notes, audit report generation, management letters, export, and distribution governance |
+| **Owns** | The output lifecycle from draft through approved publication |
+| **Does Not Own** | Underlying financial data or audit working papers |
+
+Reporting Platform transforms governed inputs into **authorized outputs**.
+
+#### Integration Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | ERP connectivity, DMS integration, identity provider federation, API access, webhooks, and partner extension framework |
+| **Owns** | How external systems connect to the platform |
+| **Does Not Own** | Business logic processing of imported data (delegated to domain platforms) |
+
+Integration Platform is the **boundary** between the platform and the customer's technology ecosystem.
+
+#### Administration Platform
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | User provisioning, role and permission management, methodology configuration, template management, audit log access, and platform settings |
+| **Owns** | How the platform is configured and operated by customer administrators |
+| **Does Not Own** | Platform operator infrastructure (Foundation) or professional engagement content |
+
+Administration Platform empowers **customer-side governance** of their platform instance.
+
+### 29.3 Platform Collaboration Model
+
+Platforms collaborate through **shared domain objects** and **defined interaction contracts** — never through direct internal access:
+
+| Interaction | Pattern |
+|-------------|---------|
+| **Financial → Reporting** | Classified trial balance feeds statement composition |
+| **Financial → Audit** | Trial balance and GL data available for audit procedures |
+| **Audit → Reporting** | Opinion and management letter generation |
+| **Knowledge → AI** | Knowledge base content retrieved for RAG |
+| **AI → Audit** | Findings presented within engagement context |
+| **AI → Financial** | Classification suggestions on trial balance |
+| **Identity → All** | Authentication context propagated to every platform |
+| **Organization → All** | Tenancy and scope context propagated to every platform |
+| **Integration → Financial** | ERP data imported into financial data lifecycle |
+| **Administration → All** | Permissions and configuration govern all platforms |
+| **Foundation → All** | Events, versioning, notifications, and audit logging serve all platforms |
+
+```
+                    ┌──────────────┐
+                    │  Foundation  │
+                    └──────┬───────┘
+           ┌───────────────┼───────────────┐
+           ▼               ▼               ▼
+    ┌────────────┐  ┌────────────┐  ┌────────────┐
+    │  Identity  │  │Organization│  │Administration│
+    └──────┬─────┘  └──────┬─────┘  └──────┬─────┘
+           └───────────────┼───────────────┘
+                           ▼
+              ┌────────────────────────┐
+              │   Domain Platforms      │
+              │ Financial · Audit ·     │
+              │ Governance · Reporting  │
+              └───────────┬────────────┘
+                          ▼
+              ┌────────────────────────┐
+              │ Knowledge · AI          │
+              └───────────┬────────────┘
+                          ▼
+              ┌────────────────────────┐
+              │    Integration          │
+              └────────────────────────┘
+```
+
+### 29.4 Independence Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Domain platforms do not call each other's internals** | Interaction through published contracts and shared objects only |
+| **AI does not bypass domain logic** | AI retrieves and suggests; domain platforms enforce rules and state |
+| **Reporting does not compute financial data** | Reporting consumes; Financial Platform produces |
+| **Integration does not process business rules** | Integration delivers data; domain platforms validate and govern |
+| **Failure isolation** | Degradation in one platform must not cascade to unrelated platforms |
+
+---
+
+## 30. Modularization Strategy
+
+Modularization strategy defines how the platform **grows in capability without becoming a monolith** — the architectural failure mode that destroys maintainability, scalability, and release velocity in enterprise software.
+
+### 30.1 Strategic Intent
+
+The platform must support **thousands of enterprise customers** with varying module entitlements, industry requirements, and integration needs. Monolithic architecture cannot serve this diversity. Modularization enables:
+
+- Independent development and release of capabilities
+- Customer choice in module adoption
+- Contained failure and security boundaries
+- Long-term architectural clarity
+
+### 30.2 Business Modules
+
+Business modules are **user-visible functional units** aligned with professional workflows:
+
+| Module Category | Examples |
+|-----------------|----------|
+| **Assurance** | Audit Engine, Working Papers, Lead Sheets, Audit Planning |
+| **Financial** | Trial Balance, General Ledger, IFRS Classification |
+| **Reporting** | Financial Statements, IFRS Notes, Audit Opinion |
+| **Intelligence** | Financial Intelligence, AI Auditor |
+| **Governance** | Control Framework, Governance Dashboards |
+| **Administration** | Organizations, Users, Enterprise Settings |
+
+Business modules map to core modules (Part 2, Section 12) and are the unit of **product packaging and licensing**.
+
+### 30.3 Shared Components
+
+Shared components are **reusable UI and interaction elements** consumed by multiple business modules:
+
+| Component Category | Examples |
+|--------------------|----------|
+| **Presentation** | Tables, forms, dialogs, navigation, charts, loading states |
+| **Interaction** | Approval panels, review note interfaces, version comparison views |
+| **Feedback** | Notifications, validation messages, progress indicators |
+
+Shared components ensure **visual and interaction consistency** without coupling business modules to each other.
+
+### 30.4 Shared Services
+
+Shared services are **horizontal capabilities** invoked by multiple business modules:
+
+| Service Category | Function |
+|------------------|----------|
+| **Versioning** | Artifact version creation, comparison, and history |
+| **Approval** | Approval chain routing and status management |
+| **Audit Logging** | Immutable event recording |
+| **Notification** | User and system notification delivery |
+| **Search** | Full-text and semantic search within permission scope |
+| **Document Management** | Upload, storage, indexing, and retrieval |
+
+Shared services implement the Reusability principle (Section 28) and prevent duplication of cross-cutting logic.
+
+### 30.5 Domain Isolation
+
+Domain isolation ensures modules within different platform domains **do not share mutable state or internal implementation**:
+
+| Isolation Boundary | Rule |
+|--------------------|------|
+| **Financial ↔ Audit** | Audit reads financial data through contracts; does not modify financial state without adjustment workflow |
+| **Audit ↔ Reporting** | Reporting reads audit conclusions; audit does not generate published outputs |
+| **AI ↔ All domains** | AI reads through permission-filtered contracts; writes only through finding and draft mechanisms |
+| **Knowledge ↔ Engagements** | Knowledge is firm-scoped; engagement data does not enter knowledge without governance |
+
+Domain isolation is the architectural enforcement of low coupling.
+
+### 30.6 Feature Independence
+
+Features within a module should be **independently deliverable** where possible:
+
+| Independence Level | Description |
+|--------------------|-------------|
+| **Module-level** | Entire business module can be enabled or disabled per subscription |
+| **Feature-level** | Individual capabilities within a module can be released without full module release |
+| **Configuration-level** | Feature behavior varies through configuration without code change |
+
+Feature independence enables **incremental delivery** aligned with the product roadmap (Part 1, Section 6).
+
+### 30.7 Module Ownership
+
+Every business module and shared service has a **designated owning team**:
+
+| Ownership Responsibility | Description |
+|--------------------------|-------------|
+| **Architecture** | Module boundary integrity and contract stability |
+| **Quality** | Module meets all platform quality attributes (Section 32) |
+| **Documentation** | Module behavior documented in architecture and product docs |
+| **Security** | Module threat model maintained |
+| **Lifecycle** | Deprecation and migration managed responsibly |
+
+Module ownership prevents **orphaned capabilities** that no team maintains or improves.
+
+### 30.8 Future Module Expansion
+
+The modularization strategy anticipates **future modules** without architectural disruption:
+
+| Expansion Category | Examples |
+|--------------------|----------|
+| **Industry packs** | Banking, insurance, construction, government specialized modules |
+| **Assurance extensions** | Internal audit, SOC reporting, ESG assurance |
+| **Reporting extensions** | XBRL generation, regulatory filing, consolidation |
+| **Intelligence extensions** | Predictive analytics, portfolio benchmarking |
+| **Regional packs** | Jurisdiction-specific compliance modules |
+
+New modules attach to existing platform domains through **published contracts** — not by modifying core module internals.
+
+### 30.9 Version Compatibility
+
+Module evolution must preserve **backward compatibility** within defined policies:
+
+| Compatibility Rule | Description |
+|--------------------|-------------|
+| **Contract stability** | Published interfaces between modules maintain compatibility within major versions |
+| **Data migration** | Module upgrades include migration path for existing customer data |
+| **Configuration preservation** | Firm configurations survive module updates |
+| **Deprecation notice** | Capabilities deprecated with advance notice and migration guidance |
+
+Version compatibility protects **enterprise customers** from disruptive upgrades during active engagements.
+
+### 30.10 Plugin Readiness
+
+The platform architecture anticipates **certified partner plugins** that extend capability without forking the core:
+
+| Plugin Capability | Description |
+|-------------------|-------------|
+| **Integration plugins** | Connect to regional ERPs and specialized systems |
+| **Template plugins** | Industry-specific working paper and reporting templates |
+| **Compliance plugins** | Jurisdiction-specific regulatory packs |
+| **Analytics plugins** | Specialized analytical extensions |
+
+Plugins operate within **platform governance** — permissions, audit logging, and security boundaries apply equally.
+
+### 30.11 Enterprise Extension Strategy
+
+Large enterprise customers may require **controlled extensions** beyond standard plugins:
+
+| Extension Type | Governance |
+|----------------|------------|
+| **Custom methodology** | Firm-configured through Administration Platform |
+| **Custom templates** | Workspace-level template publication |
+| **Custom integrations** | API access with scoped credentials |
+| **Custom reporting** | Report template configuration within Reporting Platform |
+
+Enterprise extensions favor **configuration over customization**. Bespoke code paths are the exception — requiring explicit architectural review and long-term maintenance commitment.
+
+### 30.12 Anti-Monolith Rules
+
+| Rule | Description |
+|------|-------------|
+| **No shared database tables across domain boundaries** | Data access through module-owned repositories |
+| **No circular module dependencies** | Dependency graph is directed and acyclic |
+| **No feature flags as architecture** | Feature flags control rollout — not substitute for module boundaries |
+| **No god-services** | Services remain focused; shared does not mean universal |
+| **No bypassing contracts** | All cross-module interaction through defined interfaces |
+
+---
+
+## 31. Service Philosophy
+
+Services are the **operational units of business capability** within the platform. This section defines service categories, their responsibilities, and their boundaries at a business level. Services implement the logic that business modules present to users.
+
+### 31.1 Service Layer Model
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Business Modules (UI + Orchestration)      │
+├─────────────────────────────────────────────────────────────┤
+│  Business Services │ AI Services │ Reporting Services         │
+├────────────────────┼─────────────┼────────────────────────────┤
+│  Import Services   │ Export Services │ Knowledge Services      │
+├────────────────────┴─────────────┴────────────────────────────┤
+│  Notification Services │ Background Processing │ Security Services │
+├─────────────────────────────────────────────────────────────┤
+│                    Foundation Services                         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 31.2 Service Categories
+
+#### Business Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Execute domain business rules: engagement lifecycle, trial balance management, classification, working paper state, approval routing, adjustment posting |
+| **Boundary** | Own domain logic for their platform domain; do not perform import, export, or notification directly |
+| **Examples** | Engagement service, trial balance service, classification service, working paper service, adjustment service |
+
+Business services are the **authoritative executors** of professional workflows defined in Part 3 (Section 14).
+
+#### AI Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Orchestrate AI capabilities: retrieval, analysis, draft generation, finding creation, copilot interaction, interaction logging |
+| **Boundary** | Read domain data through permission-filtered contracts; write only through finding and draft mechanisms; never mutate approved state |
+| **Examples** | Copilot service, classification assistant service, anomaly detection service, disclosure drafting service |
+
+AI services implement the AI Platform domain (Section 29) and AI architecture (Part 4, Section 19).
+
+#### Reporting Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Compose, version, and format reports: financial statements, IFRS notes, auditor's reports, management letters, board packs |
+| **Boundary** | Consume financial and audit data; do not modify source data; govern output approval and export eligibility |
+| **Examples** | Statement composition service, note generation service, opinion drafting service, export formatting service |
+
+Reporting services own the **output lifecycle** from draft to approved artifact.
+
+#### Import Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Ingest external data: file parsing, ERP extraction, mapping application, source preservation, staging |
+| **Boundary** | Deliver staged data to business services; do not validate business rules or classify data |
+| **Examples** | Trial balance import service, general ledger import service, document import service |
+
+Import services preserve **source data immutability** (Part 3, Business Rule FD-01).
+
+#### Export Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Generate authorized output files: PDF, structured formats, bulk packages, metadata embedding |
+| **Boundary** | Verify approval status before export; log every export event; do not modify source artifacts |
+| **Examples** | Report export service, engagement archive export service, audit log export service |
+
+Export services enforce **export governance** (Part 5, Business Rules EXP-01 through EXP-05).
+
+#### Notification Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Deliver notifications: in-platform alerts, email, workflow event triggers, escalation notices |
+| **Boundary** | Notify about events; do not execute business logic or modify domain state |
+| **Examples** | Review assignment notification, approval request notification, deadline reminder, escalation alert |
+
+Notification services are **event-driven** — they communicate; they do not decide.
+
+#### Background Processing
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Execute long-running and scheduled operations: import processing, report generation, AI analysis, retention expiry, batch validation |
+| **Boundary** | Operate asynchronously; report progress; handle failure with retry and visibility; do not block user interaction |
+| **Examples** | Import processing job, AI analysis job, report generation job, retention processing job |
+
+Background processing enables **scalability** for operations that exceed interactive timeframes.
+
+#### Knowledge Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Manage knowledge lifecycle: ingestion, curation, versioning, indexing, retrieval, supersession |
+| **Boundary** | Serve knowledge to AI and user search; do not mix client engagement data into knowledge base |
+| **Examples** | Knowledge indexing service, knowledge search service, standards update service |
+
+Knowledge services implement the Knowledge Platform domain (Part 4, Section 21).
+
+#### Security Services
+
+| Aspect | Description |
+|--------|-------------|
+| **Responsibility** | Enforce security controls: authentication, authorization evaluation, session management, encryption, threat detection |
+| **Boundary** | Gate every protected operation; do not contain business logic |
+| **Examples** | Authentication service, authorization evaluation service, session service, audit log service |
+
+Security services are **invoked by all other services** — security is not optional middleware.
+
+### 31.3 Service Boundary Rules
+
+| Rule | Description |
+|------|-------------|
+| **Services do not call UI** | Service layer is presentation-independent |
+| **Services respect domain boundaries** | Cross-domain interaction through contracts, not direct invocation of internal logic |
+| **Services are stateless** | Persistent state in governed data stores; services execute operations |
+| **Services log operations** | Every significant service action produces audit log event |
+| **Services enforce permissions** | Authorization checked at service entry, not assumed from caller |
+| **Services fail visibly** | Errors returned with professional-appropriate messaging; never silent failure |
+
+### 31.4 Service Interaction Pattern
+
+```
+User Action → Module Orchestration → Service Authorization Check
+                                            ↓
+                                    Business / AI / Reporting Service
+                                            ↓
+                              Domain Data · Audit Log · Notification
+```
+
+Every service interaction is **authorized, logged, and bounded**.
+
+---
+
+## 32. Platform Quality Attributes
+
+Quality attributes define the **non-functional expectations** every module and service must meet. They are the measurable expression of enterprise architecture principles (Section 28) applied to operational reality.
+
+### 32.1 Quality Attribute Catalog
+
+---
+
+#### Availability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform is operational and accessible when users need it |
+| **Why It Matters** | Audit and reporting deadlines are immovable; downtime during close or fieldwork is professionally unacceptable |
+| **Enterprise Expectation** | ≥ 99.9% uptime for production tier; planned maintenance communicated in advance; degraded mode for non-critical features during incidents |
+
+---
+
+#### Reliability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform performs correctly and consistently; data integrity is preserved under all operating conditions |
+| **Why It Matters** | Incorrect financial data or lost working papers destroy professional trust and create liability |
+| **Enterprise Expectation** | Zero data loss; idempotent critical operations; automated backup and verified recovery |
+
+---
+
+#### Scalability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform handles growth in users, tenants, engagements, data volume, and concurrent operations without degradation |
+| **Why It Matters** | Large firms may run hundreds of concurrent engagements with millions of transactions |
+| **Enterprise Expectation** | Linear scaling to thousands of users per tenant; large document sets per engagement; horizontal scaling without customer-visible architecture changes |
+
+---
+
+#### Performance
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | User actions and system operations complete within professionally acceptable timeframes |
+| **Why It Matters** | Slow software during fieldwork or close reduces adoption and drives users back to spreadsheets |
+| **Enterprise Expectation** | Core reads < 500ms P95; AI retrieval < 5s P95; background operations do not degrade interactive performance |
+
+---
+
+#### Consistency
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | Data and behavior are coherent across modules, sessions, and users viewing the same artifacts |
+| **Why It Matters** | Two auditors viewing the same working paper must see the same state; financial figures must agree across reporting and audit views |
+| **Enterprise Expectation** | Strong consistency for financial data and approval state; eventual consistency acceptable only for non-critical derived views with clear indication |
+
+---
+
+#### Security
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform protects data confidentiality, integrity, and availability against unauthorized access and threats |
+| **Why It Matters** | Client financial data and audit files are among the most sensitive information in professional services |
+| **Enterprise Expectation** | Zero cross-tenant leakage; encryption everywhere; MFA for elevated roles; penetration testing; SOC 2 alignment |
+
+---
+
+#### Maintainability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform can be modified, extended, and corrected efficiently over its operational lifetime |
+| **Why It Matters** | A platform that cannot evolve will be abandoned as standards, regulations, and customer needs change |
+| **Enterprise Expectation** | Modular structure; documented architecture; manageable defect resolution times; sustainable release cadence |
+
+---
+
+#### Auditability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | All significant actions produce immutable, searchable audit records with full accountability dimensions |
+| **Why It Matters** | The platform serves the audit profession — its own audit trail must withstand inspection |
+| **Enterprise Expectation** | 100% of defined events logged; immutable history; exportable audit logs; AI interactions fully recorded |
+
+---
+
+#### Configurability
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | Firm and organization behavior adapts through configuration without code changes |
+| **Why It Matters** | Every firm has distinct methodology, templates, and policies; hardcoded behavior cannot serve the market |
+| **Enterprise Expectation** | Self-service configuration for methodology, templates, roles, and policies; configuration versioned and auditable |
+
+---
+
+#### Accessibility
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform is usable by professionals with diverse abilities and assistive technologies |
+| **Why It Matters** | Enterprise procurement increasingly requires accessibility compliance; inclusive design serves all professionals |
+| **Enterprise Expectation** | WCAG 2.1 AA compliance; keyboard navigation; screen reader compatibility; responsive across devices |
+
+---
+
+#### Internationalization
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform supports multiple languages, locales, and regional conventions without structural rework |
+| **Why It Matters** | Global firms and regional markets require Azerbaijani, English, Russian, and Turkish from launch; more languages over time |
+| **Enterprise Expectation** | Full platform shell in four launch languages; locale-aware formatting for dates, numbers, and currencies; architecture ready for additional locales |
+
+---
+
+#### Resilience
+
+| Dimension | Description |
+|-----------|-------------|
+| **Definition** | The platform continues operating — in full or degraded mode — when components fail or external dependencies are unavailable |
+| **Why It Matters** | Enterprise customers cannot tolerate cascading failures; audit work must continue during partial outages |
+| **Enterprise Expectation** | Graceful degradation; retry with backoff; circuit breakers for external integrations; disaster recovery within defined RPO/RTO |
+
+---
+
+### 32.2 Quality Attribute Matrix
+
+| Attribute | Primary Beneficiary | Measured By |
+|-----------|--------------------|-|
+| Availability | All users | Uptime monitoring, SLA reporting |
+| Reliability | Financial Controller, Auditor | Data integrity checks, incident rate |
+| Scalability | Large firms, Platform operator | Load testing, capacity metrics |
+| Performance | All users | Response time percentiles, throughput |
+| Consistency | Auditor, Reviewer | Reconciliation checks, state verification |
+| Security | Organization Owner, Client | Penetration tests, audit findings, certifications |
+| Maintainability | Engineering, Product | Defect resolution time, release frequency |
+| Auditability | Engagement Partner, Regulator | Log completeness, inspection outcomes |
+| Configurability | Workspace Administrator | Self-service adoption, support ticket reduction |
+| Accessibility | All users | WCAG audit, assistive technology testing |
+| Internationalization | Global firms | Locale coverage, translation completeness |
+| Resilience | Platform operator, Enterprise | DR drill results, incident recovery time |
+
+### 32.3 Quality Attribute Enforcement
+
+Quality attributes are **not aspirational** — they are enforced through:
+
+| Mechanism | Application |
+|-----------|-------------|
+| **Architecture review** | New modules assessed against all quality attributes before approval |
+| **Module ownership** | Owning team accountable for attribute compliance within their module |
+| **Testing requirements** | Performance, security, and accessibility testing mandated per release |
+| **Monitoring** | Production metrics tracked against enterprise expectations |
+| **Success criteria** | Part 1 (Section 8) success metrics operationalize key attributes |
+
+Every module ships with **defined quality attribute compliance** — not merely functional completeness.
+
+---
+
+## Document Control — Part 6
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.6.0 | 2026-06-30 | Chief Enterprise Architect | Part 6 — Enterprise & Platform Architecture complete |
+
+---
+
+*End of Part 6. Await further instruction for Part 7.*
