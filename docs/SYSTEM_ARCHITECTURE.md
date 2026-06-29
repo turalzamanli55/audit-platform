@@ -2512,6 +2512,1684 @@ SYSTEM_ARCHITECTURE Sprint 3 completes the **infrastructure behavior layer** —
 
 ---
 
-*End of Sprint 3. Await further instruction for Sprint 4.*
+*End of Sprint 3.*
+
+---
+
+# Sprint 4 — AI Platform, Knowledge & RAG, Performance, Observability & Reliability
+
+*Continues SYSTEM_ARCHITECTURE.md — technical realization only.*
+
+---
+
+## Table of Contents — Sprint 4
+
+20. [AI Platform Architecture](#20-ai-platform-architecture)
+21. [Knowledge & RAG Architecture](#21-knowledge--rag-architecture)
+22. [Performance Architecture](#22-performance-architecture)
+23. [Observability & Reliability](#23-observability--reliability)
+24. [Architecture Review — Sprint 4](#24-architecture-review--sprint-4)
+
+---
+
+## 20. AI Platform Architecture
+
+The AI platform is a **governed intelligence plane** — separate from domain business rules, yet inseparable from professional workflows. It retrieves, reasons, drafts, and surfaces — never approves, publishes, or substitutes for professional judgment.
+
+*Bounded context: AI & Intelligence. Aligns with Sprint 1 Section 3.7; AP-10, AP-11; PROJECT_BIBLE Part 4; MASTER_PRD AI Objectives AI-01 through AI-06.*
+
+### 20.1 AI Platform Philosophy
+
+| Principle | Architectural Expression |
+|-----------|-------------------------|
+| **Retrieval before generation** | Permission-filtered context assembled before model invocation (Core Principle 21) |
+| **Assistive, not authoritative** | All outputs are proposals — status models enforce human disposition |
+| **Model agnostic** | Provider substitution without domain rework (Core Principle 23) |
+| **Tenant boundary sacred** | No cross-tenant retrieval, embedding, or inference |
+| **Evidence mandatory** | Substantive outputs require citations — insufficient evidence yields explicit refusal |
+| **Full interaction audit** | Prompt, context, output, disposition logged immutably |
+| **No training on tenant data** | Customer data excluded from shared model training without consent (AP-11) |
+
+```
+Professional Request (authorized)
+        ↓
+Permission-Filtered Retrieval (RAG)
+        ↓
+Prompt Assembly (governed templates)
+        ↓
+Model Invocation (routed, budgeted)
+        ↓
+Citation Packaging + Confidence
+        ↓
+Human Disposition (accept / reject / edit)
+        ↓
+Immutable Interaction Record
+```
+
+### 20.2 AI Gateway
+
+The AI Gateway is the **single ingress and egress control point** for all model interactions.
+
+| Responsibility | Description |
+|----------------|-------------|
+| **Authentication binding** | Every request tied to authenticated identity and tenant context |
+| **Authorization pre-check** | AI capability permitted for user, scope, and organization policy |
+| **Rate and budget enforcement** | Token and request limits per tenant and user |
+| **Provider routing** | Direct invocation to selected model endpoint |
+| **Request sanitization** | Input validation; injection pattern detection |
+| **Response validation** | Schema conformance; citation presence check for professional contexts |
+| **Telemetry emission** | Latency, token usage, outcome — correlated trace |
+
+No component bypasses the Gateway to reach model providers directly.
+
+### 20.3 AI Orchestrator
+
+The Orchestrator coordinates **multi-step AI workflows** without embedding business rules.
+
+| Orchestration Pattern | Application |
+|----------------------|-------------|
+| **Retrieve-then-generate** | RAG retrieval → context assembly → generation |
+| **Analyze-then-summarize** | Population scan → exception extraction → cited summary |
+| **Classify-with-confidence** | Batch classification → confidence scoring → human review queue |
+| **Multi-source synthesis** | Engagement data + knowledge + standards → unified cited response |
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    AI Orchestrator                           │
+├─────────────────────────────────────────────────────────────┤
+│  Intent Resolution → Retrieval Plan → Context Assembly       │
+│         ↓                                                    │
+│  Model Selection → Invocation → Output Parsing               │
+│         ↓                                                    │
+│  Citation Assembly → Confidence → Interaction Log            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+Orchestrator invokes Application Layer for **data access** — never reads domain stores directly.
+
+### 20.4 LLM Provider Abstraction
+
+| Abstraction Layer | Purpose |
+|-------------------|---------|
+| **Provider interface** | Uniform completion, embedding, and streaming contract |
+| **Capability matrix** | Model features — context window, vision, structured output |
+| **Configuration registry** | Approved models per organization policy |
+| **Credential isolation** | Provider keys centralized — not per-tenant exposed |
+| **Substitution** | Provider change requires configuration update only — not orchestration rewrite |
+
+Supported provider categories: **frontier LLMs**, **embedding models**, **specialized extraction models** — all behind the same abstraction boundary.
+
+### 20.5 Prompt Management
+
+| Tier | Governance |
+|------|------------|
+| **Platform system prompts** | Operator-maintained — safety, citation, refusal behavior |
+| **Capability prompts** | Per AI capability — Auditor analysis, Copilot, classification |
+| **Organization overlays** | Firm tone, methodology references — within policy bounds |
+| **Versioning** | Prompt versions recorded — linked to interaction audit |
+| **No user-injectable system** | End users cannot override system-level instructions |
+
+Prompts are **configuration artifacts** — versioned, auditable, and testable — not hardcoded strings scattered across modules.
+
+### 20.6 Model Routing
+
+| Routing Dimension | Decision Input |
+|-------------------|----------------|
+| **Task type** | Retrieval QA, long-form draft, classification, extraction |
+| **Context size** | Document volume determines model context window selection |
+| **Organization policy** | Approved model list and preferred provider |
+| **Cost tier** | Standard vs. premium model per organization entitlement |
+| **Latency requirement** | Interactive Copilot vs. background analysis job |
+| **Fallback chain** | Primary → secondary → degraded mode |
+
+Routing is **policy-driven** — not hardwired to a single vendor.
+
+### 20.7 Conversation Context
+
+| Context Type | Scope | Retention |
+|--------------|-------|-----------|
+| **Session context** | Current Copilot conversation | Session duration |
+| **Engagement context** | Active engagement scope binding | Explicit user selection |
+| **Entity context** | Company and period scope | Inherited from engagement |
+| **Permission context** | Filter applied to all retrieval | Real-time — not cached beyond policy |
+| **Prior turns** | Conversation history for continuity | Token-budget limited |
+
+Context assembly **re-validates permissions** on each turn — prior authorized access does not imply continued access after revocation.
+
+### 20.8 Token Budget Strategy
+
+| Budget Scope | Control |
+|--------------|---------|
+| **Per request** | Maximum context + completion tokens per invocation |
+| **Per user session** | Cumulative session ceiling |
+| **Per organization** | Monthly or daily organizational allocation |
+| **Per job type** | Background analysis higher budget than interactive query |
+| **Truncation strategy** | Prioritize retrieved citations over conversation history when budget constrained |
+
+Budget exhaustion yields **graceful degradation** — summarized context, async job offer, or explicit limit message — never silent truncation without disclosure.
+
+### 20.9 Fallback Strategy
+
+| Failure Mode | Fallback |
+|--------------|----------|
+| **Primary model unavailable** | Route to secondary approved model |
+| **All models unavailable** | Return structured failure; preserve manual workflow path |
+| **Retrieval empty** | "Insufficient evidence" response — no parametric generation for financial conclusions |
+| **Timeout** | Partial result with continuation option or async job |
+| **Citation validation failure** | Reject output; log incident; do not present to user |
+| **Budget exceeded** | Defer to background job or request scope reduction |
+
+Fallback never **fabricates** professional content to mask failure.
+
+### 20.10 Human-in-the-Loop
+
+| Stage | Platform Enforcement |
+|-------|---------------------|
+| **AI output presentation** | Visually distinguished as proposal — never approved state |
+| **Acceptance action** | Explicit user action required to incorporate into engagement file |
+| **Rejection** | Mandatory rationale capture for professional contexts |
+| **Edit-then-accept** | Edited content attributed to editor — AI contribution preserved in audit |
+| **Approval gates** | AI cannot trigger approval workflows — only humans |
+| **Publication** | No AI path to published or signed-off status |
+
+Human-in-the-loop is **structural** — enforced by status models, authorization, and UI semantics — not user discipline alone.
+
+### 20.11 AI Governance
+
+| Governance Plane | Responsibility |
+|------------------|----------------|
+| **Platform operator** | Model safety, infrastructure, provider agreements, abuse monitoring |
+| **Organization** | AI enablement, model policy, usage boundaries, monitoring |
+| **Workspace** | Methodology alignment, knowledge currency |
+| **Engagement** | Scope boundary for retrieval and analysis |
+| **Professional** | Accept/reject accountability for incorporated outputs |
+
+| Control | Mechanism |
+|---------|-----------|
+| **Enablement toggle** | Organization can disable AI capabilities |
+| **Model allowlist** | Only approved models invocable |
+| **Usage dashboards** | Volume, acceptance rate, rejection patterns |
+| **Interaction export** | Audit trail exportable for quality review |
+| **Third-party data handling** | Provider agreements prohibit training on tenant data |
+
+---
+
+## 21. Knowledge & RAG Architecture
+
+Retrieval-Augmented Generation is the **evidence backbone** of platform intelligence. RAG ensures AI outputs are grounded in permission-filtered, retrievable sources — not parametric model memory alone.
+
+*Bounded contexts: Knowledge, Evidence & Documents, AI & Intelligence. Addresses Sprint 1 MC-04.*
+
+### 21.1 Knowledge Repository
+
+| Repository Class | Content | Scope |
+|------------------|---------|-------|
+| **Firm knowledge** | Methodology, memos, precedents, guidance | Organization / Workspace |
+| **Standards knowledge** | IFRS, ISA, regulatory excerpts | Platform + Organization overlays |
+| **Engagement knowledge** | Indexed evidence, working papers, financial data | Engagement |
+| **Compliance packs** | Industry and jurisdiction templates | Workspace configuration |
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  Knowledge Repository                        │
+├──────────────┬──────────────┬──────────────┬────────────────┤
+│ Firm Guidance│  Standards   │  Engagement  │ Compliance     │
+│  (governed)  │  (indexed)   │  Artifacts   │ Packs          │
+└──────────────┴──────────────┴──────────────┴────────────────┘
+         Metadata (transactional)  +  Content (storage + vectors)
+```
+
+Knowledge is a **governed asset** — versioned, permission-controlled, and linked to professional context.
+
+### 21.2 Knowledge Ingestion Pipeline
+
+```
+Source Document → Authorization Check → Extract Text
+        ↓
+   Classify + Tag (sensitivity, domain, scope)
+        ↓
+   Chunk → Embed → Index (tenant-partitioned)
+        ↓
+   Metadata Record + Audit Event
+```
+
+| Ingestion Source | Trigger |
+|------------------|---------|
+| **Knowledge upload** | Administrator or authorized publisher |
+| **Evidence indexing** | Evidence upload event — Sprint 3 Section 15.8 |
+| **Standards update** | Platform operator content release |
+| **Engagement artifact** | Working paper or report approval triggers re-index where policy requires |
+
+Ingestion is **asynchronous** — interactive upload returns immediately; indexing progresses via background jobs.
+
+### 21.3 Chunking Strategy
+
+| Content Type | Chunking Approach |
+|--------------|-------------------|
+| **Narrative documents** | Semantic paragraph boundaries with overlap |
+| **Financial tables** | Row or section preservation — tabular structure retained in metadata |
+| **Standards text** | Paragraph and clause boundary alignment |
+| **Working papers** | Section-level chunks linked to paper identifier |
+| **Large evidence files** | Page or section chunks with source location metadata |
+
+| Parameter | Rationale |
+|-----------|-----------|
+| **Overlap** | Context continuity across chunk boundaries |
+| **Maximum chunk size** | Balanced for embedding quality and retrieval precision |
+| **Metadata enrichment** | Source document, page, section, engagement, classification |
+
+### 21.4 Embeddings
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Model** | Configurable embedding model via provider abstraction |
+| **Dimension consistency** | Single embedding model per index partition |
+| **Tenant isolation** | Embeddings stored in tenant-partitioned indexes — Sprint 2 SR-04 |
+| **Re-embedding** | Triggered on model change or content version update |
+| **No cross-tenant batches** | Embedding jobs scoped to single organization |
+
+Embeddings are **derived artifacts** — regenerable from source content and metadata.
+
+### 21.5 Vector Index
+
+| Property | Architecture |
+|----------|--------------|
+| **Partitioning** | Per-organization index boundary — mandatory |
+| **Sub-partitioning** | Engagement and knowledge domain filters |
+| **Hybrid readiness** | Vector index paired with lexical index for hybrid search |
+| **Access filter** | Pre-filter by permission scope before similarity search |
+| **Index lifecycle** | Create on first ingestion; rebuild on model migration |
+
+```
+Query → Permission Filter → Vector Search (+ Lexical)
+              ↓
+        Ranked Chunks (scoped)
+              ↓
+        Context Assembly for Orchestrator
+```
+
+### 21.6 Semantic Search
+
+| Capability | Application |
+|------------|-------------|
+| **Natural language query** | Copilot and knowledge module search |
+| **Engagement evidence search** | Find relevant documents by meaning — not keyword only |
+| **Similar precedent discovery** | Firm knowledge retrieval for comparable situations |
+| **Standards discovery** | Relevant IFRS/ISA passages by topic |
+
+Semantic search always applies **permission pre-filtering** — similarity never overrides authorization.
+
+### 21.7 Hybrid Search
+
+| Mode | When Used |
+|------|-----------|
+| **Vector only** | Conceptual and paraphrase queries |
+| **Lexical only** | Exact account codes, reference numbers, entity identifiers |
+| **Hybrid (default)** | Combined ranking — vector recall + lexical precision |
+| **Reciprocal rank fusion** | Merge vector and lexical result sets |
+
+Hybrid search addresses professional queries that combine **semantic intent** with **exact identifiers** — common in audit and financial contexts.
+
+### 21.8 Citation Strategy
+
+| Requirement | Architecture |
+|-------------|--------------|
+| **Mandatory for substantive outputs** | AI-02 — no uncited financial or audit assertions |
+| **Chunk-to-source mapping** | Every retrieved chunk traces to source document and location |
+| **Click-through navigation** | Citation links to source viewer with highlight |
+| **Insufficient evidence** | Explicit refusal when retrieval returns no qualifying sources |
+| **Citation in accepted artifacts** | Accepted AI content carries forward retrieval provenance |
+| **Rejected output preservation** | Rejected outputs remain in audit trail with rationale |
+
+```
+Retrieved Chunks → Citation Assembly → Output Validation
+                         ↓
+              Citations Present? ──No──→ Reject / Regenerate / Refuse
+                         │
+                        Yes
+                         ↓
+                   Present to User
+```
+
+### 21.9 Knowledge Versioning
+
+| Version Event | Behavior |
+|---------------|----------|
+| **New knowledge publish** | New version; prior marked superseded |
+| **Standards update** | Deprecated guidance flagged; effective dating applied |
+| **Evidence re-upload** | New object version; prior retained immutably |
+| **Index alignment** | Re-index on version change; retrieval prefers current version |
+
+Retrieval defaults to **current effective version** — historical versions accessible for audit reconstruction.
+
+### 21.10 Knowledge Refresh
+
+| Refresh Trigger | Action |
+|-----------------|--------|
+| **Content update** | Re-chunk and re-embed affected documents |
+| **Permission change** | Index access metadata updated — no stale unauthorized retrieval |
+| **Engagement closure** | Engagement index transitions to read-only |
+| **Retention expiry** | Index entries removed per policy — source tombstone retained |
+| **Model migration** | Full re-embedding scheduled per organization |
+| **Scheduled validation** | Index integrity checks — orphaned chunk detection |
+
+Refresh is **event-driven and scheduled** — index currency is an operational requirement, not best-effort.
+
+---
+
+## 22. Performance Architecture
+
+Performance serves **professional workflow continuity** — slow systems erode trust and encourage unsafe workarounds. Correctness and security precede speed; within those constraints, latency is aggressively managed.
+
+*Aligns with Sprint 1 Section 1.3 quality attributes; Section 4.5 streaming; Section 6.6 observability. Addresses Sprint 1 MC-06, AR-03, AR-06.*
+
+### 22.1 Performance Philosophy
+
+| Principle | Expression |
+|-----------|------------|
+| **Measure before optimize** | P50/P95/P99 targets per operation class |
+| **Critical path first** | Engagement navigation, authorization, core reads prioritized |
+| **Async by default for heavy work** | Import, export, AI analysis, indexing — Sprint 3 Section 15 |
+| **Perceived performance** | Shell-first rendering; progressive disclosure |
+| **Tenant fairness** | No single tenant monopolizes shared resources |
+| **Graceful degradation** | Reduced functionality over failure — never incorrect data |
+
+| Target Class | Architectural Target |
+|--------------|---------------------|
+| **Core reads** | P95 &lt; 500ms |
+| **AI retrieval (interactive)** | P95 &lt; 5 seconds |
+| **Background jobs** | Progress visible; no silent stall |
+| **Realtime updates** | Sub-second delivery for notifications |
+
+### 22.2 Caching Layers
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Client Cache     — Session-scoped UI state, static assets   │
+├─────────────────────────────────────────────────────────────┤
+│  Edge Cache       — Static content, CDN-distributed assets   │
+├─────────────────────────────────────────────────────────────┤
+│  Application Cache — Permission, config, read models         │
+├─────────────────────────────────────────────────────────────┤
+│  Data Cache       — Query results, computed aggregates       │
+└─────────────────────────────────────────────────────────────┘
+         All layers: tenant-prefixed keys — no cross-tenant hits
+```
+
+### 22.3 Server-side Caching
+
+| Cache Target | Strategy | Invalidation |
+|--------------|----------|--------------|
+| **Permission resolution** | Short TTL + explicit invalidation on grant change — Sprint 2 SR-02 |
+| **Organization configuration** | TTL with version key invalidation |
+| **Read models** | Dashboard aggregates — event-driven invalidation |
+| **Reference data** | Chart of accounts, templates — version-stamped |
+| **AI retrieval results** | Very short TTL — permission-sensitive |
+
+Server cache **never stores** customer financial content beyond policy-defined TTL without encryption and tenant isolation.
+
+### 22.4 Client-side Caching
+
+| Target | Strategy |
+|--------|----------|
+| **Static assets** | Long-lived cache with content hash invalidation |
+| **Locale resources** | Version-stamped translation bundles |
+| **Session UI state** | Disposable — server remains authoritative |
+| **Professional data** | Minimal client retention — refetch on navigation |
+
+Client-side caching of **professional data is intentionally limited** — stale financial state is unacceptable.
+
+### 22.5 Edge Caching
+
+| Content | Edge Treatment |
+|---------|----------------|
+| **Static assets** | CDN distribution — global edge |
+| **Public marketing** | Edge cached where applicable |
+| **Authenticated application** | No caching of personalized professional content at edge |
+| **Signed storage URLs** | Short TTL — not edge-cacheable |
+
+Edge caching applies to **non-personalized, non-professional** content only.
+
+### 22.6 Realtime Architecture
+
+| Channel | Use | Transport |
+|---------|-----|-----------|
+| **Notifications** | Review assignments, approvals — Sprint 3 Section 17 | Managed realtime service |
+| **Job progress** | Import, export, AI analysis status | Tenant-scoped channel |
+| **Dashboard refresh** | Procedure completion, finding updates | Scoped broadcast |
+| **Collaborative presence** | Concurrent editing awareness | Engagement-scoped |
+
+Realtime delivers **events** — never authoritative state mutation on client. Aligns with Sprint 1 Section 5.8.
+
+### 22.7 Streaming
+
+| Stream Type | Application |
+|-------------|-------------|
+| **Page streaming** | Server Components progressive render — Sprint 1 Section 4.5 |
+| **AI response streaming** | Token-by-token Copilot output with citation assembly at completion |
+| **Large list virtualization** | Incremental data load for evidence and transaction lists |
+| **Export progress** | Phase and percentage streaming to initiator |
+
+Streaming improves **perceived latency** without compromising authorization checks at stream initiation.
+
+### 22.8 Lazy Loading
+
+| Pattern | Application |
+|---------|-------------|
+| **Route-based code splitting** | Load module bundles on navigation |
+| **Component lazy load** | Heavy editors and chart libraries on demand |
+| **Data lazy load** | Pagination and cursor-based fetching for large collections |
+| **Image lazy load** | Evidence thumbnails loaded on viewport entry |
+
+Lazy loading is **default** for document-heavy and data-dense professional views.
+
+### 22.9 Background Refresh
+
+| Pattern | Application |
+|---------|-------------|
+| **Stale-while-revalidate** | Dashboard read models serve cached aggregate while refreshing |
+| **Prefetch** | Anticipated navigation targets prefetched after idle |
+| **Periodic revalidation** | Configuration and permission cache background refresh |
+| **Optimistic UI** | Limited to non-financial, reversible interactions only |
+
+Financial and approval state **never** uses optimistic update — server confirmation required.
+
+### 22.10 Scalability Patterns
+
+| Pattern | Application |
+|---------|-------------|
+| **Stateless application tier** | Horizontal scaling without session affinity |
+| **Read replicas** | Read-heavy queries directed to replica — strong consistency for writes |
+| **Async offload** | Heavy processing to worker pool — Sprint 3 Section 15 |
+| **Tenant fair queuing** | Per-organization concurrency limits |
+| **Partitioned indexes** | Vector and search indexes per tenant |
+| **Connection pooling** | Database connection efficiency at scale |
+| **Extraction readiness** | AI pipeline and workers independently scalable — Sprint 1 Section 2.2 |
+
+---
+
+## 23. Observability & Reliability
+
+Observability transforms the platform from **hopefully correct** to **demonstrably operable**. Reliability ensures professional work survives failure without data loss or silent corruption.
+
+*Extends Sprint 1 Sections 6.2, 6.6–6.8. Addresses Sprint 1 MC-05, TG-03.*
+
+### 23.1 Logging Strategy
+
+| Log Tier | Content | Retention |
+|----------|---------|-----------|
+| **Platform audit log** | Professional and security actions — immutable |
+| **Application log** | Use case execution, authorization, errors |
+| **AI interaction log** | Prompt, retrieval, output, disposition |
+| **Infrastructure log** | Database, storage, worker, provider calls |
+| **Integration log** | ERP sync, webhook delivery |
+
+| Property | Requirement |
+|----------|-------------|
+| **Structured** | JSON with correlation identifier, tenant, user, timestamp |
+| **Correlated** | Single trace across layers |
+| **Content-safe** | No customer financial data in log payloads |
+| **Immutable audit tier** | Non-deletable — Sprint 2 Section 12.2 |
+
+### 23.2 Distributed Tracing
+
+```
+User Request → Edge → Application → Domain → Infrastructure
+                              ↓
+                         AI Gateway → Provider
+                              ↓
+                         Worker (async job)
+```
+
+| Trace Span | Captured Data |
+|------------|---------------|
+| **Request ingress** | Correlation identifier assigned |
+| **Authorization** | Decision outcome — not sensitive policy detail |
+| **Database operations** | Duration, operation class — not query content |
+| **AI invocation** | Model, token count, latency, outcome |
+| **Background job** | Job type, tenant, duration, retry count |
+
+Tracing enables **latency attribution** — identifying whether slowness is retrieval, model, or data access.
+
+### 23.3 Metrics
+
+| Metric Domain | Examples |
+|---------------|----------|
+| **Request performance** | P50/P95/P99 latency per operation class |
+| **Error rates** | 4xx/5xx by endpoint class; domain validation failures |
+| **Queue health** | Depth, age, DLQ volume — Sprint 3 Section 15.5 |
+| **AI operations** | Retrieval latency, citation rate, acceptance rate, token usage |
+| **Tenant resources** | Storage, job concurrency, AI budget consumption |
+| **Integration health** | Sync success rate, last successful sync age |
+| **Business operations** | Import volume, export count — aggregated, non-content |
+
+Metrics exclude **customer financial content** from labels and dimensions.
+
+### 23.4 Health Checks
+
+| Check Level | Scope | Consumer |
+|-------------|-------|----------|
+| **Liveness** | Process responsive | Orchestrator restart |
+| **Readiness** | Database, storage, queue reachable | Traffic routing |
+| **Dependency** | AI provider, email, integration connectivity | Degraded mode activation |
+| **Deep synthetic** | End-to-end professional path per tier | SLA monitoring |
+
+Unready dependencies trigger **graceful degradation** — not traffic to broken paths.
+
+### 23.5 Monitoring
+
+| Monitor Type | Focus |
+|--------------|-------|
+| **Infrastructure** | CPU, memory, connection pool, storage utilization |
+| **Application** | Error spikes, latency regression, saturation |
+| **Security** | Auth failures, cross-tenant access attempts, privilege escalation |
+| **AI** | Hallucination indicators — uncited output rate, retrieval miss rate |
+| **Compliance** | Audit log completeness, retention job success |
+| **Tenant** | Per-organization health for enterprise support |
+
+Monitoring feeds **operator dashboards** and **tenant administrator views** at appropriate scope.
+
+### 23.6 Alerting
+
+| Severity | Examples | Response |
+|----------|----------|----------|
+| **Critical** | Cross-tenant access attempt, audit log write failure, data corruption indicator | Immediate operator page |
+| **High** | Error rate spike, DLQ threshold, AI provider outage | Operator alert within minutes |
+| **Medium** | Queue backlog, latency regression, integration sync failure | Operator ticket |
+| **Low** | Capacity trend, non-critical dependency degradation | Scheduled review |
+
+Alerts are **actionable** — each maps to a runbook — not noise.
+
+### 23.7 Error Tracking
+
+| Error Class | Tracking |
+|-------------|----------|
+| **Application exceptions** | Stack trace, correlation, tenant — grouped by fingerprint |
+| **AI failures** | Provider errors, citation validation failures, timeout |
+| **Integration failures** | Connector errors with external system identifier |
+| **User-visible errors** | Safe message logged with internal detail separated |
+
+Error tracking supports **root cause analysis** without exposing internal detail to users.
+
+### 23.8 Resilience
+
+| Resilience Property | Architecture |
+|---------------------|--------------|
+| **Idempotency** | Critical operations safe to retry — Sprint 3 Section 16.8 |
+| **Graceful degradation** | AI unavailable → manual workflow; realtime unavailable → polling |
+| **Bulkhead isolation** | AI, import, and notification workers isolated |
+| **Timeout discipline** | Every external call bounded |
+| **Backpressure** | Queue depth triggers throttling — Sprint 3 Section 15.2 |
+| **Data integrity** | Transactional writes; outbox for events |
+
+### 23.9 Retry Strategy
+
+| Layer | Retry Policy |
+|-------|--------------|
+| **Synchronous requests** | Limited retry for idempotent reads only |
+| **Background jobs** | Exponential backoff with jitter — Sprint 3 Section 15.4 |
+| **Event handlers** | Retry with DLQ — Sprint 3 Section 16.10 |
+| **Integration sync** | Per-connector backoff respecting external limits |
+| **AI provider** | Single retry on transient; fallback chain — Section 20.9 |
+| **Notification delivery** | Provider retry with terminal bounce handling |
+
+Retries are **never blind** — idempotency keys and deduplication mandatory for state-changing operations.
+
+### 23.10 Circuit Breaker Philosophy
+
+| Principle | Expression |
+|-----------|------------|
+| **Fail fast** | Open circuit stops hammering failing dependency |
+| **Half-open probe** | Periodic test request before full restoration |
+| **Fallback activation** | Degraded mode when circuit open — Section 20.9 |
+| **Per-dependency** | AI provider, ERP connector, email — independent circuits |
+| **Tenant visibility** | Integration circuit open surfaced to workspace administrator |
+
+Circuit breakers protect **platform stability** and **external systems** from retry storms.
+
+### 23.11 Disaster Recovery
+
+| Aspect | Architecture |
+|--------|--------------|
+| **RPO (Recovery Point Objective)** | Maximum acceptable data loss — minutes for transactional; defined per tier |
+| **RTO (Recovery Time Objective)** | Maximum acceptable downtime — tiered by subscription |
+| **Backup strategy** | Continuous database protection; object storage versioning |
+| **Geographic redundancy** | Multi-AZ within region — multi-region future |
+| **Restore testing** | Periodic validated restore exercises |
+| **Runbook** | Documented recovery procedures per failure scenario |
+
+DR addresses **platform continuity** — customer export portability addresses tenant-level recovery.
+
+### 23.12 High Availability
+
+```
+                    ┌─────────────┐
+                    │   Load      │
+                    │  Balancer   │
+                    └──────┬──────┘
+           ┌───────────────┼───────────────┐
+           ▼               ▼               ▼
+    ┌────────────┐  ┌────────────┐  ┌────────────┐
+    │ App Instance│  │ App Instance│  │ App Instance│
+    └──────┬─────┘  └──────┬─────┘  └──────┬─────┘
+           └───────────────┼───────────────┘
+                           ▼
+              ┌────────────────────────┐
+              │  Primary DB (failover)  │
+              │  Object Storage         │
+              │  Queue / Workers        │
+              └────────────────────────┘
+```
+
+| HA Component | Posture |
+|--------------|---------|
+| **Application tier** | Multi-instance; stateless; rolling deployment |
+| **Database** | Managed failover; automated backup |
+| **Object storage** | Platform-managed durability |
+| **Workers** | Multi-instance consumer pool |
+| **AI provider** | Multi-provider fallback — Section 20.9 |
+| **Target availability** | ≥ 99.9% enterprise tier — PROJECT_BIBLE Section 8 |
+
+---
+
+## 24. Architecture Review — Sprint 4
+
+Consistency review of Sprint 4 against Sprints 1–3, PROJECT_BIBLE, and MASTER_PRD. Previous sections not modified.
+
+### 24.1 Sprint 1–3 Consistency
+
+| Prior Element | Sprint 4 Alignment |
+|---------------|-------------------|
+| Sprint 1 Section 3.7 AI Layer | Section 20 — full platform architecture |
+| Sprint 1 AP-10 AI boundary | Sections 20.10, 21.8 — human disposition and citations |
+| Sprint 1 AP-11 No training | Section 20.1, 20.11 |
+| Sprint 1 Section 4.5 Streaming | Section 22.7 |
+| Sprint 1 Section 6.6 Observability | Section 23 — expanded |
+| Sprint 1 MC-04 AI architecture | Sections 20, 21 — addressed |
+| Sprint 1 MC-05 DR / HA | Section 23.11–23.12 — addressed |
+| Sprint 1 MC-06 Caching | Section 22.2–22.5 — addressed |
+| Sprint 1 AR-03 AI latency | Sections 22.7, 22.9, 20.9 |
+| Sprint 1 AR-06 Read models | Section 22.3, 22.9 |
+| Sprint 2 SR-04 AI partition | Section 21.4, 21.5 |
+| Sprint 2 AI interaction log | Section 23.1 |
+| Sprint 3 Section 15.8 AI jobs | Section 20.6 routing — interactive vs background |
+| Sprint 3 SC-01 worker saturation | Section 22.10 bulkhead pattern |
+| Sprint 3 FI-02 CMEK | Section 24.7 — future |
+| Sprint 3 FI-05 malware scanning | Section 24.7 — future |
+
+### 24.2 Constitutional Alignment
+
+| Rule / Objective | Sprint 4 Expression |
+|------------------|---------------------|
+| Core Principle 21 — Retrieval before generation | Sections 20.1, 21 |
+| Core Principle 22 — AI interactions logged | Sections 20.11, 23.1 |
+| Core Principle 23 — Model agnosticism | Section 20.4 |
+| Core Principle 25 — No training on tenant data | Sections 20.1, 20.11 |
+| AI-02 — Evidence citation | Section 21.8 |
+| AI-04 — Retrieval P95 &lt; 5s | Section 22.1 |
+| AI-05 — No autonomous sign-off | Section 20.10 |
+| PROJECT_BIBLE Part 4 AI governance | Section 20.11 |
+| PROJECT_BIBLE Part 4 human-in-the-loop | Section 20.10 |
+
+### 24.3 AI Risks
+
+| ID | Risk | Severity | Mitigation |
+|----|------|----------|------------|
+| **AI-01** | Hallucinated financial figures in cited output | Critical | Citation validation; insufficient-evidence refusal; human disposition |
+| **AI-02** | Cross-tenant retrieval via embedding search | Critical | Tenant-partitioned indexes; pre-filter authorization |
+| **AI-03** | Prompt injection via uploaded evidence | High | Retrieval boundaries; output validation; sanitization |
+| **AI-04** | Model version drift changing behavior | High | Model versioning; regression evaluation on change |
+| **AI-05** | Over-reliance — professionals accept without review | Medium | Rejection logging; UI distinction; quality monitoring |
+| **AI-06** | Token budget exhaustion mid-engagement analysis | Medium | Graceful degradation; async job escalation |
+| **AI-07** | Stale knowledge index producing outdated guidance | High | Knowledge refresh pipeline; version preference rules |
+
+### 24.4 Performance Risks
+
+| ID | Risk | Severity | Mitigation |
+|----|------|----------|------------|
+| **PF-01** | Permission cache staleness causing unauthorized AI retrieval | Critical | Short TTL; invalidation on grant change; re-validation per turn |
+| **PF-02** | Large engagement vector search latency | High | Hybrid search; engagement sub-partitioning; async analysis default |
+| **PF-03** | Dashboard read model staleness misleading status | Medium | Event-driven invalidation; freshness indicator in UI |
+| **PF-04** | Cache key collision across tenants | Critical | Mandatory tenant prefix on all cache keys |
+| **PF-05** | Cold-start latency on infrequent modules | Medium | Prefetch; route-based splitting; warm instances |
+
+### 24.5 Reliability Risks
+
+| ID | Risk | Severity | Mitigation |
+|----|------|----------|------------|
+| **RL-01** | AI provider outage blocking professional workflows | High | Fallback chain; manual workflow path; circuit breaker |
+| **RL-02** | Background job loss on worker crash | High | Checkpointing; at-least-once delivery; idempotent handlers |
+| **RL-03** | Database failover during approval transaction | Critical | ACID transactions; outbox replay; saga compensation |
+| **RL-04** | Observability gap — AI interaction not logged | Critical | Gateway mandatory path; audit completeness monitoring |
+| **RL-05** | Restore drill failure undiscovered until incident | High | Periodic tested restore; documented RPO/RTO |
+
+### 24.6 Operational Risks
+
+| ID | Risk | Severity | Mitigation |
+|----|------|----------|------------|
+| **OP-01** | Alert fatigue reducing incident response | Medium | Severity discipline; actionable alerts only |
+| **OP-02** | Insufficient tenant-level visibility for enterprise support | Medium | Per-tenant health dashboards; dedicated support views |
+| **OP-03** | AI cost overrun per organization | Medium | Token budgets; usage dashboards; organizational caps |
+| **OP-04** | Index rebuild impacting production retrieval | High | Background re-embedding; blue-green index swap |
+| **OP-05** | Runbook gaps for AI provider failure | Medium | Documented fallback procedures; synthetic monitoring |
+
+### 24.7 Future Improvements
+
+| ID | Improvement | Target |
+|----|-------------|--------|
+| **FI-09** | Multi-region active-active deployment | Long-term — Sprint 1 MC-08 |
+| **FI-10** | Customer-managed encryption keys for AI context | Enterprise tier |
+| **FI-11** | Offline-tolerant fieldwork architecture | Sprint 5 — MC-07 |
+| **FI-12** | AI output regression test suite per model change | Near-term |
+| **FI-13** | Synthetic monitoring for critical professional workflows | Near-term — Sprint 1 FI-03 |
+| **FI-14** | Chaos engineering for resilience validation | Medium-term — Sprint 1 FI-04 |
+| **FI-15** | Performance budget per bounded context | Near-term — Sprint 1 FI-05 |
+| **FI-16** | Content-aware malware scanning on uploads | Near-term — Sprint 3 FI-05 |
+| **FI-17** | Fine-tuned domain models with tenant consent | Long-term |
+| **FI-18** | SIEM integration for enterprise observability | Medium-term — Sprint 2 FSI-06 |
+
+### 24.8 Architecture Maturity Assessment
+
+| Domain | Maturity Level | Assessment |
+|--------|----------------|------------|
+| **AI platform architecture** | Defined | Gateway, orchestrator, governance, and human-in-the-loop specified |
+| **Knowledge & RAG** | Defined | Full pipeline from ingestion through citation — tenant isolation enforced |
+| **Performance architecture** | Defined | Caching, streaming, lazy loading, and scalability patterns specified |
+| **Observability** | Defined | Logging, tracing, metrics, alerting — extends Sprint 1 foundation |
+| **Reliability & HA** | Defined | Retry, circuit breaker, DR, and HA posture documented |
+| **Cross-sprint coherence** | Strong | AI, async, events, storage, and security threads align |
+| **Enterprise readiness** | Advancing | AI governance and observability enterprise-grade; multi-region and offline deferred |
+| **Implementation readiness** | High | Sprints 1–4 provide complete platform architecture foundation |
+
+### 24.9 Review Conclusion
+
+SYSTEM_ARCHITECTURE Sprint 4 completes the **intelligence and operability layer** — how AI is governed and grounded, how knowledge is retrieved and cited, how performance is managed, and how the platform is observed and kept reliable. It is consistent with Sprints 1–3 and constitutional AI requirements. AI-01 through AI-07, PF-01 through PF-05, RL-01 through RL-05, and OP-01 through OP-05 guide implementation. Sprints 1–4 collectively define a production-grade enterprise architecture for the audit, IFRS reporting, and financial intelligence platform.
+
+---
+
+## Document Control — Sprint 4
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.4.0 | 2026-06-30 | Chief Software Architect | Sprint 4 — AI Platform, Knowledge & RAG, Performance, Observability & Reliability; Architecture Review Sprint 4 |
+
+---
+
+*End of Sprint 4.*
+
+---
+
+# Sprint 5 — Infrastructure, Deployment, DevOps & Final Review
+
+*Final sprint — completes SYSTEM_ARCHITECTURE.md.*
+
+---
+
+## Table of Contents — Sprint 5
+
+25. [Infrastructure Architecture](#25-infrastructure-architecture)
+26. [Deployment Architecture](#26-deployment-architecture)
+27. [DevOps & CI/CD Architecture](#27-devops--cicd-architecture)
+28. [Scalability & Enterprise Operations](#28-scalability--enterprise-operations)
+29. [Architecture Decision Records (ADR)](#29-architecture-decision-records-adr)
+30. [Final Architecture Review](#30-final-architecture-review)
+
+---
+
+## 25. Infrastructure Architecture
+
+Infrastructure is the **physical and logical foundation** on which the modular monolith operates. Every tier is designed for tenant isolation, operational visibility, and evolution without re-platforming.
+
+*Aligns with Sprint 1 Sections 5.1–5.7; Sprint 2 Section 9; Sprint 3 Section 14; Sprint 4 Section 23. Addresses Sprint 1 MC-05, MC-08.*
+
+### 25.1 Cloud Philosophy
+
+| Principle | Expression |
+|-----------|------------|
+| **Managed over self-operated** | Prefer managed services for database, storage, auth, and edge — operational burden on platform team minimized |
+| **Cloud-agnostic domain** | Domain and Application layers independent of vendor — Infrastructure abstracts persistence |
+| **Secure by default** | Private networking, encryption, least-privilege service accounts |
+| **Single region first** | Production in primary region; multi-region as enterprise evolution — not day-one complexity |
+| **Infrastructure as configuration** | All environments reproducible from version-controlled definitions |
+| **No pet servers** | Stateless compute; immutable deployments |
+
+The platform targets **globally deployable SaaS** — initial deployment in a primary cloud region with architecture readiness for regional expansion and data residency.
+
+### 25.2 Compute Strategy
+
+| Compute Tier | Workload | Scaling Model |
+|--------------|----------|---------------|
+| **Application runtime** | Next.js modular monolith — web and Server Actions | Horizontal — stateless instances |
+| **Edge compute** | Webhook ingress, auth hooks, lightweight routing | Serverless — per-invocation |
+| **Background workers** | Import, export, AI, indexing, notifications | Horizontal — queue-driven pool |
+| **Scheduled jobs** | Cron maintenance, retention, health checks | Dedicated scheduler — limited concurrency |
+| **AI inference** | Gateway-orchestrated model calls | Horizontal — bulkhead isolated from app tier |
+
+```
+                    ┌─────────────────┐
+                    │  Load Balancer  │
+                    └────────┬────────┘
+              ┌──────────────┼──────────────┐
+              ▼              ▼              ▼
+        ┌──────────┐  ┌──────────┐  ┌──────────┐
+        │ App Pod  │  │ App Pod  │  │ App Pod  │  ← Stateless
+        └────┬─────┘  └────┬─────┘  └────┬─────┘
+             └─────────────┼─────────────┘
+                           ▼
+        ┌──────────────────────────────────────┐
+        │  Worker Pool  │  Edge  │  Scheduler │
+        └──────────────────────────────────────┘
+```
+
+Compute instances carry **no tenant-affinitized state** — tenant context injected per request or job.
+
+### 25.3 Network Topology
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        Public Internet                           │
+└────────────────────────────┬────────────────────────────────────┘
+                             │ TLS 1.2+
+                    ┌────────▼────────┐
+                    │  CDN / WAF      │
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+                    │  Load Balancer  │
+                    └────────┬────────┘
+                             │
+┌────────────────────────────▼────────────────────────────────────┐
+│                     Application Subnet (Private)                 │
+│   App Instances  ·  Workers  ·  Edge Functions                 │
+└────────────────────────────┬────────────────────────────────────┘
+                             │ Private connectivity only
+        ┌────────────────────┼────────────────────┐
+        ▼                    ▼                    ▼
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│  Database    │    │ Object Store │    │  Queue       │
+│  (Private)   │    │  (Private)   │    │  (Private)   │
+└──────────────┘    └──────────────┘    └──────────────┘
+```
+
+| Network Control | Application |
+|-----------------|-------------|
+| **TLS termination** | At load balancer and CDN edge |
+| **Private subnets** | Database, storage, queue — no public endpoints |
+| **Egress control** | Outbound restricted to approved destinations — AI providers, email, ERP |
+| **WAF** | OWASP rule sets; rate limiting at edge |
+| **DDoS protection** | Edge mitigation before application tier |
+
+### 25.4 Edge Layer
+
+| Component | Role |
+|-----------|------|
+| **CDN** | Static asset distribution; global edge caching — Sprint 4 Section 22.5 |
+| **WAF** | Threat filtering; bot management |
+| **Edge functions** | Webhook ingress, auth hooks, OAuth callbacks — Sprint 1 Section 5.4 |
+| **TLS** | Certificate management; HSTS enforcement |
+
+Edge layer is **thin** — validates, routes, and delegates. No domain logic at edge.
+
+### 25.5 Application Layer
+
+| Property | Architecture |
+|----------|--------------|
+| **Deployment unit** | Single modular monolith artifact — Sprint 1 Section 2.1 |
+| **Statelessness** | Session tokens validated per request — no sticky sessions required |
+| **Health endpoints** | Liveness and readiness probes — Sprint 4 Section 23.4 |
+| **Graceful shutdown** | In-flight requests complete before instance termination |
+| **Resource limits** | CPU and memory bounded per instance class |
+
+### 25.6 Database Layer
+
+| Property | Architecture |
+|----------|--------------|
+| **Engine** | Managed PostgreSQL — Sprint 1 Section 5.3 |
+| **Connectivity** | Private network only; connection pooling at application tier |
+| **High availability** | Managed failover within availability zone group |
+| **Backups** | Continuous protection; point-in-time recovery |
+| **Extensions** | Full-text search, vector embeddings — Sprint 4 Section 21 |
+| **Defense in depth** | Row-level security — Sprint 2 Section 9.7 |
+
+Database schema and migration details are documented in a separate data architecture artifact.
+
+### 25.7 Storage Layer
+
+| Tier | Infrastructure |
+|------|----------------|
+| **Object storage** | Managed buckets — organization-scoped policies — Sprint 3 Section 14 |
+| **Hot / warm / cold** | Lifecycle transitions per retention — Sprint 3 Section 14.12 |
+| **Backup** | Cross-region backup replication for disaster recovery |
+| **Encryption** | Platform-managed keys default; CMEK readiness — Sprint 4 FI-10 |
+
+### 25.8 Private vs Public Services
+
+| Service Class | Exposure | Examples |
+|---------------|----------|----------|
+| **Public ingress** | Internet-facing via TLS | Application, CDN static assets |
+| **Partner ingress** | Authenticated external | Webhook endpoints, SSO federation |
+| **Private internal** | Application subnet only | Database, queue, object storage API |
+| **Outbound only** | No inbound | AI provider, transactional email, ERP connectors |
+| **Operator access** | VPN or bastion — break-glass | Platform administration, incident response |
+
+No customer data store has a **public endpoint**.
+
+### 25.9 Environment Isolation
+
+| Isolation Plane | Mechanism |
+|-----------------|-----------|
+| **Account separation** | Non-production and production in distinct cloud accounts or projects |
+| **Network separation** | Distinct VPC per environment — no cross-environment routing |
+| **Data separation** | No production data in non-production environments |
+| **Credential separation** | Distinct secrets per environment |
+| **Configuration separation** | Environment-specific parameter sets |
+
+Developers and testers **never** access production customer data in lower environments.
+
+### 25.10 Disaster Isolation
+
+| Isolation Boundary | Purpose |
+|--------------------|---------|
+| **Availability zone** | Survive single-AZ failure within region |
+| **Region** | Survive regional outage — backup restore to secondary region |
+| **Tenant** | Failure or compromise in one organization does not affect others |
+| **Worker bulkhead** | Runaway job in one queue class does not exhaust all compute |
+| **AI provider** | Provider outage isolated via fallback — Sprint 4 Section 20.9 |
+
+Disaster isolation ensures **blast radius containment** at every tier.
+
+---
+
+## 26. Deployment Architecture
+
+Deployment architecture governs **how software moves safely** from development to production — with rollback capability and environment integrity.
+
+*Aligns with PROJECT_BIBLE roadmap (CI/CD foundation); MASTER_PRD OPS-06, deployment frequency KPI.*
+
+### 26.1 Development Environment
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Purpose** | Individual developer integration and local verification |
+| **Data** | Synthetic or anonymized fixtures — no production data |
+| **Dependencies** | Local or shared development service instances |
+| **Deployment** | Developer-controlled; hot reload for rapid iteration |
+| **Observability** | Local logging; optional trace export to shared collector |
+
+Development environment validates **code correctness** — not production scale or security posture.
+
+### 26.2 Testing Environment
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Purpose** | Automated test execution; integration verification |
+| **Data** | Seeded test datasets; tenant isolation test fixtures |
+| **Deployment** | CI-triggered on every merge to integration branch |
+| **Scope** | Unit, integration, contract, security scan, tenant isolation tests |
+| **Parity** | Service topology mirrors staging — scaled down |
+
+Testing environment is the **quality gate** before promotion.
+
+### 26.3 Staging Environment
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Purpose** | Pre-production validation; UAT; release candidate verification |
+| **Data** | Anonymized production-like volume datasets |
+| **Deployment** | Promotion from tested artifact — not rebuilt |
+| **Parity** | Production-equivalent configuration; production-scale subset |
+| **Access** | Restricted — product, QA, and operator roles |
+
+Staging is the **final verification** before production promotion.
+
+### 26.4 Production Environment
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Purpose** | Customer-facing platform operation |
+| **Data** | Live tenant data — full governance and audit controls |
+| **Deployment** | Governed promotion only — Section 26.8 |
+| **Availability** | ≥ 99.9% enterprise tier — Sprint 4 Section 23.12 |
+| **Change control** | Release governance — Section 27.10 |
+| **Monitoring** | Full observability stack — Sprint 4 Section 23 |
+
+### 26.5 Release Strategy
+
+| Release Type | Cadence | Scope |
+|--------------|---------|-------|
+| **Standard release** | Weekly low-risk cadence — MASTER_PRD deployment KPI | Features, fixes, configuration |
+| **Hotfix release** | As needed | Critical security or data integrity fixes |
+| **Configuration release** | Independent of code | Organization templates, compliance packs |
+| **Infrastructure release** | Scheduled maintenance windows | Platform upgrades, scaling changes |
+
+```
+Develop → Test (CI) → Stage (RC) → Production (Governed)
+              ↑                         │
+              └──── Rollback if needed ─┘
+```
+
+### 26.6 Blue-Green Readiness
+
+| Capability | Architecture |
+|------------|--------------|
+| **Dual environment slots** | Production traffic routable to active or standby deployment |
+| **Artifact immutability** | Tested artifact promoted — not rebuilt at switch |
+| **Database compatibility** | Forward-compatible migrations applied before switch |
+| **Switch mechanism** | Load balancer traffic shift — near-instant |
+| **Validation** | Standby slot health-checked before traffic switch |
+| **Initial posture** | Rolling deployment day one; blue-green activated when scale demands |
+
+Blue-green is **architectural readiness** — not mandatory for initial launch volume.
+
+### 26.7 Canary Readiness
+
+| Capability | Architecture |
+|------------|--------------|
+| **Traffic splitting** | Percentage of requests routed to new version |
+| **Metric gates** | Error rate, latency, and business health monitored during canary |
+| **Automatic rollback** | Canary aborted on threshold breach |
+| **Tenant targeting** | Optional canary limited to internal or pilot organizations |
+| **Initial posture** | Feature flags for gradual rollout — Section 26.5; full canary when traffic volume justifies |
+
+### 26.8 Rollback Strategy
+
+| Rollback Trigger | Action |
+|------------------|--------|
+| **Health check failure** | Automatic traffic revert to prior deployment |
+| **Error rate spike** | Operator-initiated or automated rollback |
+| **Data migration failure** | Halt promotion; restore from pre-migration checkpoint |
+| **Customer-impacting defect** | Hotfix or full version revert |
+
+| Rollback Constraint | Rule |
+|---------------------|------|
+| **Schema compatibility** | Migrations must be backward-compatible or reversible |
+| **Artifact retention** | Prior N production artifacts retained for rapid revert |
+| **Audit** | Rollback events logged with actor and reason |
+| **Target** | Rollback rate &lt; 2% — MASTER_PRD release KPI |
+
+### 26.9 Environment Promotion
+
+| Promotion Step | Gate |
+|----------------|------|
+| **Dev → Test** | Automated on merge — CI pipeline |
+| **Test → Staging** | All automated gates pass; release candidate tagged |
+| **Staging → Production** | Manual approval; staging soak period; change window |
+| **Artifact integrity** | Same immutable artifact promoted — not rebuilt |
+| **Configuration promotion** | Environment-specific overlays applied at deploy |
+
+Promotion is **forward-only** for artifacts — rollback uses prior artifact, not re-promotion from lower environment.
+
+---
+
+## 27. DevOps & CI/CD Architecture
+
+DevOps architecture ensures **repeatable, auditable, secure delivery** — compatible with enterprise procurement and SOC 2 evidence requirements.
+
+*Addresses Sprint 1 FI-01, FI-02, FI-06; Sprint 2 Section 11.4 secrets.*
+
+### 27.1 Repository Strategy
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Monorepo** | Single repository — modular monolith with bounded context packages |
+| **Ownership** | CODEOWNERS per bounded context — review routing |
+| **Documentation** | Constitutional and architecture docs co-located |
+| **Artifact separation** | Infrastructure definitions in dedicated paths |
+| **Dependency management** | Centralized lockfile; automated vulnerability scanning |
+
+### 27.2 Branching Strategy
+
+| Branch | Purpose |
+|--------|---------|
+| **Main** | Production-ready integration branch — always deployable to staging |
+| **Feature branches** | Short-lived; bounded context scope |
+| **Release branches** | Optional — for release stabilization when needed |
+| **Hotfix branches** | Critical production fixes — fast-track to production |
+
+```
+Feature Branch → Pull Request → Main → CI → Staging → Production
+                     ↑
+              Review + Gates
+```
+
+Main branch is **protected** — direct commits prohibited; required reviews enforced.
+
+### 27.3 Continuous Integration
+
+| CI Stage | Verification |
+|----------|--------------|
+| **Build** | Compile; type check; lint |
+| **Unit tests** | Domain logic — isolated from infrastructure |
+| **Integration tests** | Application use cases with test infrastructure |
+| **Contract tests** | Inter-context event and interface compatibility |
+| **Security scan** | Dependency vulnerabilities; static analysis |
+| **Boundary check** | Package dependency rules enforced — Sprint 1 AR-01 |
+| **Artifact publish** | Immutable deployable artifact versioned and stored |
+
+CI runs on **every pull request** and on merge to main.
+
+### 27.4 Continuous Delivery
+
+| Aspect | Architecture |
+|--------|--------------|
+| **Staging delivery** | Automatic on main merge — after CI gates |
+| **Production delivery** | Manual approval gate — Section 27.5 |
+| **Deployment automation** | Pipeline-driven — no manual server configuration |
+| **Configuration injection** | Environment secrets and parameters at deploy time |
+| **Smoke tests** | Post-deploy synthetic health verification |
+
+### 27.5 Deployment Gates
+
+| Gate | Requirement |
+|------|-------------|
+| **CI green** | All automated checks pass |
+| **Staging soak** | Minimum period on staging without critical defects |
+| **Security review** | Required for authentication, authorization, and encryption changes |
+| **Architecture review** | Required for cross-context boundary changes — Section 29 |
+| **Operator approval** | Production deployment authorized by designated approver |
+| **Change window** | Production changes during approved maintenance windows except hotfix |
+
+### 27.6 Automated Quality Gates
+
+| Gate | Threshold |
+|------|-----------|
+| **Test coverage** | Domain logic coverage minimum enforced |
+| **Lint and type safety** | Zero blocking violations |
+| **Performance regression** | Key operation latency within budget — Sprint 4 FI-15 |
+| **Tenant isolation tests** | Cross-tenant access attempts must fail |
+| **AI citation compliance** | Automated check for citation presence in test fixtures |
+
+### 27.7 Security Gates
+
+| Gate | Verification |
+|------|--------------|
+| **Dependency audit** | No critical unmitigated vulnerabilities |
+| **Secret scanning** | No credentials in source |
+| **SAST** | Static application security analysis |
+| **RLS policy review** | Mandatory for new tenant-scoped tables — Sprint 2 SR-01 |
+| **Container scan** | Deployable artifact vulnerability scan |
+
+Security gates are **blocking** — not advisory.
+
+### 27.8 Infrastructure as Code Philosophy
+
+| Principle | Expression |
+|-----------|------------|
+| **Declarative** | Infrastructure defined in version-controlled configuration |
+| **Reproducible** | Any environment recreatable from definitions |
+| **Reviewed** | Infrastructure changes via pull request — same as application |
+| **Drift detection** | Periodic comparison of live state vs. declared state |
+| **Modular** | Environment, network, compute, and data layers separately defined |
+| **No manual console** | Production changes through pipeline only |
+
+### 27.9 Secrets Management
+
+| Secret Class | Management |
+|--------------|------------|
+| **Application secrets** | Managed secret store — injected at deploy |
+| **Database credentials** | Platform-managed rotation |
+| **Integration credentials** | Per-workspace encrypted storage — Sprint 2 Section 11.4 |
+| **AI provider keys** | Centralized — not in application configuration |
+| **CI/CD secrets** | Pipeline secret store — scoped per environment |
+
+| Rule | Enforcement |
+|------|-------------|
+| **No secrets in source** | Scanning gate blocks commit |
+| **Least exposure** | Secrets accessible only to consuming service identity |
+| **Rotation** | Supported without downtime where possible |
+| **Audit** | Secret access logged |
+
+### 27.10 Release Governance
+
+| Governance Element | Mechanism |
+|--------------------|-----------|
+| **Release notes** | Customer-visible changes documented per release |
+| **Change advisory** | Breaking changes communicated in advance |
+| **Rollback plan** | Documented for every production release |
+| **SOC 2 evidence** | Deployment logs, approvals, and test results retained |
+| **Feature flags** | Gradual rollout decoupled from deployment — Sprint 1 Section 6.5 |
+| **Emergency process** | Hotfix path with expedited gates — post-incident review mandatory |
+
+---
+
+## 28. Scalability & Enterprise Operations
+
+Scalability and operations architecture ensures the platform **grows with customer demand** without compromising isolation, performance, or cost discipline.
+
+*Extends Sprint 4 Sections 22.10, 23; Sprint 3 Section 15.*
+
+### 28.1 Horizontal Scaling
+
+| Component | Scaling Trigger | Mechanism |
+|-----------|-----------------|-----------|
+| **Application tier** | Request latency or CPU saturation | Add instances behind load balancer |
+| **Background workers** | Queue depth or job age | Add worker instances |
+| **AI inference** | Token throughput or latency | Dedicated AI worker pool expansion |
+| **Read replicas** | Read query saturation | Add database read replicas |
+
+Horizontal scaling is the **primary scaling strategy** — vertical scaling is supplementary.
+
+### 28.2 Vertical Scaling
+
+| Component | When Applied |
+|-----------|--------------|
+| **Database primary** | Connection or compute ceiling reached — before read replica split |
+| **Worker memory** | Large import or export jobs require increased instance class |
+| **AI context windows** | Long-document analysis requiring larger memory |
+
+Vertical scaling is **bounded** — horizontal scaling preferred at sustained load.
+
+### 28.3 Database Scaling Readiness
+
+| Strategy | Application |
+|----------|-------------|
+| **Read replicas** | Dashboard and reporting queries offloaded |
+| **Connection pooling** | Efficient connection use at application tier |
+| **Query optimization** | Index governance per bounded context |
+| **Partitioning readiness** | Large tables partitionable by organization |
+| **Strong write consistency** | Financial and approval writes remain on primary |
+
+Read scaling does not compromise **write consistency** for authoritative state.
+
+### 28.4 Storage Scaling
+
+| Strategy | Application |
+|----------|-------------|
+| **Object storage elasticity** | Platform-managed — no capacity planning required |
+| **Lifecycle tiering** | Hot → warm → cold — Sprint 3 Section 14.12 |
+| **Egress management** | Export job batching; CDN for static assets |
+| **Per-tenant quotas** | Storage limits per organization subscription tier |
+
+### 28.5 Queue Scaling
+
+| Strategy | Application |
+|----------|-------------|
+| **Worker pool autoscaling** | Scale on queue depth — Sprint 3 Section 15.2 |
+| **Priority lanes** | Critical jobs isolated from bulk processing |
+| **Per-tenant fairness** | Concurrency limits prevent monopolization |
+| **DLQ monitoring** | Scale does not mask failure — Sprint 3 Section 15.5 |
+
+### 28.6 AI Scaling
+
+| Strategy | Application |
+|----------|-------------|
+| **Dedicated worker pool** | AI jobs bulkhead-isolated from application tier |
+| **Token budget governance** | Per-organization caps — Sprint 4 Section 20.8 |
+| **Model routing** | Cost-efficient models for bulk; premium for interactive |
+| **Index partitioning** | Per-tenant vector indexes — Sprint 4 Section 21.5 |
+| **Provider fallback** | Multi-provider capacity — Sprint 4 Section 20.9 |
+| **Async default** | Large analysis as background jobs — Sprint 3 Section 15.8 |
+
+### 28.7 Monitoring Operations
+
+| Operation | Cadence |
+|-----------|---------|
+| **Dashboard review** | Operator daily review of platform health |
+| **SLA tracking** | Availability and latency against tier commitments |
+| **Capacity planning** | Monthly trend review — storage, compute, AI cost |
+| **Tenant health** | Enterprise customer dedicated monitoring |
+| **Audit log completeness** | Automated verification — Sprint 2 Section 12.2 |
+| **Synthetic workflows** | Critical professional path checks — Sprint 4 FI-13 |
+
+### 28.8 Incident Response
+
+```
+Detect → Triage → Contain → Resolve → Communicate → Review
+   ↑         ↑         ↑
+Alerting  Runbook  Rollback / Failover
+```
+
+| Severity | Response Target | Examples |
+|----------|-----------------|----------|
+| **SEV-1** | Immediate — all hands | Cross-tenant data exposure, platform down, data corruption |
+| **SEV-2** | &lt; 1 hour | Authentication failure, AI provider outage, integration failure at scale |
+| **SEV-3** | &lt; 4 hours | Degraded performance, single-tenant issue, non-critical feature failure |
+| **SEV-4** | Next business day | Minor defect, cosmetic issue |
+
+| Post-Incident | Requirement |
+|---------------|-------------|
+| **Root cause analysis** | Documented within 5 business days for SEV-1/2 |
+| **Customer communication** | Status page and direct notification for SEV-1/2 |
+| **Remediation tracking** | Action items tracked to closure |
+| **SOC 2 evidence** | Incident records retained |
+
+### 28.9 Cost Optimization
+
+| Lever | Application |
+|-------|-------------|
+| **Right-sizing** | Instance classes matched to actual utilization |
+| **Autoscaling bounds** | Maximum instance caps prevent runaway cost |
+| **Storage lifecycle** | Cold tier for archived engagements |
+| **AI token budgets** | Organizational caps and model routing |
+| **Reserved capacity** | Committed use for predictable baseline load |
+| **Idle resource cleanup** | Temporary staging expiration — Sprint 3 Section 14.7 |
+| **Per-tenant cost visibility** | Storage, compute, and AI usage attributed per organization |
+
+Cost optimization **never** compromises tenant isolation or audit log retention.
+
+### 28.10 Business Continuity
+
+| Capability | Architecture |
+|------------|--------------|
+| **RPO / RTO** | Tiered by subscription — Sprint 4 Section 23.11 |
+| **Backup and restore** | Tested annually — MASTER_PRD DR KPI |
+| **Geographic redundancy** | Multi-AZ day one; multi-region roadmap — Sprint 4 FI-09 |
+| **Customer data export** | Full organizational export — business continuity for customer |
+| **Offline fieldwork readiness** | Architecture anticipates intermittent connectivity — bounded sync model for future activation |
+| **Communication plan** | Status page; customer notification procedures |
+
+Business continuity addresses **both platform survival and customer data portability**.
+
+---
+
+## 29. Architecture Decision Records (ADR)
+
+Architecture Decision Records provide **durable rationale** for significant structural choices — enabling future teams to understand why the platform is built as it is.
+
+*Addresses Sprint 1 FI-01; establishes ongoing governance for architecture evolution.*
+
+### 29.1 Purpose
+
+| Objective | Description |
+|-----------|-------------|
+| **Capture context** | Problem, constraints, and forces at decision time |
+| **Document alternatives** | Options considered and rejected |
+| **Record decision** | Chosen approach with rationale |
+| **Enable review** | Future teams assess whether decision remains valid |
+| **Support compliance** | SOC 2 and ISO evidence of governed change process |
+| **Prevent re-litigation** | Settled decisions not reopened without formal supersession |
+
+ADRs are **architecture artifacts** — not implementation tickets.
+
+### 29.2 ADR Lifecycle
+
+```
+Proposed → Under Review → Accepted → Active
+                              ↓
+                         Superseded → Archived
+                              ↓
+                          Rejected
+```
+
+| State | Meaning |
+|-------|---------|
+| **Proposed** | Draft decision awaiting review |
+| **Under Review** | Architecture review in progress |
+| **Accepted** | Decision approved — not yet implemented |
+| **Active** | Decision implemented and in effect |
+| **Superseded** | Replaced by newer ADR — link maintained |
+| **Rejected** | Alternative chosen — rationale preserved |
+| **Archived** | No longer relevant — historical reference |
+
+### 29.3 Approval Process
+
+| Decision Scope | Approver |
+|----------------|----------|
+| **Bounded context boundary change** | Chief Software Architect |
+| **Technology substitution** | Chief Software Architect + affected team lead |
+| **Security architecture change** | Chief Security Architect |
+| **AI architecture change** | Chief AI Architect |
+| **Infrastructure topology change** | Chief Cloud Architect |
+| **Cross-cutting principle change** | Architecture review board |
+
+Significant decisions require **written ADR before implementation** — not retroactive documentation.
+
+### 29.4 Change Management
+
+| Change Type | Process |
+|-------------|---------|
+| **New ADR** | Propose → review → accept → implement |
+| **Supersede ADR** | New ADR references superseded; old marked superseded |
+| **Emergency change** | Implement with expedited ADR within 5 business days |
+| **Constitutional conflict** | ADR cannot override PROJECT_BIBLE — escalate to product governance |
+
+ADRs are stored **alongside architecture documentation** — version-controlled and searchable.
+
+### 29.5 Architecture Governance
+
+| Governance Body | Responsibility |
+|-----------------|----------------|
+| **Architecture review board** | Quarterly review of active ADRs and risk register |
+| **Release architecture gate** | Cross-context changes reviewed per release — Section 27.5 |
+| **Conformance checks** | Dependency boundary and tenant isolation verified in CI |
+| **Principle compliance** | New features assessed against AP-01 through AP-15 |
+| **Risk register** | Sprint review risks tracked to resolution or acceptance |
+
+```
+Feature Proposal → Principle Check → ADR (if structural) → Implementation → Conformance Verify
+```
+
+### 29.6 Technical Debt Management
+
+| Category | Management |
+|----------|------------|
+| **Architectural debt** | Tracked in risk register; ADR supersession when addressed |
+| **Boundary erosion** | CI dependency checks; periodic audit — Sprint 1 AR-01 |
+| **Deferred capabilities** | MC and FI items from sprint reviews tracked in roadmap — Section 30.5 |
+| **Remediation allocation** | Minimum capacity reserved per sprint for debt reduction |
+| **Debt visibility** | Architecture review board reviews debt quarterly |
+
+Technical debt is **managed, not ignored** — explicit tracking prevents silent accumulation.
+
+---
+
+## 30. Final Architecture Review
+
+Comprehensive review of **SYSTEM_ARCHITECTURE Sprints 1–5** against PROJECT_BIBLE, MASTER_PRD, and enterprise platform requirements. Previous sections not modified.
+
+### 30.1 Architecture Completeness Assessment
+
+| Domain | Sprint | Sections | Status |
+|--------|--------|----------|--------|
+| **Vision and principles** | 1 | §1 | Complete |
+| **Platform and layers** | 1 | §2–3 | Complete |
+| **Frontend** | 1 | §4 | Complete |
+| **Backend foundation** | 1 | §5 | Complete |
+| **Cross-cutting** | 1 | §6 | Complete |
+| **Identity** | 2 | §8 | Complete |
+| **Multi-tenancy** | 2 | §9 | Complete |
+| **Authorization** | 2 | §10 | Complete |
+| **Security** | 2 | §11 | Complete |
+| **Audit and compliance** | 2 | §12 | Complete |
+| **Storage** | 3 | §14 | Complete |
+| **Background processing** | 3 | §15 | Complete |
+| **Event-driven** | 3 | §16 | Complete |
+| **Notifications** | 3 | §17 | Complete |
+| **Integration** | 3 | §18 | Complete |
+| **AI platform** | 4 | §20 | Complete |
+| **Knowledge and RAG** | 4 | §21 | Complete |
+| **Performance** | 4 | §22 | Complete |
+| **Observability and reliability** | 4 | §23 | Complete |
+| **Infrastructure** | 5 | §25 | Complete |
+| **Deployment** | 5 | §26 | Complete |
+| **DevOps and CI/CD** | 5 | §27 | Complete |
+| **Scalability and operations** | 5 | §28 | Complete |
+| **Architecture governance** | 5 | §29 | Complete |
+
+| Deferred to Separate Artifacts | Rationale |
+|--------------------------------|-----------|
+| **Data architecture** | Entity model, RLS patterns, migrations — implementation detail |
+| **API contracts** | Internal and external boundaries — contract specification |
+| **Digital signature integration** | Export trust chain — Sprint 1 TG-04 |
+| **Plugin sandbox** | Extension ecosystem — Sprint 1 FI-07 |
+
+SYSTEM_ARCHITECTURE is **architecturally complete** for platform engineering commencement.
+
+### 30.2 Enterprise Readiness Assessment
+
+| Capability | Status | Evidence |
+|------------|--------|----------|
+| **Multi-tenant isolation** | Ready | §9, §11, §14, §25 |
+| **Enterprise SSO and MFA** | Ready | §8 |
+| **RBAC with SoD** | Ready | §10 |
+| **Immutable audit trail** | Ready | §12, §23 |
+| **Evidence immutability** | Ready | §14 |
+| **AI governance and human-in-the-loop** | Ready | §20 |
+| **Evidence-first RAG** | Ready | §21 |
+| **ERP integration framework** | Ready (phased) | §18 |
+| **HA and DR posture** | Ready | §23, §25, §28 |
+| **CI/CD and release governance** | Ready | §26, §27 |
+| **SOC 2 / ISO / GDPR readiness** | Ready (architecture) | §12 — operational evidence collection pending |
+| **Multi-region data residency** | Roadmap | §28.10, §30.5 |
+| **Offline fieldwork** | Roadmap | §28.10 |
+| **CMEK** | Roadmap | §30.5 |
+| **99.9% availability SLA** | Ready (architecture) | §23, §25 — operational validation pending |
+
+Enterprise readiness is **architecture-complete** — operational validation and certification are implementation-phase activities.
+
+### 30.3 Consistency Review
+
+| Cross-Cutting Thread | Consistency |
+|----------------------|-------------|
+| **Tenant context propagation** | §9.10 → §15.1 → §16 → §20.2 → §25.2 — consistent |
+| **Idempotency** | §15.4 → §16.8 → §23.9 — consistent |
+| **Immutability** | §14.4 → §12.2 → §20.10 — consistent |
+| **Least privilege** | §10.7 → §20.2 → §21.6 — consistent |
+| **Defense in depth** | §11.2 → §9.7 → §25.3 — consistent |
+| **Observability** | §6.6 → §23 → §28.7 — consistent |
+| **Async processing** | §5.5 → §15 → §22.1 — consistent |
+| **AI boundary** | §3.7 → §20 → §21 — consistent |
+| **Modular monolith evolution** | §2.1 → §2.2 → §25.2 → §28.1 — consistent |
+
+No architectural contradictions identified across Sprints 1–5.
+
+### 30.4 Remaining Risks
+
+| ID | Risk | Severity | Owner | Mitigation Path |
+|----|------|----------|-------|-----------------|
+| **RR-01** | RLS policy gaps on new tables | Critical | Engineering | Mandatory review gate — §27.7 |
+| **RR-02** | Cross-tenant AI retrieval | Critical | AI Platform | Partitioned indexes — §21.5 |
+| **RR-03** | Modular monolith boundary erosion | High | Architecture | CI boundary checks — §27.3 |
+| **RR-04** | Supabase vendor concentration | Medium | Infrastructure | Domain abstraction — §25.1 |
+| **RR-05** | AI hallucination in professional context | Critical | AI Platform | Citation validation — §21.8 |
+| **RR-06** | Production data in lower environments | High | DevOps | Environment isolation — §25.9 |
+| **RR-07** | Multi-region not yet implemented | Medium | Infrastructure | Roadmap — §30.5 |
+| **RR-08** | Offline fieldwork not yet implemented | Low | Product | Roadmap — §30.5 |
+| **RR-09** | Digital signature trust chain incomplete | Medium | Export | Separate artifact — TG-04 |
+| **RR-10** | SOC 2 operational evidence gap | Medium | Operations | CI/CD and incident evidence — §27 |
+
+### 30.5 Future Architecture Roadmap
+
+| Horizon | Initiative | Driver |
+|---------|------------|--------|
+| **Near term (0–6 months)** | Synthetic monitoring for professional workflows | FI-13 |
+| **Near term** | AI output regression suite per model change | FI-12 |
+| **Near term** | Performance budgets per bounded context | FI-15 |
+| **Near term** | Malware scanning on uploads | FI-16 |
+| **Near term** | SCIM automated provisioning | Sprint 2 FSI-03 |
+| **Medium term (6–18 months)** | Multi-region deployment with data residency | FI-09, MC-08 |
+| **Medium term** | Integration SDK and certification program | Sprint 3 FI-06 |
+| **Medium term** | External message broker extraction | Sprint 3 FI-01 |
+| **Medium term** | SIEM integration for enterprise customers | FI-18 |
+| **Medium term** | Chaos engineering program | FI-14 |
+| **Long term (18+ months)** | Selective microservice extraction | §2.2 |
+| **Long term** | Offline-tolerant fieldwork sync | FI-11, MC-07 |
+| **Long term** | Customer-managed encryption keys | FI-10, FSI-02 |
+| **Long term** | Plugin and extension sandbox | FI-07 |
+| **Long term** | Fine-tuned domain models with consent | FI-17 |
+
+### 30.6 Architecture Maturity Score
+
+Scoring against enterprise SaaS architecture completeness (1–5 scale):
+
+| Dimension | Score | Rationale |
+|-----------|-------|-----------|
+| **Domain architecture** | 5 | DDD bounded contexts, layers, principles fully defined |
+| **Security and identity** | 5 | Zero Trust, IAM, RBAC, tenant isolation comprehensive |
+| **Data and storage** | 4 | Storage architecture complete; data model in separate artifact |
+| **AI and intelligence** | 5 | Platform, RAG, governance, human-in-the-loop complete |
+| **Integration** | 4 | Framework complete; connector certification pending |
+| **Operations and DevOps** | 5 | CI/CD, deployment, observability, incident response defined |
+| **Scalability and reliability** | 4 | Patterns defined; multi-region and chaos engineering on roadmap |
+| **Governance** | 5 | ADR process, release governance, risk register established |
+
+**Overall Architecture Maturity Score: 4.6 / 5.0**
+
+The platform architecture is **enterprise-grade and implementation-ready**. Remaining gaps are operational validation, phased connector delivery, and long-horizon capabilities — not foundational architectural deficiencies.
+
+### 30.7 Release Recommendation
+
+| Assessment | Recommendation |
+|------------|----------------|
+| **Architectural completeness** | SYSTEM_ARCHITECTURE v1.0 — **approved for release** as authoritative technical architecture |
+| **Implementation commencement** | **Approved** — engineering may proceed against Sprints 1–5 |
+| **Prerequisite artifacts** | Data architecture and API contracts should proceed in parallel — not blocking foundation work |
+| **First production milestone** | Foundation release — tenancy, IAM, financial import, core engagement workflow |
+| **Enterprise tier gating** | SSO, MFA, HA validation, and DR drill required before enterprise SLA commitment |
+| **AI capability gating** | Citation validation and interaction logging operational before AI feature GA |
+| **Governance activation** | ADR process active from first structural decision — Section 29 |
+
+```
+PROJECT_BIBLE (constitutional)
+        ↓
+MASTER_PRD (product specification)
+        ↓
+SYSTEM_ARCHITECTURE v1.0 (technical realization)  ← APPROVED
+        ↓
+Data Architecture · API Contracts · Implementation
+```
+
+### 30.8 Final Conclusion
+
+SYSTEM_ARCHITECTURE Sprints 1–5 collectively define a **production-grade, multi-tenant, AI-native enterprise platform** for audit, IFRS reporting, and financial intelligence. The architecture is:
+
+- **Constitutionally aligned** with PROJECT_BIBLE Parts 1–15
+- **Product-aligned** with MASTER_PRD Parts 1–17
+- **Internally consistent** across thirty sections and five sprints
+- **Enterprise-ready** in security, tenancy, auditability, AI governance, and operational maturity
+- **Evolution-ready** through modular monolith boundaries, event contracts, and ADR governance
+
+The architecture fulfills the constitutional mandate: *a world-class platform worthy of professional reputation, regulatory trust, and global deployment.*
+
+---
+
+## Document Control — Sprint 5 (Final)
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0.0 | 2026-06-30 | Chief Enterprise Architect | Sprint 5 — Infrastructure, Deployment, DevOps, Scalability, ADR, Final Review; SYSTEM_ARCHITECTURE v1.0 release |
+
+---
+
+## SYSTEM_ARCHITECTURE — Complete Table of Contents
+
+| § | Section | Sprint |
+|---|---------|--------|
+| 1 | Architecture Vision | 1 |
+| 2 | Platform Architecture | 1 |
+| 3 | Application Layers | 1 |
+| 4 | Frontend Architecture | 1 |
+| 5 | Backend Architecture | 1 |
+| 6 | Cross-cutting Architecture | 1 |
+| 7 | Architecture Review — Sprint 1 | 1 |
+| 8 | Identity Architecture | 2 |
+| 9 | Multi-Tenant Architecture | 2 |
+| 10 | Authorization Architecture | 2 |
+| 11 | Security Architecture | 2 |
+| 12 | Audit & Compliance Architecture | 2 |
+| 13 | Architecture Review — Sprint 2 | 2 |
+| 14 | Storage Architecture | 3 |
+| 15 | Background Processing Architecture | 3 |
+| 16 | Event-Driven Architecture | 3 |
+| 17 | Notification Architecture | 3 |
+| 18 | Integration Architecture | 3 |
+| 19 | Architecture Review — Sprint 3 | 3 |
+| 20 | AI Platform Architecture | 4 |
+| 21 | Knowledge & RAG Architecture | 4 |
+| 22 | Performance Architecture | 4 |
+| 23 | Observability & Reliability | 4 |
+| 24 | Architecture Review — Sprint 4 | 4 |
+| 25 | Infrastructure Architecture | 5 |
+| 26 | Deployment Architecture | 5 |
+| 27 | DevOps & CI/CD Architecture | 5 |
+| 28 | Scalability & Enterprise Operations | 5 |
+| 29 | Architecture Decision Records | 5 |
+| 30 | Final Architecture Review | 5 |
+
+---
+
+*End of SYSTEM_ARCHITECTURE v1.0. Document complete.*
+
+
 
 
