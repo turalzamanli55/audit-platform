@@ -1,18 +1,11 @@
-import { getDictionary, type Locale } from "@/i18n";
-import { EmptyStateShell } from "@/components/layout";
+import { redirect } from "next/navigation";
+import { DASHBOARD_PATH } from "@/config/auth";
 
-type ProtectedAppPageProps = {
-  params: Promise<{ locale: Locale }>;
+type AppIndexPageProps = {
+  params: Promise<{ locale: string }>;
 };
 
-export default async function ProtectedAppPage({ params }: ProtectedAppPageProps) {
+export default async function AppIndexPage({ params }: AppIndexPageProps) {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-
-  return (
-    <EmptyStateShell
-      title={dictionary.shell.navigation}
-      description={dictionary.shell.foundation}
-    />
-  );
+  redirect(`/${locale}${DASHBOARD_PATH}`);
 }

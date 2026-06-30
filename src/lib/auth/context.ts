@@ -8,23 +8,10 @@ import type {
   RoleContext,
   TenantContext,
 } from "@/types/context";
-import { createServerClient } from "@/lib/supabase/server";
-import { getCurrentUser } from "./user";
-
-async function readAppMetadataString(key: string): Promise<string | null> {
-  const supabase = await createServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) return null;
-
-  const value = user.app_metadata?.[key];
-  return typeof value === "string" && value.length > 0 ? value : null;
-}
+import { resolveAuthenticatedUser } from "./resolve-user";
 
 export async function getOrganizationContext(): Promise<OrganizationContext> {
-  const user = await getCurrentUser();
+  const user = await resolveAuthenticatedUser();
 
   if (!user?.organizationId) {
     return {
@@ -40,25 +27,30 @@ export async function getOrganizationContext(): Promise<OrganizationContext> {
 }
 
 export async function getWorkspaceContext(): Promise<WorkspaceContext> {
-  const workspaceId = await readAppMetadataString("workspace_id");
+  const user = await resolveAuthenticatedUser();
+
+  if (!user?.workspaceId) {
+    return {
+      workspaceId: null,
+      isResolved: false,
+    };
+  }
 
   return {
-    workspaceId,
-    isResolved: workspaceId !== null,
+    workspaceId: user.workspaceId,
+    isResolved: true,
   };
 }
 
 export async function getCompanyContext(): Promise<CompanyContext> {
-  const companyId = await readAppMetadataString("company_id");
-
   return {
-    companyId,
-    isResolved: companyId !== null,
+    companyId: null,
+    isResolved: false,
   };
 }
 
 export async function getPermissionContext(): Promise<PermissionContext> {
-  const user = await getCurrentUser();
+  const user = await resolveAuthenticatedUser();
 
   return {
     permissions: user?.permissions ?? [],
@@ -67,7 +59,7 @@ export async function getPermissionContext(): Promise<PermissionContext> {
 }
 
 export async function getRoleContext(): Promise<RoleContext> {
-  const user = await getCurrentUser();
+  const user = await resolveAuthenticatedUser();
 
   return {
     roles: user?.roles ?? [],

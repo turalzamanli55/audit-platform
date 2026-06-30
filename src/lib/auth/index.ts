@@ -10,8 +10,12 @@ export { mapSupabaseUserToSessionUser } from "./mapper";
 
 export {
   hasRole,
+  hasRoleSlug,
   hasAllRoles,
   hasPermission,
+  hasPermissionCode,
+  hasAllPermissionCodes,
   hasAnyPermission,
   canAccessOrganization,
+  authorizePermissionCodes,
 } from "./permissions";

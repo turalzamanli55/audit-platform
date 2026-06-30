@@ -1,15 +1,69 @@
 import type { ReactNode } from "react";
-import { ProtectedRouteGuard } from "@/components/auth";
+import { headers } from "next/headers";
+import { ProtectedRouteGuard, OnboardingGuard } from "@/components/auth";
 import { AppShell } from "@/components/layout";
+import { Header } from "@/components/layout/header";
+import { Sidebar } from "@/components/layout/sidebar";
+import { DashboardHeader } from "@/components/dashboard/dashboard-header";
+import { DashboardNav, defaultDashboardNavItems } from "@/components/dashboard/dashboard-nav";
+import { TenantProvider } from "@/providers/tenant-provider";
+import { getTenantBootstrap } from "@/lib/auth/server";
+import { getDictionary, isValidLocale, type Locale } from "@/i18n";
+import { defaultLocale } from "@/i18n/config";
 
 type ProtectedLayoutProps = {
   children: ReactNode;
 };
 
-export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
+export default async function ProtectedLayout({ children }: ProtectedLayoutProps) {
+  const headerStore = await headers();
+  const localeHeader = headerStore.get("x-locale");
+  const locale = (localeHeader && isValidLocale(localeHeader) ? localeHeader : defaultLocale) as Locale;
+  const dictionary = await getDictionary(locale);
+  const bootstrap = await getTenantBootstrap();
+
+  const tenantBootstrap = bootstrap ?? {
+    organizations: [],
+    workspaces: [],
+    currentOrganizationId: null,
+    currentWorkspaceId: null,
+    hasOrganization: false,
+    permissionCodes: [],
+    roleSlugs: [],
+  };
+
   return (
     <ProtectedRouteGuard>
-      <AppShell>{children}</AppShell>
+      <OnboardingGuard hasOrganization={tenantBootstrap.hasOrganization}>
+        <TenantProvider initial={tenantBootstrap}>
+          <AppShell
+            header={
+              <Header>
+                <DashboardHeader
+                  labels={{
+                    organization: dictionary.dashboard.organization,
+                    workspace: dictionary.dashboard.workspace,
+                    themeLight: dictionary.dashboard.themeLight,
+                    themeDark: dictionary.dashboard.themeDark,
+                  }}
+                />
+              </Header>
+            }
+            sidebar={
+              <Sidebar>
+                <DashboardNav
+                  items={defaultDashboardNavItems.map((item) => ({
+                    ...item,
+                    label: dictionary.dashboard.navDashboard,
+                  }))}
+                />
+              </Sidebar>
+            }
+          >
+            {children}
+          </AppShell>
+        </TenantProvider>
+      </OnboardingGuard>
     </ProtectedRouteGuard>
   );
 }

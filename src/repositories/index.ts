@@ -39,4 +39,11 @@ export {
   PermissionRepository,
   type PermissionRecord,
 } from "./permission/permission-repository";
-export { UserRepository } from "./user/user-repository";
+export {
+  UserRepository,
+  type MembershipRecord,
+  type OrganizationRecord,
+  type WorkspaceRecord,
+  type TenantPreferences,
+  type ResolvedTenantContext,
+} from "./user/user-repository";

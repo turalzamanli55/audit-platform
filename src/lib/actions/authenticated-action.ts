@@ -1,5 +1,3 @@
-"use server";
-
 import { getCurrentUser } from "@/lib/auth/server";
 import { AuthenticationError } from "@/lib/errors";
 import { createAction } from "./base";

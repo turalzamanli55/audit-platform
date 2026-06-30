@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import type { Role } from "@/types/auth";
 import { useAuth } from "@/providers";
-import { hasRole } from "@/lib/auth/permissions";
+import { hasRole, hasRoleSlug } from "@/lib/auth/permissions";
 import { EmptyStateShell } from "@/components/layout/shells/empty-state-shell";
 
 type RoleGuardProps = {
@@ -26,7 +26,8 @@ export function RoleGuard({ children, roles, fallback }: RoleGuardProps) {
     );
   }
 
-  const allowed = hasRole(session.user.roles, roles);
+  const allowed =
+    hasRole(session.user.roles, roles) || hasRoleSlug(session.user.roleSlugs, roles);
 
   if (!allowed) {
     return (

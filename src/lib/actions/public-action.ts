@@ -1,5 +1,3 @@
-"use server";
-
 import { createAction } from "./base";
 import type { ActionHandler, ActionOptions, ActionResult } from "./types";
 

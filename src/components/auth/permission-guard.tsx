@@ -3,14 +3,15 @@
 import type { ReactNode } from "react";
 import type { Capability, Scope } from "@/types/auth";
 import { useAuth } from "@/providers";
-import { hasPermission } from "@/lib/auth/permissions";
+import { hasPermission, hasPermissionCode } from "@/lib/auth/permissions";
 import { EmptyStateShell } from "@/components/layout/shells/empty-state-shell";
 
 type PermissionGuardProps = {
   children: ReactNode;
-  capability: Capability;
-  scope: Scope;
+  capability?: Capability;
+  scope?: Scope;
   resourceId?: string;
+  permissionCode?: string | string[];
   fallback?: ReactNode;
 };
 
@@ -19,6 +20,7 @@ export function PermissionGuard({
   capability,
   scope,
   resourceId,
+  permissionCode,
   fallback,
 }: PermissionGuardProps) {
   const { session } = useAuth();
@@ -34,7 +36,16 @@ export function PermissionGuard({
     );
   }
 
-  const allowed = hasPermission(session.user.permissions, capability, scope, resourceId);
+  const allowedByCode = permissionCode
+    ? hasPermissionCode(session.user.permissionCodes, permissionCode)
+    : false;
+
+  const allowedByLegacy =
+    capability && scope
+      ? hasPermission(session.user.permissions, capability, scope, resourceId)
+      : false;
+
+  const allowed = permissionCode ? allowedByCode : allowedByLegacy;
 
   if (!allowed) {
     return (

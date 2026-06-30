@@ -1,7 +1,5 @@
-"use server";
-
-import { ROLES } from "@/types/auth";
-import { hasRole } from "@/lib/auth/permissions";
+import { PLATFORM_ROLE_SLUGS } from "@/types/auth";
+import { hasRoleSlug } from "@/lib/auth/permissions";
 import { getCurrentUser } from "@/lib/auth/server";
 import { AuthorizationError, AuthenticationError } from "@/lib/errors";
 import { createAction } from "./base";
@@ -26,10 +24,11 @@ export function createAdminAction<TInput, TOutput>(
       throw new AuthenticationError();
     }
 
-    const isAdmin = hasRole(user.roles, [
-      ROLES.ORGANIZATION_OWNER,
-      ROLES.WORKSPACE_ADMINISTRATOR,
-      ROLES.PLATFORM_OPERATOR,
+    const isAdmin = hasRoleSlug(user.roleSlugs, [
+      PLATFORM_ROLE_SLUGS.ORGANIZATION_OWNER,
+      PLATFORM_ROLE_SLUGS.ORGANIZATION_ADMIN,
+      PLATFORM_ROLE_SLUGS.WORKSPACE_ADMIN,
+      PLATFORM_ROLE_SLUGS.PLATFORM_OWNER,
     ]);
 
     if (!isAdmin) {

@@ -14,4 +14,5 @@ export type {
   RepositoryContext,
 } from "./context";
 export type { SupabaseSession } from "./session";
-export type { Database } from "./supabase";
+export type { Database, Tables, TablesInsert, TablesUpdate, Enums } from "./supabase";
+export type { TenantBootstrap } from "./tenant";

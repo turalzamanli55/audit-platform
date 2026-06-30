@@ -14,6 +14,9 @@ export const AUTH_ROUTES = {
 
 export const PROTECTED_PREFIX = "/app";
 
+export const ONBOARDING_PATH = "/app/onboarding";
+export const DASHBOARD_PATH = "/app/dashboard";
+
 export const PUBLIC_PATHS = ["/", "/about", "/privacy", "/terms"] as const;
 
 export const GUEST_PATHS = [

@@ -2,7 +2,12 @@ import { NextResponse, type NextRequest } from "next/server";
 import { supportedLocales } from "@/i18n";
 import { resolveLocale } from "@/i18n/resolve-locale";
 import { siteConfig } from "@/config/site";
-import { classifyRoute, stripLocalePrefix } from "@/config/auth";
+import {
+  AUTH_ROUTES,
+  classifyRoute,
+  DASHBOARD_PATH,
+  stripLocalePrefix,
+} from "@/config/auth";
 import { createMiddlewareClient } from "@/lib/supabase/middleware";
 import { generateUuid } from "@/utils/uuid";
 
@@ -36,12 +41,42 @@ export async function middleware(request: NextRequest) {
       maxAge: 60 * 60 * 24 * 365,
       sameSite: "lax",
     });
-    const { response } = await createMiddlewareClient(request, redirect);
-    return applyTracingHeaders(response, locale, pathname);
+    const { response, supabase } = await createMiddlewareClient(request, redirect);
+    const authResponse = await enforceRouteAccess(request, response, supabase, locale, url.pathname);
+    return applyTracingHeaders(authResponse, locale, url.pathname);
   }
 
-  const { response } = await createMiddlewareClient(request);
-  return applyTracingHeaders(response, locale, pathname);
+  const { response, supabase } = await createMiddlewareClient(request);
+  const authResponse = await enforceRouteAccess(request, response, supabase, locale, pathname);
+  return applyTracingHeaders(authResponse, locale, pathname);
+}
+
+async function enforceRouteAccess(
+  request: NextRequest,
+  response: NextResponse,
+  supabase: Awaited<ReturnType<typeof createMiddlewareClient>>["supabase"],
+  locale: string,
+  pathname: string,
+) {
+  const normalized = stripLocalePrefix(pathname);
+  const access = classifyRoute(normalized);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (access === "protected" && !user) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = `/${locale}${AUTH_ROUTES.login}`;
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (access === "guest" && user && normalized !== AUTH_ROUTES.callback) {
+    const dashboardUrl = request.nextUrl.clone();
+    dashboardUrl.pathname = `/${locale}${DASHBOARD_PATH}`;
+    return NextResponse.redirect(dashboardUrl);
+  }
+
+  return response;
 }
 
 function applyTracingHeaders(response: NextResponse, locale: string, pathname: string) {

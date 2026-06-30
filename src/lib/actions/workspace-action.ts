@@ -1,5 +1,3 @@
-"use server";
-
 import { getWorkspaceContext } from "@/lib/auth/server";
 import { getCurrentUser } from "@/lib/auth/server";
 import { AuthenticationError, AuthorizationError } from "@/lib/errors";
