@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import { GuestRouteGuard } from "@/components/auth";
+import { GuestRouteGuard } from "@/components/auth/guest-route-guard";
 import { PublicShell } from "@/components/layout";
 
-type GuestLayoutProps = {
+type GuestShellProps = {
   children: ReactNode;
 };
 
-export default function GuestLayout({ children }: GuestLayoutProps) {
+export function GuestShell({ children }: GuestShellProps) {
   return (
     <GuestRouteGuard>
       <PublicShell>{children}</PublicShell>
