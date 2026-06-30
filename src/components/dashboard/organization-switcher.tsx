@@ -8,8 +8,9 @@ type OrganizationSwitcherProps = {
 
 export function OrganizationSwitcher({ label }: OrganizationSwitcherProps) {
   const tenant = useTenant();
+  const organizations = Array.isArray(tenant.organizations) ? tenant.organizations : [];
 
-  if (tenant.organizations.length === 0) {
+  if (organizations.length === 0) {
     return (
       <div className="text-sm text-muted-foreground">
         {label}: —
@@ -26,7 +27,7 @@ export function OrganizationSwitcher({ label }: OrganizationSwitcherProps) {
         onChange={(event) => tenant.switchOrganization(event.target.value)}
         disabled={tenant.isSwitching}
       >
-        {tenant.organizations.map((organization) => (
+        {organizations.map((organization) => (
           <option key={organization.id} value={organization.id}>
             {organization.name}
           </option>

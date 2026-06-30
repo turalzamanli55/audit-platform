@@ -3,7 +3,11 @@ import type { Database, Tables, TablesInsert, TablesUpdate } from "@/types/supab
 import type { RepositoryContext } from "@/types/context";
 import { AuthenticatedRepository } from "../base/base-repository";
 import { applyActiveFilter, requireRow } from "../base/repository-helpers";
-import { unwrapSupabaseResult } from "@/utils/supabase-result";
+import {
+  unwrapSupabaseList,
+  unwrapSupabaseMaybeSingle,
+  unwrapSupabaseResult,
+} from "@/utils/supabase-result";
 
 export type Membership = Tables<"memberships">;
 export type CreateMembershipInput = Pick<
@@ -22,7 +26,7 @@ export class MembershipRepository extends AuthenticatedRepository {
       this.client.from("memberships").select("*").eq("id", id),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async listByOrganization(organizationId: string): Promise<Membership[]> {
@@ -34,7 +38,7 @@ export class MembershipRepository extends AuthenticatedRepository {
         .order("created_at", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async listByWorkspace(workspaceId: string): Promise<Membership[]> {
@@ -46,7 +50,7 @@ export class MembershipRepository extends AuthenticatedRepository {
         .order("created_at", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async listForUser(userId: string): Promise<Membership[]> {
@@ -58,7 +62,7 @@ export class MembershipRepository extends AuthenticatedRepository {
         .order("created_at", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async create(input: CreateMembershipInput): Promise<Membership> {
@@ -88,7 +92,7 @@ export class MembershipRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseResult(result), "Membership", id);
+    return requireRow(unwrapSupabaseMaybeSingle(result), "Membership", id);
   }
 
   async softDelete(id: string, expectedVersion: number): Promise<Membership> {
@@ -105,6 +109,6 @@ export class MembershipRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseResult(result), "Membership", id);
+    return requireRow(unwrapSupabaseMaybeSingle(result), "Membership", id);
   }
 }

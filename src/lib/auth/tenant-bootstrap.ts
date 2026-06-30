@@ -65,7 +65,7 @@ export async function getTenantBootstrap(): Promise<TenantBootstrap | null> {
       .is("deleted_at", null)
       .order("name", { ascending: true });
 
-    if (data) {
+    if (data && Array.isArray(data)) {
       workspaces.push(...data);
     }
   }
@@ -75,10 +75,20 @@ export async function getTenantBootstrap(): Promise<TenantBootstrap | null> {
       ? preferences.workspaceId
       : workspaces[0]?.id ?? null;
 
-  const tenant = await repository.resolveTenantContext(user.id, {
-    organizationId: currentOrganizationId,
-    workspaceId: currentWorkspaceId,
-  });
+  let permissionCodes: string[] = [];
+  let roleSlugs: string[] = [];
+
+  try {
+    const tenant = await repository.resolveTenantContext(user.id, {
+      organizationId: currentOrganizationId,
+      workspaceId: currentWorkspaceId,
+    });
+    permissionCodes = Array.isArray(tenant.permissionCodes) ? tenant.permissionCodes : [];
+    roleSlugs = Array.isArray(tenant.roleSlugs) ? tenant.roleSlugs : [];
+  } catch {
+    permissionCodes = [];
+    roleSlugs = [];
+  }
 
   return {
     organizations,
@@ -86,7 +96,7 @@ export async function getTenantBootstrap(): Promise<TenantBootstrap | null> {
     currentOrganizationId,
     currentWorkspaceId,
     hasOrganization: organizations.length > 0,
-    permissionCodes: tenant.permissionCodes,
-    roleSlugs: tenant.roleSlugs,
+    permissionCodes,
+    roleSlugs,
   };
 }

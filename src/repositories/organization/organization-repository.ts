@@ -7,7 +7,11 @@ import {
   DEFAULT_ORGANIZATION_SETTINGS,
   requireRow,
 } from "../base/repository-helpers";
-import { unwrapSupabaseResult } from "@/utils/supabase-result";
+import {
+  unwrapSupabaseList,
+  unwrapSupabaseMaybeSingle,
+  unwrapSupabaseResult,
+} from "@/utils/supabase-result";
 
 export type Organization = Tables<"organizations">;
 export type CreateOrganizationInput = Pick<TablesInsert<"organizations">, "name" | "slug" | "legal_name" | "description">;
@@ -23,7 +27,7 @@ export class OrganizationRepository extends AuthenticatedRepository {
       this.client.from("organizations").select("*").eq("id", id),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async findBySlug(slug: string): Promise<Organization | null> {
@@ -31,7 +35,7 @@ export class OrganizationRepository extends AuthenticatedRepository {
       this.client.from("organizations").select("*").eq("slug", slug),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async listForCurrentUser(): Promise<Organization[]> {
@@ -39,7 +43,7 @@ export class OrganizationRepository extends AuthenticatedRepository {
       this.client.from("organizations").select("*").order("name", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async create(input: CreateOrganizationInput): Promise<Organization> {
@@ -74,7 +78,7 @@ export class OrganizationRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseResult(result), "Organization", id);
+    return requireRow(unwrapSupabaseMaybeSingle(result), "Organization", id);
   }
 
   async softDelete(id: string, expectedVersion: number): Promise<Organization> {
@@ -92,6 +96,6 @@ export class OrganizationRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseResult(result), "Organization", id);
+    return requireRow(unwrapSupabaseMaybeSingle(result), "Organization", id);
   }
 }

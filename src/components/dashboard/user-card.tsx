@@ -30,6 +30,9 @@ export function UserCard({ labels }: UserCardProps) {
     router.refresh();
   }
 
+  const roleSlugs = Array.isArray(tenant.roleSlugs) ? tenant.roleSlugs : [];
+  const permissionCodes = Array.isArray(tenant.permissionCodes) ? tenant.permissionCodes : [];
+
   return (
     <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{labels.title}</p>
@@ -39,11 +42,11 @@ export function UserCard({ labels }: UserCardProps) {
       <div className="mt-4 space-y-2 text-sm">
         <p>
           <span className="text-muted-foreground">{labels.roles}: </span>
-          {tenant.roleSlugs.length > 0 ? tenant.roleSlugs.join(", ") : "—"}
+          {roleSlugs.length > 0 ? roleSlugs.join(", ") : "—"}
         </p>
         <p>
           <span className="text-muted-foreground">{labels.permissions}: </span>
-          {tenant.permissionCodes.length}
+          {permissionCodes.length}
         </p>
       </div>
 

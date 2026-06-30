@@ -8,8 +8,9 @@ type WorkspaceSwitcherProps = {
 
 export function WorkspaceSwitcher({ label }: WorkspaceSwitcherProps) {
   const tenant = useTenant();
+  const workspaces = Array.isArray(tenant.workspaces) ? tenant.workspaces : [];
 
-  if (tenant.workspaces.length === 0) {
+  if (workspaces.length === 0) {
     return (
       <div className="text-sm text-muted-foreground">
         {label}: —
@@ -26,7 +27,7 @@ export function WorkspaceSwitcher({ label }: WorkspaceSwitcherProps) {
         onChange={(event) => tenant.switchWorkspace(event.target.value)}
         disabled={tenant.isSwitching}
       >
-        {tenant.workspaces.map((workspace) => (
+        {workspaces.map((workspace) => (
           <option key={workspace.id} value={workspace.id}>
             {workspace.name}
           </option>

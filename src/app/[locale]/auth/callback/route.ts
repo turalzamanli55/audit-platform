@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { DASHBOARD_PATH, ONBOARDING_PATH } from "@/config/auth";
 import { getTenantBootstrap } from "@/lib/auth/tenant-bootstrap";
+import { resolveSafeInternalRedirect } from "@/lib/auth/safe-redirect";
 
 export async function GET(
   request: NextRequest,
@@ -20,8 +21,9 @@ export async function GET(
     }
   }
 
-  if (nextParam) {
-    return NextResponse.redirect(new URL(nextParam, request.url));
+  const safeNext = resolveSafeInternalRedirect(nextParam, locale, requestUrl.origin);
+  if (safeNext) {
+    return NextResponse.redirect(new URL(safeNext, request.url));
   }
 
   const bootstrap = await getTenantBootstrap();

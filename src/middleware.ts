@@ -71,9 +71,9 @@ async function enforceRouteAccess(
   }
 
   if (access === "guest" && user && normalized !== AUTH_ROUTES.callback) {
-    const dashboardUrl = request.nextUrl.clone();
-    dashboardUrl.pathname = `/${locale}${DASHBOARD_PATH}`;
-    return NextResponse.redirect(dashboardUrl);
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = `/${locale}${DASHBOARD_PATH}`;
+    return NextResponse.redirect(redirectUrl);
   }
 
   return response;

@@ -8,7 +8,10 @@ import type { RepositoryContext } from "@/types/context";
 import { AuthenticatedRepository } from "../base/base-repository";
 import { applyActiveFilter } from "../base/repository-helpers";
 import { RoleRepository } from "../role/role-repository";
-import { unwrapSupabaseResult } from "@/utils/supabase-result";
+import {
+  unwrapSupabaseList,
+  unwrapSupabaseMaybeSingle,
+} from "@/utils/supabase-result";
 import { mapSupabaseUserToSessionUser } from "@/lib/auth/mapper";
 
 export type MembershipRecord = Tables<"memberships">;
@@ -43,7 +46,7 @@ export class UserRepository extends AuthenticatedRepository {
         .eq("status", "active"),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async getMembershipById(membershipId: string): Promise<MembershipRecord | null> {
@@ -51,7 +54,7 @@ export class UserRepository extends AuthenticatedRepository {
       this.client.from("memberships").select("*").eq("id", membershipId),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async resolveTenantContext(
@@ -80,13 +83,19 @@ export class UserRepository extends AuthenticatedRepository {
     const permissionCodeSet = new Set<string>();
 
     for (const roleId of roleIds) {
-      const role = await roleRepository.findById(roleId);
-      if (role?.slug) {
-        roleSlugs.push(role.slug);
-      }
-      const permissions = await roleRepository.listPermissionsForRole(roleId);
-      for (const permission of permissions) {
-        permissionCodeSet.add(permission.code);
+      try {
+        const role = await roleRepository.findById(roleId);
+        if (role?.slug) {
+          roleSlugs.push(role.slug);
+        }
+        const permissions = await roleRepository.listPermissionsForRole(roleId);
+        for (const permission of permissions) {
+          if (permission?.code) {
+            permissionCodeSet.add(permission.code);
+          }
+        }
+      } catch {
+        continue;
       }
     }
 
@@ -139,7 +148,7 @@ export class UserRepository extends AuthenticatedRepository {
       this.client.from("organizations").select("*").eq("id", targetId),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   private async resolveWorkspace(
@@ -167,6 +176,6 @@ export class UserRepository extends AuthenticatedRepository {
     }
 
     const result = await query.order("name", { ascending: true }).limit(1).maybeSingle();
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 }

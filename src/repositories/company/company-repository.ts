@@ -7,7 +7,11 @@ import {
   DEFAULT_COMPANY_SETTINGS,
   requireRow,
 } from "../base/repository-helpers";
-import { unwrapSupabaseResult } from "@/utils/supabase-result";
+import {
+  unwrapSupabaseList,
+  unwrapSupabaseMaybeSingle,
+  unwrapSupabaseResult,
+} from "@/utils/supabase-result";
 
 export type Company = Tables<"companies">;
 export type CreateCompanyInput = Pick<
@@ -29,7 +33,7 @@ export class CompanyRepository extends AuthenticatedRepository {
       this.client.from("companies").select("*").eq("id", id),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async listByWorkspace(workspaceId: string): Promise<Company[]> {
@@ -41,7 +45,7 @@ export class CompanyRepository extends AuthenticatedRepository {
         .order("name", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async listByOrganization(organizationId: string): Promise<Company[]> {
@@ -53,7 +57,7 @@ export class CompanyRepository extends AuthenticatedRepository {
         .order("name", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async create(input: CreateCompanyInput): Promise<Company> {
@@ -90,7 +94,7 @@ export class CompanyRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseResult(result), "Company", id);
+    return requireRow(unwrapSupabaseMaybeSingle(result), "Company", id);
   }
 
   async softDelete(id: string, expectedVersion: number): Promise<Company> {
@@ -107,6 +111,6 @@ export class CompanyRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseResult(result), "Company", id);
+    return requireRow(unwrapSupabaseMaybeSingle(result), "Company", id);
   }
 }

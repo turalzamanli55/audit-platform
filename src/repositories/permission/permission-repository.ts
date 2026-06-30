@@ -3,7 +3,10 @@ import type { Database, Tables } from "@/types/supabase";
 import type { RepositoryContext } from "@/types/context";
 import { AuthenticatedRepository } from "../base/base-repository";
 import { applyActiveFilter } from "../base/repository-helpers";
-import { unwrapSupabaseResult } from "@/utils/supabase-result";
+import {
+  unwrapSupabaseList,
+  unwrapSupabaseMaybeSingle,
+} from "@/utils/supabase-result";
 
 export type PermissionRecord = Tables<"permissions">;
 
@@ -17,7 +20,7 @@ export class PermissionRepository extends AuthenticatedRepository {
       this.client.from("permissions").select("*").eq("id", id),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async findByCode(code: string): Promise<PermissionRecord | null> {
@@ -25,7 +28,7 @@ export class PermissionRepository extends AuthenticatedRepository {
       this.client.from("permissions").select("*").eq("code", code),
     ).maybeSingle();
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async listAll(): Promise<PermissionRecord[]> {
@@ -33,7 +36,7 @@ export class PermissionRepository extends AuthenticatedRepository {
       this.client.from("permissions").select("*").order("code", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async listByResource(resource: string): Promise<PermissionRecord[]> {
@@ -45,7 +48,7 @@ export class PermissionRepository extends AuthenticatedRepository {
         .order("code", { ascending: true }),
     );
 
-    return unwrapSupabaseResult(result);
+    return unwrapSupabaseList(result);
   }
 
   async listForRole(roleId: string): Promise<PermissionRecord[]> {
@@ -56,7 +59,7 @@ export class PermissionRepository extends AuthenticatedRepository {
         .eq("role_id", roleId),
     );
 
-    const rows = unwrapSupabaseResult(result);
+    const rows = unwrapSupabaseList(result);
     return rows
       .map((row) => row.permissions)
       .filter((permission): permission is PermissionRecord => permission !== null);

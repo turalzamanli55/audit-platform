@@ -3,6 +3,7 @@ import "server-only";
 import { createServerClient } from "@/lib/supabase/server";
 import type { AuthSession } from "@/types/auth";
 import { UNAUTHENTICATED_SESSION } from "./constants";
+import { mapSupabaseUserToSessionUser } from "./mapper";
 import { resolveAuthenticatedUser } from "./resolve-user";
 
 export async function getCurrentUser(locale = "az") {
@@ -28,7 +29,7 @@ export async function getSupabaseAuthSession(locale = "az"): Promise<AuthSession
 
   return {
     status: "authenticated",
-    user: sessionUser,
+    user: sessionUser ?? mapSupabaseUserToSessionUser(user, { locale }),
     expiresAt: session?.expires_at ? new Date(session.expires_at * 1000).toISOString() : null,
   };
 }

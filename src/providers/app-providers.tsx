@@ -13,11 +13,28 @@ type AppProvidersProps = {
   initialSession?: AuthSession;
 };
 
+function buildAuthProviderKey(session: AuthSession | undefined): string {
+  if (!session) return "unauthenticated";
+  const permissionCodes = Array.isArray(session.user?.permissionCodes)
+    ? session.user.permissionCodes.join(",")
+    : "";
+  return [
+    session.status,
+    session.user?.id ?? "anonymous",
+    session.user?.organizationId ?? "",
+    session.user?.workspaceId ?? "",
+    permissionCodes,
+    session.expiresAt ?? "",
+  ].join(":");
+}
+
 export function AppProviders({ children, locale, initialSession }: AppProvidersProps) {
+  const authKey = buildAuthProviderKey(initialSession);
+
   return (
     <ThemeProvider>
       <LanguageProvider locale={locale}>
-        <AuthProvider initialSession={initialSession}>
+        <AuthProvider key={authKey} initialSession={initialSession}>
           <SettingsProvider initialLocale={locale}>
             <NotificationProvider>{children}</NotificationProvider>
           </SettingsProvider>

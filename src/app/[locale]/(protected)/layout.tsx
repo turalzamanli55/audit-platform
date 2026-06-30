@@ -46,7 +46,10 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
   return (
     <ProtectedRouteGuard>
       <OnboardingGuard hasOrganization={tenantBootstrap.hasOrganization}>
-        <TenantProvider initial={tenantBootstrap}>
+        <TenantProvider
+          key={`${tenantBootstrap.currentOrganizationId ?? "none"}-${tenantBootstrap.currentWorkspaceId ?? "none"}-${tenantBootstrap.hasOrganization}`}
+          initial={tenantBootstrap}
+        >
           <AppShell
             header={
               <Header>

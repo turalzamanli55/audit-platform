@@ -43,6 +43,34 @@ export function unwrapSupabaseResult<T>(result: SupabaseResult<T>): T {
   return normalized.data;
 }
 
+/**
+ * Unwraps a maybeSingle() query — returns null when no row exists (not an error).
+ */
+export function unwrapSupabaseMaybeSingle<T>(result: SupabaseResult<T>): T | null {
+  if (result.error) {
+    throw new DatabaseError(result.error.message, {
+      code: result.error.code,
+      details: result.error.details,
+      hint: result.error.hint,
+    });
+  }
+  return result.data ?? null;
+}
+
+/**
+ * Unwraps a list query — returns [] when data is null or not an array.
+ */
+export function unwrapSupabaseList<T>(result: SupabaseResult<T[] | null>): T[] {
+  if (result.error) {
+    throw new DatabaseError(result.error.message, {
+      code: result.error.code,
+      details: result.error.details,
+      hint: result.error.hint,
+    });
+  }
+  return Array.isArray(result.data) ? result.data : [];
+}
+
 export function isSupabaseError(error: unknown): error is PostgrestError {
   return (
     typeof error === "object" &&
