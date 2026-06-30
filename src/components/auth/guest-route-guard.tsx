@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/providers";
 import { isAuthRoute, stripLocalePrefix } from "@/config/auth";
-import { isSessionAuthenticated } from "@/lib/auth/session";
+import { isSessionAuthenticated } from "@/lib/auth/session-state";
 
 type GuestRouteGuardProps = {
   children: ReactNode;

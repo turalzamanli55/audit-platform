@@ -4,3 +4,14 @@ export type { ThemeMode, ThemeContextValue } from "./theme";
 export type { LanguageContextValue } from "./language";
 export type { Notification, NotificationSeverity, NotificationContextValue } from "./notification";
 export type { UserSettings, SettingsContextValue } from "./settings";
+export type {
+  OrganizationContext,
+  WorkspaceContext,
+  CompanyContext,
+  PermissionContext,
+  RoleContext,
+  TenantContext,
+  RepositoryContext,
+} from "./context";
+export type { SupabaseSession } from "./session";
+export type { Database } from "./supabase";

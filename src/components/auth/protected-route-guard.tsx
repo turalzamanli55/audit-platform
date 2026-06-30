@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/providers";
 import { AUTH_ROUTES, isProtectedRoute, stripLocalePrefix } from "@/config/auth";
-import { isSessionAuthenticated } from "@/lib/auth/session";
+import { isSessionAuthenticated } from "@/lib/auth/session-state";
 import { LoadingShell } from "@/components/layout/shells/loading-shell";
 import { defaultLocale, isValidLocale } from "@/i18n";
 

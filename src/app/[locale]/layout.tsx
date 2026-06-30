@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { isValidLocale, type Locale } from "@/i18n";
 import { AppProviders } from "@/providers";
-import { getServerSession } from "@/lib/auth/session";
+import { getServerSession } from "@/lib/auth/server";
 
 type LocaleLayoutProps = {
   children: ReactNode;
