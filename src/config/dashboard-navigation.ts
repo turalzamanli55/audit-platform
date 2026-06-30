@@ -1,0 +1,30 @@
+import { DASHBOARD_PATH } from "@/config/auth";
+
+export type DashboardNavItem = {
+  href: string;
+  label: string;
+};
+
+/**
+ * Platform dashboard navigation catalog — server-safe (no "use client").
+ * Import from here in Server Components; never from client modules.
+ */
+export const defaultDashboardNavItems: DashboardNavItem[] = [
+  { href: DASHBOARD_PATH, label: "Dashboard" },
+];
+
+export function coerceDashboardNavItems(items: unknown): DashboardNavItem[] {
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items.filter(
+    (item): item is DashboardNavItem =>
+      typeof item === "object" &&
+      item !== null &&
+      "href" in item &&
+      typeof item.href === "string" &&
+      "label" in item &&
+      typeof item.label === "string",
+  );
+}

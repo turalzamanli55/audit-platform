@@ -11,3 +11,8 @@ export {
   type RouteAccess,
 } from "./auth";
 export { responsiveStrategy } from "./responsive";
+export {
+  defaultDashboardNavItems,
+  coerceDashboardNavItems,
+  type DashboardNavItem,
+} from "./dashboard-navigation";

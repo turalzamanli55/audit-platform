@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { DASHBOARD_PATH } from "@/config/auth";
+import { coerceDashboardNavItems, type DashboardNavItem } from "@/config/dashboard-navigation";
 import { defaultLocale, isValidLocale } from "@/i18n";
 
 type DashboardNavProps = {
-  items: Array<{ href: string; label: string }>;
+  items: DashboardNavItem[] | unknown;
 };
 
 function resolveLocale(pathname: string): string {
@@ -17,10 +17,15 @@ function resolveLocale(pathname: string): string {
 export function DashboardNav({ items }: DashboardNavProps) {
   const pathname = usePathname();
   const locale = resolveLocale(pathname);
+  const safeItems = coerceDashboardNavItems(items);
+
+  if (safeItems.length === 0) {
+    return <nav className="space-y-1" aria-label="Main navigation" />;
+  }
 
   return (
-    <nav className="space-y-1">
-      {items.map((item) => {
+    <nav className="space-y-1" aria-label="Main navigation">
+      {safeItems.map((item) => {
         const href = `/${locale}${item.href}`;
         const active = pathname === href || pathname.startsWith(`${href}/`);
 
@@ -41,7 +46,3 @@ export function DashboardNav({ items }: DashboardNavProps) {
     </nav>
   );
 }
-
-export const defaultDashboardNavItems = [
-  { href: DASHBOARD_PATH, label: "Dashboard" },
-];

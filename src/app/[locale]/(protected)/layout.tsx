@@ -5,7 +5,11 @@ import { AppShell } from "@/components/layout";
 import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
-import { DashboardNav, defaultDashboardNavItems } from "@/components/dashboard/dashboard-nav";
+import { DashboardNav } from "@/components/dashboard/dashboard-nav";
+import {
+  coerceDashboardNavItems,
+  defaultDashboardNavItems,
+} from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
 import { getTenantBootstrap } from "@/lib/auth/server";
 import { getDictionary, isValidLocale, type Locale } from "@/i18n";
@@ -32,6 +36,13 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
     roleSlugs: [],
   };
 
+  const navItems = coerceDashboardNavItems(
+    (Array.isArray(defaultDashboardNavItems) ? defaultDashboardNavItems : []).map((item) => ({
+      ...item,
+      label: dictionary.dashboard.navDashboard,
+    })),
+  );
+
   return (
     <ProtectedRouteGuard>
       <OnboardingGuard hasOrganization={tenantBootstrap.hasOrganization}>
@@ -51,12 +62,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
             }
             sidebar={
               <Sidebar>
-                <DashboardNav
-                  items={defaultDashboardNavItems.map((item) => ({
-                    ...item,
-                    label: dictionary.dashboard.navDashboard,
-                  }))}
-                />
+                <DashboardNav items={navItems} />
               </Sidebar>
             }
           >
