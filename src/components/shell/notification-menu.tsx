@@ -32,7 +32,7 @@ export function NotificationMenu({ labels, className }: NotificationMenuProps) {
       className={className}
       align="end"
       trigger={
-        <Button variant="ghost" size="icon" className="relative h-10 w-10" aria-label={labels.title}>
+        <Button variant="ghost" size="icon" className="relative h-9 w-9 shrink-0 sm:h-10 sm:w-10" aria-label={labels.title}>
           <IconBell />
           {unreadCount > 0 ? (
             <span className="absolute right-1.5 top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[0.625rem] font-semibold text-primary-foreground">

@@ -23,7 +23,7 @@ export function MobileSearchTrigger({
       onClick={() => setCommandPaletteOpen(true)}
       aria-label={label}
       className={cn(
-        "group flex h-10 w-full min-w-0 items-center gap-2.5 rounded-xl border border-border/60 bg-muted/30 px-3 text-sm text-muted-foreground transition-all duration-200 hover:border-border-strong hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.99] motion-reduce:transform-none",
+        "group flex h-9 w-full min-w-0 items-center gap-2 rounded-xl border border-border/60 bg-muted/30 px-2.5 text-sm text-muted-foreground transition-all duration-200 hover:border-border-strong hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.99] motion-reduce:transform-none sm:h-10 sm:gap-2.5 sm:px-3",
         className,
       )}
     >

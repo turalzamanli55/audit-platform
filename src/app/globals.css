@@ -249,6 +249,8 @@
 
   html {
     height: 100%;
+    max-width: 100%;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -256,6 +258,8 @@
 
   body {
     min-height: 100%;
+    max-width: 100%;
+    overflow-x: clip;
     background-color: var(--ds-color-background);
     color: var(--ds-color-foreground);
     font-family: var(--ds-font-sans);
@@ -279,8 +283,14 @@
   .ds-container {
     width: 100%;
     margin-inline: auto;
-    padding-inline: var(--ds-space-6);
-    max-width: var(--ds-content-max-width);
+    padding-inline: var(--ds-space-4);
+    max-width: min(100%, var(--ds-content-max-width));
+  }
+
+  @media (min-width: 768px) {
+    .ds-container {
+      padding-inline: var(--ds-space-6);
+    }
   }
 
   .ds-readable {
@@ -299,21 +309,27 @@
     display: grid;
     grid-template-rows: var(--ds-header-height) 1fr;
     min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   .ds-app-grid {
     display: grid;
-    grid-template-columns: var(--ds-sidebar-width) 1fr;
+    grid-template-columns: minmax(0, 1fr);
     min-height: calc(100dvh - var(--ds-header-height));
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
-  .ds-app-grid[data-sidebar-collapsed="true"] {
-    grid-template-columns: var(--ds-sidebar-width-collapsed) 1fr;
-  }
-
-  @media (max-width: 1023px) {
+  @media (min-width: 1024px) {
     .ds-app-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: var(--ds-sidebar-width) minmax(0, 1fr);
+    }
+
+    .ds-app-grid[data-sidebar-collapsed="true"] {
+      grid-template-columns: var(--ds-sidebar-width-collapsed) minmax(0, 1fr);
     }
   }
 

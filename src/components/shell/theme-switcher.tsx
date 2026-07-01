@@ -24,7 +24,7 @@ export function ThemeSwitcher({ label, themeLight, themeDark, className }: Theme
     <DropdownMenu
       className={className}
       trigger={
-        <Button variant="ghost" size="icon" className="h-10 w-10" aria-label={label}>
+        <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 sm:h-10 sm:w-10" aria-label={label}>
           {resolvedTheme === "dark" ? <IconSun /> : <IconMoon />}
         </Button>
       }

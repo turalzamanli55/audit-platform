@@ -34,7 +34,7 @@ function AppShellInner({
 
   return (
     <>
-      <div className="ds-shell-grid min-h-dvh bg-background">
+      <div className="ds-shell-grid min-h-dvh w-full max-w-full overflow-x-clip bg-background">
         <AppHeader
           mobileSearch={headerMobileSearch}
           center={headerCenter}

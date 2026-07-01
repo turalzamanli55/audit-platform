@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { defaultLocale } from "@/i18n";
@@ -23,6 +23,12 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -37,7 +43,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full max-w-[100vw] overflow-x-clip flex flex-col antialiased">{children}</body>
     </html>
   );
 }

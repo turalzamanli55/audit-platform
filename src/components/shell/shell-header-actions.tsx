@@ -63,7 +63,7 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
   };
 
   return (
-    <div className="flex items-center gap-0.5 sm:gap-1">
+    <div className="flex items-center gap-0.5 max-lg:gap-px sm:gap-1">
       <div className="hidden items-center gap-0.5 lg:flex">
         <OrganizationSwitcher label={labels.organization} />
         <WorkspaceSwitcher label={labels.workspace} />
@@ -82,8 +82,7 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
 
       <NotificationMenu labels={notificationLabels} />
 
-      <LocaleSwitcher label={labels.language} compact className="lg:hidden" />
-      <LocaleSwitcher label={labels.language} className="hidden lg:inline-flex" />
+      <LocaleSwitcher label={labels.language} responsive />
 
       <ThemeSwitcher
         label={labels.theme}
