@@ -292,6 +292,76 @@
           "validatedAt": "Last validated"
         }
       }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Configure reporting, financial, and operational preferences for this company.",
+      "navAriaLabel": "Company settings sections",
+      "navGeneral": "General",
+      "navReporting": "Reporting",
+      "navFinancial": "Financial",
+      "navContacts": "Contacts",
+      "navPreferences": "Preferences",
+      "navValidation": "Validation",
+      "readOnlyBadge": "View only",
+      "saveIdle": "All changes saved",
+      "saveSaving": "Saving changes…",
+      "saveSaved": "Changes saved",
+      "saveError": "Unable to save changes",
+      "unsavedMessage": "You have unsaved changes",
+      "discardLabel": "Discard",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…",
+      "conflictTitle": "Settings were updated elsewhere",
+      "conflictDescription": "Another session changed these settings. Refresh to load the latest version or discard your changes.",
+      "conflictRefresh": "Refresh",
+      "conflictDiscard": "Discard changes",
+      "loading": "Loading company settings",
+      "errorTitle": "Unable to load settings",
+      "errorDescription": "Something went wrong while loading company settings.",
+      "sections": {
+        "general": {
+          "title": "General",
+          "description": "Jurisdiction, classification, and addresses for this entity.",
+          "classificationTitle": "Classification",
+          "registeredAddressTitle": "Registered address",
+          "operatingAddressTitle": "Operating address",
+          "addressHint": "Optional — used for filings and correspondence."
+        },
+        "reporting": {
+          "title": "Reporting",
+          "description": "Framework used for statutory and management reporting.",
+          "groupTitle": "Reporting framework",
+          "groupDescription": "Defines the accounting standards applied to this entity."
+        },
+        "financial": {
+          "title": "Financial",
+          "description": "Currency and fiscal year configuration.",
+          "groupTitle": "Financial configuration",
+          "groupDescription": "Functional currency and fiscal period boundaries.",
+          "currencyHint": "ISO 4217 three-letter code, e.g. USD"
+        },
+        "contacts": {
+          "title": "Contacts",
+          "description": "People responsible for finance and external audit coordination."
+        },
+        "preferences": {
+          "title": "Preferences",
+          "description": "Operational defaults and display preferences.",
+          "groupTitle": "Workspace preferences",
+          "groupDescription": "Optional defaults for imports, locale, and rounding.",
+          "defaultLocale": "Default locale",
+          "dataImportSource": "Data import source",
+          "roundingConvention": "Rounding convention",
+          "tradeNameHint": "Optional trading name — not the legal entity name."
+        },
+        "validation": {
+          "title": "Validation",
+          "description": "Schema validation status for company settings.",
+          "groupTitle": "Validation summary",
+          "readOnlyNotice": "Validation metadata is maintained by the platform and cannot be edited here."
+        }
+      }
     }
   }
 }

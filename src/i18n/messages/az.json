@@ -292,6 +292,76 @@
           "validatedAt": "Son təsdiqləmə"
         }
       }
+    },
+    "settings": {
+      "title": "Parametrlər",
+      "description": "Bu şirkət üçün hesabat, maliyyə və əməliyyat seçimlərini konfiqurasiya edin.",
+      "navAriaLabel": "Şirkət parametrləri bölmələri",
+      "navGeneral": "Ümumi",
+      "navReporting": "Hesabat",
+      "navFinancial": "Maliyyə",
+      "navContacts": "Əlaqələr",
+      "navPreferences": "Seçimlər",
+      "navValidation": "Təsdiqləmə",
+      "readOnlyBadge": "Yalnız baxış",
+      "saveIdle": "Bütün dəyişikliklər saxlanılıb",
+      "saveSaving": "Dəyişikliklər saxlanılır…",
+      "saveSaved": "Dəyişikliklər saxlanıldı",
+      "saveError": "Dəyişikliklər saxlanıla bilmədi",
+      "unsavedMessage": "Saxlanmamış dəyişiklikləriniz var",
+      "discardLabel": "Ləğv et",
+      "saveLabel": "Saxla",
+      "savingLabel": "Saxlanılır…",
+      "conflictTitle": "Parametrlər başqa yerdə yeniləndi",
+      "conflictDescription": "Başqa sessiya bu parametrləri dəyişdi. Ən son versiyanı yükləmək üçün yeniləyin və ya dəyişikliklərinizi ləğv edin.",
+      "conflictRefresh": "Yenilə",
+      "conflictDiscard": "Dəyişiklikləri ləğv et",
+      "loading": "Şirkət parametrləri yüklənir",
+      "errorTitle": "Parametrlər yüklənə bilmədi",
+      "errorDescription": "Şirkət parametrləri yüklənərkən xəta baş verdi.",
+      "sections": {
+        "general": {
+          "title": "Ümumi",
+          "description": "Bu subyekt üçün yurisdiksiya, təsnifat və ünvanlar.",
+          "classificationTitle": "Təsnifat",
+          "registeredAddressTitle": "Qeydiyyat ünvanı",
+          "operatingAddressTitle": "Fəaliyyət ünvanı",
+          "addressHint": "İstəyə bağlı — təqdimatlar və yazışmalar üçün istifadə olunur."
+        },
+        "reporting": {
+          "title": "Hesabat",
+          "description": "Qanuni və idarəetmə hesabatları üçün çərçivə.",
+          "groupTitle": "Hesabat çərçivəsi",
+          "groupDescription": "Bu subyektə tətbiq olunan uçot standartlarını müəyyən edir."
+        },
+        "financial": {
+          "title": "Maliyyə",
+          "description": "Valyuta və maliyyə ili konfiqurasiyası.",
+          "groupTitle": "Maliyyə konfiqurasiyası",
+          "groupDescription": "Funksional valyuta və maliyyə dövrü sərhədləri.",
+          "currencyHint": "ISO 4217 üç hərfli kod, məs. USD"
+        },
+        "contacts": {
+          "title": "Əlaqələr",
+          "description": "Maliyyə və xarici audit koordinasiyasından məsul şəxslər."
+        },
+        "preferences": {
+          "title": "Seçimlər",
+          "description": "Əməliyyat standartları və göstərmə seçimləri.",
+          "groupTitle": "İş mühiti seçimləri",
+          "groupDescription": "İdxal, dil və yuvarlaqlaşdırma üçün istəyə bağlı standartlar.",
+          "defaultLocale": "Varsayılan dil",
+          "dataImportSource": "Məlumat idxalı mənbəyi",
+          "roundingConvention": "Yuvarlaqlaşdırma qaydası",
+          "tradeNameHint": "İstəyə bağlı ticarət adı — hüquqi ad deyil."
+        },
+        "validation": {
+          "title": "Təsdiqləmə",
+          "description": "Şirkət parametrləri üçün sxem təsdiqləmə statusu.",
+          "groupTitle": "Təsdiqləmə icmalı",
+          "readOnlyNotice": "Təsdiqləmə metadatası platforma tərəfindən idarə olunur və burada redaktə edilə bilməz."
+        }
+      }
     }
   }
 }

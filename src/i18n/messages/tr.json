@@ -292,6 +292,76 @@
           "validatedAt": "Son doğrulama"
         }
       }
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "description": "Bu şirket için raporlama, finansal ve operasyonel tercihleri yapılandırın.",
+      "navAriaLabel": "Şirket ayarları bölümleri",
+      "navGeneral": "Genel",
+      "navReporting": "Raporlama",
+      "navFinancial": "Finansal",
+      "navContacts": "İletişim",
+      "navPreferences": "Tercihler",
+      "navValidation": "Doğrulama",
+      "readOnlyBadge": "Salt okunur",
+      "saveIdle": "Tüm değişiklikler kaydedildi",
+      "saveSaving": "Değişiklikler kaydediliyor…",
+      "saveSaved": "Değişiklikler kaydedildi",
+      "saveError": "Değişiklikler kaydedilemedi",
+      "unsavedMessage": "Kaydedilmemiş değişiklikleriniz var",
+      "discardLabel": "Vazgeç",
+      "saveLabel": "Kaydet",
+      "savingLabel": "Kaydediliyor…",
+      "conflictTitle": "Ayarlar başka bir oturumda güncellendi",
+      "conflictDescription": "Başka bir oturum bu ayarları değiştirdi. En son sürümü yüklemek için yenileyin veya değişikliklerinizi vazgeçin.",
+      "conflictRefresh": "Yenile",
+      "conflictDiscard": "Değişiklikleri vazgeç",
+      "loading": "Şirket ayarları yükleniyor",
+      "errorTitle": "Ayarlar yüklenemedi",
+      "errorDescription": "Şirket ayarları yüklenirken bir hata oluştu.",
+      "sections": {
+        "general": {
+          "title": "Genel",
+          "description": "Bu tüzel kişilik için yargı alanı, sınıflandırma ve adresler.",
+          "classificationTitle": "Sınıflandırma",
+          "registeredAddressTitle": "Kayıtlı adres",
+          "operatingAddressTitle": "Faaliyet adresi",
+          "addressHint": "İsteğe bağlı — bildirimler ve yazışmalar için kullanılır."
+        },
+        "reporting": {
+          "title": "Raporlama",
+          "description": "Yasal ve yönetim raporlaması için çerçeve.",
+          "groupTitle": "Raporlama çerçevesi",
+          "groupDescription": "Bu tüzel kişiliğe uygulanan muhasebe standartlarını tanımlar."
+        },
+        "financial": {
+          "title": "Finansal",
+          "description": "Para birimi ve mali yıl yapılandırması.",
+          "groupTitle": "Finansal yapılandırma",
+          "groupDescription": "Fonksiyonel para birimi ve mali dönem sınırları.",
+          "currencyHint": "ISO 4217 üç harfli kod, örn. USD"
+        },
+        "contacts": {
+          "title": "İletişim",
+          "description": "Finans ve dış denetim koordinasyonundan sorumlu kişiler."
+        },
+        "preferences": {
+          "title": "Tercihler",
+          "description": "Operasyonel varsayılanlar ve görüntüleme tercihleri.",
+          "groupTitle": "Çalışma alanı tercihleri",
+          "groupDescription": "İçe aktarma, dil ve yuvarlama için isteğe bağlı varsayılanlar.",
+          "defaultLocale": "Varsayılan dil",
+          "dataImportSource": "Veri içe aktarma kaynağı",
+          "roundingConvention": "Yuvarlama kuralı",
+          "tradeNameHint": "İsteğe bağlı ticari unvan — yasal ad değil."
+        },
+        "validation": {
+          "title": "Doğrulama",
+          "description": "Şirket ayarları için şema doğrulama durumu.",
+          "groupTitle": "Doğrulama özeti",
+          "readOnlyNotice": "Doğrulama meta verileri platform tarafından yönetilir ve burada düzenlenemez."
+        }
+      }
     }
   }
 }

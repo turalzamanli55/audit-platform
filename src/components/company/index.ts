@@ -43,3 +43,15 @@ export {
   type CompanyWorkspaceMetadataItem,
   type CompanyWorkspaceHeroLabels,
 } from "./workspace";
+export {
+  CompanySettingsExperience,
+  CompanySettingsLayout,
+  CompanySettingsGeneralSection,
+  CompanySettingsReportingSection,
+  CompanySettingsFinancialSection,
+  CompanySettingsContactsSection,
+  CompanySettingsPreferencesSection,
+  CompanySettingsValidationSection,
+  CompanySettingsLoading,
+  CompanySettingsError,
+} from "./settings";

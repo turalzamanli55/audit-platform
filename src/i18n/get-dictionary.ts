@@ -292,6 +292,76 @@ export type Dictionary = {
         };
       };
     };
+    settings: {
+      title: string;
+      description: string;
+      navAriaLabel: string;
+      navGeneral: string;
+      navReporting: string;
+      navFinancial: string;
+      navContacts: string;
+      navPreferences: string;
+      navValidation: string;
+      readOnlyBadge: string;
+      saveIdle: string;
+      saveSaving: string;
+      saveSaved: string;
+      saveError: string;
+      unsavedMessage: string;
+      discardLabel: string;
+      saveLabel: string;
+      savingLabel: string;
+      conflictTitle: string;
+      conflictDescription: string;
+      conflictRefresh: string;
+      conflictDiscard: string;
+      loading: string;
+      errorTitle: string;
+      errorDescription: string;
+      sections: {
+        general: {
+          title: string;
+          description: string;
+          classificationTitle: string;
+          registeredAddressTitle: string;
+          operatingAddressTitle: string;
+          addressHint: string;
+        };
+        reporting: {
+          title: string;
+          description: string;
+          groupTitle: string;
+          groupDescription: string;
+        };
+        financial: {
+          title: string;
+          description: string;
+          groupTitle: string;
+          groupDescription: string;
+          currencyHint: string;
+        };
+        contacts: {
+          title: string;
+          description: string;
+        };
+        preferences: {
+          title: string;
+          description: string;
+          groupTitle: string;
+          groupDescription: string;
+          defaultLocale: string;
+          dataImportSource: string;
+          roundingConvention: string;
+          tradeNameHint: string;
+        };
+        validation: {
+          title: string;
+          description: string;
+          groupTitle: string;
+          readOnlyNotice: string;
+        };
+      };
+    };
   };
 };
 
