@@ -510,6 +510,254 @@ export type Dictionary = {
       };
     };
   };
+  engagements: {
+    navEngagements: string;
+    title: string;
+    subtitle: string;
+    breadcrumbRoot: string;
+    search: string;
+    filterAll: string;
+    filterActive: string;
+    filterInactive: string;
+    filterArchived: string;
+    filterSuspended: string;
+    filterLifecycleAll: string;
+    sortName: string;
+    sortUpdated: string;
+    sortAsc: string;
+    sortDesc: string;
+    columnEngagement: string;
+    columnClient: string;
+    columnCode: string;
+    columnType: string;
+    columnLifecycle: string;
+    columnFramework: string;
+    columnStatus: string;
+    columnUpdated: string;
+    emptyTitle: string;
+    emptyDescription: string;
+    errorTitle: string;
+    errorDescription: string;
+    forbiddenTitle: string;
+    forbiddenDescription: string;
+    noWorkspaceTitle: string;
+    noWorkspaceDescription: string;
+    notFoundTitle: string;
+    notFoundDescription: string;
+    loading: string;
+    results: string;
+    page: string;
+    of: string;
+    previous: string;
+    next: string;
+    viewEngagement: string;
+    openMenu: string;
+    selected: string;
+    frameworkIfrs: string;
+    frameworkLocalGaap: string;
+    frameworkOther: string;
+    updated: string;
+    quickActions: string;
+    createEngagement: string;
+    lifecycleStatuses: Record<
+      "draft" | "planning" | "fieldwork" | "review" | "completed" | "closed",
+      string
+    >;
+    create: {
+      title: string;
+      subtitle: string;
+      breadcrumbEngagements: string;
+      breadcrumbCreate: string;
+      stepGeneral: string;
+      stepClient: string;
+      stepReporting: string;
+      stepTeam: string;
+      stepDates: string;
+      stepNotes: string;
+      stepReview: string;
+      stepGeneralTitle: string;
+      stepGeneralDescription: string;
+      stepClientTitle: string;
+      stepClientDescription: string;
+      stepReportingTitle: string;
+      stepReportingDescription: string;
+      stepTeamTitle: string;
+      stepTeamDescription: string;
+      stepDatesTitle: string;
+      stepDatesDescription: string;
+      stepNotesTitle: string;
+      stepNotesDescription: string;
+      stepReviewTitle: string;
+      stepReviewDescription: string;
+      name: string;
+      engagementCode: string;
+      engagementType: string;
+      lifecycleStatus: string;
+      clientCompany: string;
+      selectClient: string;
+      reportingFramework: string;
+      periodStart: string;
+      periodEnd: string;
+      plannedStart: string;
+      plannedEnd: string;
+      description: string;
+      notes: string;
+      optional: string;
+      continue: string;
+      back: string;
+      cancel: string;
+      createEngagement: string;
+      creating: string;
+      autosaveHint: string;
+      forbiddenTitle: string;
+      forbiddenDescription: string;
+      teamPlaceholderTitle: string;
+      teamPlaceholderDescription: string;
+      engagementTypes: Record<
+        "statutory_audit" | "review" | "agreed_upon_procedures" | "advisory" | "other",
+        string
+      >;
+      frameworks: Record<"IFRS" | "LOCAL_GAAP" | "OTHER", string>;
+    };
+    workspace: {
+      heroEyebrow: string;
+      navAriaLabel: string;
+      navOverview: string;
+      navMembers: string;
+      navHistory: string;
+      navSettings: string;
+      loading: string;
+      errorTitle: string;
+      errorDescription: string;
+      summaryClient: string;
+      summaryCode: string;
+      summaryType: string;
+      summaryLifecycle: string;
+      summaryFramework: string;
+      summaryPlannedDates: string;
+      metadataTitle: string;
+      metadataDescription: string;
+      metadataSlug: string;
+      metadataCreated: string;
+      metadataPlannedDates: string;
+      metadataMembers: string;
+      sections: {
+        overview: {
+          title: string;
+          description: string;
+          highlightsTitle: string;
+          highlightsDescription: string;
+          noDescription: string;
+        };
+        members: {
+          title: string;
+        };
+        history: {
+          title: string;
+          description: string;
+          emptyTitle: string;
+          emptyDescription: string;
+        };
+        settings: {
+          title: string;
+          description: string;
+        };
+      };
+    };
+    settings: {
+      title: string;
+      description: string;
+      readOnlyNotice: string;
+      saveLabel: string;
+      savingLabel: string;
+      discardLabel: string;
+      sections: {
+        general: { title: string; description: string };
+        client: { title: string; description: string };
+        reporting: { title: string; description: string };
+        dates: { title: string; description: string };
+        notes: { title: string; description: string };
+      };
+      lifecycle: {
+        title: string;
+        description: string;
+        archivedBannerTitle: string;
+        archivedBannerDescription: string;
+        archivePrompt: string;
+        archiveAction: string;
+        archiveConfirmTitle: string;
+        archiveConfirmDescription: string;
+        archiveReasonPlaceholder: string;
+        archiveConfirmAction: string;
+        restorePrompt: string;
+        restoreAction: string;
+        restoreConfirmTitle: string;
+        restoreConfirmDescription: string;
+        restoreConfirmAction: string;
+        reasonLabel: string;
+        cancelAction: string;
+      };
+    };
+    overview: {
+      editDescription: string;
+      saveDescription: string;
+      cancelEdit: string;
+    };
+    members: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      memberIdHint: string;
+      placeholderNote: string;
+      roles: Record<
+        | "engagement_partner"
+        | "engagement_manager"
+        | "senior"
+        | "staff"
+        | "reviewer"
+        | "observer",
+        string
+      >;
+    };
+    history: {
+      title: string;
+      description: string;
+      errorTitle: string;
+      errorDescription: string;
+      summary: {
+        title: string;
+        description: string;
+        total: string;
+        created: string;
+        updated: string;
+        statusChanged: string;
+        archived: string;
+        restored: string;
+      };
+      timeline: {
+        title: string;
+        description: string;
+        emptyTitle: string;
+        emptyDescription: string;
+        reasonArchive: string;
+        reasonRestore: string;
+        fieldsChanged: string;
+        actions: Record<string, string>;
+      };
+      version: {
+        title: string;
+        description: string;
+        cardTitle: string;
+        recordVersion: string;
+        created: string;
+        archived: string;
+        notArchived: string;
+        restored: string;
+        restoredHint: string;
+      };
+    };
+  };
   marketing: MarketingLabels;
   authExperience: AuthExperienceLabels;
   dashboardWorkspace: DashboardWorkspaceLabels;

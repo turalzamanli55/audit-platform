@@ -209,6 +209,233 @@ export type Database = {
           },
         ];
       };
+      engagement_activity: {
+        Row: {
+          action: string;
+          actor_id: string | null;
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          engagement_id: string;
+          id: string;
+          metadata: Json;
+          organization_id: string;
+          status: Database["public"]["Enums"]["record_status"];
+          summary: string | null;
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          action: string;
+          actor_id?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          metadata?: Json;
+          organization_id: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          summary?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          action?: string;
+          actor_id?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          metadata?: Json;
+          organization_id?: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          summary?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "engagement_activity_engagement_id_fkey";
+            columns: ["engagement_id"];
+            isOneToOne: false;
+            referencedRelation: "engagements";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      engagement_members: {
+        Row: {
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          engagement_id: string;
+          id: string;
+          member_role: Database["public"]["Enums"]["engagement_member_role"];
+          organization_id: string;
+          status: Database["public"]["Enums"]["record_status"];
+          updated_at: string;
+          updated_by: string | null;
+          user_id: string;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          member_role?: Database["public"]["Enums"]["engagement_member_role"];
+          organization_id: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          user_id: string;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          member_role?: Database["public"]["Enums"]["engagement_member_role"];
+          organization_id?: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          user_id?: string;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "engagement_members_engagement_id_fkey";
+            columns: ["engagement_id"];
+            isOneToOne: false;
+            referencedRelation: "engagements";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      engagements: {
+        Row: {
+          company_id: string;
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          description: string | null;
+          engagement_code: string | null;
+          engagement_type: Database["public"]["Enums"]["engagement_type"];
+          id: string;
+          lifecycle_status: Database["public"]["Enums"]["engagement_lifecycle_status"];
+          name: string;
+          notes: string | null;
+          organization_id: string;
+          period_end: string | null;
+          period_start: string | null;
+          planned_end: string | null;
+          planned_start: string | null;
+          reporting_framework: string;
+          slug: string;
+          status: Database["public"]["Enums"]["record_status"];
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          company_id: string;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          description?: string | null;
+          engagement_code?: string | null;
+          engagement_type?: Database["public"]["Enums"]["engagement_type"];
+          id?: string;
+          lifecycle_status?: Database["public"]["Enums"]["engagement_lifecycle_status"];
+          name: string;
+          notes?: string | null;
+          organization_id: string;
+          period_end?: string | null;
+          period_start?: string | null;
+          planned_end?: string | null;
+          planned_start?: string | null;
+          reporting_framework?: string;
+          slug: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          company_id?: string;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          description?: string | null;
+          engagement_code?: string | null;
+          engagement_type?: Database["public"]["Enums"]["engagement_type"];
+          id?: string;
+          lifecycle_status?: Database["public"]["Enums"]["engagement_lifecycle_status"];
+          name?: string;
+          notes?: string | null;
+          organization_id?: string;
+          period_end?: string | null;
+          period_start?: string | null;
+          planned_end?: string | null;
+          planned_start?: string | null;
+          reporting_framework?: string;
+          slug?: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "engagements_company_id_fkey";
+            columns: ["company_id"];
+            isOneToOne: false;
+            referencedRelation: "companies";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "engagements_organization_id_fkey";
+            columns: ["organization_id"];
+            isOneToOne: false;
+            referencedRelation: "organizations";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "engagements_workspace_id_fkey";
+            columns: ["workspace_id"];
+            isOneToOne: false;
+            referencedRelation: "workspaces";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       memberships: {
         Row: {
           company_id: string | null;
@@ -671,8 +898,23 @@ export type Database = {
       utc_now: { Args: Record<string, never>; Returns: string };
       user_belongs_to_organization: { Args: { target_organization_id: string }; Returns: boolean };
       user_belongs_to_workspace: { Args: { target_workspace_id: string }; Returns: boolean };
+      user_can_access_engagement: { Args: { target_engagement_id: string }; Returns: boolean };
     };
     Enums: {
+      engagement_lifecycle_status: "draft" | "planning" | "fieldwork" | "review" | "completed" | "closed";
+      engagement_member_role:
+        | "engagement_partner"
+        | "engagement_manager"
+        | "senior"
+        | "staff"
+        | "reviewer"
+        | "observer";
+      engagement_type:
+        | "statutory_audit"
+        | "review"
+        | "agreed_upon_procedures"
+        | "advisory"
+        | "other";
       membership_scope: "organization" | "workspace";
       permission_scope: "platform" | "organization" | "workspace" | "company";
       record_status: "active" | "inactive" | "archived" | "suspended";

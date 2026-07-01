@@ -5,6 +5,7 @@ import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types"
 import { getCurrentUser, getTenantBootstrap } from "@/lib/auth/server";
 import { readCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
+import { loadEngagementList } from "@/lib/engagement/load-engagement-list";
 import { resolveActiveCompany } from "@/lib/company/resolve-active-company";
 import { resolveTimeOfDay } from "./workspace-greeting";
 
@@ -46,11 +47,12 @@ export async function loadDashboardWorkspace(
   locale: Locale,
   labels: DashboardWorkspaceLabels,
 ): Promise<DashboardWorkspaceViewModel> {
-  const [user, bootstrap, companyResult, preferredCompanySlug] = await Promise.all([
+  const [user, bootstrap, companyResult, preferredCompanySlug, engagementResult] = await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
     loadCompanyList(),
     readCompanySlugCookie(),
+    loadEngagementList(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -76,6 +78,7 @@ export async function loadDashboardWorkspace(
 
   const userName = user?.displayName?.trim() || user?.email?.split("@")[0] || "there";
   const companyCount = companies.length;
+  const engagementCount = engagementResult.ok ? engagementResult.items.length : 0;
 
   const activeCompany = resolveActiveCompany(companies, "", preferredCompanySlug);
 
@@ -93,7 +96,7 @@ export async function loadDashboardWorkspace(
     continueCompany: activeCompany,
     kpi: {
       companies: companyCount > 0 ? String(companyCount) : "—",
-      engagements: "—",
+      engagements: engagementCount > 0 ? String(engagementCount) : "—",
       openTasks: String(labels.tasks.items.length),
       reports: "—",
       aiSuggestions: String(labels.ai.suggestions.length),

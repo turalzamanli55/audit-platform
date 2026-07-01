@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { buildWelcomeGreeting, buildWelcomeSummary } from "@/lib/dashboard/workspace-greeting";
 import type { DashboardWorkspaceViewModel } from "@/lib/dashboard/load-dashboard-workspace";
-import { COMPANIES_PATH } from "@/config/dashboard-navigation";
+import { COMPANIES_PATH, ENGAGEMENTS_PATH } from "@/config/dashboard-navigation";
 import { useSettings } from "@/providers";
 import { useShell } from "@/components/shell/shell-provider";
 import { useTheme } from "@/providers";
@@ -136,7 +136,7 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
       toggleSidebar: () => toggleSidebar(),
       toggleTheme: () => setMode(resolvedTheme === "dark" ? "light" : "dark"),
       searchCompanies: () => router.push(`/${locale}${COMPANIES_PATH}`),
-      searchEngagements: () => setCommandPaletteOpen(true),
+      searchEngagements: () => router.push(`/${locale}${ENGAGEMENTS_PATH}`),
       openCalendar: () => scrollToWidget("calendar"),
       openAi: () => scrollToWidget("ai"),
     });

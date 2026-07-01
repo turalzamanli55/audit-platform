@@ -21,7 +21,7 @@ import type { CompanySwitcherItem } from "@/components/shell/company-switcher";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardNavItem } from "@/config/dashboard-navigation";
-import { COMPANIES_PATH } from "@/config/dashboard-navigation";
+import { COMPANIES_PATH, ENGAGEMENTS_PATH } from "@/config/dashboard-navigation";
 import { DASHBOARD_PATH } from "@/config/auth";
 import { useSettings, useTheme } from "@/providers";
 
@@ -84,6 +84,14 @@ function buildCommandItems(
       group: "actions",
       href: `${COMPANIES_PATH}/new`,
       keywords: ["create", "company", "new"],
+    },
+    {
+      id: "create-engagement",
+      label: "Create engagement",
+      description: "Start a new audit or assurance engagement",
+      group: "actions",
+      href: `${ENGAGEMENTS_PATH}/new`,
+      keywords: ["create", "engagement", "new", "audit"],
     },
     {
       id: "dashboard",
@@ -205,7 +213,13 @@ export function AppShellExperience({
             }
             router.push(`/${locale}${COMPANIES_PATH}`);
           },
-          searchEngagements: () => dashboardHandlers?.searchEngagements?.(),
+          searchEngagements: () => {
+            if (dashboardHandlers?.searchEngagements) {
+              dashboardHandlers.searchEngagements();
+              return;
+            }
+            router.push(`/${locale}${ENGAGEMENTS_PATH}`);
+          },
           openCalendar: () => dashboardHandlers?.openCalendar?.(),
           openAi: () => dashboardHandlers?.openAi?.(),
         },

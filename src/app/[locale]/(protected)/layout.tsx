@@ -5,6 +5,7 @@ import { AppShellExperience } from "@/components/shell/app-shell-experience";
 import {
   coerceDashboardNavItems,
   COMPANIES_PATH,
+  ENGAGEMENTS_PATH,
   defaultDashboardNavItems,
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
@@ -64,7 +65,9 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
       label:
         item.href === COMPANIES_PATH
           ? dictionary.companies.navCompanies
-          : dictionary.dashboard.navDashboard,
+          : item.href === ENGAGEMENTS_PATH
+            ? dictionary.engagements.navEngagements
+            : dictionary.dashboard.navDashboard,
     })),
   );
 

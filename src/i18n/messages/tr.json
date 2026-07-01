@@ -512,5 +512,284 @@
         "restoredHint": "Geri yükleme olayları için zaman çizelgesine bakın"
       }
     }
+  },
+  "engagements": {
+    "navEngagements": "Engagements",
+    "title": "Engagements",
+    "subtitle": "Audit and assurance engagements in your workspace",
+    "breadcrumbRoot": "Engagements",
+    "search": "Search engagements",
+    "filterAll": "All",
+    "filterActive": "Active",
+    "filterInactive": "Inactive",
+    "filterArchived": "Archived",
+    "filterSuspended": "Suspended",
+    "filterLifecycleAll": "All stages",
+    "sortName": "Name",
+    "sortUpdated": "Last updated",
+    "sortAsc": "Ascending",
+    "sortDesc": "Descending",
+    "columnEngagement": "Engagement",
+    "columnClient": "Client",
+    "columnCode": "Code",
+    "columnType": "Type",
+    "columnLifecycle": "Lifecycle",
+    "columnFramework": "Framework",
+    "columnStatus": "Status",
+    "columnUpdated": "Updated",
+    "emptyTitle": "No engagements yet",
+    "emptyDescription": "Engagements in this workspace will appear here once created.",
+    "errorTitle": "Unable to load engagements",
+    "errorDescription": "Something went wrong while loading your engagement list.",
+    "forbiddenTitle": "Access restricted",
+    "forbiddenDescription": "You do not have permission to view engagements in this workspace.",
+    "noWorkspaceTitle": "Workspace required",
+    "noWorkspaceDescription": "Select a workspace to view engagements.",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The engagement view you requested could not be found.",
+    "loading": "Loading engagements",
+    "results": "{count} engagements",
+    "page": "Page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next",
+    "viewEngagement": "View engagement",
+    "openMenu": "Open actions menu",
+    "selected": "{count} selected",
+    "frameworkIfrs": "IFRS",
+    "frameworkLocalGaap": "Local GAAP",
+    "frameworkOther": "Other",
+    "updated": "Updated",
+    "quickActions": "Quick actions",
+    "createEngagement": "Create engagement",
+    "lifecycleStatuses": {
+      "draft": "Draft",
+      "planning": "Planning",
+      "fieldwork": "Fieldwork",
+      "review": "Review",
+      "completed": "Completed",
+      "closed": "Closed"
+    },
+    "create": {
+      "title": "Create an engagement",
+      "subtitle": "Set up a new audit or assurance engagement in guided steps",
+      "breadcrumbEngagements": "Engagements",
+      "breadcrumbCreate": "Create",
+      "stepGeneral": "General",
+      "stepClient": "Client",
+      "stepReporting": "Reporting",
+      "stepTeam": "Team",
+      "stepDates": "Dates",
+      "stepNotes": "Notes",
+      "stepReview": "Review",
+      "stepGeneralTitle": "General information",
+      "stepGeneralDescription": "Engagement name, code, and type",
+      "stepClientTitle": "Client company",
+      "stepClientDescription": "Select the legal entity for this engagement",
+      "stepReportingTitle": "Reporting",
+      "stepReportingDescription": "Framework and reporting period",
+      "stepTeamTitle": "Team",
+      "stepTeamDescription": "Team assignment for this engagement",
+      "stepDatesTitle": "Planned dates",
+      "stepDatesDescription": "Schedule boundaries for fieldwork and delivery",
+      "stepNotesTitle": "Notes",
+      "stepNotesDescription": "Optional description and internal notes",
+      "stepReviewTitle": "Review & create",
+      "stepReviewDescription": "Confirm details before creating",
+      "name": "Engagement name",
+      "engagementCode": "Engagement code",
+      "engagementType": "Engagement type",
+      "lifecycleStatus": "Lifecycle status",
+      "clientCompany": "Client company",
+      "selectClient": "Select client company",
+      "reportingFramework": "Reporting framework",
+      "periodStart": "Period start",
+      "periodEnd": "Period end",
+      "plannedStart": "Planned start",
+      "plannedEnd": "Planned end",
+      "description": "Description",
+      "notes": "Notes",
+      "optional": "Optional",
+      "continue": "Continue",
+      "back": "Back",
+      "cancel": "Cancel",
+      "createEngagement": "Create engagement",
+      "creating": "Creating engagement…",
+      "autosaveHint": "Progress is saved locally on this device.",
+      "forbiddenTitle": "Permission required",
+      "forbiddenDescription": "You need engagement creation permission to create engagements.",
+      "teamPlaceholderTitle": "Team assignment coming soon",
+      "teamPlaceholderDescription": "Member assignment will be available in a future release. You can add team members after creating the engagement.",
+      "engagementTypes": {
+        "statutory_audit": "Statutory audit",
+        "review": "Review",
+        "agreed_upon_procedures": "Agreed-upon procedures",
+        "advisory": "Advisory",
+        "other": "Other"
+      },
+      "frameworks": {
+        "IFRS": "IFRS",
+        "LOCAL_GAAP": "Local GAAP",
+        "OTHER": "Other"
+      }
+    },
+    "workspace": {
+      "heroEyebrow": "Engagement workspace",
+      "navAriaLabel": "Engagement workspace sections",
+      "navOverview": "Overview",
+      "navMembers": "Members",
+      "navHistory": "History",
+      "navSettings": "Settings",
+      "loading": "Loading engagement workspace",
+      "errorTitle": "Unable to load engagement workspace",
+      "errorDescription": "Something went wrong while loading this engagement workspace.",
+      "summaryClient": "Client",
+      "summaryCode": "Code",
+      "summaryType": "Engagement type",
+      "summaryLifecycle": "Lifecycle",
+      "summaryFramework": "Reporting framework",
+      "summaryPlannedDates": "Planned dates",
+      "metadataTitle": "Engagement metadata",
+      "metadataDescription": "Identity and record details for this engagement.",
+      "metadataSlug": "Workspace slug",
+      "metadataCreated": "Created",
+      "metadataPlannedDates": "Planned dates",
+      "metadataMembers": "Team members",
+      "sections": {
+        "overview": {
+          "title": "Overview",
+          "description": "A calm snapshot of this engagement.",
+          "highlightsTitle": "Highlights",
+          "highlightsDescription": "Context and status at a glance.",
+          "noDescription": "No engagement description has been added yet."
+        },
+        "members": {
+          "title": "Members"
+        },
+        "history": {
+          "title": "History",
+          "description": "Chronological activity and audit trail for this engagement.",
+          "emptyTitle": "No activity yet",
+          "emptyDescription": "Activity history will appear here as changes are recorded."
+        },
+        "settings": {
+          "title": "Settings",
+          "description": "Configuration and lifecycle controls for this engagement."
+        }
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Configure engagement details, reporting, and lifecycle status.",
+      "readOnlyNotice": "You have view-only access to engagement settings.",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…",
+      "discardLabel": "Discard",
+      "sections": {
+        "general": {
+          "title": "General",
+          "description": "Name, code, type, and lifecycle status."
+        },
+        "client": {
+          "title": "Client",
+          "description": "The legal entity this engagement serves."
+        },
+        "reporting": {
+          "title": "Reporting",
+          "description": "Framework and reporting period."
+        },
+        "dates": {
+          "title": "Dates",
+          "description": "Planned schedule for this engagement."
+        },
+        "notes": {
+          "title": "Notes",
+          "description": "Description and internal notes."
+        }
+      },
+      "lifecycle": {
+        "title": "Lifecycle",
+        "description": "Archive or restore this engagement when its status changes.",
+        "archivedBannerTitle": "This engagement is archived",
+        "archivedBannerDescription": "The workspace is read-only. Restore the engagement to make changes again.",
+        "archivePrompt": "Archiving makes this engagement read-only while preserving its history.",
+        "archiveAction": "Archive engagement",
+        "archiveConfirmTitle": "Archive this engagement?",
+        "archiveConfirmDescription": "The engagement will become read-only. You can restore it later if needed.",
+        "archiveReasonPlaceholder": "Optional reason for archiving",
+        "archiveConfirmAction": "Confirm archive",
+        "restorePrompt": "Restore this engagement to resume configuration and fieldwork.",
+        "restoreAction": "Restore engagement",
+        "restoreConfirmTitle": "Restore this engagement?",
+        "restoreConfirmDescription": "The engagement will become active again and editable for authorized users.",
+        "restoreConfirmAction": "Confirm restore",
+        "reasonLabel": "Reason",
+        "cancelAction": "Cancel"
+      }
+    },
+    "overview": {
+      "editDescription": "Edit description",
+      "saveDescription": "Save description",
+      "cancelEdit": "Cancel"
+    },
+    "members": {
+      "title": "Team members",
+      "description": "People assigned to this engagement.",
+      "emptyTitle": "No members assigned",
+      "emptyDescription": "Team members will appear here once assigned to this engagement.",
+      "memberIdHint": "User identifier",
+      "placeholderNote": "Member management and invitations will be available in a future release.",
+      "roles": {
+        "engagement_partner": "Engagement partner",
+        "engagement_manager": "Engagement manager",
+        "senior": "Senior",
+        "staff": "Staff",
+        "reviewer": "Reviewer",
+        "observer": "Observer"
+      }
+    },
+    "history": {
+      "title": "Activity & audit",
+      "description": "Read-only timeline of engagement changes and audit summary.",
+      "errorTitle": "Unable to load activity",
+      "errorDescription": "Something went wrong while loading engagement activity.",
+      "summary": {
+        "title": "Audit summary",
+        "description": "Counts of recorded events for this engagement.",
+        "total": "Total events",
+        "created": "Created",
+        "updated": "Updated",
+        "statusChanged": "Status changed",
+        "archived": "Archived",
+        "restored": "Restored"
+      },
+      "timeline": {
+        "title": "Activity timeline",
+        "description": "Chronological audit trail for this engagement.",
+        "emptyTitle": "No activity recorded",
+        "emptyDescription": "Changes to this engagement will appear here as they are audited.",
+        "reasonArchive": "Archive reason",
+        "reasonRestore": "Restore reason",
+        "fieldsChanged": "Fields changed",
+        "actions": {
+          "engagement.created": "Engagement created",
+          "engagement.updated": "Engagement updated",
+          "engagement.status.changed": "Status changed",
+          "engagement.archived": "Engagement archived",
+          "engagement.restored": "Engagement restored"
+        }
+      },
+      "version": {
+        "title": "Version information",
+        "description": "Current record versions and lifecycle timestamps.",
+        "cardTitle": "Record metadata",
+        "recordVersion": "Record version",
+        "created": "Created",
+        "archived": "Archived at",
+        "notArchived": "Not archived",
+        "restored": "Restored",
+        "restoredHint": "See timeline for restore events"
+      }
+    }
   }
 }

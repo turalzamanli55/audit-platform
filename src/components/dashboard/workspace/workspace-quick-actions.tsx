@@ -7,7 +7,7 @@ import {
   IconUsers,
   IconZap,
 } from "@/components/ui/icons";
-import { COMPANIES_NEW_PATH } from "@/config/dashboard-navigation";
+import { COMPANIES_NEW_PATH, ENGAGEMENTS_NEW_PATH } from "@/config/dashboard-navigation";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardWorkspaceCompany } from "@/lib/dashboard/load-dashboard-workspace";
 import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
@@ -34,7 +34,12 @@ export function WorkspaceQuickActions({
       href: `/${locale}${COMPANIES_NEW_PATH}`,
       enabled: true,
     },
-    { id: "create-engagement", label: labels.createEngagement, href: "#", enabled: false },
+    {
+      id: "create-engagement",
+      label: labels.createEngagement,
+      href: `/${locale}${ENGAGEMENTS_NEW_PATH}`,
+      enabled: true,
+    },
     { id: "import-tb", label: labels.importTrialBalance, href: "#", enabled: false },
     {
       id: "continue",

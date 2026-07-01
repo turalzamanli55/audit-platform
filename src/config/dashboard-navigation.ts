@@ -2,6 +2,8 @@ import { DASHBOARD_PATH } from "@/config/auth";
 
 export const COMPANIES_PATH = "/app/companies";
 export const COMPANIES_NEW_PATH = "/app/companies/new";
+export const ENGAGEMENTS_PATH = "/app/engagements";
+export const ENGAGEMENTS_NEW_PATH = "/app/engagements/new";
 
 export type DashboardNavItem = {
   href: string;
@@ -15,6 +17,7 @@ export type DashboardNavItem = {
 export const defaultDashboardNavItems: DashboardNavItem[] = [
   { href: DASHBOARD_PATH, label: "Dashboard" },
   { href: COMPANIES_PATH, label: "Companies" },
+  { href: ENGAGEMENTS_PATH, label: "Engagements" },
 ];
 
 export function coerceDashboardNavItems(items: unknown): DashboardNavItem[] {

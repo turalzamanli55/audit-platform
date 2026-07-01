@@ -10,4 +10,9 @@ export const AUDIT_ACTIONS = {
   COMPANY_SETTINGS_UPDATED: "company.settings.updated",
   COMPANY_ARCHIVED: "company.archived",
   COMPANY_RESTORED: "company.restored",
+  ENGAGEMENT_CREATED: "engagement.created",
+  ENGAGEMENT_UPDATED: "engagement.updated",
+  ENGAGEMENT_STATUS_CHANGED: "engagement.status.changed",
+  ENGAGEMENT_ARCHIVED: "engagement.archived",
+  ENGAGEMENT_RESTORED: "engagement.restored",
 } as const;
