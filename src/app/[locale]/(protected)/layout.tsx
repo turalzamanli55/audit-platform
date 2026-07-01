@@ -8,6 +8,7 @@ import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import {
   coerceDashboardNavItems,
+  COMPANIES_PATH,
   defaultDashboardNavItems,
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
@@ -39,7 +40,10 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
   const navItems = coerceDashboardNavItems(
     (Array.isArray(defaultDashboardNavItems) ? defaultDashboardNavItems : []).map((item) => ({
       ...item,
-      label: dictionary.dashboard.navDashboard,
+      label:
+        item.href === COMPANIES_PATH
+          ? dictionary.companies.navCompanies
+          : dictionary.dashboard.navDashboard,
     })),
   );
 
