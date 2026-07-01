@@ -21,7 +21,7 @@ export function CompanySettingsNav({ items, ariaLabel, className = "" }: Company
 
   return (
     <nav aria-label={ariaLabel} className={className}>
-      <ul className="flex gap-1 overflow-x-auto pb-1 md:flex-col md:gap-0.5 md:overflow-visible md:pb-0">
+      <ul className="-mx-1 flex gap-1 overflow-x-auto overscroll-x-contain px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] md:mx-0 md:flex-col md:gap-0.5 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
         {items.map((item) => {
           const active = isActive(pathname, item.href);
           return (

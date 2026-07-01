@@ -45,8 +45,10 @@ export function AppSidebar({ children, brand, footer }: AppSidebarProps) {
         </Button>
       </div>
       <div className="flex flex-1 flex-col overflow-y-auto px-3 py-4">{children}</div>
-      {footer && !sidebarCollapsed ? (
-        <div className="border-t border-sidebar-border p-4">{footer}</div>
+      {footer ? (
+        <div className={cn("border-t border-sidebar-border p-4", sidebarCollapsed && "lg:hidden")}>
+          {footer}
+        </div>
       ) : null}
     </>
   );
@@ -76,7 +78,7 @@ export function AppSidebar({ children, brand, footer }: AppSidebarProps) {
               onClick={() => setMobileNavOpen(false)}
             />
             <aside
-              className="absolute inset-y-0 left-0 flex w-[min(100%,18rem)] flex-col bg-sidebar text-sidebar-foreground shadow-xl ds-animate-slide-up"
+              className="absolute inset-y-0 left-0 flex w-[min(100%,18rem)] flex-col bg-sidebar text-sidebar-foreground shadow-xl ds-animate-slide-up ds-safe-top ds-safe-bottom"
               role="navigation"
               aria-label="Main navigation"
             >

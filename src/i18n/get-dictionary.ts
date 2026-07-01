@@ -17,6 +17,13 @@ export type Dictionary = {
     foundation: string;
     searchPlaceholder: string;
     companySwitcher: string;
+    language: string;
+    notifications: string;
+    notificationsEmpty: string;
+    markAllRead: string;
+    userMenu: string;
+    profile: string;
+    openSearch: string;
     commandPalette: {
       placeholder: string;
       empty: string;

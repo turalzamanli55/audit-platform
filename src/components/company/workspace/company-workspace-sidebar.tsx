@@ -35,7 +35,7 @@ export function CompanyWorkspaceSidebar({
 
   return (
     <nav aria-label={ariaLabel} className={className}>
-      <ul className="flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:pb-0">
+      <ul className="-mx-1 flex gap-1 overflow-x-auto overscroll-x-contain px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
         {items.map((item) => {
           const active = isActive(pathname, item);
           return (

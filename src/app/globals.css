@@ -287,6 +287,14 @@
     max-width: var(--ds-readable-max-width);
   }
 
+  .ds-safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .ds-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
   .ds-shell-grid {
     display: grid;
     grid-template-rows: var(--ds-header-height) 1fr;

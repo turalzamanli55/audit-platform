@@ -12,7 +12,7 @@ export function ContentArea({ children, className = "", flush = false }: Content
     <main
       id="main-content"
       className={cn(
-        "flex-1 overflow-y-auto bg-background",
+        "flex-1 overflow-y-auto overflow-x-hidden bg-background",
         flush ? "p-0" : "px-4 py-6 md:px-8 md:py-8",
         className,
       )}

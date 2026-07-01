@@ -1,21 +1,26 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { DashboardBrand, DashboardHeaderActions } from "@/components/dashboard/dashboard-header";
+import { useMemo, type ReactNode } from "react";
+import { DashboardBrand } from "@/components/dashboard/dashboard-header";
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { AppShell } from "@/components/layout/app-shell";
 import { CommandPalette, type CommandPaletteItem } from "@/components/shell/command-palette";
 import { GlobalSearchTrigger } from "@/components/shell/shell-nav";
+import {
+  ShellHeaderActions,
+  type ShellHeaderActionsLabels,
+} from "@/components/shell/shell-header-actions";
+import {
+  ShellDrawerFooter,
+  type ShellDrawerFooterLabels,
+} from "@/components/shell/shell-drawer-footer";
+import type { CompanySwitcherItem } from "@/components/shell/company-switcher";
 import type { DashboardNavItem } from "@/config/dashboard-navigation";
 import { COMPANIES_PATH } from "@/config/dashboard-navigation";
 import { DASHBOARD_PATH } from "@/config/auth";
+import { useTheme } from "@/providers";
 
-type AppShellExperienceLabels = {
-  organization: string;
-  workspace: string;
-  themeLight: string;
-  themeDark: string;
-  theme: string;
+type AppShellExperienceLabels = ShellHeaderActionsLabels & {
   searchPlaceholder: string;
   commandPalette: {
     placeholder: string;
@@ -33,11 +38,13 @@ type AppShellExperienceProps = {
   locale: string;
   navItems: DashboardNavItem[];
   labels: AppShellExperienceLabels;
+  companies: CompanySwitcherItem[];
 };
 
 function buildCommandItems(
   navItems: DashboardNavItem[],
   labels: AppShellExperienceLabels,
+  setMode: (mode: "light" | "dark" | "system") => void,
 ): CommandPaletteItem[] {
   const navigation = navItems.map((item) => ({
     id: item.href,
@@ -69,12 +76,14 @@ function buildCommandItems(
       label: labels.themeLight,
       group: "settings",
       keywords: ["theme", "light"],
+      onSelect: () => setMode("light"),
     },
     {
       id: "theme-dark",
       label: labels.themeDark,
       group: "settings",
       keywords: ["theme", "dark"],
+      onSelect: () => setMode("dark"),
     },
   ];
 }
@@ -84,25 +93,34 @@ export function AppShellExperience({
   locale,
   navItems,
   labels,
+  companies,
 }: AppShellExperienceProps) {
-  const commandItems = buildCommandItems(navItems, labels);
+  const { setMode } = useTheme();
+  const commandItems = useMemo(
+    () => buildCommandItems(navItems, labels, setMode),
+    [navItems, labels, setMode],
+  );
+
+  const drawerLabels: ShellDrawerFooterLabels = {
+    organization: labels.organization,
+    workspace: labels.workspace,
+    company: labels.company,
+    theme: labels.theme,
+    themeLight: labels.themeLight,
+    themeDark: labels.themeDark,
+    language: labels.language,
+    userMenu: labels.userMenu,
+    profile: labels.profile,
+    signOut: labels.signOut,
+  };
 
   return (
     <AppShell
       brand={<DashboardBrand />}
       headerCenter={<GlobalSearchTrigger placeholder={labels.searchPlaceholder} />}
-      headerRight={
-        <DashboardHeaderActions
-          labels={{
-            organization: labels.organization,
-            workspace: labels.workspace,
-            themeLight: labels.themeLight,
-            themeDark: labels.themeDark,
-            theme: labels.theme,
-          }}
-        />
-      }
+      headerRight={<ShellHeaderActions labels={labels} companies={companies} />}
       sidebar={<DashboardNav items={navItems} />}
+      sidebarFooter={<ShellDrawerFooter labels={drawerLabels} companies={companies} />}
       overlay={
         <CommandPalette
           items={commandItems}

@@ -13,6 +13,13 @@
     "foundation": "Основа платформы готова",
     "searchPlaceholder": "Поиск или переход…",
     "companySwitcher": "Компании",
+    "language": "Язык",
+    "notifications": "Уведомления",
+    "notificationsEmpty": "Уведомлений пока нет",
+    "markAllRead": "Отметить все как прочитанные",
+    "userMenu": "Меню аккаунта",
+    "profile": "Профиль",
+    "openSearch": "Открыть поиск",
     "commandPalette": {
       "placeholder": "Поиск страниц, действий и настроек…",
       "empty": "Команды не найдены",

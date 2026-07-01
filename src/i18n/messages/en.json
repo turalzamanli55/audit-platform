@@ -13,6 +13,13 @@
     "foundation": "Platform foundation is ready",
     "searchPlaceholder": "Search or jump to…",
     "companySwitcher": "Companies",
+    "language": "Language",
+    "notifications": "Notifications",
+    "notificationsEmpty": "No notifications yet",
+    "markAllRead": "Mark all as read",
+    "userMenu": "Account menu",
+    "profile": "Profile",
+    "openSearch": "Open search",
     "commandPalette": {
       "placeholder": "Search pages, actions, and settings…",
       "empty": "No matching commands",

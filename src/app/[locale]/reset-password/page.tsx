@@ -17,9 +17,15 @@ export default async function ResetPasswordPage({ params }: ResetPasswordPagePro
 
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
+  const chromeLabels = {
+    language: dictionary.marketing.nav.language,
+    theme: dictionary.marketing.nav.theme,
+    themeLight: dictionary.marketing.nav.themeLight,
+    themeDark: dictionary.marketing.nav.themeDark,
+  };
 
   return (
-    <GuestShell locale={locale}>
+    <GuestShell locale={locale} chromeLabels={chromeLabels}>
       <AuthLayout>
         <ResetPasswordForm
           locale={locale}

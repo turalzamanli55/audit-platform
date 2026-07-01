@@ -19,9 +19,15 @@ export default async function VerifyEmailPage({ params, searchParams }: VerifyEm
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const { email, status } = await searchParams;
+  const chromeLabels = {
+    language: dictionary.marketing.nav.language,
+    theme: dictionary.marketing.nav.theme,
+    themeLight: dictionary.marketing.nav.themeLight,
+    themeDark: dictionary.marketing.nav.themeDark,
+  };
 
   return (
-    <GuestShell locale={locale}>
+    <GuestShell locale={locale} chromeLabels={chromeLabels}>
       <AuthLayout>
         <VerifyEmailExperience
           locale={locale}

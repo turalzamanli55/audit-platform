@@ -24,8 +24,13 @@ export function OrganizationSwitcher({ label }: OrganizationSwitcherProps) {
   }
 
   if (organizations.length === 1) {
+    const name = current?.name ?? organizations[0]?.name;
     return (
-      <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal">
+      <Button
+        variant="ghost"
+        className="h-10 gap-2 px-2.5 font-normal"
+        aria-label={`${label}: ${name}`}
+      >
         <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
           <IconBuilding width={16} height={16} />
         </span>
@@ -39,7 +44,7 @@ export function OrganizationSwitcher({ label }: OrganizationSwitcherProps) {
   return (
     <DropdownMenu
       trigger={
-        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal">
+        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal" aria-label={`${label}: ${current?.name ?? "—"}`}>
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
             <IconBuilding width={16} height={16} />
           </span>

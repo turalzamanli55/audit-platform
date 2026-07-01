@@ -13,6 +13,13 @@
     "foundation": "Platforma təməli hazırdır",
     "searchPlaceholder": "Axtar və ya keç…",
     "companySwitcher": "Şirkətlər",
+    "language": "Dil",
+    "notifications": "Bildirişlər",
+    "notificationsEmpty": "Hələ bildiriş yoxdur",
+    "markAllRead": "Hamısını oxunmuş et",
+    "userMenu": "Hesab menyusu",
+    "profile": "Profil",
+    "openSearch": "Axtarışı aç",
     "commandPalette": {
       "placeholder": "Səhifələr, əməliyyatlar və parametrlər axtar…",
       "empty": "Uyğun əmr tapılmadı",

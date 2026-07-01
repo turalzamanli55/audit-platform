@@ -6,12 +6,18 @@ type GuestShellProps = {
   children: ReactNode;
   locale: string;
   wide?: boolean;
+  chromeLabels: {
+    language: string;
+    theme: string;
+    themeLight: string;
+    themeDark: string;
+  };
 };
 
-export function GuestShell({ children, locale, wide = false }: GuestShellProps) {
+export function GuestShell({ children, locale, wide = false, chromeLabels }: GuestShellProps) {
   return (
     <GuestRouteGuard>
-      <PublicAuthShell locale={locale} wide={wide}>
+      <PublicAuthShell locale={locale} wide={wide} chromeLabels={chromeLabels}>
         {children}
       </PublicAuthShell>
     </GuestRouteGuard>

@@ -147,3 +147,40 @@ export function IconInfo(props: IconProps) {
     </svg>
   );
 }
+
+export function IconBell(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <path
+        d="M12 3a5 5 0 00-5 5v2.5c0 .69-.28 1.35-.78 1.84L5 14.5h14l-1.22-1.16A2.6 2.6 0 0117 10.5V8a5 5 0 00-5-5z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+      <path d="M10 17.5a2 2 0 004 0" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconUser(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.75" />
+      <path
+        d="M5.5 19.5c.94-2.8 3.28-4.5 6.5-4.5s5.56 1.7 6.5 4.5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconGlobe(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M3 12h18M12 3c2.5 2.7 2.5 14.3 0 18M12 3c-2.5 2.7-2.5 14.3 0 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}

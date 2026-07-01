@@ -1,34 +1,27 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import { siteConfig } from "@/config/site";
+import { PublicAuthChrome } from "./public-auth-chrome";
 import { cn } from "@/lib/ui/cn";
 
 type PublicAuthShellProps = {
   children: ReactNode;
   locale: string;
   wide?: boolean;
+  chromeLabels: {
+    language: string;
+    theme: string;
+    themeLight: string;
+    themeDark: string;
+  };
 };
 
-export function PublicAuthShell({ children, locale, wide = false }: PublicAuthShellProps) {
+export function PublicAuthShell({ children, locale, wide = false, chromeLabels }: PublicAuthShellProps) {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
-      <header className="border-b border-border/60 bg-card/70 backdrop-blur-xl">
-        <div className="ds-container flex h-[var(--ds-header-height)] items-center">
-          <Link
-            href={`/${locale}`}
-            className="flex items-center gap-2.5 rounded-xl px-1 py-1 transition-opacity hover:opacity-80"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-sm font-semibold text-primary-foreground">
-              {siteConfig.name.slice(0, 1)}
-            </span>
-            <span className="text-base font-semibold tracking-tight">{siteConfig.name}</span>
-          </Link>
-        </div>
-      </header>
+      <PublicAuthChrome locale={locale} labels={chromeLabels} />
       <main
         id="main-content"
         className={cn(
-          "flex flex-1 px-4 py-10 sm:px-6",
+          "flex flex-1 px-4 py-8 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-10",
           wide ? "items-start justify-center lg:items-center lg:py-12" : "items-center justify-center",
         )}
         role="main"

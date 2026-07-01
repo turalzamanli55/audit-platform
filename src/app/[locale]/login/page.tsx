@@ -16,9 +16,15 @@ export default async function LoginPage({ params }: LoginPageProps) {
 
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
+  const chromeLabels = {
+    language: dictionary.marketing.nav.language,
+    theme: dictionary.marketing.nav.theme,
+    themeLight: dictionary.marketing.nav.themeLight,
+    themeDark: dictionary.marketing.nav.themeDark,
+  };
 
   return (
-    <GuestShell locale={locale}>
+    <GuestShell locale={locale} chromeLabels={chromeLabels}>
       <LoginForm
         locale={locale}
         experience={dictionary.authExperience}

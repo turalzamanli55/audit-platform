@@ -48,7 +48,7 @@ export function CompanySwitcher({
     <DropdownMenu
       className={className}
       trigger={
-        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal">
+        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal" aria-label={`${label}: ${current?.name ?? emptyLabel}`}>
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground">
             <IconBriefcase width={16} height={16} />
           </span>

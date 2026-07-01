@@ -44,12 +44,14 @@ type ShellNavItemProps = {
 
 export function ShellNavItem({ href, label, icon, collapsed = false }: ShellNavItemProps) {
   const pathname = usePathname();
+  const { setMobileNavOpen } = useShell();
   const active = pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <Link
       href={href}
       title={collapsed ? label : undefined}
+      onClick={() => setMobileNavOpen(false)}
       className={cn(
         "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
         active

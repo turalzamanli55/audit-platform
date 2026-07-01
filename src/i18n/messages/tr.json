@@ -13,6 +13,13 @@
     "foundation": "Platform temeli hazır",
     "searchPlaceholder": "Ara veya git…",
     "companySwitcher": "Şirketler",
+    "language": "Dil",
+    "notifications": "Bildirimler",
+    "notificationsEmpty": "Henüz bildirim yok",
+    "markAllRead": "Tümünü okundu işaretle",
+    "userMenu": "Hesap menüsü",
+    "profile": "Profil",
+    "openSearch": "Aramayı aç",
     "commandPalette": {
       "placeholder": "Sayfalar, eylemler ve ayarlar ara…",
       "empty": "Eşleşen komut yok",

@@ -9,6 +9,7 @@ import {
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
 import { getTenantBootstrap } from "@/lib/auth/server";
+import { loadCompanyList } from "@/lib/company/load-company-list";
 import { getDictionary, isValidLocale, type Locale } from "@/i18n";
 import { defaultLocale } from "@/i18n/config";
 
@@ -33,6 +34,15 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
     roleSlugs: [],
   };
 
+  const companyResult = await loadCompanyList();
+  const companies = companyResult.ok
+    ? companyResult.items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        slug: item.slug,
+      }))
+    : [];
+
   const navItems = coerceDashboardNavItems(
     (Array.isArray(defaultDashboardNavItems) ? defaultDashboardNavItems : []).map((item) => ({
       ...item,
@@ -53,12 +63,22 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
           <AppShellExperience
             locale={locale}
             navItems={navItems}
+            companies={companies}
             labels={{
               organization: dictionary.dashboard.organization,
               workspace: dictionary.dashboard.workspace,
+              company: dictionary.shell.companySwitcher,
               themeLight: dictionary.dashboard.themeLight,
               themeDark: dictionary.dashboard.themeDark,
               theme: dictionary.dashboard.theme,
+              language: dictionary.shell.language,
+              notifications: dictionary.shell.notifications,
+              notificationsEmpty: dictionary.shell.notificationsEmpty,
+              markAllRead: dictionary.shell.markAllRead,
+              userMenu: dictionary.shell.userMenu,
+              profile: dictionary.shell.profile,
+              signOut: dictionary.auth.signOut,
+              openSearch: dictionary.shell.openSearch,
               searchPlaceholder: dictionary.shell.searchPlaceholder,
               commandPalette: dictionary.shell.commandPalette,
             }}

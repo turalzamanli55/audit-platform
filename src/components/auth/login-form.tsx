@@ -63,7 +63,7 @@ export function LoginForm({ locale, labels, experience }: LoginFormProps) {
   }
 
   return (
-    <div className="grid w-full max-w-5xl gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-16">
+    <div className="mx-auto grid w-full max-w-5xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-16">
       <div className="hidden space-y-8 lg:block">
         <AuthBenefits items={experience.login.benefits} />
         <AuthQuote quote={experience.login.quote} author={experience.login.quoteAuthor} />

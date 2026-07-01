@@ -17,6 +17,7 @@ import { useLanguage } from "@/providers";
 import { useTheme } from "@/providers";
 import { cn } from "@/lib/ui/cn";
 import { PublicLinkButton } from "./ui/public-link-button";
+import { PublicLocaleThemeControls } from "./public-locale-theme-controls";
 
 type PublicHeaderProps = {
   locale: string;
@@ -58,7 +59,7 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-[1200] transition-all duration-300 motion-reduce:transition-none",
+        "sticky top-0 z-[1200] transition-all duration-300 motion-reduce:transition-none ds-safe-top",
         scrolled
           ? "border-b border-border/60 bg-background/75 shadow-xs backdrop-blur-xl supports-[backdrop-filter]:bg-background/65"
           : "border-b border-transparent bg-transparent",
@@ -152,7 +153,17 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
               </a>
             ))}
           </nav>
-          <div className="mt-5 grid gap-2 border-t border-border/60 pt-5">
+          <div className="mt-5 space-y-4 border-t border-border/60 pt-5">
+            <PublicLocaleThemeControls
+              labels={{
+                language: labels.language,
+                theme: labels.theme,
+                themeLight: labels.themeLight,
+                themeDark: labels.themeDark,
+              }}
+              layout="stacked"
+            />
+            <div className="grid gap-2">
             <PublicLinkButton href={`/${locale}/login`} variant="outline" className="w-full">
               {labels.signIn}
             </PublicLinkButton>
@@ -162,6 +173,7 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
             <PublicLinkButton href="mailto:hello@audit.platform" variant="ghost" className="w-full">
               {labels.requestDemo}
             </PublicLinkButton>
+            </div>
           </div>
         </div>
       ) : null}

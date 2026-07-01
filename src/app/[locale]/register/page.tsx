@@ -19,9 +19,15 @@ export default async function RegisterPage({ params }: RegisterPageProps) {
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const experience = dictionary.authExperience;
+  const chromeLabels = {
+    language: dictionary.marketing.nav.language,
+    theme: dictionary.marketing.nav.theme,
+    themeLight: dictionary.marketing.nav.themeLight,
+    themeDark: dictionary.marketing.nav.themeDark,
+  };
 
   return (
-    <GuestShell locale={locale} wide>
+    <GuestShell locale={locale} wide chromeLabels={chromeLabels}>
       <AuthLayout
         variant="split"
         illustrationLabel={dictionary.auth.registerTitle}

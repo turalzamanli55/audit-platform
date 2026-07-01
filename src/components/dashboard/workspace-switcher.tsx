@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { IconChevronDown } from "@/components/ui/icons";
+import { IconChevronDown, IconLayoutDashboard } from "@/components/ui/icons";
 import { useTenant } from "@/providers/tenant-provider";
 
 type WorkspaceSwitcherProps = {
@@ -24,20 +24,30 @@ export function WorkspaceSwitcher({ label }: WorkspaceSwitcherProps) {
   }
 
   if (workspaces.length === 1) {
+    const name = current?.name ?? workspaces[0]?.name;
     return (
-      <span className="hidden items-center gap-2 text-sm text-muted-foreground md:inline-flex">
-        <span>{label}</span>
-        <span className="font-medium text-foreground">{current?.name ?? workspaces[0]?.name}</span>
-      </span>
+      <Button
+        variant="ghost"
+        className="h-10 gap-2 px-2.5 font-normal"
+        title={`${label}: ${name}`}
+        aria-label={`${label}: ${name}`}
+      >
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+          <IconLayoutDashboard width={16} height={16} />
+        </span>
+        <span className="hidden max-w-[8rem] truncate font-medium sm:inline">{name}</span>
+      </Button>
     );
   }
 
   return (
     <DropdownMenu
       trigger={
-        <Button variant="ghost" className="hidden h-10 gap-2 px-2.5 font-normal md:inline-flex">
-          <span className="text-muted-foreground">{label}</span>
-          <span className="max-w-[8rem] truncate font-medium">{current?.name ?? "—"}</span>
+        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal" aria-label={`${label}: ${current?.name ?? "—"}`}>
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+            <IconLayoutDashboard width={16} height={16} />
+          </span>
+          <span className="hidden max-w-[8rem] truncate font-medium sm:inline">{current?.name ?? "—"}</span>
           <IconChevronDown className="text-muted-foreground" />
         </Button>
       }
