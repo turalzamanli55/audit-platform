@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,15 +37,21 @@ export function UserMenu({ labels, className }: UserMenuProps) {
   const router = useRouter();
   const pathname = usePathname();
   const locale = resolveLocale(pathname);
+  const [signingOut, setSigningOut] = useState(false);
 
   if (session.status !== "authenticated" || !session.user) {
     return null;
   }
 
   async function handleSignOut() {
-    await signOutAction({});
-    router.push(`/${locale}`);
-    router.refresh();
+    setSigningOut(true);
+    try {
+      await signOutAction({});
+      router.push(`/${locale}`);
+      router.refresh();
+    } finally {
+      setSigningOut(false);
+    }
   }
 
   const displayName = session.user.displayName || session.user.email;
@@ -54,7 +61,11 @@ export function UserMenu({ labels, className }: UserMenuProps) {
       className={className}
       align="end"
       trigger={
-        <Button variant="ghost" className="h-9 gap-2 px-1.5 sm:h-10 sm:px-2" aria-label={labels.title}>
+        <Button
+          variant="ghost"
+          className="h-9 gap-2 px-1.5 sm:h-10 sm:px-2"
+          aria-label={labels.title}
+        >
           <Avatar name={displayName} size="sm" />
           <span className="hidden max-w-[8rem] truncate text-sm font-medium lg:inline">{displayName}</span>
         </Button>
@@ -72,8 +83,8 @@ export function UserMenu({ labels, className }: UserMenuProps) {
         {labels.profile}
       </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem destructive onSelect={handleSignOut}>
-        {labels.signOut}
+      <DropdownMenuItem destructive disabled={signingOut} onSelect={handleSignOut}>
+        {signingOut ? "…" : labels.signOut}
       </DropdownMenuItem>
     </DropdownMenu>
   );

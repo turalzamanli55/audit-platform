@@ -170,7 +170,9 @@ export function CommandPalette({ items, labels, locale }: CommandPaletteProps) {
                 setActiveIndex(0);
               }}
               placeholder={labels.placeholder}
-              className="h-14 w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+              className="h-14 w-full bg-transparent text-sm text-foreground caret-primary outline-none placeholder:text-muted-foreground"
+              autoComplete="off"
+              spellCheck={false}
             />
             <kbd className="hidden rounded-md border border-border/60 bg-muted px-2 py-1 text-[0.6875rem] text-muted-foreground sm:inline">
               Esc

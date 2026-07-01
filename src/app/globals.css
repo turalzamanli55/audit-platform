@@ -254,12 +254,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    color-scheme: light dark;
   }
 
   body {
     min-height: 100%;
     max-width: 100%;
     overflow-x: clip;
+    transition: background-color 200ms var(--ds-easing-default), color 200ms var(--ds-easing-default);
     background-color: var(--ds-color-background);
     color: var(--ds-color-foreground);
     font-family: var(--ds-font-sans);

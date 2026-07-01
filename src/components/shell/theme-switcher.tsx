@@ -1,14 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
 import { IconMoon, IconSun } from "@/components/ui/icons";
 import { useTheme } from "@/providers";
+import { cn } from "@/lib/ui/cn";
 
 type ThemeSwitcherProps = {
   label: string;
@@ -19,20 +14,38 @@ type ThemeSwitcherProps = {
 
 export function ThemeSwitcher({ label, themeLight, themeDark, className }: ThemeSwitcherProps) {
   const { resolvedTheme, setMode } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  function handleToggle() {
+    setMode(isDark ? "light" : "dark");
+  }
+
+  const modeLabel = isDark ? themeDark : themeLight;
 
   return (
-    <DropdownMenu
-      className={className}
-      trigger={
-        <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 sm:h-10 sm:w-10" aria-label={label}>
-          {resolvedTheme === "dark" ? <IconSun /> : <IconMoon />}
-        </Button>
-      }
+    <Button
+      variant="ghost"
+      size="icon"
+      className={cn("relative h-9 w-9 shrink-0 overflow-hidden sm:h-10 sm:w-10", className)}
+      aria-label={`${label}: ${modeLabel}. Toggle theme.`}
+      onClick={handleToggle}
     >
-      <DropdownMenuLabel>{label}</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem onSelect={() => setMode("light")}>{themeLight}</DropdownMenuItem>
-      <DropdownMenuItem onSelect={() => setMode("dark")}>{themeDark}</DropdownMenuItem>
-    </DropdownMenu>
+      <IconSun
+        width={18}
+        height={18}
+        className={cn(
+          "absolute transition-all duration-200 motion-reduce:transition-none",
+          isDark ? "scale-100 rotate-0 opacity-100" : "scale-75 rotate-90 opacity-0",
+        )}
+      />
+      <IconMoon
+        width={18}
+        height={18}
+        className={cn(
+          "absolute transition-all duration-200 motion-reduce:transition-none",
+          isDark ? "scale-75 -rotate-90 opacity-0" : "scale-100 rotate-0 opacity-100",
+        )}
+      />
+    </Button>
   );
 }

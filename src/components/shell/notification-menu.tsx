@@ -32,7 +32,12 @@ export function NotificationMenu({ labels, className }: NotificationMenuProps) {
       className={className}
       align="end"
       trigger={
-        <Button variant="ghost" size="icon" className="relative h-9 w-9 shrink-0 sm:h-10 sm:w-10" aria-label={labels.title}>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative h-9 w-9 shrink-0 sm:h-10 sm:w-10"
+          aria-label={labels.title}
+        >
           <IconBell />
           {unreadCount > 0 ? (
             <span className="absolute right-1.5 top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[0.625rem] font-semibold text-primary-foreground">
@@ -49,7 +54,7 @@ export function NotificationMenu({ labels, className }: NotificationMenuProps) {
             <button
               type="button"
               onClick={markAllAsRead}
-              className="w-full rounded-lg px-3 py-1.5 text-left text-xs font-medium text-primary hover:bg-muted"
+              className="w-full cursor-pointer rounded-lg px-3 py-1.5 text-left text-xs font-medium text-primary transition-colors duration-200 hover:bg-muted active:scale-[0.99] motion-reduce:transform-none"
             >
               {labels.markAllRead}
             </button>
@@ -59,7 +64,13 @@ export function NotificationMenu({ labels, className }: NotificationMenuProps) {
       ) : null}
       <div className="max-h-72 overflow-y-auto">
         {notifications.length === 0 ? (
-          <p className="px-3 py-6 text-center text-sm text-muted-foreground">{labels.empty}</p>
+          <div className="flex flex-col items-center gap-3 px-4 py-8 text-center">
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted/80 text-muted-foreground shadow-xs">
+              <IconBell width={22} height={22} />
+            </span>
+            <p className="text-sm font-medium text-foreground">{labels.title}</p>
+            <p className="max-w-[14rem] text-sm leading-relaxed text-muted-foreground">{labels.empty}</p>
+          </div>
         ) : (
           notifications.map((notification) => (
             <DropdownMenuItem

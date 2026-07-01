@@ -71,6 +71,7 @@ export function AppSidebar({
               onClick={() => setMobileNavOpen(false)}
             />
             <aside
+              id="mobile-navigation"
               className="absolute inset-y-0 left-0 flex w-[min(100%,18rem)] flex-col bg-sidebar text-sidebar-foreground shadow-xl ds-animate-slide-up ds-safe-top ds-safe-bottom"
               role="navigation"
               aria-label="Main navigation"

@@ -3,35 +3,27 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { IconCommand, IconSearch } from "@/components/ui/icons";
+import { SearchCommandTrigger } from "./search-command-trigger";
 import { useShell } from "./shell-provider";
 import { cn } from "@/lib/ui/cn";
 
 type GlobalSearchTriggerProps = {
   placeholder: string;
+  label?: string;
   shortcutLabel?: string;
 };
 
 export function GlobalSearchTrigger({
   placeholder,
-  shortcutLabel = "⌘K",
+  label = "Open search",
+  shortcutLabel,
 }: GlobalSearchTriggerProps) {
-  const { setCommandPaletteOpen } = useShell();
-
   return (
-    <button
-      type="button"
-      onClick={() => setCommandPaletteOpen(true)}
-      className="group flex h-10 w-full max-w-md items-center gap-3 rounded-xl border border-border/60 bg-muted/30 px-3.5 text-sm text-muted-foreground transition-all duration-200 hover:border-border-strong hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-    >
-      <IconSearch className="text-muted-foreground transition-colors group-hover:text-foreground" />
-      <span className="flex-1 truncate text-left">{placeholder}</span>
-      <kbd className="hidden items-center gap-0.5 rounded-md border border-border/60 bg-card px-2 py-0.5 text-[0.6875rem] font-medium text-muted-foreground sm:inline-flex">
-        <IconCommand />
-        K
-      </kbd>
-      <span className="sr-only">{shortcutLabel}</span>
-    </button>
+    <SearchCommandTrigger
+      placeholder={placeholder}
+      label={label}
+      shortcutLabel={shortcutLabel}
+    />
   );
 }
 
@@ -53,7 +45,7 @@ export function ShellNavItem({ href, label, icon, collapsed = false }: ShellNavI
       title={collapsed ? label : undefined}
       onClick={() => setMobileNavOpen(false)}
       className={cn(
-        "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
+        "group flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 active:scale-[0.99] motion-reduce:transform-none",
         active
           ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-xs"
           : "text-sidebar-muted hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",

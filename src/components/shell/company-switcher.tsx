@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Avatar } from "@/components/ui/avatar";
-import { IconBriefcase, IconChevronDown } from "@/components/ui/icons";
+import { IconBriefcase, IconCheck, IconChevronDown } from "@/components/ui/icons";
 import { cn } from "@/lib/ui/cn";
 
 export type CompanySwitcherItem = {
@@ -38,8 +38,25 @@ export function CompanySwitcher({
 
   if (items.length === 0) {
     return (
-      <div className={cn("text-sm text-muted-foreground", className)}>
+      <div className={cn("px-2.5 text-sm text-muted-foreground", className)}>
         {label}: {emptyLabel}
+      </div>
+    );
+  }
+
+  if (items.length === 1) {
+    return (
+      <div
+        className={cn("flex h-10 items-center gap-2 px-2.5 text-sm", className)}
+        aria-label={`${label}: ${current?.name ?? emptyLabel}`}
+        title={`${label}: ${current?.name ?? emptyLabel}`}
+      >
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+          <IconBriefcase width={16} height={16} />
+        </span>
+        <span className="hidden max-w-[10rem] truncate font-medium text-foreground sm:inline">
+          {current?.name ?? emptyLabel}
+        </span>
       </div>
     );
   }
@@ -48,12 +65,16 @@ export function CompanySwitcher({
     <DropdownMenu
       className={className}
       trigger={
-        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal" aria-label={`${label}: ${current?.name ?? emptyLabel}`}>
+        <Button
+          variant="ghost"
+          className="group h-10 gap-2 px-2.5 font-normal"
+          aria-label={`${label}: ${current?.name ?? emptyLabel}`}
+        >
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground">
             <IconBriefcase width={16} height={16} />
           </span>
           <span className="hidden max-w-[10rem] truncate sm:inline">{current?.name ?? emptyLabel}</span>
-          <IconChevronDown className="text-muted-foreground" />
+          <IconChevronDown className="text-muted-foreground transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Button>
       }
     >
@@ -62,11 +83,12 @@ export function CompanySwitcher({
       {items.map((item) => (
         <DropdownMenuItem
           key={item.id}
+          selected={item.id === current?.id}
           onSelect={() => onSelect?.(item.id)}
-          className={item.id === current?.id ? "bg-accent/60" : undefined}
         >
           <Avatar name={item.name} size="xs" />
-          <span className="truncate">{item.name}</span>
+          <span className="flex-1 truncate">{item.name}</span>
+          {item.id === current?.id ? <IconCheck width={16} height={16} className="text-primary" /> : null}
         </DropdownMenuItem>
       ))}
     </DropdownMenu>

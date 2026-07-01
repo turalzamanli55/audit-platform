@@ -14,7 +14,7 @@ type AppHeaderProps = {
 };
 
 export function AppHeader({ mobileSearch, center, right, className }: AppHeaderProps) {
-  const { setMobileNavOpen } = useShell();
+  const { mobileNavOpen, setMobileNavOpen } = useShell();
 
   return (
     <header
@@ -31,6 +31,8 @@ export function AppHeader({ mobileSearch, center, right, className }: AppHeaderP
           className="h-9 w-9 shrink-0 sm:h-10 sm:w-10 lg:hidden"
           onClick={() => setMobileNavOpen(true)}
           aria-label="Open navigation"
+          aria-expanded={mobileNavOpen}
+          aria-controls="mobile-navigation"
         >
           <IconMenu />
         </Button>
