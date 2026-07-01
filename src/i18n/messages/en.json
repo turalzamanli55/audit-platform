@@ -10,7 +10,18 @@
     "header": "Header",
     "footer": "Audit Platform — Enterprise audit and IFRS reporting platform",
     "navigation": "Navigation",
-    "foundation": "Platform foundation is ready"
+    "foundation": "Platform foundation is ready",
+    "searchPlaceholder": "Search or jump to…",
+    "companySwitcher": "Companies",
+    "commandPalette": {
+      "placeholder": "Search pages, actions, and settings…",
+      "empty": "No matching commands",
+      "recent": "Recent",
+      "navigation": "Navigation",
+      "actions": "Actions",
+      "settings": "Settings",
+      "close": "Close command palette"
+    }
   },
   "auth": {
     "signIn": "Sign in",
@@ -65,6 +76,7 @@
     "workspace": "Workspace",
     "themeLight": "Light",
     "themeDark": "Dark",
+    "theme": "Theme",
     "navDashboard": "Dashboard",
     "userCardTitle": "Current user",
     "roles": "Roles",

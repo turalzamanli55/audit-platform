@@ -1,11 +1,7 @@
 import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { ProtectedRouteGuard, OnboardingGuard } from "@/components/auth";
-import { AppShell } from "@/components/layout";
-import { Header } from "@/components/layout/header";
-import { Sidebar } from "@/components/layout/sidebar";
-import { DashboardHeader } from "@/components/dashboard/dashboard-header";
-import { DashboardNav } from "@/components/dashboard/dashboard-nav";
+import { AppShellExperience } from "@/components/shell/app-shell-experience";
 import {
   coerceDashboardNavItems,
   COMPANIES_PATH,
@@ -54,27 +50,21 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
           key={`${tenantBootstrap.currentOrganizationId ?? "none"}-${tenantBootstrap.currentWorkspaceId ?? "none"}-${tenantBootstrap.hasOrganization}`}
           initial={tenantBootstrap}
         >
-          <AppShell
-            header={
-              <Header>
-                <DashboardHeader
-                  labels={{
-                    organization: dictionary.dashboard.organization,
-                    workspace: dictionary.dashboard.workspace,
-                    themeLight: dictionary.dashboard.themeLight,
-                    themeDark: dictionary.dashboard.themeDark,
-                  }}
-                />
-              </Header>
-            }
-            sidebar={
-              <Sidebar>
-                <DashboardNav items={navItems} />
-              </Sidebar>
-            }
+          <AppShellExperience
+            locale={locale}
+            navItems={navItems}
+            labels={{
+              organization: dictionary.dashboard.organization,
+              workspace: dictionary.dashboard.workspace,
+              themeLight: dictionary.dashboard.themeLight,
+              themeDark: dictionary.dashboard.themeDark,
+              theme: dictionary.dashboard.theme,
+              searchPlaceholder: dictionary.shell.searchPlaceholder,
+              commandPalette: dictionary.shell.commandPalette,
+            }}
           >
             {children}
-          </AppShell>
+          </AppShellExperience>
         </TenantProvider>
       </OnboardingGuard>
     </ProtectedRouteGuard>

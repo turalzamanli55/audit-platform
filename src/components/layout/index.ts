@@ -6,4 +6,8 @@ export { ContentArea } from "./content-area";
 export { Footer } from "./footer";
 export { DesktopNav } from "./desktop-nav";
 export { MobileNav } from "./mobile-nav";
+export { PageLayout } from "./page-layout";
+export { SectionLayout } from "./section-layout";
+export { DetailLayout } from "./detail-layout";
+export { DashboardLayout, Grid } from "./grid";
 export * from "./shells";

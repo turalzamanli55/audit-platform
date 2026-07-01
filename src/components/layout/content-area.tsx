@@ -1,18 +1,24 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/ui/cn";
 
 type ContentAreaProps = {
   children: ReactNode;
   className?: string;
+  flush?: boolean;
 };
 
-export function ContentArea({ children, className = "" }: ContentAreaProps) {
+export function ContentArea({ children, className = "", flush = false }: ContentAreaProps) {
   return (
     <main
       id="main-content"
-      className={`flex-1 overflow-y-auto bg-background p-4 md:p-6 ${className}`}
+      className={cn(
+        "flex-1 overflow-y-auto bg-background",
+        flush ? "p-0" : "px-4 py-6 md:px-8 md:py-8",
+        className,
+      )}
       role="main"
     >
-      <div className="ds-container">{children}</div>
+      <div className={cn(!flush && "ds-container")}>{children}</div>
     </main>
   );
 }

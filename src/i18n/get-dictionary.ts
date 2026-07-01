@@ -13,6 +13,17 @@ export type Dictionary = {
     footer: string;
     navigation: string;
     foundation: string;
+    searchPlaceholder: string;
+    companySwitcher: string;
+    commandPalette: {
+      placeholder: string;
+      empty: string;
+      recent: string;
+      navigation: string;
+      actions: string;
+      settings: string;
+      close: string;
+    };
   };
   auth: {
     signIn: string;
@@ -67,6 +78,7 @@ export type Dictionary = {
     workspace: string;
     themeLight: string;
     themeDark: string;
+    theme: string;
     navDashboard: string;
     userCardTitle: string;
     roles: string;

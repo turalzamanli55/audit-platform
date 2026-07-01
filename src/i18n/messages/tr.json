@@ -10,7 +10,18 @@
     "header": "Başlık",
     "footer": "Audit Platform — Kurumsal denetim ve UFRS raporlama platformu",
     "navigation": "Gezinme",
-    "foundation": "Platform temeli hazır"
+    "foundation": "Platform temeli hazır",
+    "searchPlaceholder": "Ara veya git…",
+    "companySwitcher": "Şirketler",
+    "commandPalette": {
+      "placeholder": "Sayfalar, eylemler ve ayarlar ara…",
+      "empty": "Eşleşen komut yok",
+      "recent": "Son",
+      "navigation": "Gezinme",
+      "actions": "Eylemler",
+      "settings": "Ayarlar",
+      "close": "Komut paletini kapat"
+    }
   },
   "auth": {
     "signIn": "Giriş yap",
@@ -65,6 +76,7 @@
     "workspace": "Çalışma alanı",
     "themeLight": "Açık",
     "themeDark": "Koyu",
+    "theme": "Tema",
     "navDashboard": "Panel",
     "userCardTitle": "Geçerli kullanıcı",
     "roles": "Roller",

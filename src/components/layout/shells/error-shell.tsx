@@ -1,23 +1,19 @@
 import type { ReactNode } from "react";
 
-type ErrorShellProps = {
+type ShellProps = {
+  children?: ReactNode;
   title?: string;
   description?: string;
-  children?: ReactNode;
 };
 
-export function ErrorShell({
-  title = "Something went wrong",
-  description = "An error occurred while loading this section.",
-  children,
-}: ErrorShellProps) {
+export function ErrorShell({ title, description, children }: ShellProps) {
   return (
     <div
-      className="flex min-h-[12rem] flex-col items-center justify-center gap-4 rounded-lg border border-destructive/20 bg-destructive/5 p-8 text-center"
+      className="flex min-h-[16rem] flex-col items-center justify-center gap-4 rounded-2xl border border-destructive/20 bg-destructive/5 p-10 text-center"
       role="alert"
     >
-      <p className="text-sm font-semibold text-destructive">{title}</p>
-      <p className="max-w-md text-sm text-muted-foreground">{description}</p>
+      <p className="text-base font-medium text-foreground">{title ?? "Something went wrong"}</p>
+      {description ? <p className="max-w-md text-sm text-muted-foreground">{description}</p> : null}
       {children}
     </div>
   );

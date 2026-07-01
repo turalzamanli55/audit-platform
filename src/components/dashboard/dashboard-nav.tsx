@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconBriefcase, IconLayoutDashboard } from "@/components/ui/icons";
+import { ShellNavItem } from "@/components/shell/shell-nav";
+import { useShell } from "@/components/shell/shell-provider";
 import { coerceDashboardNavItems, type DashboardNavItem } from "@/config/dashboard-navigation";
 import { defaultLocale, isValidLocale } from "@/i18n";
 
@@ -14,9 +16,17 @@ function resolveLocale(pathname: string): string {
   return segment && isValidLocale(segment) ? segment : defaultLocale;
 }
 
+function navIcon(href: string) {
+  if (href.includes("companies")) {
+    return <IconBriefcase width={18} height={18} />;
+  }
+  return <IconLayoutDashboard width={18} height={18} />;
+}
+
 export function DashboardNav({ items }: DashboardNavProps) {
   const pathname = usePathname();
   const locale = resolveLocale(pathname);
+  const { sidebarCollapsed } = useShell();
   const safeItems = coerceDashboardNavItems(items);
 
   if (safeItems.length === 0) {
@@ -25,24 +35,15 @@ export function DashboardNav({ items }: DashboardNavProps) {
 
   return (
     <nav className="space-y-1" aria-label="Main navigation">
-      {safeItems.map((item) => {
-        const href = `/${locale}${item.href}`;
-        const active = pathname === href || pathname.startsWith(`${href}/`);
-
-        return (
-          <Link
-            key={item.href}
-            href={href}
-            className={`block rounded-xl px-3 py-2 text-sm transition-colors ${
-              active
-                ? "bg-accent text-accent-foreground"
-                : "text-sidebar-foreground/80 hover:bg-sidebar-border/40 hover:text-sidebar-foreground"
-            }`}
-          >
-            {item.label}
-          </Link>
-        );
-      })}
+      {safeItems.map((item) => (
+        <ShellNavItem
+          key={item.href}
+          href={`/${locale}${item.href}`}
+          label={item.label}
+          icon={navIcon(item.href)}
+          collapsed={sidebarCollapsed}
+        />
+      ))}
     </nav>
   );
 }

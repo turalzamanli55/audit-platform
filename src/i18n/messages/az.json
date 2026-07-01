@@ -10,7 +10,18 @@
     "header": "Başlıq",
     "footer": "Audit Platform — Müəssisə audit və IFRS hesabat platforması",
     "navigation": "Naviqasiya",
-    "foundation": "Platforma təməli hazırdır"
+    "foundation": "Platforma təməli hazırdır",
+    "searchPlaceholder": "Axtar və ya keç…",
+    "companySwitcher": "Şirkətlər",
+    "commandPalette": {
+      "placeholder": "Səhifələr, əməliyyatlar və parametrlər axtar…",
+      "empty": "Uyğun əmr tapılmadı",
+      "recent": "Son",
+      "navigation": "Naviqasiya",
+      "actions": "Əməliyyatlar",
+      "settings": "Parametrlər",
+      "close": "Əmr panelini bağla"
+    }
   },
   "auth": {
     "signIn": "Daxil ol",
@@ -65,6 +76,7 @@
     "workspace": "İş mühiti",
     "themeLight": "İşıqlı",
     "themeDark": "Qaranlıq",
+    "theme": "Tema",
     "navDashboard": "İdarə paneli",
     "userCardTitle": "Cari istifadəçi",
     "roles": "Rollar",

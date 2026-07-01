@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n";
 import type { AuthSession } from "@/types/auth";
+import { ContextMenuProvider } from "@/components/ui/context-menu";
+import { ToastProvider } from "@/components/ui/toast";
 import { ThemeProvider } from "./theme-provider";
 import { LanguageProvider } from "./language-provider";
 import { AuthProvider } from "./auth-provider";
@@ -36,7 +38,11 @@ export function AppProviders({ children, locale, initialSession }: AppProvidersP
       <LanguageProvider locale={locale}>
         <AuthProvider key={authKey} initialSession={initialSession}>
           <SettingsProvider initialLocale={locale}>
-            <NotificationProvider>{children}</NotificationProvider>
+            <NotificationProvider>
+              <ToastProvider>
+                <ContextMenuProvider>{children}</ContextMenuProvider>
+              </ToastProvider>
+            </NotificationProvider>
           </SettingsProvider>
         </AuthProvider>
       </LanguageProvider>

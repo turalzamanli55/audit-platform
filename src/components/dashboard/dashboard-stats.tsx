@@ -1,3 +1,5 @@
+import { Card } from "@/components/ui/card";
+import { Grid } from "@/components/layout/grid";
 import type { ReactNode } from "react";
 
 type DashboardStatProps = {
@@ -8,14 +10,14 @@ type DashboardStatProps = {
 
 export function DashboardStat({ label, value, hint }: DashboardStatProps) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+    <Card padding="md" className="transition-shadow duration-200 hover:shadow-md">
       <p className="text-sm text-muted-foreground">{label}</p>
-      <p className="mt-2 text-3xl font-semibold tracking-tight">{value}</p>
-      <p className="mt-2 text-xs text-muted-foreground">{hint}</p>
-    </div>
+      <p className="mt-3 text-3xl font-semibold tracking-tight text-foreground">{value}</p>
+      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{hint}</p>
+    </Card>
   );
 }
 
 export function DashboardStatsGrid({ children }: { children: ReactNode }) {
-  return <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{children}</div>;
+  return <Grid cols={4} gap="md">{children}</Grid>;
 }

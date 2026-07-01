@@ -10,7 +10,18 @@
     "header": "Заголовок",
     "footer": "Audit Platform — Корпоративная платформа аудита и отчётности МСФО",
     "navigation": "Навигация",
-    "foundation": "Основа платформы готова"
+    "foundation": "Основа платформы готова",
+    "searchPlaceholder": "Поиск или переход…",
+    "companySwitcher": "Компании",
+    "commandPalette": {
+      "placeholder": "Поиск страниц, действий и настроек…",
+      "empty": "Команды не найдены",
+      "recent": "Недавние",
+      "navigation": "Навигация",
+      "actions": "Действия",
+      "settings": "Настройки",
+      "close": "Закрыть палитру команд"
+    }
   },
   "auth": {
     "signIn": "Войти",
@@ -65,6 +76,7 @@
     "workspace": "Пространство",
     "themeLight": "Светлая",
     "themeDark": "Тёмная",
+    "theme": "Тема",
     "navDashboard": "Панель",
     "userCardTitle": "Текущий пользователь",
     "roles": "Роли",

@@ -1,5 +1,13 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { IconBuilding, IconChevronDown } from "@/components/ui/icons";
 import { useTenant } from "@/providers/tenant-provider";
 
 type OrganizationSwitcherProps = {
@@ -9,30 +17,52 @@ type OrganizationSwitcherProps = {
 export function OrganizationSwitcher({ label }: OrganizationSwitcherProps) {
   const tenant = useTenant();
   const organizations = Array.isArray(tenant.organizations) ? tenant.organizations : [];
+  const current = organizations.find((o) => o.id === tenant.currentOrganizationId);
 
   if (organizations.length === 0) {
+    return <span className="text-sm text-muted-foreground">{label}: —</span>;
+  }
+
+  if (organizations.length === 1) {
     return (
-      <div className="text-sm text-muted-foreground">
-        {label}: —
-      </div>
+      <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal">
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <IconBuilding width={16} height={16} />
+        </span>
+        <span className="hidden max-w-[10rem] truncate font-medium sm:inline">
+          {current?.name ?? organizations[0]?.name}
+        </span>
+      </Button>
     );
   }
 
   return (
-    <label className="flex items-center gap-2 text-sm">
-      <span className="text-muted-foreground">{label}</span>
-      <select
-        className="h-9 rounded-lg border border-input bg-card px-2 text-sm"
-        value={tenant.currentOrganizationId ?? ""}
-        onChange={(event) => tenant.switchOrganization(event.target.value)}
-        disabled={tenant.isSwitching}
-      >
-        {organizations.map((organization) => (
-          <option key={organization.id} value={organization.id}>
+    <DropdownMenu
+      trigger={
+        <Button variant="ghost" className="h-10 gap-2 px-2.5 font-normal">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <IconBuilding width={16} height={16} />
+          </span>
+          <span className="hidden max-w-[10rem] truncate font-medium sm:inline">
+            {current?.name ?? "—"}
+          </span>
+          <IconChevronDown className="text-muted-foreground" />
+        </Button>
+      }
+    >
+      <DropdownMenuLabel>{label}</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      {organizations.map((organization) => (
+        <DropdownMenuItem
+          key={organization.id}
+          disabled={tenant.isSwitching}
+          onSelect={() => tenant.switchOrganization(organization.id)}
+        >
+          <span className={organization.id === tenant.currentOrganizationId ? "font-medium" : undefined}>
             {organization.name}
-          </option>
-        ))}
-      </select>
-    </label>
+          </span>
+        </DropdownMenuItem>
+      ))}
+    </DropdownMenu>
   );
 }
