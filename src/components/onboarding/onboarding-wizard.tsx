@@ -8,6 +8,8 @@ import { Button, Input, Label, Alert } from "@/components/ui";
 
 type OnboardingWizardProps = {
   locale: string;
+  initialStep?: 1 | 2 | 3;
+  initialOrganizationId?: string | null;
   labels: {
     stepOrganization: string;
     stepWorkspace: string;
@@ -22,10 +24,15 @@ type OnboardingWizardProps = {
   };
 };
 
-export function OnboardingWizard({ locale, labels }: OnboardingWizardProps) {
+export function OnboardingWizard({
+  locale,
+  initialStep = 1,
+  initialOrganizationId = null,
+  labels,
+}: OnboardingWizardProps) {
   const router = useRouter();
-  const [step, setStep] = useState<1 | 2 | 3>(1);
-  const [organizationId, setOrganizationId] = useState<string | null>(null);
+  const [step, setStep] = useState<1 | 2 | 3>(initialStep);
+  const [organizationId, setOrganizationId] = useState<string | null>(initialOrganizationId);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 

@@ -17,12 +17,19 @@ function withLocale(pathname: string, path: string): string {
 type OnboardingGuardProps = {
   children: ReactNode;
   hasOrganization: boolean;
+  hasWorkspace: boolean;
 };
 
-export function OnboardingGuard({ children, hasOrganization }: OnboardingGuardProps) {
+export function OnboardingGuard({
+  children,
+  hasOrganization,
+  hasWorkspace,
+}: OnboardingGuardProps) {
   const { session } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
+
+  const onboardingComplete = hasOrganization && hasWorkspace;
 
   useEffect(() => {
     if (session.status === "loading") return;
@@ -32,15 +39,15 @@ export function OnboardingGuard({ children, hasOrganization }: OnboardingGuardPr
     const onboardingPath = ONBOARDING_PATH;
     const dashboardPath = DASHBOARD_PATH;
 
-    if (!hasOrganization && normalized !== onboardingPath && normalized.startsWith("/app")) {
+    if (!onboardingComplete && normalized !== onboardingPath && normalized.startsWith("/app")) {
       router.replace(withLocale(pathname, onboardingPath));
       return;
     }
 
-    if (hasOrganization && normalized === onboardingPath) {
+    if (onboardingComplete && normalized === onboardingPath) {
       router.replace(withLocale(pathname, dashboardPath));
     }
-  }, [session, pathname, router, hasOrganization]);
+  }, [session, pathname, router, onboardingComplete]);
 
   if (session.status === "loading") {
     return <LoadingShell />;

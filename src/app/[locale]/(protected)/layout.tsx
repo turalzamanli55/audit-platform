@@ -37,6 +37,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
     currentOrganizationId: null,
     currentWorkspaceId: null,
     hasOrganization: false,
+    hasWorkspace: false,
     permissionCodes: [],
     roleSlugs: [],
   };
@@ -73,7 +74,10 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
 
   return (
     <ProtectedRouteGuard>
-      <OnboardingGuard hasOrganization={tenantBootstrap.hasOrganization}>
+      <OnboardingGuard
+        hasOrganization={tenantBootstrap.hasOrganization}
+        hasWorkspace={tenantBootstrap.hasWorkspace}
+      >
         <TenantProvider
           key={`${tenantBootstrap.currentOrganizationId ?? "none"}-${tenantBootstrap.currentWorkspaceId ?? "none"}-${tenantBootstrap.hasOrganization}`}
           initial={tenantBootstrap}

@@ -1,4 +1,5 @@
 import { getDictionary, type Locale } from "@/i18n";
+import { getTenantBootstrap } from "@/lib/auth/server";
 import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 
@@ -10,6 +11,12 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
   const { locale: localeParam } = await params;
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
+  const bootstrap = await getTenantBootstrap();
+  const resumeOrganizationId = bootstrap?.currentOrganizationId ?? null;
+  const initialStep =
+    bootstrap?.hasWorkspace ? 3
+    : resumeOrganizationId ? 2
+    : 1;
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-10">
@@ -20,6 +27,8 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
         </CardHeader>
         <OnboardingWizard
           locale={locale}
+          initialStep={initialStep as 1 | 2 | 3}
+          initialOrganizationId={resumeOrganizationId}
           labels={{
             stepOrganization: dictionary.onboarding.stepOrganization,
             stepWorkspace: dictionary.onboarding.stepWorkspace,

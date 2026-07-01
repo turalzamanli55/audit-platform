@@ -111,6 +111,7 @@ export async function getTenantBootstrap(): Promise<TenantBootstrap | null> {
     currentOrganizationId,
     currentWorkspaceId,
     hasOrganization: organizations.length > 0,
+    hasWorkspace: workspaces.length > 0 && currentWorkspaceId !== null,
     permissionCodes,
     roleSlugs,
   };

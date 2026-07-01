@@ -6,6 +6,7 @@ export type TenantBootstrap = {
   currentOrganizationId: string | null;
   currentWorkspaceId: string | null;
   hasOrganization: boolean;
+  hasWorkspace: boolean;
   permissionCodes: string[];
   roleSlugs: string[];
 };

@@ -27,6 +27,7 @@ export async function GET(
   }
 
   const bootstrap = await getTenantBootstrap();
-  const destination = bootstrap?.hasOrganization ? DASHBOARD_PATH : ONBOARDING_PATH;
+  const onboardingComplete = bootstrap?.hasOrganization && bootstrap?.hasWorkspace;
+  const destination = onboardingComplete ? DASHBOARD_PATH : ONBOARDING_PATH;
   return NextResponse.redirect(new URL(`/${locale}${destination}`, request.url));
 }
