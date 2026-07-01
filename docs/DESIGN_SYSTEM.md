@@ -3747,3 +3747,1556 @@ State combinations follow the visual priority: loading > error > disabled > acti
 ---
 
 *End of Parts 5–7*
+
+---
+
+# Part 8 — Accessibility, AI Experience & Localization
+
+## 34. Accessibility Philosophy
+
+### Accessibility as a First-Class Requirement
+
+Accessibility is not a compliance checkbox. It is a **first-class product requirement** — equal in priority to security, performance, and data integrity. A platform that excludes users, fatigues practitioners, or fails under assistive technology is not enterprise-ready, regardless of its visual quality.
+
+In a profession where precision and accountability are paramount, accessibility ensures that every qualified professional can perform their work with full capability — regardless of visual, motor, cognitive, or auditory differences.
+
+### Universal Usability
+
+Universal usability means the platform is designed for the **widest possible range of human capability** from the foundation — not adapted after the fact.
+
+| Principle | Application |
+|-----------|-------------|
+| Perceivable | Information is presentable in multiple sensory channels |
+| Operable | All functionality is available through multiple input methods |
+| Understandable | Language, structure, and behavior are clear and predictable |
+| Robust | Content works across current and emerging assistive technologies |
+
+Universal usability benefits everyone. Keyboard shortcuts designed for motor accessibility accelerate power users. High contrast designed for visual accessibility improves readability in bright offices. Clear language designed for cognitive accessibility reduces errors for all professionals.
+
+### Inclusive Enterprise Software
+
+Enterprise software has historically treated accessibility as an afterthought — particularly in audit and financial tools where complex data grids and dense forms create barriers by default.
+
+This platform rejects that pattern. Inclusive design is embedded in:
+
+- Table and grid architecture — navigable, readable, and operable without a mouse
+- Form design — labeled, validated, and structured for comprehension
+- Navigation — keyboard-first, logically ordered, consistently structured
+- Charts and analytics — data alternatives available for non-visual consumption
+- AI interactions — explainable, readable, and reviewable through assistive technology
+
+### Accessibility by Default
+
+Accessibility is the default state of every component — not an optional mode.
+
+| Rule | Standard |
+|------|----------|
+| No inaccessible components ship | Every component meets baseline accessibility before release |
+| No focus suppression | Focus indicators are never removed or hidden |
+| No color-only communication | Status, state, and category always have non-color indicators |
+| No mouse-only operations | Every action has a keyboard equivalent |
+| No inaccessible defaults | The default experience is accessible — alternatives are not required to achieve access |
+
+### Professional Accessibility
+
+Professional accessibility acknowledges the specific demands of audit and financial work:
+
+- Long sessions with sustained screen focus
+- Dense tabular data requiring precise navigation
+- Critical actions requiring deliberate confirmation
+- Regulatory content requiring accurate comprehension
+- Multi-language professional vocabulary
+
+Accessibility standards in this platform meet or exceed WCAG 2.1 Level AA as the baseline — with Level AAA targeted where professionally critical.
+
+### Long-Session Ergonomics
+
+Accessibility and ergonomics intersect in an eight-hour professional session:
+
+| Concern | Design Response |
+|---------|-----------------|
+| Eye strain | Sufficient contrast, comfortable type scale, dark mode support |
+| Motor fatigue | Large touch targets, keyboard alternatives, minimal repetitive clicking |
+| Cognitive load | Clear hierarchy, consistent patterns, progressive disclosure |
+| Focus management | Predictable focus order, visible focus, no focus traps except in modals |
+| Motion sensitivity | Reduced-motion support for all non-essential animation |
+
+---
+
+## 35. Accessibility Standards
+
+### Keyboard Navigation
+
+| Requirement | Standard |
+|-------------|----------|
+| Full operability | Every interactive element reachable and activatable via keyboard |
+| Logical tab order | Tab sequence follows visual reading order |
+| Skip links | Skip to main content available on every page |
+| Shortcuts | Platform and module shortcuts documented and do not conflict with assistive technology |
+| Escape | Escape closes overlays, cancels edits, and exits focused modes |
+| No keyboard traps | Except intentional modal focus traps with explicit exit |
+
+### Focus Order
+
+| Rule | Standard |
+|------|----------|
+| Sequence | Top to bottom, left to right (in LTR locales) |
+| Modals | Focus moves into modal on open, returns to trigger on close |
+| Dynamic content | Focus moves to new content when it appears as result of user action |
+| Destruction | Focus moves to logical next element when element is removed |
+| Preservation | Focus is not lost during non-navigational updates |
+
+### Focus Visibility
+
+| Requirement | Standard |
+|-------------|----------|
+| Always visible | Focus ring visible on every focused interactive element |
+| High contrast | Focus indicator meets contrast requirements against all backgrounds |
+| Consistent style | Same focus treatment across all component types |
+| Never suppressed | `outline: none` without replacement is forbidden |
+| Custom focus | Custom focus styles must exceed default visibility — not diminish it |
+
+### Screen Readers
+
+| Requirement | Standard |
+|-------------|----------|
+| Semantic structure | Headings, landmarks, lists, and tables use correct semantic roles |
+| Labels | Every input, button, and control has an accessible name |
+| Live regions | Dynamic content updates announced via live regions |
+| State | Selected, expanded, checked, and disabled states programmatically communicated |
+| Images | Decorative images hidden; meaningful images have alt text |
+| Tables | Column headers associated with data cells |
+
+### Semantic Structure
+
+| Element | Requirement |
+|---------|-------------|
+| Page | One main landmark, one navigation landmark, banner and contentinfo |
+| Headings | Sequential hierarchy — no skipped levels |
+| Lists | Related items in list structures |
+| Tables | Data tables use table semantics; layout tables avoided |
+| Forms | Fields grouped with fieldset and legend where appropriate |
+| Buttons vs links | Buttons for actions, links for navigation — never conflated |
+
+### Contrast Principles
+
+| Content Type | Minimum Contrast Ratio |
+|--------------|------------------------|
+| Body text | 4.5:1 against background (AA) |
+| Large text | 3:1 against background (AA) |
+| UI components | 3:1 against adjacent colors (AA) |
+| Critical text | 7:1 where possible (AAA target) |
+| Disabled text | Visually distinct — not relied upon for essential information |
+
+### Color Independence
+
+| Rule | Standard |
+|------|----------|
+| Status | Icon + label + color for all status indicators |
+| Charts | Patterns or labels supplement color encoding |
+| Links | Underline or non-color distinction in body text |
+| Errors | Icon + message + border — not color alone |
+| Required fields | Text label indicator — not color alone |
+
+### Typography Readability
+
+| Requirement | Standard |
+|-------------|----------|
+| Minimum size | No text below accessible minimum at any density level |
+| Line height | Minimum 1.5× for body text |
+| Line length | Constrained for extended reading |
+| Weight | Sufficient weight contrast between hierarchy levels |
+| Scaling | Readable at 200% browser zoom without horizontal scroll |
+
+### Touch Targets
+
+| Requirement | Standard |
+|-------------|----------|
+| Minimum size | 44×44 logical units for all interactive elements |
+| Spacing | Adequate gap between adjacent targets |
+| Tablet | Touch targets enforced on all tablet layouts |
+| Desktop | Touch target minimum applies to icon buttons and compact controls |
+
+### Motion Sensitivity
+
+| Requirement | Standard |
+|-------------|----------|
+| Reduced motion | `prefers-reduced-motion` disables non-essential animation |
+| Essential motion | Functional motion (progress, loading) remains — simplified |
+| No flashing | No content flashes more than three times per second |
+| Parallax | Not used |
+| Auto-play | No auto-playing animation or video without user initiation |
+
+### Reduced Motion
+
+When reduced motion is preferred:
+
+- Transitions become instant or near-instant cross-fades
+- Slide animations become appear/disappear
+- Skeleton shimmer may be static
+- Loading spinners remain — functional necessity
+- Page transitions do not animate lateral movement
+
+### Zoom Behavior
+
+| Requirement | Standard |
+|-------------|----------|
+| Browser zoom | Layout functional at 200% zoom |
+| Text scaling | Text scales without loss of content or functionality |
+| No horizontal scroll | At 200% zoom on standard desktop viewport |
+| Reflow | Content reflows — does not require horizontal scrolling to read |
+
+### Responsive Scaling
+
+| Requirement | Standard |
+|-------------|----------|
+| Viewport | Layout adapts without loss of functionality at all defined breakpoints |
+| Text | Does not become unreadable at any supported viewport |
+| Touch | Touch targets maintained on smaller viewports |
+| Tables | Accessible alternative view on mobile — card list or scrollable with headers |
+
+### Accessible Tables
+
+| Requirement | Standard |
+|-------------|----------|
+| Headers | Column and row headers programmatically associated |
+| Caption | Table has accessible name or caption |
+| Sort | Sort state announced on change |
+| Selection | Selection state announced |
+| Navigation | Arrow key navigation between cells |
+| Summary | Complex tables may include summary description |
+
+### Accessible Charts
+
+| Requirement | Standard |
+|-------------|----------|
+| Text alternative | Data table equivalent available for every chart |
+| Title | Chart has accessible name describing its content |
+| Values | Data values available on focus or in table view |
+| Color | Not sole differentiator |
+| Motion | Chart animations respect reduced motion |
+
+### Accessible Forms
+
+| Requirement | Standard |
+|-------------|----------|
+| Labels | Every field has visible, associated label |
+| Errors | Errors identified in text, associated with field, announced |
+| Required | Required fields indicated in label — not color alone |
+| Instructions | Provided before user encounters field |
+| Groups | Related fields grouped with fieldset/legend |
+| Autocomplete | Appropriate autocomplete attributes for personal data fields |
+
+### Accessible Dialogs
+
+| Requirement | Standard |
+|-------------|----------|
+| Focus trap | Focus contained within dialog while open |
+| Focus return | Focus returns to trigger on close |
+| Title | Dialog has accessible name |
+| Escape | Escape closes dialog |
+| Background | Background content inert while dialog open |
+| Announcement | Dialog content announced on open |
+
+### Accessible Notifications
+
+| Requirement | Standard |
+|-------------|----------|
+| Live region | Toasts announced via polite or assertive live region as appropriate |
+| Persistence | Critical notifications remain until dismissed — not auto-dismissed before reading |
+| Action | Notification actions keyboard accessible |
+| Priority | Error notifications use assertive live region |
+
+### Enterprise Accessibility Review Process
+
+| Phase | Activity |
+|-------|----------|
+| Design | Accessibility review during design review — before build |
+| Build | Automated accessibility testing in continuous integration |
+| Manual test | Keyboard-only walkthrough of every new workflow |
+| Screen reader | Screen reader verification of critical paths |
+| Regression | Accessibility regression testing on release |
+| Audit | Annual third-party accessibility audit |
+| Remediation | Critical accessibility defects block release |
+
+---
+
+## 36. Localization & Internationalization
+
+### Global Platform Standards
+
+The platform is designed for **global deployment** across accounting firms, audit practices, and enterprises operating in multiple jurisdictions and languages. Localization is not translation alone — it is the comprehensive adaptation of format, layout, and content to local professional conventions.
+
+### Multi-Language Interfaces
+
+| Requirement | Standard |
+|-------------|----------|
+| Supported languages | Defined per deployment — all UI strings externalized |
+| Completeness | No untranslated strings in production for supported languages |
+| Professional vocabulary | Translations use domain-appropriate accounting and audit terminology |
+| Consistency | Same concept, same translation — across all modules |
+| Fallback | Graceful fallback to default language for unsupported strings |
+| Language selector | Accessible from profile and settings — change applies on next navigation |
+
+### Date Formats
+
+| Requirement | Standard |
+|-------------|----------|
+| Display | Locale-appropriate format — DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD as appropriate |
+| Ambiguity | Month names preferred where numeric formats are ambiguous |
+| Periods | Fiscal period labels respect organization configuration |
+| Relative dates | "Today," "Yesterday," "3 days ago" — translated and locale-aware |
+| Input | Date picker accepts locale format; stores canonical ISO format internally |
+
+### Time Formats
+
+| Requirement | Standard |
+|-------------|----------|
+| Display | 12-hour or 24-hour per locale convention |
+| Timezone | Always display in user's configured timezone |
+| Timestamps | Full timestamp available on hover or in detail — date and time with timezone indicator |
+| Relative time | "2 hours ago" — translated |
+
+### Number Formats
+
+| Requirement | Standard |
+|-------------|----------|
+| Decimal separator | Locale-appropriate — period or comma |
+| Thousand separator | Locale-appropriate — comma, period, or space |
+| Negative numbers | Locale convention — parentheses or minus sign |
+| Percentages | Consistent formatting with locale decimal rules |
+| Precision | Configurable decimal places per field type — currency, percentage, quantity |
+
+### Currency Formats
+
+| Requirement | Standard |
+|-------------|----------|
+| Symbol | Locale-appropriate currency symbol placement |
+| Code | ISO 4217 currency code available alongside symbol |
+| Multi-currency | Clear indication when displaying foreign currency |
+| Rounding | Consistent rounding rules per currency configuration |
+| Zero | Zero values displayed consistently — "0.00" or "—" per convention |
+
+### Timezone Handling
+
+| Requirement | Standard |
+|-------------|----------|
+| User timezone | Configurable in profile — defaults from browser |
+| Organization timezone | Organization-level default for reporting |
+| Display | All times shown in user's timezone with indicator |
+| Scheduling | Deadlines and due dates respect timezone context |
+| Audit trail | Timestamps stored in UTC — displayed in user timezone |
+
+### RTL Readiness (Future)
+
+| Requirement | Standard |
+|-------------|----------|
+| Layout mirroring | Layout system designed to support RTL mirroring without structural redesign |
+| Icons | Directional icons mirrored in RTL — non-directional icons unchanged |
+| Text alignment | Follows locale direction |
+| Navigation | Sidebar position mirrors in RTL |
+| Preparation | All layouts use logical properties — not hardcoded left/right |
+
+### Translation Quality
+
+| Requirement | Standard |
+|-------------|----------|
+| Professional translation | Domain expert review for accounting and audit terminology |
+| No machine-only | Machine translation not used for production without human review |
+| Context | Translators receive context — not isolated strings |
+| Length | Translations tested in UI — overflow handled |
+| Gender and plural | Proper pluralization and gender agreement per locale |
+
+### Expansion-Safe Layouts
+
+| Requirement | Standard |
+|-------------|----------|
+| Text expansion | Layouts accommodate 30–40% text expansion (German, French) |
+| Truncation | Ellipsis with tooltip — not clipping |
+| Buttons | Button width adapts to label length |
+| Navigation | Sidebar accommodates longer labels |
+| No fixed widths on text containers | Labels and buttons use flexible sizing |
+
+### Localized Validation
+
+| Requirement | Standard |
+|-------------|----------|
+| Error messages | Translated with locale-appropriate grammar |
+| Format hints | Locale format examples in placeholders — "DD/MM/YYYY" |
+| Phone and postal | Locale-appropriate validation patterns |
+| Currency input | Locale-aware decimal and separator handling |
+
+### Localized Notifications
+
+| Requirement | Standard |
+|-------------|----------|
+| Toast messages | Translated |
+| Email notifications | User's preferred language |
+| Date and time in notifications | Locale-formatted |
+| Number and currency in notifications | Locale-formatted |
+
+---
+
+## 37. AI User Experience
+
+### The Centrality of AI UX
+
+Artificial intelligence is embedded in the core of this platform — evidence retrieval, risk assessment, working paper preparation, disclosure drafting, variance analysis, and professional review. The AI user experience is therefore **one of the most critical design domains** in the entire system.
+
+Poor AI UX creates false confidence, hidden errors, and professional liability. Excellent AI UX strengthens judgment, accelerates work, and preserves accountability.
+
+### AI Must Never Replace Professional Judgment
+
+This is the constitutional principle governing all AI design in the platform:
+
+> AI assists professional judgment. It does not replace, override, or conceal it.
+
+| AI Does | AI Does Not |
+|---------|-------------|
+| Suggest | Decide |
+| Summarize | Authorize |
+| Recommend | Sign off |
+| Explain | Conceal |
+| Accelerate | Automate accountability away |
+| Surface evidence | Fabricate evidence |
+
+Every AI interaction must preserve the professional's role as the accountable decision-maker.
+
+### AI Should Explain
+
+AI outputs must be **understandable and traceable**:
+
+- What the AI analyzed
+- What it concluded
+- Why it reached that conclusion
+- What evidence supports the conclusion
+- What confidence level applies
+- What the professional should verify
+
+Unexplained AI output is unacceptable in a regulated profession.
+
+### AI Should Recommend
+
+AI recommendations are **proposals, not decisions**:
+
+| Attribute | Standard |
+|-----------|----------|
+| Presentation | Clearly labeled as AI recommendation |
+| Action | User must explicitly accept, modify, or reject |
+| Default | No recommendation is applied without user action |
+| Alternatives | Multiple recommendations presented when applicable |
+| Reasoning | Recommendation includes brief rationale |
+
+### AI Should Summarize
+
+AI summarization accelerates comprehension of large evidence sets, prior-year work, and complex documents:
+
+| Attribute | Standard |
+|-----------|----------|
+| Scope | Summary states what was summarized |
+| Fidelity | Summary does not introduce information not in source |
+| Citations | Key claims linked to source passages |
+| Length | Proportionate to source — not arbitrarily truncated |
+| Editability | User can refine or expand summary |
+
+### AI Should Teach
+
+AI can help professionals understand standards, methodologies, and platform capabilities:
+
+| Attribute | Standard |
+|-----------|----------|
+| Tone | Professional, not patronizing |
+| Accuracy | Grounded in authoritative sources — not hallucinated guidance |
+| Scope | Teaching mode clearly distinguished from work mode |
+| Disclaimer | AI guidance is assistive — professional standards govern |
+
+### AI Should Assist
+
+AI assists within the workflow — embedded where the professional is working, not isolated in a separate chat window (though conversational AI is also available).
+
+### Never Make Hidden Decisions
+
+| Forbidden | Reason |
+|-----------|--------|
+| Silent data modification | User must see and approve all AI-initiated changes |
+| Background application of recommendations | All applications require explicit user action |
+| Undisclosed AI involvement | User always knows when AI generated or modified content |
+| Hidden confidence thresholds | System does not suppress low-confidence outputs silently |
+| Automatic sign-off | AI cannot complete professional sign-off actions |
+
+### AI Confidence
+
+| Level | Presentation |
+|-------|--------------|
+| High | Standard presentation with confidence indicator |
+| Medium | Visible confidence note — "Review recommended" |
+| Low | Prominent confidence warning — "Low confidence — manual review required" |
+| Insufficient data | AI declines to answer — explains what data is needed |
+
+Confidence is always visible on AI-generated content. It is never hidden.
+
+### AI Citations
+
+Every AI claim that references source material must include **clickable citations**:
+
+| Attribute | Standard |
+|-----------|--------------|
+| Format | Inline citation markers linked to source passages |
+| Source | Document name, section, page, or cell reference |
+| Navigation | Click citation navigates to source in context |
+| Verification | User can verify every cited claim |
+| Missing citation | Claims without citation are labeled as AI inference — not fact |
+
+### Explainability
+
+| Requirement | Standard |
+|-------------|----------|
+| Reasoning chain | Available on request — "Why did AI suggest this?" |
+| Input scope | What data AI considered — visible |
+| Exclusions | What data AI did not have access to — stated |
+| Model transparency | AI model version and capability noted in settings |
+| Limitation | Known limitations stated — not hidden |
+
+### Review Workflow
+
+AI-generated content enters the same **professional review workflow** as human-created content:
+
+| Stage | Requirement |
+|-------|-------------|
+| Generation | AI content clearly marked as AI-generated |
+| Review | Reviewer sees AI origin and confidence |
+| Edit | Reviewer can modify AI content — modifications tracked |
+| Approval | Approval requires explicit human action |
+| Audit trail | AI generation, review, and approval logged |
+
+### Approval Workflow
+
+AI cannot approve its own output. Approval workflow requires:
+
+- Human reviewer distinct from requestor where policy requires
+- Explicit approval action — not implicit acceptance
+- Approval recorded in audit trail with reviewer identity
+- Rejection with reason supported
+
+### Human Validation
+
+| Principle | Application |
+|-----------|-------------|
+| Human in the loop | Critical AI outputs require human validation before use |
+| Validation UI | Clear validation interface — accept, edit, reject |
+| Batch validation | Multiple AI outputs reviewable in sequence |
+| Validation status | Visible status — pending validation, validated, rejected |
+| Re-validation | Content re-validated when source data changes |
+
+### AI Transparency
+
+| Element | Visibility |
+|---------|------------|
+| AI involvement | Badge or label on all AI-generated content |
+| AI model | Model name and version accessible |
+| AI scope | What AI was asked to do — visible |
+| AI data access | What data AI accessed — auditable |
+| AI limitations | Known limitations disclosed in product documentation |
+
+### AI Interaction Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| **Inline suggestion** | AI suggests text, value, or action within current field |
+| **Panel analysis** | AI analyzes current context in side panel |
+| **Conversational** | User asks questions in natural language |
+| **Batch processing** | AI processes multiple items with summary results |
+| **Proactive alert** | AI surfaces anomaly or risk for user attention |
+| **On-demand generation** | User explicitly requests AI generation |
+
+### Conversation UX
+
+| Attribute | Standard |
+|-----------|----------|
+| Context | Conversation aware of current page and entity |
+| History | Conversation history preserved and searchable |
+| Citations | Responses include citations where applicable |
+| Confidence | Confidence indicated on uncertain responses |
+| Scope | AI states when question is outside its knowledge |
+| Escalation | Clear path to human support when AI cannot help |
+| New conversation | User can start fresh context explicitly |
+
+### Embedded AI
+
+AI embedded in workflows — not separated from professional work:
+
+| Context | Embedded AI |
+|---------|-------------|
+| Working paper | Draft procedures, suggest tests, summarize evidence |
+| Financial statement | Draft disclosures, check consistency |
+| Risk assessment | Suggest risks, score likelihood |
+| Review notes | Summarize findings, suggest responses |
+| Search | Semantic search across engagement data |
+
+Embedded AI respects the current workflow — it does not redirect the user to a separate AI interface.
+
+### Context-Aware AI
+
+AI uses the **current professional context** automatically:
+
+- Current engagement, entity, and period
+- User's role and permissions
+- Relevant standards and methodology
+- Prior-year data where accessible
+
+Context scope is visible — user knows what AI can see.
+
+### AI Loading
+
+| Phase | Display |
+|-------|---------|
+| Initiated | "Analyzing…" with scope description |
+| In progress | Streaming output or staged progress |
+| Long operation | Progress with estimated time and cancel option |
+| Complete | Clear transition to reviewable output |
+
+AI loading sets honest expectations — AI is not instant.
+
+### AI Feedback
+
+| Mechanism | Purpose |
+|-----------|---------|
+| Thumbs up/down | Quick quality signal |
+| Detailed feedback | Optional explanation of AI quality issue |
+| Report | Flag incorrect or harmful AI output |
+| Improvement | Feedback improves future responses — disclosed in privacy policy |
+
+### AI History
+
+| Attribute | Standard |
+|-------------|----------|
+| Log | All AI interactions logged per engagement |
+| Search | AI history searchable |
+| Audit | AI history included in audit trail |
+| Retention | Retention policy aligned with engagement archive policy |
+| Export | AI history exportable for regulatory review |
+
+---
+
+# Part 9 — Mobile Experience & Special States
+
+## 38. Mobile Philosophy
+
+### Enterprise Mobile UX
+
+Mobile is not a diminished desktop. It is a **focused professional instrument** for specific high-value mobile contexts — approvals, status checks, notifications, fieldwork evidence capture, and executive briefings.
+
+The mobile experience must feel as refined as the desktop experience — not as an afterthought.
+
+### Touch-First
+
+| Principle | Application |
+|-----------|-------------|
+| Touch targets | All interactive elements meet minimum touch dimensions |
+| Gestures | Swipe, pull, and long-press used purposefully — never as only path to action |
+| Hover | No hover-dependent functionality |
+| Scroll | Natural momentum scrolling — no nested scroll traps |
+| Input | Mobile-appropriate keyboards — email, numeric, date |
+
+### One-Hand Usability
+
+| Principle | Application |
+|-----------|-------------|
+| Primary actions | Positioned in thumb-reachable zone — bottom of screen |
+| Navigation | Bottom tab bar for primary navigation |
+| Destructive actions | Not in thumb zone — require deliberate reach |
+| Reachability | Frequent actions accessible without hand repositioning |
+
+### Executive Dashboards
+
+Mobile dashboards serve **executives and partners** who need briefings between meetings:
+
+| Content | Mobile Presentation |
+|---------|---------------------|
+| KPIs | Two-column card grid — key metrics visible without scroll |
+| Alerts | Top of screen — action-required items first |
+| Activity | Condensed feed — tap for detail |
+| Depth | Summary only — drill to detail on tap |
+
+### Audit Fieldwork
+
+Mobile supports **fieldwork evidence capture and review**:
+
+| Capability | Mobile Support |
+|------------|----------------|
+| Photo capture | Camera integration for evidence documentation |
+| Note taking | Quick notes attached to engagement |
+| Checklist review | Read and check review procedures |
+| Approval | Sign-off and approval workflows |
+| Offline queue | Actions queued when offline — synced on reconnect |
+
+### Offline Awareness
+
+| State | Behavior |
+|-------|----------|
+| Online | Full functionality |
+| Degraded connection | Graceful retry with user notification |
+| Offline | Read cached content; queue write actions |
+| Reconnection | Sync queued actions with conflict resolution |
+| Indicator | Connection status visible in header |
+
+### Continuity Between Devices
+
+| Principle | Application |
+|-----------|-------------|
+| Session continuity | User can switch devices without losing context |
+| Draft preservation | In-progress work saved and available on other devices |
+| Notification continuity | Notifications appear on all signed-in devices |
+| Preference sync | User preferences consistent across devices |
+
+### Professional Mobile Experience
+
+The mobile experience must be **client-presentable**:
+
+- No "mobile version" branding or degraded visual quality
+- Full organization and workspace context visible
+- Professional typography and spacing maintained
+- No features that would embarrass a partner in a client meeting
+
+---
+
+## 39. Tablet Experience
+
+### Tablet as Professional Workstation
+
+Tablets occupy a unique position — more capable than mobile, more portable than laptop. The tablet experience leverages this for **review sessions, client meetings, and fieldwork**.
+
+### Landscape
+
+Landscape is the **primary tablet orientation** for professional work:
+
+| Layout | Landscape Behavior |
+|--------|-------------------|
+| Sidebar | Icon rail or full sidebar — user preference |
+| Content | Two-panel layout — list and detail side by side |
+| Tables | Full table view with horizontal scroll |
+| Charts | Full chart rendering |
+| Keyboard | Full keyboard shortcuts when external keyboard connected |
+
+### Portrait
+
+Portrait suits **read-heavy and approval workflows**:
+
+| Layout | Portrait Behavior |
+|--------|------------------|
+| Navigation | Collapsed sidebar or bottom navigation |
+| Content | Single column — list or detail, not both |
+| Panels | Detail opens as full-screen overlay |
+| Forms | Full-width form layout |
+
+### Split View
+
+Tablets support **split view** for multitasking:
+
+| Mode | Behavior |
+|------|----------|
+| Platform + reference | Platform alongside reference document |
+| Two engagements | Compare two records side by side |
+| Minimum width | Each split pane maintains minimum usable width |
+
+### Keyboard Support
+
+External keyboard on tablet provides **desktop-class productivity**:
+
+| Feature | Standard |
+|---------|----------|
+| Shortcuts | Full keyboard shortcut support |
+| Tab navigation | Full tab order |
+| Command palette | Available via keyboard shortcut |
+| Focus | Focus management identical to desktop |
+
+### Apple Pencil Readiness (Future)
+
+| Capability | Future Support |
+|------------|----------------|
+| Annotation | Mark up documents and working papers |
+| Signature | Professional sign-off capture |
+| Handwriting | Notes converted to searchable text |
+| Drawing | Audit diagrams and flowchart sketching |
+
+---
+
+## 40. Empty States
+
+### Empty State Philosophy
+
+An empty state is not a dead end. It is an **educational moment** — the platform's opportunity to guide the user toward their first meaningful action.
+
+Every empty state must answer three questions:
+
+1. Why is this empty?
+2. What would appear here?
+3. What should I do next?
+
+### Empty State Standards
+
+| Element | Required |
+|---------|----------|
+| Icon or illustration | Subtle, professional — not cartoonish |
+| Title | Clear statement of empty condition |
+| Description | Explains what will appear and why it is empty |
+| Primary action | Creates or imports first item |
+| Secondary action | Alternative path — import, template, learn more |
+
+### No Data
+
+| Context | Message Direction |
+|---------|-------------------|
+| New organization | "Create your first engagement to get started" |
+| New module | "No [items] yet. [Items] you create will appear here." |
+| Filtered to zero | "No items match your current filters" |
+
+### No Search Results
+
+| Element | Content |
+|---------|---------|
+| Message | "No results for '[query]'" |
+| Suggestion | Check spelling, try different terms, or broaden filters |
+| Action | Clear search or clear filters |
+
+### No Companies
+
+"No companies in this workspace. Add a company to begin audit work."
+Action: Add Company
+
+### No Engagements
+
+"No engagements yet. Create an engagement to start your first audit."
+Action: Create Engagement
+
+### No Reports
+
+"No reports generated. Generate a report from a completed engagement."
+Action: Generate Report
+
+### No Notifications
+
+"You're all caught up. Notifications about assignments, deadlines, and activity will appear here."
+
+### No Tasks
+
+"No tasks assigned to you. Tasks from engagements and reviews will appear here."
+
+### No AI History
+
+"No AI interactions yet. AI assistance is available in working papers, disclosures, and search."
+
+### Empty State Tone
+
+| Principle | Application |
+|-----------|-------------|
+| Opportunity | Frame as beginning — not failure |
+| Concise | Two sentences maximum for description |
+| Actionable | Always include a primary action when applicable |
+| Calm | No alarming language — empty is normal for new users |
+
+---
+
+## 41. Error Experience
+
+### Error Philosophy
+
+Errors are inevitable in enterprise software. The error experience determines whether errors feel like **professional setbacks or manageable interruptions**.
+
+Every error in this platform must be:
+
+- **Calm** — no alarming visuals, no blame
+- **Informative** — states what happened and why
+- **Actionable** — provides a clear path forward
+
+### HTTP and System Errors
+
+| Error | User Experience |
+|-------|-----------------|
+| **404 — Not Found** | "This page doesn't exist or has been moved." Links to dashboard and search. No technical error code prominent. |
+| **403 — Forbidden** | "You don't have permission to access this." Explains who to contact. No exposure of what resource was denied. |
+| **401 — Unauthorized** | Redirect to login with return URL preserved. Message: "Please sign in to continue." |
+| **500 — Server Error** | "Something went wrong on our end." Retry action. Support reference ID. No stack trace. |
+
+### Connection Errors
+
+| Error | User Experience |
+|-------|-----------------|
+| **Offline** | Banner: "You're offline. Some features are unavailable." Queued actions indicated. |
+| **Connection loss** | Toast: "Connection lost. Retrying…" Auto-retry with manual retry option. |
+| **Timeout** | "This is taking longer than expected." Cancel and retry options. No silent failure. |
+
+### Validation Errors
+
+| Error | User Experience |
+|-------|-----------------|
+| Field validation | Inline below field — specific and actionable |
+| Form validation | Summary at top with links to each field |
+| Server validation | Mapped to fields where possible |
+| Tone | "Please enter a valid email address" — not "Invalid input" |
+
+### AI Unavailable
+
+| State | User Experience |
+|-------|-----------------|
+| AI service down | "AI assistance is temporarily unavailable. You can continue working manually." |
+| AI timeout | "AI analysis timed out. Try again or continue manually." |
+| AI quota exceeded | "AI usage limit reached for this period. Contact your administrator." |
+| No AI permission | "AI features are not available for your role." |
+
+### Import Failure
+
+| Error | User Experience |
+|-------|-----------------|
+| Partial import | "247 of 250 records imported. 3 records failed." Download error report. |
+| Complete failure | "Import failed. [Reason]. Please check your file and try again." |
+| Format error | "File format not recognized. Expected CSV or Excel." |
+
+### Export Failure
+
+| Error | User Experience |
+|-------|-----------------|
+| Export failed | "Export could not be completed. [Reason]. Please try again." |
+| Timeout | "Export is taking longer than expected. We'll notify you when it's ready." |
+| Permission | "You don't have permission to export this data." |
+
+### Error Tone
+
+| Principle | Application |
+|-----------|-------------|
+| Blame the system | "We couldn't save your changes" — not "You failed to save" |
+| Be specific | State what failed — not "An error occurred" |
+| Offer action | Retry, go back, contact support — always |
+| Preserve data | User input never lost on error |
+| Reference ID | System errors include support reference — not exposed codes |
+
+---
+
+## 42. Settings Experience
+
+### Settings Philosophy
+
+Settings are the platform's **configuration layer** — where users and administrators shape the product to their professional context. Settings must be organized, discoverable, and safe.
+
+Poor settings design creates misconfiguration, support burden, and security risk. Excellent settings design empowers users without overwhelming them.
+
+### Settings Architecture
+
+| Level | Scope | Examples |
+|-------|-------|---------|
+| **Account** | Individual user | Profile, password, preferences, notifications |
+| **Workspace** | Team within organization | Workspace name, members, defaults |
+| **Organization** | Entire tenant | Billing, security policy, branding, integrations |
+| **Application** | Platform-wide | Feature flags, system configuration (admin only) |
+
+### Account Settings
+
+| Setting | Description |
+|---------|-------------|
+| Profile | Name, email, avatar, job title |
+| Password | Change password, two-factor authentication |
+| Preferences | Language, timezone, date format, density |
+| Notifications | Email and in-app notification preferences |
+| Sessions | Active sessions, sign out all devices |
+| API keys | Personal API keys for integrations |
+
+### Workspace Settings
+
+| Setting | Description |
+|---------|-------------|
+| General | Workspace name, description |
+| Members | Invite, remove, role assignment |
+| Defaults | Default engagement settings, templates |
+| Integrations | Workspace-level integrations |
+
+### Organization Settings
+
+| Setting | Description |
+|---------|-------------|
+| General | Organization name, legal name, branding |
+| Security | MFA policy, session timeout, IP restrictions |
+| Billing | Plan, usage, invoices |
+| Members | Organization-wide member management |
+| Roles | Role and permission configuration |
+| Audit log | Organization activity log |
+| Data retention | Retention policy configuration |
+
+### Application Preferences
+
+| Setting | Description |
+|---------|-------------|
+| Appearance | Light, dark, system theme |
+| Density | Comfortable, standard, compact |
+| Language | Interface language |
+| Date and time | Format preferences |
+| Keyboard shortcuts | Customizable shortcuts |
+| Dashboard | Widget customization |
+
+### Notifications Settings
+
+| Category | Control |
+|----------|---------|
+| Assignments | When tasks are assigned to me |
+| Mentions | When I am mentioned |
+| Deadlines | Deadline reminders — how far in advance |
+| Approvals | Approval requests |
+| System | Platform announcements |
+| Email vs in-app | Per-category delivery preference |
+
+### Appearance Settings
+
+| Setting | Options |
+|---------|---------|
+| Theme | Light, dark, system |
+| Density | Comfortable, standard, compact |
+| Sidebar | Expanded, collapsed default |
+
+### Language Settings
+
+| Setting | Description |
+|---------|-------------|
+| Interface language | UI language selection |
+| Content language | Preferred language for documents |
+| Date format | Override locale default |
+| Number format | Override locale default |
+
+### Security Settings
+
+| Setting | Description |
+|---------|-------------|
+| Two-factor authentication | Enable, configure |
+| Active sessions | View and revoke |
+| Sign-in history | Recent sign-in activity |
+| Security alerts | Unusual activity notifications |
+
+### Privacy Settings
+
+| Setting | Description |
+|---------|-------------|
+| Data export | Request personal data export |
+| AI data usage | Opt in/out of AI training data usage |
+| Activity visibility | Control what activity is visible to team |
+
+### API Integrations
+
+| Setting | Description |
+|---------|-------------|
+| Connected apps | View and revoke connected applications |
+| API keys | Create and manage API keys |
+| Webhooks | Configure webhook endpoints |
+| OAuth | Manage OAuth application authorizations |
+
+### Settings UX Standards
+
+| Principle | Application |
+|-----------|-------------|
+| Grouped logically | Related settings in sections with clear headers |
+| Search | Settings searchable by name |
+| Descriptions | Every setting has a brief description of its effect |
+| Dangerous settings | Destructive settings require confirmation |
+| Immediate vs saved | Preference changes apply immediately; security changes may require re-authentication |
+| Defaults | Sensible defaults — settings work without configuration |
+
+---
+
+# Part 10 — Design Governance & Quality Assurance
+
+## 43. Design Governance
+
+### Ownership
+
+The Design System is a **shared asset** with clear ownership and accountability. No single team owns it alone — but the Design System Architecture team holds stewardship responsibility.
+
+### Roles and Responsibilities
+
+| Role | Responsibility |
+|------|----------------|
+| **Product Design** | Authorship, evolution, component specification, design review |
+| **Engineering** | Implementation fidelity, component library maintenance, technical feasibility |
+| **QA** | Visual regression testing, accessibility testing, cross-browser verification |
+| **Accessibility** | Accessibility standards, audit coordination, assistive technology testing |
+| **Architecture** | Alignment with system architecture, API and data model implications |
+| **AI** | AI UX standards, explainability requirements, AI interaction patterns |
+| **Business** | Brand alignment, client presentation standards, market positioning |
+
+### Approval Process
+
+| Change Type | Approval Required |
+|-------------|-------------------|
+| New component | Design System Architect + Engineering Lead |
+| Component modification | Design System Architect |
+| New pattern | Design System Architect + Product Design Lead |
+| Philosophy change | Design System Architect + Product + Engineering leadership |
+| Accessibility standard change | Accessibility Lead + Design System Architect |
+| AI UX standard change | AI Experience Lead + Design System Architect |
+
+### Review Process
+
+| Review Type | Frequency | Participants |
+|-------------|-----------|--------------|
+| Component review | Per component | Design, Engineering, Accessibility |
+| Page review | Per major page | Design, Product, Engineering |
+| Release review | Per release | Design System Architect, QA |
+| Accessibility audit | Annual | External auditor + Accessibility Lead |
+| Design System review | Quarterly | All stakeholders |
+
+### Change Management
+
+| Principle | Application |
+|-----------|-------------|
+| Documented | All changes documented in revision history |
+| Communicated | Changes communicated to all teams before enforcement |
+| Migrated | Deprecated patterns have migration guides |
+| Versioned | Design System versioned — breaking changes increment major version |
+| Backward compatible | Non-breaking additions preferred over breaking changes |
+
+### Versioning
+
+| Version Type | Meaning |
+|--------------|---------|
+| Major | Breaking change to component API or design philosophy |
+| Minor | New components, patterns, or sections |
+| Patch | Clarifications, corrections, non-breaking updates |
+
+---
+
+## 44. Component Acceptance Criteria
+
+### Measurable Component Quality
+
+Every component must meet the following acceptance criteria before inclusion in the Design System:
+
+### Consistency
+
+| Criterion | Measure |
+|-----------|---------|
+| Visual alignment | Matches design tokens — spacing, color, typography |
+| Behavioral alignment | Matches interaction patterns defined in this document |
+| Naming | Follows platform naming conventions |
+| States | Implements all required states — default, hover, focus, active, disabled, loading, error |
+
+### Accessibility
+
+| Criterion | Measure |
+|-----------|---------|
+| Keyboard | Fully operable via keyboard |
+| Screen reader | Correct roles, labels, and state communication |
+| Contrast | Meets WCAG 2.1 AA contrast requirements |
+| Touch | Meets minimum touch target size |
+| Motion | Respects reduced-motion preference |
+
+### Responsiveness
+
+| Criterion | Measure |
+|-----------|---------|
+| Breakpoints | Functional at all defined breakpoints |
+| Adaptation | Layout adapts — does not break |
+| Touch | Touch-optimized on tablet and mobile |
+| Zoom | Functional at 200% browser zoom |
+
+### Performance Perception
+
+| Criterion | Measure |
+|-----------|---------|
+| Response | Interactive within 100ms of user action |
+| Loading | Skeleton or progressive loading — not blank wait |
+| Animation | 60fps — no jank |
+| No layout shift | Content does not jump on load |
+
+### Discoverability
+
+| Criterion | Measure |
+|-----------|---------|
+| Visibility | Interactive elements visually identifiable |
+| Affordance | Purpose clear from visual treatment |
+| Label | Text label or accessible name present |
+
+### Learnability
+
+| Criterion | Measure |
+|-----------|---------|
+| Familiarity | Uses established platform patterns |
+| No surprises | Behavior matches user expectation from prior platform use |
+| Self-explanatory | Purpose clear without documentation |
+
+### Enterprise Readiness
+
+| Criterion | Measure |
+|-----------|---------|
+| Density modes | Supports comfortable, standard, and compact density |
+| Localization | Text externalized — layout expansion-safe |
+| Dark mode | Full dark mode support |
+| Role awareness | Supports permission-based visibility |
+
+### Professional Appearance
+
+| Criterion | Measure |
+|-----------|---------|
+| Craft | No visible alignment, spacing, or typography defects |
+| Client-presentable | Suitable for display in client meetings |
+| Calm | No visual noise or unnecessary decoration |
+
+### Maintainability
+
+| Criterion | Measure |
+|-----------|---------|
+| Documented | Usage guidelines and examples documented |
+| Token-driven | Uses design tokens — not hardcoded values |
+| Composable | Works in combination with other components |
+| Tested | Visual regression and accessibility tests present |
+
+---
+
+## 45. Design Review Checklist
+
+### Comprehensive Review Framework
+
+Every screen, component, and workflow must pass this review before release.
+
+### Pages
+
+| Check | Standard |
+|-------|----------|
+| ☐ | One Heading 1 — page title clear |
+| ☐ | Navigation context visible — user knows where they are |
+| ☐ | Primary action identified — one per view |
+| ☐ | Loading state defined — skeleton, not blank |
+| ☐ | Empty state defined — with guidance and action |
+| ☐ | Error state defined — calm, informative, actionable |
+| ☐ | Responsive at all breakpoints |
+| ☐ | Dark mode verified |
+| ☐ | Keyboard navigable |
+| ☐ | Permission states handled — view, edit, no access |
+
+### Components
+
+| Check | Standard |
+|-------|----------|
+| ☐ | All states implemented |
+| ☐ | Accessible — keyboard, screen reader, contrast |
+| ☐ | Token-driven — no hardcoded values |
+| ☐ | Documented with usage guidelines |
+| ☐ | Responsive |
+| ☐ | Dark mode |
+| ☐ | Density modes where applicable |
+
+### Forms
+
+| Check | Standard |
+|-------|----------|
+| ☐ | All fields labeled |
+| ☐ | Required fields indicated |
+| ☐ | Validation messages specific and actionable |
+| ☐ | Error summary for multiple errors |
+| ☐ | Keyboard navigable |
+| ☐ | Autosave or explicit save |
+| ☐ | Destructive actions separated and confirmed |
+| ☐ | Loading state on submit |
+
+### Tables
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Skeleton loading state |
+| ☐ | Empty state with action |
+| ☐ | Sort, filter, pagination defined |
+| ☐ | Bulk actions for multi-select |
+| ☐ | Row actions accessible |
+| ☐ | Keyboard navigation |
+| ☐ | Responsive — card view on mobile |
+| ☐ | Sticky header |
+| ☐ | Accessible column headers |
+
+### Dashboards
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Role-appropriate content |
+| ☐ | Four to six KPIs maximum |
+| ☐ | Action items with navigation |
+| ☐ | Context on all metrics |
+| ☐ | Loading skeleton for each widget |
+| ☐ | Empty state per widget |
+| ☐ | No chart junk |
+
+### Charts
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Title and axis labels |
+| ☐ | Data table alternative |
+| ☐ | Tooltip on hover |
+| ☐ | Empty state |
+| ☐ | Loading skeleton |
+| ☐ | Correct chart type for data |
+| ☐ | Color not sole differentiator |
+
+### AI Interfaces
+
+| Check | Standard |
+|-------|----------|
+| ☐ | AI involvement clearly labeled |
+| ☐ | Confidence indicator visible |
+| ☐ | Citations on all claims |
+| ☐ | Human validation required before use |
+| ☐ | Loading state with scope description |
+| ☐ | Error state — AI unavailable |
+| ☐ | Feedback mechanism |
+| ☐ | Audit trail entry |
+
+### Mobile Screens
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Touch targets meet minimum |
+| ☐ | Primary action in thumb zone |
+| ☐ | No hover-dependent functionality |
+| ☐ | Readable without zoom |
+| ☐ | Navigation accessible |
+| ☐ | Offline state handled |
+
+### Dialogs
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Accessible name |
+| ☐ | Focus trap |
+| ☐ | Focus return on close |
+| ☐ | Escape closes |
+| ☐ | Destructive actions require confirmation |
+| ☐ | Cancel is safe default focus |
+
+### Navigation
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Active state visible |
+| ☐ | Breadcrumb where depth warrants |
+| ☐ | Keyboard navigable |
+| ☐ | Consistent with platform navigation model |
+| ☐ | Mobile navigation appropriate |
+
+### Settings
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Logically grouped |
+| ☐ | Description for each setting |
+| ☐ | Dangerous settings confirmed |
+| ☐ | Search available |
+| ☐ | Changes apply correctly |
+
+### Reports
+
+| Check | Standard |
+|-------|----------|
+| ☐ | Professional formatting |
+| ☐ | Page structure clear |
+| ☐ | Loading state for generation |
+| ☐ | Error state for failure |
+| ☐ | Export options |
+| ☐ | Print-optimized view |
+
+---
+
+## 46. Future Evolution
+
+### Ten-Year Design System Vision
+
+The Design System must evolve to serve the platform across a decade of technological change without requiring fundamental redesign. Evolution is guided by principles, not trends.
+
+### Scalability
+
+| Dimension | Evolution Path |
+|-----------|----------------|
+| Components | New components added — existing components not broken |
+| Modules | New product modules adopt existing patterns — no module-specific design languages |
+| Tenants | White-label and branding customization within token system |
+| Users | Personalization within system constraints — not arbitrary customization |
+
+### New Device Categories
+
+| Device | Preparation |
+|--------|-------------|
+| Wearables | Notification and approval micro-interactions |
+| Voice | Voice command for search and status — not primary input |
+| AR/VR | Spatial audit visualization — future research domain |
+| Ambient displays | Dashboard widgets for office displays |
+| Foldables | Adaptive layout system already supports fold transitions |
+
+### AI Evolution
+
+| Stage | Design Response |
+|-------|-----------------|
+| Current | Assistive AI with human validation |
+| Near-term | Proactive AI with user-configurable autonomy levels |
+| Medium-term | Multi-agent AI with transparent agent roles |
+| Long-term | AI as continuous professional co-pilot — always with human accountability |
+
+AI UX standards evolve with capability — but the principle of human accountability is permanent.
+
+### Design Token Evolution
+
+| Evolution | Approach |
+|-----------|----------|
+| New tokens | Added to system — existing tokens unchanged |
+| Token theming | Organization branding through token overrides |
+| Density tokens | Expanded density options |
+| Motion tokens | Standardized motion vocabulary |
+
+### Industry Customization
+
+| Customization | Boundary |
+|---------------|----------|
+| Terminology | Configurable labels — "Engagement" vs "Assignment" |
+| Workflows | Configurable steps — within design system components |
+| Branding | Logo, primary color, typography — within token system |
+| Layout | Not customizable — consistency is non-negotiable |
+
+### Plugin Ecosystem
+
+| Capability | Design Standard |
+|------------|-----------------|
+| Plugin UI | Must use design system components |
+| Plugin review | Design review required for plugin UI |
+| Plugin navigation | Integrates into designated extension zones |
+| Plugin branding | Subordinate to platform visual identity |
+
+### Enterprise Branding
+
+| Level | Customization |
+|-------|---------------|
+| Organization | Logo, primary color, email templates |
+| Workspace | Workspace name and description only |
+| User | No user-level visual customization |
+
+### Future Interaction Models
+
+| Model | Timeline |
+|-------|----------|
+| Conversational AI | Current — expanding |
+| Gesture navigation | Tablet — expanding |
+| Predictive UI | Medium-term — AI-suggested next actions |
+| Ambient computing | Long-term — research |
+| Neural interfaces | Out of scope |
+
+---
+
+## 47. Final Design Review
+
+### Consistency Review Across Parts 1–10
+
+This section confirms internal consistency across the complete Design System v1.0 and alignment with the platform's constitutional documents.
+
+### Part-by-Part Consistency Confirmation
+
+| Part | Theme | Consistency Status |
+|------|-------|-------------------|
+| Part 1 — Foundation | Vision, philosophy, UX principles, visual identity | ✓ Establishes constitutional design intent |
+| Part 2 — Layout System | Grid, spacing, responsive philosophy | ✓ Implements Part 1 principles spatially |
+| Part 3 — Visual Foundations | Color, typography, iconography, elevation | ✓ Implements Part 1 visual identity |
+| Part 4 — Component Foundations | Buttons, inputs, forms | ✓ Implements Parts 2–3 in interactive elements |
+| Part 5 — Navigation & IA | Sidebar, header, information architecture | ✓ Implements Part 1 orientation principles |
+| Part 6 — Dashboard & Data | Dashboards, KPIs, tables, charts | ✓ Implements Part 1 enterprise productivity goals |
+| Part 7 — Motion & Feedback | Motion, loading, feedback, states | ✓ Implements Part 1 calm and trust principles |
+| Part 8 — Accessibility & AI | Accessibility, localization, AI UX | ✓ Implements Part 1 inclusive and accountable design |
+| Part 9 — Mobile & States | Mobile, tablet, empty, error, settings | ✓ Implements Part 1 long-session and professional standards |
+| Part 10 — Governance | Governance, acceptance criteria, review, evolution | ✓ Ensures Part 1–9 are enforceable and evolvable |
+
+**No internal contradictions identified across Parts 1–10.**
+
+### Alignment with PROJECT_BIBLE
+
+| PROJECT_BIBLE Principle | DESIGN_SYSTEM Expression |
+|--------------------------|--------------------------|
+| Restore time to professional judgment | Progressive disclosure, keyboard-first, AI assist (not replace) |
+| AI-native architecture | Section 37 — AI UX with human accountability |
+| Enterprise-grade maturity | Section 43 — governance, Section 44 — acceptance criteria |
+| Professional accountability | AI review workflow, audit trail visibility, sign-off design |
+| Globally deployable | Section 36 — localization and internationalization |
+| Trust and integrity | Section 32 — feedback tone, Section 41 — calm error experience |
+| Multi-tenant SaaS | Section 42 — organization/workspace settings hierarchy |
+
+**Aligned. No contradictions.**
+
+### Alignment with MASTER_PRD
+
+| MASTER_PRD Domain | DESIGN_SYSTEM Support |
+|-------------------|----------------------|
+| Audit module | Tables (§27), forms (§20), navigation (§21), AI UX (§37) |
+| IFRS Reporting | Charts (§28), data visualization, professional formatting |
+| Financial Intelligence | Dashboards (§25), KPI cards (§26), analytics charts |
+| Multi-tenant | Settings hierarchy (§42), organization branding (§46) |
+| Role-based access | Permission states in review checklist (§45), role-aware dashboards (§25) |
+| AI features | Complete AI UX specification (§37) |
+
+**Aligned. No contradictions.**
+
+### Alignment with SYSTEM_ARCHITECTURE
+
+| SYSTEM_ARCHITECTURE Principle | DESIGN_SYSTEM Expression |
+|-------------------------------|--------------------------|
+| Complexity in architecture, clarity at surface | Progressive disclosure (§9, §24), invisible complexity (Part 1) |
+| AI-native, not AI-bolted | Embedded AI patterns (§37), not isolated chat-only |
+| Evidence-first intelligence | AI citations (§37), citation-required claims |
+| Configuration over hardcoding | Settings experience (§42), industry customization (§46) |
+| Defense in depth | Security settings (§42), permission-aware UI states |
+| Multi-tenant isolation | Organization/workspace context in header (§23) |
+
+**Aligned. No contradictions.**
+
+### Editorial Recommendations
+
+The following recommendations are noted for future maintenance — they are not contradictions but opportunities for continued refinement:
+
+| # | Recommendation | Rationale |
+|---|----------------|-----------|
+| 1 | Maintain a living component index | As components are built, cross-reference Section 17–20 definitions with implementation catalog |
+| 2 | Add locale-specific examples | Section 36 would benefit from worked examples per supported locale as languages are added |
+| 3 | Expand AI UX as models evolve | Section 37 should be reviewed quarterly as AI capabilities advance |
+| 4 | Conduct baseline accessibility audit | Section 35 review process should schedule first external audit at MVP release |
+| 5 | Define token naming convention | Future technical token documentation should reference Section 13–14 semantic roles |
+| 6 | Partner review of table philosophy | Section 27 should be validated with practicing auditors before module build |
+| 7 | Dark mode refinement pass | Section 13 surface levels should be validated in extended dark mode sessions |
+| 8 | Mobile fieldwork validation | Section 38 should be validated with field auditors before mobile release |
+
+### Constitutional Status
+
+This document — **Design System v1.0.0** — is hereby confirmed as the **authoritative design constitution** for the audit platform.
+
+All future screens, components, workflows, AI interactions, and visual decisions must conform to this document.
+
+Deviations require documented justification and approval per Section 43.
+
+---
+
+## Document Control
+
+| Field | Value |
+|-------|-------|
+| Document | Design System |
+| Version | **1.0.0** |
+| Parts Complete | 1–10 (Complete) |
+| Status | **COMPLETE** |
+| Last Updated | 2026-06-30 |
+| Change Summary | Added Part 8 (Accessibility, AI Experience & Localization), Part 9 (Mobile Experience & Special States), Part 10 (Design Governance & Quality Assurance). Final design review completed. Document elevated to authoritative design constitution. |
+| Author | Chief Product Designer / Design System Architect |
+| Authority | Subordinate to [PROJECT_BIBLE.md](./PROJECT_BIBLE.md) (constitutional) · Peer to [MASTER_PRD.md](./MASTER_PRD.md) and [SYSTEM_ARCHITECTURE.md](./SYSTEM_ARCHITECTURE.md) |
+| Enforcement | Mandatory for all developers, designers, AI agents, and contributors |
+
+### Revision History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 0.1.0 | 2026-06-30 | Part 1 — Foundation (Design Vision through Success Criteria) |
+| 0.4.0 | 2026-06-30 | Parts 2–4 — Layout System, Visual Foundations, Component Foundations |
+| 0.7.0 | 2026-06-30 | Parts 5–7 — Navigation & IA, Dashboard & Tables & Charts, Motion & Feedback & Interaction |
+| 1.0.0 | 2026-06-30 | Parts 8–10 — Accessibility & AI & Localization, Mobile & Special States, Design Governance & QA. **Document complete.** |
+
+---
+
+**Design System v1.0.0 is complete. This document is the authoritative design constitution for the platform.**
+
+---
+
+*End of Design System v1.0.0*
