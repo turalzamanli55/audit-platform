@@ -11,10 +11,12 @@ import {
   ShellHeaderActions,
   type ShellHeaderActionsLabels,
 } from "@/components/shell/shell-header-actions";
+import { MobileSearchTrigger } from "@/components/shell/mobile-search-trigger";
 import {
-  ShellDrawerFooter,
-  type ShellDrawerFooterLabels,
-} from "@/components/shell/shell-drawer-footer";
+  ShellDrawerContext,
+  type ShellDrawerContextLabels,
+} from "@/components/shell/shell-drawer-context";
+import { ShellSidebarUserFooter } from "@/components/shell/shell-sidebar-user-footer";
 import type { CompanySwitcherItem } from "@/components/shell/company-switcher";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardNavItem } from "@/config/dashboard-navigation";
@@ -24,6 +26,7 @@ import { useSettings, useTheme } from "@/providers";
 
 type AppShellExperienceLabels = ShellHeaderActionsLabels & {
   searchPlaceholder: string;
+  drawerContextTitle: string;
   commandPalette: {
     placeholder: string;
     empty: string;
@@ -212,26 +215,29 @@ export function AppShellExperience({
     ],
   );
 
-  const drawerLabels: ShellDrawerFooterLabels = {
+  const drawerContextLabels: ShellDrawerContextLabels = {
     organization: labels.organization,
     workspace: labels.workspace,
     company: labels.company,
-    theme: labels.theme,
-    themeLight: labels.themeLight,
-    themeDark: labels.themeDark,
-    language: labels.language,
-    userMenu: labels.userMenu,
-    profile: labels.profile,
-    signOut: labels.signOut,
+    contextTitle: labels.drawerContextTitle,
   };
 
   return (
     <AppShell
       brand={<DashboardBrand />}
+      headerMobileSearch={
+        <MobileSearchTrigger
+          placeholder={labels.searchPlaceholder}
+          label={labels.openSearch}
+        />
+      }
       headerCenter={<GlobalSearchTrigger placeholder={labels.searchPlaceholder} />}
       headerRight={<ShellHeaderActions labels={labels} companies={companies} />}
       sidebar={<DashboardNav items={navItems} />}
-      sidebarFooter={<ShellDrawerFooter labels={drawerLabels} companies={companies} />}
+      sidebarDesktopFooter={<ShellSidebarUserFooter />}
+      mobileDrawerContext={
+        <ShellDrawerContext labels={drawerContextLabels} companies={companies} />
+      }
       overlay={
         <CommandPalette
           items={commandItems}

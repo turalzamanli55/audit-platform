@@ -79,6 +79,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
               profile: dictionary.shell.profile,
               signOut: dictionary.auth.signOut,
               openSearch: dictionary.shell.openSearch,
+              drawerContextTitle: dictionary.shell.drawerContextTitle,
               searchPlaceholder: dictionary.shell.searchPlaceholder,
               commandPalette: dictionary.shell.commandPalette,
             }}

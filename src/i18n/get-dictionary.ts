@@ -25,6 +25,7 @@ export type Dictionary = {
     userMenu: string;
     profile: string;
     openSearch: string;
+    drawerContextTitle: string;
     commandPalette: {
       placeholder: string;
       empty: string;

@@ -56,7 +56,7 @@ export function UserMenu({ labels, className }: UserMenuProps) {
       trigger={
         <Button variant="ghost" className="h-10 gap-2 px-2" aria-label={labels.title}>
           <Avatar name={displayName} size="sm" />
-          <span className="hidden max-w-[8rem] truncate text-sm font-medium md:inline">{displayName}</span>
+          <span className="hidden max-w-[8rem] truncate text-sm font-medium lg:inline">{displayName}</span>
         </Button>
       }
     >

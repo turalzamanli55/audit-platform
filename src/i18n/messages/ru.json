@@ -20,6 +20,7 @@
     "userMenu": "Меню аккаунта",
     "profile": "Профиль",
     "openSearch": "Открыть поиск",
+    "drawerContextTitle": "Рабочее пространство",
     "commandPalette": {
       "placeholder": "Поиск страниц, действий и настроек…",
       "empty": "Команды не найдены",

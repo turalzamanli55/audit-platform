@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { IconPanelLeft, IconX } from "@/components/ui/icons";
+import { IconX } from "@/components/ui/icons";
 import { useShell } from "./shell-provider";
 import { cn } from "@/lib/ui/cn";
 import { Portal } from "@/components/ui/portal";
@@ -10,48 +10,21 @@ import { Portal } from "@/components/ui/portal";
 type AppSidebarProps = {
   children: ReactNode;
   brand: ReactNode;
-  footer?: ReactNode;
+  desktopFooter?: ReactNode;
+  mobileDrawerContext?: ReactNode;
 };
 
-export function AppSidebar({ children, brand, footer }: AppSidebarProps) {
-  const { sidebarCollapsed, toggleSidebar, mobileNavOpen, setMobileNavOpen } = useShell();
+function SidebarNav({ children }: { children: ReactNode }) {
+  return <div className="flex flex-1 flex-col overflow-y-auto px-3 py-4">{children}</div>;
+}
 
-  const sidebarContent = (
-    <>
-      <div
-        className={cn(
-          "flex h-[var(--ds-header-height)] shrink-0 items-center border-b border-sidebar-border px-4",
-          sidebarCollapsed ? "justify-center px-2" : "justify-between",
-        )}
-      >
-        {!sidebarCollapsed ? <div className="min-w-0 flex-1">{brand}</div> : null}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleSidebar}
-          className="hidden text-sidebar-muted hover:bg-sidebar-accent/60 hover:text-sidebar-foreground lg:inline-flex"
-          aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          <IconPanelLeft />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setMobileNavOpen(false)}
-          className="text-sidebar-muted hover:bg-sidebar-accent/60 lg:hidden"
-          aria-label="Close navigation"
-        >
-          <IconX />
-        </Button>
-      </div>
-      <div className="flex flex-1 flex-col overflow-y-auto px-3 py-4">{children}</div>
-      {footer ? (
-        <div className={cn("border-t border-sidebar-border p-4", sidebarCollapsed && "lg:hidden")}>
-          {footer}
-        </div>
-      ) : null}
-    </>
-  );
+export function AppSidebar({
+  children,
+  brand,
+  desktopFooter,
+  mobileDrawerContext,
+}: AppSidebarProps) {
+  const { sidebarCollapsed, mobileNavOpen, setMobileNavOpen } = useShell();
 
   return (
     <>
@@ -65,7 +38,27 @@ export function AppSidebar({ children, brand, footer }: AppSidebarProps) {
         role="navigation"
         aria-label="Main navigation"
       >
-        {sidebarContent}
+        <div
+          className={cn(
+            "flex h-[var(--ds-header-height)] shrink-0 items-center border-b border-sidebar-border px-4",
+            sidebarCollapsed ? "justify-center px-2" : "justify-between",
+          )}
+        >
+          <div className={cn("min-w-0", sidebarCollapsed ? "flex justify-center" : "flex-1")}>
+            {brand}
+          </div>
+        </div>
+        <SidebarNav>{children}</SidebarNav>
+        {desktopFooter ? (
+          <div
+            className={cn(
+              "shrink-0 border-t border-sidebar-border p-3",
+              sidebarCollapsed && "px-2",
+            )}
+          >
+            {desktopFooter}
+          </div>
+        ) : null}
       </aside>
 
       {mobileNavOpen ? (
@@ -82,7 +75,22 @@ export function AppSidebar({ children, brand, footer }: AppSidebarProps) {
               role="navigation"
               aria-label="Main navigation"
             >
-              {sidebarContent}
+              <div className="flex h-[var(--ds-header-height)] shrink-0 items-center justify-between border-b border-sidebar-border px-4">
+                <div className="min-w-0 flex-1">{brand}</div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="text-sidebar-muted hover:bg-sidebar-accent/60"
+                  aria-label="Close navigation"
+                >
+                  <IconX />
+                </Button>
+              </div>
+              <SidebarNav>{children}</SidebarNav>
+              {mobileDrawerContext ? (
+                <div className="shrink-0 border-t border-sidebar-border p-4">{mobileDrawerContext}</div>
+              ) : null}
             </aside>
           </div>
         </Portal>

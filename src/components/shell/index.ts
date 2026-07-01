@@ -11,5 +11,6 @@ export { ThemeSwitcher } from "./theme-switcher";
 export { NotificationMenu } from "./notification-menu";
 export { UserMenu } from "./user-menu";
 export { ShellHeaderActions, type ShellHeaderActionsLabels } from "./shell-header-actions";
-export { ShellDrawerFooter, type ShellDrawerFooterLabels } from "./shell-drawer-footer";
+export { ShellDrawerContext, type ShellDrawerContextLabels } from "./shell-drawer-context";
+export { ShellSidebarUserFooter } from "./shell-sidebar-user-footer";
 export { MobileSearchTrigger } from "./mobile-search-trigger";

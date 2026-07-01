@@ -20,6 +20,7 @@
     "userMenu": "Account menu",
     "profile": "Profile",
     "openSearch": "Open search",
+    "drawerContextTitle": "Workspace",
     "commandPalette": {
       "placeholder": "Search pages, actions, and settings…",
       "empty": "No matching commands",

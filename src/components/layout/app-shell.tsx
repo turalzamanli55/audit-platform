@@ -10,20 +10,24 @@ import { ContentArea } from "./content-area";
 type AppShellProps = {
   children: ReactNode;
   brand: ReactNode;
+  headerMobileSearch?: ReactNode;
   headerCenter?: ReactNode;
   headerRight?: ReactNode;
   sidebar: ReactNode;
-  sidebarFooter?: ReactNode;
+  sidebarDesktopFooter?: ReactNode;
+  mobileDrawerContext?: ReactNode;
   overlay?: ReactNode;
 };
 
 function AppShellInner({
   children,
   brand,
+  headerMobileSearch,
   headerCenter,
   headerRight,
   sidebar,
-  sidebarFooter,
+  sidebarDesktopFooter,
+  mobileDrawerContext,
   overlay,
 }: AppShellProps) {
   const { sidebarCollapsed } = useShell();
@@ -31,9 +35,17 @@ function AppShellInner({
   return (
     <>
       <div className="ds-shell-grid min-h-dvh bg-background">
-        <AppHeader left={brand} center={headerCenter} right={headerRight} />
+        <AppHeader
+          mobileSearch={headerMobileSearch}
+          center={headerCenter}
+          right={headerRight}
+        />
         <div className="ds-app-grid min-h-0" data-sidebar-collapsed={sidebarCollapsed}>
-          <AppSidebar brand={brand} footer={sidebarFooter}>
+          <AppSidebar
+            brand={brand}
+            desktopFooter={sidebarDesktopFooter}
+            mobileDrawerContext={mobileDrawerContext}
+          >
             {sidebar}
           </AppSidebar>
           <ContentArea>{children}</ContentArea>

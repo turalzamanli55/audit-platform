@@ -8,7 +8,6 @@ import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeSwitcher } from "./theme-switcher";
 import { NotificationMenu } from "./notification-menu";
 import { UserMenu } from "./user-menu";
-import { MobileSearchTrigger } from "./mobile-search-trigger";
 import { defaultLocale, isValidLocale } from "@/i18n";
 
 export type ShellHeaderActionsLabels = {
@@ -51,11 +50,21 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
   const currentCompany =
     (slug ? companies.find((item) => item.slug === slug) : null) ?? companies[0] ?? null;
 
+  const userLabels = {
+    title: labels.userMenu,
+    profile: labels.profile,
+    signOut: labels.signOut,
+  };
+
+  const notificationLabels = {
+    title: labels.notifications,
+    empty: labels.notificationsEmpty,
+    markAllRead: labels.markAllRead,
+  };
+
   return (
     <div className="flex items-center gap-0.5 sm:gap-1">
-      <MobileSearchTrigger label={labels.openSearch} className="md:hidden" />
-
-      <div className="hidden items-center gap-0.5 md:flex">
+      <div className="hidden items-center gap-0.5 lg:flex">
         <OrganizationSwitcher label={labels.organization} />
         <WorkspaceSwitcher label={labels.workspace} />
         <CompanySwitcher
@@ -71,16 +80,10 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
         />
       </div>
 
-      <NotificationMenu
-        labels={{
-          title: labels.notifications,
-          empty: labels.notificationsEmpty,
-          markAllRead: labels.markAllRead,
-        }}
-      />
+      <NotificationMenu labels={notificationLabels} />
 
-      <LocaleSwitcher label={labels.language} compact className="md:hidden" />
-      <LocaleSwitcher label={labels.language} className="hidden md:inline-flex" />
+      <LocaleSwitcher label={labels.language} compact className="lg:hidden" />
+      <LocaleSwitcher label={labels.language} className="hidden lg:inline-flex" />
 
       <ThemeSwitcher
         label={labels.theme}
@@ -88,13 +91,7 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
         themeDark={labels.themeDark}
       />
 
-      <UserMenu
-        labels={{
-          title: labels.userMenu,
-          profile: labels.profile,
-          signOut: labels.signOut,
-        }}
-      />
+      <UserMenu labels={userLabels} />
     </div>
   );
 }
