@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "Çalışma alanı",
+    "description": "Denetim, raporlama ve finansal zeka için sakin komuta merkeziniz."
+  },
+  "context": {
+    "organization": "Organizasyon",
+    "workspace": "Çalışma alanı",
+    "company": "Şirket",
+    "none": "Seçilmedi"
+  },
+  "welcome": {
+    "greeting": "İyi {timeOfDay}, {name}",
+    "timeMorning": "sabahlar",
+    "timeAfternoon": "günler",
+    "timeEvening": "akşamlar",
+    "summary": "{workspace} · {organization} içinde çalışıyorsunuz",
+    "motivation": "Önemli olana odaklanın — platform geri kalanını düzenler."
+  },
+  "kpi": {
+    "companies": "Şirketler",
+    "engagements": "İşler",
+    "openTasks": "Açık görevler",
+    "reports": "Raporlar",
+    "aiSuggestions": "AI önerileri",
+    "placeholder": "Canlı metrikler gelecek sprintlerde"
+  },
+  "quickActions": {
+    "title": "Hızlı eylemler",
+    "description": "En sık kullandığınız akışlara atlayın",
+    "createCompany": "Şirket oluştur",
+    "createEngagement": "İş oluştur",
+    "importTrialBalance": "Mizan içe aktar",
+    "continueLastWork": "Son işe devam et",
+    "inviteUser": "Kullanıcı davet et",
+    "comingSoon": "Yakında"
+  },
+  "activity": {
+    "title": "Son etkinlik",
+    "description": "Çalışma alanınızdaki değişikliklerin sakin zaman çizelgesi",
+    "emptyTitle": "Son etkinlik yok",
+    "emptyDescription": "Şirket, iş ve inceleme güncellemeleri burada görünecek.",
+    "items": [
+      {
+        "id": "1",
+        "title": "Şirket kimliği incelendi",
+        "description": "Tüzel kişi profili inceleme için açıldı",
+        "time": "2 saat önce",
+        "tone": "info"
+      },
+      {
+        "id": "2",
+        "title": "Çalışma alanı tercihleri kaydedildi",
+        "description": "Raporlama varsayılanları güncellendi",
+        "time": "Dün",
+        "tone": "default"
+      },
+      {
+        "id": "3",
+        "title": "Yeni şirket eklendi",
+        "description": "Çalışma alanınıza tüzel kişi kaydedildi",
+        "time": "3 gün önce",
+        "tone": "success"
+      }
+    ]
+  },
+  "tasks": {
+    "title": "Görevlerim",
+    "description": "Bu hafta için kişisel kontrol listeniz",
+    "emptyTitle": "Henüz görev yok",
+    "emptyDescription": "Atanan inceleme adımları burada görünecek.",
+    "statusOpen": "Açık",
+    "statusInProgress": "Devam ediyor",
+    "statusDone": "Tamamlandı",
+    "priorityHigh": "Yüksek",
+    "priorityMedium": "Orta",
+    "priorityLow": "Düşük",
+    "items": [
+      {
+        "id": "1",
+        "title": "Şirket kimlik alanlarını incele",
+        "status": "Devam ediyor",
+        "priority": "Yüksek",
+        "due": "Bugün",
+        "statusVariant": "warning",
+        "priorityVariant": "destructive"
+      },
+      {
+        "id": "2",
+        "title": "İş klasör yapısını hazırla",
+        "status": "Açık",
+        "priority": "Orta",
+        "due": "Cuma",
+        "statusVariant": "default",
+        "priorityVariant": "warning"
+      },
+      {
+        "id": "3",
+        "title": "Raporlama çerçevesi eşlemesini onayla",
+        "status": "Açık",
+        "priority": "Düşük",
+        "due": "Gelecek hafta",
+        "statusVariant": "default",
+        "priorityVariant": "default"
+      }
+    ]
+  },
+  "ai": {
+    "title": "AI asistan",
+    "description": "Denetim akışları için akıllı destek",
+    "placeholder": "AI yetenekleri gelecek sprintte",
+    "recentTitle": "Son konuşmalar",
+    "suggestionsTitle": "Önerilen eylemler",
+    "askButton": "AI'ya sor",
+    "conversations": [
+      "Açık inceleme maddelerini özetle",
+      "IFRS 16 kira değişikliklerini açıkla"
+    ],
+    "suggestions": [
+      "Kimlik bölümü için inceleme notu taslağı",
+      "Eksik uyumluluk alanlarını vurgula"
+    ]
+  },
+  "calendar": {
+    "title": "Takvim",
+    "description": "Yaklaşan son tarihler",
+    "emptyTitle": "Yaklaşan son tarih yok",
+    "upcoming": "Yaklaşan",
+    "items": [
+      {
+        "id": "1",
+        "title": "Çeyrek sonu raporlama kontrolü",
+        "date": "31 Mar",
+        "tone": "warning"
+      },
+      {
+        "id": "2",
+        "title": "İş planlama incelemesi",
+        "date": "4 Nis",
+        "tone": "default"
+      }
+    ]
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "description": "Gürültü olmadan bilgilendirilme",
+    "emptyTitle": "Her şey güncel",
+    "emptyDescription": "Önemli bildirimler burada görünecek.",
+    "viewAll": "Tümünü gör"
+  },
+  "insights": {
+    "title": "Çalışma alanı içgörüleri",
+    "description": "Çalışma alanınızın hafif nabzı",
+    "chartPlaceholder": "Analitik görselleştirmeler gelecek sprintlerde",
+    "metrics": [
+      {
+        "id": "1",
+        "label": "Aktif şirketler",
+        "value": "—",
+        "trend": "Sabit"
+      },
+      {
+        "id": "2",
+        "label": "Açık incelemeler",
+        "value": "—",
+        "trend": "Önizleme"
+      }
+    ]
+  },
+  "pinned": {
+    "title": "Sabitlenen",
+    "recentCompanies": "Son şirketler",
+    "favoriteCompanies": "Favori şirketler",
+    "recentEngagements": "Son işler",
+    "emptyRecent": "Açtığınız şirketler burada görünecek",
+    "emptyFavorites": "Hızlı erişim için şirketleri sabitleyin",
+    "emptyEngagements": "İşler burada görünecek",
+    "engagements": [
+      "2026 mali yıl denetimi",
+      "IFRS dönüşüm incelemesi"
+    ]
+  },
+  "continueWorking": {
+    "title": "Çalışmaya devam et",
+    "description": "Kaldığınız yerden devam edin",
+    "emptyTitle": "Devam eden iş yok",
+    "emptyDescription": "Son açtığınız şirket veya iş burada görünecek."
+  },
+  "shortcuts": {
+    "title": "Kısayollar",
+    "description": "Klavye ile gezinme",
+    "items": [
+      {
+        "id": "search",
+        "label": "Komut paleti",
+        "hint": "⌘K"
+      },
+      {
+        "id": "companies",
+        "label": "Şirketlere git",
+        "hint": "G C"
+      },
+      {
+        "id": "dashboard",
+        "label": "Çalışma alanına git",
+        "hint": "G D"
+      }
+    ]
+  },
+  "tips": {
+    "title": "İpuçları",
+    "items": [
+      "Komut paleti ile saniyeler içinde her yere gidin.",
+      "Sık kullandığınız şirketleri sabitleyin.",
+      "Modüller canlandıkça içgörüler trendleri gösterecek."
+    ]
+  },
+  "error": {
+    "title": "Çalışma alanı kullanılamıyor",
+    "description": "Çalışma alanı görünümü yüklenemedi. Lütfen tekrar deneyin."
+  },
+  "loading": "Çalışma alanı yükleniyor…"
+}

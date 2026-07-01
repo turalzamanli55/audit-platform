@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "İş sahəsi",
+    "description": "Audit, hesabat və maliyyə intellekti üçün sakit idarəetmə mərkəziniz."
+  },
+  "context": {
+    "organization": "Təşkilat",
+    "workspace": "İş sahəsi",
+    "company": "Şirkət",
+    "none": "Seçilməyib"
+  },
+  "welcome": {
+    "greeting": "Salam, {name}",
+    "timeMorning": "səhər",
+    "timeAfternoon": "günorta",
+    "timeEvening": "axşam",
+    "summary": "{workspace} · {organization} üzərində işləyirsiniz",
+    "motivation": "Vacib olana fokuslanın — platforma qalanını səliqəyə salır."
+  },
+  "kpi": {
+    "companies": "Şirkətlər",
+    "engagements": "İşlər",
+    "openTasks": "Açıq tapşırıqlar",
+    "reports": "Hesabatlar",
+    "aiSuggestions": "AI təklifləri",
+    "placeholder": "Canlı göstəricilər gələcək sprintlərdə"
+  },
+  "quickActions": {
+    "title": "Sürətli əməliyyatlar",
+    "description": "Ən çox istifadə etdiyiniz axınlara keçin",
+    "createCompany": "Şirkət yarat",
+    "createEngagement": "İş yarat",
+    "importTrialBalance": "Sınaq balansı idxal et",
+    "continueLastWork": "Son işə davam et",
+    "inviteUser": "İstifadəçi dəvət et",
+    "comingSoon": "Tezliklə"
+  },
+  "activity": {
+    "title": "Son fəaliyyət",
+    "description": "İş sahənizdə nə dəyişdiyinin sakit xronologiyası",
+    "emptyTitle": "Son fəaliyyət yoxdur",
+    "emptyDescription": "Şirkət, iş və yoxlama yeniləmələri burada görünəcək.",
+    "items": [
+      {
+        "id": "1",
+        "title": "Şirkət kimliyi yoxlandı",
+        "description": "Hüquqi şəxs profili yoxlama üçün açıldı",
+        "time": "2 saat əvvəl",
+        "tone": "info"
+      },
+      {
+        "id": "2",
+        "title": "İş sahəsi parametrləri saxlanıldı",
+        "description": "Hesabat standartları yeniləndi",
+        "time": "Dünən",
+        "tone": "default"
+      },
+      {
+        "id": "3",
+        "title": "Yeni şirkət əlavə edildi",
+        "description": "İş sahənizə hüquqi şəxs qeydiyyata alındı",
+        "time": "3 gün əvvəl",
+        "tone": "success"
+      }
+    ]
+  },
+  "tasks": {
+    "title": "Tapşırıqlarım",
+    "description": "Bu həftə üçün şəxsi yoxlama siyahınız",
+    "emptyTitle": "Hələ tapşırıq yoxdur",
+    "emptyDescription": "Təyin olunmuş addımlar burada görünəcək.",
+    "statusOpen": "Açıq",
+    "statusInProgress": "Davam edir",
+    "statusDone": "Bitdi",
+    "priorityHigh": "Yüksək",
+    "priorityMedium": "Orta",
+    "priorityLow": "Aşağı",
+    "items": [
+      {
+        "id": "1",
+        "title": "Şirkət kimliyi sahələrini yoxla",
+        "status": "Davam edir",
+        "priority": "Yüksək",
+        "due": "Bu gün",
+        "statusVariant": "warning",
+        "priorityVariant": "destructive"
+      },
+      {
+        "id": "2",
+        "title": "İş qovluq strukturunu hazırla",
+        "status": "Açıq",
+        "priority": "Orta",
+        "due": "Cümə",
+        "statusVariant": "default",
+        "priorityVariant": "warning"
+      },
+      {
+        "id": "3",
+        "title": "Hesabat çərçivəsi uyğunluğunu təsdiqlə",
+        "status": "Açıq",
+        "priority": "Aşağı",
+        "due": "Gələn həftə",
+        "statusVariant": "default",
+        "priorityVariant": "default"
+      }
+    ]
+  },
+  "ai": {
+    "title": "AI köməkçi",
+    "description": "Audit axınları üçün intellektual dəstək",
+    "placeholder": "AI imkanları gələcək sprintdə",
+    "recentTitle": "Son söhbətlər",
+    "suggestionsTitle": "Təklif olunan əməliyyatlar",
+    "askButton": "AI-dan soruş",
+    "conversations": [
+      "Açıq yoxlama maddələrini xülasə et",
+      "IFRS 16 icarə dəyişikliklərini izah et"
+    ],
+    "suggestions": [
+      "Kimlik bölməsi üçün qeyd hazırla",
+      "Çatışmayan uyğunluq sahələrini vurğula"
+    ]
+  },
+  "calendar": {
+    "title": "Təqvim",
+    "description": "Yaxınlaşan son tarixlər",
+    "emptyTitle": "Yaxınlaşan son tarix yoxdur",
+    "upcoming": "Yaxınlaşan",
+    "items": [
+      {
+        "id": "1",
+        "title": "Rüb sonu hesabat yoxlaması",
+        "date": "31 Mar",
+        "tone": "warning"
+      },
+      {
+        "id": "2",
+        "title": "İş planlaşdırma icmalı",
+        "date": "4 Apr",
+        "tone": "default"
+      }
+    ]
+  },
+  "notifications": {
+    "title": "Bildirişlər",
+    "description": "Səs-küysüz məlumatlandırma",
+    "emptyTitle": "Hər şey qaydasındadır",
+    "emptyDescription": "Vacib bildirişlər burada görünəcək.",
+    "viewAll": "Hamısına bax"
+  },
+  "insights": {
+    "title": "İş sahəsi icmalları",
+    "description": "İş sahənizin yüngül nəbzı",
+    "chartPlaceholder": "Analitika vizuallaşdırmaları gələcək sprintlərdə",
+    "metrics": [
+      {
+        "id": "1",
+        "label": "Aktiv şirkətlər",
+        "value": "—",
+        "trend": "Sabit"
+      },
+      {
+        "id": "2",
+        "label": "Açıq yoxlamalar",
+        "value": "—",
+        "trend": "Önizləmə"
+      }
+    ]
+  },
+  "pinned": {
+    "title": "Saxlanılan",
+    "recentCompanies": "Son şirkətlər",
+    "favoriteCompanies": "Sevimli şirkətlər",
+    "recentEngagements": "Son işlər",
+    "emptyRecent": "Açdığınız şirkətlər burada görünəcək",
+    "emptyFavorites": "Tez giriş üçün şirkətləri saxlayın",
+    "emptyEngagements": "İşlər burada görünəcək",
+    "engagements": [
+      "2026 maliyyə ili audit",
+      "IFRS konversiya icmalı"
+    ]
+  },
+  "continueWorking": {
+    "title": "İşə davam et",
+    "description": "Qaldığınız yerdən davam edin",
+    "emptyTitle": "Davam edən iş yoxdur",
+    "emptyDescription": "Son açdığınız şirkət və ya iş burada görünəcək."
+  },
+  "shortcuts": {
+    "title": "Qısayollar",
+    "description": "Klaviatura ilə naviqasiya",
+    "items": [
+      {
+        "id": "search",
+        "label": "Əmr paneli",
+        "hint": "⌘K"
+      },
+      {
+        "id": "companies",
+        "label": "Şirkətlərə keç",
+        "hint": "G C"
+      },
+      {
+        "id": "dashboard",
+        "label": "İş sahəsinə keç",
+        "hint": "G D"
+      }
+    ]
+  },
+  "tips": {
+    "title": "Məsləhətlər",
+    "items": [
+      "Əmr paneli ilə saniyələr içində hər yerə keçin.",
+      "Tez-tez istifadə etdiyiniz şirkətləri saxlayın.",
+      "Modullar aktivləşdikcə icmallar trendləri göstərəcək."
+    ]
+  },
+  "error": {
+    "title": "İş sahəsi əlçatan deyil",
+    "description": "İş sahəsi görünüşünü yükləyə bilmədik. Yenidən cəhd edin."
+  },
+  "loading": "İş sahəsi yüklənir…"
+}

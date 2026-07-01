@@ -1,6 +1,7 @@
 import type { Locale } from "./types";
 import type { MarketingLabels } from "./marketing-types";
 import type { AuthExperienceLabels } from "./auth-experience-types";
+import type { DashboardWorkspaceLabels } from "./dashboard-workspace-types";
 
 export type Dictionary = {
   common: {
@@ -509,17 +510,21 @@ export type Dictionary = {
   };
   marketing: MarketingLabels;
   authExperience: AuthExperienceLabels;
+  dashboardWorkspace: DashboardWorkspaceLabels;
 };
 
 async function loadDictionary(locale: Locale): Promise<Dictionary> {
-  const [base, marketing, authExperience] = await Promise.all([
+  const [base, marketing, authExperience, dashboardWorkspace] = await Promise.all([
     import(`./messages/${locale}.json`).then((m) => m.default),
     import(`./messages/marketing-${locale}.json`).then((m) => m.default as MarketingLabels),
     import(`./messages/auth-experience-${locale}.json`).then(
       (m) => m.default as AuthExperienceLabels,
     ),
+    import(`./messages/dashboard-workspace-${locale}.json`).then(
+      (m) => m.default as DashboardWorkspaceLabels,
+    ),
   ]);
-  return { ...base, marketing, authExperience } as Dictionary;
+  return { ...base, marketing, authExperience, dashboardWorkspace } as Dictionary;
 }
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {

@@ -184,3 +184,81 @@ export function IconGlobe(props: IconProps) {
     </svg>
   );
 }
+
+export function IconSparkles(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <path d="M12 3l1.2 4.2L17.5 8.5 13.2 9.7 12 14l-1.2-4.3L6.5 8.5l4.3-1.3L12 3zM5 16l.8 2.8L8.5 19.5l-2.7.7L5 23l-.8-2.8L1.5 19.5l2.7-.7L5 16zM19 14l.6 2.1L21.5 16.5l-1.9.5L19 19l-.6-2.1L16.5 16.5l1.9-.5L19 14z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconCalendar(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <rect x="4" y="5" width="16" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconClock(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconStar(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <path d="M12 3.5l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 3.5z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconZap(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <path d="M13 2L5 14h6l-1 8 8-12h-6l1-8z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconArrowRight(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={16} height={16} aria-hidden {...props}>
+      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconTrendingUp(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <path d="M4 16l6-6 4 4 6-8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 6h5v5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconFileText(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <path d="M8 4h8l4 4v12a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M16 4v4h4M10 13h6M10 17h4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconUsers(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={18} height={18} aria-hidden {...props}>
+      <circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M3.5 19c.6-2.5 2.7-4 5.5-4s4.9 1.5 5.5 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+      <path d="M16 8.5a2.5 2.5 0 010 5M19.5 19c-.4-1.7-1.8-3-3.5-3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}

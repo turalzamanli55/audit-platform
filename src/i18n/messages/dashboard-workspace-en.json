@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "Workspace",
+    "description": "Your calm command center for audit, reporting, and financial intelligence."
+  },
+  "context": {
+    "organization": "Organization",
+    "workspace": "Workspace",
+    "company": "Company",
+    "none": "Not selected"
+  },
+  "welcome": {
+    "greeting": "Good {timeOfDay}, {name}",
+    "timeMorning": "morning",
+    "timeAfternoon": "afternoon",
+    "timeEvening": "evening",
+    "summary": "You are working in {workspace} · {organization}",
+    "motivation": "Focus on what matters — the platform keeps everything else organized."
+  },
+  "kpi": {
+    "companies": "Companies",
+    "engagements": "Engagements",
+    "openTasks": "Open tasks",
+    "reports": "Reports",
+    "aiSuggestions": "AI suggestions",
+    "placeholder": "Live metrics arrive in future sprints"
+  },
+  "quickActions": {
+    "title": "Quick actions",
+    "description": "Jump into your most common workflows",
+    "createCompany": "Create company",
+    "createEngagement": "Create engagement",
+    "importTrialBalance": "Import trial balance",
+    "continueLastWork": "Continue last work",
+    "inviteUser": "Invite user",
+    "comingSoon": "Coming soon"
+  },
+  "activity": {
+    "title": "Recent activity",
+    "description": "A calm timeline of what changed in your workspace",
+    "emptyTitle": "No recent activity",
+    "emptyDescription": "Updates from companies, engagements, and reviews will appear here.",
+    "items": [
+      {
+        "id": "1",
+        "title": "Company identity reviewed",
+        "description": "Legal entity profile was opened for review",
+        "time": "2 hours ago",
+        "tone": "info"
+      },
+      {
+        "id": "2",
+        "title": "Workspace preferences saved",
+        "description": "Reporting defaults were updated for the current workspace",
+        "time": "Yesterday",
+        "tone": "default"
+      },
+      {
+        "id": "3",
+        "title": "New company added",
+        "description": "A legal entity was registered in your workspace",
+        "time": "3 days ago",
+        "tone": "success"
+      }
+    ]
+  },
+  "tasks": {
+    "title": "My tasks",
+    "description": "Your personal checklist for this week",
+    "emptyTitle": "No tasks yet",
+    "emptyDescription": "Assigned review steps and follow-ups will appear here.",
+    "statusOpen": "Open",
+    "statusInProgress": "In progress",
+    "statusDone": "Done",
+    "priorityHigh": "High",
+    "priorityMedium": "Medium",
+    "priorityLow": "Low",
+    "items": [
+      {
+        "id": "1",
+        "title": "Review company identity fields",
+        "status": "In progress",
+        "priority": "High",
+        "due": "Today",
+        "statusVariant": "warning",
+        "priorityVariant": "destructive"
+      },
+      {
+        "id": "2",
+        "title": "Prepare engagement folder structure",
+        "status": "Open",
+        "priority": "Medium",
+        "due": "Fri",
+        "statusVariant": "default",
+        "priorityVariant": "warning"
+      },
+      {
+        "id": "3",
+        "title": "Confirm reporting framework mapping",
+        "status": "Open",
+        "priority": "Low",
+        "due": "Next week",
+        "statusVariant": "default",
+        "priorityVariant": "default"
+      }
+    ]
+  },
+  "ai": {
+    "title": "AI assistant",
+    "description": "Intelligent support for audit workflows",
+    "placeholder": "AI capabilities arrive in a future sprint",
+    "recentTitle": "Recent conversations",
+    "suggestionsTitle": "Suggested actions",
+    "askButton": "Ask AI",
+    "conversations": [
+      "Summarize open review items",
+      "Explain IFRS 16 lease changes"
+    ],
+    "suggestions": [
+      "Draft review note for identity section",
+      "Highlight missing compliance fields"
+    ]
+  },
+  "calendar": {
+    "title": "Calendar",
+    "description": "Upcoming deadlines and milestones",
+    "emptyTitle": "No upcoming deadlines",
+    "upcoming": "Upcoming",
+    "items": [
+      {
+        "id": "1",
+        "title": "Quarter-end reporting checkpoint",
+        "date": "Mar 31",
+        "tone": "warning"
+      },
+      {
+        "id": "2",
+        "title": "Engagement planning review",
+        "date": "Apr 4",
+        "tone": "default"
+      }
+    ]
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Stay oriented without noise",
+    "emptyTitle": "All caught up",
+    "emptyDescription": "Workspace notifications will appear here when there is something important.",
+    "viewAll": "View all"
+  },
+  "insights": {
+    "title": "Workspace insights",
+    "description": "A lightweight pulse on your workspace",
+    "chartPlaceholder": "Analytics visualizations arrive in future sprints",
+    "metrics": [
+      {
+        "id": "1",
+        "label": "Active companies",
+        "value": "—",
+        "trend": "Stable"
+      },
+      {
+        "id": "2",
+        "label": "Open reviews",
+        "value": "—",
+        "trend": "Preview"
+      }
+    ]
+  },
+  "pinned": {
+    "title": "Pinned",
+    "recentCompanies": "Recent companies",
+    "favoriteCompanies": "Favorite companies",
+    "recentEngagements": "Recent engagements",
+    "emptyRecent": "Companies you open will appear here",
+    "emptyFavorites": "Pin companies for quick access",
+    "emptyEngagements": "Engagements will appear here",
+    "engagements": [
+      "FY2026 statutory audit",
+      "IFRS conversion review"
+    ]
+  },
+  "continueWorking": {
+    "title": "Continue working",
+    "description": "Pick up where you left off",
+    "emptyTitle": "Nothing in progress",
+    "emptyDescription": "Your last opened company or engagement will appear here."
+  },
+  "shortcuts": {
+    "title": "Shortcuts",
+    "description": "Keyboard-first navigation",
+    "items": [
+      {
+        "id": "search",
+        "label": "Command palette",
+        "hint": "⌘K"
+      },
+      {
+        "id": "companies",
+        "label": "Go to companies",
+        "hint": "G C"
+      },
+      {
+        "id": "dashboard",
+        "label": "Go to workspace",
+        "hint": "G D"
+      }
+    ]
+  },
+  "tips": {
+    "title": "Tips",
+    "items": [
+      "Use the command palette to jump anywhere in seconds.",
+      "Pin frequently used companies for faster context switching.",
+      "Workspace insights will surface trends as modules go live."
+    ]
+  },
+  "error": {
+    "title": "Workspace unavailable",
+    "description": "We could not load your workspace view. Please try again."
+  },
+  "loading": "Loading workspace…"
+}

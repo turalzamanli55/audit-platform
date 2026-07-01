@@ -1,70 +1,46 @@
-import { DetailLayout, PageLayout } from "@/components/layout";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { getDictionary, type Locale } from "@/i18n";
-import { UserCard } from "@/components/dashboard/user-card";
-import { DashboardStat, DashboardStatsGrid } from "@/components/dashboard/dashboard-stats";
-import { PermissionGuard } from "@/components/auth";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { getDictionary, isValidLocale, type Locale } from "@/i18n";
+import {
+  DashboardWorkspaceExperience,
+  DashboardWorkspaceSkeleton,
+} from "@/components/dashboard/workspace";
+import { loadDashboardWorkspace } from "@/lib/dashboard/load-dashboard-workspace";
+import { notFound } from "next/navigation";
 
 type DashboardPageProps = {
   params: Promise<{ locale: string }>;
 };
 
-export default async function DashboardPage({ params }: DashboardPageProps) {
+export async function generateMetadata({ params }: DashboardPageProps): Promise<Metadata> {
   const { locale: localeParam } = await params;
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
 
-  return (
-    <PageLayout
-      title={dictionary.dashboard.title}
-      description={dictionary.dashboard.subtitle}
-    >
-      <div className="space-y-10">
-        <DashboardStatsGrid>
-          <DashboardStat
-            label={dictionary.dashboard.statsOrganizations}
-            value="1"
-            hint={dictionary.dashboard.statsPlaceholder}
-          />
-          <DashboardStat
-            label={dictionary.dashboard.statsWorkspaces}
-            value="1"
-            hint={dictionary.dashboard.statsPlaceholder}
-          />
-          <DashboardStat
-            label={dictionary.dashboard.statsMembers}
-            value="—"
-            hint={dictionary.dashboard.statsPlaceholder}
-          />
-          <DashboardStat
-            label={dictionary.dashboard.statsActivity}
-            value="—"
-            hint={dictionary.dashboard.statsPlaceholder}
-          />
-        </DashboardStatsGrid>
+  return {
+    title: `${dictionary.dashboardWorkspace.meta.title} | ${dictionary.common.appName}`,
+    description: dictionary.dashboardWorkspace.meta.description,
+  };
+}
 
-        <DetailLayout
-          aside={
-            <UserCard
-              labels={{
-                title: dictionary.dashboard.userCardTitle,
-                roles: dictionary.dashboard.roles,
-                permissions: dictionary.dashboard.permissions,
-                signOut: dictionary.auth.signOut,
-              }}
-            />
-          }
-        >
-          <PermissionGuard permissionCode="organization.read">
-            <Card>
-              <CardHeader>
-                <CardTitle>{dictionary.dashboard.welcomeTitle}</CardTitle>
-                <CardDescription>{dictionary.dashboard.welcomeDescription}</CardDescription>
-              </CardHeader>
-            </Card>
-          </PermissionGuard>
-        </DetailLayout>
-      </div>
-    </PageLayout>
+async function DashboardWorkspaceLoader({ locale }: { locale: Locale }) {
+  const dictionary = await getDictionary(locale);
+  const model = await loadDashboardWorkspace(locale, dictionary.dashboardWorkspace);
+  return <DashboardWorkspaceExperience model={model} />;
+}
+
+export default async function DashboardPage({ params }: DashboardPageProps) {
+  const { locale: localeParam } = await params;
+
+  if (!isValidLocale(localeParam)) {
+    notFound();
+  }
+
+  const locale = localeParam as Locale;
+
+  return (
+    <Suspense fallback={<DashboardWorkspaceSkeleton />}>
+      <DashboardWorkspaceLoader locale={locale} />
+    </Suspense>
   );
 }
