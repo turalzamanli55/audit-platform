@@ -8,7 +8,10 @@ import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeSwitcher } from "./theme-switcher";
 import { NotificationMenu } from "./notification-menu";
 import { UserMenu } from "./user-menu";
+import { useActiveCompany } from "@/hooks/use-active-company";
+import { switchCompanyAction } from "@/lib/actions/tenant/switch-company";
 import { defaultLocale, isValidLocale } from "@/i18n";
+import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
 
 export type ShellHeaderActionsLabels = {
   organization: string;
@@ -30,6 +33,9 @@ export type ShellHeaderActionsLabels = {
 type ShellHeaderActionsProps = {
   labels: ShellHeaderActionsLabels;
   companies: CompanySwitcherItem[];
+  preferredCompanySlug?: string | null;
+  companiesLoadReason?: CompanyListLoadReason;
+  companyEmptyHint?: string;
 };
 
 function resolveLocale(pathname: string): string {
@@ -37,18 +43,27 @@ function resolveLocale(pathname: string): string {
   return segment && isValidLocale(segment) ? segment : defaultLocale;
 }
 
-function resolveCompanySlug(pathname: string): string | null {
-  const match = pathname.match(/\/app\/companies\/([^/]+)/);
-  return match?.[1] ?? null;
+function resolveCompanyEmptyLabel(
+  reason: CompanyListLoadReason | undefined,
+  hint?: string,
+): string {
+  if (hint) return hint;
+  if (reason === "no_workspace") return "Workspace required";
+  if (reason === "forbidden") return "Access restricted";
+  return "—";
 }
 
-export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProps) {
+export function ShellHeaderActions({
+  labels,
+  companies,
+  preferredCompanySlug,
+  companiesLoadReason,
+  companyEmptyHint,
+}: ShellHeaderActionsProps) {
   const pathname = usePathname();
   const router = useRouter();
   const locale = resolveLocale(pathname);
-  const slug = resolveCompanySlug(pathname);
-  const currentCompany =
-    (slug ? companies.find((item) => item.slug === slug) : null) ?? companies[0] ?? null;
+  const currentCompany = useActiveCompany(companies, preferredCompanySlug);
 
   const userLabels = {
     title: labels.userMenu,
@@ -62,6 +77,14 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
     markAllRead: labels.markAllRead,
   };
 
+  async function handleCompanySelect(id: string) {
+    const company = companies.find((item) => item.id === id);
+    if (!company?.slug) return;
+
+    await switchCompanyAction({ slug: company.slug });
+    router.push(`/${locale}/app/companies/${company.slug}`);
+  }
+
   return (
     <div className="flex items-center gap-0.5 max-lg:gap-px sm:gap-1">
       <div className="hidden items-center gap-0.5 lg:flex">
@@ -71,12 +94,8 @@ export function ShellHeaderActions({ labels, companies }: ShellHeaderActionsProp
           label={labels.company}
           items={companies}
           currentId={currentCompany?.id ?? null}
-          onSelect={(id) => {
-            const company = companies.find((item) => item.id === id);
-            if (company?.slug) {
-              router.push(`/${locale}/app/companies/${company.slug}`);
-            }
-          }}
+          emptyLabel={resolveCompanyEmptyLabel(companiesLoadReason, companyEmptyHint)}
+          onSelect={handleCompanySelect}
         />
       </div>
 

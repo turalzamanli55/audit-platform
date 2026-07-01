@@ -18,3 +18,5 @@ export type CompanyListItem = {
 export type CompanyListLoadResult =
   | { ok: true; items: CompanyListItem[] }
   | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" };
+
+export type CompanyListLoadReason = Extract<CompanyListLoadResult, { ok: false }>["reason"];

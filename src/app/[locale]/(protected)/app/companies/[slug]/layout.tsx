@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { CompanyWorkspaceError, CompanyWorkspaceLayout } from "@/components/company/workspace";
 import { getDictionary, type Locale } from "@/i18n";
+import { setCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import {
   buildCompanyWorkspaceNavItems,
   buildWorkspaceHeroLabels,
@@ -57,6 +58,7 @@ export default async function CompanyWorkspaceRouteLayout({
   }
 
   const { company } = result;
+  await setCompanySlugCookie(company.slug);
 
   return (
     <CompanyWorkspaceLayout

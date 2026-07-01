@@ -56,7 +56,7 @@ export async function getTenantBootstrap(): Promise<TenantBootstrap | null> {
       ? preferences.organizationId
       : organizations[0]?.id ?? null;
 
-  const workspaces: TenantBootstrap["workspaces"] = [];
+  const allWorkspaces: TenantBootstrap["workspaces"] = [];
   if (currentOrganizationId) {
     const { data } = await serviceClient
       .from("workspaces")
@@ -66,28 +66,43 @@ export async function getTenantBootstrap(): Promise<TenantBootstrap | null> {
       .order("name", { ascending: true });
 
     if (data && Array.isArray(data)) {
-      workspaces.push(...data);
+      allWorkspaces.push(...data);
     }
   }
 
-  const currentWorkspaceId =
-    preferences.workspaceId && workspaces.some((workspace) => workspace.id === preferences.workspaceId)
-      ? preferences.workspaceId
-      : workspaces[0]?.id ?? null;
+  const workspaceMembershipIds = memberships
+    .filter(
+      (membership) =>
+        membership.organization_id === currentOrganizationId &&
+        membership.membership_scope === "workspace" &&
+        membership.workspace_id,
+    )
+    .map((membership) => membership.workspace_id as string);
+
+  const workspaces =
+    workspaceMembershipIds.length > 0
+      ? allWorkspaces.filter((workspace) => workspaceMembershipIds.includes(workspace.id))
+      : allWorkspaces;
 
   let permissionCodes: string[] = [];
   let roleSlugs: string[] = [];
+  let currentWorkspaceId: string | null = null;
 
   try {
     const tenant = await repository.resolveTenantContext(user.id, {
       organizationId: currentOrganizationId,
-      workspaceId: currentWorkspaceId,
+      workspaceId: preferences.workspaceId,
     });
     permissionCodes = Array.isArray(tenant.permissionCodes) ? tenant.permissionCodes : [];
     roleSlugs = Array.isArray(tenant.roleSlugs) ? tenant.roleSlugs : [];
+    currentWorkspaceId = tenant.workspace?.id ?? workspaces[0]?.id ?? null;
   } catch {
     permissionCodes = [];
     roleSlugs = [];
+    currentWorkspaceId =
+      preferences.workspaceId && workspaces.some((workspace) => workspace.id === preferences.workspaceId)
+        ? preferences.workspaceId
+        : workspaces[0]?.id ?? null;
   }
 
   return {

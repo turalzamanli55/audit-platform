@@ -8,6 +8,10 @@ import type {
   RoleContext,
   TenantContext,
 } from "@/types/context";
+import { createServerClient } from "@/lib/supabase/server";
+import { CompanyRepository } from "@/repositories/company/company-repository";
+import type { RepositoryContext } from "@/types/context";
+import { readCompanySlugCookie } from "./tenant-cookies";
 import { resolveAuthenticatedUser } from "./resolve-user";
 
 export async function getOrganizationContext(): Promise<OrganizationContext> {
@@ -42,10 +46,54 @@ export async function getWorkspaceContext(): Promise<WorkspaceContext> {
   };
 }
 
-export async function getCompanyContext(): Promise<CompanyContext> {
+function createRepositoryContext(
+  userId: string,
+  organizationId: string,
+  workspaceId: string,
+): RepositoryContext {
   return {
-    companyId: null,
-    isResolved: false,
+    userId,
+    tenant: {
+      organization: { organizationId, isResolved: true },
+      workspace: { workspaceId, isResolved: true },
+      company: { companyId: null, isResolved: false },
+      permissions: { permissions: [], isResolved: false },
+      roles: { roles: [], isResolved: false },
+    },
+  };
+}
+
+export async function getCompanyContext(): Promise<CompanyContext> {
+  const [workspace, slug, user] = await Promise.all([
+    getWorkspaceContext(),
+    readCompanySlugCookie(),
+    resolveAuthenticatedUser(),
+  ]);
+
+  if (!workspace.isResolved || !workspace.workspaceId || !slug || !user?.organizationId) {
+    return {
+      companyId: null,
+      isResolved: false,
+    };
+  }
+
+  const supabase = await createServerClient();
+  const repository = new CompanyRepository(
+    supabase,
+    createRepositoryContext(user.id, user.organizationId, workspace.workspaceId),
+  );
+
+  const company = await repository.findBySlug(workspace.workspaceId, slug);
+  if (!company) {
+    return {
+      companyId: null,
+      isResolved: false,
+    };
+  }
+
+  return {
+    companyId: company.id,
+    isResolved: true,
   };
 }
 

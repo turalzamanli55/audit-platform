@@ -4,7 +4,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { OrganizationSwitcher } from "@/components/dashboard/organization-switcher";
 import { WorkspaceSwitcher } from "@/components/dashboard/workspace-switcher";
 import { CompanySwitcher, type CompanySwitcherItem } from "./company-switcher";
+import { useActiveCompany } from "@/hooks/use-active-company";
+import { switchCompanyAction } from "@/lib/actions/tenant/switch-company";
 import { defaultLocale, isValidLocale } from "@/i18n";
+import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
 
 export type ShellDrawerContextLabels = {
   organization: string;
@@ -16,6 +19,9 @@ export type ShellDrawerContextLabels = {
 type ShellDrawerContextProps = {
   labels: ShellDrawerContextLabels;
   companies: CompanySwitcherItem[];
+  preferredCompanySlug?: string | null;
+  companiesLoadReason?: CompanyListLoadReason;
+  companyEmptyHint?: string;
 };
 
 function resolveLocale(pathname: string): string {
@@ -23,18 +29,35 @@ function resolveLocale(pathname: string): string {
   return segment && isValidLocale(segment) ? segment : defaultLocale;
 }
 
-function resolveCompanySlug(pathname: string): string | null {
-  const match = pathname.match(/\/app\/companies\/([^/]+)/);
-  return match?.[1] ?? null;
+function resolveCompanyEmptyLabel(
+  reason: CompanyListLoadReason | undefined,
+  hint?: string,
+): string {
+  if (hint) return hint;
+  if (reason === "no_workspace") return "Workspace required";
+  if (reason === "forbidden") return "Access restricted";
+  return "—";
 }
 
-export function ShellDrawerContext({ labels, companies }: ShellDrawerContextProps) {
+export function ShellDrawerContext({
+  labels,
+  companies,
+  preferredCompanySlug,
+  companiesLoadReason,
+  companyEmptyHint,
+}: ShellDrawerContextProps) {
   const pathname = usePathname();
   const router = useRouter();
   const locale = resolveLocale(pathname);
-  const slug = resolveCompanySlug(pathname);
-  const currentCompany =
-    (slug ? companies.find((item) => item.slug === slug) : null) ?? companies[0] ?? null;
+  const currentCompany = useActiveCompany(companies, preferredCompanySlug);
+
+  async function handleCompanySelect(id: string) {
+    const company = companies.find((item) => item.id === id);
+    if (!company?.slug) return;
+
+    await switchCompanyAction({ slug: company.slug });
+    router.push(`/${locale}/app/companies/${company.slug}`);
+  }
 
   return (
     <div className="space-y-3">
@@ -48,12 +71,8 @@ export function ShellDrawerContext({ labels, companies }: ShellDrawerContextProp
           label={labels.company}
           items={companies}
           currentId={currentCompany?.id ?? null}
-          onSelect={(id) => {
-            const company = companies.find((item) => item.id === id);
-            if (company?.slug) {
-              router.push(`/${locale}/app/companies/${company.slug}`);
-            }
-          }}
+          emptyLabel={resolveCompanyEmptyLabel(companiesLoadReason, companyEmptyHint)}
+          onSelect={handleCompanySelect}
         />
       </div>
     </div>

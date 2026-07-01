@@ -9,7 +9,9 @@ import {
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
 import { getTenantBootstrap } from "@/lib/auth/server";
+import { readCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
+import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
 import { getDictionary, isValidLocale, type Locale } from "@/i18n";
 import { defaultLocale } from "@/i18n/config";
 
@@ -21,10 +23,11 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
   const headerStore = await headers();
   const localeHeader = headerStore.get("x-locale");
   const locale = (localeHeader && isValidLocale(localeHeader) ? localeHeader : defaultLocale) as Locale;
-  const [dictionary, bootstrap, companyResult] = await Promise.all([
+  const [dictionary, bootstrap, companyResult, preferredCompanySlug] = await Promise.all([
     getDictionary(locale),
     getTenantBootstrap(),
     loadCompanyList(),
+    readCompanySlugCookie(),
   ]);
 
   const tenantBootstrap = bootstrap ?? {
@@ -44,6 +47,16 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
         slug: item.slug,
       }))
     : [];
+
+  const companyEmptyHint =
+    companyResult.ok ? undefined
+    : companyResult.reason === "no_workspace" ? dictionary.companies.noWorkspaceDescription
+    : companyResult.reason === "forbidden" ? dictionary.companies.forbiddenDescription
+    : undefined;
+
+  const companiesLoadReason: CompanyListLoadReason | undefined = companyResult.ok
+    ? undefined
+    : companyResult.reason;
 
   const navItems = coerceDashboardNavItems(
     (Array.isArray(defaultDashboardNavItems) ? defaultDashboardNavItems : []).map((item) => ({
@@ -66,6 +79,9 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
             locale={locale}
             navItems={navItems}
             companies={companies}
+            preferredCompanySlug={preferredCompanySlug}
+            companiesLoadReason={companiesLoadReason}
+            companyEmptyHint={companyEmptyHint}
             labels={{
               organization: dictionary.dashboard.organization,
               workspace: dictionary.dashboard.workspace,

@@ -40,7 +40,7 @@ export function TenantProvider({ children, initial }: TenantProviderProps) {
         setTenant((current) => ({
           ...current,
           currentOrganizationId: organizationId,
-          currentWorkspaceId: null,
+          currentWorkspaceId: result.data.workspaceId,
         }));
         router.refresh();
       });

@@ -3,7 +3,9 @@ import "server-only";
 import type { Locale } from "@/i18n";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { getCurrentUser, getTenantBootstrap } from "@/lib/auth/server";
+import { readCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
+import { resolveActiveCompany } from "@/lib/company/resolve-active-company";
 import { resolveTimeOfDay } from "./workspace-greeting";
 
 export type DashboardWorkspaceCompany = {
@@ -44,10 +46,11 @@ export async function loadDashboardWorkspace(
   locale: Locale,
   labels: DashboardWorkspaceLabels,
 ): Promise<DashboardWorkspaceViewModel> {
-  const [user, bootstrap, companyResult] = await Promise.all([
+  const [user, bootstrap, companyResult, preferredCompanySlug] = await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
     loadCompanyList(),
+    readCompanySlugCookie(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -74,18 +77,20 @@ export async function loadDashboardWorkspace(
   const userName = user?.displayName?.trim() || user?.email?.split("@")[0] || "there";
   const companyCount = companies.length;
 
+  const activeCompany = resolveActiveCompany(companies, "", preferredCompanySlug);
+
   return {
     locale,
     labels,
     userName,
     organizationName: currentOrg?.name ?? "—",
     workspaceName: currentWorkspace?.name ?? "—",
-    companyName: companies[0]?.name ?? null,
+    companyName: activeCompany?.name ?? null,
     formattedDate,
     timeOfDay: resolveTimeOfDayFromLabels(now.getHours(), labels.welcome),
     companies,
     companyCount,
-    continueCompany: companies[0] ?? null,
+    continueCompany: activeCompany,
     kpi: {
       companies: companyCount > 0 ? String(companyCount) : "—",
       engagements: "—",

@@ -26,7 +26,6 @@ export {
   CompanyWorkspaceLayout,
   CompanyWorkspaceHero,
   CompanyWorkspaceSidebar,
-  CompanyWorkspaceOverview,
   CompanyWorkspaceSummaryCards,
   CompanyWorkspaceMetadataPanel,
   CompanyWorkspaceSectionShell,

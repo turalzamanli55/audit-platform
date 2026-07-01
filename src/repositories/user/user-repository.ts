@@ -165,17 +165,27 @@ export class UserRepository extends AuthenticatedRepository {
       )
       .map((membership) => membership.workspace_id as string);
 
-    let query = applyActiveFilter(
-      this.client.from("workspaces").select("*").eq("organization_id", organizationId),
-    );
+    const buildScopedQuery = () => {
+      let query = applyActiveFilter(
+        this.client.from("workspaces").select("*").eq("organization_id", organizationId),
+      );
+
+      if (workspaceMembershipIds.length > 0) {
+        query = query.in("id", workspaceMembershipIds);
+      }
+
+      return query.order("name", { ascending: true });
+    };
 
     if (preferredWorkspaceId) {
-      query = query.eq("id", preferredWorkspaceId);
-    } else if (workspaceMembershipIds.length > 0) {
-      query = query.in("id", workspaceMembershipIds);
+      const preferredResult = await buildScopedQuery()
+        .eq("id", preferredWorkspaceId)
+        .maybeSingle();
+      const preferred = unwrapSupabaseMaybeSingle(preferredResult);
+      if (preferred) return preferred;
     }
 
-    const result = await query.order("name", { ascending: true }).limit(1).maybeSingle();
+    const result = await buildScopedQuery().limit(1).maybeSingle();
     return unwrapSupabaseMaybeSingle(result);
   }
 }

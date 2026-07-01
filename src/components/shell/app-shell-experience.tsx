@@ -18,6 +18,7 @@ import {
 } from "@/components/shell/shell-drawer-context";
 import { ShellSidebarUserFooter } from "@/components/shell/shell-sidebar-user-footer";
 import type { CompanySwitcherItem } from "@/components/shell/company-switcher";
+import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardNavItem } from "@/config/dashboard-navigation";
 import { COMPANIES_PATH } from "@/config/dashboard-navigation";
@@ -44,6 +45,9 @@ type AppShellExperienceProps = {
   navItems: DashboardNavItem[];
   labels: AppShellExperienceLabels;
   companies: CompanySwitcherItem[];
+  preferredCompanySlug?: string | null;
+  companiesLoadReason?: CompanyListLoadReason;
+  companyEmptyHint?: string;
   dashboardCommands: DashboardWorkspaceLabels["personalization"]["commands"];
 };
 
@@ -167,6 +171,9 @@ export function AppShellExperience({
   navItems,
   labels,
   companies,
+  preferredCompanySlug,
+  companiesLoadReason,
+  companyEmptyHint,
   dashboardCommands,
 }: AppShellExperienceProps) {
   const router = useRouter();
@@ -232,11 +239,25 @@ export function AppShellExperience({
         />
       }
       headerCenter={<GlobalSearchTrigger placeholder={labels.searchPlaceholder} />}
-      headerRight={<ShellHeaderActions labels={labels} companies={companies} />}
+      headerRight={
+        <ShellHeaderActions
+          labels={labels}
+          companies={companies}
+          preferredCompanySlug={preferredCompanySlug}
+          companiesLoadReason={companiesLoadReason}
+          companyEmptyHint={companyEmptyHint}
+        />
+      }
       sidebar={<DashboardNav items={navItems} />}
       sidebarDesktopFooter={<ShellSidebarUserFooter />}
       mobileDrawerContext={
-        <ShellDrawerContext labels={drawerContextLabels} companies={companies} />
+        <ShellDrawerContext
+          labels={drawerContextLabels}
+          companies={companies}
+          preferredCompanySlug={preferredCompanySlug}
+          companiesLoadReason={companiesLoadReason}
+          companyEmptyHint={companyEmptyHint}
+        />
       }
       overlay={
         <CommandPalette

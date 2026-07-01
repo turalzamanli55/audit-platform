@@ -1,7 +1,6 @@
 export { CompanyWorkspaceLayout } from "./company-workspace-layout";
 export { CompanyWorkspaceHero, type CompanyWorkspaceHeroLabels } from "./company-workspace-hero";
 export { CompanyWorkspaceSidebar, type CompanyWorkspaceNavItem } from "./company-workspace-sidebar";
-export { CompanyWorkspaceOverview } from "./company-workspace-overview";
 export { CompanyWorkspaceSummaryCards, type CompanyWorkspaceSummaryCard } from "./company-workspace-summary-cards";
 export { CompanyWorkspaceMetadataPanel, type CompanyWorkspaceMetadataItem } from "./company-workspace-metadata-panel";
 export { CompanyWorkspaceSectionShell } from "./company-workspace-section-shell";

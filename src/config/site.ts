@@ -9,4 +9,5 @@ export const siteConfig = {
   themeCookieName: "audit-theme",
   organizationCookieName: "audit-organization-id",
   workspaceCookieName: "audit-workspace-id",
+  companyCookieName: "audit-company-slug",
 } as const;

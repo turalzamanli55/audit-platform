@@ -29,3 +29,23 @@ export async function setWorkspaceCookie(workspaceId: string) {
   const cookieStore = await cookies();
   cookieStore.set(siteConfig.workspaceCookieName, workspaceId, TENANT_COOKIE_OPTIONS);
 }
+
+export async function clearWorkspaceCookie() {
+  const cookieStore = await cookies();
+  cookieStore.delete(siteConfig.workspaceCookieName);
+}
+
+export async function setCompanySlugCookie(slug: string) {
+  const cookieStore = await cookies();
+  cookieStore.set(siteConfig.companyCookieName, slug, TENANT_COOKIE_OPTIONS);
+}
+
+export async function clearCompanySlugCookie() {
+  const cookieStore = await cookies();
+  cookieStore.delete(siteConfig.companyCookieName);
+}
+
+export async function readCompanySlugCookie(): Promise<string | null> {
+  const cookieStore = await cookies();
+  return cookieStore.get(siteConfig.companyCookieName)?.value ?? null;
+}
