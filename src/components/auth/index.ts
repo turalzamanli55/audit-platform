@@ -4,3 +4,5 @@ export { GuestShell } from "./guest-shell";
 export { RoleGuard } from "./role-guard";
 export { PermissionGuard } from "./permission-guard";
 export { OnboardingGuard } from "./onboarding-guard";
+export { AuthLayout } from "./auth-layout";
+export * from "./ui";

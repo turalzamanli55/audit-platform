@@ -23,6 +23,7 @@ export default async function ResetPasswordPage({ params }: ResetPasswordPagePro
       <AuthLayout>
         <ResetPasswordForm
           locale={locale}
+          experience={dictionary.authExperience}
           labels={{
             title: dictionary.auth.resetPasswordTitle,
             subtitle: dictionary.auth.resetPasswordSubtitle,

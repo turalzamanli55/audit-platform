@@ -3,8 +3,17 @@
 import { useState, useTransition, type FormEvent } from "react";
 import Link from "next/link";
 import { forgotPasswordAction } from "@/lib/actions/auth/forgot-password";
-import { Button, Input, Label, Alert } from "@/components/ui";
+import { Button, Input, Label } from "@/components/ui";
 import { AUTH_ROUTES } from "@/config/auth";
+import type { AuthExperienceLabels } from "@/i18n/auth-experience-types";
+import {
+  AuthCard,
+  AuthError,
+  AuthFooter,
+  AuthHeader,
+  AuthStatusPanel,
+  AuthSuccess,
+} from "@/components/auth/ui";
 
 type ForgotPasswordFormProps = {
   locale: string;
@@ -17,11 +26,12 @@ type ForgotPasswordFormProps = {
     backToLogin: string;
     error: string;
   };
+  experience: AuthExperienceLabels;
 };
 
-export function ForgotPasswordForm({ locale, labels }: ForgotPasswordFormProps) {
+export function ForgotPasswordForm({ locale, labels, experience }: ForgotPasswordFormProps) {
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -30,7 +40,7 @@ export function ForgotPasswordForm({ locale, labels }: ForgotPasswordFormProps) 
 
     startTransition(async () => {
       setError(null);
-      setSuccess(null);
+      setSuccess(false);
 
       const result = await forgotPasswordAction({
         email: String(formData.get("email") ?? ""),
@@ -42,34 +52,49 @@ export function ForgotPasswordForm({ locale, labels }: ForgotPasswordFormProps) 
         return;
       }
 
-      setSuccess(labels.success);
+      setSuccess(true);
     });
   }
 
+  if (success) {
+    return (
+      <AuthCard>
+        <AuthSuccess title={experience.forgot.successTitle} description={labels.success} />
+        <AuthFooter>
+          <Link href={`/${locale}${AUTH_ROUTES.login}`} className="text-primary hover:underline">
+            {labels.backToLogin}
+          </Link>
+        </AuthFooter>
+      </AuthCard>
+    );
+  }
+
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
-      <div className="space-y-1">
-        <h1 className="text-3xl font-semibold tracking-tight">{labels.title}</h1>
-        <p className="text-sm text-muted-foreground">{labels.subtitle}</p>
-      </div>
+    <AuthCard>
+      <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+        <AuthHeader title={labels.title} subtitle={labels.subtitle} />
 
-      {error ? <Alert variant="error">{error}</Alert> : null}
-      {success ? <Alert variant="success">{success}</Alert> : null}
+        <AuthStatusPanel variant="info" title={experience.forgot.explanation} />
 
-      <div className="space-y-2">
-        <Label htmlFor="email" required>
-          {labels.email}
-        </Label>
-        <Input id="email" name="email" type="email" autoComplete="email" required />
-      </div>
+        {error ? <AuthError message={error} /> : null}
 
-      <Button type="submit" className="w-full" loading={isPending}>
-        {labels.submit}
-      </Button>
+        <div className="space-y-2">
+          <Label htmlFor="email" required>
+            {labels.email}
+          </Label>
+          <Input id="email" name="email" type="email" autoComplete="email" required />
+        </div>
 
-      <Link href={`/${locale}${AUTH_ROUTES.login}`} className="block text-center text-sm text-primary hover:underline">
-        {labels.backToLogin}
-      </Link>
-    </form>
+        <Button type="submit" className="w-full" size="lg" loading={isPending}>
+          {labels.submit}
+        </Button>
+
+        <AuthFooter>
+          <Link href={`/${locale}${AUTH_ROUTES.login}`} className="text-primary hover:underline">
+            {labels.backToLogin}
+          </Link>
+        </AuthFooter>
+      </form>
+    </AuthCard>
   );
 }

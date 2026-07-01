@@ -1,0 +1,86 @@
+{
+  "common": {
+    "showPassword": "Şifrəni göstər",
+    "hidePassword": "Şifrəni gizlət",
+    "loading": "Gözləyin…",
+    "or": "və ya",
+    "termsPrefix": "Davam etməklə razılaşırsınız",
+    "termsLink": "Şərtlər",
+    "privacyLink": "Məxfilik Siyasəti",
+    "and": "və"
+  },
+  "login": {
+    "benefits": [
+      "Audit izləri ilə müəssisə təhlükəsizliyi",
+      "Müasir audit komandaları üçün AI dəstəkli axınlar",
+      "IFRS-uyğun maliyyə hesabatı mühiti"
+    ],
+    "quote": "Komandamızın istifadə etdiyi ən sakit audit platforması.",
+    "quoteAuthor": "Müəssisə audit təcrübəsi"
+  },
+  "register": {
+    "stepLabel": "Addım 1/2 — Profilinizi yaradın",
+    "requirementsTitle": "Şifrə tələbləri",
+    "requirements": [
+      "Ən azı 8 simvol",
+      "Hərf və rəqəm qarışığı tövsiyə olunur",
+      "Simvollar möhkəmliyi artırır"
+    ],
+    "trust": [
+      "Ötürülmə və saxlanma zamanı şifrələnir",
+      "Dizayn üzrə iş mühiti izolasiyası",
+      "Müştəri məlumatlarınız üzrə təlim yoxdur"
+    ],
+    "verificationNote": "Onboarding-dən əvvəl hesabı aktivləşdirmək üçün təsdiq linki göndərəcəyik.",
+    "benefits": [
+      "Təşkilatınızı dəqiqələrlə qurun",
+      "Hazır olanda komandanızı dəvət edin",
+      "Bu gün şirkət idarəetməsi ilə başlayın"
+    ]
+  },
+  "forgot": {
+    "explanation": "Hesabınızla əlaqəli e-poçtu daxil edin. Mövcuddursa, təhlükəsiz sıfırlama linki göndərəcəyik. Təhlükəsizlik üçün hesabın olub-olmadığını açıqlamırıq.",
+    "successTitle": "Poçt qutunuzu yoxlayın"
+  },
+  "reset": {
+    "successTitle": "Şifrə yeniləndi",
+    "successDescription": "Yeni şifrəniz aktivdir. Girişə yönləndirilirsiniz…",
+    "redirecting": "Yönləndirilir…",
+    "mismatch": "Şifrələr uyğun gəlmir"
+  },
+  "verify": {
+    "tipsTitle": "E-poçt almadınız?",
+    "tips": [
+      "Spam və ya promosyonlar qovluğunu yoxlayın",
+      "Qeydiyyatdan keçdiyiniz ünvanı təsdiqləyin",
+      "Çatdırılma üçün bir neçə dəqiqə gözləyin"
+    ],
+    "resend": "Təsdiq e-poçtunu yenidən göndər",
+    "resendIn": "Yenidən göndərmə {seconds}s sonra",
+    "resendSuccess": "Təsdiq e-poçtu yenidən göndərildi.",
+    "resendError": "İndi yenidən göndərmək mümkün deyil. Təsdiqləmisinizsə daxil olun və ya sonra cəhd edin.",
+    "pendingTitle": "Təsdiq gözlənilir",
+    "expiredTitle": "Linkin müddəti bitib",
+    "expiredDescription": "Bu təsdiq linki artıq etibarlı deyil. Yenisini tələb edin və ya yenidən qeydiyyatdan keçin.",
+    "verifiedTitle": "E-poçt təsdiqləndi",
+    "verifiedDescription": "E-poçtunuz təsdiqləndi. Davam etmək üçün daxil ola bilərsiniz."
+  },
+  "passwordStrength": {
+    "label": "Şifrə möhkəmliyi",
+    "weak": "Zəif",
+    "fair": "Orta",
+    "good": "Yaxşı",
+    "strong": "Güclü"
+  },
+  "status": {
+    "accountNotFound": "Hesab tapılmadı",
+    "accountNotFoundDescription": "Bu məlumatlarla hesab tapılmadı.",
+    "verificationPending": "Təsdiq gözlənilir",
+    "sessionExpired": "Sessiya bitdi",
+    "sessionExpiredDescription": "Sessiyanız bitdi. Davam etmək üçün yenidən daxil olun.",
+    "invalidLink": "Etibarsız link",
+    "invalidLinkDescription": "Bu link etibarsızdır və ya artıq istifadə olunub.",
+    "passwordUpdated": "Şifrə uğurla yeniləndi",
+    "accountCreated": "Hesab yaradıldı — davam etmək üçün e-poçtu təsdiqləyin"
+  }
+}

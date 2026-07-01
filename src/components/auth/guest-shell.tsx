@@ -5,12 +5,15 @@ import { PublicAuthShell } from "@/components/public/public-auth-shell";
 type GuestShellProps = {
   children: ReactNode;
   locale: string;
+  wide?: boolean;
 };
 
-export function GuestShell({ children, locale }: GuestShellProps) {
+export function GuestShell({ children, locale, wide = false }: GuestShellProps) {
   return (
     <GuestRouteGuard>
-      <PublicAuthShell locale={locale}>{children}</PublicAuthShell>
+      <PublicAuthShell locale={locale} wide={wide}>
+        {children}
+      </PublicAuthShell>
     </GuestRouteGuard>
   );
 }

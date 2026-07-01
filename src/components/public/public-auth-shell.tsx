@@ -1,13 +1,15 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/ui/cn";
 
 type PublicAuthShellProps = {
   children: ReactNode;
   locale: string;
+  wide?: boolean;
 };
 
-export function PublicAuthShell({ children, locale }: PublicAuthShellProps) {
+export function PublicAuthShell({ children, locale, wide = false }: PublicAuthShellProps) {
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <header className="border-b border-border/60 bg-card/70 backdrop-blur-xl">
@@ -23,7 +25,14 @@ export function PublicAuthShell({ children, locale }: PublicAuthShellProps) {
           </Link>
         </div>
       </header>
-      <main id="main-content" className="flex flex-1 items-center justify-center px-4 py-10" role="main">
+      <main
+        id="main-content"
+        className={cn(
+          "flex flex-1 px-4 py-10 sm:px-6",
+          wide ? "items-start justify-center lg:items-center lg:py-12" : "items-center justify-center",
+        )}
+        role="main"
+      >
         {children}
       </main>
     </div>

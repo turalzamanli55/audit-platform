@@ -1,11 +1,22 @@
 "use client";
 
-import { useState, useTransition, type FormEvent } from "react";
+import { useEffect, useState, useTransition, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { resetPasswordAction } from "@/lib/actions/auth/reset-password";
-import { Button, Input, Label, Alert } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { AUTH_ROUTES } from "@/config/auth";
+import type { AuthExperienceLabels } from "@/i18n/auth-experience-types";
+import {
+  AuthCard,
+  AuthError,
+  AuthFooter,
+  AuthHeader,
+  AuthPasswordInput,
+  AuthPasswordRequirements,
+  AuthPasswordStrength,
+  AuthSuccess,
+} from "@/components/auth/ui";
 
 type ResetPasswordFormProps = {
   locale: string;
@@ -19,15 +30,38 @@ type ResetPasswordFormProps = {
     backToLogin: string;
     error: string;
   };
+  experience: AuthExperienceLabels;
 };
 
-export function ResetPasswordForm({ locale, labels }: ResetPasswordFormProps) {
+export function ResetPasswordForm({ locale, labels, experience }: ResetPasswordFormProps) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [success, setSuccess] = useState(false);
   const [isPending, startTransition] = useTransition();
+
+  const mismatch =
+    confirmPassword.length > 0 && password !== confirmPassword
+      ? experience.reset.mismatch
+      : undefined;
+
+  useEffect(() => {
+    if (!success) return;
+    const timer = window.setTimeout(() => {
+      router.push(`/${locale}${AUTH_ROUTES.login}`);
+      router.refresh();
+    }, 1800);
+    return () => window.clearTimeout(timer);
+  }, [success, locale, router]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (mismatch) {
+      setError(mismatch);
+      return;
+    }
+
     const formData = new FormData(event.currentTarget);
 
     startTransition(async () => {
@@ -42,47 +76,72 @@ export function ResetPasswordForm({ locale, labels }: ResetPasswordFormProps) {
         return;
       }
 
-      router.push(`/${locale}${AUTH_ROUTES.login}`);
-      router.refresh();
+      setSuccess(true);
     });
   }
 
+  if (success) {
+    return (
+      <AuthCard>
+        <AuthSuccess
+          title={experience.reset.successTitle}
+          description={experience.reset.successDescription}
+        />
+        <p className="mt-4 text-center text-sm text-muted-foreground">{experience.reset.redirecting}</p>
+      </AuthCard>
+    );
+  }
+
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
-      <div className="space-y-1">
-        <h1 className="text-3xl font-semibold tracking-tight">{labels.title}</h1>
-        <p className="text-sm text-muted-foreground">{labels.subtitle}</p>
-      </div>
+    <AuthCard>
+      <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+        <AuthHeader title={labels.title} subtitle={labels.subtitle} />
 
-      {error ? <Alert variant="error">{error}</Alert> : null}
+        {error ? <AuthError message={error} /> : null}
 
-      <div className="space-y-2">
-        <Label htmlFor="password" required>
-          {labels.password}
-        </Label>
-        <Input id="password" name="password" type="password" autoComplete="new-password" required />
-      </div>
+        <div className="space-y-3">
+          <AuthPasswordInput
+            id="password"
+            name="password"
+            label={labels.password}
+            showLabel={experience.common.showPassword}
+            hideLabel={experience.common.hidePassword}
+            autoComplete="new-password"
+            required
+            value={password}
+            onValueChange={setPassword}
+          />
+          <AuthPasswordStrength password={password} labels={experience.passwordStrength} />
+          <AuthPasswordRequirements
+            title={experience.register.requirementsTitle}
+            items={experience.register.requirements}
+            password={password}
+          />
+        </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="confirmPassword" required>
-          {labels.confirmPassword}
-        </Label>
-        <Input
+        <AuthPasswordInput
           id="confirmPassword"
           name="confirmPassword"
-          type="password"
+          label={labels.confirmPassword}
+          showLabel={experience.common.showPassword}
+          hideLabel={experience.common.hidePassword}
           autoComplete="new-password"
           required
+          value={confirmPassword}
+          onValueChange={setConfirmPassword}
+          error={mismatch}
         />
-      </div>
 
-      <Button type="submit" className="w-full" loading={isPending}>
-        {labels.submit}
-      </Button>
+        <Button type="submit" className="w-full" size="lg" loading={isPending} disabled={Boolean(mismatch)}>
+          {labels.submit}
+        </Button>
 
-      <Link href={`/${locale}${AUTH_ROUTES.login}`} className="block text-center text-sm text-primary hover:underline">
-        {labels.backToLogin}
-      </Link>
-    </form>
+        <AuthFooter>
+          <Link href={`/${locale}${AUTH_ROUTES.login}`} className="text-primary hover:underline">
+            {labels.backToLogin}
+          </Link>
+        </AuthFooter>
+      </form>
+    </AuthCard>
   );
 }

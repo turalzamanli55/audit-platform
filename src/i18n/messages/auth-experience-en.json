@@ -1,0 +1,86 @@
+{
+  "common": {
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "loading": "Please wait…",
+    "or": "or",
+    "termsPrefix": "By continuing, you agree to our",
+    "termsLink": "Terms",
+    "privacyLink": "Privacy Policy",
+    "and": "and"
+  },
+  "login": {
+    "benefits": [
+      "Enterprise-grade security with audit trails",
+      "AI-assisted workflows for modern audit teams",
+      "IFRS-ready financial reporting workspace"
+    ],
+    "quote": "The calmest audit platform our team has used.",
+    "quoteAuthor": "Enterprise audit practice"
+  },
+  "register": {
+    "stepLabel": "Step 1 of 2 — Create your profile",
+    "requirementsTitle": "Password requirements",
+    "requirements": [
+      "At least 8 characters",
+      "Mix of letters and numbers recommended",
+      "Symbols improve strength"
+    ],
+    "trust": [
+      "Encrypted in transit and at rest",
+      "Workspace isolation by design",
+      "No training on your client data"
+    ],
+    "verificationNote": "We will send a verification link to activate your account before onboarding.",
+    "benefits": [
+      "Set up your organization in minutes",
+      "Invite your team when you are ready",
+      "Start with company management today"
+    ]
+  },
+  "forgot": {
+    "explanation": "Enter the email associated with your account. If it exists, we will send a secure reset link. For security, we do not reveal whether an account exists.",
+    "successTitle": "Check your inbox"
+  },
+  "reset": {
+    "successTitle": "Password updated",
+    "successDescription": "Your new password is active. Redirecting you to sign in…",
+    "redirecting": "Redirecting…",
+    "mismatch": "Passwords do not match"
+  },
+  "verify": {
+    "tipsTitle": "Did not receive the email?",
+    "tips": [
+      "Check your spam or promotions folder",
+      "Confirm the address you registered with",
+      "Allow a few minutes for delivery"
+    ],
+    "resend": "Resend verification email",
+    "resendIn": "Resend available in {seconds}s",
+    "resendSuccess": "Verification email sent again.",
+    "resendError": "Unable to resend right now. Sign in if you already verified, or try again later.",
+    "pendingTitle": "Verification pending",
+    "expiredTitle": "Link expired",
+    "expiredDescription": "This verification link is no longer valid. Request a new one or create your account again.",
+    "verifiedTitle": "Email verified",
+    "verifiedDescription": "Your email is confirmed. You can sign in to continue."
+  },
+  "passwordStrength": {
+    "label": "Password strength",
+    "weak": "Weak",
+    "fair": "Fair",
+    "good": "Good",
+    "strong": "Strong"
+  },
+  "status": {
+    "accountNotFound": "Account not found",
+    "accountNotFoundDescription": "We could not find an account with those credentials.",
+    "verificationPending": "Verification pending",
+    "sessionExpired": "Session expired",
+    "sessionExpiredDescription": "Your session has ended. Sign in again to continue.",
+    "invalidLink": "Invalid link",
+    "invalidLinkDescription": "This link is invalid or has already been used.",
+    "passwordUpdated": "Password updated successfully",
+    "accountCreated": "Account created — verify your email to continue"
+  }
+}

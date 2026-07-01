@@ -1,0 +1,86 @@
+{
+  "common": {
+    "showPassword": "Şifreyi göster",
+    "hidePassword": "Şifreyi gizle",
+    "loading": "Lütfen bekleyin…",
+    "or": "veya",
+    "termsPrefix": "Devam ederek kabul edersiniz",
+    "termsLink": "Koşullar",
+    "privacyLink": "Gizlilik Politikası",
+    "and": "ve"
+  },
+  "login": {
+    "benefits": [
+      "Denetim izleriyle kurumsal güvenlik",
+      "Modern denetim ekipleri için AI destekli iş akışları",
+      "UFRS hazır finansal raporlama alanı"
+    ],
+    "quote": "Ekibimizin kullandığı en sakin denetim platformu.",
+    "quoteAuthor": "Kurumsal denetim uygulaması"
+  },
+  "register": {
+    "stepLabel": "Adım 1/2 — Profilinizi oluşturun",
+    "requirementsTitle": "Şifre gereksinimleri",
+    "requirements": [
+      "En az 8 karakter",
+      "Harf ve rakam karışımı önerilir",
+      "Semboller gücü artırır"
+    ],
+    "trust": [
+      "Aktarım ve depolamada şifreleme",
+      "Tasarım gereği çalışma alanı izolasyonu",
+      "Müşteri verilerinizle eğitim yok"
+    ],
+    "verificationNote": "Onboarding öncesi hesabı etkinleştirmek için doğrulama linki göndereceğiz.",
+    "benefits": [
+      "Organizasyonunuzu dakikalar içinde kurun",
+      "Hazır olduğunuzda ekibinizi davet edin",
+      "Bugün şirket yönetimiyle başlayın"
+    ]
+  },
+  "forgot": {
+    "explanation": "Hesabınızla ilişkili e-postayı girin. Varsa güvenli sıfırlama linki göndeririz. Güvenlik için hesabın varlığını açıklamayız.",
+    "successTitle": "Gelen kutunuzu kontrol edin"
+  },
+  "reset": {
+    "successTitle": "Şifre güncellendi",
+    "successDescription": "Yeni şifreniz aktif. Girişe yönlendiriliyorsunuz…",
+    "redirecting": "Yönlendiriliyor…",
+    "mismatch": "Şifreler eşleşmiyor"
+  },
+  "verify": {
+    "tipsTitle": "E-posta almadınız mı?",
+    "tips": [
+      "Spam veya promosyonlar klasörünü kontrol edin",
+      "Kayıt olduğunuz adresi doğrulayın",
+      "Teslimat için birkaç dakika bekleyin"
+    ],
+    "resend": "Doğrulama e-postasını yeniden gönder",
+    "resendIn": "Yeniden gönderme {seconds}s sonra",
+    "resendSuccess": "Doğrulama e-postası tekrar gönderildi.",
+    "resendError": "Şu anda yeniden gönderilemiyor. Doğruladıysanız giriş yapın veya sonra deneyin.",
+    "pendingTitle": "Doğrulama bekleniyor",
+    "expiredTitle": "Linkin süresi doldu",
+    "expiredDescription": "Bu doğrulama linki artık geçerli değil. Yenisini isteyin veya tekrar kayıt olun.",
+    "verifiedTitle": "E-posta doğrulandı",
+    "verifiedDescription": "E-postanız doğrulandı. Devam etmek için giriş yapabilirsiniz."
+  },
+  "passwordStrength": {
+    "label": "Şifre gücü",
+    "weak": "Zayıf",
+    "fair": "Orta",
+    "good": "İyi",
+    "strong": "Güçlü"
+  },
+  "status": {
+    "accountNotFound": "Hesap bulunamadı",
+    "accountNotFoundDescription": "Bu bilgilerle hesap bulunamadı.",
+    "verificationPending": "Doğrulama bekleniyor",
+    "sessionExpired": "Oturum süresi doldu",
+    "sessionExpiredDescription": "Oturumunuz sona erdi. Devam etmek için tekrar giriş yapın.",
+    "invalidLink": "Geçersiz link",
+    "invalidLinkDescription": "Bu link geçersiz veya zaten kullanılmış.",
+    "passwordUpdated": "Şifre başarıyla güncellendi",
+    "accountCreated": "Hesap oluşturuldu — devam etmek için e-postayı doğrulayın"
+  }
+}

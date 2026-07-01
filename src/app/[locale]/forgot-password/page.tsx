@@ -23,6 +23,7 @@ export default async function ForgotPasswordPage({ params }: ForgotPasswordPageP
       <AuthLayout>
         <ForgotPasswordForm
           locale={locale}
+          experience={dictionary.authExperience}
           labels={{
             title: dictionary.auth.forgotPasswordTitle,
             subtitle: dictionary.auth.forgotPasswordSubtitle,

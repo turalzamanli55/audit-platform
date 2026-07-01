@@ -4,8 +4,19 @@ import { useState, useTransition, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInAction } from "@/lib/actions/auth/sign-in";
-import { Button, Input, Label, Alert } from "@/components/ui";
+import { Button, Input, Label } from "@/components/ui";
 import { AUTH_ROUTES } from "@/config/auth";
+import type { AuthExperienceLabels } from "@/i18n/auth-experience-types";
+import {
+  AuthBenefits,
+  AuthCard,
+  AuthCheckbox,
+  AuthError,
+  AuthFooter,
+  AuthHeader,
+  AuthPasswordInput,
+  AuthQuote,
+} from "@/components/auth/ui";
 
 type LoginFormProps = {
   locale: string;
@@ -21,9 +32,10 @@ type LoginFormProps = {
     registerLink: string;
     error: string;
   };
+  experience: AuthExperienceLabels;
 };
 
-export function LoginForm({ locale, labels }: LoginFormProps) {
+export function LoginForm({ locale, labels, experience }: LoginFormProps) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -51,54 +63,57 @@ export function LoginForm({ locale, labels }: LoginFormProps) {
   }
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
-      <div className="space-y-1">
-        <h1 className="text-3xl font-semibold tracking-tight">{labels.title}</h1>
-        <p className="text-sm text-muted-foreground">{labels.subtitle}</p>
+    <div className="grid w-full max-w-5xl gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-16">
+      <div className="hidden space-y-8 lg:block">
+        <AuthBenefits items={experience.login.benefits} />
+        <AuthQuote quote={experience.login.quote} author={experience.login.quoteAuthor} />
       </div>
 
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      <AuthCard>
+        <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+          <AuthHeader title={labels.title} subtitle={labels.subtitle} />
 
-      <div className="space-y-2">
-        <Label htmlFor="email" required>
-          {labels.email}
-        </Label>
-        <Input id="email" name="email" type="email" autoComplete="email" required />
-      </div>
+          {error ? <AuthError message={error} /> : null}
 
-      <div className="space-y-2">
-        <Label htmlFor="password" required>
-          {labels.password}
-        </Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          required
-        />
-      </div>
+          <div className="space-y-2">
+            <Label htmlFor="email" required>
+              {labels.email}
+            </Label>
+            <Input id="email" name="email" type="email" autoComplete="email" required />
+          </div>
 
-      <label className="flex items-center gap-2 text-sm text-muted-foreground">
-        <input type="checkbox" name="rememberMe" className="rounded border-input" />
-        {labels.rememberMe}
-      </label>
+          <AuthPasswordInput
+            id="password"
+            name="password"
+            label={labels.password}
+            showLabel={experience.common.showPassword}
+            hideLabel={experience.common.hidePassword}
+            autoComplete="current-password"
+            required
+          />
 
-      <Button type="submit" className="w-full" loading={isPending}>
-        {labels.submit}
-      </Button>
+          <div className="flex items-center justify-between gap-4">
+            <AuthCheckbox name="rememberMe" label={labels.rememberMe} />
+            <Link
+              href={`/${locale}${AUTH_ROUTES.forgotPassword}`}
+              className="text-sm text-primary hover:underline"
+            >
+              {labels.forgotPassword}
+            </Link>
+          </div>
 
-      <div className="flex items-center justify-between text-sm">
-        <Link href={`/${locale}${AUTH_ROUTES.forgotPassword}`} className="text-primary hover:underline">
-          {labels.forgotPassword}
-        </Link>
-        <span className="text-muted-foreground">
-          {labels.registerPrompt}{" "}
-          <Link href={`/${locale}${AUTH_ROUTES.register}`} className="text-primary hover:underline">
-            {labels.registerLink}
-          </Link>
-        </span>
-      </div>
-    </form>
+          <Button type="submit" className="w-full" size="lg" loading={isPending}>
+            {labels.submit}
+          </Button>
+
+          <AuthFooter>
+            {labels.registerPrompt}{" "}
+            <Link href={`/${locale}${AUTH_ROUTES.register}`} className="text-primary hover:underline">
+              {labels.registerLink}
+            </Link>
+          </AuthFooter>
+        </form>
+      </AuthCard>
+    </div>
   );
 }
