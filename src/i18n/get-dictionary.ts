@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { Locale } from "./types";
 import type { MarketingLabels } from "./marketing-types";
 import type { AuthExperienceLabels } from "./auth-experience-types";
@@ -528,14 +529,26 @@ async function loadDictionary(locale: Locale): Promise<Dictionary> {
   return { ...base, marketing, authExperience, dashboardWorkspace } as Dictionary;
 }
 
-const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
-  az: () => loadDictionary("az"),
-  en: () => loadDictionary("en"),
-  ru: () => loadDictionary("ru"),
-  tr: () => loadDictionary("tr"),
-};
+const dictionaryMemoryCache = new Map<Locale, Dictionary>();
+const dictionaryInflight = new Map<Locale, Promise<Dictionary>>();
+
+const getCachedDictionary = cache(async (locale: Locale): Promise<Dictionary> => {
+  const memoized = dictionaryMemoryCache.get(locale);
+  if (memoized) return memoized;
+
+  let inflight = dictionaryInflight.get(locale);
+  if (!inflight) {
+    inflight = loadDictionary(locale).then((dictionary) => {
+      dictionaryMemoryCache.set(locale, dictionary);
+      dictionaryInflight.delete(locale);
+      return dictionary;
+    });
+    dictionaryInflight.set(locale, inflight);
+  }
+
+  return inflight;
+});
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  const loader = dictionaries[locale] ?? dictionaries.az;
-  return loader();
+  return getCachedDictionary(locale);
 }

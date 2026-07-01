@@ -21,8 +21,11 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
   const headerStore = await headers();
   const localeHeader = headerStore.get("x-locale");
   const locale = (localeHeader && isValidLocale(localeHeader) ? localeHeader : defaultLocale) as Locale;
-  const dictionary = await getDictionary(locale);
-  const bootstrap = await getTenantBootstrap();
+  const [dictionary, bootstrap, companyResult] = await Promise.all([
+    getDictionary(locale),
+    getTenantBootstrap(),
+    loadCompanyList(),
+  ]);
 
   const tenantBootstrap = bootstrap ?? {
     organizations: [],
@@ -34,7 +37,6 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
     roleSlugs: [],
   };
 
-  const companyResult = await loadCompanyList();
   const companies = companyResult.ok
     ? companyResult.items.map((item) => ({
         id: item.id,

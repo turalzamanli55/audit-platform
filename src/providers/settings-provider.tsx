@@ -71,12 +71,14 @@ export function SettingsProvider({ children, initialLocale = "az" }: SettingsPro
     return () => {
       cancelled = true;
     };
-  }, [initialLocale]);
+    // Hydrate once; route locale is applied via initialLocale in context value.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount-only hydration
+  }, []);
 
   useEffect(() => {
     if (!hydrated) return;
-    saveStoredSettings(settings);
-  }, [settings, hydrated]);
+    saveStoredSettings({ ...settings, locale: initialLocale });
+  }, [settings, hydrated, initialLocale]);
 
   const updateSettings = useCallback((partial: Partial<UserSettings>) => {
     setSettings((prev) => ({ ...prev, ...partial }));
@@ -109,7 +111,10 @@ export function SettingsProvider({ children, initialLocale = "az" }: SettingsPro
 
   const value = useMemo<SettingsContextValue>(
     () => ({
-      settings,
+      settings: {
+        ...settings,
+        locale: initialLocale,
+      },
       hydrated,
       updateSettings,
       resetSettings,
@@ -120,6 +125,7 @@ export function SettingsProvider({ children, initialLocale = "az" }: SettingsPro
     }),
     [
       settings,
+      initialLocale,
       hydrated,
       updateSettings,
       resetSettings,
