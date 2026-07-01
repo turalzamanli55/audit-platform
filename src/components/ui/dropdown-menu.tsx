@@ -8,15 +8,22 @@ import {
   useContext,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
+  type CSSProperties,
   type KeyboardEvent,
   type MouseEvent,
   type ReactElement,
   type ReactNode,
 } from "react";
+import { usePathname } from "next/navigation";
+import { Portal } from "@/components/ui/portal";
 import { cn } from "@/lib/ui/cn";
+import { claimActiveDropdown } from "@/lib/ui/dropdown-registry";
+import { computeFloatingPosition } from "@/lib/ui/floating-position";
 import { headerControlOpenClass, headerMenuItemClass } from "@/lib/ui/header-interaction";
+import { Z_INDEX } from "@/lib/ui/z-index";
 
 type DropdownContextValue = {
   open: boolean;
@@ -47,41 +54,111 @@ type TriggerProps = {
 };
 
 export function DropdownMenu({ trigger, children, align = "end", className }: DropdownMenuProps) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [menuStyle, setMenuStyle] = useState<CSSProperties>({ visibility: "hidden" });
   const triggerId = useId();
   const menuId = useId();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const wasOpenRef = useRef(false);
+  const previousPathnameRef = useRef(pathname);
+
+  const close = useCallback(() => setOpen(false), []);
 
   const focusMenuItem = useCallback((index: number) => {
     const items = menuRef.current?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled)');
     items?.[index]?.focus();
   }, []);
 
+  const updatePosition = useCallback(() => {
+    const triggerEl = triggerRef.current;
+    const menuEl = menuRef.current;
+    if (!triggerEl || !menuEl) return;
+
+    const triggerRect = triggerEl.getBoundingClientRect();
+    const menuRect = menuEl.getBoundingClientRect();
+    const position = computeFloatingPosition(triggerRect, menuRect, {
+      align,
+      viewport: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      },
+    });
+
+    const maxHeight = Math.max(
+      120,
+      position.placement === "bottom" ?
+        window.innerHeight - position.top - 8
+      : position.top - 8,
+    );
+
+    setMenuStyle({
+      top: position.top,
+      left: position.left,
+      maxHeight,
+      visibility: "visible",
+    });
+  }, [align]);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+    updatePosition();
+  }, [open, children, updatePosition]);
+
   useEffect(() => {
     if (!open) return;
 
+    const release = claimActiveDropdown(close);
+
     const handlePointer = (event: globalThis.MouseEvent) => {
-      if (!containerRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-      }
+      const target = event.target as Node;
+      if (triggerRef.current?.contains(target) || menuRef.current?.contains(target)) return;
+      close();
     };
 
     const handleEscape = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") close();
     };
+
+    const handleReposition = () => updatePosition();
 
     document.addEventListener("mousedown", handlePointer);
     document.addEventListener("keydown", handleEscape);
+    window.addEventListener("resize", handleReposition);
+    window.addEventListener("scroll", handleReposition, true);
 
-    const frame = requestAnimationFrame(() => focusMenuItem(0));
+    const frame = requestAnimationFrame(() => {
+      updatePosition();
+      focusMenuItem(0);
+    });
 
     return () => {
+      release();
       document.removeEventListener("mousedown", handlePointer);
       document.removeEventListener("keydown", handleEscape);
+      window.removeEventListener("resize", handleReposition);
+      window.removeEventListener("scroll", handleReposition, true);
       cancelAnimationFrame(frame);
     };
-  }, [open, focusMenuItem]);
+  }, [open, close, focusMenuItem, updatePosition]);
+
+  useEffect(() => {
+    if (previousPathnameRef.current === pathname) return;
+    previousPathnameRef.current = pathname;
+    const frame = requestAnimationFrame(() => setOpen(false));
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (wasOpenRef.current && !open) {
+      const focusable =
+        triggerRef.current?.querySelector<HTMLElement>("button,[href],[tabindex]") ??
+        triggerRef.current;
+      focusable?.focus();
+    }
+    wasOpenRef.current = open;
+  }, [open]);
 
   const handleMenuKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
@@ -113,8 +190,12 @@ export function DropdownMenu({ trigger, children, align = "end", className }: Dr
         event.preventDefault();
         focusMenuItem(items.length - 1);
       }
+
+      if (event.key === "Tab") {
+        close();
+      }
     },
-    [focusMenuItem],
+    [close, focusMenuItem],
   );
 
   const mergedTrigger =
@@ -154,24 +235,28 @@ export function DropdownMenu({ trigger, children, align = "end", className }: Dr
 
   return (
     <DropdownContext.Provider value={{ open, setOpen, triggerId, menuId }}>
-      <div ref={containerRef} className={cn("relative inline-flex", className)}>
+      <div ref={triggerRef} className={cn("relative inline-flex", className)}>
         {mergedTrigger}
-        {open ? (
+      </div>
+      {open ?
+        <Portal>
           <div
             ref={menuRef}
             id={menuId}
             role="menu"
             aria-labelledby={triggerId}
             onKeyDown={handleMenuKeyDown}
-            className={cn(
-              "absolute top-[calc(100%+0.375rem)] z-[1400] min-w-[12rem] overflow-hidden rounded-xl border border-border/60 bg-popover p-1.5 text-popover-foreground shadow-lg ds-animate-scale-in",
-              align === "end" ? "right-0" : "left-0",
-            )}
+            style={{
+              position: "fixed",
+              zIndex: Z_INDEX.dropdown,
+              ...menuStyle,
+            }}
+            className="min-w-[12rem] overflow-hidden overflow-y-auto rounded-xl border border-border/60 bg-popover p-1.5 text-popover-foreground shadow-lg ds-animate-scale-in motion-reduce:animate-none"
           >
             {children}
           </div>
-        ) : null}
-      </div>
+        </Portal>
+      : null}
     </DropdownContext.Provider>
   );
 }

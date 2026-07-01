@@ -19,7 +19,7 @@ export function AppHeader({ mobileSearch, center, right, className }: AppHeaderP
   return (
     <header
       className={cn(
-        "sticky top-0 z-[1100] flex h-[var(--ds-header-height)] min-w-0 items-center overflow-hidden border-b border-border/60 bg-card/80 px-2 backdrop-blur-xl supports-[backdrop-filter]:bg-card/70 sm:px-4 ds-safe-top",
+        "sticky top-0 z-[1100] flex h-[var(--ds-header-height)] min-w-0 items-center overflow-x-clip border-b border-border/60 bg-card/80 px-2 backdrop-blur-xl supports-[backdrop-filter]:bg-card/70 sm:px-4 ds-safe-top",
         className,
       )}
       role="banner"
