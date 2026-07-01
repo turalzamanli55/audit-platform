@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "overview": "Genel bakış",
+    "features": "Özellikler",
+    "enterprise": "Kurumsal",
+    "ai": "AI",
+    "security": "Güvenlik",
+    "signIn": "Giriş yap",
+    "register": "Başla",
+    "requestDemo": "Demo iste",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "theme": "Tema",
+    "language": "Dil",
+    "themeLight": "Açık",
+    "themeDark": "Koyu"
+  },
+  "hero": {
+    "eyebrow": "Kurumsal AI Denetim Platformu",
+    "title": "Netlik, güven ve sakinlikle denetim",
+    "subtitle": "UFRS raporlama, çalışma kağıtları ve finansal zeka için premium çalışma alanı — karmaşıklık olmadan hassasiyet isteyen profesyoneller için.",
+    "primaryCta": "Ücretsiz başla",
+    "secondaryCta": "Demo iste",
+    "trust": ["UFRS hazır", "AI-first mimari", "Kurumsal güvenlik"]
+  },
+  "overview": {
+    "title": "Denetim ekiplerinin ihtiyacı olan her şey — tek sakin alanda",
+    "description": "Mizan dengesinden imzaya kadar platform yapı, izlenebilirlik ve akıllı destek getirir.",
+    "items": {
+      "aiAudit": { "title": "AI Denetim", "description": "İnsan muhakemesini merkezde tutan akıllı iş akışları." },
+      "workingPapers": { "title": "Çalışma kağıtları", "description": "Kanıt bağlantıları ve inceleme notlarıyla yapılandırılmış dokümantasyon." },
+      "financialStatements": { "title": "Finansal tablolar", "description": "UFRS uyumlu raporlama ve denetime hazır dışa aktarımlar." },
+      "trialBalance": { "title": "Mizan", "description": "Varlıklar ve dönemler arasında güvenle içe aktarma ve mutabakat." },
+      "automation": { "title": "Otomasyon", "description": "Tekrarlayan görevleri azaltın, muhakemeye odaklanın." },
+      "compliance": { "title": "Uyumluluk", "description": "Düzenleyici gereksinimler için yerleşik kontroller." }
+    }
+  },
+  "features": {
+    "title": "Profesyonellerin gerçek çalışma biçimine göre tasarlandı",
+    "description": "Minimal arayüz. Maksimum netlik.",
+    "items": [
+      { "title": "Varsayılan olarak sakin", "description": "Sekiz saatlik inceleme oturumları için geniş boşluk." },
+      { "title": "Anında yönelim", "description": "Nerede olduğunuzu ve neye dikkat gerektiğini her zaman bilin." },
+      { "title": "Klavye öncelikli", "description": "Hızlı ekipler için güçlü navigasyon ve kısayollar." },
+      { "title": "Çok dilli", "description": "Azerbaycan, İngilizce, Rusça ve Türkçe yerel destek." },
+      { "title": "Gerçek zamanlı işbirliği", "description": "Organizasyonlar ve çalışma alanlarında paylaşılan bağlam." },
+      { "title": "Denetime hazır dışa aktarım", "description": "Düzenleyiciler ve müşteriler için tam izlenebilirlik." }
+    ]
+  },
+  "enterprise": {
+    "title": "Kurumsal ölçek için inşa edildi",
+    "description": "Yönetişim, izinler ve denetim izi ile çok kiracılı mimari.",
+    "items": {
+      "organizations": { "title": "Organizasyonlar", "description": "Firmalar ve müşteri yapıları yönetimi." },
+      "workspaces": { "title": "Çalışma alanları", "description": "Ekipler ve projeler için izole ortamlar." },
+      "companies": { "title": "Şirketler", "description": "Tam kimlik yönetimi ile tüzel kişiler." },
+      "multiTenant": { "title": "Çok kiracılı", "description": "Katı kiracı izolasyonu." },
+      "permissions": { "title": "İzinler", "description": "Yetenek tabanlı erişim — rol adı kısayolları yok." },
+      "auditTrail": { "title": "Denetim izi", "description": "Her önemli eylem kaydedilir." },
+      "versioning": { "title": "Sürümleme", "description": "Optimistic locking ve değişiklik geçmişi." }
+    }
+  },
+  "security": {
+    "title": "Savunabileceğiniz güvenlik",
+    "description": "Sıfır güven, şifreleme ve RLS — düzenlenmiş ortamlar için.",
+    "items": {
+      "encryption": { "title": "Şifreleme", "description": "Aktarım ve depolama sırasında koruma." },
+      "rls": { "title": "Satır düzeyinde güvenlik", "description": "Veritabanı zorunlu izolasyon." },
+      "auditLogs": { "title": "Denetim günlükleri", "description": "Değiştirilemez olay kayıtları." },
+      "zeroTrust": { "title": "Sıfır güven", "description": "Her isteği doğrulayın." },
+      "compliance": { "title": "Uyumluluk", "description": "Profesyonel standartlarla uyumlu mimari." }
+    }
+  },
+  "ai": {
+    "badge": "Yakında",
+    "title": "Profesyonel muhakemeye saygı duyan AI",
+    "description": "Denetçiler için akıllı asistan — uzmanlığın yerine değil, hızlandırıcısı.",
+    "items": {
+      "assistant": { "title": "AI Asistan", "description": "Projeler ve finansal verilerde bağlama duyarlı yardım." },
+      "naturalLanguage": { "title": "Doğal dilde denetim", "description": "Sade dilde sorular, yapılandırılmış yanıtlar." },
+      "ifrs": { "title": "UFRS desteği", "description": "Uluslararası standartlara uygun rehberlik." },
+      "risk": { "title": "Risk tespiti", "description": "Anomaliler ve profesyonel şüphecilik alanları." },
+      "analysis": { "title": "Finansal analiz", "description": "Mizan ve tablolar üzerinde akıllı içgörüler." },
+      "reports": { "title": "Rapor oluşturma", "description": "İnceleyip onayladığınız profesyonel taslaklar." }
+    }
+  },
+  "cta": {
+    "title": "Denetim pratiğinizi yükseltmeye hazır mısınız?",
+    "subtitle": "Profesyonel denetim yazılımının geleceğini inşa eden ekiplere katılın.",
+    "register": "Hesap oluştur",
+    "login": "Giriş yap",
+    "requestDemo": "Demo iste"
+  },
+  "footer": {
+    "tagline": "Kurumsal AI denetim, UFRS raporlama ve finansal zeka.",
+    "documentation": "Dokümantasyon",
+    "privacy": "Gizlilik",
+    "terms": "Koşullar",
+    "support": "Destek",
+    "copyright": "Tüm hakları saklıdır.",
+    "socialTwitter": "Twitter",
+    "socialLinkedIn": "LinkedIn",
+    "socialGitHub": "GitHub"
+  }
+}

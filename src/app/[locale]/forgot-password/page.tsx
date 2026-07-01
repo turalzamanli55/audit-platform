@@ -19,7 +19,7 @@ export default async function ForgotPasswordPage({ params }: ForgotPasswordPageP
   const dictionary = await getDictionary(locale);
 
   return (
-    <GuestShell>
+    <GuestShell locale={locale}>
       <AuthLayout>
         <ForgotPasswordForm
           locale={locale}

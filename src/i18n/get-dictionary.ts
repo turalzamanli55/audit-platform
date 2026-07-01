@@ -1,4 +1,5 @@
 import type { Locale } from "./types";
+import type { MarketingLabels } from "./marketing-types";
 
 export type Dictionary = {
   common: {
@@ -498,13 +499,22 @@ export type Dictionary = {
       };
     };
   };
+  marketing: MarketingLabels;
 };
 
+async function loadDictionary(locale: Locale): Promise<Dictionary> {
+  const [base, marketing] = await Promise.all([
+    import(`./messages/${locale}.json`).then((m) => m.default),
+    import(`./messages/marketing-${locale}.json`).then((m) => m.default as MarketingLabels),
+  ]);
+  return { ...base, marketing } as Dictionary;
+}
+
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
-  az: () => import("./messages/az.json").then((m) => m.default as Dictionary),
-  en: () => import("./messages/en.json").then((m) => m.default as Dictionary),
-  ru: () => import("./messages/ru.json").then((m) => m.default as Dictionary),
-  tr: () => import("./messages/tr.json").then((m) => m.default as Dictionary),
+  az: () => loadDictionary("az"),
+  en: () => loadDictionary("en"),
+  ru: () => loadDictionary("ru"),
+  tr: () => loadDictionary("tr"),
 };
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {

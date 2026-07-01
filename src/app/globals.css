@@ -390,4 +390,13 @@
     text-transform: uppercase;
     color: var(--ds-color-muted-foreground);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ds-animate-fade-in,
+    .ds-animate-slide-up,
+    .ds-animate-scale-in,
+    .ds-skeleton-shimmer {
+      animation: none !important;
+    }
+  }
 }

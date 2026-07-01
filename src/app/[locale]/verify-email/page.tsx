@@ -23,7 +23,7 @@ export default async function VerifyEmailPage({ params, searchParams }: VerifyEm
   const { email } = await searchParams;
 
   return (
-    <GuestShell>
+    <GuestShell locale={locale}>
       <AuthLayout>
         <div className="space-y-5">
           <div className="space-y-1">

@@ -19,7 +19,7 @@ export default async function LoginPage({ params }: LoginPageProps) {
   const dictionary = await getDictionary(locale);
 
   return (
-    <GuestShell>
+    <GuestShell locale={locale}>
       <AuthLayout>
         <LoginForm
           locale={locale}

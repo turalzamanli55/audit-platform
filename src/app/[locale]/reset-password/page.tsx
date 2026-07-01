@@ -19,7 +19,7 @@ export default async function ResetPasswordPage({ params }: ResetPasswordPagePro
   const dictionary = await getDictionary(locale);
 
   return (
-    <GuestShell>
+    <GuestShell locale={locale}>
       <AuthLayout>
         <ResetPasswordForm
           locale={locale}

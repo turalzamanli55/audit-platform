@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "overview": "Overview",
+    "features": "Features",
+    "enterprise": "Enterprise",
+    "ai": "AI",
+    "security": "Security",
+    "signIn": "Sign in",
+    "register": "Get started",
+    "requestDemo": "Request demo",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "theme": "Theme",
+    "language": "Language",
+    "themeLight": "Light",
+    "themeDark": "Dark"
+  },
+  "hero": {
+    "eyebrow": "Enterprise AI Audit Platform",
+    "title": "Audit with clarity, confidence, and calm",
+    "subtitle": "A premium workspace for IFRS reporting, working papers, and financial intelligence — designed for professionals who demand precision without complexity.",
+    "primaryCta": "Start free",
+    "secondaryCta": "Request demo",
+    "trust": ["IFRS-ready", "AI-first architecture", "Enterprise-grade security"]
+  },
+  "overview": {
+    "title": "Everything audit teams need — in one calm workspace",
+    "description": "From trial balance to sign-off, the platform brings structure, traceability, and intelligent assistance to every engagement.",
+    "items": {
+      "aiAudit": {
+        "title": "AI Audit",
+        "description": "Intelligent workflows that accelerate review while keeping human judgment at the center."
+      },
+      "workingPapers": {
+        "title": "Working Papers",
+        "description": "Structured documentation with evidence links, review notes, and clear sign-off trails."
+      },
+      "financialStatements": {
+        "title": "Financial Statements",
+        "description": "IFRS-aligned reporting with version control and audit-ready exports."
+      },
+      "trialBalance": {
+        "title": "Trial Balance",
+        "description": "Import, map, and reconcile with confidence across entities and periods."
+      },
+      "automation": {
+        "title": "Automation",
+        "description": "Reduce repetitive tasks so your team focuses on judgment, not data entry."
+      },
+      "compliance": {
+        "title": "Compliance",
+        "description": "Built-in controls for regulatory requirements and professional standards."
+      }
+    }
+  },
+  "features": {
+    "title": "Designed for how professionals actually work",
+    "description": "Minimal interface. Maximum clarity. Every detail earns its place.",
+    "items": [
+      {
+        "title": "Calm by default",
+        "description": "Restrained visuals and generous spacing for eight-hour review sessions."
+      },
+      {
+        "title": "Instant orientation",
+        "description": "Clear hierarchy so you always know where you are and what needs attention."
+      },
+      {
+        "title": "Keyboard-first",
+        "description": "Power navigation and shortcuts for teams who move fast."
+      },
+      {
+        "title": "Multi-language",
+        "description": "Native support for Azerbaijani, English, Russian, and Turkish."
+      },
+      {
+        "title": "Real-time collaboration",
+        "description": "Shared context across organizations, workspaces, and engagements."
+      },
+      {
+        "title": "Audit-ready exports",
+        "description": "Defensible outputs with full traceability for regulators and clients."
+      }
+    ]
+  },
+  "enterprise": {
+    "title": "Built for enterprise scale",
+    "description": "Multi-tenant architecture with the governance, permissions, and audit trail that regulated professions require.",
+    "items": {
+      "organizations": {
+        "title": "Organizations",
+        "description": "Manage firms and client structures with clear ownership boundaries."
+      },
+      "workspaces": {
+        "title": "Workspaces",
+        "description": "Isolated environments for teams, clients, or engagements."
+      },
+      "companies": {
+        "title": "Companies",
+        "description": "Legal entities with lifecycle, versioning, and complete identity management."
+      },
+      "multiTenant": {
+        "title": "Multi-tenant",
+        "description": "Strict tenant isolation with workspace-scoped data access."
+      },
+      "permissions": {
+        "title": "Permissions",
+        "description": "Capability-based access — never role-name shortcuts."
+      },
+      "auditTrail": {
+        "title": "Audit trail",
+        "description": "Every significant action recorded with context and accountability."
+      },
+      "versioning": {
+        "title": "Versioning",
+        "description": "Optimistic locking and version history for defensible change management."
+      }
+    }
+  },
+  "security": {
+    "title": "Security you can defend",
+    "description": "Zero-trust principles, encryption, and row-level security — designed for regulated environments from day one.",
+    "items": {
+      "encryption": {
+        "title": "Encryption",
+        "description": "Data protected in transit and at rest with industry-standard cryptography."
+      },
+      "rls": {
+        "title": "Row-level security",
+        "description": "Database-enforced isolation — not application-layer hope."
+      },
+      "auditLogs": {
+        "title": "Audit logs",
+        "description": "Immutable event records for compliance and forensic review."
+      },
+      "zeroTrust": {
+        "title": "Zero trust",
+        "description": "Verify every request. Trust nothing by default."
+      },
+      "compliance": {
+        "title": "Compliance",
+        "description": "Architecture aligned with professional and regulatory expectations."
+      }
+    }
+  },
+  "ai": {
+    "badge": "Coming soon",
+    "title": "AI that respects professional judgment",
+    "description": "An intelligent assistant designed for auditors — not a replacement for expertise, but an accelerator for it.",
+    "items": {
+      "assistant": {
+        "title": "AI Assistant",
+        "description": "Context-aware help across engagements, workpapers, and financial data."
+      },
+      "naturalLanguage": {
+        "title": "Natural language auditing",
+        "description": "Ask questions in plain language and get structured, traceable answers."
+      },
+      "ifrs": {
+        "title": "IFRS assistance",
+        "description": "Guidance aligned with international standards — always with human sign-off."
+      },
+      "risk": {
+        "title": "Risk detection",
+        "description": "Surface anomalies and areas requiring professional skepticism."
+      },
+      "analysis": {
+        "title": "Financial analysis",
+        "description": "Intelligent insights across trial balance, statements, and disclosures."
+      },
+      "reports": {
+        "title": "Report generation",
+        "description": "Draft professional outputs you review, refine, and approve."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to elevate your audit practice?",
+    "subtitle": "Join teams building the future of professional audit software.",
+    "register": "Create account",
+    "login": "Sign in",
+    "requestDemo": "Request demo"
+  },
+  "footer": {
+    "tagline": "Enterprise AI audit, IFRS reporting, and financial intelligence.",
+    "documentation": "Documentation",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "support": "Support",
+    "copyright": "All rights reserved.",
+    "socialTwitter": "Twitter",
+    "socialLinkedIn": "LinkedIn",
+    "socialGitHub": "GitHub"
+  }
+}

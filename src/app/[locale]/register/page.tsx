@@ -19,7 +19,7 @@ export default async function RegisterPage({ params }: RegisterPageProps) {
   const dictionary = await getDictionary(locale);
 
   return (
-    <GuestShell>
+    <GuestShell locale={locale}>
       <AuthLayout>
         <RegisterForm
           locale={locale}
