@@ -211,6 +211,87 @@
     "detail": {
       "subtitle": "Профиль компании",
       "profileSection": "Обзор"
+    },
+    "workspace": {
+      "heroEyebrow": "Рабочее пространство компании",
+      "navAriaLabel": "Разделы рабочего пространства компании",
+      "navOverview": "Обзор",
+      "navFinancial": "Финансы",
+      "navCompliance": "Соответствие",
+      "navContacts": "Контакты",
+      "navHistory": "История",
+      "navSettings": "Настройки",
+      "loading": "Загрузка рабочего пространства компании",
+      "errorTitle": "Не удалось загрузить рабочее пространство",
+      "errorDescription": "При загрузке рабочего пространства компании произошла ошибка.",
+      "summaryFramework": "Отчётная база",
+      "summaryCurrency": "Функциональная валюта",
+      "summaryPresentationCurrency": "Презентационная",
+      "summaryFiscalYear": "Конец финансового года",
+      "summaryEntityType": "Тип субъекта",
+      "summaryIndustry": "Отрасль",
+      "metadataTitle": "Метаданные компании",
+      "metadataDescription": "Идентификация и сведения о записи для этого юридического лица.",
+      "metadataSlug": "Slug рабочего пространства",
+      "metadataCreated": "Создано",
+      "noAddress": "Адрес не указан",
+      "notValidated": "Ещё не проверено",
+      "sections": {
+        "overview": {
+          "title": "Обзор",
+          "description": "Спокойный снимок отчётной идентичности этой компании.",
+          "highlightsTitle": "Ключевые сведения",
+          "highlightsDescription": "Контекст и классификация в одном взгляде.",
+          "noDescription": "Описание компании ещё не добавлено."
+        },
+        "financial": {
+          "title": "Финансы",
+          "description": "Отчётная база, валюта и настройки финансового года.",
+          "cardTitle": "Профиль финансовой отчётности",
+          "cardDescription": "Только для чтения: финансовые настройки субъекта."
+        },
+        "compliance": {
+          "title": "Соответствие",
+          "description": "Задания, отчётность и регуляторный статус.",
+          "emptyTitle": "Соответствие не настроено",
+          "emptyDescription": "Отслеживание соответствия появится здесь после настройки заданий и обязательств."
+        },
+        "contacts": {
+          "title": "Контакты",
+          "description": "Контакты финансовой службы и внешнего аудитора.",
+          "emptyTitle": "Контакты не указаны",
+          "emptyDescription": "Основные контакты появятся здесь после добавления.",
+          "financeEmptyTitle": "Нет финансового контакта",
+          "financeEmptyDescription": "Основной финансовый контакт для этой компании не записан.",
+          "auditorEmptyTitle": "Нет контакта аудитора",
+          "auditorEmptyDescription": "Контакт внешнего аудитора для этой компании не записан."
+        },
+        "history": {
+          "title": "История",
+          "description": "Хронология активности и аудиторский след компании.",
+          "emptyTitle": "Активности пока нет",
+          "emptyDescription": "История активности появится здесь по мере регистрации изменений на платформе."
+        },
+        "settings": {
+          "title": "Настройки",
+          "description": "Снимок конфигурации рабочего пространства компании.",
+          "configurationTitle": "Конфигурация",
+          "configurationDescription": "Предпочтения и версии для этого субъекта.",
+          "addressesTitle": "Адреса",
+          "addressesDescription": "Юридический и операционный адреса.",
+          "registeredAddress": "Юридический адрес",
+          "operatingAddress": "Операционный адрес",
+          "defaultLocale": "Язык по умолчанию",
+          "dataImportSource": "Источник импорта данных",
+          "roundingConvention": "Правило округления",
+          "recordVersion": "Версия записи",
+          "settingsVersion": "Версия настроек",
+          "validationTitle": "Проверка",
+          "validationDescription": "Метаданные проверки схемы настроек компании.",
+          "schemaVersion": "Версия схемы",
+          "validatedAt": "Последняя проверка"
+        }
+      }
     }
   }
 }

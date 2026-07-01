@@ -22,3 +22,24 @@ export { CompanyListExperience, type CompanyListLabels } from "./company-list-ex
 export { CompanyListRow } from "./company-list-row";
 export { CompanyListPagination } from "./company-list-pagination";
 export { CompanyCreateWizard, type CompanyCreateLabels } from "./create/company-create-wizard";
+export {
+  CompanyWorkspaceLayout,
+  CompanyWorkspaceHero,
+  CompanyWorkspaceSidebar,
+  CompanyWorkspaceOverview,
+  CompanyWorkspaceSummaryCards,
+  CompanyWorkspaceMetadataPanel,
+  CompanyWorkspaceSectionShell,
+  CompanyWorkspaceLoading,
+  CompanyWorkspaceError,
+  CompanyWorkspaceEmptySection,
+  CompanyWorkspaceFinancialSection,
+  CompanyWorkspaceComplianceSection,
+  CompanyWorkspaceContactsSection,
+  CompanyWorkspaceHistorySection,
+  CompanyWorkspaceSettingsSection,
+  type CompanyWorkspaceNavItem,
+  type CompanyWorkspaceSummaryCard,
+  type CompanyWorkspaceMetadataItem,
+  type CompanyWorkspaceHeroLabels,
+} from "./workspace";

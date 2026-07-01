@@ -211,6 +211,87 @@
     "detail": {
       "subtitle": "Company profile",
       "profileSection": "Overview"
+    },
+    "workspace": {
+      "heroEyebrow": "Company workspace",
+      "navAriaLabel": "Company workspace sections",
+      "navOverview": "Overview",
+      "navFinancial": "Financial",
+      "navCompliance": "Compliance",
+      "navContacts": "Contacts",
+      "navHistory": "History",
+      "navSettings": "Settings",
+      "loading": "Loading company workspace",
+      "errorTitle": "Unable to load company workspace",
+      "errorDescription": "Something went wrong while loading this company workspace.",
+      "summaryFramework": "Reporting framework",
+      "summaryCurrency": "Functional currency",
+      "summaryPresentationCurrency": "Presentation",
+      "summaryFiscalYear": "Fiscal year end",
+      "summaryEntityType": "Entity type",
+      "summaryIndustry": "Industry",
+      "metadataTitle": "Company metadata",
+      "metadataDescription": "Identity and record details for this legal entity.",
+      "metadataSlug": "Workspace slug",
+      "metadataCreated": "Created",
+      "noAddress": "No address on file",
+      "notValidated": "Not yet validated",
+      "sections": {
+        "overview": {
+          "title": "Overview",
+          "description": "A calm snapshot of this company's reporting identity.",
+          "highlightsTitle": "Highlights",
+          "highlightsDescription": "Context and classification at a glance.",
+          "noDescription": "No company description has been added yet."
+        },
+        "financial": {
+          "title": "Financial",
+          "description": "Reporting framework, currency, and fiscal configuration.",
+          "cardTitle": "Financial reporting profile",
+          "cardDescription": "Read-only view of the entity's financial settings."
+        },
+        "compliance": {
+          "title": "Compliance",
+          "description": "Engagements, filings, and regulatory posture.",
+          "emptyTitle": "Compliance not configured",
+          "emptyDescription": "Compliance tracking will appear here once engagements and obligations are configured."
+        },
+        "contacts": {
+          "title": "Contacts",
+          "description": "Finance and external auditor contacts for this entity.",
+          "emptyTitle": "No contacts on file",
+          "emptyDescription": "Primary finance and auditor contacts will appear here once added.",
+          "financeEmptyTitle": "No finance contact",
+          "financeEmptyDescription": "A primary finance contact has not been recorded for this company.",
+          "auditorEmptyTitle": "No auditor contact",
+          "auditorEmptyDescription": "An external auditor contact has not been recorded for this company."
+        },
+        "history": {
+          "title": "History",
+          "description": "Chronological activity and audit trail for this company.",
+          "emptyTitle": "No activity yet",
+          "emptyDescription": "Activity history will appear here as changes are recorded across the platform."
+        },
+        "settings": {
+          "title": "Settings",
+          "description": "Configuration snapshot for this company workspace.",
+          "configurationTitle": "Configuration",
+          "configurationDescription": "Preferences and versioning for this entity.",
+          "addressesTitle": "Addresses",
+          "addressesDescription": "Registered and operating locations on file.",
+          "registeredAddress": "Registered address",
+          "operatingAddress": "Operating address",
+          "defaultLocale": "Default locale",
+          "dataImportSource": "Data import source",
+          "roundingConvention": "Rounding convention",
+          "recordVersion": "Record version",
+          "settingsVersion": "Settings version",
+          "validationTitle": "Validation",
+          "validationDescription": "Schema validation metadata for company settings.",
+          "schemaVersion": "Schema version",
+          "validatedAt": "Last validated"
+        }
+      }
     }
   }
 }

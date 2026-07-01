@@ -1,27 +1,27 @@
-import { CompanyWorkspaceOverview } from "@/components/company/workspace";
+import { CompanyWorkspaceSettingsSection } from "@/components/company/workspace";
 import { getDictionary, type Locale } from "@/i18n";
 import { requireCompanyWorkspace } from "@/lib/company/company-workspace-page";
 import { generateCompanyWorkspaceMetadata } from "@/lib/company/company-workspace-metadata";
 
-type CompanyWorkspaceOverviewPageProps = {
+type CompanyWorkspaceSettingsPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-export async function generateMetadata({ params }: CompanyWorkspaceOverviewPageProps) {
+export async function generateMetadata({ params }: CompanyWorkspaceSettingsPageProps) {
   const { locale: localeParam, slug } = await params;
   return generateCompanyWorkspaceMetadata(slug, localeParam as Locale);
 }
 
-export default async function CompanyWorkspaceOverviewPage({
+export default async function CompanyWorkspaceSettingsPage({
   params,
-}: CompanyWorkspaceOverviewPageProps) {
+}: CompanyWorkspaceSettingsPageProps) {
   const { locale: localeParam, slug } = await params;
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const company = await requireCompanyWorkspace(slug);
 
   return (
-    <CompanyWorkspaceOverview
+    <CompanyWorkspaceSettingsSection
       company={company}
       locale={locale}
       labels={dictionary.companies.workspace}

@@ -1,9 +1,5 @@
-import { CompanyLoadingSkeleton, CompanyPageShell } from "@/components/company";
+import { CompanyWorkspaceLoading } from "@/components/company/workspace";
 
-export default function CompanyDetailLoading() {
-  return (
-    <CompanyPageShell>
-      <CompanyLoadingSkeleton variant="detail" />
-    </CompanyPageShell>
-  );
+export default function CompanyWorkspaceRouteLoading() {
+  return <CompanyWorkspaceLoading />;
 }

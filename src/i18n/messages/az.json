@@ -211,6 +211,87 @@
     "detail": {
       "subtitle": "Şirkət profili",
       "profileSection": "İcmal"
+    },
+    "workspace": {
+      "heroEyebrow": "Şirkət iş mühiti",
+      "navAriaLabel": "Şirkət iş mühiti bölmələri",
+      "navOverview": "İcmal",
+      "navFinancial": "Maliyyə",
+      "navCompliance": "Uyğunluq",
+      "navContacts": "Əlaqələr",
+      "navHistory": "Tarixçə",
+      "navSettings": "Parametrlər",
+      "loading": "Şirkət iş mühiti yüklənir",
+      "errorTitle": "Şirkət iş mühiti yüklənə bilmədi",
+      "errorDescription": "Bu şirkət iş mühitini yükləyərkən xəta baş verdi.",
+      "summaryFramework": "Hesabat çərçivəsi",
+      "summaryCurrency": "Funksional valyuta",
+      "summaryPresentationCurrency": "Təqdimat",
+      "summaryFiscalYear": "Maliyyə ili sonu",
+      "summaryEntityType": "Subyekt növü",
+      "summaryIndustry": "Sənaye",
+      "metadataTitle": "Şirkət metadatası",
+      "metadataDescription": "Bu hüquqi subyekt üçün identifikasiya və qeyd detalları.",
+      "metadataSlug": "İş mühiti slug",
+      "metadataCreated": "Yaradılıb",
+      "noAddress": "Ünvan qeydə alınmayıb",
+      "notValidated": "Hələ təsdiqlənməyib",
+      "sections": {
+        "overview": {
+          "title": "İcmal",
+          "description": "Bu şirkətin hesabat identifikasiyasının sakit icmalı.",
+          "highlightsTitle": "Vacib məqamlar",
+          "highlightsDescription": "Kontekst və təsnifat bir baxışda.",
+          "noDescription": "Hələ şirkət təsviri əlavə edilməyib."
+        },
+        "financial": {
+          "title": "Maliyyə",
+          "description": "Hesabat çərçivəsi, valyuta və maliyyə ili konfiqurasiyası.",
+          "cardTitle": "Maliyyə hesabatı profili",
+          "cardDescription": "Subyektin maliyyə parametrlərinin yalnız oxunan görünüşü."
+        },
+        "compliance": {
+          "title": "Uyğunluq",
+          "description": "Əlaqələr, təqdimatlar və tənzimləyici vəziyyət.",
+          "emptyTitle": "Uyğunluq konfiqurasiya edilməyib",
+          "emptyDescription": "Əlaqələr və öhdəliklər konfiqurasiya edildikdən sonra uyğunluq izləməsi burada görünəcək."
+        },
+        "contacts": {
+          "title": "Əlaqələr",
+          "description": "Bu subyekt üçün maliyyə və xarici auditor əlaqələri.",
+          "emptyTitle": "Əlaqə qeydə alınmayıb",
+          "emptyDescription": "Əsas maliyyə və auditor əlaqələri əlavə edildikdən sonra burada görünəcək.",
+          "financeEmptyTitle": "Maliyyə əlaqəsi yoxdur",
+          "financeEmptyDescription": "Bu şirkət üçün əsas maliyyə əlaqəsi qeydə alınmayıb.",
+          "auditorEmptyTitle": "Auditor əlaqəsi yoxdur",
+          "auditorEmptyDescription": "Bu şirkət üçün xarici auditor əlaqəsi qeydə alınmayıb."
+        },
+        "history": {
+          "title": "Tarixçə",
+          "description": "Bu şirkət üçün xronoloji fəaliyyət və audit izi.",
+          "emptyTitle": "Hələ fəaliyyət yoxdur",
+          "emptyDescription": "Platformada dəyişikliklər qeydə alındıqca fəaliyyət tarixçəsi burada görünəcək."
+        },
+        "settings": {
+          "title": "Parametrlər",
+          "description": "Bu şirkət iş mühiti üçün konfiqurasiya icmalı.",
+          "configurationTitle": "Konfiqurasiya",
+          "configurationDescription": "Bu subyekt üçün seçimlər və versiyalaşdırma.",
+          "addressesTitle": "Ünvanlar",
+          "addressesDescription": "Qeydiyyatda və fəaliyyət ünvanları.",
+          "registeredAddress": "Qeydiyyat ünvanı",
+          "operatingAddress": "Fəaliyyət ünvanı",
+          "defaultLocale": "Varsayılan dil",
+          "dataImportSource": "Məlumat idxalı mənbəyi",
+          "roundingConvention": "Yuvarlaqlaşdırma qaydası",
+          "recordVersion": "Qeyd versiyası",
+          "settingsVersion": "Parametr versiyası",
+          "validationTitle": "Təsdiqləmə",
+          "validationDescription": "Şirkət parametrləri üçün sxem təsdiqləmə metadatası.",
+          "schemaVersion": "Sxem versiyası",
+          "validatedAt": "Son təsdiqləmə"
+        }
+      }
     }
   }
 }

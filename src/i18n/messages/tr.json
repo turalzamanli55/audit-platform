@@ -211,6 +211,87 @@
     "detail": {
       "subtitle": "Şirket profili",
       "profileSection": "Genel bakış"
+    },
+    "workspace": {
+      "heroEyebrow": "Şirket çalışma alanı",
+      "navAriaLabel": "Şirket çalışma alanı bölümleri",
+      "navOverview": "Genel bakış",
+      "navFinancial": "Finansal",
+      "navCompliance": "Uyumluluk",
+      "navContacts": "İletişim",
+      "navHistory": "Geçmiş",
+      "navSettings": "Ayarlar",
+      "loading": "Şirket çalışma alanı yükleniyor",
+      "errorTitle": "Şirket çalışma alanı yüklenemedi",
+      "errorDescription": "Bu şirket çalışma alanı yüklenirken bir hata oluştu.",
+      "summaryFramework": "Raporlama çerçevesi",
+      "summaryCurrency": "Fonksiyonel para birimi",
+      "summaryPresentationCurrency": "Sunum",
+      "summaryFiscalYear": "Mali yıl sonu",
+      "summaryEntityType": "Tüzel kişilik türü",
+      "summaryIndustry": "Sektör",
+      "metadataTitle": "Şirket meta verileri",
+      "metadataDescription": "Bu tüzel kişilik için kimlik ve kayıt ayrıntıları.",
+      "metadataSlug": "Çalışma alanı slug",
+      "metadataCreated": "Oluşturulma",
+      "noAddress": "Kayıtlı adres yok",
+      "notValidated": "Henüz doğrulanmadı",
+      "sections": {
+        "overview": {
+          "title": "Genel bakış",
+          "description": "Bu şirketin raporlama kimliğinin sakin bir özeti.",
+          "highlightsTitle": "Öne çıkanlar",
+          "highlightsDescription": "Bağlam ve sınıflandırma bir bakışta.",
+          "noDescription": "Henüz şirket açıklaması eklenmedi."
+        },
+        "financial": {
+          "title": "Finansal",
+          "description": "Raporlama çerçevesi, para birimi ve mali yıl yapılandırması.",
+          "cardTitle": "Finansal raporlama profili",
+          "cardDescription": "Tüzel kişiliğin finansal ayarlarının salt okunur görünümü."
+        },
+        "compliance": {
+          "title": "Uyumluluk",
+          "description": "Görevler, bildirimler ve düzenleyici durum.",
+          "emptyTitle": "Uyumluluk yapılandırılmadı",
+          "emptyDescription": "Görevler ve yükümlülükler yapılandırıldığında uyumluluk takibi burada görünecek."
+        },
+        "contacts": {
+          "title": "İletişim",
+          "description": "Bu tüzel kişilik için finans ve dış denetçi iletişim bilgileri.",
+          "emptyTitle": "Kayıtlı iletişim yok",
+          "emptyDescription": "Birincil finans ve denetçi iletişimleri eklendiğinde burada görünecek.",
+          "financeEmptyTitle": "Finans iletişimi yok",
+          "financeEmptyDescription": "Bu şirket için birincil finans iletişimi kaydedilmedi.",
+          "auditorEmptyTitle": "Denetçi iletişimi yok",
+          "auditorEmptyDescription": "Bu şirket için dış denetçi iletişimi kaydedilmedi."
+        },
+        "history": {
+          "title": "Geçmiş",
+          "description": "Bu şirket için kronolojik aktivite ve denetim izi.",
+          "emptyTitle": "Henüz aktivite yok",
+          "emptyDescription": "Platformda değişiklikler kaydedildikçe aktivite geçmişi burada görünecek."
+        },
+        "settings": {
+          "title": "Ayarlar",
+          "description": "Bu şirket çalışma alanı için yapılandırma özeti.",
+          "configurationTitle": "Yapılandırma",
+          "configurationDescription": "Bu tüzel kişilik için tercihler ve sürümleme.",
+          "addressesTitle": "Adresler",
+          "addressesDescription": "Kayıtlı ve faaliyet adresleri.",
+          "registeredAddress": "Kayıtlı adres",
+          "operatingAddress": "Faaliyet adresi",
+          "defaultLocale": "Varsayılan dil",
+          "dataImportSource": "Veri içe aktarma kaynağı",
+          "roundingConvention": "Yuvarlama kuralı",
+          "recordVersion": "Kayıt sürümü",
+          "settingsVersion": "Ayar sürümü",
+          "validationTitle": "Doğrulama",
+          "validationDescription": "Şirket ayarları için şema doğrulama meta verileri.",
+          "schemaVersion": "Şema sürümü",
+          "validatedAt": "Son doğrulama"
+        }
+      }
     }
   }
 }

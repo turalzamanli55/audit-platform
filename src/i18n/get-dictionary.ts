@@ -211,6 +211,87 @@ export type Dictionary = {
       subtitle: string;
       profileSection: string;
     };
+    workspace: {
+      heroEyebrow: string;
+      navAriaLabel: string;
+      navOverview: string;
+      navFinancial: string;
+      navCompliance: string;
+      navContacts: string;
+      navHistory: string;
+      navSettings: string;
+      loading: string;
+      errorTitle: string;
+      errorDescription: string;
+      summaryFramework: string;
+      summaryCurrency: string;
+      summaryPresentationCurrency: string;
+      summaryFiscalYear: string;
+      summaryEntityType: string;
+      summaryIndustry: string;
+      metadataTitle: string;
+      metadataDescription: string;
+      metadataSlug: string;
+      metadataCreated: string;
+      noAddress: string;
+      notValidated: string;
+      sections: {
+        overview: {
+          title: string;
+          description: string;
+          highlightsTitle: string;
+          highlightsDescription: string;
+          noDescription: string;
+        };
+        financial: {
+          title: string;
+          description: string;
+          cardTitle: string;
+          cardDescription: string;
+        };
+        compliance: {
+          title: string;
+          description: string;
+          emptyTitle: string;
+          emptyDescription: string;
+        };
+        contacts: {
+          title: string;
+          description: string;
+          emptyTitle: string;
+          emptyDescription: string;
+          financeEmptyTitle: string;
+          financeEmptyDescription: string;
+          auditorEmptyTitle: string;
+          auditorEmptyDescription: string;
+        };
+        history: {
+          title: string;
+          description: string;
+          emptyTitle: string;
+          emptyDescription: string;
+        };
+        settings: {
+          title: string;
+          description: string;
+          configurationTitle: string;
+          configurationDescription: string;
+          addressesTitle: string;
+          addressesDescription: string;
+          registeredAddress: string;
+          operatingAddress: string;
+          defaultLocale: string;
+          dataImportSource: string;
+          roundingConvention: string;
+          recordVersion: string;
+          settingsVersion: string;
+          validationTitle: string;
+          validationDescription: string;
+          schemaVersion: string;
+          validatedAt: string;
+        };
+      };
+    };
   };
 };
 
