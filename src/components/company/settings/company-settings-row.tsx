@@ -83,7 +83,7 @@ type CompanySettingsFieldRowProps = {
   htmlFor: string;
   canEdit: boolean;
   value: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   error?: string;
   hint?: ReactNode;
   type?: string;
@@ -119,7 +119,7 @@ export function CompanySettingsFieldRow({
         name={htmlFor}
         type={type}
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange?.(event.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
         error={error}

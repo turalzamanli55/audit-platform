@@ -215,6 +215,7 @@ export type Dictionary = {
       heroEyebrow: string;
       navAriaLabel: string;
       navOverview: string;
+      navIdentity: string;
       navFinancial: string;
       navCompliance: string;
       navContacts: string;
@@ -242,6 +243,9 @@ export type Dictionary = {
           highlightsTitle: string;
           highlightsDescription: string;
           noDescription: string;
+        };
+        identity: {
+          title: string;
         };
         financial: {
           title: string;
@@ -360,6 +364,125 @@ export type Dictionary = {
           groupTitle: string;
           readOnlyNotice: string;
         };
+      };
+    };
+    overview: {
+      editDescription: string;
+      saveDescription: string;
+      cancelEdit: string;
+    };
+    identity: {
+      title: string;
+      description: string;
+      readOnlyBadge: string;
+      readOnlyConfigureBadge: string;
+      slugLabel: string;
+      archivedYes: string;
+      archivedNo: string;
+      createdLabel: string;
+      archivedLabel: string;
+      restoredLabel: string;
+      notArchived: string;
+      restoredHint: string;
+      saveIdle: string;
+      saveSaving: string;
+      saveSaved: string;
+      saveError: string;
+      unsavedMessage: string;
+      discardLabel: string;
+      saveLabel: string;
+      savingLabel: string;
+      conflictTitle: string;
+      conflictDescription: string;
+      conflictRefresh: string;
+      conflictDiscard: string;
+      sections: {
+        legal: {
+          title: string;
+          description: string;
+          groupTitle: string;
+        };
+        registration: {
+          title: string;
+          description: string;
+          groupTitle: string;
+        };
+        classification: {
+          title: string;
+          description: string;
+          groupTitle: string;
+        };
+        status: {
+          title: string;
+          description: string;
+          archivedState: string;
+        };
+        version: {
+          title: string;
+          description: string;
+          groupTitle: string;
+          recordVersion: string;
+          settingsVersion: string;
+        };
+        lifecycle: {
+          title: string;
+          description: string;
+          readOnlyDescription: string;
+          readOnlyNotice: string;
+          actionsTitle: string;
+          archivePrompt: string;
+          archiveAction: string;
+          archiveConfirmTitle: string;
+          archiveConfirmDescription: string;
+          archiveReasonPlaceholder: string;
+          archiveConfirmAction: string;
+          restorePrompt: string;
+          restoreAction: string;
+          restoreConfirmTitle: string;
+          restoreConfirmDescription: string;
+          restoreReasonPlaceholder: string;
+          restoreConfirmAction: string;
+          reasonLabel: string;
+          cancelAction: string;
+        };
+      };
+    };
+    history: {
+      title: string;
+      description: string;
+      errorTitle: string;
+      errorDescription: string;
+      summary: {
+        title: string;
+        description: string;
+        total: string;
+        created: string;
+        updated: string;
+        settingsUpdated: string;
+        archived: string;
+        restored: string;
+      };
+      timeline: {
+        title: string;
+        description: string;
+        emptyTitle: string;
+        emptyDescription: string;
+        reasonArchive: string;
+        reasonRestore: string;
+        fieldsChanged: string;
+        actions: Record<string, string>;
+      };
+      version: {
+        title: string;
+        description: string;
+        cardTitle: string;
+        recordVersion: string;
+        settingsVersion: string;
+        created: string;
+        archived: string;
+        notArchived: string;
+        restored: string;
+        restoredHint: string;
       };
     };
   };

@@ -52,6 +52,7 @@ async function toWorkspaceView(
     version: company.version,
     settingsVersion: settingsRow?.version ?? 1,
     isArchived: Boolean(company.deleted_at) || company.status === "archived",
+    deletedAt: company.deleted_at,
     settings,
   };
 }

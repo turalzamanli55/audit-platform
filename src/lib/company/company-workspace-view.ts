@@ -16,6 +16,7 @@ export type CompanyWorkspaceView = {
   version: number;
   settingsVersion: number;
   isArchived: boolean;
+  deletedAt: string | null;
   settings: CompanySettings;
 };
 
@@ -25,6 +26,7 @@ export type CompanyWorkspaceLoadResult =
 
 export const COMPANY_WORKSPACE_SECTIONS = [
   "overview",
+  "identity",
   "financial",
   "compliance",
   "contacts",

@@ -216,6 +216,7 @@
       "heroEyebrow": "Company workspace",
       "navAriaLabel": "Company workspace sections",
       "navOverview": "Overview",
+      "navIdentity": "Identity",
       "navFinancial": "Financial",
       "navCompliance": "Compliance",
       "navContacts": "Contacts",
@@ -243,6 +244,9 @@
           "highlightsTitle": "Highlights",
           "highlightsDescription": "Context and classification at a glance.",
           "noDescription": "No company description has been added yet."
+        },
+        "identity": {
+          "title": "Identity"
         },
         "financial": {
           "title": "Financial",
@@ -361,6 +365,131 @@
           "groupTitle": "Validation summary",
           "readOnlyNotice": "Validation metadata is maintained by the platform and cannot be edited here."
         }
+      }
+    },
+    "overview": {
+      "editDescription": "Edit description",
+      "saveDescription": "Save description",
+      "cancelEdit": "Cancel"
+    },
+    "identity": {
+      "title": "Identity & lifecycle",
+      "description": "Legal identity, classification, and lifecycle controls for this company.",
+      "readOnlyBadge": "View only",
+      "readOnlyConfigureBadge": "View only",
+      "slugLabel": "Workspace slug",
+      "archivedYes": "Archived",
+      "archivedNo": "Active",
+      "createdLabel": "Created",
+      "archivedLabel": "Archived at",
+      "restoredLabel": "Restored",
+      "notArchived": "Not archived",
+      "restoredHint": "See activity timeline for restore events",
+      "saveIdle": "All changes saved",
+      "saveSaving": "Saving changes…",
+      "saveSaved": "Changes saved",
+      "saveError": "Unable to save changes",
+      "unsavedMessage": "You have unsaved identity changes",
+      "discardLabel": "Discard",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…",
+      "conflictTitle": "Identity was updated elsewhere",
+      "conflictDescription": "Another session changed this company. Refresh to load the latest version or discard your changes.",
+      "conflictRefresh": "Refresh",
+      "conflictDiscard": "Discard changes",
+      "sections": {
+        "legal": {
+          "title": "Legal information",
+          "description": "Display and legal names shown across the workspace.",
+          "groupTitle": "Names & description"
+        },
+        "registration": {
+          "title": "Registration",
+          "description": "Official registration identifiers for this entity.",
+          "groupTitle": "Registration details"
+        },
+        "classification": {
+          "title": "Classification",
+          "description": "Entity type and industry classification.",
+          "groupTitle": "Entity classification"
+        },
+        "status": {
+          "title": "Status",
+          "description": "Current operational status of this company.",
+          "archivedState": "Archive state"
+        },
+        "version": {
+          "title": "Version information",
+          "description": "Record versions and key lifecycle timestamps.",
+          "groupTitle": "Versions & timestamps",
+          "recordVersion": "Record version",
+          "settingsVersion": "Settings version"
+        },
+        "lifecycle": {
+          "title": "Lifecycle",
+          "description": "Archive or restore this company when its reporting status changes.",
+          "readOnlyDescription": "Lifecycle controls for this company.",
+          "readOnlyNotice": "You need company administration permission to archive or restore companies.",
+          "actionsTitle": "Lifecycle actions",
+          "archivePrompt": "Archiving makes this company read-only while preserving its history.",
+          "archiveAction": "Archive company",
+          "archiveConfirmTitle": "Archive this company?",
+          "archiveConfirmDescription": "The company will become read-only. You can restore it later if needed.",
+          "archiveReasonPlaceholder": "Optional reason for archiving",
+          "archiveConfirmAction": "Confirm archive",
+          "restorePrompt": "Restore this company to resume configuration and reporting.",
+          "restoreAction": "Restore company",
+          "restoreConfirmTitle": "Restore this company?",
+          "restoreConfirmDescription": "The company will become active again and editable for authorized users.",
+          "restoreReasonPlaceholder": "Optional reason for restoring",
+          "restoreConfirmAction": "Confirm restore",
+          "reasonLabel": "Reason",
+          "cancelAction": "Cancel"
+        }
+      }
+    },
+    "history": {
+      "title": "Activity & audit",
+      "description": "Read-only timeline of company changes and audit summary.",
+      "errorTitle": "Unable to load activity",
+      "errorDescription": "Something went wrong while loading company activity.",
+      "summary": {
+        "title": "Audit summary",
+        "description": "Counts of recorded events for this company.",
+        "total": "Total events",
+        "created": "Created",
+        "updated": "Updated",
+        "settingsUpdated": "Settings updated",
+        "archived": "Archived",
+        "restored": "Restored"
+      },
+      "timeline": {
+        "title": "Activity timeline",
+        "description": "Chronological audit trail for this company.",
+        "emptyTitle": "No activity recorded",
+        "emptyDescription": "Changes to this company will appear here as they are audited.",
+        "reasonArchive": "Archive reason",
+        "reasonRestore": "Restore reason",
+        "fieldsChanged": "Fields changed",
+        "actions": {
+          "company.created": "Company created",
+          "company.updated": "Company updated",
+          "company.settings.updated": "Settings updated",
+          "company.archived": "Company archived",
+          "company.restored": "Company restored"
+        }
+      },
+      "version": {
+        "title": "Version information",
+        "description": "Current record versions and lifecycle timestamps.",
+        "cardTitle": "Record metadata",
+        "recordVersion": "Record version",
+        "settingsVersion": "Settings version",
+        "created": "Created",
+        "archived": "Archived at",
+        "notArchived": "Not archived",
+        "restored": "Restored",
+        "restoredHint": "See timeline for restore events"
       }
     }
   }

@@ -22,6 +22,7 @@ export function buildCompanyWorkspaceNavItems(
 
   return [
     { id: "overview", label: labels.navOverview, href: base },
+    { id: "identity", label: labels.navIdentity, href: `${base}/identity` },
     { id: "financial", label: labels.navFinancial, href: `${base}/financial` },
     { id: "compliance", label: labels.navCompliance, href: `${base}/compliance` },
     { id: "contacts", label: labels.navContacts, href: `${base}/contacts` },
@@ -141,6 +142,8 @@ export function workspaceSectionTitle(
   switch (section) {
     case "overview":
       return labels.sections.overview.title;
+    case "identity":
+      return labels.sections.identity.title;
     case "financial":
       return labels.sections.financial.title;
     case "compliance":

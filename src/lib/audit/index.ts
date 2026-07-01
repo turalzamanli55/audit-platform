@@ -1,1 +1,2 @@
-export { emitAuditEvent, AUDIT_ACTIONS, type AuditEventInput } from "./emit-audit-event";
+export { emitAuditEvent, type AuditEventInput } from "./emit-audit-event";
+export { AUDIT_ACTIONS } from "./constants";

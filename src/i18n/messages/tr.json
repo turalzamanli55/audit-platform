@@ -216,6 +216,7 @@
       "heroEyebrow": "Şirket çalışma alanı",
       "navAriaLabel": "Şirket çalışma alanı bölümleri",
       "navOverview": "Genel bakış",
+      "navIdentity": "Kimlik",
       "navFinancial": "Finansal",
       "navCompliance": "Uyumluluk",
       "navContacts": "İletişim",
@@ -243,6 +244,9 @@
           "highlightsTitle": "Öne çıkanlar",
           "highlightsDescription": "Bağlam ve sınıflandırma bir bakışta.",
           "noDescription": "Henüz şirket açıklaması eklenmedi."
+        },
+        "identity": {
+          "title": "Kimlik"
         },
         "financial": {
           "title": "Finansal",
@@ -361,6 +365,131 @@
           "groupTitle": "Doğrulama özeti",
           "readOnlyNotice": "Doğrulama meta verileri platform tarafından yönetilir ve burada düzenlenemez."
         }
+      }
+    },
+    "overview": {
+      "editDescription": "Açıklamayı düzenle",
+      "saveDescription": "Açıklamayı kaydet",
+      "cancelEdit": "İptal"
+    },
+    "identity": {
+      "title": "Kimlik ve yaşam döngüsü",
+      "description": "Bu şirket için yasal kimlik, sınıflandırma ve yaşam döngüsü kontrolleri.",
+      "readOnlyBadge": "Salt okunur",
+      "readOnlyConfigureBadge": "Salt okunur",
+      "slugLabel": "Çalışma alanı slug",
+      "archivedYes": "Arşivlendi",
+      "archivedNo": "Aktif",
+      "createdLabel": "Oluşturulma",
+      "archivedLabel": "Arşivlenme",
+      "restoredLabel": "Geri yüklendi",
+      "notArchived": "Arşivlenmedi",
+      "restoredHint": "Geri yükleme olayları için aktivite zaman çizelgesine bakın",
+      "saveIdle": "Tüm değişiklikler kaydedildi",
+      "saveSaving": "Değişiklikler kaydediliyor…",
+      "saveSaved": "Değişiklikler kaydedildi",
+      "saveError": "Değişiklikler kaydedilemedi",
+      "unsavedMessage": "Kaydedilmemiş kimlik değişiklikleriniz var",
+      "discardLabel": "Vazgeç",
+      "saveLabel": "Kaydet",
+      "savingLabel": "Kaydediliyor…",
+      "conflictTitle": "Kimlik başka bir oturumda güncellendi",
+      "conflictDescription": "Başka bir oturum bu şirketi değiştirdi. Yenileyin veya değişikliklerinizi vazgeçin.",
+      "conflictRefresh": "Yenile",
+      "conflictDiscard": "Değişiklikleri vazgeç",
+      "sections": {
+        "legal": {
+          "title": "Yasal bilgiler",
+          "description": "Çalışma alanında gösterilen adlar.",
+          "groupTitle": "Adlar ve açıklama"
+        },
+        "registration": {
+          "title": "Kayıt",
+          "description": "Bu tüzel kişilik için resmi kayıt tanımlayıcıları.",
+          "groupTitle": "Kayıt detayları"
+        },
+        "classification": {
+          "title": "Sınıflandırma",
+          "description": "Tüzel kişilik türü ve sektör sınıflandırması.",
+          "groupTitle": "Tüzel kişilik sınıflandırması"
+        },
+        "status": {
+          "title": "Durum",
+          "description": "Bu şirketin güncel operasyonel durumu.",
+          "archivedState": "Arşiv durumu"
+        },
+        "version": {
+          "title": "Sürüm bilgisi",
+          "description": "Kayıt sürümleri ve yaşam döngüsü zaman damgaları.",
+          "groupTitle": "Sürümler ve zaman damgaları",
+          "recordVersion": "Kayıt sürümü",
+          "settingsVersion": "Ayar sürümü"
+        },
+        "lifecycle": {
+          "title": "Yaşam döngüsü",
+          "description": "Raporlama durumu değiştiğinde şirketi arşivleyin veya geri yükleyin.",
+          "readOnlyDescription": "Bu şirket için yaşam döngüsü kontrolleri.",
+          "readOnlyNotice": "Şirketleri arşivlemek veya geri yüklemek için yönetim izni gerekir.",
+          "actionsTitle": "Yaşam döngüsü işlemleri",
+          "archivePrompt": "Arşivleme, geçmişi korurken şirketi salt okunur yapar.",
+          "archiveAction": "Şirketi arşivle",
+          "archiveConfirmTitle": "Bu şirket arşivlensin mi?",
+          "archiveConfirmDescription": "Şirket salt okunur olacak. Gerekirse daha sonra geri yükleyebilirsiniz.",
+          "archiveReasonPlaceholder": "Arşivleme için isteğe bağlı neden",
+          "archiveConfirmAction": "Arşivlemeyi onayla",
+          "restorePrompt": "Yapılandırma ve raporlamaya devam etmek için şirketi geri yükleyin.",
+          "restoreAction": "Şirketi geri yükle",
+          "restoreConfirmTitle": "Bu şirket geri yüklensin mi?",
+          "restoreConfirmDescription": "Şirket tekrar aktif olacak ve yetkili kullanıcılar için düzenlenebilir olacak.",
+          "restoreReasonPlaceholder": "Geri yükleme için isteğe bağlı neden",
+          "restoreConfirmAction": "Geri yüklemeyi onayla",
+          "reasonLabel": "Neden",
+          "cancelAction": "İptal"
+        }
+      }
+    },
+    "history": {
+      "title": "Aktivite ve denetim",
+      "description": "Şirket değişikliklerinin salt okunur zaman çizelgesi ve denetim özeti.",
+      "errorTitle": "Aktivite yüklenemedi",
+      "errorDescription": "Şirket aktivitesi yüklenirken bir hata oluştu.",
+      "summary": {
+        "title": "Denetim özeti",
+        "description": "Bu şirket için kayıtlı olay sayıları.",
+        "total": "Toplam olay",
+        "created": "Oluşturuldu",
+        "updated": "Güncellendi",
+        "settingsUpdated": "Ayarlar güncellendi",
+        "archived": "Arşivlendi",
+        "restored": "Geri yüklendi"
+      },
+      "timeline": {
+        "title": "Aktivite zaman çizelgesi",
+        "description": "Bu şirket için kronolojik denetim izi.",
+        "emptyTitle": "Aktivite kaydedilmedi",
+        "emptyDescription": "Bu şirketteki değişiklikler denetlendikçe burada görünecek.",
+        "reasonArchive": "Arşiv nedeni",
+        "reasonRestore": "Geri yükleme nedeni",
+        "fieldsChanged": "Değişen alanlar",
+        "actions": {
+          "company.created": "Şirket oluşturuldu",
+          "company.updated": "Şirket güncellendi",
+          "company.settings.updated": "Ayarlar güncellendi",
+          "company.archived": "Şirket arşivlendi",
+          "company.restored": "Şirket geri yüklendi"
+        }
+      },
+      "version": {
+        "title": "Sürüm bilgisi",
+        "description": "Güncel kayıt sürümleri ve yaşam döngüsü zaman damgaları.",
+        "cardTitle": "Kayıt meta verileri",
+        "recordVersion": "Kayıt sürümü",
+        "settingsVersion": "Ayar sürümü",
+        "created": "Oluşturulma",
+        "archived": "Arşivlenme",
+        "notArchived": "Arşivlenmedi",
+        "restored": "Geri yüklendi",
+        "restoredHint": "Geri yükleme olayları için zaman çizelgesine bakın"
       }
     }
   }

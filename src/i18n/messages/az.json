@@ -216,6 +216,7 @@
       "heroEyebrow": "Şirkət iş mühiti",
       "navAriaLabel": "Şirkət iş mühiti bölmələri",
       "navOverview": "İcmal",
+      "navIdentity": "Kimlik",
       "navFinancial": "Maliyyə",
       "navCompliance": "Uyğunluq",
       "navContacts": "Əlaqələr",
@@ -243,6 +244,9 @@
           "highlightsTitle": "Vacib məqamlar",
           "highlightsDescription": "Kontekst və təsnifat bir baxışda.",
           "noDescription": "Hələ şirkət təsviri əlavə edilməyib."
+        },
+        "identity": {
+          "title": "Kimlik"
         },
         "financial": {
           "title": "Maliyyə",
@@ -361,6 +365,131 @@
           "groupTitle": "Təsdiqləmə icmalı",
           "readOnlyNotice": "Təsdiqləmə metadatası platforma tərəfindən idarə olunur və burada redaktə edilə bilməz."
         }
+      }
+    },
+    "overview": {
+      "editDescription": "Təsviri redaktə et",
+      "saveDescription": "Təsviri saxla",
+      "cancelEdit": "Ləğv et"
+    },
+    "identity": {
+      "title": "Kimlik və həyat dövrü",
+      "description": "Bu şirkət üçün hüquqi kimlik, təsnifat və həyat dövrü idarəetməsi.",
+      "readOnlyBadge": "Yalnız baxış",
+      "readOnlyConfigureBadge": "Yalnız baxış",
+      "slugLabel": "İş mühiti slug",
+      "archivedYes": "Arxivdə",
+      "archivedNo": "Aktiv",
+      "createdLabel": "Yaradılıb",
+      "archivedLabel": "Arxivlənib",
+      "restoredLabel": "Bərpa edilib",
+      "notArchived": "Arxivlənməyib",
+      "restoredHint": "Bərpa hadisələri üçün fəaliyyət xəttinə baxın",
+      "saveIdle": "Bütün dəyişikliklər saxlanılıb",
+      "saveSaving": "Dəyişikliklər saxlanılır…",
+      "saveSaved": "Dəyişikliklər saxlanıldı",
+      "saveError": "Dəyişikliklər saxlanıla bilmədi",
+      "unsavedMessage": "Saxlanmamış kimlik dəyişiklikləriniz var",
+      "discardLabel": "Ləğv et",
+      "saveLabel": "Saxla",
+      "savingLabel": "Saxlanılır…",
+      "conflictTitle": "Kimlik başqa yerdə yeniləndi",
+      "conflictDescription": "Başqa sessiya bu şirkəti dəyişdi. Ən son versiyanı yükləmək üçün yeniləyin və ya dəyişikliklərinizi ləğv edin.",
+      "conflictRefresh": "Yenilə",
+      "conflictDiscard": "Dəyişiklikləri ləğv et",
+      "sections": {
+        "legal": {
+          "title": "Hüquqi məlumat",
+          "description": "İş mühitində göstərilən adlar.",
+          "groupTitle": "Adlar və təsvir"
+        },
+        "registration": {
+          "title": "Qeydiyyat",
+          "description": "Bu subyekt üçün rəsmi qeydiyyat identifikatorları.",
+          "groupTitle": "Qeydiyyat detalları"
+        },
+        "classification": {
+          "title": "Təsnifat",
+          "description": "Subyekt növü və sənaye təsnifatı.",
+          "groupTitle": "Subyekt təsnifatı"
+        },
+        "status": {
+          "title": "Status",
+          "description": "Bu şirkətin cari əməliyyat statusu.",
+          "archivedState": "Arxiv vəziyyəti"
+        },
+        "version": {
+          "title": "Versiya məlumatı",
+          "description": "Qeyd versiyaları və həyat dövrü vaxt damğaları.",
+          "groupTitle": "Versiyalar və vaxt damğaları",
+          "recordVersion": "Qeyd versiyası",
+          "settingsVersion": "Parametr versiyası"
+        },
+        "lifecycle": {
+          "title": "Həyat dövrü",
+          "description": "Hesabat statusu dəyişdikdə şirkəti arxivləyin və ya bərpa edin.",
+          "readOnlyDescription": "Bu şirkət üçün həyat dövrü idarəetməsi.",
+          "readOnlyNotice": "Şirkətləri arxivləmək və ya bərpa etmək üçün idarəetmə icazəsi lazımdır.",
+          "actionsTitle": "Həyat dövrü əməliyyatları",
+          "archivePrompt": "Arxivləmə şirkəti tarixçəsini qoruyaraq yalnız oxunan edir.",
+          "archiveAction": "Şirkəti arxivlə",
+          "archiveConfirmTitle": "Bu şirkət arxivlənsin?",
+          "archiveConfirmDescription": "Şirkət yalnız oxunan olacaq. Lazım olduqda sonra bərpa edə bilərsiniz.",
+          "archiveReasonPlaceholder": "Arxivləmə üçün istəyə bağlı səbəb",
+          "archiveConfirmAction": "Arxivləməni təsdiqlə",
+          "restorePrompt": "Konfiqurasiya və hesabatı davam etdirmək üçün şirkəti bərpa edin.",
+          "restoreAction": "Şirkəti bərpa et",
+          "restoreConfirmTitle": "Bu şirkət bərpa edilsin?",
+          "restoreConfirmDescription": "Şirkət yenidən aktiv olacaq və icazəli istifadəçilər üçün redaktə oluna biləcək.",
+          "restoreReasonPlaceholder": "Bərpa üçün istəyə bağlı səbəb",
+          "restoreConfirmAction": "Bərpanı təsdiqlə",
+          "reasonLabel": "Səbəb",
+          "cancelAction": "Ləğv et"
+        }
+      }
+    },
+    "history": {
+      "title": "Fəaliyyət və audit",
+      "description": "Şirkət dəyişikliklərinin yalnız oxunan xronologiyası və audit icmalı.",
+      "errorTitle": "Fəaliyyət yüklənə bilmədi",
+      "errorDescription": "Şirkət fəaliyyəti yüklənərkən xəta baş verdi.",
+      "summary": {
+        "title": "Audit icmalı",
+        "description": "Bu şirkət üçün qeydə alınmış hadisələrin sayı.",
+        "total": "Ümumi hadisələr",
+        "created": "Yaradılıb",
+        "updated": "Yenilənib",
+        "settingsUpdated": "Parametrlər yenilənib",
+        "archived": "Arxivlənib",
+        "restored": "Bərpa edilib"
+      },
+      "timeline": {
+        "title": "Fəaliyyət xətti",
+        "description": "Bu şirkət üçün xronoloji audit izi.",
+        "emptyTitle": "Fəaliyyət qeydə alınmayıb",
+        "emptyDescription": "Bu şirkətə edilən dəyişikliklər audit edildikcə burada görünəcək.",
+        "reasonArchive": "Arxiv səbəbi",
+        "reasonRestore": "Bərpa səbəbi",
+        "fieldsChanged": "Dəyişən sahələr",
+        "actions": {
+          "company.created": "Şirkət yaradılıb",
+          "company.updated": "Şirkət yenilənib",
+          "company.settings.updated": "Parametrlər yenilənib",
+          "company.archived": "Şirkət arxivlənib",
+          "company.restored": "Şirkət bərpa edilib"
+        }
+      },
+      "version": {
+        "title": "Versiya məlumatı",
+        "description": "Cari qeyd versiyaları və həyat dövrü vaxt damğaları.",
+        "cardTitle": "Qeyd metadatası",
+        "recordVersion": "Qeyd versiyası",
+        "settingsVersion": "Parametr versiyası",
+        "created": "Yaradılıb",
+        "archived": "Arxivlənib",
+        "notArchived": "Arxivlənməyib",
+        "restored": "Bərpa edilib",
+        "restoredHint": "Bərpa hadisələri üçün xəttə baxın"
       }
     }
   }

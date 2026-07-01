@@ -55,3 +55,8 @@ export {
   CompanySettingsLoading,
   CompanySettingsError,
 } from "./settings";
+export {
+  CompanyIdentityExperience,
+  CompanyIdentityLegalSection,
+  CompanyIdentityLifecycleSection,
+} from "./identity";
