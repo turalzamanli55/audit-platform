@@ -21,6 +21,14 @@ export function IconChevronDown(props: IconProps) {
   );
 }
 
+export function IconChevronUp(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={base} width={16} height={16} aria-hidden {...props}>
+      <path d="M6 15l6-6 6 6" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function IconChevronRight(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={base} width={16} height={16} aria-hidden {...props}>

@@ -5,6 +5,7 @@ export { CommandPalette, type CommandPaletteItem } from "./command-palette";
 export { CompanySwitcher, type CompanySwitcherItem } from "./company-switcher";
 export { GlobalSearchTrigger, ShellNavItem } from "./shell-nav";
 export { ShellProvider, useShell } from "./shell-provider";
+export { ShellPreferencesBridge } from "./shell-preferences-bridge";
 export { LocaleSwitcher } from "./locale-switcher";
 export { ThemeSwitcher } from "./theme-switcher";
 export { NotificationMenu } from "./notification-menu";

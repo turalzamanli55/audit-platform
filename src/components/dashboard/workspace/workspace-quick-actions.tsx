@@ -16,6 +16,7 @@ type WorkspaceQuickActionsProps = {
   locale: string;
   labels: DashboardWorkspaceLabels["quickActions"];
   continueCompany: DashboardWorkspaceCompany | null;
+  onContinueSelect?: () => void;
 };
 
 const actionIcons = [IconBriefcase, IconZap, IconFileText, IconArrowRight, IconUsers] as const;
@@ -24,6 +25,7 @@ export function WorkspaceQuickActions({
   locale,
   labels,
   continueCompany,
+  onContinueSelect,
 }: WorkspaceQuickActionsProps) {
   const actions = [
     {
@@ -78,7 +80,7 @@ export function WorkspaceQuickActions({
           }
 
           return (
-            <Link key={action.id} href={action.href} className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <Link key={action.id} href={action.href} onClick={action.id === "continue" ? onContinueSelect : undefined} className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               {content}
             </Link>
           );

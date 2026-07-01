@@ -131,6 +131,10 @@ export function CommandPalette({ items, labels, locale }: CommandPaletteProps) {
         event.preventDefault();
         selectItem(flatItems[activeIndex]!);
       }
+      if (event.key === " " && flatItems[activeIndex]) {
+        event.preventDefault();
+        selectItem(flatItems[activeIndex]!);
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);

@@ -11,6 +11,7 @@ import {
 
 type ShellContextValue = {
   sidebarCollapsed: boolean;
+  setSidebarCollapsed: (collapsed: boolean) => void;
   toggleSidebar: () => void;
   mobileNavOpen: boolean;
   setMobileNavOpen: (open: boolean) => void;
@@ -32,6 +33,7 @@ export function ShellProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       sidebarCollapsed,
+      setSidebarCollapsed,
       toggleSidebar,
       mobileNavOpen,
       setMobileNavOpen,

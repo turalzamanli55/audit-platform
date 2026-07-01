@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { ShellProvider, useShell } from "@/components/shell";
 import { AppHeader } from "@/components/shell/app-header";
 import { AppSidebar } from "@/components/shell/app-sidebar";
+import { ShellPreferencesBridge } from "@/components/shell/shell-preferences-bridge";
 import { ContentArea } from "./content-area";
 
 type AppShellProps = {
@@ -38,6 +39,7 @@ function AppShellInner({
           <ContentArea>{children}</ContentArea>
         </div>
       </div>
+      <ShellPreferencesBridge />
       {overlay}
     </>
   );

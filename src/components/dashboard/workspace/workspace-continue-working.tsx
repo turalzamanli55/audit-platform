@@ -9,12 +9,14 @@ type WorkspaceContinueWorkingProps = {
   locale: string;
   labels: DashboardWorkspaceLabels["continueWorking"];
   continueCompany: DashboardWorkspaceCompany | null;
+  onOpen?: () => void;
 };
 
 export function WorkspaceContinueWorking({
   locale,
   labels,
   continueCompany,
+  onOpen,
 }: WorkspaceContinueWorkingProps) {
   return (
     <WorkspaceSection title={labels.title} description={labels.description}>
@@ -23,6 +25,7 @@ export function WorkspaceContinueWorking({
       ) : (
         <Link
           href={`/${locale}/app/companies/${continueCompany.slug}`}
+          onClick={onOpen}
           className="block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <WorkspacePanel

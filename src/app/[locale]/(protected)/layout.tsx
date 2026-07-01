@@ -82,6 +82,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
               searchPlaceholder: dictionary.shell.searchPlaceholder,
               commandPalette: dictionary.shell.commandPalette,
             }}
+            dashboardCommands={dictionary.dashboardWorkspace.personalization.commands}
           >
             {children}
           </AppShellExperience>
