@@ -40,8 +40,4 @@ export const DEFAULT_WORKSPACE_SETTINGS = {
   default_engagement_visibility: "members",
 } as const;
 
-export const DEFAULT_COMPANY_SETTINGS = {
-  reporting_currency: "USD",
-  functional_currency: "USD",
-  industry_code: null,
-} as const;
+export { DEFAULT_COMPANY_SETTINGS } from "@/lib/company/settings";

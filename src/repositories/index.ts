@@ -22,8 +22,10 @@ export {
 export {
   CompanyRepository,
   type Company,
+  type CompanySettingsRow,
   type CreateCompanyInput,
   type UpdateCompanyInput,
+  type CompanyWithSettings,
 } from "./company/company-repository";
 export {
   MembershipRepository,

@@ -99,6 +99,7 @@ export type Database = {
           name: string;
           organization_id: string;
           registration_number: string | null;
+          slug: string;
           status: Database["public"]["Enums"]["record_status"];
           updated_at: string;
           updated_by: string | null;
@@ -116,6 +117,7 @@ export type Database = {
           name: string;
           organization_id: string;
           registration_number?: string | null;
+          slug: string;
           status?: Database["public"]["Enums"]["record_status"];
           updated_at?: string;
           updated_by?: string | null;
@@ -133,6 +135,7 @@ export type Database = {
           name?: string;
           organization_id?: string;
           registration_number?: string | null;
+          slug?: string;
           status?: Database["public"]["Enums"]["record_status"];
           updated_at?: string;
           updated_by?: string | null;

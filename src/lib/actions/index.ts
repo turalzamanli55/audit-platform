@@ -14,6 +14,13 @@ export { resendVerificationAction } from "./auth/resend-verification";
 export { createOrganizationAction as provisionOrganizationAction } from "./onboarding/create-organization";
 export { createWorkspaceAction as provisionWorkspaceAction } from "./onboarding/create-workspace";
 export { switchOrganizationAction, switchWorkspaceAction } from "./tenant/switch-tenant";
+export {
+  createCompanyAction,
+  updateCompanyAction,
+  updateCompanySettingsAction,
+  archiveCompanyAction,
+  restoreCompanyAction,
+} from "./company";
 export type {
   ActionResult,
   ActionSuccess,
