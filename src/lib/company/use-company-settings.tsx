@@ -4,7 +4,9 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   useTransition,
   type ReactNode,
@@ -82,6 +84,27 @@ export function CompanySettingsProvider({
 
   const hasUnsavedChanges = isSettingsDraftDirty(draft, baselineDraft);
 
+  const refreshBaseline = useCallback((settings: CompanySettings, version: number) => {
+    setBaselineSettings(settings);
+    setSettingsVersion(version);
+    setDraft(settingsToDraft(settings));
+    setSaveState("idle");
+    setSaveError(null);
+    setHasConflict(false);
+    setFieldErrors({});
+  }, []);
+
+  const serverSyncKey = `${companyId}:${initialVersion}`;
+  const syncedKeyRef = useRef(serverSyncKey);
+
+  useEffect(() => {
+    if (syncedKeyRef.current === serverSyncKey) {
+      return;
+    }
+    syncedKeyRef.current = serverSyncKey;
+    refreshBaseline(initialSettings, initialVersion);
+  }, [companyId, initialSettings, initialVersion, refreshBaseline, serverSyncKey]);
+
   const updateDraft = useCallback((patch: Partial<CompanySettingsDraft>) => {
     if (!canEdit) {
       return;
@@ -106,16 +129,6 @@ export function CompanySettingsProvider({
     setHasConflict(false);
     setFieldErrors({});
   }, [baselineDraft]);
-
-  const refreshBaseline = useCallback((settings: CompanySettings, version: number) => {
-    setBaselineSettings(settings);
-    setSettingsVersion(version);
-    setDraft(settingsToDraft(settings));
-    setSaveState("idle");
-    setSaveError(null);
-    setHasConflict(false);
-    setFieldErrors({});
-  }, []);
 
   const dismissConflict = useCallback(() => {
     setHasConflict(false);

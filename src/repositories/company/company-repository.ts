@@ -89,8 +89,14 @@ export class CompanyRepository extends AuthenticatedRepository {
       return active;
     }
 
-    const companies = await this.listByWorkspace(workspaceId, { includeArchived: true });
-    return companies.find((row) => row.slug === slug) ?? null;
+    const result = await this.client
+      .from("companies")
+      .select("*")
+      .eq("workspace_id", workspaceId)
+      .eq("slug", slug)
+      .maybeSingle();
+
+    return unwrapSupabaseMaybeSingle(result);
   }
 
   async listByWorkspace(workspaceId: string, options?: { includeArchived?: boolean }): Promise<Company[]> {
@@ -197,6 +203,19 @@ export class CompanyRepository extends AuthenticatedRepository {
     ).maybeSingle();
 
     return unwrapSupabaseMaybeSingle(result);
+  }
+
+  async getSettingsForCompanies(companyIds: string[]): Promise<Map<string, CompanySettingsRow>> {
+    if (companyIds.length === 0) {
+      return new Map();
+    }
+
+    const result = await applyActiveFilter(
+      this.client.from("company_settings").select("*").in("company_id", companyIds),
+    );
+
+    const rows = unwrapSupabaseList(result);
+    return new Map(rows.map((row) => [row.company_id, row]));
   }
 
   async updateSettings(

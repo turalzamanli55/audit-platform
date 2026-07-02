@@ -4,7 +4,9 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   useTransition,
   type ReactNode,
@@ -99,6 +101,17 @@ export function CompanyIdentityProvider({
     setLifecycleState("idle");
     setLifecycleError(null);
   }, []);
+
+  const serverSyncKey = `${initialCompany.id}:${initialCompany.version}:${initialCompany.settingsVersion}:${initialCompany.updatedAt}`;
+  const syncedKeyRef = useRef(serverSyncKey);
+
+  useEffect(() => {
+    if (syncedKeyRef.current === serverSyncKey) {
+      return;
+    }
+    syncedKeyRef.current = serverSyncKey;
+    refreshCompany(initialCompany);
+  }, [initialCompany, refreshCompany, serverSyncKey]);
 
   const updateDraft = useCallback(
     (patch: Partial<CompanyIdentityDraft>) => {

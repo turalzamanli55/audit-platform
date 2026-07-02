@@ -19,10 +19,7 @@ export async function requireCompanyWorkspace(slug: string): Promise<CompanyWork
   const result = await loadCompanyWorkspaceCached(slug);
 
   if (!result.ok) {
-    if (result.reason === "not_found") {
-      notFound();
-    }
-    throw new Error(`company_workspace_${result.reason}`);
+    notFound();
   }
 
   return result.company;

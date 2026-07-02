@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { switchCompanyAction } from "@/lib/actions/tenant/switch-company";
 
@@ -19,6 +19,7 @@ export function CompanyWorkspaceCookieSync({
 }: CompanyWorkspaceCookieSyncProps) {
   const router = useRouter();
   const syncedRef = useRef<string | null>(null);
+  const [retryTick, setRetryTick] = useState(0);
 
   useEffect(() => {
     if (!companySlug || companySlug === preferredCompanySlug) {
@@ -34,7 +35,17 @@ export function CompanyWorkspaceCookieSync({
 
     void (async () => {
       const result = await switchCompanyAction({ slug: companySlug });
-      if (cancelled || !result.success) {
+      if (cancelled) {
+        return;
+      }
+
+      if (!result.success) {
+        syncedRef.current = null;
+        window.setTimeout(() => {
+          if (!cancelled) {
+            setRetryTick((current) => current + 1);
+          }
+        }, 2000);
         return;
       }
 
@@ -45,7 +56,7 @@ export function CompanyWorkspaceCookieSync({
     return () => {
       cancelled = true;
     };
-  }, [companySlug, preferredCompanySlug, router]);
+  }, [companySlug, preferredCompanySlug, router, retryTick]);
 
   return null;
 }

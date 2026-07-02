@@ -10,6 +10,10 @@ describe("resolveCompanySlugFromPath", () => {
     expect(resolveCompanySlugFromPath("/en/app/companies/acme-corp/settings")).toBe("acme-corp");
   });
 
+  it("returns null for create route segment", () => {
+    expect(resolveCompanySlugFromPath("/en/app/companies/new")).toBeNull();
+  });
+
   it("returns null when path is not a company route", () => {
     expect(resolveCompanySlugFromPath("/en/app/dashboard")).toBeNull();
     expect(resolveCompanySlugFromPath("/en/app/companies")).toBeNull();
@@ -40,5 +44,15 @@ describe("resolveActiveCompany", () => {
 
   it("returns null for empty list", () => {
     expect(resolveActiveCompany([], "/en/app/companies/alpha")).toBeNull();
+  });
+
+  it("returns null when workspace slug is unknown", () => {
+    expect(resolveActiveCompany(companies, "/en/app/companies/unknown", "alpha")).toBeNull();
+  });
+
+  it("falls back to cookie on create route", () => {
+    expect(resolveActiveCompany(companies, "/en/app/companies/new", "beta")).toEqual(
+      companies[1],
+    );
   });
 });

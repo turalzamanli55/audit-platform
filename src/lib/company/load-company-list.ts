@@ -56,25 +56,27 @@ export const loadCompanyList = cache(async function loadCompanyList(): Promise<C
       includeArchived: true,
     });
 
-    const items: CompanyListItem[] = await Promise.all(
-      companies.map(async (company) => {
-        const settingsRow = await repository.getSettings(company.id);
-        const settings = parseCompanySettings(settingsRow?.settings);
-
-        return {
-          id: company.id,
-          slug: company.slug,
-          name: company.name,
-          legalName: company.legal_name ?? company.name,
-          jurisdiction: settings.jurisdiction.trim() || "—",
-          reportingFramework: settings.reporting_framework,
-          status: company.status,
-          updatedAt: company.updated_at,
-          version: company.version,
-          isArchived: Boolean(company.deleted_at) || company.status === "archived",
-        };
-      }),
+    const settingsByCompanyId = await repository.getSettingsForCompanies(
+      companies.map((company) => company.id),
     );
+
+    const items: CompanyListItem[] = companies.map((company) => {
+      const settingsRow = settingsByCompanyId.get(company.id);
+      const settings = parseCompanySettings(settingsRow?.settings);
+
+      return {
+        id: company.id,
+        slug: company.slug,
+        name: company.name,
+        legalName: company.legal_name ?? company.name,
+        jurisdiction: settings.jurisdiction.trim() || "—",
+        reportingFramework: settings.reporting_framework,
+        status: company.status,
+        updatedAt: company.updated_at,
+        version: company.version,
+        isArchived: Boolean(company.deleted_at) || company.status === "archived",
+      };
+    });
 
     return { ok: true, items };
   } catch (error) {

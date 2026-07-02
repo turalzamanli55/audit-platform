@@ -13,6 +13,8 @@ import { CompanyRepository } from "@/repositories/company/company-repository";
 import type { RepositoryContext } from "@/types/context";
 import { readCompanySlugCookie } from "./tenant-cookies";
 import { resolveAuthenticatedUser } from "./resolve-user";
+import { COMPANY_PERMISSIONS } from "@/constants/company";
+import { authorizePermissionCodes } from "@/lib/auth/permissions";
 
 export async function getOrganizationContext(): Promise<OrganizationContext> {
   const user = await resolveAuthenticatedUser();
@@ -71,6 +73,13 @@ export async function getCompanyContext(): Promise<CompanyContext> {
   ]);
 
   if (!workspace.isResolved || !workspace.workspaceId || !slug || !user?.organizationId) {
+    return {
+      companyId: null,
+      isResolved: false,
+    };
+  }
+
+  if (!authorizePermissionCodes(user.permissionCodes, COMPANY_PERMISSIONS.READ)) {
     return {
       companyId: null,
       isResolved: false,

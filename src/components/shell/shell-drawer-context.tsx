@@ -55,7 +55,10 @@ export function ShellDrawerContext({
     const company = companies.find((item) => item.id === id);
     if (!company?.slug) return;
 
-    await switchCompanyAction({ slug: company.slug });
+    const result = await switchCompanyAction({ slug: company.slug });
+    if (!result.success) {
+      return;
+    }
     router.push(`/${locale}/app/companies/${company.slug}`);
   }
 

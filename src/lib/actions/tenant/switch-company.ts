@@ -2,6 +2,8 @@
 
 import { createAuthenticatedAction } from "@/lib/actions/authenticated-action";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
+import { requirePermissionCodes } from "@/lib/auth/authorize";
+import { COMPANY_PERMISSIONS } from "@/constants/company";
 import { setCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import { AuthorizationError, ValidationError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
@@ -42,6 +44,12 @@ export const switchCompanyAction = createAuthenticatedAction<
   if (!workspace.isResolved || !workspace.workspaceId || !user?.organizationId) {
     throw new AuthorizationError("Workspace context is required");
   }
+
+  if (user.workspaceId && user.workspaceId !== workspace.workspaceId) {
+    throw new AuthorizationError("Workspace context mismatch");
+  }
+
+  requirePermissionCodes(user, COMPANY_PERMISSIONS.READ);
 
   const supabase = await createServerClient();
   const repository = new CompanyRepository(
