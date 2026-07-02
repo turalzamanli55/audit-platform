@@ -23,7 +23,8 @@
     "openTasks": "Открытые задачи",
     "reports": "Отчёты",
     "aiSuggestions": "AI-подсказки",
-    "placeholder": "Живые метрики появятся в будущих спринтах"
+    "placeholder": "Живые метрики появятся в будущих спринтах",
+    "liveHint": "Актуальная метрика рабочего пространства"
   },
   "quickActions": {
     "title": "Быстрые действия",
@@ -40,29 +41,28 @@
     "description": "Спокойная хронология изменений в рабочем пространстве",
     "emptyTitle": "Нет недавней активности",
     "emptyDescription": "Обновления компаний, проектов и проверок появятся здесь.",
-    "items": [
-      {
-        "id": "1",
-        "title": "Проверена идентичность компании",
-        "description": "Профиль юридического лица открыт для проверки",
-        "time": "2 часа назад",
-        "tone": "info"
-      },
-      {
-        "id": "2",
-        "title": "Сохранены настройки пространства",
-        "description": "Обновлены параметры отчётности",
-        "time": "Вчера",
-        "tone": "default"
-      },
-      {
-        "id": "3",
-        "title": "Добавлена новая компания",
-        "description": "Юридическое лицо зарегистрировано в пространстве",
-        "time": "3 дня назад",
-        "tone": "success"
-      }
-    ]
+    "items": [],
+    "actions": {
+      "default": "Активность рабочего пространства",
+      "company.created": "Компания создана",
+      "company.updated": "Компания обновлена",
+      "engagement.created": "Задание создано",
+      "engagement.updated": "Задание обновлено",
+      "planning.submitted": "Планирование отправлено",
+      "planning.approved": "Планирование утверждено",
+      "fieldwork.procedure.submitted": "Процедура отправлена",
+      "risk_assessment.submitted": "Оценка рисков отправлена",
+      "risk_assessment.approved": "Оценка рисков утверждена"
+    },
+    "descriptions": {
+      "generic": "Записано в журнале аудита рабочего пространства",
+      "withName": "Связано с {name}",
+      "company": "Активность компании",
+      "engagement": "Активность задания",
+      "planning": "Активность планирования",
+      "fieldwork": "Активность полевых работ",
+      "riskAssessment": "Активность оценки рисков"
+    }
   },
   "tasks": {
     "title": "Мои задачи",
@@ -75,35 +75,13 @@
     "priorityHigh": "Высокий",
     "priorityMedium": "Средний",
     "priorityLow": "Низкий",
-    "items": [
-      {
-        "id": "1",
-        "title": "Проверить поля идентичности компании",
-        "status": "В работе",
-        "priority": "Высокий",
-        "due": "Сегодня",
-        "statusVariant": "warning",
-        "priorityVariant": "destructive"
-      },
-      {
-        "id": "2",
-        "title": "Подготовить структуру папок проекта",
-        "status": "Открыта",
-        "priority": "Средний",
-        "due": "Пт",
-        "statusVariant": "default",
-        "priorityVariant": "warning"
-      },
-      {
-        "id": "3",
-        "title": "Подтвердить соответствие отчётной базы",
-        "status": "Открыта",
-        "priority": "Низкий",
-        "due": "На след. неделе",
-        "statusVariant": "default",
-        "priorityVariant": "default"
-      }
-    ]
+    "items": [],
+    "dueSoon": "Скоро",
+    "reviewFieldwork": "Проверить {count} процедур полевых работ",
+    "assignedProcedures": "{count} процедур назначено вам",
+    "openFindings": "Устранить {count} открытых выводов",
+    "reviewRisk": "Проверить {count} оценок рисков",
+    "openRiskItems": "Завершить {count} открытых рисков"
   },
   "ai": {
     "title": "AI-ассистент",
@@ -126,20 +104,8 @@
     "description": "Предстоящие сроки и вехи",
     "emptyTitle": "Нет предстоящих сроков",
     "upcoming": "Предстоящие",
-    "items": [
-      {
-        "id": "1",
-        "title": "Контрольная точка квартальной отчётности",
-        "date": "31 мар",
-        "tone": "warning"
-      },
-      {
-        "id": "2",
-        "title": "Обзор планирования проекта",
-        "date": "4 апр",
-        "tone": "default"
-      }
-    ]
+    "items": [],
+    "itemTitle": "{engagement} · {company}"
   },
   "notifications": {
     "title": "Уведомления",
@@ -152,20 +118,17 @@
     "title": "Аналитика пространства",
     "description": "Лёгкий пульс вашего рабочего пространства",
     "chartPlaceholder": "Визуализации аналитики появятся в будущих спринтах",
-    "metrics": [
-      {
-        "id": "1",
-        "label": "Активные компании",
-        "value": "—",
-        "trend": "Стабильно"
-      },
-      {
-        "id": "2",
-        "label": "Открытые проверки",
-        "value": "—",
-        "trend": "Превью"
-      }
-    ]
+    "metrics": [],
+    "metricCompanies": "Активные компании",
+    "metricEngagements": "Активные задания",
+    "metricReviews": "Ожидающие проверки",
+    "metricPlanning": "Планирование в работе",
+    "metricFindings": "Открытые выводы",
+    "metricSignificantRisks": "Существенные риски",
+    "trendActive": "Активно в пространстве",
+    "trendClear": "Нет ожиданий",
+    "trendAttention": "Требует внимания",
+    "trendApproved": "{count} утверждено"
   },
   "pinned": {
     "title": "Закреплённое",
@@ -175,10 +138,7 @@
     "emptyRecent": "Открытые компании появятся здесь",
     "emptyFavorites": "Закрепите компании для быстрого доступа",
     "emptyEngagements": "Проекты появятся здесь",
-    "engagements": [
-      "Годовой аудит 2026",
-      "Обзор конверсии IFRS"
-    ]
+    "engagements": []
   },
   "continueWorking": {
     "title": "Продолжить работу",

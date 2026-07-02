@@ -6,11 +6,10 @@ import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
 
 type WorkspaceTasksProps = {
   labels: DashboardWorkspaceLabels["tasks"];
+  items: DashboardWorkspaceLabels["tasks"]["items"];
 };
 
-export function WorkspaceTasks({ labels }: WorkspaceTasksProps) {
-  const items = labels.items;
-
+export function WorkspaceTasks({ labels, items }: WorkspaceTasksProps) {
   return (
     <WorkspaceSection title={labels.title} description={labels.description}>
       {items.length === 0 ? (

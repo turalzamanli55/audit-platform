@@ -25,6 +25,7 @@ export type EngagementListLabels = Dictionary["engagements"];
 type EngagementListExperienceProps = {
   locale: string;
   labels: EngagementListLabels;
+  dashboardLabel: string;
   items: EngagementListItem[];
   pagination: EngagementListPageResult;
   query: EngagementListQuery;
@@ -38,6 +39,7 @@ function formatCount(template: string, count: number): string {
 export function EngagementListExperience({
   locale,
   labels,
+  dashboardLabel,
   items,
   pagination,
   query,
@@ -135,7 +137,13 @@ export function EngagementListExperience({
 
   return (
     <EngagementPageShell labelledBy={headingId}>
-      <EngagementBreadcrumb items={[{ label: labels.breadcrumbRoot, href: basePath }]} className="mb-2" />
+      <EngagementBreadcrumb
+        items={[
+          { label: dashboardLabel, href: `/${locale}/app/dashboard` },
+          { label: labels.breadcrumbRoot },
+        ]}
+        className="mb-2"
+      />
 
       <EngagementHeader
         id={headingId}

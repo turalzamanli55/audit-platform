@@ -25,6 +25,7 @@ export type CompanyListLabels = Dictionary["companies"];
 type CompanyListExperienceProps = {
   locale: string;
   labels: CompanyListLabels;
+  dashboardLabel: string;
   items: CompanyListItem[];
   pagination: CompanyListPageResult;
   query: CompanyListQuery;
@@ -38,6 +39,7 @@ function formatCount(template: string, count: number): string {
 export function CompanyListExperience({
   locale,
   labels,
+  dashboardLabel,
   items,
   pagination,
   query,
@@ -127,7 +129,8 @@ export function CompanyListExperience({
     <CompanyPageShell labelledBy={headingId}>
       <CompanyBreadcrumb
         items={[
-          { label: labels.breadcrumbRoot, href: basePath },
+          { label: dashboardLabel, href: `/${locale}/app/dashboard` },
+          { label: labels.breadcrumbRoot },
         ]}
         className="mb-2"
       />

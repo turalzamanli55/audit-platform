@@ -187,6 +187,13 @@ export type Dictionary = {
     error: string;
     empty: string;
     retry: string;
+    accessRestricted: string;
+    signInRequired: string;
+    permissionDenied: string;
+    permissionDeniedDescription: string;
+    tryAgain: string;
+    breadcrumbLabel: string;
+    backTo: string;
   };
   shell: {
     header: string;
@@ -212,7 +219,17 @@ export type Dictionary = {
       actions: string;
       settings: string;
       close: string;
+      createCompany: string;
+      createCompanyDescription: string;
+      createEngagement: string;
+      createEngagementDescription: string;
+      goToDashboard: string;
     };
+    workspaceRequired: string;
+    accessRestricted: string;
+    expandSidebar: string;
+    collapseSidebar: string;
+    dashboardHome: string;
   };
   auth: {
     signIn: string;

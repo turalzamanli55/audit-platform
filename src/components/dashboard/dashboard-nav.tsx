@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { IconBriefcase, IconLayoutDashboard } from "@/components/ui/icons";
+import { IconBriefcase, IconLayoutDashboard, IconUsers } from "@/components/ui/icons";
 import { ShellNavItem } from "@/components/shell/shell-nav";
 import { useShell } from "@/components/shell/shell-provider";
 import { coerceDashboardNavItems, type DashboardNavItem } from "@/config/dashboard-navigation";
@@ -19,6 +19,9 @@ function resolveLocale(pathname: string): string {
 function navIcon(href: string) {
   if (href.includes("companies")) {
     return <IconBriefcase width={18} height={18} />;
+  }
+  if (href.includes("engagements")) {
+    return <IconUsers width={18} height={18} />;
   }
   return <IconLayoutDashboard width={18} height={18} />;
 }

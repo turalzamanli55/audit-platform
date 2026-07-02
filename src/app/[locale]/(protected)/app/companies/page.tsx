@@ -74,6 +74,7 @@ export default async function CompaniesPage({ params, searchParams }: CompaniesP
     <CompanyListExperience
       locale={locale}
       labels={labels}
+      dashboardLabel={dictionary.dashboard.navDashboard}
       items={pagination.items}
       pagination={pagination}
       query={query}

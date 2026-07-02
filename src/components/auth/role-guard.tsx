@@ -5,6 +5,7 @@ import type { Role } from "@/types/auth";
 import { useAuth } from "@/providers";
 import { hasRole, hasRoleSlug } from "@/lib/auth/permissions";
 import { EmptyStateShell } from "@/components/layout/shells/empty-state-shell";
+import { useCommonLabels } from "@/i18n/use-common-labels";
 
 type RoleGuardProps = {
   children: ReactNode;
@@ -14,13 +15,14 @@ type RoleGuardProps = {
 
 export function RoleGuard({ children, roles, fallback }: RoleGuardProps) {
   const { session } = useAuth();
+  const common = useCommonLabels();
 
   if (session.status !== "authenticated" || !session.user) {
     return (
       fallback ?? (
         <EmptyStateShell
-          title="Access restricted"
-          description="You must be signed in to view this content."
+          title={common.accessRestricted}
+          description={common.signInRequired}
         />
       )
     );
@@ -33,8 +35,8 @@ export function RoleGuard({ children, roles, fallback }: RoleGuardProps) {
     return (
       fallback ?? (
         <EmptyStateShell
-          title="Insufficient role"
-          description="Your account does not have the required role for this action."
+          title={common.permissionDenied}
+          description={common.permissionDeniedDescription}
         />
       )
     );

@@ -172,7 +172,7 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
             />
           );
         case "kpi":
-          return <WorkspaceKpiGrid labels={labels.kpi} values={model.kpi} />;
+          return <WorkspaceKpiGrid labels={labels.kpi} values={model.kpi} live={model.kpi.live} />;
         case "quick-actions":
           return (
             <WorkspaceQuickActions
@@ -183,7 +183,7 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
             />
           );
         case "activity":
-          return <WorkspaceActivity labels={labels.activity} />;
+          return <WorkspaceActivity labels={labels.activity} items={model.feed.activity} />;
         case "continue":
           return (
             <WorkspaceContinueWorking
@@ -194,7 +194,7 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
             />
           );
         case "tasks":
-          return <WorkspaceTasks labels={labels.tasks} />;
+          return <WorkspaceTasks labels={labels.tasks} items={model.feed.tasks} />;
         case "pinned":
           return (
             <WorkspacePinned
@@ -207,6 +207,7 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
               onToggleFavoriteCompany={toggleFavoriteCompanyById}
               onOpenCompany={trackCompany}
               personalizationLabels={labels.personalization}
+              recentEngagements={model.recentEngagements}
               favoriteEngagementIds={preferences.favoriteEngagementIds}
               favoriteReportIds={preferences.favoriteReportIds}
             />
@@ -214,11 +215,11 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
         case "ai":
           return <WorkspaceAiCard labels={labels.ai} />;
         case "calendar":
-          return <WorkspaceCalendarCard labels={labels.calendar} />;
+          return <WorkspaceCalendarCard labels={labels.calendar} items={model.feed.calendarItems} />;
         case "notifications":
           return <WorkspaceNotificationsCard labels={labels.notifications} />;
         case "insights":
-          return <WorkspaceInsightsCard labels={labels.insights} />;
+          return <WorkspaceInsightsCard labels={labels.insights} metrics={model.feed.insights} />;
         case "shortcuts":
           return <WorkspaceShortcutsCard labels={labels.shortcuts} />;
         case "tips":

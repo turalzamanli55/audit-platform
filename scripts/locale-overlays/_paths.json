@@ -1,0 +1,4658 @@
+[
+  {
+    "path": "engagements.navEngagements",
+    "value": "Engagements"
+  },
+  {
+    "path": "engagements.title",
+    "value": "Engagements"
+  },
+  {
+    "path": "engagements.subtitle",
+    "value": "Audit and assurance engagements in your workspace"
+  },
+  {
+    "path": "engagements.breadcrumbRoot",
+    "value": "Engagements"
+  },
+  {
+    "path": "engagements.search",
+    "value": "Search engagements"
+  },
+  {
+    "path": "engagements.filterAll",
+    "value": "All"
+  },
+  {
+    "path": "engagements.filterActive",
+    "value": "Active"
+  },
+  {
+    "path": "engagements.filterInactive",
+    "value": "Inactive"
+  },
+  {
+    "path": "engagements.filterArchived",
+    "value": "Archived"
+  },
+  {
+    "path": "engagements.filterSuspended",
+    "value": "Suspended"
+  },
+  {
+    "path": "engagements.filterLifecycleAll",
+    "value": "All stages"
+  },
+  {
+    "path": "engagements.sortName",
+    "value": "Name"
+  },
+  {
+    "path": "engagements.sortUpdated",
+    "value": "Last updated"
+  },
+  {
+    "path": "engagements.sortAsc",
+    "value": "Ascending"
+  },
+  {
+    "path": "engagements.sortDesc",
+    "value": "Descending"
+  },
+  {
+    "path": "engagements.columnEngagement",
+    "value": "Engagement"
+  },
+  {
+    "path": "engagements.columnClient",
+    "value": "Client"
+  },
+  {
+    "path": "engagements.columnCode",
+    "value": "Code"
+  },
+  {
+    "path": "engagements.columnType",
+    "value": "Type"
+  },
+  {
+    "path": "engagements.columnLifecycle",
+    "value": "Lifecycle"
+  },
+  {
+    "path": "engagements.columnFramework",
+    "value": "Framework"
+  },
+  {
+    "path": "engagements.columnStatus",
+    "value": "Status"
+  },
+  {
+    "path": "engagements.columnUpdated",
+    "value": "Updated"
+  },
+  {
+    "path": "engagements.emptyTitle",
+    "value": "No engagements yet"
+  },
+  {
+    "path": "engagements.emptyDescription",
+    "value": "Engagements in this workspace will appear here once created."
+  },
+  {
+    "path": "engagements.errorTitle",
+    "value": "Unable to load engagements"
+  },
+  {
+    "path": "engagements.errorDescription",
+    "value": "Something went wrong while loading your engagement list."
+  },
+  {
+    "path": "engagements.forbiddenTitle",
+    "value": "Access restricted"
+  },
+  {
+    "path": "engagements.forbiddenDescription",
+    "value": "You do not have permission to view engagements in this workspace."
+  },
+  {
+    "path": "engagements.noWorkspaceTitle",
+    "value": "Workspace required"
+  },
+  {
+    "path": "engagements.noWorkspaceDescription",
+    "value": "Select a workspace to view engagements."
+  },
+  {
+    "path": "engagements.notFoundTitle",
+    "value": "Page not found"
+  },
+  {
+    "path": "engagements.notFoundDescription",
+    "value": "The engagement view you requested could not be found."
+  },
+  {
+    "path": "engagements.loading",
+    "value": "Loading engagements"
+  },
+  {
+    "path": "engagements.results",
+    "value": "{count} engagements"
+  },
+  {
+    "path": "engagements.page",
+    "value": "Page"
+  },
+  {
+    "path": "engagements.of",
+    "value": "of"
+  },
+  {
+    "path": "engagements.previous",
+    "value": "Previous"
+  },
+  {
+    "path": "engagements.next",
+    "value": "Next"
+  },
+  {
+    "path": "engagements.viewEngagement",
+    "value": "View engagement"
+  },
+  {
+    "path": "engagements.openMenu",
+    "value": "Open actions menu"
+  },
+  {
+    "path": "engagements.selected",
+    "value": "{count} selected"
+  },
+  {
+    "path": "engagements.frameworkIfrs",
+    "value": "IFRS"
+  },
+  {
+    "path": "engagements.frameworkLocalGaap",
+    "value": "Local GAAP"
+  },
+  {
+    "path": "engagements.frameworkOther",
+    "value": "Other"
+  },
+  {
+    "path": "engagements.updated",
+    "value": "Updated"
+  },
+  {
+    "path": "engagements.quickActions",
+    "value": "Quick actions"
+  },
+  {
+    "path": "engagements.createEngagement",
+    "value": "Create engagement"
+  },
+  {
+    "path": "engagements.lifecycleStatuses.draft",
+    "value": "Draft"
+  },
+  {
+    "path": "engagements.lifecycleStatuses.planning",
+    "value": "Planning"
+  },
+  {
+    "path": "engagements.lifecycleStatuses.fieldwork",
+    "value": "Fieldwork"
+  },
+  {
+    "path": "engagements.lifecycleStatuses.review",
+    "value": "Review"
+  },
+  {
+    "path": "engagements.lifecycleStatuses.completed",
+    "value": "Completed"
+  },
+  {
+    "path": "engagements.lifecycleStatuses.closed",
+    "value": "Closed"
+  },
+  {
+    "path": "engagements.create.title",
+    "value": "Create an engagement"
+  },
+  {
+    "path": "engagements.create.subtitle",
+    "value": "Set up a new audit or assurance engagement in guided steps"
+  },
+  {
+    "path": "engagements.create.breadcrumbEngagements",
+    "value": "Engagements"
+  },
+  {
+    "path": "engagements.create.breadcrumbCreate",
+    "value": "Create"
+  },
+  {
+    "path": "engagements.create.stepGeneral",
+    "value": "General"
+  },
+  {
+    "path": "engagements.create.stepClient",
+    "value": "Client"
+  },
+  {
+    "path": "engagements.create.stepReporting",
+    "value": "Reporting"
+  },
+  {
+    "path": "engagements.create.stepTeam",
+    "value": "Team"
+  },
+  {
+    "path": "engagements.create.stepDates",
+    "value": "Dates"
+  },
+  {
+    "path": "engagements.create.stepNotes",
+    "value": "Notes"
+  },
+  {
+    "path": "engagements.create.stepReview",
+    "value": "Review"
+  },
+  {
+    "path": "engagements.create.stepGeneralTitle",
+    "value": "General information"
+  },
+  {
+    "path": "engagements.create.stepGeneralDescription",
+    "value": "Engagement name, code, and type"
+  },
+  {
+    "path": "engagements.create.stepClientTitle",
+    "value": "Client company"
+  },
+  {
+    "path": "engagements.create.stepClientDescription",
+    "value": "Select the legal entity for this engagement"
+  },
+  {
+    "path": "engagements.create.stepReportingTitle",
+    "value": "Reporting"
+  },
+  {
+    "path": "engagements.create.stepReportingDescription",
+    "value": "Framework and reporting period"
+  },
+  {
+    "path": "engagements.create.stepTeamTitle",
+    "value": "Team"
+  },
+  {
+    "path": "engagements.create.stepTeamDescription",
+    "value": "Team assignment for this engagement"
+  },
+  {
+    "path": "engagements.create.stepDatesTitle",
+    "value": "Planned dates"
+  },
+  {
+    "path": "engagements.create.stepDatesDescription",
+    "value": "Schedule boundaries for fieldwork and delivery"
+  },
+  {
+    "path": "engagements.create.stepNotesTitle",
+    "value": "Notes"
+  },
+  {
+    "path": "engagements.create.stepNotesDescription",
+    "value": "Optional description and internal notes"
+  },
+  {
+    "path": "engagements.create.stepReviewTitle",
+    "value": "Review & create"
+  },
+  {
+    "path": "engagements.create.stepReviewDescription",
+    "value": "Confirm details before creating"
+  },
+  {
+    "path": "engagements.create.name",
+    "value": "Engagement name"
+  },
+  {
+    "path": "engagements.create.engagementCode",
+    "value": "Engagement code"
+  },
+  {
+    "path": "engagements.create.engagementType",
+    "value": "Engagement type"
+  },
+  {
+    "path": "engagements.create.lifecycleStatus",
+    "value": "Lifecycle status"
+  },
+  {
+    "path": "engagements.create.clientCompany",
+    "value": "Client company"
+  },
+  {
+    "path": "engagements.create.selectClient",
+    "value": "Select client company"
+  },
+  {
+    "path": "engagements.create.reportingFramework",
+    "value": "Reporting framework"
+  },
+  {
+    "path": "engagements.create.periodStart",
+    "value": "Period start"
+  },
+  {
+    "path": "engagements.create.periodEnd",
+    "value": "Period end"
+  },
+  {
+    "path": "engagements.create.plannedStart",
+    "value": "Planned start"
+  },
+  {
+    "path": "engagements.create.plannedEnd",
+    "value": "Planned end"
+  },
+  {
+    "path": "engagements.create.description",
+    "value": "Description"
+  },
+  {
+    "path": "engagements.create.notes",
+    "value": "Notes"
+  },
+  {
+    "path": "engagements.create.optional",
+    "value": "Optional"
+  },
+  {
+    "path": "engagements.create.continue",
+    "value": "Continue"
+  },
+  {
+    "path": "engagements.create.back",
+    "value": "Back"
+  },
+  {
+    "path": "engagements.create.cancel",
+    "value": "Cancel"
+  },
+  {
+    "path": "engagements.create.createEngagement",
+    "value": "Create engagement"
+  },
+  {
+    "path": "engagements.create.creating",
+    "value": "Creating engagement…"
+  },
+  {
+    "path": "engagements.create.autosaveHint",
+    "value": "Progress is saved locally on this device."
+  },
+  {
+    "path": "engagements.create.forbiddenTitle",
+    "value": "Permission required"
+  },
+  {
+    "path": "engagements.create.forbiddenDescription",
+    "value": "You need engagement creation permission to create engagements."
+  },
+  {
+    "path": "engagements.create.teamHelper",
+    "value": "Select workspace members to assign to this engagement. You will be added automatically as engagement manager."
+  },
+  {
+    "path": "engagements.create.teamEmptyTitle",
+    "value": "No workspace members available"
+  },
+  {
+    "path": "engagements.create.teamEmptyDescription",
+    "value": "Invite users to this workspace before assigning an engagement team."
+  },
+  {
+    "path": "engagements.create.teamReviewLabel",
+    "value": "Team"
+  },
+  {
+    "path": "engagements.create.teamReviewEmpty",
+    "value": "Creator only (added automatically)"
+  },
+  {
+    "path": "engagements.create.teamRoles.engagement_partner",
+    "value": "Engagement partner"
+  },
+  {
+    "path": "engagements.create.teamRoles.engagement_manager",
+    "value": "Engagement manager"
+  },
+  {
+    "path": "engagements.create.teamRoles.senior",
+    "value": "Senior"
+  },
+  {
+    "path": "engagements.create.teamRoles.staff",
+    "value": "Staff"
+  },
+  {
+    "path": "engagements.create.teamRoles.reviewer",
+    "value": "Reviewer"
+  },
+  {
+    "path": "engagements.create.teamRoles.observer",
+    "value": "Observer"
+  },
+  {
+    "path": "engagements.create.engagementTypes.statutory_audit",
+    "value": "Statutory audit"
+  },
+  {
+    "path": "engagements.create.engagementTypes.review",
+    "value": "Review"
+  },
+  {
+    "path": "engagements.create.engagementTypes.agreed_upon_procedures",
+    "value": "Agreed-upon procedures"
+  },
+  {
+    "path": "engagements.create.engagementTypes.advisory",
+    "value": "Advisory"
+  },
+  {
+    "path": "engagements.create.engagementTypes.other",
+    "value": "Other"
+  },
+  {
+    "path": "engagements.create.frameworks.IFRS",
+    "value": "IFRS"
+  },
+  {
+    "path": "engagements.create.frameworks.LOCAL_GAAP",
+    "value": "Local GAAP"
+  },
+  {
+    "path": "engagements.create.frameworks.OTHER",
+    "value": "Other"
+  },
+  {
+    "path": "engagements.workspace.heroEyebrow",
+    "value": "Engagement workspace"
+  },
+  {
+    "path": "engagements.workspace.navAriaLabel",
+    "value": "Engagement workspace sections"
+  },
+  {
+    "path": "engagements.workspace.navOverview",
+    "value": "Overview"
+  },
+  {
+    "path": "engagements.workspace.navMembers",
+    "value": "Team"
+  },
+  {
+    "path": "engagements.workspace.navPlanning",
+    "value": "Planning"
+  },
+  {
+    "path": "engagements.workspace.navRiskAssessment",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "engagements.workspace.navFieldwork",
+    "value": "Fieldwork"
+  },
+  {
+    "path": "engagements.workspace.navHistory",
+    "value": "Timeline"
+  },
+  {
+    "path": "engagements.workspace.navSettings",
+    "value": "Settings"
+  },
+  {
+    "path": "engagements.workspace.loading",
+    "value": "Loading engagement workspace"
+  },
+  {
+    "path": "engagements.workspace.errorTitle",
+    "value": "Unable to load engagement workspace"
+  },
+  {
+    "path": "engagements.workspace.errorDescription",
+    "value": "Something went wrong while loading this engagement workspace."
+  },
+  {
+    "path": "engagements.workspace.summaryClient",
+    "value": "Client"
+  },
+  {
+    "path": "engagements.workspace.summaryCode",
+    "value": "Code"
+  },
+  {
+    "path": "engagements.workspace.summaryType",
+    "value": "Engagement type"
+  },
+  {
+    "path": "engagements.workspace.summaryLifecycle",
+    "value": "Lifecycle"
+  },
+  {
+    "path": "engagements.workspace.summaryFramework",
+    "value": "Reporting framework"
+  },
+  {
+    "path": "engagements.workspace.summaryPlannedDates",
+    "value": "Planned dates"
+  },
+  {
+    "path": "engagements.workspace.metadataTitle",
+    "value": "Engagement metadata"
+  },
+  {
+    "path": "engagements.workspace.metadataDescription",
+    "value": "Identity and record details for this engagement."
+  },
+  {
+    "path": "engagements.workspace.metadataSlug",
+    "value": "Workspace slug"
+  },
+  {
+    "path": "engagements.workspace.metadataCreated",
+    "value": "Created"
+  },
+  {
+    "path": "engagements.workspace.metadataPlannedDates",
+    "value": "Planned dates"
+  },
+  {
+    "path": "engagements.workspace.metadataMembers",
+    "value": "Team members"
+  },
+  {
+    "path": "engagements.workspace.planning.title",
+    "value": "Planning summary"
+  },
+  {
+    "path": "engagements.workspace.planning.description",
+    "value": "Audit planning status, readiness, and progress for this engagement."
+  },
+  {
+    "path": "engagements.workspace.planning.lifecycleStage",
+    "value": "Lifecycle stage"
+  },
+  {
+    "path": "engagements.workspace.planning.financialYear",
+    "value": "Financial year"
+  },
+  {
+    "path": "engagements.workspace.planning.plannedSchedule",
+    "value": "Planned schedule"
+  },
+  {
+    "path": "engagements.workspace.planning.teamSize",
+    "value": "Team size"
+  },
+  {
+    "path": "engagements.workspace.planning.planningStatus",
+    "value": "Planning status"
+  },
+  {
+    "path": "engagements.workspace.planning.planningProgress",
+    "value": "Planning progress"
+  },
+  {
+    "path": "engagements.workspace.planning.planVersion",
+    "value": "Plan version"
+  },
+  {
+    "path": "engagements.workspace.planning.checklistProgress",
+    "value": "Checklist progress"
+  },
+  {
+    "path": "engagements.workspace.planning.reportingFramework",
+    "value": "Reporting framework"
+  },
+  {
+    "path": "engagements.workspace.planning.openPlanning",
+    "value": "Open audit planning"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.title",
+    "value": "Risk assessment summary"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.description",
+    "value": "Risk assessment status, significance, and review readiness for this engagement."
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.lifecycleStage",
+    "value": "Lifecycle stage"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.financialYear",
+    "value": "Financial year"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.plannedSchedule",
+    "value": "Planned schedule"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.teamSize",
+    "value": "Team size"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.riskStatus",
+    "value": "Risk status"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.riskProgress",
+    "value": "Risk progress"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.assessmentVersion",
+    "value": "Assessment version"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.significantRisks",
+    "value": "Significant risks"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.pendingReview",
+    "value": "Pending review"
+  },
+  {
+    "path": "engagements.workspace.riskAssessment.openRiskAssessment",
+    "value": "Open risk assessment"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.title",
+    "value": "Fieldwork summary"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.description",
+    "value": "Audit execution status, procedure progress, and evidence for this engagement."
+  },
+  {
+    "path": "engagements.workspace.fieldwork.lifecycleStage",
+    "value": "Lifecycle stage"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.financialYear",
+    "value": "Financial year"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.plannedSchedule",
+    "value": "Planned schedule"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.teamSize",
+    "value": "Team size"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.fieldworkStatus",
+    "value": "Fieldwork status"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.fieldworkProgress",
+    "value": "Fieldwork progress"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.proceduresComplete",
+    "value": "Procedures complete"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.findingsCount",
+    "value": "Findings"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.evidenceCount",
+    "value": "Evidence items"
+  },
+  {
+    "path": "engagements.workspace.fieldwork.openFieldwork",
+    "value": "Open audit fieldwork"
+  },
+  {
+    "path": "engagements.workspace.client.title",
+    "value": "Client information"
+  },
+  {
+    "path": "engagements.workspace.client.description",
+    "value": "The legal entity this engagement serves."
+  },
+  {
+    "path": "engagements.workspace.client.companyName",
+    "value": "Client company"
+  },
+  {
+    "path": "engagements.workspace.client.companySlug",
+    "value": "Company reference"
+  },
+  {
+    "path": "engagements.workspace.client.engagementName",
+    "value": "Engagement name"
+  },
+  {
+    "path": "engagements.workspace.client.engagementCode",
+    "value": "Engagement code"
+  },
+  {
+    "path": "engagements.workspace.client.viewClient",
+    "value": "Open {name}"
+  },
+  {
+    "path": "engagements.workspace.status.title",
+    "value": "Status & progress"
+  },
+  {
+    "path": "engagements.workspace.status.description",
+    "value": "Current lifecycle position and overall completion."
+  },
+  {
+    "path": "engagements.workspace.status.progressLabel",
+    "value": "Engagement progress"
+  },
+  {
+    "path": "engagements.workspace.information.title",
+    "value": "Engagement information"
+  },
+  {
+    "path": "engagements.workspace.information.description",
+    "value": "Type, framework, reporting period, and internal notes."
+  },
+  {
+    "path": "engagements.workspace.information.reportingPeriod",
+    "value": "Reporting period"
+  },
+  {
+    "path": "engagements.workspace.information.internalNotes",
+    "value": "Internal notes"
+  },
+  {
+    "path": "engagements.workspace.sections.overview.title",
+    "value": "Overview"
+  },
+  {
+    "path": "engagements.workspace.sections.overview.description",
+    "value": "A calm snapshot of this engagement."
+  },
+  {
+    "path": "engagements.workspace.sections.overview.highlightsTitle",
+    "value": "Highlights"
+  },
+  {
+    "path": "engagements.workspace.sections.overview.highlightsDescription",
+    "value": "Context and status at a glance."
+  },
+  {
+    "path": "engagements.workspace.sections.overview.noDescription",
+    "value": "No engagement description has been added yet."
+  },
+  {
+    "path": "engagements.workspace.sections.members.title",
+    "value": "Members"
+  },
+  {
+    "path": "engagements.workspace.sections.history.title",
+    "value": "History"
+  },
+  {
+    "path": "engagements.workspace.sections.history.description",
+    "value": "Chronological activity and audit trail for this engagement."
+  },
+  {
+    "path": "engagements.workspace.sections.history.emptyTitle",
+    "value": "No activity yet"
+  },
+  {
+    "path": "engagements.workspace.sections.history.emptyDescription",
+    "value": "Activity history will appear here as changes are recorded."
+  },
+  {
+    "path": "engagements.workspace.sections.settings.title",
+    "value": "Settings"
+  },
+  {
+    "path": "engagements.workspace.sections.settings.description",
+    "value": "Configuration and lifecycle controls for this engagement."
+  },
+  {
+    "path": "engagements.settings.title",
+    "value": "Settings"
+  },
+  {
+    "path": "engagements.settings.description",
+    "value": "Configure engagement details, reporting, and lifecycle status."
+  },
+  {
+    "path": "engagements.settings.readOnlyNotice",
+    "value": "You have view-only access to engagement settings."
+  },
+  {
+    "path": "engagements.settings.saveLabel",
+    "value": "Save"
+  },
+  {
+    "path": "engagements.settings.savingLabel",
+    "value": "Saving…"
+  },
+  {
+    "path": "engagements.settings.discardLabel",
+    "value": "Discard"
+  },
+  {
+    "path": "engagements.settings.sections.general.title",
+    "value": "General"
+  },
+  {
+    "path": "engagements.settings.sections.general.description",
+    "value": "Name, code, type, and lifecycle status."
+  },
+  {
+    "path": "engagements.settings.sections.client.title",
+    "value": "Client"
+  },
+  {
+    "path": "engagements.settings.sections.client.description",
+    "value": "The legal entity this engagement serves."
+  },
+  {
+    "path": "engagements.settings.sections.reporting.title",
+    "value": "Reporting"
+  },
+  {
+    "path": "engagements.settings.sections.reporting.description",
+    "value": "Framework and reporting period."
+  },
+  {
+    "path": "engagements.settings.sections.dates.title",
+    "value": "Dates"
+  },
+  {
+    "path": "engagements.settings.sections.dates.description",
+    "value": "Planned schedule for this engagement."
+  },
+  {
+    "path": "engagements.settings.sections.notes.title",
+    "value": "Notes"
+  },
+  {
+    "path": "engagements.settings.sections.notes.description",
+    "value": "Description and internal notes."
+  },
+  {
+    "path": "engagements.settings.lifecycle.title",
+    "value": "Lifecycle"
+  },
+  {
+    "path": "engagements.settings.lifecycle.description",
+    "value": "Archive or restore this engagement when its status changes."
+  },
+  {
+    "path": "engagements.settings.lifecycle.archivedBannerTitle",
+    "value": "This engagement is archived"
+  },
+  {
+    "path": "engagements.settings.lifecycle.archivedBannerDescription",
+    "value": "The workspace is read-only. Restore the engagement to make changes again."
+  },
+  {
+    "path": "engagements.settings.lifecycle.archivePrompt",
+    "value": "Archiving makes this engagement read-only while preserving its history."
+  },
+  {
+    "path": "engagements.settings.lifecycle.archiveAction",
+    "value": "Archive engagement"
+  },
+  {
+    "path": "engagements.settings.lifecycle.archiveConfirmTitle",
+    "value": "Archive this engagement?"
+  },
+  {
+    "path": "engagements.settings.lifecycle.archiveConfirmDescription",
+    "value": "The engagement will become read-only. You can restore it later if needed."
+  },
+  {
+    "path": "engagements.settings.lifecycle.archiveReasonPlaceholder",
+    "value": "Optional reason for archiving"
+  },
+  {
+    "path": "engagements.settings.lifecycle.archiveConfirmAction",
+    "value": "Confirm archive"
+  },
+  {
+    "path": "engagements.settings.lifecycle.restorePrompt",
+    "value": "Restore this engagement to resume configuration and fieldwork."
+  },
+  {
+    "path": "engagements.settings.lifecycle.restoreAction",
+    "value": "Restore engagement"
+  },
+  {
+    "path": "engagements.settings.lifecycle.restoreConfirmTitle",
+    "value": "Restore this engagement?"
+  },
+  {
+    "path": "engagements.settings.lifecycle.restoreConfirmDescription",
+    "value": "The engagement will become active again and editable for authorized users."
+  },
+  {
+    "path": "engagements.settings.lifecycle.restoreConfirmAction",
+    "value": "Confirm restore"
+  },
+  {
+    "path": "engagements.settings.lifecycle.reasonLabel",
+    "value": "Reason"
+  },
+  {
+    "path": "engagements.settings.lifecycle.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "engagements.overview.editDescription",
+    "value": "Edit description"
+  },
+  {
+    "path": "engagements.overview.saveDescription",
+    "value": "Save description"
+  },
+  {
+    "path": "engagements.overview.cancelEdit",
+    "value": "Cancel"
+  },
+  {
+    "path": "engagements.members.title",
+    "value": "Team members"
+  },
+  {
+    "path": "engagements.members.description",
+    "value": "People assigned to this engagement."
+  },
+  {
+    "path": "engagements.members.emptyTitle",
+    "value": "No members assigned"
+  },
+  {
+    "path": "engagements.members.emptyDescription",
+    "value": "Team members will appear here once assigned to this engagement."
+  },
+  {
+    "path": "engagements.members.joinedLabel",
+    "value": "Joined"
+  },
+  {
+    "path": "engagements.members.forbiddenTitle",
+    "value": "Access restricted"
+  },
+  {
+    "path": "engagements.members.forbiddenDescription",
+    "value": "You do not have permission to view engagement members."
+  },
+  {
+    "path": "engagements.members.roles.engagement_partner",
+    "value": "Engagement partner"
+  },
+  {
+    "path": "engagements.members.roles.engagement_manager",
+    "value": "Engagement manager"
+  },
+  {
+    "path": "engagements.members.roles.senior",
+    "value": "Senior"
+  },
+  {
+    "path": "engagements.members.roles.staff",
+    "value": "Staff"
+  },
+  {
+    "path": "engagements.members.roles.reviewer",
+    "value": "Reviewer"
+  },
+  {
+    "path": "engagements.members.roles.observer",
+    "value": "Observer"
+  },
+  {
+    "path": "engagements.history.title",
+    "value": "Activity & audit"
+  },
+  {
+    "path": "engagements.history.description",
+    "value": "Read-only timeline of engagement changes and audit summary."
+  },
+  {
+    "path": "engagements.history.errorTitle",
+    "value": "Unable to load activity"
+  },
+  {
+    "path": "engagements.history.errorDescription",
+    "value": "Something went wrong while loading engagement activity."
+  },
+  {
+    "path": "engagements.history.summary.title",
+    "value": "Audit summary"
+  },
+  {
+    "path": "engagements.history.summary.description",
+    "value": "Counts of recorded events for this engagement."
+  },
+  {
+    "path": "engagements.history.summary.total",
+    "value": "Total events"
+  },
+  {
+    "path": "engagements.history.summary.created",
+    "value": "Created"
+  },
+  {
+    "path": "engagements.history.summary.updated",
+    "value": "Updated"
+  },
+  {
+    "path": "engagements.history.summary.statusChanged",
+    "value": "Status changed"
+  },
+  {
+    "path": "engagements.history.summary.archived",
+    "value": "Archived"
+  },
+  {
+    "path": "engagements.history.summary.restored",
+    "value": "Restored"
+  },
+  {
+    "path": "engagements.history.timeline.title",
+    "value": "Activity timeline"
+  },
+  {
+    "path": "engagements.history.timeline.description",
+    "value": "Chronological audit trail for this engagement."
+  },
+  {
+    "path": "engagements.history.timeline.emptyTitle",
+    "value": "No activity recorded"
+  },
+  {
+    "path": "engagements.history.timeline.emptyDescription",
+    "value": "Changes to this engagement will appear here as they are audited."
+  },
+  {
+    "path": "engagements.history.timeline.reasonArchive",
+    "value": "Archive reason"
+  },
+  {
+    "path": "engagements.history.timeline.reasonRestore",
+    "value": "Restore reason"
+  },
+  {
+    "path": "engagements.history.timeline.fieldsChanged",
+    "value": "Fields changed"
+  },
+  {
+    "path": "engagements.history.timeline.actions.engagement.created",
+    "value": "Engagement created"
+  },
+  {
+    "path": "engagements.history.timeline.actions.engagement.updated",
+    "value": "Engagement updated"
+  },
+  {
+    "path": "engagements.history.timeline.actions.engagement.status.changed",
+    "value": "Status changed"
+  },
+  {
+    "path": "engagements.history.timeline.actions.engagement.archived",
+    "value": "Engagement archived"
+  },
+  {
+    "path": "engagements.history.timeline.actions.engagement.restored",
+    "value": "Engagement restored"
+  },
+  {
+    "path": "engagements.history.version.title",
+    "value": "Version information"
+  },
+  {
+    "path": "engagements.history.version.description",
+    "value": "Current record versions and lifecycle timestamps."
+  },
+  {
+    "path": "engagements.history.version.cardTitle",
+    "value": "Record metadata"
+  },
+  {
+    "path": "engagements.history.version.recordVersion",
+    "value": "Record version"
+  },
+  {
+    "path": "engagements.history.version.created",
+    "value": "Created"
+  },
+  {
+    "path": "engagements.history.version.archived",
+    "value": "Archived at"
+  },
+  {
+    "path": "engagements.history.version.notArchived",
+    "value": "Not archived"
+  },
+  {
+    "path": "engagements.history.version.restored",
+    "value": "Restored"
+  },
+  {
+    "path": "engagements.history.version.restoredHint",
+    "value": "See timeline for restore events"
+  },
+  {
+    "path": "planning.notFoundTitle",
+    "value": "Planning not found"
+  },
+  {
+    "path": "planning.notFoundDescription",
+    "value": "The planning workspace you requested could not be found for this engagement."
+  },
+  {
+    "path": "planning.forbiddenTitle",
+    "value": "Permission required"
+  },
+  {
+    "path": "planning.forbiddenDescription",
+    "value": "You need planning permission to access audit planning."
+  },
+  {
+    "path": "planning.noWorkspaceTitle",
+    "value": "Workspace required"
+  },
+  {
+    "path": "planning.noWorkspaceDescription",
+    "value": "Select a workspace before opening audit planning."
+  },
+  {
+    "path": "planning.statuses.not_started",
+    "value": "Not started"
+  },
+  {
+    "path": "planning.statuses.in_progress",
+    "value": "In progress"
+  },
+  {
+    "path": "planning.statuses.pending_review",
+    "value": "Pending review"
+  },
+  {
+    "path": "planning.statuses.returned",
+    "value": "Returned"
+  },
+  {
+    "path": "planning.statuses.approved",
+    "value": "Approved"
+  },
+  {
+    "path": "planning.statuses.superseded",
+    "value": "Superseded"
+  },
+  {
+    "path": "planning.integrationStatuses.not_configured",
+    "value": "Not configured"
+  },
+  {
+    "path": "planning.integrationStatuses.placeholder",
+    "value": "Placeholder ready"
+  },
+  {
+    "path": "planning.integrationStatuses.integrated",
+    "value": "Integrated"
+  },
+  {
+    "path": "planning.empty.title",
+    "value": "Planning not initiated"
+  },
+  {
+    "path": "planning.empty.description",
+    "value": "Create an audit plan to begin documenting strategy, scope, team allocation, and readiness checks."
+  },
+  {
+    "path": "planning.empty.createAction",
+    "value": "Create planning"
+  },
+  {
+    "path": "planning.empty.creating",
+    "value": "Creating planning…"
+  },
+  {
+    "path": "planning.empty.forbiddenDescription",
+    "value": "You need planning creation permission to initiate audit planning."
+  },
+  {
+    "path": "planning.editor.readOnlyNotice",
+    "value": "You have view-only access to this planning section."
+  },
+  {
+    "path": "planning.editor.saveLabel",
+    "value": "Save"
+  },
+  {
+    "path": "planning.editor.savingLabel",
+    "value": "Saving…"
+  },
+  {
+    "path": "planning.editor.discardLabel",
+    "value": "Discard"
+  },
+  {
+    "path": "planning.editor.placeholder",
+    "value": "Document professional judgment and engagement-specific context…"
+  },
+  {
+    "path": "planning.workspace.heroEyebrow",
+    "value": "Audit planning"
+  },
+  {
+    "path": "planning.workspace.breadcrumbPlanning",
+    "value": "Planning"
+  },
+  {
+    "path": "planning.workspace.backToEngagement",
+    "value": "Back to engagement"
+  },
+  {
+    "path": "planning.workspace.navAriaLabel",
+    "value": "Planning workspace sections"
+  },
+  {
+    "path": "planning.workspace.navOverview",
+    "value": "Dashboard"
+  },
+  {
+    "path": "planning.workspace.navStrategy",
+    "value": "Audit strategy"
+  },
+  {
+    "path": "planning.workspace.navObjectives",
+    "value": "Objectives"
+  },
+  {
+    "path": "planning.workspace.navScope",
+    "value": "Scope"
+  },
+  {
+    "path": "planning.workspace.navFramework",
+    "value": "Framework"
+  },
+  {
+    "path": "planning.workspace.navMateriality",
+    "value": "Materiality"
+  },
+  {
+    "path": "planning.workspace.navRisk",
+    "value": "Risk"
+  },
+  {
+    "path": "planning.workspace.navTeam",
+    "value": "Team"
+  },
+  {
+    "path": "planning.workspace.navTimeline",
+    "value": "Timeline"
+  },
+  {
+    "path": "planning.workspace.navNotes",
+    "value": "Notes"
+  },
+  {
+    "path": "planning.workspace.navChecklist",
+    "value": "Checklist"
+  },
+  {
+    "path": "planning.workspace.navDocuments",
+    "value": "Documents"
+  },
+  {
+    "path": "planning.workspace.navHistory",
+    "value": "History"
+  },
+  {
+    "path": "planning.workspace.navSettings",
+    "value": "Settings"
+  },
+  {
+    "path": "planning.workspace.loading",
+    "value": "Loading planning workspace"
+  },
+  {
+    "path": "planning.workspace.errorTitle",
+    "value": "Unable to load planning workspace"
+  },
+  {
+    "path": "planning.workspace.errorDescription",
+    "value": "Something went wrong while loading audit planning."
+  },
+  {
+    "path": "planning.workspace.archivedTitle",
+    "value": "Planning archived"
+  },
+  {
+    "path": "planning.workspace.archivedDescription",
+    "value": "This planning record is read-only. Restore it to continue editing."
+  },
+  {
+    "path": "planning.workspace.summaryStatus",
+    "value": "Planning status"
+  },
+  {
+    "path": "planning.workspace.summaryVersion",
+    "value": "Plan version"
+  },
+  {
+    "path": "planning.workspace.summaryFramework",
+    "value": "Reporting framework"
+  },
+  {
+    "path": "planning.workspace.summaryChecklist",
+    "value": "Checklist progress"
+  },
+  {
+    "path": "planning.workspace.summaryIntegration",
+    "value": "Integration readiness"
+  },
+  {
+    "path": "planning.workspace.status.title",
+    "value": "Planning status"
+  },
+  {
+    "path": "planning.workspace.status.description",
+    "value": "Current planning lifecycle position and readiness indicators."
+  },
+  {
+    "path": "planning.workspace.status.progressLabel",
+    "value": "Planning progress"
+  },
+  {
+    "path": "planning.workspace.status.planningStatus",
+    "value": "Status"
+  },
+  {
+    "path": "planning.workspace.status.planVersion",
+    "value": "Plan version"
+  },
+  {
+    "path": "planning.workspace.status.checklistProgress",
+    "value": "Checklist"
+  },
+  {
+    "path": "planning.workspace.status.kpiProgress",
+    "value": "Overall progress"
+  },
+  {
+    "path": "planning.workspace.status.materiality",
+    "value": "Materiality"
+  },
+  {
+    "path": "planning.workspace.status.risk",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "planning.workspace.sections.overview.title",
+    "value": "Planning dashboard"
+  },
+  {
+    "path": "planning.workspace.sections.overview.description",
+    "value": "Overview of planning status, readiness, and key indicators."
+  },
+  {
+    "path": "planning.workspace.sections.strategy.title",
+    "value": "Audit strategy"
+  },
+  {
+    "path": "planning.workspace.sections.strategy.description",
+    "value": "Document the overall audit approach and significant matters."
+  },
+  {
+    "path": "planning.workspace.sections.objectives.title",
+    "value": "Engagement objectives"
+  },
+  {
+    "path": "planning.workspace.sections.objectives.description",
+    "value": "Declare the primary assurance objective and opinion scope."
+  },
+  {
+    "path": "planning.workspace.sections.scope.title",
+    "value": "Scope of audit"
+  },
+  {
+    "path": "planning.workspace.sections.scope.description",
+    "value": "Define financial periods, entities, and statements in scope."
+  },
+  {
+    "path": "planning.workspace.sections.framework.title",
+    "value": "Financial reporting framework"
+  },
+  {
+    "path": "planning.workspace.sections.framework.description",
+    "value": "Confirm the applicable reporting framework for this engagement."
+  },
+  {
+    "path": "planning.workspace.sections.materiality.title",
+    "value": "Materiality"
+  },
+  {
+    "path": "planning.workspace.sections.materiality.description",
+    "value": "Integration-ready placeholder for materiality management."
+  },
+  {
+    "path": "planning.workspace.sections.risk.title",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "planning.workspace.sections.risk.description",
+    "value": "Integration-ready placeholder for risk assessment."
+  },
+  {
+    "path": "planning.workspace.sections.team.title",
+    "value": "Team planning"
+  },
+  {
+    "path": "planning.workspace.sections.team.description",
+    "value": "Review engagement team roster and capacity planning."
+  },
+  {
+    "path": "planning.workspace.sections.timeline.title",
+    "value": "Timeline"
+  },
+  {
+    "path": "planning.workspace.sections.timeline.description",
+    "value": "Plan milestone dates across planning, fieldwork, and review."
+  },
+  {
+    "path": "planning.workspace.sections.notes.title",
+    "value": "Planning notes"
+  },
+  {
+    "path": "planning.workspace.sections.notes.description",
+    "value": "Internal planning notes and working context."
+  },
+  {
+    "path": "planning.workspace.sections.checklist.title",
+    "value": "Planning checklist"
+  },
+  {
+    "path": "planning.workspace.sections.checklist.description",
+    "value": "Track completion of core planning deliverables."
+  },
+  {
+    "path": "planning.workspace.sections.documents.title",
+    "value": "Planning documents"
+  },
+  {
+    "path": "planning.workspace.sections.documents.description",
+    "value": "Planning memoranda and supporting documentation."
+  },
+  {
+    "path": "planning.workspace.sections.history.title",
+    "value": "Planning history"
+  },
+  {
+    "path": "planning.workspace.sections.history.description",
+    "value": "Activity and version history for this audit plan."
+  },
+  {
+    "path": "planning.workspace.sections.settings.title",
+    "value": "Planning settings"
+  },
+  {
+    "path": "planning.workspace.sections.settings.description",
+    "value": "Archive or restore this planning record."
+  },
+  {
+    "path": "planning.workflow.eyebrow",
+    "value": "Approval workflow"
+  },
+  {
+    "path": "planning.workflow.lockedBadge",
+    "value": "Locked"
+  },
+  {
+    "path": "planning.workflow.submitAction",
+    "value": "Submit for review"
+  },
+  {
+    "path": "planning.workflow.returnAction",
+    "value": "Return for revision"
+  },
+  {
+    "path": "planning.workflow.returnConfirmAction",
+    "value": "Confirm return"
+  },
+  {
+    "path": "planning.workflow.approveAction",
+    "value": "Approve planning"
+  },
+  {
+    "path": "planning.workflow.reviseAction",
+    "value": "Create revision"
+  },
+  {
+    "path": "planning.workflow.reviseConfirmAction",
+    "value": "Confirm revision"
+  },
+  {
+    "path": "planning.workflow.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "planning.workflow.returnNotesTitle",
+    "value": "Return notes"
+  },
+  {
+    "path": "planning.workflow.returnNotesLabel",
+    "value": "Revision notes"
+  },
+  {
+    "path": "planning.workflow.returnNotesPlaceholder",
+    "value": "Describe what must be addressed before resubmission…"
+  },
+  {
+    "path": "planning.workflow.reviseNotesLabel",
+    "value": "Revision summary"
+  },
+  {
+    "path": "planning.workflow.reviseNotesPlaceholder",
+    "value": "Optional summary of why this approved plan is being revised…"
+  },
+  {
+    "path": "planning.workflow.pendingReviewNotice",
+    "value": "This plan is awaiting partner or manager review."
+  },
+  {
+    "path": "planning.workflow.errorGeneric",
+    "value": "Unable to complete the planning workflow action."
+  },
+  {
+    "path": "planning.comments.title",
+    "value": "Planning comments"
+  },
+  {
+    "path": "planning.comments.description",
+    "value": "Review notes and discussion captured during planning approval."
+  },
+  {
+    "path": "planning.comments.emptyDescription",
+    "value": "No planning comments yet. Comments appear when reviewers add notes or return a plan."
+  },
+  {
+    "path": "planning.comments.addLabel",
+    "value": "Add comment"
+  },
+  {
+    "path": "planning.comments.addPlaceholder",
+    "value": "Document a planning note or review comment…"
+  },
+  {
+    "path": "planning.comments.addAction",
+    "value": "Add comment"
+  },
+  {
+    "path": "planning.comments.reviewModeNotice",
+    "value": "Comments are captured when a plan is returned for revision."
+  },
+  {
+    "path": "planning.comments.types.review",
+    "value": "Review"
+  },
+  {
+    "path": "planning.comments.types.general",
+    "value": "General"
+  },
+  {
+    "path": "planning.comments.types.return",
+    "value": "Return note"
+  },
+  {
+    "path": "planning.integration.integrationReady",
+    "value": "Integration ready"
+  },
+  {
+    "path": "planning.integration.currentStatus",
+    "value": "Current status"
+  },
+  {
+    "path": "planning.integration.statuses.not_configured",
+    "value": "Not configured"
+  },
+  {
+    "path": "planning.integration.statuses.placeholder",
+    "value": "Placeholder ready"
+  },
+  {
+    "path": "planning.integration.statuses.integrated",
+    "value": "Integrated"
+  },
+  {
+    "path": "planning.integration.materiality.title",
+    "value": "Materiality"
+  },
+  {
+    "path": "planning.integration.materiality.description",
+    "value": "Materiality thresholds will be documented in a dedicated module."
+  },
+  {
+    "path": "planning.integration.materiality.placeholderTitle",
+    "value": "Materiality module placeholder"
+  },
+  {
+    "path": "planning.integration.materiality.placeholderDescription",
+    "value": "Overall, performance, and specific materiality worksheets will connect here when the Materiality module is implemented."
+  },
+  {
+    "path": "planning.integration.risk.title",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "planning.integration.risk.description",
+    "value": "Open the engagement risk assessment workspace from planning."
+  },
+  {
+    "path": "planning.integration.risk.placeholderTitle",
+    "value": "Risk assessment integrated"
+  },
+  {
+    "path": "planning.integration.risk.placeholderDescription",
+    "value": "Planning links to the dedicated risk assessment workspace. Use Risk assessment in the engagement sidebar or continue from the planning risk section."
+  },
+  {
+    "path": "planning.team.title",
+    "value": "Team planning"
+  },
+  {
+    "path": "planning.team.description",
+    "value": "Engagement roster and capacity planning for this audit."
+  },
+  {
+    "path": "planning.team.rosterTitle",
+    "value": "Engagement team"
+  },
+  {
+    "path": "planning.team.rosterEmpty",
+    "value": "No team members assigned to this engagement yet."
+  },
+  {
+    "path": "planning.team.capacityTitle",
+    "value": "Capacity planning"
+  },
+  {
+    "path": "planning.team.estimatedHours",
+    "value": "Estimated hours"
+  },
+  {
+    "path": "planning.team.notes",
+    "value": "Planning notes"
+  },
+  {
+    "path": "planning.team.saveLabel",
+    "value": "Save"
+  },
+  {
+    "path": "planning.team.savingLabel",
+    "value": "Saving…"
+  },
+  {
+    "path": "planning.timeline.title",
+    "value": "Planning timeline"
+  },
+  {
+    "path": "planning.timeline.description",
+    "value": "Milestone dates for planning, fieldwork, review, and completion."
+  },
+  {
+    "path": "planning.timeline.startDate",
+    "value": "Start"
+  },
+  {
+    "path": "planning.timeline.endDate",
+    "value": "End"
+  },
+  {
+    "path": "planning.timeline.saveLabel",
+    "value": "Save"
+  },
+  {
+    "path": "planning.timeline.savingLabel",
+    "value": "Saving…"
+  },
+  {
+    "path": "planning.timeline.milestones.planning",
+    "value": "Planning"
+  },
+  {
+    "path": "planning.timeline.milestones.fieldwork",
+    "value": "Fieldwork"
+  },
+  {
+    "path": "planning.timeline.milestones.review",
+    "value": "Review"
+  },
+  {
+    "path": "planning.timeline.milestones.completion",
+    "value": "Completion"
+  },
+  {
+    "path": "planning.checklist.title",
+    "value": "Planning checklist"
+  },
+  {
+    "path": "planning.checklist.description",
+    "value": "Track completion of core planning deliverables before fieldwork."
+  },
+  {
+    "path": "planning.checklist.progress",
+    "value": "Progress"
+  },
+  {
+    "path": "planning.checklist.saveLabel",
+    "value": "Save"
+  },
+  {
+    "path": "planning.checklist.savingLabel",
+    "value": "Saving…"
+  },
+  {
+    "path": "planning.checklist.items.objectives",
+    "value": "Engagement objectives documented"
+  },
+  {
+    "path": "planning.checklist.items.scope",
+    "value": "Audit scope defined"
+  },
+  {
+    "path": "planning.checklist.items.strategy",
+    "value": "Audit strategy documented"
+  },
+  {
+    "path": "planning.checklist.items.framework",
+    "value": "Reporting framework confirmed"
+  },
+  {
+    "path": "planning.checklist.items.materiality",
+    "value": "Materiality placeholder reviewed"
+  },
+  {
+    "path": "planning.checklist.items.risk",
+    "value": "Risk placeholder reviewed"
+  },
+  {
+    "path": "planning.checklist.items.team",
+    "value": "Team planning completed"
+  },
+  {
+    "path": "planning.checklist.items.timeline",
+    "value": "Timeline established"
+  },
+  {
+    "path": "planning.documents.title",
+    "value": "Planning documents"
+  },
+  {
+    "path": "planning.documents.description",
+    "value": "Planning memoranda and supporting documentation."
+  },
+  {
+    "path": "planning.documents.emptyTitle",
+    "value": "No planning documents"
+  },
+  {
+    "path": "planning.documents.emptyDescription",
+    "value": "Add planning memoranda and supporting references for this audit plan."
+  },
+  {
+    "path": "planning.documents.addTitle",
+    "value": "Add document reference"
+  },
+  {
+    "path": "planning.documents.nameLabel",
+    "value": "Document name"
+  },
+  {
+    "path": "planning.documents.namePlaceholder",
+    "value": "Planning memorandum"
+  },
+  {
+    "path": "planning.documents.typeLabel",
+    "value": "Document type"
+  },
+  {
+    "path": "planning.documents.addAction",
+    "value": "Add document"
+  },
+  {
+    "path": "planning.documents.metadataNotice",
+    "value": "File storage integration will attach binaries in a future release. References are recorded on the audit plan now."
+  },
+  {
+    "path": "planning.documents.documentTypes.planning_memorandum",
+    "value": "Planning memorandum"
+  },
+  {
+    "path": "planning.documents.documentTypes.risk_assessment",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "planning.documents.documentTypes.materiality_worksheet",
+    "value": "Materiality worksheet"
+  },
+  {
+    "path": "planning.documents.documentTypes.other",
+    "value": "Other"
+  },
+  {
+    "path": "planning.documents.statuses.uploaded",
+    "value": "Recorded"
+  },
+  {
+    "path": "planning.documents.statuses.pending",
+    "value": "Pending"
+  },
+  {
+    "path": "planning.documents.statuses.archived",
+    "value": "Archived"
+  },
+  {
+    "path": "planning.history.title",
+    "value": "Planning history"
+  },
+  {
+    "path": "planning.history.description",
+    "value": "Read-only timeline of planning changes and audit summary."
+  },
+  {
+    "path": "planning.history.emptyTitle",
+    "value": "No planning activity"
+  },
+  {
+    "path": "planning.history.emptyDescription",
+    "value": "Planning activity will appear here as changes are recorded."
+  },
+  {
+    "path": "planning.history.actions.created",
+    "value": "Planning created"
+  },
+  {
+    "path": "planning.history.actions.updated",
+    "value": "Planning updated"
+  },
+  {
+    "path": "planning.history.actions.statusChanged",
+    "value": "Status changed"
+  },
+  {
+    "path": "planning.history.actions.archived",
+    "value": "Planning archived"
+  },
+  {
+    "path": "planning.history.actions.restored",
+    "value": "Planning restored"
+  },
+  {
+    "path": "planning.history.actions.checklistUpdated",
+    "value": "Checklist updated"
+  },
+  {
+    "path": "planning.history.actions.timelineUpdated",
+    "value": "Timeline updated"
+  },
+  {
+    "path": "planning.history.actions.submitted",
+    "value": "Submitted for review"
+  },
+  {
+    "path": "planning.history.actions.returned",
+    "value": "Returned for revision"
+  },
+  {
+    "path": "planning.history.actions.approved",
+    "value": "Planning approved"
+  },
+  {
+    "path": "planning.history.actions.revised",
+    "value": "Plan revised"
+  },
+  {
+    "path": "planning.history.actions.commentAdded",
+    "value": "Comment added"
+  },
+  {
+    "path": "planning.history.actions.documentAdded",
+    "value": "Document added"
+  },
+  {
+    "path": "planning.history.actions.documentRemoved",
+    "value": "Document removed"
+  },
+  {
+    "path": "planning.history.revision.title",
+    "value": "Revision history"
+  },
+  {
+    "path": "planning.history.revision.description",
+    "value": "Prior approved plan versions superseded by revision."
+  },
+  {
+    "path": "planning.history.revision.entryTitle",
+    "value": "Plan version {version}"
+  },
+  {
+    "path": "planning.history.version.title",
+    "value": "Version information"
+  },
+  {
+    "path": "planning.history.version.description",
+    "value": "Current plan versions and lifecycle timestamps."
+  },
+  {
+    "path": "planning.history.version.cardTitle",
+    "value": "Plan metadata"
+  },
+  {
+    "path": "planning.history.version.recordVersion",
+    "value": "Record version"
+  },
+  {
+    "path": "planning.history.version.planVersion",
+    "value": "Plan version"
+  },
+  {
+    "path": "planning.history.version.submitted",
+    "value": "Submitted at"
+  },
+  {
+    "path": "planning.history.version.approved",
+    "value": "Approved at"
+  },
+  {
+    "path": "planning.history.version.notSubmitted",
+    "value": "Not submitted"
+  },
+  {
+    "path": "planning.history.version.notApproved",
+    "value": "Not approved"
+  },
+  {
+    "path": "planning.history.version.created",
+    "value": "Created"
+  },
+  {
+    "path": "planning.history.version.updated",
+    "value": "Updated"
+  },
+  {
+    "path": "planning.history.version.archived",
+    "value": "Archived at"
+  },
+  {
+    "path": "planning.history.version.notArchived",
+    "value": "Not archived"
+  },
+  {
+    "path": "planning.settings.title",
+    "value": "Planning settings"
+  },
+  {
+    "path": "planning.settings.description",
+    "value": "Archive or restore this audit planning record."
+  },
+  {
+    "path": "planning.settings.readOnlyNotice",
+    "value": "You have view-only access to planning settings."
+  },
+  {
+    "path": "planning.settings.lifecycle.archivedBannerTitle",
+    "value": "Planning is archived"
+  },
+  {
+    "path": "planning.settings.lifecycle.archivedBannerDescription",
+    "value": "The planning workspace is read-only. Restore planning to make changes again."
+  },
+  {
+    "path": "planning.settings.lifecycle.archivePrompt",
+    "value": "Archiving makes this planning record read-only while preserving its history."
+  },
+  {
+    "path": "planning.settings.lifecycle.archiveAction",
+    "value": "Archive planning"
+  },
+  {
+    "path": "planning.settings.lifecycle.archiveReasonPlaceholder",
+    "value": "Optional reason for archiving"
+  },
+  {
+    "path": "planning.settings.lifecycle.archiveConfirmAction",
+    "value": "Confirm archive"
+  },
+  {
+    "path": "planning.settings.lifecycle.restorePrompt",
+    "value": "Restore planning to resume documentation and review."
+  },
+  {
+    "path": "planning.settings.lifecycle.restoreAction",
+    "value": "Restore planning"
+  },
+  {
+    "path": "planning.settings.lifecycle.restoreConfirmAction",
+    "value": "Confirm restore"
+  },
+  {
+    "path": "planning.settings.lifecycle.reasonLabel",
+    "value": "Reason"
+  },
+  {
+    "path": "planning.settings.lifecycle.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "fieldwork.notFoundTitle",
+    "value": "Fieldwork not found"
+  },
+  {
+    "path": "fieldwork.notFoundDescription",
+    "value": "The fieldwork workspace you requested could not be found for this engagement."
+  },
+  {
+    "path": "fieldwork.forbiddenTitle",
+    "value": "Permission required"
+  },
+  {
+    "path": "fieldwork.forbiddenDescription",
+    "value": "You need fieldwork permission to access audit execution."
+  },
+  {
+    "path": "fieldwork.noWorkspaceTitle",
+    "value": "Workspace required"
+  },
+  {
+    "path": "fieldwork.noWorkspaceDescription",
+    "value": "Select a workspace before opening audit fieldwork."
+  },
+  {
+    "path": "fieldwork.statuses.not_started",
+    "value": "Not started"
+  },
+  {
+    "path": "fieldwork.statuses.in_progress",
+    "value": "In progress"
+  },
+  {
+    "path": "fieldwork.statuses.substantially_complete",
+    "value": "Substantially complete"
+  },
+  {
+    "path": "fieldwork.statuses.archived",
+    "value": "Archived"
+  },
+  {
+    "path": "fieldwork.programStatuses.draft",
+    "value": "Draft"
+  },
+  {
+    "path": "fieldwork.programStatuses.approved",
+    "value": "Approved"
+  },
+  {
+    "path": "fieldwork.programStatuses.in_execution",
+    "value": "In execution"
+  },
+  {
+    "path": "fieldwork.programStatuses.substantially_complete",
+    "value": "Substantially complete"
+  },
+  {
+    "path": "fieldwork.programStatuses.superseded",
+    "value": "Superseded"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.not_started",
+    "value": "Not started"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.in_progress",
+    "value": "In progress"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.pending_evidence",
+    "value": "Pending evidence"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.submitted_for_review",
+    "value": "Submitted for review"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.review_in_progress",
+    "value": "Review in progress"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.returned",
+    "value": "Returned"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.review_cleared",
+    "value": "Review cleared"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.complete",
+    "value": "Complete"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.blocked",
+    "value": "Blocked"
+  },
+  {
+    "path": "fieldwork.procedureStatuses.deferred",
+    "value": "Deferred"
+  },
+  {
+    "path": "fieldwork.procedureTypes.test_of_controls",
+    "value": "Test of controls"
+  },
+  {
+    "path": "fieldwork.procedureTypes.substantive",
+    "value": "Substantive"
+  },
+  {
+    "path": "fieldwork.procedureTypes.analytical",
+    "value": "Analytical"
+  },
+  {
+    "path": "fieldwork.procedureTypes.sampling",
+    "value": "Sampling"
+  },
+  {
+    "path": "fieldwork.procedureTypes.inquiry",
+    "value": "Inquiry"
+  },
+  {
+    "path": "fieldwork.procedureTypes.observation",
+    "value": "Observation"
+  },
+  {
+    "path": "fieldwork.procedureTypes.inspection",
+    "value": "Inspection"
+  },
+  {
+    "path": "fieldwork.procedureTypes.reperformance",
+    "value": "Reperformance"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.draft",
+    "value": "Draft"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.in_progress",
+    "value": "In progress"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.submitted",
+    "value": "Submitted"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.under_review",
+    "value": "Under review"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.returned",
+    "value": "Returned"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.cleared",
+    "value": "Cleared"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.complete",
+    "value": "Complete"
+  },
+  {
+    "path": "fieldwork.workingPaperStatuses.archived",
+    "value": "Archived"
+  },
+  {
+    "path": "fieldwork.evidenceStatuses.pending",
+    "value": "Pending"
+  },
+  {
+    "path": "fieldwork.evidenceStatuses.recorded",
+    "value": "Recorded"
+  },
+  {
+    "path": "fieldwork.evidenceStatuses.verified",
+    "value": "Verified"
+  },
+  {
+    "path": "fieldwork.evidenceStatuses.archived",
+    "value": "Archived"
+  },
+  {
+    "path": "fieldwork.findingStatuses.open",
+    "value": "Open"
+  },
+  {
+    "path": "fieldwork.findingStatuses.in_review",
+    "value": "In review"
+  },
+  {
+    "path": "fieldwork.findingStatuses.resolved",
+    "value": "Resolved"
+  },
+  {
+    "path": "fieldwork.findingStatuses.closed",
+    "value": "Closed"
+  },
+  {
+    "path": "fieldwork.actions.start",
+    "value": "Start procedure"
+  },
+  {
+    "path": "fieldwork.actions.complete",
+    "value": "Mark complete"
+  },
+  {
+    "path": "fieldwork.actions.addWorkingPaper",
+    "value": "Add working paper"
+  },
+  {
+    "path": "fieldwork.actions.addEvidence",
+    "value": "Add evidence"
+  },
+  {
+    "path": "fieldwork.actions.addFinding",
+    "value": "Add finding"
+  },
+  {
+    "path": "fieldwork.actions.addNote",
+    "value": "Add note"
+  },
+  {
+    "path": "fieldwork.actions.addTickmark",
+    "value": "Add tickmark"
+  },
+  {
+    "path": "fieldwork.actions.uploadEvidence",
+    "value": "Upload evidence"
+  },
+  {
+    "path": "fieldwork.workflow.queueTitle",
+    "value": "Review queue"
+  },
+  {
+    "path": "fieldwork.workflow.queueDescription",
+    "value": "Procedures awaiting review or clearance."
+  },
+  {
+    "path": "fieldwork.workflow.queueEmpty",
+    "value": "No procedures are pending review."
+  },
+  {
+    "path": "fieldwork.workflow.pendingReviewCount",
+    "value": "Pending review"
+  },
+  {
+    "path": "fieldwork.workflow.openProcedureAction",
+    "value": "Open procedure"
+  },
+  {
+    "path": "fieldwork.workflow.submitAction",
+    "value": "Submit for review"
+  },
+  {
+    "path": "fieldwork.workflow.returnAction",
+    "value": "Return for revision"
+  },
+  {
+    "path": "fieldwork.workflow.returnConfirmAction",
+    "value": "Confirm return"
+  },
+  {
+    "path": "fieldwork.workflow.clearAction",
+    "value": "Clear review"
+  },
+  {
+    "path": "fieldwork.workflow.clearConfirmAction",
+    "value": "Confirm clearance"
+  },
+  {
+    "path": "fieldwork.workflow.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "fieldwork.workflow.returnNotesTitle",
+    "value": "Return notes"
+  },
+  {
+    "path": "fieldwork.workflow.returnNotesPlaceholder",
+    "value": "Describe what must be revised"
+  },
+  {
+    "path": "fieldwork.workflow.clearanceNotesPlaceholder",
+    "value": "Document review clearance"
+  },
+  {
+    "path": "fieldwork.workflow.errorGeneric",
+    "value": "Unable to update procedure workflow"
+  },
+  {
+    "path": "fieldwork.procedures.title",
+    "value": "Audit procedures"
+  },
+  {
+    "path": "fieldwork.procedures.description",
+    "value": "Track assignment, due dates, and completion."
+  },
+  {
+    "path": "fieldwork.procedures.emptyTitle",
+    "value": "No procedures"
+  },
+  {
+    "path": "fieldwork.procedures.emptyDescription",
+    "value": "Procedures are seeded when fieldwork is initiated."
+  },
+  {
+    "path": "fieldwork.procedures.assignAuditor",
+    "value": "Assigned auditor"
+  },
+  {
+    "path": "fieldwork.procedures.unassigned",
+    "value": "Unassigned"
+  },
+  {
+    "path": "fieldwork.procedures.dueDate",
+    "value": "Due date"
+  },
+  {
+    "path": "fieldwork.procedures.assignedTo",
+    "value": "Assigned to"
+  },
+  {
+    "path": "fieldwork.empty.title",
+    "value": "Fieldwork not initiated"
+  },
+  {
+    "path": "fieldwork.empty.description",
+    "value": "Create a fieldwork package to begin executing audit procedures after planning approval."
+  },
+  {
+    "path": "fieldwork.empty.createAction",
+    "value": "Start fieldwork"
+  },
+  {
+    "path": "fieldwork.empty.creating",
+    "value": "Starting fieldwork…"
+  },
+  {
+    "path": "fieldwork.empty.forbiddenDescription",
+    "value": "You need fieldwork creation permission to initiate audit execution."
+  },
+  {
+    "path": "fieldwork.workspace.heroEyebrow",
+    "value": "Audit fieldwork"
+  },
+  {
+    "path": "fieldwork.workspace.breadcrumbFieldwork",
+    "value": "Fieldwork"
+  },
+  {
+    "path": "fieldwork.workspace.backToEngagement",
+    "value": "Back to engagement"
+  },
+  {
+    "path": "fieldwork.workspace.planningGateTitle",
+    "value": "Planning approval required"
+  },
+  {
+    "path": "fieldwork.workspace.planningGateDescription",
+    "value": "Audit planning must be approved before fieldwork can begin (ENG-03)."
+  },
+  {
+    "path": "fieldwork.workspace.navAriaLabel",
+    "value": "Fieldwork workspace sections"
+  },
+  {
+    "path": "fieldwork.workspace.navOverview",
+    "value": "Dashboard"
+  },
+  {
+    "path": "fieldwork.workspace.navProgram",
+    "value": "Audit program"
+  },
+  {
+    "path": "fieldwork.workspace.navProcedureGroups",
+    "value": "Procedure groups"
+  },
+  {
+    "path": "fieldwork.workspace.navProcedures",
+    "value": "Procedures"
+  },
+  {
+    "path": "fieldwork.workspace.navWorkingPapers",
+    "value": "Working papers"
+  },
+  {
+    "path": "fieldwork.workspace.navEvidence",
+    "value": "Evidence register"
+  },
+  {
+    "path": "fieldwork.workspace.navFindings",
+    "value": "Findings"
+  },
+  {
+    "path": "fieldwork.workspace.navNotes",
+    "value": "Auditor notes"
+  },
+  {
+    "path": "fieldwork.workspace.navReviewNotes",
+    "value": "Review notes"
+  },
+  {
+    "path": "fieldwork.workspace.navComments",
+    "value": "Internal comments"
+  },
+  {
+    "path": "fieldwork.workspace.navHistory",
+    "value": "History"
+  },
+  {
+    "path": "fieldwork.workspace.navSettings",
+    "value": "Settings"
+  },
+  {
+    "path": "fieldwork.workspace.loading",
+    "value": "Loading fieldwork workspace"
+  },
+  {
+    "path": "fieldwork.workspace.errorTitle",
+    "value": "Unable to load fieldwork workspace"
+  },
+  {
+    "path": "fieldwork.workspace.errorDescription",
+    "value": "Something went wrong while loading audit fieldwork."
+  },
+  {
+    "path": "fieldwork.workspace.archivedTitle",
+    "value": "Fieldwork archived"
+  },
+  {
+    "path": "fieldwork.workspace.archivedDescription",
+    "value": "This fieldwork package is read-only. Restore it to continue execution."
+  },
+  {
+    "path": "fieldwork.workspace.summaryStatus",
+    "value": "Fieldwork status"
+  },
+  {
+    "path": "fieldwork.workspace.summaryVersion",
+    "value": "Program version"
+  },
+  {
+    "path": "fieldwork.workspace.summaryProgress",
+    "value": "Overall progress"
+  },
+  {
+    "path": "fieldwork.workspace.summaryProcedures",
+    "value": "Procedures complete"
+  },
+  {
+    "path": "fieldwork.workspace.summaryPendingReview",
+    "value": "Pending review"
+  },
+  {
+    "path": "fieldwork.workspace.summaryFindings",
+    "value": "Open findings"
+  },
+  {
+    "path": "fieldwork.workspace.status.title",
+    "value": "Execution status"
+  },
+  {
+    "path": "fieldwork.workspace.status.description",
+    "value": "Procedure completion, evidence linkage, and review readiness."
+  },
+  {
+    "path": "fieldwork.workspace.status.packageStatus",
+    "value": "Package status"
+  },
+  {
+    "path": "fieldwork.workspace.status.programStatus",
+    "value": "Program status"
+  },
+  {
+    "path": "fieldwork.workspace.status.progress",
+    "value": "Overall progress"
+  },
+  {
+    "path": "fieldwork.workspace.status.workingPapers",
+    "value": "Working papers"
+  },
+  {
+    "path": "fieldwork.workspace.status.evidence",
+    "value": "Evidence items"
+  },
+  {
+    "path": "fieldwork.workspace.sections.overview.title",
+    "value": "Fieldwork dashboard"
+  },
+  {
+    "path": "fieldwork.workspace.sections.overview.description",
+    "value": "Progress, assignments, and execution indicators."
+  },
+  {
+    "path": "fieldwork.workspace.sections.program.title",
+    "value": "Audit program"
+  },
+  {
+    "path": "fieldwork.workspace.sections.program.description",
+    "value": "Approved program version governing procedure execution."
+  },
+  {
+    "path": "fieldwork.workspace.sections.procedure-groups.title",
+    "value": "Procedure groups"
+  },
+  {
+    "path": "fieldwork.workspace.sections.procedure-groups.description",
+    "value": "Grouped audit areas and completion progress."
+  },
+  {
+    "path": "fieldwork.workspace.sections.procedures.title",
+    "value": "Audit procedures"
+  },
+  {
+    "path": "fieldwork.workspace.sections.procedures.description",
+    "value": "Assignable units of audit work with status tracking."
+  },
+  {
+    "path": "fieldwork.workspace.sections.working-papers.title",
+    "value": "Working papers"
+  },
+  {
+    "path": "fieldwork.workspace.sections.working-papers.description",
+    "value": "Documentation, tickmarks, and conclusions."
+  },
+  {
+    "path": "fieldwork.workspace.sections.evidence.title",
+    "value": "Evidence register"
+  },
+  {
+    "path": "fieldwork.workspace.sections.evidence.description",
+    "value": "Indexed audit evidence and attachments."
+  },
+  {
+    "path": "fieldwork.workspace.sections.findings.title",
+    "value": "Findings"
+  },
+  {
+    "path": "fieldwork.workspace.sections.findings.description",
+    "value": "Misstatements, deficiencies, and recommendations."
+  },
+  {
+    "path": "fieldwork.workspace.sections.notes.title",
+    "value": "Auditor notes"
+  },
+  {
+    "path": "fieldwork.workspace.sections.notes.description",
+    "value": "Preparer documentation and professional judgment."
+  },
+  {
+    "path": "fieldwork.workspace.sections.review-notes.title",
+    "value": "Review notes"
+  },
+  {
+    "path": "fieldwork.workspace.sections.review-notes.description",
+    "value": "Reviewer comments and clearance tracking."
+  },
+  {
+    "path": "fieldwork.workspace.sections.comments.title",
+    "value": "Internal comments"
+  },
+  {
+    "path": "fieldwork.workspace.sections.comments.description",
+    "value": "Team discussion captured during fieldwork."
+  },
+  {
+    "path": "fieldwork.workspace.sections.history.title",
+    "value": "Fieldwork history"
+  },
+  {
+    "path": "fieldwork.workspace.sections.history.description",
+    "value": "Chronological activity and audit trail."
+  },
+  {
+    "path": "fieldwork.workspace.sections.settings.title",
+    "value": "Fieldwork settings"
+  },
+  {
+    "path": "fieldwork.workspace.sections.settings.description",
+    "value": "Archive or restore this fieldwork package."
+  },
+  {
+    "path": "fieldwork.program.title",
+    "value": "Audit program"
+  },
+  {
+    "path": "fieldwork.program.description",
+    "value": "Program metadata and execution status."
+  },
+  {
+    "path": "fieldwork.program.emptyTitle",
+    "value": "No audit program"
+  },
+  {
+    "path": "fieldwork.program.emptyDescription",
+    "value": "The audit program is created when fieldwork is initiated."
+  },
+  {
+    "path": "fieldwork.procedureGroups.title",
+    "value": "Procedure groups"
+  },
+  {
+    "path": "fieldwork.procedureGroups.description",
+    "value": "Audit areas grouping related procedures."
+  },
+  {
+    "path": "fieldwork.procedureGroups.emptyTitle",
+    "value": "No procedure groups"
+  },
+  {
+    "path": "fieldwork.procedureGroups.emptyDescription",
+    "value": "Procedure groups appear when fieldwork is initiated."
+  },
+  {
+    "path": "fieldwork.workingPapers.title",
+    "value": "Working papers"
+  },
+  {
+    "path": "fieldwork.workingPapers.description",
+    "value": "Working paper references with tickmark support."
+  },
+  {
+    "path": "fieldwork.workingPapers.emptyTitle",
+    "value": "No working papers"
+  },
+  {
+    "path": "fieldwork.workingPapers.emptyDescription",
+    "value": "Create working papers linked to procedures."
+  },
+  {
+    "path": "fieldwork.workingPapers.procedureLabel",
+    "value": "Linked procedure"
+  },
+  {
+    "path": "fieldwork.workingPapers.assignAuditor",
+    "value": "Paper owner"
+  },
+  {
+    "path": "fieldwork.workingPapers.titlePlaceholder",
+    "value": "Working paper title"
+  },
+  {
+    "path": "fieldwork.workingPapers.tickmarkSymbol",
+    "value": "Symbol"
+  },
+  {
+    "path": "fieldwork.workingPapers.tickmarkMeaning",
+    "value": "Meaning"
+  },
+  {
+    "path": "fieldwork.workingPapers.libraryTitle",
+    "value": "Tickmark library"
+  },
+  {
+    "path": "fieldwork.workingPapers.libraryDescription",
+    "value": "Reusable tickmarks for this workspace."
+  },
+  {
+    "path": "fieldwork.evidence.title",
+    "value": "Evidence register"
+  },
+  {
+    "path": "fieldwork.evidence.description",
+    "value": "Evidence references and attachment metadata."
+  },
+  {
+    "path": "fieldwork.evidence.emptyTitle",
+    "value": "No evidence"
+  },
+  {
+    "path": "fieldwork.evidence.emptyDescription",
+    "value": "Record evidence references as procedures are executed."
+  },
+  {
+    "path": "fieldwork.evidence.fileLabel",
+    "value": "Attachment"
+  },
+  {
+    "path": "fieldwork.evidence.procedureLabel",
+    "value": "Linked procedure"
+  },
+  {
+    "path": "fieldwork.evidence.uploadedBadge",
+    "value": "File attached"
+  },
+  {
+    "path": "fieldwork.evidence.namePlaceholder",
+    "value": "Evidence reference name"
+  },
+  {
+    "path": "fieldwork.evidence.downloadAction",
+    "value": "Download"
+  },
+  {
+    "path": "fieldwork.evidence.downloadError",
+    "value": "Unable to download evidence file"
+  },
+  {
+    "path": "fieldwork.findings.title",
+    "value": "Findings"
+  },
+  {
+    "path": "fieldwork.findings.description",
+    "value": "Document audit findings discovered during fieldwork."
+  },
+  {
+    "path": "fieldwork.findings.emptyTitle",
+    "value": "No findings"
+  },
+  {
+    "path": "fieldwork.findings.emptyDescription",
+    "value": "Findings will appear as they are documented."
+  },
+  {
+    "path": "fieldwork.findings.titlePlaceholder",
+    "value": "Finding title"
+  },
+  {
+    "path": "fieldwork.notes.title",
+    "value": "Auditor notes"
+  },
+  {
+    "path": "fieldwork.notes.description",
+    "value": "Preparer notes captured during fieldwork."
+  },
+  {
+    "path": "fieldwork.notes.emptyTitle",
+    "value": "No auditor notes"
+  },
+  {
+    "path": "fieldwork.notes.emptyDescription",
+    "value": "Auditor notes will appear here."
+  },
+  {
+    "path": "fieldwork.notes.bodyPlaceholder",
+    "value": "Add a note"
+  },
+  {
+    "path": "fieldwork.reviewNotes.title",
+    "value": "Review notes"
+  },
+  {
+    "path": "fieldwork.reviewNotes.description",
+    "value": "Review-level comments and clearance notes."
+  },
+  {
+    "path": "fieldwork.reviewNotes.emptyTitle",
+    "value": "No review notes"
+  },
+  {
+    "path": "fieldwork.reviewNotes.emptyDescription",
+    "value": "Review notes will appear during review cycles."
+  },
+  {
+    "path": "fieldwork.comments.title",
+    "value": "Internal comments"
+  },
+  {
+    "path": "fieldwork.comments.description",
+    "value": "Internal team discussion on fieldwork matters."
+  },
+  {
+    "path": "fieldwork.comments.emptyTitle",
+    "value": "No internal comments"
+  },
+  {
+    "path": "fieldwork.comments.emptyDescription",
+    "value": "Internal comments will appear here."
+  },
+  {
+    "path": "fieldwork.history.title",
+    "value": "Fieldwork history"
+  },
+  {
+    "path": "fieldwork.history.description",
+    "value": "Read-only timeline of fieldwork changes."
+  },
+  {
+    "path": "fieldwork.history.emptyTitle",
+    "value": "No fieldwork activity"
+  },
+  {
+    "path": "fieldwork.history.emptyDescription",
+    "value": "Activity will appear as fieldwork progresses."
+  },
+  {
+    "path": "fieldwork.history.versionLabel",
+    "value": "Program version"
+  },
+  {
+    "path": "fieldwork.history.actions.created",
+    "value": "Fieldwork created"
+  },
+  {
+    "path": "fieldwork.history.actions.updated",
+    "value": "Fieldwork updated"
+  },
+  {
+    "path": "fieldwork.history.actions.archived",
+    "value": "Fieldwork archived"
+  },
+  {
+    "path": "fieldwork.history.actions.restored",
+    "value": "Fieldwork restored"
+  },
+  {
+    "path": "fieldwork.history.actions.programUpdated",
+    "value": "Program updated"
+  },
+  {
+    "path": "fieldwork.history.actions.procedureAssigned",
+    "value": "Procedure assigned"
+  },
+  {
+    "path": "fieldwork.history.actions.procedureUpdated",
+    "value": "Procedure updated"
+  },
+  {
+    "path": "fieldwork.history.actions.procedureCompleted",
+    "value": "Procedure completed"
+  },
+  {
+    "path": "fieldwork.history.actions.procedureSubmitted",
+    "value": "Procedure submitted"
+  },
+  {
+    "path": "fieldwork.history.actions.procedureReturned",
+    "value": "Procedure returned"
+  },
+  {
+    "path": "fieldwork.history.actions.procedureCleared",
+    "value": "Procedure cleared"
+  },
+  {
+    "path": "fieldwork.history.actions.workingPaperAdded",
+    "value": "Working paper added"
+  },
+  {
+    "path": "fieldwork.history.actions.workingPaperUpdated",
+    "value": "Working paper updated"
+  },
+  {
+    "path": "fieldwork.history.actions.workingPaperSubmitted",
+    "value": "Working paper submitted"
+  },
+  {
+    "path": "fieldwork.history.actions.workingPaperReturned",
+    "value": "Working paper returned"
+  },
+  {
+    "path": "fieldwork.history.actions.workingPaperCleared",
+    "value": "Working paper cleared"
+  },
+  {
+    "path": "fieldwork.history.actions.evidenceAdded",
+    "value": "Evidence added"
+  },
+  {
+    "path": "fieldwork.history.actions.findingAdded",
+    "value": "Finding added"
+  },
+  {
+    "path": "fieldwork.history.actions.noteAdded",
+    "value": "Note added"
+  },
+  {
+    "path": "fieldwork.settings.title",
+    "value": "Fieldwork settings"
+  },
+  {
+    "path": "fieldwork.settings.description",
+    "value": "Archive or restore this fieldwork package."
+  },
+  {
+    "path": "fieldwork.settings.readOnlyNotice",
+    "value": "You have view-only access to fieldwork settings."
+  },
+  {
+    "path": "fieldwork.settings.tickmarkLibraryTitle",
+    "value": "Tickmark library"
+  },
+  {
+    "path": "fieldwork.settings.tickmarkLibraryDescription",
+    "value": "Manage reusable tickmarks for working papers."
+  },
+  {
+    "path": "fieldwork.settings.tickmarkSymbol",
+    "value": "Symbol"
+  },
+  {
+    "path": "fieldwork.settings.tickmarkMeaning",
+    "value": "Meaning"
+  },
+  {
+    "path": "fieldwork.settings.addTickmark",
+    "value": "Add to library"
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.archivedBannerTitle",
+    "value": "Fieldwork is archived"
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.archivedBannerDescription",
+    "value": "The fieldwork workspace is read-only. Restore fieldwork to continue execution."
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.archivePrompt",
+    "value": "Archiving makes this fieldwork package read-only while preserving its history."
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.archiveAction",
+    "value": "Archive fieldwork"
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.archiveConfirmAction",
+    "value": "Confirm archive"
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.restorePrompt",
+    "value": "Restore fieldwork to resume procedure execution."
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.restoreAction",
+    "value": "Restore fieldwork"
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.restoreConfirmAction",
+    "value": "Confirm restore"
+  },
+  {
+    "path": "fieldwork.settings.lifecycle.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "riskAssessment.notFoundTitle",
+    "value": "Risk assessment not found"
+  },
+  {
+    "path": "riskAssessment.notFoundDescription",
+    "value": "The risk assessment workspace you requested could not be found for this engagement."
+  },
+  {
+    "path": "riskAssessment.forbiddenTitle",
+    "value": "Permission required"
+  },
+  {
+    "path": "riskAssessment.forbiddenDescription",
+    "value": "You need risk assessment permission to access this workspace."
+  },
+  {
+    "path": "riskAssessment.noWorkspaceTitle",
+    "value": "Workspace required"
+  },
+  {
+    "path": "riskAssessment.noWorkspaceDescription",
+    "value": "Select a workspace before opening risk assessment."
+  },
+  {
+    "path": "riskAssessment.statuses.not_started",
+    "value": "Not started"
+  },
+  {
+    "path": "riskAssessment.statuses.in_progress",
+    "value": "In progress"
+  },
+  {
+    "path": "riskAssessment.statuses.submitted",
+    "value": "Submitted"
+  },
+  {
+    "path": "riskAssessment.statuses.under_review",
+    "value": "Under review"
+  },
+  {
+    "path": "riskAssessment.statuses.approved",
+    "value": "Approved"
+  },
+  {
+    "path": "riskAssessment.statuses.archived",
+    "value": "Archived"
+  },
+  {
+    "path": "riskAssessment.riskTypes.inherent",
+    "value": "Inherent risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.control",
+    "value": "Control risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.detection",
+    "value": "Detection risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.fraud",
+    "value": "Fraud risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.it",
+    "value": "IT risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.compliance",
+    "value": "Compliance risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.financial_statement",
+    "value": "Financial statement risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.assertion",
+    "value": "Assertion risk"
+  },
+  {
+    "path": "riskAssessment.riskTypes.significant",
+    "value": "Significant risk"
+  },
+  {
+    "path": "riskAssessment.ratingLevels.low",
+    "value": "Low"
+  },
+  {
+    "path": "riskAssessment.ratingLevels.moderate",
+    "value": "Moderate"
+  },
+  {
+    "path": "riskAssessment.ratingLevels.high",
+    "value": "High"
+  },
+  {
+    "path": "riskAssessment.ratingLevels.significant",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.likelihoods.low",
+    "value": "Low"
+  },
+  {
+    "path": "riskAssessment.likelihoods.moderate",
+    "value": "Moderate"
+  },
+  {
+    "path": "riskAssessment.likelihoods.high",
+    "value": "High"
+  },
+  {
+    "path": "riskAssessment.impacts.low",
+    "value": "Low"
+  },
+  {
+    "path": "riskAssessment.impacts.moderate",
+    "value": "Moderate"
+  },
+  {
+    "path": "riskAssessment.impacts.high",
+    "value": "High"
+  },
+  {
+    "path": "riskAssessment.responseTypes.accept",
+    "value": "Accept"
+  },
+  {
+    "path": "riskAssessment.responseTypes.reduce",
+    "value": "Reduce"
+  },
+  {
+    "path": "riskAssessment.responseTypes.transfer",
+    "value": "Transfer"
+  },
+  {
+    "path": "riskAssessment.responseTypes.avoid",
+    "value": "Avoid"
+  },
+  {
+    "path": "riskAssessment.responseTypes.substantive_procedures",
+    "value": "Substantive procedures"
+  },
+  {
+    "path": "riskAssessment.responseTypes.test_of_controls",
+    "value": "Test of controls"
+  },
+  {
+    "path": "riskAssessment.assertions.existence",
+    "value": "Existence"
+  },
+  {
+    "path": "riskAssessment.assertions.completeness",
+    "value": "Completeness"
+  },
+  {
+    "path": "riskAssessment.assertions.accuracy",
+    "value": "Accuracy"
+  },
+  {
+    "path": "riskAssessment.assertions.cutoff",
+    "value": "Cutoff"
+  },
+  {
+    "path": "riskAssessment.assertions.classification",
+    "value": "Classification"
+  },
+  {
+    "path": "riskAssessment.assertions.presentation",
+    "value": "Presentation"
+  },
+  {
+    "path": "riskAssessment.noteTypes.review",
+    "value": "Review note"
+  },
+  {
+    "path": "riskAssessment.noteTypes.internal",
+    "value": "Internal note"
+  },
+  {
+    "path": "riskAssessment.actions.add",
+    "value": "Add"
+  },
+  {
+    "path": "riskAssessment.actions.update",
+    "value": "Update"
+  },
+  {
+    "path": "riskAssessment.actions.archive",
+    "value": "Archive"
+  },
+  {
+    "path": "riskAssessment.actions.restore",
+    "value": "Restore"
+  },
+  {
+    "path": "riskAssessment.actions.submit",
+    "value": "Submit"
+  },
+  {
+    "path": "riskAssessment.actions.approve",
+    "value": "Approve"
+  },
+  {
+    "path": "riskAssessment.actions.return",
+    "value": "Return"
+  },
+  {
+    "path": "riskAssessment.workflow.title",
+    "value": "Risk workflow"
+  },
+  {
+    "path": "riskAssessment.workflow.description",
+    "value": "Submit, return, and approve risk assessment documentation."
+  },
+  {
+    "path": "riskAssessment.workflow.submitAction",
+    "value": "Submit for review"
+  },
+  {
+    "path": "riskAssessment.workflow.returnAction",
+    "value": "Return for revision"
+  },
+  {
+    "path": "riskAssessment.workflow.returnConfirmAction",
+    "value": "Confirm return"
+  },
+  {
+    "path": "riskAssessment.workflow.approveAction",
+    "value": "Approve risk assessment"
+  },
+  {
+    "path": "riskAssessment.workflow.acknowledgeAction",
+    "value": "Acknowledge significant risks"
+  },
+  {
+    "path": "riskAssessment.workflow.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "riskAssessment.workflow.returnNotesLabel",
+    "value": "Return notes"
+  },
+  {
+    "path": "riskAssessment.workflow.returnNotesPlaceholder",
+    "value": "Describe what must be revised before resubmission."
+  },
+  {
+    "path": "riskAssessment.workflow.readOnlyNotice",
+    "value": "This risk assessment is archived and read-only."
+  },
+  {
+    "path": "riskAssessment.workflow.submittedNotice",
+    "value": "This risk assessment is submitted and pending review."
+  },
+  {
+    "path": "riskAssessment.workflow.approvedNotice",
+    "value": "This risk assessment is approved."
+  },
+  {
+    "path": "riskAssessment.workflow.acknowledgedNotice",
+    "value": "Significant risks have been acknowledged."
+  },
+  {
+    "path": "riskAssessment.workflow.pendingAcknowledgmentNotice",
+    "value": "Significant risks must be acknowledged before approval."
+  },
+  {
+    "path": "riskAssessment.workflow.errorGeneric",
+    "value": "Unable to complete the risk assessment workflow action."
+  },
+  {
+    "path": "riskAssessment.empty.title",
+    "value": "Risk assessment not initiated"
+  },
+  {
+    "path": "riskAssessment.empty.description",
+    "value": "Create a risk assessment to document significant risks, responses, and review readiness."
+  },
+  {
+    "path": "riskAssessment.empty.createAction",
+    "value": "Create risk assessment"
+  },
+  {
+    "path": "riskAssessment.empty.creating",
+    "value": "Creating risk assessment..."
+  },
+  {
+    "path": "riskAssessment.empty.forbiddenDescription",
+    "value": "You need risk assessment creation permission to initiate this workspace."
+  },
+  {
+    "path": "riskAssessment.workspace.title",
+    "value": "Risk assessment overview"
+  },
+  {
+    "path": "riskAssessment.workspace.description",
+    "value": "Overview of current risk assessment status and key indicators."
+  },
+  {
+    "path": "riskAssessment.workspace.statusTitle",
+    "value": "Status summary"
+  },
+  {
+    "path": "riskAssessment.workspace.statusDescription",
+    "value": "Current completion and readiness indicators for this risk assessment."
+  },
+  {
+    "path": "riskAssessment.workspace.progress",
+    "value": "Overall progress"
+  },
+  {
+    "path": "riskAssessment.workspace.workflowTitle",
+    "value": "Workflow"
+  },
+  {
+    "path": "riskAssessment.workspace.workflowDescription",
+    "value": "Submission and approval workflow for the risk assessment."
+  },
+  {
+    "path": "riskAssessment.workspace.heatmapPreviewTitle",
+    "value": "Heatmap preview"
+  },
+  {
+    "path": "riskAssessment.workspace.heatmapPreviewDescription",
+    "value": "Distribution of risk ratings by current assessment outcomes."
+  },
+  {
+    "path": "riskAssessment.workspace.heroEyebrow",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "riskAssessment.workspace.breadcrumbRiskAssessment",
+    "value": "Risk assessment"
+  },
+  {
+    "path": "riskAssessment.workspace.backToEngagement",
+    "value": "Back to engagement"
+  },
+  {
+    "path": "riskAssessment.workspace.planningGateTitle",
+    "value": "Planning approval required"
+  },
+  {
+    "path": "riskAssessment.workspace.planningGateDescription",
+    "value": "Audit planning must be approved before risk assessment can begin."
+  },
+  {
+    "path": "riskAssessment.workspace.navAriaLabel",
+    "value": "Risk assessment workspace sections"
+  },
+  {
+    "path": "riskAssessment.workspace.navOverview",
+    "value": "Dashboard"
+  },
+  {
+    "path": "riskAssessment.workspace.navInherentRisks",
+    "value": "Inherent risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navControlRisks",
+    "value": "Control risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navDetectionRisks",
+    "value": "Detection risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navFraudRisks",
+    "value": "Fraud risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navItRisks",
+    "value": "IT risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navComplianceRisks",
+    "value": "Compliance risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navFinancialStatementRisks",
+    "value": "Financial statement risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navAssertionRisks",
+    "value": "Assertion risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navSignificantRisks",
+    "value": "Significant risks"
+  },
+  {
+    "path": "riskAssessment.workspace.navCategories",
+    "value": "Categories"
+  },
+  {
+    "path": "riskAssessment.workspace.navScoring",
+    "value": "Scoring"
+  },
+  {
+    "path": "riskAssessment.workspace.navHeatmap",
+    "value": "Heatmap"
+  },
+  {
+    "path": "riskAssessment.workspace.navMatrix",
+    "value": "Matrix"
+  },
+  {
+    "path": "riskAssessment.workspace.navResponses",
+    "value": "Responses"
+  },
+  {
+    "path": "riskAssessment.workspace.navProcedures",
+    "value": "Procedures"
+  },
+  {
+    "path": "riskAssessment.workspace.navOwners",
+    "value": "Owners"
+  },
+  {
+    "path": "riskAssessment.workspace.navReviewNotes",
+    "value": "Review notes"
+  },
+  {
+    "path": "riskAssessment.workspace.navComments",
+    "value": "Comments"
+  },
+  {
+    "path": "riskAssessment.workspace.navHistory",
+    "value": "History"
+  },
+  {
+    "path": "riskAssessment.workspace.navSettings",
+    "value": "Settings"
+  },
+  {
+    "path": "riskAssessment.workspace.loading",
+    "value": "Loading risk assessment workspace"
+  },
+  {
+    "path": "riskAssessment.workspace.errorTitle",
+    "value": "Unable to load risk assessment workspace"
+  },
+  {
+    "path": "riskAssessment.workspace.errorDescription",
+    "value": "Something went wrong while loading this risk assessment."
+  },
+  {
+    "path": "riskAssessment.workspace.archivedTitle",
+    "value": "Risk assessment archived"
+  },
+  {
+    "path": "riskAssessment.workspace.archivedDescription",
+    "value": "This risk assessment is read-only. Restore it to continue updates."
+  },
+  {
+    "path": "riskAssessment.workspace.summaryStatus",
+    "value": "Risk status"
+  },
+  {
+    "path": "riskAssessment.workspace.summaryVersion",
+    "value": "Assessment version"
+  },
+  {
+    "path": "riskAssessment.workspace.summaryProgress",
+    "value": "Overall progress"
+  },
+  {
+    "path": "riskAssessment.workspace.summarySignificant",
+    "value": "Significant risks"
+  },
+  {
+    "path": "riskAssessment.workspace.summaryPendingReview",
+    "value": "Pending review"
+  },
+  {
+    "path": "riskAssessment.workspace.summaryOpenItems",
+    "value": "Open items"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.overview.title",
+    "value": "Risk dashboard"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.overview.description",
+    "value": "Status, progress, and review readiness indicators."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.inherent-risks.title",
+    "value": "Inherent risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.inherent-risks.description",
+    "value": "Risks before considering related controls."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.control-risks.title",
+    "value": "Control risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.control-risks.description",
+    "value": "Risks related to design and operation of controls."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.detection-risks.title",
+    "value": "Detection risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.detection-risks.description",
+    "value": "Risks that procedures fail to detect misstatements."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.fraud-risks.title",
+    "value": "Fraud risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.fraud-risks.description",
+    "value": "Fraud risk factors and management override considerations."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.it-risks.title",
+    "value": "IT risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.it-risks.description",
+    "value": "Technology, system access, and data integrity risks."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.compliance-risks.title",
+    "value": "Compliance risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.compliance-risks.description",
+    "value": "Regulatory and legal compliance risks."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.financial-statement-risks.title",
+    "value": "Financial statement risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.financial-statement-risks.description",
+    "value": "Financial statement level risks of material misstatement."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.assertion-risks.title",
+    "value": "Assertion risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.assertion-risks.description",
+    "value": "Assertion-level risks linked to relevant accounts."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.significant-risks.title",
+    "value": "Significant risks"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.significant-risks.description",
+    "value": "High-priority risks requiring focused audit response."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.categories.title",
+    "value": "Risk categories"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.categories.description",
+    "value": "Configured categories used to organize risk items."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.scoring.title",
+    "value": "Scoring"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.scoring.description",
+    "value": "Aggregate scoring indicators across identified risks."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.heatmap.title",
+    "value": "Heatmap"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.heatmap.description",
+    "value": "Visual distribution of risk ratings."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.matrix.title",
+    "value": "Assertion matrix"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.matrix.description",
+    "value": "Account and assertion ratings overview."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.responses.title",
+    "value": "Risk responses"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.responses.description",
+    "value": "Planned responses for identified risks."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.procedures.title",
+    "value": "Procedure links"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.procedures.description",
+    "value": "Linked procedures for addressing assessed risks."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.owners.title",
+    "value": "Risk owners"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.owners.description",
+    "value": "Assigned owners for each risk item."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.review-notes.title",
+    "value": "Review notes"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.review-notes.description",
+    "value": "Reviewer notes captured during risk assessment cycles."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.comments.title",
+    "value": "Comments"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.comments.description",
+    "value": "Internal comments and collaboration notes."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.history.title",
+    "value": "History"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.history.description",
+    "value": "Timeline of risk assessment changes and approvals."
+  },
+  {
+    "path": "riskAssessment.workspace.sections.settings.title",
+    "value": "Settings"
+  },
+  {
+    "path": "riskAssessment.workspace.sections.settings.description",
+    "value": "Archive and restore controls for this risk assessment."
+  },
+  {
+    "path": "riskAssessment.inherentRisks.title",
+    "value": "Inherent risks"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.description",
+    "value": "Document inherent risk items."
+  },
+  {
+    "path": "riskAssessment.inherentRisks.emptyTitle",
+    "value": "No inherent risks"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.emptyDescription",
+    "value": "Add inherent risks to start the register."
+  },
+  {
+    "path": "riskAssessment.inherentRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.inherentRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.controlRisks.title",
+    "value": "Control risks"
+  },
+  {
+    "path": "riskAssessment.controlRisks.description",
+    "value": "Document control risk items."
+  },
+  {
+    "path": "riskAssessment.controlRisks.emptyTitle",
+    "value": "No control risks"
+  },
+  {
+    "path": "riskAssessment.controlRisks.emptyDescription",
+    "value": "Add control risks to start this section."
+  },
+  {
+    "path": "riskAssessment.controlRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.controlRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.controlRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.controlRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.controlRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.controlRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.controlRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.controlRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.controlRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.controlRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.controlRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.controlRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.controlRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.title",
+    "value": "Detection risks"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.description",
+    "value": "Document detection risk items."
+  },
+  {
+    "path": "riskAssessment.detectionRisks.emptyTitle",
+    "value": "No detection risks"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.emptyDescription",
+    "value": "Add detection risks to start this section."
+  },
+  {
+    "path": "riskAssessment.detectionRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.detectionRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.title",
+    "value": "Fraud risks"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.description",
+    "value": "Document fraud risk items."
+  },
+  {
+    "path": "riskAssessment.fraudRisks.emptyTitle",
+    "value": "No fraud risks"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.emptyDescription",
+    "value": "Add fraud risks to start this section."
+  },
+  {
+    "path": "riskAssessment.fraudRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.fraudRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.itRisks.title",
+    "value": "IT risks"
+  },
+  {
+    "path": "riskAssessment.itRisks.description",
+    "value": "Document IT risk items."
+  },
+  {
+    "path": "riskAssessment.itRisks.emptyTitle",
+    "value": "No IT risks"
+  },
+  {
+    "path": "riskAssessment.itRisks.emptyDescription",
+    "value": "Add IT risks to start this section."
+  },
+  {
+    "path": "riskAssessment.itRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.itRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.itRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.itRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.itRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.itRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.itRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.itRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.itRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.itRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.itRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.itRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.itRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.title",
+    "value": "Compliance risks"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.description",
+    "value": "Document compliance risk items."
+  },
+  {
+    "path": "riskAssessment.complianceRisks.emptyTitle",
+    "value": "No compliance risks"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.emptyDescription",
+    "value": "Add compliance risks to start this section."
+  },
+  {
+    "path": "riskAssessment.complianceRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.complianceRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.title",
+    "value": "Financial statement risks"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.description",
+    "value": "Document financial statement level risks."
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.emptyTitle",
+    "value": "No financial statement risks"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.emptyDescription",
+    "value": "Add financial statement risks to start this section."
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.financialStatementRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.title",
+    "value": "Assertion risks"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.description",
+    "value": "Document assertion-level risk items."
+  },
+  {
+    "path": "riskAssessment.assertionRisks.emptyTitle",
+    "value": "No assertion risks"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.emptyDescription",
+    "value": "Add assertion risks to start this section."
+  },
+  {
+    "path": "riskAssessment.assertionRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.assertionRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.significantRisks.title",
+    "value": "Significant risks"
+  },
+  {
+    "path": "riskAssessment.significantRisks.description",
+    "value": "Document significant risks requiring focused response."
+  },
+  {
+    "path": "riskAssessment.significantRisks.emptyTitle",
+    "value": "No significant risks"
+  },
+  {
+    "path": "riskAssessment.significantRisks.emptyDescription",
+    "value": "Add significant risks to start this section."
+  },
+  {
+    "path": "riskAssessment.significantRisks.titlePlaceholder",
+    "value": "Risk title"
+  },
+  {
+    "path": "riskAssessment.significantRisks.descriptionPlaceholder",
+    "value": "Risk description"
+  },
+  {
+    "path": "riskAssessment.significantRisks.addAction",
+    "value": "Add risk item"
+  },
+  {
+    "path": "riskAssessment.significantRisks.categoryLabel",
+    "value": "Select category"
+  },
+  {
+    "path": "riskAssessment.significantRisks.riskTypeLabel",
+    "value": "Risk type"
+  },
+  {
+    "path": "riskAssessment.significantRisks.likelihoodLabel",
+    "value": "Likelihood"
+  },
+  {
+    "path": "riskAssessment.significantRisks.impactLabel",
+    "value": "Impact"
+  },
+  {
+    "path": "riskAssessment.significantRisks.inherentRatingLabel",
+    "value": "Inherent rating"
+  },
+  {
+    "path": "riskAssessment.significantRisks.auditAreaLabel",
+    "value": "Audit area"
+  },
+  {
+    "path": "riskAssessment.significantRisks.auditAreaPlaceholder",
+    "value": "Select audit area"
+  },
+  {
+    "path": "riskAssessment.significantRisks.significantBadge",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.significantRisks.procedureLinkedBadge",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.significantRisks.procedureUnlinkedBadge",
+    "value": "Procedure required"
+  },
+  {
+    "path": "riskAssessment.categories.title",
+    "value": "Risk categories"
+  },
+  {
+    "path": "riskAssessment.categories.description",
+    "value": "Manage risk category definitions."
+  },
+  {
+    "path": "riskAssessment.categories.emptyTitle",
+    "value": "No categories"
+  },
+  {
+    "path": "riskAssessment.categories.emptyDescription",
+    "value": "Add categories to organize risk items."
+  },
+  {
+    "path": "riskAssessment.categories.namePlaceholder",
+    "value": "Category name"
+  },
+  {
+    "path": "riskAssessment.categories.descriptionPlaceholder",
+    "value": "Category description"
+  },
+  {
+    "path": "riskAssessment.categories.addAction",
+    "value": "Add category"
+  },
+  {
+    "path": "riskAssessment.scoring.title",
+    "value": "Scoring"
+  },
+  {
+    "path": "riskAssessment.scoring.description",
+    "value": "Summary of scoring outcomes across the risk register."
+  },
+  {
+    "path": "riskAssessment.scoring.emptyTitle",
+    "value": "No scoring data"
+  },
+  {
+    "path": "riskAssessment.scoring.emptyDescription",
+    "value": "Scoring indicators appear when risk items are added."
+  },
+  {
+    "path": "riskAssessment.scoring.ratedItems",
+    "value": "Rated items"
+  },
+  {
+    "path": "riskAssessment.scoring.significant",
+    "value": "Significant"
+  },
+  {
+    "path": "riskAssessment.scoring.likelihood",
+    "value": "High likelihood"
+  },
+  {
+    "path": "riskAssessment.scoring.impact",
+    "value": "High impact"
+  },
+  {
+    "path": "riskAssessment.scoring.residual",
+    "value": "Significant residual"
+  },
+  {
+    "path": "riskAssessment.heatmap.title",
+    "value": "Heatmap"
+  },
+  {
+    "path": "riskAssessment.heatmap.description",
+    "value": "Risk rating distribution across the register."
+  },
+  {
+    "path": "riskAssessment.heatmap.emptyTitle",
+    "value": "No heatmap data"
+  },
+  {
+    "path": "riskAssessment.heatmap.emptyDescription",
+    "value": "Heatmap buckets appear when ratings are recorded."
+  },
+  {
+    "path": "riskAssessment.heatmap.unratedLabel",
+    "value": "Unrated"
+  },
+  {
+    "path": "riskAssessment.heatmap.accountLabel",
+    "value": "Account"
+  },
+  {
+    "path": "riskAssessment.heatmap.assertionLabel",
+    "value": "Assertion"
+  },
+  {
+    "path": "riskAssessment.heatmap.ratingLabel",
+    "value": "Rating"
+  },
+  {
+    "path": "riskAssessment.heatmap.significantLabel",
+    "value": "Significant risk"
+  },
+  {
+    "path": "riskAssessment.heatmap.emptyDetail",
+    "value": "Select a heatmap cell to view details."
+  },
+  {
+    "path": "riskAssessment.heatmap.filterSignificant",
+    "value": "Show significant and rated cells only"
+  },
+  {
+    "path": "riskAssessment.matrix.title",
+    "value": "Assertion matrix"
+  },
+  {
+    "path": "riskAssessment.matrix.description",
+    "value": "Manage assertion ratings by account."
+  },
+  {
+    "path": "riskAssessment.matrix.emptyTitle",
+    "value": "No assertion ratings"
+  },
+  {
+    "path": "riskAssessment.matrix.emptyDescription",
+    "value": "Add assertion ratings to populate the matrix."
+  },
+  {
+    "path": "riskAssessment.matrix.accountPlaceholder",
+    "value": "Account name"
+  },
+  {
+    "path": "riskAssessment.matrix.addAction",
+    "value": "Add assertion rating"
+  },
+  {
+    "path": "riskAssessment.matrix.accountLabel",
+    "value": "Account"
+  },
+  {
+    "path": "riskAssessment.matrix.assertionLabel",
+    "value": "Assertion"
+  },
+  {
+    "path": "riskAssessment.matrix.ratingLabel",
+    "value": "Rating"
+  },
+  {
+    "path": "riskAssessment.matrix.significantLabel",
+    "value": "Significant risk"
+  },
+  {
+    "path": "riskAssessment.matrix.emptyDetail",
+    "value": "Select a matrix cell to view or update ratings."
+  },
+  {
+    "path": "riskAssessment.matrix.selectRating",
+    "value": "Select rating"
+  },
+  {
+    "path": "riskAssessment.responses.title",
+    "value": "Responses"
+  },
+  {
+    "path": "riskAssessment.responses.description",
+    "value": "Document responses for identified risk items."
+  },
+  {
+    "path": "riskAssessment.responses.emptyTitle",
+    "value": "No responses"
+  },
+  {
+    "path": "riskAssessment.responses.emptyDescription",
+    "value": "Add risk responses to capture planned actions."
+  },
+  {
+    "path": "riskAssessment.responses.riskItemLabel",
+    "value": "Select risk item"
+  },
+  {
+    "path": "riskAssessment.responses.descriptionPlaceholder",
+    "value": "Response description"
+  },
+  {
+    "path": "riskAssessment.responses.addAction",
+    "value": "Add response"
+  },
+  {
+    "path": "riskAssessment.procedures.title",
+    "value": "Procedures"
+  },
+  {
+    "path": "riskAssessment.procedures.description",
+    "value": "Link planned procedures to risk items."
+  },
+  {
+    "path": "riskAssessment.procedures.emptyTitle",
+    "value": "No linked procedures"
+  },
+  {
+    "path": "riskAssessment.procedures.emptyDescription",
+    "value": "Add procedure links to map response execution."
+  },
+  {
+    "path": "riskAssessment.procedures.riskItemLabel",
+    "value": "Select risk item"
+  },
+  {
+    "path": "riskAssessment.procedures.referencePlaceholder",
+    "value": "Procedure reference"
+  },
+  {
+    "path": "riskAssessment.procedures.addAction",
+    "value": "Add procedure link"
+  },
+  {
+    "path": "riskAssessment.owners.title",
+    "value": "Owners"
+  },
+  {
+    "path": "riskAssessment.owners.description",
+    "value": "Assign owners to risk register items."
+  },
+  {
+    "path": "riskAssessment.owners.emptyTitle",
+    "value": "No risk items"
+  },
+  {
+    "path": "riskAssessment.owners.emptyDescription",
+    "value": "Risk items will appear here once created."
+  },
+  {
+    "path": "riskAssessment.owners.ownerPlaceholder",
+    "value": "Owner identifier"
+  },
+  {
+    "path": "riskAssessment.owners.updateAction",
+    "value": "Update owner"
+  },
+  {
+    "path": "riskAssessment.owners.unassignedLabel",
+    "value": "Unassigned"
+  },
+  {
+    "path": "riskAssessment.reviewNotes.title",
+    "value": "Review notes"
+  },
+  {
+    "path": "riskAssessment.reviewNotes.description",
+    "value": "Capture reviewer notes and follow-up points."
+  },
+  {
+    "path": "riskAssessment.reviewNotes.emptyTitle",
+    "value": "No review notes"
+  },
+  {
+    "path": "riskAssessment.reviewNotes.emptyDescription",
+    "value": "Review notes appear during review cycles."
+  },
+  {
+    "path": "riskAssessment.reviewNotes.bodyPlaceholder",
+    "value": "Add review note"
+  },
+  {
+    "path": "riskAssessment.reviewNotes.addAction",
+    "value": "Add note"
+  },
+  {
+    "path": "riskAssessment.comments.title",
+    "value": "Comments"
+  },
+  {
+    "path": "riskAssessment.comments.description",
+    "value": "Capture internal comments related to risks."
+  },
+  {
+    "path": "riskAssessment.comments.emptyTitle",
+    "value": "No comments"
+  },
+  {
+    "path": "riskAssessment.comments.emptyDescription",
+    "value": "Comments appear here once added."
+  },
+  {
+    "path": "riskAssessment.comments.bodyPlaceholder",
+    "value": "Add internal comment"
+  },
+  {
+    "path": "riskAssessment.comments.addAction",
+    "value": "Add comment"
+  },
+  {
+    "path": "riskAssessment.history.title",
+    "value": "History"
+  },
+  {
+    "path": "riskAssessment.history.description",
+    "value": "Read-only timeline of risk assessment activity."
+  },
+  {
+    "path": "riskAssessment.history.emptyTitle",
+    "value": "No risk activity"
+  },
+  {
+    "path": "riskAssessment.history.emptyDescription",
+    "value": "Risk activity will appear here as changes are recorded."
+  },
+  {
+    "path": "riskAssessment.history.versionLabel",
+    "value": "Assessment version"
+  },
+  {
+    "path": "riskAssessment.history.updatedLabel",
+    "value": "Updated"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.created",
+    "value": "Risk assessment created"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.updated",
+    "value": "Risk assessment updated"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.archived",
+    "value": "Risk assessment archived"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.restored",
+    "value": "Risk assessment restored"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.submitted",
+    "value": "Risk assessment submitted"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.returned",
+    "value": "Risk assessment returned"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.approved",
+    "value": "Risk assessment approved"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.category.added",
+    "value": "Category added"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.risk_item.added",
+    "value": "Risk item added"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.risk_item.updated",
+    "value": "Risk item updated"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.assertion_rating.updated",
+    "value": "Assertion rating updated"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.response.added",
+    "value": "Response added"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.procedure.linked",
+    "value": "Procedure linked"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.note.added",
+    "value": "Note added"
+  },
+  {
+    "path": "riskAssessment.history.actions.risk_assessment.significant.acknowledged",
+    "value": "Significant risks acknowledged"
+  },
+  {
+    "path": "riskAssessment.settings.title",
+    "value": "Settings"
+  },
+  {
+    "path": "riskAssessment.settings.description",
+    "value": "Archive or restore this risk assessment."
+  },
+  {
+    "path": "riskAssessment.settings.archiveAction",
+    "value": "Archive risk assessment"
+  },
+  {
+    "path": "riskAssessment.settings.archiveConfirmAction",
+    "value": "Confirm archive"
+  },
+  {
+    "path": "riskAssessment.settings.restoreAction",
+    "value": "Restore risk assessment"
+  },
+  {
+    "path": "riskAssessment.settings.restoreConfirmAction",
+    "value": "Confirm restore"
+  },
+  {
+    "path": "riskAssessment.settings.cancelAction",
+    "value": "Cancel"
+  },
+  {
+    "path": "riskAssessment.settings.archivedBanner",
+    "value": "This risk assessment is archived."
+  },
+  {
+    "path": "riskAssessment.settings.readOnlyNotice",
+    "value": "You have view-only access to risk assessment settings."
+  }
+]

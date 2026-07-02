@@ -38,7 +38,14 @@ type AppShellExperienceLabels = ShellHeaderActionsLabels & {
     actions: string;
     settings: string;
     close: string;
+    createCompany: string;
+    createCompanyDescription: string;
+    createEngagement: string;
+    createEngagementDescription: string;
+    goToDashboard: string;
   };
+  expandSidebar: string;
+  collapseSidebar: string;
 };
 
 type AppShellExperienceProps = {
@@ -85,23 +92,23 @@ function buildCommandItems(
     ...navigation,
     {
       id: "create-company",
-      label: "Create company",
-      description: "Register a new legal entity",
+      label: labels.commandPalette.createCompany,
+      description: labels.commandPalette.createCompanyDescription,
       group: "actions",
       href: `${COMPANIES_PATH}/new`,
       keywords: ["create", "company", "new"],
     },
     {
       id: "create-engagement",
-      label: "Create engagement",
-      description: "Start a new audit or assurance engagement",
+      label: labels.commandPalette.createEngagement,
+      description: labels.commandPalette.createEngagementDescription,
       group: "actions",
       href: `${ENGAGEMENTS_PATH}/new`,
       keywords: ["create", "engagement", "new", "audit"],
     },
     {
       id: "dashboard",
-      label: "Go to dashboard",
+      label: labels.commandPalette.goToDashboard,
       group: "recent",
       href: DASHBOARD_PATH,
       keywords: ["home", "dashboard"],
@@ -131,7 +138,7 @@ function buildCommandItems(
       id: "search-engagements",
       label: dashboardCommands.searchEngagements,
       group: "actions",
-      keywords: ["search", "engagements", "placeholder"],
+      keywords: ["search", "engagements", "audit"],
       onSelect: handlers.searchEngagements,
     },
     {
@@ -252,6 +259,8 @@ export function AppShellExperience({
     company: labels.company,
     engagement: labels.engagement,
     contextTitle: labels.drawerContextTitle,
+    workspaceRequired: labels.workspaceRequired,
+    accessRestricted: labels.accessRestricted,
   };
 
   return (
@@ -278,7 +287,12 @@ export function AppShellExperience({
         />
       }
       sidebar={<DashboardNav items={navItems} />}
-      sidebarDesktopFooter={<ShellSidebarUserFooter />}
+      sidebarDesktopFooter={
+        <ShellSidebarUserFooter
+          expandLabel={labels.expandSidebar}
+          collapseLabel={labels.collapseSidebar}
+        />
+      }
       mobileDrawerContext={
         <ShellDrawerContext
           labels={drawerContextLabels}

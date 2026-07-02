@@ -19,6 +19,8 @@ export type ShellDrawerContextLabels = {
   company: string;
   engagement: string;
   contextTitle: string;
+  workspaceRequired: string;
+  accessRestricted: string;
 };
 
 type ShellDrawerContextProps = {
@@ -40,11 +42,12 @@ function resolveLocale(pathname: string): string {
 
 function resolveEmptyLabel(
   reason: CompanyListLoadReason | EngagementListLoadReason | undefined,
-  hint?: string,
+  hint: string | undefined,
+  labels: Pick<ShellDrawerContextLabels, "workspaceRequired" | "accessRestricted">,
 ): string {
   if (hint) return hint;
-  if (reason === "no_workspace") return "Workspace required";
-  if (reason === "forbidden") return "Access restricted";
+  if (reason === "no_workspace") return labels.workspaceRequired;
+  if (reason === "forbidden") return labels.accessRestricted;
   return "—";
 }
 
@@ -107,14 +110,14 @@ export function ShellDrawerContext({
           label={labels.company}
           items={companies}
           currentId={currentCompany?.id ?? null}
-          emptyLabel={resolveEmptyLabel(companiesLoadReason, companyEmptyHint)}
+          emptyLabel={resolveEmptyLabel(companiesLoadReason, companyEmptyHint, labels)}
           onSelect={handleCompanySelect}
         />
         <EngagementSwitcher
           label={labels.engagement}
           items={scopedEngagements}
           currentId={currentEngagement?.id ?? null}
-          emptyLabel={resolveEmptyLabel(engagementsLoadReason, engagementEmptyHint)}
+          emptyLabel={resolveEmptyLabel(engagementsLoadReason, engagementEmptyHint, labels)}
           onSelect={handleEngagementSelect}
         />
       </div>

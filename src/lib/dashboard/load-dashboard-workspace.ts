@@ -9,6 +9,11 @@ import { loadEngagementList } from "@/lib/engagement/load-engagement-list";
 import { resolveActiveCompany } from "@/lib/company/resolve-active-company";
 import { loadFieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
 import { loadRiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
+import {
+  loadDashboardFeed,
+  type DashboardEngagementPreview,
+  type DashboardFeed,
+} from "./load-dashboard-feed";
 import { resolveTimeOfDay } from "./workspace-greeting";
 
 export type DashboardWorkspaceCompany = {
@@ -35,7 +40,16 @@ export type DashboardWorkspaceViewModel = {
     openTasks: string;
     reports: string;
     aiSuggestions: string;
+    live: {
+      companies: boolean;
+      engagements: boolean;
+      openTasks: boolean;
+      reports: boolean;
+      aiSuggestions: boolean;
+    };
   };
+  feed: DashboardFeed;
+  recentEngagements: DashboardEngagementPreview[];
 };
 
 function resolveTimeOfDayFromLabels(
@@ -91,9 +105,28 @@ export async function loadDashboardWorkspace(
 
   const userName = user?.displayName?.trim() || user?.email?.split("@")[0] || "there";
   const companyCount = companies.length;
-  const engagementCount = engagementResult.ok ? engagementResult.items.length : 0;
+  const engagementItems = engagementResult.ok ? engagementResult.items : [];
+  const engagementCount = engagementItems.length;
 
   const activeCompany = resolveActiveCompany(companies, "", preferredCompanySlug);
+
+  const feed = await loadDashboardFeed({
+    locale,
+    labels,
+    companyCount,
+    engagements: engagementItems,
+    fieldworkMetrics,
+    riskMetrics: riskAssessmentMetrics,
+  });
+
+  const openTasksCount =
+    (fieldworkMetrics?.pendingReview ?? 0) +
+    (fieldworkMetrics?.assignedToMe ?? 0) +
+    (riskAssessmentMetrics?.pendingReview ?? 0) +
+    (riskAssessmentMetrics?.openItems ?? 0) +
+    (fieldworkMetrics?.openFindings ?? 0);
+
+  const hasFieldworkOrRisk = Boolean(fieldworkMetrics || riskAssessmentMetrics);
 
   return {
     locale,
@@ -107,21 +140,21 @@ export async function loadDashboardWorkspace(
     companies,
     companyCount,
     continueCompany: activeCompany,
+    recentEngagements: feed.recentEngagements,
+    feed,
     kpi: {
       companies: companyCount > 0 ? String(companyCount) : "—",
       engagements: engagementCount > 0 ? String(engagementCount) : "—",
-      openTasks:
-        fieldworkMetrics || riskAssessmentMetrics
-          ? String(
-              (fieldworkMetrics?.pendingReview ?? 0) +
-                (fieldworkMetrics?.assignedToMe ?? 0) +
-                (riskAssessmentMetrics?.pendingReview ?? 0) +
-                (riskAssessmentMetrics?.openItems ?? 0) +
-                (fieldworkMetrics?.openFindings ?? 0),
-            )
-          : String(labels.tasks.items.length),
+      openTasks: hasFieldworkOrRisk ? String(openTasksCount) : feed.tasks.length > 0 ? String(feed.tasks.length) : "—",
       reports: "—",
-      aiSuggestions: String(labels.ai.suggestions.length),
+      aiSuggestions: "—",
+      live: {
+        companies: companyCount > 0,
+        engagements: engagementCount > 0,
+        openTasks: hasFieldworkOrRisk || feed.tasks.length > 0,
+        reports: false,
+        aiSuggestions: false,
+      },
     },
   };
 }

@@ -23,7 +23,8 @@
     "openTasks": "Açık görevler",
     "reports": "Raporlar",
     "aiSuggestions": "AI önerileri",
-    "placeholder": "Canlı metrikler gelecek sprintlerde"
+    "placeholder": "Canlı metrikler gelecek sprintlerde",
+    "liveHint": "Canlı çalışma alanı metriği"
   },
   "quickActions": {
     "title": "Hızlı eylemler",
@@ -40,29 +41,28 @@
     "description": "Çalışma alanınızdaki değişikliklerin sakin zaman çizelgesi",
     "emptyTitle": "Son etkinlik yok",
     "emptyDescription": "Şirket, iş ve inceleme güncellemeleri burada görünecek.",
-    "items": [
-      {
-        "id": "1",
-        "title": "Şirket kimliği incelendi",
-        "description": "Tüzel kişi profili inceleme için açıldı",
-        "time": "2 saat önce",
-        "tone": "info"
-      },
-      {
-        "id": "2",
-        "title": "Çalışma alanı tercihleri kaydedildi",
-        "description": "Raporlama varsayılanları güncellendi",
-        "time": "Dün",
-        "tone": "default"
-      },
-      {
-        "id": "3",
-        "title": "Yeni şirket eklendi",
-        "description": "Çalışma alanınıza tüzel kişi kaydedildi",
-        "time": "3 gün önce",
-        "tone": "success"
-      }
-    ]
+    "items": [],
+    "actions": {
+      "default": "Çalışma alanı etkinliği",
+      "company.created": "Şirket oluşturuldu",
+      "company.updated": "Şirket güncellendi",
+      "engagement.created": "Görev oluşturuldu",
+      "engagement.updated": "Görev güncellendi",
+      "planning.submitted": "Planlama gönderildi",
+      "planning.approved": "Planlama onaylandı",
+      "fieldwork.procedure.submitted": "Prosedür gönderildi",
+      "risk_assessment.submitted": "Risk değerlendirmesi gönderildi",
+      "risk_assessment.approved": "Risk değerlendirmesi onaylandı"
+    },
+    "descriptions": {
+      "generic": "Çalışma alanı denetim izinde kaydedildi",
+      "withName": "{name} ile ilgili",
+      "company": "Şirket çalışma alanı etkinliği",
+      "engagement": "Görev çalışma alanı etkinliği",
+      "planning": "Denetim planlama etkinliği",
+      "fieldwork": "Saha çalışması etkinliği",
+      "riskAssessment": "Risk değerlendirme etkinliği"
+    }
   },
   "tasks": {
     "title": "Görevlerim",
@@ -75,35 +75,13 @@
     "priorityHigh": "Yüksek",
     "priorityMedium": "Orta",
     "priorityLow": "Düşük",
-    "items": [
-      {
-        "id": "1",
-        "title": "Şirket kimlik alanlarını incele",
-        "status": "Devam ediyor",
-        "priority": "Yüksek",
-        "due": "Bugün",
-        "statusVariant": "warning",
-        "priorityVariant": "destructive"
-      },
-      {
-        "id": "2",
-        "title": "İş klasör yapısını hazırla",
-        "status": "Açık",
-        "priority": "Orta",
-        "due": "Cuma",
-        "statusVariant": "default",
-        "priorityVariant": "warning"
-      },
-      {
-        "id": "3",
-        "title": "Raporlama çerçevesi eşlemesini onayla",
-        "status": "Açık",
-        "priority": "Düşük",
-        "due": "Gelecek hafta",
-        "statusVariant": "default",
-        "priorityVariant": "default"
-      }
-    ]
+    "items": [],
+    "dueSoon": "Yakında",
+    "reviewFieldwork": "{count} saha çalışması prosedürünü incele",
+    "assignedProcedures": "Size atanan {count} prosedür",
+    "openFindings": "{count} açık bulguyu gider",
+    "reviewRisk": "{count} risk değerlendirmesini incele",
+    "openRiskItems": "{count} açık risk öğesini tamamla"
   },
   "ai": {
     "title": "AI asistan",
@@ -126,20 +104,8 @@
     "description": "Yaklaşan son tarihler",
     "emptyTitle": "Yaklaşan son tarih yok",
     "upcoming": "Yaklaşan",
-    "items": [
-      {
-        "id": "1",
-        "title": "Çeyrek sonu raporlama kontrolü",
-        "date": "31 Mar",
-        "tone": "warning"
-      },
-      {
-        "id": "2",
-        "title": "İş planlama incelemesi",
-        "date": "4 Nis",
-        "tone": "default"
-      }
-    ]
+    "items": [],
+    "itemTitle": "{engagement} · {company}"
   },
   "notifications": {
     "title": "Bildirimler",
@@ -152,20 +118,17 @@
     "title": "Çalışma alanı içgörüleri",
     "description": "Çalışma alanınızın hafif nabzı",
     "chartPlaceholder": "Analitik görselleştirmeler gelecek sprintlerde",
-    "metrics": [
-      {
-        "id": "1",
-        "label": "Aktif şirketler",
-        "value": "—",
-        "trend": "Sabit"
-      },
-      {
-        "id": "2",
-        "label": "Açık incelemeler",
-        "value": "—",
-        "trend": "Önizleme"
-      }
-    ]
+    "metrics": [],
+    "metricCompanies": "Aktif şirketler",
+    "metricEngagements": "Aktif görevler",
+    "metricReviews": "Bekleyen incelemeler",
+    "metricPlanning": "Devam eden planlama",
+    "metricFindings": "Açık bulgular",
+    "metricSignificantRisks": "Önemli riskler",
+    "trendActive": "Çalışma alanında aktif",
+    "trendClear": "Bekleyen yok",
+    "trendAttention": "Dikkat gerekiyor",
+    "trendApproved": "{count} onaylandı"
   },
   "pinned": {
     "title": "Sabitlenen",
@@ -175,10 +138,7 @@
     "emptyRecent": "Açtığınız şirketler burada görünecek",
     "emptyFavorites": "Hızlı erişim için şirketleri sabitleyin",
     "emptyEngagements": "İşler burada görünecek",
-    "engagements": [
-      "2026 mali yıl denetimi",
-      "IFRS dönüşüm incelemesi"
-    ]
+    "engagements": []
   },
   "continueWorking": {
     "title": "Çalışmaya devam et",

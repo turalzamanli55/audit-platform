@@ -42,6 +42,7 @@ export type DashboardWorkspaceLabels = {
     reports: string;
     aiSuggestions: string;
     placeholder: string;
+    liveHint: string;
   };
   quickActions: {
     title: string;
@@ -58,6 +59,16 @@ export type DashboardWorkspaceLabels = {
     description: string;
     emptyTitle: string;
     emptyDescription: string;
+    actions: Record<string, string>;
+    descriptions: {
+      generic: string;
+      withName: string;
+      company: string;
+      engagement: string;
+      planning: string;
+      fieldwork: string;
+      riskAssessment: string;
+    };
     items: DashboardWorkspaceActivityItem[];
   };
   tasks: {
@@ -71,6 +82,12 @@ export type DashboardWorkspaceLabels = {
     priorityHigh: string;
     priorityMedium: string;
     priorityLow: string;
+    dueSoon: string;
+    reviewFieldwork: string;
+    assignedProcedures: string;
+    openFindings: string;
+    reviewRisk: string;
+    openRiskItems: string;
     items: DashboardWorkspaceTaskItem[];
   };
   ai: {
@@ -88,6 +105,7 @@ export type DashboardWorkspaceLabels = {
     description: string;
     emptyTitle: string;
     upcoming: string;
+    itemTitle: string;
     items: Array<{ id: string; title: string; date: string; tone: "default" | "warning" }>;
   };
   notifications: {
@@ -101,6 +119,16 @@ export type DashboardWorkspaceLabels = {
     title: string;
     description: string;
     chartPlaceholder: string;
+    metricCompanies: string;
+    metricEngagements: string;
+    metricReviews: string;
+    metricPlanning: string;
+    metricFindings: string;
+    metricSignificantRisks: string;
+    trendActive: string;
+    trendClear: string;
+    trendAttention: string;
+    trendApproved: string;
     metrics: Array<{ id: string; label: string; value: string; trend: string }>;
   };
   pinned: {

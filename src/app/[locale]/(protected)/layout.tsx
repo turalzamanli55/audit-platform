@@ -132,12 +132,16 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
               notificationsEmpty: dictionary.shell.notificationsEmpty,
               markAllRead: dictionary.shell.markAllRead,
               userMenu: dictionary.shell.userMenu,
-              profile: dictionary.shell.profile,
+              profile: dictionary.shell.dashboardHome,
               signOut: dictionary.auth.signOut,
               openSearch: dictionary.shell.openSearch,
+              workspaceRequired: dictionary.shell.workspaceRequired,
+              accessRestricted: dictionary.shell.accessRestricted,
               drawerContextTitle: dictionary.shell.drawerContextTitle,
               searchPlaceholder: dictionary.shell.searchPlaceholder,
               commandPalette: dictionary.shell.commandPalette,
+              expandSidebar: dictionary.shell.expandSidebar,
+              collapseSidebar: dictionary.shell.collapseSidebar,
             }}
             dashboardCommands={dictionary.dashboardWorkspace.personalization.commands}
           >

@@ -74,6 +74,7 @@ export default async function EngagementsPage({ params, searchParams }: Engageme
     <EngagementListExperience
       locale={locale}
       labels={labels}
+      dashboardLabel={dictionary.dashboard.navDashboard}
       items={pagination.items}
       pagination={pagination}
       query={query}

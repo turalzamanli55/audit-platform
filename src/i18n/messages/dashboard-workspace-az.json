@@ -23,7 +23,8 @@
     "openTasks": "Açıq tapşırıqlar",
     "reports": "Hesabatlar",
     "aiSuggestions": "AI təklifləri",
-    "placeholder": "Canlı göstəricilər gələcək sprintlərdə"
+    "placeholder": "Canlı göstəricilər gələcək sprintlərdə",
+    "liveHint": "Canlı iş sahəsi göstəricisi"
   },
   "quickActions": {
     "title": "Sürətli əməliyyatlar",
@@ -40,29 +41,40 @@
     "description": "İş sahənizdə nə dəyişdiyinin sakit xronologiyası",
     "emptyTitle": "Son fəaliyyət yoxdur",
     "emptyDescription": "Şirkət, iş və yoxlama yeniləmələri burada görünəcək.",
-    "items": [
-      {
-        "id": "1",
-        "title": "Şirkət kimliyi yoxlandı",
-        "description": "Hüquqi şəxs profili yoxlama üçün açıldı",
-        "time": "2 saat əvvəl",
-        "tone": "info"
-      },
-      {
-        "id": "2",
-        "title": "İş sahəsi parametrləri saxlanıldı",
-        "description": "Hesabat standartları yeniləndi",
-        "time": "Dünən",
-        "tone": "default"
-      },
-      {
-        "id": "3",
-        "title": "Yeni şirkət əlavə edildi",
-        "description": "İş sahənizə hüquqi şəxs qeydiyyata alındı",
-        "time": "3 gün əvvəl",
-        "tone": "success"
-      }
-    ]
+    "items": [],
+    "actions": {
+      "default": "İş sahəsi fəaliyyəti",
+      "company.created": "Şirkət yaradıldı",
+      "company.updated": "Şirkət yeniləndi",
+      "company.settings.updated": "Şirkət parametrləri yeniləndi",
+      "company.archived": "Şirkət arxivləndi",
+      "company.restored": "Şirkət bərpa edildi",
+      "engagement.created": "Tapşırıq yaradıldı",
+      "engagement.updated": "Tapşırıq yeniləndi",
+      "engagement.status.changed": "Tapşırıq statusu dəyişdi",
+      "engagement.archived": "Tapşırıq arxivləndi",
+      "engagement.restored": "Tapşırıq bərpa edildi",
+      "planning.created": "Planlaşdırma yaradıldı",
+      "planning.updated": "Planlaşdırma yeniləndi",
+      "planning.submitted": "Planlaşdırma təqdim edildi",
+      "planning.approved": "Planlaşdırma təsdiqləndi",
+      "fieldwork.created": "Sahə işi yaradıldı",
+      "fieldwork.procedure.submitted": "Prosedur təqdim edildi",
+      "fieldwork.finding.added": "Nəticə əlavə edildi",
+      "risk_assessment.created": "Risk qiymətləndirməsi yaradıldı",
+      "risk_assessment.submitted": "Risk qiymətləndirməsi təqdim edildi",
+      "risk_assessment.approved": "Risk qiymətləndirməsi təsdiqləndi",
+      "risk_assessment.risk_item.added": "Risk elementi əlavə edildi"
+    },
+    "descriptions": {
+      "generic": "İş sahəsi audit izində qeydə alınıb",
+      "withName": "{name} ilə əlaqəli",
+      "company": "Şirkət iş sahəsi fəaliyyəti",
+      "engagement": "Tapşırıq iş sahəsi fəaliyyəti",
+      "planning": "Audit planlaşdırması fəaliyyəti",
+      "fieldwork": "Sahə işi icrası fəaliyyəti",
+      "riskAssessment": "Risk qiymətləndirməsi fəaliyyəti"
+    }
   },
   "tasks": {
     "title": "Tapşırıqlarım",
@@ -75,35 +87,13 @@
     "priorityHigh": "Yüksək",
     "priorityMedium": "Orta",
     "priorityLow": "Aşağı",
-    "items": [
-      {
-        "id": "1",
-        "title": "Şirkət kimliyi sahələrini yoxla",
-        "status": "Davam edir",
-        "priority": "Yüksək",
-        "due": "Bu gün",
-        "statusVariant": "warning",
-        "priorityVariant": "destructive"
-      },
-      {
-        "id": "2",
-        "title": "İş qovluq strukturunu hazırla",
-        "status": "Açıq",
-        "priority": "Orta",
-        "due": "Cümə",
-        "statusVariant": "default",
-        "priorityVariant": "warning"
-      },
-      {
-        "id": "3",
-        "title": "Hesabat çərçivəsi uyğunluğunu təsdiqlə",
-        "status": "Açıq",
-        "priority": "Aşağı",
-        "due": "Gələn həftə",
-        "statusVariant": "default",
-        "priorityVariant": "default"
-      }
-    ]
+    "items": [],
+    "dueSoon": "Tezliklə",
+    "reviewFieldwork": "{count} sahə işi prosedurunu yoxla",
+    "assignedProcedures": "Sizə təyin olunmuş {count} prosedur",
+    "openFindings": "{count} açıq nəticəni həll et",
+    "reviewRisk": "{count} risk qiymətləndirməsini yoxla",
+    "openRiskItems": "{count} açıq risk elementini tamamla"
   },
   "ai": {
     "title": "AI köməkçi",
@@ -126,20 +116,8 @@
     "description": "Yaxınlaşan son tarixlər",
     "emptyTitle": "Yaxınlaşan son tarix yoxdur",
     "upcoming": "Yaxınlaşan",
-    "items": [
-      {
-        "id": "1",
-        "title": "Rüb sonu hesabat yoxlaması",
-        "date": "31 Mar",
-        "tone": "warning"
-      },
-      {
-        "id": "2",
-        "title": "İş planlaşdırma icmalı",
-        "date": "4 Apr",
-        "tone": "default"
-      }
-    ]
+    "items": [],
+    "itemTitle": "{engagement} · {company}"
   },
   "notifications": {
     "title": "Bildirişlər",
@@ -152,20 +130,17 @@
     "title": "İş sahəsi icmalları",
     "description": "İş sahənizin yüngül nəbzı",
     "chartPlaceholder": "Analitika vizuallaşdırmaları gələcək sprintlərdə",
-    "metrics": [
-      {
-        "id": "1",
-        "label": "Aktiv şirkətlər",
-        "value": "—",
-        "trend": "Sabit"
-      },
-      {
-        "id": "2",
-        "label": "Açıq yoxlamalar",
-        "value": "—",
-        "trend": "Önizləmə"
-      }
-    ]
+    "metrics": [],
+    "metricCompanies": "Aktiv şirkətlər",
+    "metricEngagements": "Aktiv tapşırıqlar",
+    "metricReviews": "Gözləyən yoxlamalar",
+    "metricPlanning": "Davam edən planlaşdırma",
+    "metricFindings": "Açıq nəticələr",
+    "metricSignificantRisks": "Əhəmiyyətli risklər",
+    "trendActive": "İş sahəsində aktiv",
+    "trendClear": "Gözləyən yoxdur",
+    "trendAttention": "Diqqət tələb edir",
+    "trendApproved": "{count} təsdiqlənib"
   },
   "pinned": {
     "title": "Saxlanılan",
@@ -175,10 +150,7 @@
     "emptyRecent": "Açdığınız şirkətlər burada görünəcək",
     "emptyFavorites": "Tez giriş üçün şirkətləri saxlayın",
     "emptyEngagements": "İşlər burada görünəcək",
-    "engagements": [
-      "2026 maliyyə ili audit",
-      "IFRS konversiya icmalı"
-    ]
+    "engagements": []
   },
   "continueWorking": {
     "title": "İşə davam et",

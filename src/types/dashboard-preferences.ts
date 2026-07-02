@@ -59,13 +59,11 @@ export type DashboardCommandHandlers = {
 const HERO_WIDGETS: DashboardWidgetId[] = ["welcome", "kpi", "quick-actions"];
 const MAIN_WIDGETS: DashboardWidgetId[] = ["activity", "continue", "tasks", "pinned"];
 const SIDE_WIDGETS: DashboardWidgetId[] = [
-  "ai",
   "calendar",
   "notifications",
   "insights",
-  "shortcuts",
-  "tips",
 ];
+const OPTIONAL_SIDE_WIDGETS: DashboardWidgetId[] = ["ai", "shortcuts", "tips"];
 
 function buildDefaultWidgets(): Record<DashboardWidgetId, DashboardWidgetPreference> {
   const widgets = {} as Record<DashboardWidgetId, DashboardWidgetPreference>;
@@ -102,6 +100,18 @@ function buildDefaultWidgets(): Record<DashboardWidgetId, DashboardWidgetPrefere
       expanded: false,
       size: "default",
       order: index,
+      column: "side",
+    };
+  });
+
+  OPTIONAL_SIDE_WIDGETS.forEach((id, index) => {
+    widgets[id] = {
+      visible: false,
+      pinned: false,
+      collapsed: false,
+      expanded: false,
+      size: "default",
+      order: SIDE_WIDGETS.length + index,
       column: "side",
     };
   });

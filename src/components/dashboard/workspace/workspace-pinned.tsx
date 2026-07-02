@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { IconBriefcase, IconStar } from "@/components/ui/icons";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
+import type { DashboardEngagementPreview } from "@/lib/dashboard/load-dashboard-feed";
 import type { DashboardWorkspaceCompany } from "@/lib/dashboard/load-dashboard-workspace";
 import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
 
@@ -17,6 +18,7 @@ type WorkspacePinnedProps = {
   onToggleFavoriteCompany: (companyId: string) => void;
   onOpenCompany: (companyId: string) => void;
   personalizationLabels: DashboardWorkspaceLabels["personalization"];
+  recentEngagements: DashboardEngagementPreview[];
   favoriteEngagementIds: string[];
   favoriteReportIds: string[];
 };
@@ -84,6 +86,7 @@ export function WorkspacePinned({
   onToggleFavoriteCompany,
   onOpenCompany,
   personalizationLabels,
+  recentEngagements,
   favoriteEngagementIds,
   favoriteReportIds,
 }: WorkspacePinnedProps) {
@@ -124,17 +127,22 @@ export function WorkspacePinned({
         </WorkspacePanel>
         <WorkspacePanel className="workspace-panel">
           <h3 className="mb-4 text-sm font-medium text-foreground">{labels.recentEngagements}</h3>
-          {labels.engagements.length === 0 ? (
+          {recentEngagements.length === 0 ? (
             <EmptyState title={labels.emptyEngagements} className="py-8" />
           ) : (
             <ul className="space-y-2">
-              {labels.engagements.map((engagement) => (
-                <li
-                  key={engagement}
-                  className="flex items-center gap-3 rounded-2xl border border-border/40 bg-muted/10 px-3 py-2.5 text-sm"
-                >
-                  <IconBriefcase width={16} height={16} className="text-muted-foreground" />
-                  {engagement}
+              {recentEngagements.map((engagement) => (
+                <li key={engagement.id}>
+                  <Link
+                    href={`/${locale}/app/engagements/${engagement.slug}`}
+                    className="flex items-center gap-3 rounded-2xl border border-border/40 bg-muted/10 px-3 py-2.5 text-sm transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <IconBriefcase width={16} height={16} className="shrink-0 text-muted-foreground" />
+                    <span className="min-w-0">
+                      <span className="block truncate font-medium text-foreground">{engagement.name}</span>
+                      <span className="block truncate text-xs text-muted-foreground">{engagement.companyName}</span>
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>

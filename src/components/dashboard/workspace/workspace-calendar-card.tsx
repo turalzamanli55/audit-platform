@@ -6,11 +6,10 @@ import { WorkspacePanel } from "./workspace-section";
 
 type WorkspaceCalendarCardProps = {
   labels: DashboardWorkspaceLabels["calendar"];
+  items: DashboardWorkspaceLabels["calendar"]["items"];
 };
 
-export function WorkspaceCalendarCard({ labels }: WorkspaceCalendarCardProps) {
-  const items = labels.items;
-
+export function WorkspaceCalendarCard({ labels, items }: WorkspaceCalendarCardProps) {
   return (
     <WorkspacePanel>
       <div className="mb-5 flex items-center gap-3">

@@ -9,9 +9,15 @@ import { cn } from "@/lib/ui/cn";
 
 type ShellSidebarUserFooterProps = {
   className?: string;
+  expandLabel: string;
+  collapseLabel: string;
 };
 
-export function ShellSidebarUserFooter({ className }: ShellSidebarUserFooterProps) {
+export function ShellSidebarUserFooter({
+  className,
+  expandLabel,
+  collapseLabel,
+}: ShellSidebarUserFooterProps) {
   const { session } = useAuth();
   const { sidebarCollapsed, toggleSidebar } = useShell();
 
@@ -35,7 +41,7 @@ export function ShellSidebarUserFooter({ className }: ShellSidebarUserFooterProp
         size="icon"
         onClick={toggleSidebar}
         className="shrink-0 text-sidebar-muted hover:bg-sidebar-accent/60 hover:text-sidebar-foreground"
-        aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        aria-label={sidebarCollapsed ? expandLabel : collapseLabel}
       >
         <IconPanelLeft />
       </Button>

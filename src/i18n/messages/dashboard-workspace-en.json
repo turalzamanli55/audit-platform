@@ -23,7 +23,8 @@
     "openTasks": "Open tasks",
     "reports": "Reports",
     "aiSuggestions": "AI suggestions",
-    "placeholder": "Live metrics arrive in future sprints"
+    "placeholder": "Live metrics arrive in future sprints",
+    "liveHint": "Live workspace metric"
   },
   "quickActions": {
     "title": "Quick actions",
@@ -40,29 +41,49 @@
     "description": "A calm timeline of what changed in your workspace",
     "emptyTitle": "No recent activity",
     "emptyDescription": "Updates from companies, engagements, and reviews will appear here.",
-    "items": [
-      {
-        "id": "1",
-        "title": "Company identity reviewed",
-        "description": "Legal entity profile was opened for review",
-        "time": "2 hours ago",
-        "tone": "info"
-      },
-      {
-        "id": "2",
-        "title": "Workspace preferences saved",
-        "description": "Reporting defaults were updated for the current workspace",
-        "time": "Yesterday",
-        "tone": "default"
-      },
-      {
-        "id": "3",
-        "title": "New company added",
-        "description": "A legal entity was registered in your workspace",
-        "time": "3 days ago",
-        "tone": "success"
-      }
-    ]
+    "items": [],
+    "actions": {
+      "default": "Workspace activity",
+      "company.created": "Company created",
+      "company.updated": "Company updated",
+      "company.settings.updated": "Company settings updated",
+      "company.archived": "Company archived",
+      "company.restored": "Company restored",
+      "engagement.created": "Engagement created",
+      "engagement.updated": "Engagement updated",
+      "engagement.status.changed": "Engagement status changed",
+      "engagement.archived": "Engagement archived",
+      "engagement.restored": "Engagement restored",
+      "planning.created": "Planning created",
+      "planning.updated": "Planning updated",
+      "planning.archived": "Planning archived",
+      "planning.restored": "Planning restored",
+      "planning.submitted": "Planning submitted",
+      "planning.returned": "Planning returned",
+      "planning.approved": "Planning approved",
+      "planning.revised": "Planning revised",
+      "fieldwork.created": "Fieldwork created",
+      "fieldwork.archived": "Fieldwork archived",
+      "fieldwork.restored": "Fieldwork restored",
+      "fieldwork.procedure.updated": "Procedure updated",
+      "fieldwork.procedure.submitted": "Procedure submitted",
+      "fieldwork.procedure.returned": "Procedure returned",
+      "fieldwork.procedure.cleared": "Procedure cleared",
+      "fieldwork.finding.added": "Finding added",
+      "risk_assessment.created": "Risk assessment created",
+      "risk_assessment.submitted": "Risk assessment submitted",
+      "risk_assessment.approved": "Risk assessment approved",
+      "risk_assessment.risk_item.added": "Risk item added"
+    },
+    "descriptions": {
+      "generic": "Recorded in your workspace audit trail",
+      "withName": "Related to {name}",
+      "company": "Company workspace activity",
+      "engagement": "Engagement workspace activity",
+      "planning": "Audit planning activity",
+      "fieldwork": "Fieldwork execution activity",
+      "riskAssessment": "Risk assessment activity"
+    }
   },
   "tasks": {
     "title": "My tasks",
@@ -75,35 +96,13 @@
     "priorityHigh": "High",
     "priorityMedium": "Medium",
     "priorityLow": "Low",
-    "items": [
-      {
-        "id": "1",
-        "title": "Review company identity fields",
-        "status": "In progress",
-        "priority": "High",
-        "due": "Today",
-        "statusVariant": "warning",
-        "priorityVariant": "destructive"
-      },
-      {
-        "id": "2",
-        "title": "Prepare engagement folder structure",
-        "status": "Open",
-        "priority": "Medium",
-        "due": "Fri",
-        "statusVariant": "default",
-        "priorityVariant": "warning"
-      },
-      {
-        "id": "3",
-        "title": "Confirm reporting framework mapping",
-        "status": "Open",
-        "priority": "Low",
-        "due": "Next week",
-        "statusVariant": "default",
-        "priorityVariant": "default"
-      }
-    ]
+    "items": [],
+    "dueSoon": "Soon",
+    "reviewFieldwork": "Review {count} fieldwork procedures",
+    "assignedProcedures": "{count} procedures assigned to you",
+    "openFindings": "Address {count} open findings",
+    "reviewRisk": "Review {count} risk assessments",
+    "openRiskItems": "Complete {count} open risk items"
   },
   "ai": {
     "title": "AI assistant",
@@ -126,20 +125,8 @@
     "description": "Upcoming deadlines and milestones",
     "emptyTitle": "No upcoming deadlines",
     "upcoming": "Upcoming",
-    "items": [
-      {
-        "id": "1",
-        "title": "Quarter-end reporting checkpoint",
-        "date": "Mar 31",
-        "tone": "warning"
-      },
-      {
-        "id": "2",
-        "title": "Engagement planning review",
-        "date": "Apr 4",
-        "tone": "default"
-      }
-    ]
+    "items": [],
+    "itemTitle": "{engagement} · {company}"
   },
   "notifications": {
     "title": "Notifications",
@@ -152,20 +139,17 @@
     "title": "Workspace insights",
     "description": "A lightweight pulse on your workspace",
     "chartPlaceholder": "Analytics visualizations arrive in future sprints",
-    "metrics": [
-      {
-        "id": "1",
-        "label": "Active companies",
-        "value": "—",
-        "trend": "Stable"
-      },
-      {
-        "id": "2",
-        "label": "Open reviews",
-        "value": "—",
-        "trend": "Preview"
-      }
-    ]
+    "metrics": [],
+    "metricCompanies": "Active companies",
+    "metricEngagements": "Active engagements",
+    "metricReviews": "Pending reviews",
+    "metricPlanning": "Planning in progress",
+    "metricFindings": "Open findings",
+    "metricSignificantRisks": "Significant risks",
+    "trendActive": "Active in workspace",
+    "trendClear": "Nothing pending",
+    "trendAttention": "Needs attention",
+    "trendApproved": "{count} approved"
   },
   "pinned": {
     "title": "Pinned",
@@ -175,10 +159,7 @@
     "emptyRecent": "Companies you open will appear here",
     "emptyFavorites": "Pin companies for quick access",
     "emptyEngagements": "Engagements will appear here",
-    "engagements": [
-      "FY2026 statutory audit",
-      "IFRS conversion review"
-    ]
+    "engagements": []
   },
   "continueWorking": {
     "title": "Continue working",

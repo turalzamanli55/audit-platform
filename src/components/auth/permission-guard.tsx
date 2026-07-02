@@ -7,6 +7,7 @@ import { useTenantOptional } from "@/providers/tenant-provider";
 import { hasPermission } from "@/lib/auth/permissions";
 import { hasMergedPermissionCode } from "@/lib/auth/session-safety";
 import { EmptyStateShell } from "@/components/layout/shells/empty-state-shell";
+import { useCommonLabels } from "@/i18n/use-common-labels";
 
 type PermissionGuardProps = {
   children: ReactNode;
@@ -29,13 +30,14 @@ export function PermissionGuard({
 }: PermissionGuardProps) {
   const { session } = useAuth();
   const tenant = useTenantOptional();
+  const common = useCommonLabels();
 
   if (session.status !== "authenticated" || !session.user) {
     return (
       fallback ?? (
         <EmptyStateShell
-          title="Access restricted"
-          description="You must be signed in to view this content."
+          title={common.accessRestricted}
+          description={common.signInRequired}
         />
       )
     );
@@ -63,8 +65,8 @@ export function PermissionGuard({
     return (
       fallback ?? (
         <EmptyStateShell
-          title="Permission denied"
-          description="You do not have permission to perform this action."
+          title={common.permissionDenied}
+          description={common.permissionDeniedDescription}
         />
       )
     );

@@ -17,6 +17,13 @@ type WorkspaceKpiGridProps = {
     reports: string;
     aiSuggestions: string;
   };
+  live: {
+    companies: boolean;
+    engagements: boolean;
+    openTasks: boolean;
+    reports: boolean;
+    aiSuggestions: boolean;
+  };
 };
 
 const kpiIcons = [
@@ -27,17 +34,28 @@ const kpiIcons = [
   IconSparkles,
 ] as const;
 
-export function WorkspaceKpiGrid({ labels, values }: WorkspaceKpiGridProps) {
+export function WorkspaceKpiGrid({ labels, values, live }: WorkspaceKpiGridProps) {
   const items = [
-    { label: labels.companies, value: values.companies },
-    { label: labels.engagements, value: values.engagements },
-    { label: labels.openTasks, value: values.openTasks },
-    { label: labels.reports, value: values.reports },
-    { label: labels.aiSuggestions, value: values.aiSuggestions },
-  ];
+    { label: labels.companies, value: values.companies, isLive: live.companies },
+    { label: labels.engagements, value: values.engagements, isLive: live.engagements },
+    { label: labels.openTasks, value: values.openTasks, isLive: live.openTasks },
+    { label: labels.reports, value: values.reports, isLive: live.reports },
+    { label: labels.aiSuggestions, value: values.aiSuggestions, isLive: live.aiSuggestions },
+  ].filter((item) => item.isLive);
+
+  if (items.length === 0) {
+    return null;
+  }
+
+  const gridClass =
+    items.length <= 2
+      ? "grid-cols-2"
+      : items.length === 3
+        ? "grid-cols-2 lg:grid-cols-3"
+        : "grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
 
   return (
-    <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-5">
+    <div className={`grid gap-4 ${gridClass}`}>
       {items.map((item, index) => {
         const Icon = kpiIcons[index] ?? IconBriefcase;
         return (
@@ -46,7 +64,9 @@ export function WorkspaceKpiGrid({ labels, values }: WorkspaceKpiGridProps) {
               <div className="space-y-3">
                 <p className="text-sm text-muted-foreground">{item.label}</p>
                 <p className="text-3xl font-semibold tracking-tight text-foreground">{item.value}</p>
-                <p className="text-xs leading-relaxed text-muted-foreground">{labels.placeholder}</p>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  {item.isLive ? labels.liveHint : labels.placeholder}
+                </p>
               </div>
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Icon width={18} height={18} />

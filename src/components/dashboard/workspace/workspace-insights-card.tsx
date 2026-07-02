@@ -4,9 +4,10 @@ import { WorkspacePanel } from "./workspace-section";
 
 type WorkspaceInsightsCardProps = {
   labels: DashboardWorkspaceLabels["insights"];
+  metrics: DashboardWorkspaceLabels["insights"]["metrics"];
 };
 
-export function WorkspaceInsightsCard({ labels }: WorkspaceInsightsCardProps) {
+export function WorkspaceInsightsCard({ labels, metrics }: WorkspaceInsightsCardProps) {
   return (
     <WorkspacePanel>
       <div className="mb-5 flex items-center gap-3">
@@ -27,7 +28,7 @@ export function WorkspaceInsightsCard({ labels }: WorkspaceInsightsCardProps) {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        {labels.metrics.map((metric) => (
+        {metrics.map((metric) => (
           <div
             key={metric.id}
             className="rounded-2xl border border-border/40 bg-background/50 px-4 py-3"

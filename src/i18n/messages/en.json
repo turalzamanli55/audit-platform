@@ -4,7 +4,14 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "empty": "No data",
-    "retry": "Retry"
+    "retry": "Retry",
+    "accessRestricted": "Access restricted",
+    "signInRequired": "You must be signed in to view this content.",
+    "permissionDenied": "Permission denied",
+    "permissionDeniedDescription": "You do not have permission to perform this action.",
+    "tryAgain": "Try again",
+    "breadcrumbLabel": "Breadcrumb",
+    "backTo": "Back to"
   },
   "shell": {
     "header": "Header",
@@ -29,8 +36,18 @@
       "navigation": "Navigation",
       "actions": "Actions",
       "settings": "Settings",
-      "close": "Close command palette"
-    }
+      "close": "Close command palette",
+      "createCompany": "Create company",
+      "createCompanyDescription": "Register a new legal entity",
+      "createEngagement": "Create engagement",
+      "createEngagementDescription": "Start a new audit or assurance engagement",
+      "goToDashboard": "Go to dashboard"
+    },
+    "workspaceRequired": "Workspace required",
+    "accessRestricted": "Access restricted",
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar",
+    "dashboardHome": "Dashboard"
   },
   "auth": {
     "signIn": "Sign in",
@@ -225,8 +242,18 @@
         "OTHER": "Other"
       },
       "months": [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
       ]
     },
     "detail": {
@@ -1051,9 +1078,9 @@
       },
       "risk": {
         "title": "Risk assessment",
-        "description": "Risk of material misstatement assessment will be documented in a dedicated module.",
-        "placeholderTitle": "Risk assessment placeholder",
-        "placeholderDescription": "Risk identification, inherent risk, and control risk documentation will connect here when the Risk module is implemented."
+        "description": "Open the engagement risk assessment workspace from planning.",
+        "placeholderTitle": "Risk assessment integrated",
+        "placeholderDescription": "Planning links to the dedicated risk assessment workspace. Use Risk assessment in the engagement sidebar or continue from the planning risk section."
       }
     },
     "team": {
@@ -1330,22 +1357,68 @@
         "evidence": "Evidence items"
       },
       "sections": {
-        "overview": { "title": "Fieldwork dashboard", "description": "Progress, assignments, and execution indicators." },
-        "program": { "title": "Audit program", "description": "Approved program version governing procedure execution." },
-        "procedure-groups": { "title": "Procedure groups", "description": "Grouped audit areas and completion progress." },
-        "procedures": { "title": "Audit procedures", "description": "Assignable units of audit work with status tracking." },
-        "working-papers": { "title": "Working papers", "description": "Documentation, tickmarks, and conclusions." },
-        "evidence": { "title": "Evidence register", "description": "Indexed audit evidence and attachments." },
-        "findings": { "title": "Findings", "description": "Misstatements, deficiencies, and recommendations." },
-        "notes": { "title": "Auditor notes", "description": "Preparer documentation and professional judgment." },
-        "review-notes": { "title": "Review notes", "description": "Reviewer comments and clearance tracking." },
-        "comments": { "title": "Internal comments", "description": "Team discussion captured during fieldwork." },
-        "history": { "title": "Fieldwork history", "description": "Chronological activity and audit trail." },
-        "settings": { "title": "Fieldwork settings", "description": "Archive or restore this fieldwork package." }
+        "overview": {
+          "title": "Fieldwork dashboard",
+          "description": "Progress, assignments, and execution indicators."
+        },
+        "program": {
+          "title": "Audit program",
+          "description": "Approved program version governing procedure execution."
+        },
+        "procedure-groups": {
+          "title": "Procedure groups",
+          "description": "Grouped audit areas and completion progress."
+        },
+        "procedures": {
+          "title": "Audit procedures",
+          "description": "Assignable units of audit work with status tracking."
+        },
+        "working-papers": {
+          "title": "Working papers",
+          "description": "Documentation, tickmarks, and conclusions."
+        },
+        "evidence": {
+          "title": "Evidence register",
+          "description": "Indexed audit evidence and attachments."
+        },
+        "findings": {
+          "title": "Findings",
+          "description": "Misstatements, deficiencies, and recommendations."
+        },
+        "notes": {
+          "title": "Auditor notes",
+          "description": "Preparer documentation and professional judgment."
+        },
+        "review-notes": {
+          "title": "Review notes",
+          "description": "Reviewer comments and clearance tracking."
+        },
+        "comments": {
+          "title": "Internal comments",
+          "description": "Team discussion captured during fieldwork."
+        },
+        "history": {
+          "title": "Fieldwork history",
+          "description": "Chronological activity and audit trail."
+        },
+        "settings": {
+          "title": "Fieldwork settings",
+          "description": "Archive or restore this fieldwork package."
+        }
       }
     },
-    "program": { "title": "Audit program", "description": "Program metadata and execution status.", "emptyTitle": "No audit program", "emptyDescription": "The audit program is created when fieldwork is initiated." },
-    "procedureGroups": { "title": "Procedure groups", "description": "Audit areas grouping related procedures.", "emptyTitle": "No procedure groups", "emptyDescription": "Procedure groups appear when fieldwork is initiated." },
+    "program": {
+      "title": "Audit program",
+      "description": "Program metadata and execution status.",
+      "emptyTitle": "No audit program",
+      "emptyDescription": "The audit program is created when fieldwork is initiated."
+    },
+    "procedureGroups": {
+      "title": "Procedure groups",
+      "description": "Audit areas grouping related procedures.",
+      "emptyTitle": "No procedure groups",
+      "emptyDescription": "Procedure groups appear when fieldwork is initiated."
+    },
     "workingPapers": {
       "title": "Working papers",
       "description": "Working paper references with tickmark support.",
@@ -1371,10 +1444,32 @@
       "downloadAction": "Download",
       "downloadError": "Unable to download evidence file"
     },
-    "findings": { "title": "Findings", "description": "Document audit findings discovered during fieldwork.", "emptyTitle": "No findings", "emptyDescription": "Findings will appear as they are documented.", "titlePlaceholder": "Finding title" },
-    "notes": { "title": "Auditor notes", "description": "Preparer notes captured during fieldwork.", "emptyTitle": "No auditor notes", "emptyDescription": "Auditor notes will appear here.", "bodyPlaceholder": "Add a note" },
-    "reviewNotes": { "title": "Review notes", "description": "Review-level comments and clearance notes.", "emptyTitle": "No review notes", "emptyDescription": "Review notes will appear during review cycles." },
-    "comments": { "title": "Internal comments", "description": "Internal team discussion on fieldwork matters.", "emptyTitle": "No internal comments", "emptyDescription": "Internal comments will appear here." },
+    "findings": {
+      "title": "Findings",
+      "description": "Document audit findings discovered during fieldwork.",
+      "emptyTitle": "No findings",
+      "emptyDescription": "Findings will appear as they are documented.",
+      "titlePlaceholder": "Finding title"
+    },
+    "notes": {
+      "title": "Auditor notes",
+      "description": "Preparer notes captured during fieldwork.",
+      "emptyTitle": "No auditor notes",
+      "emptyDescription": "Auditor notes will appear here.",
+      "bodyPlaceholder": "Add a note"
+    },
+    "reviewNotes": {
+      "title": "Review notes",
+      "description": "Review-level comments and clearance notes.",
+      "emptyTitle": "No review notes",
+      "emptyDescription": "Review notes will appear during review cycles."
+    },
+    "comments": {
+      "title": "Internal comments",
+      "description": "Internal team discussion on fieldwork matters.",
+      "emptyTitle": "No internal comments",
+      "emptyDescription": "Internal comments will appear here."
+    },
     "history": {
       "title": "Fieldwork history",
       "description": "Read-only timeline of fieldwork changes.",
@@ -1570,27 +1665,90 @@
       "summaryPendingReview": "Pending review",
       "summaryOpenItems": "Open items",
       "sections": {
-        "overview": { "title": "Risk dashboard", "description": "Status, progress, and review readiness indicators." },
-        "inherent-risks": { "title": "Inherent risks", "description": "Risks before considering related controls." },
-        "control-risks": { "title": "Control risks", "description": "Risks related to design and operation of controls." },
-        "detection-risks": { "title": "Detection risks", "description": "Risks that procedures fail to detect misstatements." },
-        "fraud-risks": { "title": "Fraud risks", "description": "Fraud risk factors and management override considerations." },
-        "it-risks": { "title": "IT risks", "description": "Technology, system access, and data integrity risks." },
-        "compliance-risks": { "title": "Compliance risks", "description": "Regulatory and legal compliance risks." },
-        "financial-statement-risks": { "title": "Financial statement risks", "description": "Financial statement level risks of material misstatement." },
-        "assertion-risks": { "title": "Assertion risks", "description": "Assertion-level risks linked to relevant accounts." },
-        "significant-risks": { "title": "Significant risks", "description": "High-priority risks requiring focused audit response." },
-        "categories": { "title": "Risk categories", "description": "Configured categories used to organize risk items." },
-        "scoring": { "title": "Scoring", "description": "Aggregate scoring indicators across identified risks." },
-        "heatmap": { "title": "Heatmap", "description": "Visual distribution of risk ratings." },
-        "matrix": { "title": "Assertion matrix", "description": "Account and assertion ratings overview." },
-        "responses": { "title": "Risk responses", "description": "Planned responses for identified risks." },
-        "procedures": { "title": "Procedure links", "description": "Linked procedures for addressing assessed risks." },
-        "owners": { "title": "Risk owners", "description": "Assigned owners for each risk item." },
-        "review-notes": { "title": "Review notes", "description": "Reviewer notes captured during risk assessment cycles." },
-        "comments": { "title": "Comments", "description": "Internal comments and collaboration notes." },
-        "history": { "title": "History", "description": "Timeline of risk assessment changes and approvals." },
-        "settings": { "title": "Settings", "description": "Archive and restore controls for this risk assessment." }
+        "overview": {
+          "title": "Risk dashboard",
+          "description": "Status, progress, and review readiness indicators."
+        },
+        "inherent-risks": {
+          "title": "Inherent risks",
+          "description": "Risks before considering related controls."
+        },
+        "control-risks": {
+          "title": "Control risks",
+          "description": "Risks related to design and operation of controls."
+        },
+        "detection-risks": {
+          "title": "Detection risks",
+          "description": "Risks that procedures fail to detect misstatements."
+        },
+        "fraud-risks": {
+          "title": "Fraud risks",
+          "description": "Fraud risk factors and management override considerations."
+        },
+        "it-risks": {
+          "title": "IT risks",
+          "description": "Technology, system access, and data integrity risks."
+        },
+        "compliance-risks": {
+          "title": "Compliance risks",
+          "description": "Regulatory and legal compliance risks."
+        },
+        "financial-statement-risks": {
+          "title": "Financial statement risks",
+          "description": "Financial statement level risks of material misstatement."
+        },
+        "assertion-risks": {
+          "title": "Assertion risks",
+          "description": "Assertion-level risks linked to relevant accounts."
+        },
+        "significant-risks": {
+          "title": "Significant risks",
+          "description": "High-priority risks requiring focused audit response."
+        },
+        "categories": {
+          "title": "Risk categories",
+          "description": "Configured categories used to organize risk items."
+        },
+        "scoring": {
+          "title": "Scoring",
+          "description": "Aggregate scoring indicators across identified risks."
+        },
+        "heatmap": {
+          "title": "Heatmap",
+          "description": "Visual distribution of risk ratings."
+        },
+        "matrix": {
+          "title": "Assertion matrix",
+          "description": "Account and assertion ratings overview."
+        },
+        "responses": {
+          "title": "Risk responses",
+          "description": "Planned responses for identified risks."
+        },
+        "procedures": {
+          "title": "Procedure links",
+          "description": "Linked procedures for addressing assessed risks."
+        },
+        "owners": {
+          "title": "Risk owners",
+          "description": "Assigned owners for each risk item."
+        },
+        "review-notes": {
+          "title": "Review notes",
+          "description": "Reviewer notes captured during risk assessment cycles."
+        },
+        "comments": {
+          "title": "Comments",
+          "description": "Internal comments and collaboration notes."
+        },
+        "history": {
+          "title": "History",
+          "description": "Timeline of risk assessment changes and approvals."
+        },
+        "settings": {
+          "title": "Settings",
+          "description": "Archive and restore controls for this risk assessment."
+        }
       }
     },
     "inherentRisks": {

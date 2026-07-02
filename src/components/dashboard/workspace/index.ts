@@ -8,5 +8,4 @@ export {
   DashboardCustomizeToolbar,
   useDashboardWidgetActions,
 } from "./dashboard-personalization";
-export { WorkspaceLayout } from "./workspace-layout";
 export { WorkspaceSection, WorkspacePanel } from "./workspace-section";

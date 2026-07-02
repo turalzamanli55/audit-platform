@@ -6,6 +6,7 @@ import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
 
 type WorkspaceActivityProps = {
   labels: DashboardWorkspaceLabels["activity"];
+  items: DashboardWorkspaceLabels["activity"]["items"];
 };
 
 const toneClasses = {
@@ -14,9 +15,7 @@ const toneClasses = {
   info: "bg-info/15 text-info",
 } as const;
 
-export function WorkspaceActivity({ labels }: WorkspaceActivityProps) {
-  const items = labels.items;
-
+export function WorkspaceActivity({ labels, items }: WorkspaceActivityProps) {
   return (
     <WorkspaceSection title={labels.title} description={labels.description}>
       {items.length === 0 ? (

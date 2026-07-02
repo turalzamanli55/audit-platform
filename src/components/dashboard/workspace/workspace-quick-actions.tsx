@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import {
   IconArrowRight,
   IconBriefcase,
-  IconFileText,
   IconUsers,
   IconZap,
 } from "@/components/ui/icons";
@@ -19,7 +17,7 @@ type WorkspaceQuickActionsProps = {
   onContinueSelect?: () => void;
 };
 
-const actionIcons = [IconBriefcase, IconZap, IconFileText, IconArrowRight, IconUsers] as const;
+const actionIcons = [IconBriefcase, IconZap, IconArrowRight, IconUsers] as const;
 
 export function WorkspaceQuickActions({
   locale,
@@ -40,19 +38,17 @@ export function WorkspaceQuickActions({
       href: `/${locale}${ENGAGEMENTS_NEW_PATH}`,
       enabled: true,
     },
-    { id: "import-tb", label: labels.importTrialBalance, href: "#", enabled: false },
     {
       id: "continue",
       label: labels.continueLastWork,
       href: continueCompany ? `/${locale}/app/companies/${continueCompany.slug}` : "#",
       enabled: Boolean(continueCompany),
     },
-    { id: "invite", label: labels.inviteUser, href: "#", enabled: false },
-  ];
+  ].filter((action) => action.enabled);
 
   return (
     <WorkspaceSection title={labels.title} description={labels.description}>
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {actions.map((action, index) => {
           const Icon = actionIcons[index] ?? IconZap;
           const content = (
@@ -64,11 +60,6 @@ export function WorkspaceQuickActions({
                 <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105 motion-reduce:transform-none">
                   <Icon width={18} height={18} />
                 </span>
-                {!action.enabled ? (
-                  <Badge variant="outline" size="sm">
-                    {labels.comingSoon}
-                  </Badge>
-                ) : null}
               </div>
               <div className="space-y-1">
                 <p className="font-medium text-foreground">{action.label}</p>
@@ -76,16 +67,13 @@ export function WorkspaceQuickActions({
             </WorkspacePanel>
           );
 
-          if (!action.enabled) {
-            return (
-              <div key={action.id} className="opacity-80" aria-disabled="true">
-                {content}
-              </div>
-            );
-          }
-
           return (
-            <Link key={action.id} href={action.href} onClick={action.id === "continue" ? onContinueSelect : undefined} className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <Link
+              key={action.id}
+              href={action.href}
+              onClick={action.id === "continue" ? onContinueSelect : undefined}
+              className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
               {content}
             </Link>
           );

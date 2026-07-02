@@ -33,6 +33,8 @@ export type ShellHeaderActionsLabels = {
   profile: string;
   signOut: string;
   openSearch: string;
+  workspaceRequired: string;
+  accessRestricted: string;
 };
 
 type ShellHeaderActionsProps = {
@@ -54,11 +56,12 @@ function resolveLocale(pathname: string): string {
 
 function resolveEmptyLabel(
   reason: CompanyListLoadReason | EngagementListLoadReason | undefined,
-  hint?: string,
+  hint: string | undefined,
+  labels: Pick<ShellHeaderActionsLabels, "workspaceRequired" | "accessRestricted">,
 ): string {
   if (hint) return hint;
-  if (reason === "no_workspace") return "Workspace required";
-  if (reason === "forbidden") return "Access restricted";
+  if (reason === "no_workspace") return labels.workspaceRequired;
+  if (reason === "forbidden") return labels.accessRestricted;
   return "—";
 }
 
@@ -126,7 +129,7 @@ export function ShellHeaderActions({
           label={labels.company}
           items={companies}
           currentId={currentCompany?.id ?? null}
-          emptyLabel={resolveEmptyLabel(companiesLoadReason, companyEmptyHint)}
+          emptyLabel={resolveEmptyLabel(companiesLoadReason, companyEmptyHint, labels)}
           onSelect={handleCompanySelect}
         />
         <EngagementSwitcher
@@ -135,7 +138,7 @@ export function ShellHeaderActions({
             (item) => !currentCompany?.id || item.companyId === currentCompany.id,
           )}
           currentId={currentEngagement?.id ?? null}
-          emptyLabel={resolveEmptyLabel(engagementsLoadReason, engagementEmptyHint)}
+          emptyLabel={resolveEmptyLabel(engagementsLoadReason, engagementEmptyHint, labels)}
           onSelect={handleEngagementSelect}
         />
       </div>
