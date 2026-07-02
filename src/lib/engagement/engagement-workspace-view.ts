@@ -32,4 +32,4 @@ export type EngagementWorkspaceView = {
 
 export type EngagementWorkspaceLoadResult =
   | { ok: true; engagement: EngagementWorkspaceView }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" };
+  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" | "error" };

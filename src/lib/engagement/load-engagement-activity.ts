@@ -4,7 +4,7 @@ import { ENGAGEMENT_ACTIVITY_ACTIONS } from "@/constants/engagement";
 import { ENGAGEMENT_PERMISSIONS } from "@/constants/engagement";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
-import { AuthenticationError, AuthorizationError } from "@/lib/errors";
+import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
 import { EngagementRepository } from "@/repositories/engagement/engagement-repository";
 
@@ -32,7 +32,7 @@ export type EngagementActivityView = {
 
 export type EngagementActivityLoadResult =
   | { ok: true; activity: EngagementActivityView }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" };
+  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "error" };
 
 function parseMetadata(value: unknown): Record<string, unknown> {
   if (typeof value === "object" && value !== null && !Array.isArray(value)) {
@@ -121,6 +121,7 @@ export async function loadEngagementActivity(
   } catch (error) {
     if (error instanceof AuthenticationError) return { ok: false, reason: "unauthenticated" };
     if (error instanceof AuthorizationError) return { ok: false, reason: "forbidden" };
-    throw error;
+    if (error instanceof DatabaseError) return { ok: false, reason: "error" };
+    return { ok: false, reason: "error" };
   }
 }

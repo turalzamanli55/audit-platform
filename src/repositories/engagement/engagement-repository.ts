@@ -95,6 +95,22 @@ export class EngagementRepository extends AuthenticatedRepository {
     return unwrapSupabaseMaybeSingle(result);
   }
 
+  async findBySlugInWorkspace(workspaceId: string, slug: string): Promise<Engagement | null> {
+    const active = await this.findBySlug(workspaceId, slug);
+    if (active) {
+      return active;
+    }
+
+    const result = await this.client
+      .from("engagements")
+      .select("*")
+      .eq("workspace_id", workspaceId)
+      .eq("slug", slug)
+      .maybeSingle();
+
+    return unwrapSupabaseMaybeSingle(result);
+  }
+
   async listByWorkspace(
     workspaceId: string,
     options?: { includeArchived?: boolean; companyId?: string },

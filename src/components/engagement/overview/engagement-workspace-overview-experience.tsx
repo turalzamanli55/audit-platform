@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
@@ -45,6 +45,20 @@ export function EngagementWorkspaceOverviewExperience({
   const metadataItems = buildOverviewMetadataItems(engagement, locale, labels, engagementsLabels);
   const isDirty = description !== (engagement.description ?? "");
   const canEdit = canUpdate && !engagement.isArchived;
+
+  const serverSyncKey = `${initialEngagement.id}:${initialEngagement.version}:${initialEngagement.updatedAt}:${initialEngagement.isArchived}`;
+  const syncedKeyRef = useRef(serverSyncKey);
+
+  useEffect(() => {
+    if (syncedKeyRef.current === serverSyncKey) {
+      return;
+    }
+    syncedKeyRef.current = serverSyncKey;
+    setEngagement(initialEngagement);
+    setDescription(initialEngagement.description ?? "");
+    setIsEditing(false);
+    setError(null);
+  }, [initialEngagement, serverSyncKey]);
 
   const saveDescription = () => {
     startTransition(async () => {

@@ -8,7 +8,7 @@ import type {
 } from "@/lib/engagement/engagement-workspace-view";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
-import { AuthenticationError, AuthorizationError } from "@/lib/errors";
+import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
 import { CompanyRepository } from "@/repositories/company/company-repository";
 import { EngagementRepository, type Engagement } from "@/repositories/engagement/engagement-repository";
@@ -86,13 +86,7 @@ export async function loadEngagementWorkspace(slug: string): Promise<EngagementW
     const repository = new EngagementRepository(supabase, context);
     const companyRepository = new CompanyRepository(supabase, context);
 
-    let engagement = await repository.findBySlug(workspace.workspaceId, slug);
-    if (!engagement) {
-      const engagements = await repository.listByWorkspace(workspace.workspaceId, {
-        includeArchived: true,
-      });
-      engagement = engagements.find((row) => row.slug === slug) ?? null;
-    }
+    const engagement = await repository.findBySlugInWorkspace(workspace.workspaceId, slug);
 
     if (!engagement) return { ok: false, reason: "not_found" };
 
@@ -103,7 +97,8 @@ export async function loadEngagementWorkspace(slug: string): Promise<EngagementW
   } catch (error) {
     if (error instanceof AuthenticationError) return { ok: false, reason: "unauthenticated" };
     if (error instanceof AuthorizationError) return { ok: false, reason: "forbidden" };
-    throw error;
+    if (error instanceof DatabaseError) return { ok: false, reason: "error" };
+    return { ok: false, reason: "error" };
   }
 }
 

@@ -8,7 +8,7 @@ import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-worksp
 
 export type EngagementWorkspacePageResult =
   | { ok: true; engagement: EngagementWorkspaceView }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" };
+  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" | "error" };
 
 export async function loadEngagementWorkspacePage(
   slug: string,
@@ -20,8 +20,7 @@ export async function requireEngagementWorkspace(slug: string): Promise<Engageme
   const result = await loadEngagementWorkspaceCached(slug);
 
   if (!result.ok) {
-    if (result.reason === "not_found") notFound();
-    throw new Error(`engagement_workspace_${result.reason}`);
+    notFound();
   }
 
   return result.engagement;

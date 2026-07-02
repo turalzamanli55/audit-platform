@@ -22,6 +22,6 @@ export type EngagementListItem = {
 
 export type EngagementListLoadResult =
   | { ok: true; items: EngagementListItem[] }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" };
+  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "error" };
 
 export type EngagementListLoadReason = Extract<EngagementListLoadResult, { ok: false }>["reason"];

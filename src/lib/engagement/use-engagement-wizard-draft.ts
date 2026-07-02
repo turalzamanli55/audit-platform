@@ -15,7 +15,15 @@ type UseEngagementWizardDraftOptions = {
 
 const draftListeners = new Set<() => void>();
 
+let cachedStorageRaw: string | null | undefined;
+let cachedSnapshot: EngagementWizardDraft = DEFAULT_ENGAGEMENT_WIZARD_DRAFT;
+
+function invalidateDraftSnapshotCache(): void {
+  cachedStorageRaw = undefined;
+}
+
 function emitDraftChange(): void {
+  invalidateDraftSnapshotCache();
   draftListeners.forEach((listener) => listener());
 }
 
@@ -40,10 +48,14 @@ function readDraftFromStorage(): EngagementWizardDraft {
     return DEFAULT_ENGAGEMENT_WIZARD_DRAFT;
   }
 
-  return (
-    parseStoredDraft(localStorage.getItem(ENGAGEMENT_WIZARD_DRAFT_STORAGE_KEY)) ??
-    DEFAULT_ENGAGEMENT_WIZARD_DRAFT
-  );
+  const raw = localStorage.getItem(ENGAGEMENT_WIZARD_DRAFT_STORAGE_KEY);
+  if (raw === cachedStorageRaw) {
+    return cachedSnapshot;
+  }
+
+  cachedStorageRaw = raw;
+  cachedSnapshot = parseStoredDraft(raw) ?? DEFAULT_ENGAGEMENT_WIZARD_DRAFT;
+  return cachedSnapshot;
 }
 
 function subscribeToDraft(listener: () => void): () => void {

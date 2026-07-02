@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import {
   ENGAGEMENT_LIFECYCLE_STATUSES,
@@ -119,6 +119,21 @@ export function EngagementSettingsExperience({
   const baseline = toFormState(engagement);
   const isDirty = JSON.stringify(form) !== JSON.stringify(baseline);
 
+  const serverSyncKey = `${initialEngagement.id}:${initialEngagement.version}:${initialEngagement.updatedAt}:${initialEngagement.isArchived}`;
+  const syncedKeyRef = useRef(serverSyncKey);
+
+  useEffect(() => {
+    if (syncedKeyRef.current === serverSyncKey) {
+      return;
+    }
+    syncedKeyRef.current = serverSyncKey;
+    setEngagement(initialEngagement);
+    setForm(toFormState(initialEngagement));
+    setError(null);
+    setLifecycleMode("idle");
+    setArchiveReason("");
+  }, [initialEngagement, serverSyncKey]);
+
   const setField = <K extends keyof SettingsFormState>(key: K, value: SettingsFormState[K]) => {
     setForm((current) => ({ ...current, [key]: value }));
     setError(null);
@@ -183,6 +198,19 @@ export function EngagementSettingsExperience({
         return;
       }
 
+      const archivedAt = new Date().toISOString();
+      setEngagement((current) => {
+        const next = {
+          ...current,
+          isArchived: true,
+          status: result.data.status as EngagementWorkspaceView["status"],
+          version: result.data.version,
+          deletedAt: archivedAt,
+          updatedAt: archivedAt,
+        };
+        setForm(toFormState(next));
+        return next;
+      });
       setLifecycleMode("idle");
       setArchiveReason("");
       router.refresh();
@@ -202,6 +230,19 @@ export function EngagementSettingsExperience({
         return;
       }
 
+      const restoredAt = new Date().toISOString();
+      setEngagement((current) => {
+        const next = {
+          ...current,
+          isArchived: false,
+          status: result.data.status as EngagementWorkspaceView["status"],
+          version: result.data.version,
+          deletedAt: null,
+          updatedAt: restoredAt,
+        };
+        setForm(toFormState(next));
+        return next;
+      });
       setLifecycleMode("idle");
       router.refresh();
     });

@@ -1,10 +1,11 @@
 import "server-only";
 
+import { cache } from "react";
 import { ENGAGEMENT_PERMISSIONS } from "@/constants/engagement";
 import type { EngagementListItem, EngagementListLoadResult } from "@/lib/engagement/engagement-list-item";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
-import { AuthenticationError, AuthorizationError } from "@/lib/errors";
+import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
 import { CompanyRepository } from "@/repositories/company/company-repository";
 import { EngagementRepository } from "@/repositories/engagement/engagement-repository";
@@ -27,7 +28,7 @@ function createRepositoryContext(
   };
 }
 
-export async function loadEngagementList(): Promise<EngagementListLoadResult> {
+export const loadEngagementList = cache(async function loadEngagementList(): Promise<EngagementListLoadResult> {
   try {
     const user = await getCurrentUser();
     if (!user) return { ok: false, reason: "unauthenticated" };
@@ -73,6 +74,7 @@ export async function loadEngagementList(): Promise<EngagementListLoadResult> {
   } catch (error) {
     if (error instanceof AuthenticationError) return { ok: false, reason: "unauthenticated" };
     if (error instanceof AuthorizationError) return { ok: false, reason: "forbidden" };
-    throw error;
+    if (error instanceof DatabaseError) return { ok: false, reason: "error" };
+    return { ok: false, reason: "error" };
   }
-}
+});
