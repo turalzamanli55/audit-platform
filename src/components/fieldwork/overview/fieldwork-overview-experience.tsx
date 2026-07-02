@@ -11,6 +11,8 @@ import { FieldworkReviewQueuePanel } from "@/components/fieldwork/workflow/field
 import { FieldworkWorkspaceSectionShell } from "@/components/fieldwork/workspace/fieldwork-workspace-section-shell";
 
 type FieldworkOverviewExperienceProps = {
+  locale: string;
+  engagementSlug: string;
   canCreate: boolean;
   planningApproved: boolean;
   labels: Dictionary["fieldwork"]["workspace"];
@@ -18,6 +20,8 @@ type FieldworkOverviewExperienceProps = {
 };
 
 export function FieldworkOverviewExperience({
+  locale,
+  engagementSlug,
   canCreate,
   planningApproved,
   labels,
@@ -46,7 +50,7 @@ export function FieldworkOverviewExperience({
         description={labels.sections.overview.description}
         headingId="fieldwork-overview"
       >
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
           {cards.map((card) => (
             <div
               key={card.id}
@@ -68,6 +72,8 @@ export function FieldworkOverviewExperience({
 
       <FieldworkReviewQueuePanel
         fieldwork={fieldwork}
+        locale={locale}
+        engagementSlug={engagementSlug}
         labels={fieldworkLabels.workflow}
         fieldworkLabels={fieldworkLabels}
       />

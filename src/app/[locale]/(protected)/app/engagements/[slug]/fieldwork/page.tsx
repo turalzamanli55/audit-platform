@@ -23,6 +23,8 @@ export default async function Page({ params }: PageProps) {
   const planningApproved = fieldworkResult.ok ? fieldworkResult.planningApproved : false;
   return (
     <FieldworkOverviewExperience
+      locale={locale}
+      engagementSlug={slug}
       canCreate={canCreate}
       planningApproved={planningApproved}
       labels={dictionary.fieldwork.workspace}

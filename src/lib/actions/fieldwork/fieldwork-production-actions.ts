@@ -260,3 +260,40 @@ export const uploadFieldworkEvidenceAction = defineFieldworkAction<
     return { evidenceId: evidence.id };
   },
 );
+
+export const downloadFieldworkEvidenceAction = defineFieldworkAction<
+  { packageId: string; evidenceId: string },
+  { signedUrl: string; fileName: string }
+>(
+  { module: "fieldwork.evidence.download" },
+  FIELDWORK_PERMISSIONS.READ,
+  async (input, context) => {
+    const supabase = await createServerClient();
+    const repository = new FieldworkRepository(
+      supabase,
+      createRepositoryContext(context.userId, context.organizationId, context.workspaceId),
+    );
+    await repository.validateWorkspaceOwnership(input.packageId, context.workspaceId);
+
+    const evidenceList = await repository.listEvidence(input.packageId);
+    const evidence = evidenceList.find((item) => item.id === input.evidenceId);
+    if (!evidence?.storage_path) {
+      throw new ValidationError("Evidence file is not available for download.");
+    }
+
+    const bucket = evidence.storage_bucket ?? FIELDWORK_EVIDENCE_STORAGE_BUCKET;
+    const signed = await supabase.storage
+      .from(bucket)
+      .createSignedUrl(evidence.storage_path, 60 * 15);
+
+    if (signed.error || !signed.data?.signedUrl) {
+      throw new ValidationError(
+        signed.error?.message ?? "Unable to generate evidence download link.",
+      );
+    }
+
+    const fileName = evidence.storage_path.split("/").pop() ?? evidence.name;
+
+    return { signedUrl: signed.data.signedUrl, fileName };
+  },
+);

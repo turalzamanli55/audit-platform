@@ -1247,24 +1247,24 @@
       "forbiddenDescription": "You need fieldwork creation permission to initiate audit execution."
     },
     "workspace": {
-      "heroEyebrow": "Audit fieldwork",
-      "breadcrumbFieldwork": "Fieldwork",
-      "backToEngagement": "Back to engagement",
-      "planningGateTitle": "Planning approval required",
-      "planningGateDescription": "Audit planning must be approved before fieldwork can begin (ENG-03).",
+      "heroEyebrow": "Audit sahə işi",
+      "breadcrumbFieldwork": "Sahə işi",
+      "backToEngagement": "İşə qayıt",
+      "planningGateTitle": "Planlaşdırma təsdiqi tələb olunur",
+      "planningGateDescription": "Sahə işinə başlamaq üçün audit planlaşdırması təsdiqlənməlidir (ENG-03).",
       "navAriaLabel": "Fieldwork workspace sections",
-      "navOverview": "Dashboard",
-      "navProgram": "Audit program",
-      "navProcedureGroups": "Procedure groups",
-      "navProcedures": "Procedures",
-      "navWorkingPapers": "Working papers",
-      "navEvidence": "Evidence register",
-      "navFindings": "Findings",
-      "navNotes": "Auditor notes",
-      "navReviewNotes": "Review notes",
-      "navComments": "Internal comments",
-      "navHistory": "History",
-      "navSettings": "Settings",
+      "navOverview": "İdarə paneli",
+      "navProgram": "Audit proqramı",
+      "navProcedureGroups": "Prosedur qrupları",
+      "navProcedures": "Prosedurlar",
+      "navWorkingPapers": "İş vərəqləri",
+      "navEvidence": "Sübut reyestri",
+      "navFindings": "Nəticələr",
+      "navNotes": "Auditor qeydləri",
+      "navReviewNotes": "Yoxlama qeydləri",
+      "navComments": "Daxili şərhlər",
+      "navHistory": "Tarixçə",
+      "navSettings": "Parametrlər",
       "loading": "Loading fieldwork workspace",
       "errorTitle": "Unable to load fieldwork workspace",
       "errorDescription": "Something went wrong while loading audit fieldwork.",
@@ -1333,7 +1333,8 @@
           "title": "Fieldwork settings",
           "description": "Archive or restore this fieldwork package."
         }
-      }
+      },
+      "summaryPendingReview": "Gözləyən yoxlama"
     },
     "program": {
       "title": "Audit program",
@@ -1366,29 +1367,35 @@
       "assignAuditor": "Paper owner",
       "tickmarkSymbol": "Symbol",
       "tickmarkMeaning": "Meaning",
-      "libraryTitle": "Tickmark library",
-      "libraryDescription": "Reusable tickmarks for this workspace."
+      "libraryTitle": "İşarə kitabxanası",
+      "libraryDescription": "Bu iş sahəsi üçün təkrar istifadə olunan işarələr.",
+      "titlePlaceholder": "İş vərəqi başlığı"
     },
     "evidence": {
       "title": "Evidence register",
       "description": "Evidence references and attachment metadata.",
       "emptyTitle": "No evidence",
       "emptyDescription": "Record evidence references as procedures are executed.",
-      "fileLabel": "Attachment",
+      "fileLabel": "Əlavə",
       "procedureLabel": "Linked procedure",
-      "uploadedBadge": "File attached"
+      "uploadedBadge": "Fayl əlavə edilib",
+      "namePlaceholder": "Sübut istinad adı",
+      "downloadAction": "Yüklə",
+      "downloadError": "Sübut faylını yükləmək mümkün olmadı"
     },
     "findings": {
       "title": "Findings",
       "description": "Document audit findings discovered during fieldwork.",
       "emptyTitle": "No findings",
-      "emptyDescription": "Findings will appear as they are documented."
+      "emptyDescription": "Findings will appear as they are documented.",
+      "titlePlaceholder": "Nəticə başlığı"
     },
     "notes": {
       "title": "Auditor notes",
       "description": "Preparer notes captured during fieldwork.",
       "emptyTitle": "No auditor notes",
-      "emptyDescription": "Auditor notes will appear here."
+      "emptyDescription": "Auditor notes will appear here.",
+      "bodyPlaceholder": "Qeyd əlavə et"
     },
     "reviewNotes": {
       "title": "Review notes",
@@ -1425,7 +1432,10 @@
         "procedureSubmitted": "Procedure submitted",
         "procedureReturned": "Procedure returned",
         "procedureCleared": "Procedure cleared"
-      }
+      },
+      "workingPaperSubmitted": "İş vərəqi təqdim edildi",
+      "workingPaperReturned": "İş vərəqi qaytarıldı",
+      "workingPaperCleared": "İş vərəqi təsdiqləndi"
     },
     "settings": {
       "title": "Fieldwork settings",
@@ -1449,20 +1459,21 @@
       "addTickmark": "Add to library"
     },
     "workflow": {
-      "queueTitle": "Review queue",
-      "queueDescription": "Procedures awaiting review or clearance.",
-      "queueEmpty": "No procedures are pending review.",
-      "pendingReviewCount": "Pending review",
-      "submitAction": "Submit for review",
-      "returnAction": "Return for revision",
-      "returnConfirmAction": "Confirm return",
-      "clearAction": "Clear review",
-      "clearConfirmAction": "Confirm clearance",
-      "cancelAction": "Cancel",
-      "returnNotesTitle": "Return notes",
-      "returnNotesPlaceholder": "Describe what must be revised",
-      "clearanceNotesPlaceholder": "Document review clearance",
-      "errorGeneric": "Unable to update procedure workflow"
+      "queueTitle": "Yoxlama növbəsi",
+      "queueDescription": "Yoxlama və ya təsdiq gözləyən prosedurlar.",
+      "queueEmpty": "Gözləyən yoxlama yoxdur.",
+      "pendingReviewCount": "Gözləyən yoxlama",
+      "submitAction": "Yoxlamaya təqdim et",
+      "returnAction": "Düzəlişə qaytar",
+      "returnConfirmAction": "Qaytarmanı təsdiqlə",
+      "clearAction": "Yoxlamanı təsdiqlə",
+      "clearConfirmAction": "Təsdiqi təsdiqlə",
+      "cancelAction": "Ləğv et",
+      "returnNotesTitle": "Qaytarma qeydləri",
+      "returnNotesPlaceholder": "Nəyin düzəldilməli olduğunu təsvir edin",
+      "clearanceNotesPlaceholder": "Yoxlama təsdiqini sənədləşdirin",
+      "errorGeneric": "Prosedur iş axını yenilənə bilmədi",
+      "openProcedureAction": "Proseduru aç"
     }
   }
 }

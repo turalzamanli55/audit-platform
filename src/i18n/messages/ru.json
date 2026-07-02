@@ -1247,24 +1247,24 @@
       "forbiddenDescription": "You need fieldwork creation permission to initiate audit execution."
     },
     "workspace": {
-      "heroEyebrow": "Audit fieldwork",
-      "breadcrumbFieldwork": "Fieldwork",
-      "backToEngagement": "Back to engagement",
-      "planningGateTitle": "Planning approval required",
-      "planningGateDescription": "Audit planning must be approved before fieldwork can begin (ENG-03).",
+      "heroEyebrow": "Полевой аудит",
+      "breadcrumbFieldwork": "Полевой аудит",
+      "backToEngagement": "К заданию",
+      "planningGateTitle": "Требуется утверждение планирования",
+      "planningGateDescription": "Планирование аудита должно быть утверждено до начала полевых работ (ENG-03).",
       "navAriaLabel": "Fieldwork workspace sections",
-      "navOverview": "Dashboard",
-      "navProgram": "Audit program",
-      "navProcedureGroups": "Procedure groups",
-      "navProcedures": "Procedures",
-      "navWorkingPapers": "Working papers",
-      "navEvidence": "Evidence register",
-      "navFindings": "Findings",
-      "navNotes": "Auditor notes",
-      "navReviewNotes": "Review notes",
-      "navComments": "Internal comments",
-      "navHistory": "History",
-      "navSettings": "Settings",
+      "navOverview": "Панель",
+      "navProgram": "Программа аудита",
+      "navProcedureGroups": "Группы процедур",
+      "navProcedures": "Процедуры",
+      "navWorkingPapers": "Рабочие документы",
+      "navEvidence": "Реестр доказательств",
+      "navFindings": "Выводы",
+      "navNotes": "Заметки аудитора",
+      "navReviewNotes": "Заметки проверяющего",
+      "navComments": "Внутренние комментарии",
+      "navHistory": "История",
+      "navSettings": "Настройки",
       "loading": "Loading fieldwork workspace",
       "errorTitle": "Unable to load fieldwork workspace",
       "errorDescription": "Something went wrong while loading audit fieldwork.",
@@ -1333,7 +1333,8 @@
           "title": "Fieldwork settings",
           "description": "Archive or restore this fieldwork package."
         }
-      }
+      },
+      "summaryPendingReview": "Ожидают проверки"
     },
     "program": {
       "title": "Audit program",
@@ -1366,29 +1367,35 @@
       "assignAuditor": "Paper owner",
       "tickmarkSymbol": "Symbol",
       "tickmarkMeaning": "Meaning",
-      "libraryTitle": "Tickmark library",
-      "libraryDescription": "Reusable tickmarks for this workspace."
+      "libraryTitle": "Библиотека пометок",
+      "libraryDescription": "Повторно используемые пометки для этой рабочей области.",
+      "titlePlaceholder": "Название рабочего документа"
     },
     "evidence": {
       "title": "Evidence register",
       "description": "Evidence references and attachment metadata.",
       "emptyTitle": "No evidence",
       "emptyDescription": "Record evidence references as procedures are executed.",
-      "fileLabel": "Attachment",
+      "fileLabel": "Вложение",
       "procedureLabel": "Linked procedure",
-      "uploadedBadge": "File attached"
+      "uploadedBadge": "Файл прикреплён",
+      "namePlaceholder": "Название ссылки на доказательство",
+      "downloadAction": "Скачать",
+      "downloadError": "Не удалось скачать файл доказательства"
     },
     "findings": {
       "title": "Findings",
       "description": "Document audit findings discovered during fieldwork.",
       "emptyTitle": "No findings",
-      "emptyDescription": "Findings will appear as they are documented."
+      "emptyDescription": "Findings will appear as they are documented.",
+      "titlePlaceholder": "Название вывода"
     },
     "notes": {
       "title": "Auditor notes",
       "description": "Preparer notes captured during fieldwork.",
       "emptyTitle": "No auditor notes",
-      "emptyDescription": "Auditor notes will appear here."
+      "emptyDescription": "Auditor notes will appear here.",
+      "bodyPlaceholder": "Добавить заметку"
     },
     "reviewNotes": {
       "title": "Review notes",
@@ -1425,7 +1432,10 @@
         "procedureSubmitted": "Procedure submitted",
         "procedureReturned": "Procedure returned",
         "procedureCleared": "Procedure cleared"
-      }
+      },
+      "workingPaperSubmitted": "Рабочий документ отправлен",
+      "workingPaperReturned": "Рабочий документ возвращён",
+      "workingPaperCleared": "Рабочий документ закрыт"
     },
     "settings": {
       "title": "Fieldwork settings",
@@ -1449,20 +1459,21 @@
       "addTickmark": "Add to library"
     },
     "workflow": {
-      "queueTitle": "Review queue",
-      "queueDescription": "Procedures awaiting review or clearance.",
-      "queueEmpty": "No procedures are pending review.",
-      "pendingReviewCount": "Pending review",
-      "submitAction": "Submit for review",
-      "returnAction": "Return for revision",
-      "returnConfirmAction": "Confirm return",
-      "clearAction": "Clear review",
-      "clearConfirmAction": "Confirm clearance",
-      "cancelAction": "Cancel",
-      "returnNotesTitle": "Return notes",
-      "returnNotesPlaceholder": "Describe what must be revised",
-      "clearanceNotesPlaceholder": "Document review clearance",
-      "errorGeneric": "Unable to update procedure workflow"
+      "queueTitle": "Очередь проверки",
+      "queueDescription": "Процедуры, ожидающие проверки или закрытия.",
+      "queueEmpty": "Нет процедур в ожидании проверки.",
+      "pendingReviewCount": "Ожидают проверки",
+      "submitAction": "Отправить на проверку",
+      "returnAction": "Вернуть на доработку",
+      "returnConfirmAction": "Подтвердить возврат",
+      "clearAction": "Закрыть проверку",
+      "clearConfirmAction": "Подтвердить закрытие",
+      "cancelAction": "Отмена",
+      "returnNotesTitle": "Замечания при возврате",
+      "returnNotesPlaceholder": "Опишите, что нужно исправить",
+      "clearanceNotesPlaceholder": "Задокументируйте закрытие проверки",
+      "errorGeneric": "Не удалось обновить рабочий процесс процедуры",
+      "openProcedureAction": "Открыть процедуру"
     }
   }
 }

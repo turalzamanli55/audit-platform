@@ -611,6 +611,118 @@ export class FieldworkRepository extends AuthenticatedRepository {
     return updated;
   }
 
+  async submitWorkingPaperForReview(
+    workingPaperId: string,
+    expectedVersion: number,
+  ): Promise<WorkingPaper> {
+    const existing = await this.findWorkingPaperById(workingPaperId);
+    if (!existing) throw new NotFoundError("Working paper not found", { id: workingPaperId });
+    assertVersionMatch(existing.version, expectedVersion, "WorkingPaper");
+
+    const now = new Date().toISOString();
+    const result = await applyActiveFilter(
+      this.client
+        .from("working_papers")
+        .update({
+          paper_status: "submitted",
+          submitted_at: now,
+          submitted_by: this.userId,
+          returned_at: null,
+          returned_by: null,
+          return_notes: null,
+        })
+        .eq("id", workingPaperId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const paper = requireRow(unwrapSupabaseMaybeSingle(result), "WorkingPaper", workingPaperId);
+    await this.logActivity({
+      fieldworkPackageId: paper.fieldwork_package_id,
+      engagementId: paper.engagement_id,
+      organizationId: paper.organization_id,
+      workspaceId: paper.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_SUBMITTED,
+      summary: `Working paper "${paper.title}" submitted for review`,
+      metadata: { workingPaperId },
+    });
+    return paper;
+  }
+
+  async returnWorkingPaper(
+    workingPaperId: string,
+    expectedVersion: number,
+    returnNotes: string | null,
+  ): Promise<WorkingPaper> {
+    const existing = await this.findWorkingPaperById(workingPaperId);
+    if (!existing) throw new NotFoundError("Working paper not found", { id: workingPaperId });
+    assertVersionMatch(existing.version, expectedVersion, "WorkingPaper");
+
+    const now = new Date().toISOString();
+    const result = await applyActiveFilter(
+      this.client
+        .from("working_papers")
+        .update({
+          paper_status: "returned",
+          returned_at: now,
+          returned_by: this.userId,
+          return_notes: returnNotes,
+        })
+        .eq("id", workingPaperId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const paper = requireRow(unwrapSupabaseMaybeSingle(result), "WorkingPaper", workingPaperId);
+    await this.logActivity({
+      fieldworkPackageId: paper.fieldwork_package_id,
+      engagementId: paper.engagement_id,
+      organizationId: paper.organization_id,
+      workspaceId: paper.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_RETURNED,
+      summary: `Working paper "${paper.title}" returned for revision`,
+      metadata: { workingPaperId, returnNotes },
+    });
+    return paper;
+  }
+
+  async clearWorkingPaperReview(
+    workingPaperId: string,
+    expectedVersion: number,
+    clearanceNotes: string | null,
+  ): Promise<WorkingPaper> {
+    const existing = await this.findWorkingPaperById(workingPaperId);
+    if (!existing) throw new NotFoundError("Working paper not found", { id: workingPaperId });
+    assertVersionMatch(existing.version, expectedVersion, "WorkingPaper");
+
+    const now = new Date().toISOString();
+    const result = await applyActiveFilter(
+      this.client
+        .from("working_papers")
+        .update({
+          paper_status: "cleared",
+          cleared_at: now,
+          cleared_by: this.userId,
+          clearance_notes: clearanceNotes,
+        })
+        .eq("id", workingPaperId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const paper = requireRow(unwrapSupabaseMaybeSingle(result), "WorkingPaper", workingPaperId);
+    await this.logActivity({
+      fieldworkPackageId: paper.fieldwork_package_id,
+      engagementId: paper.engagement_id,
+      organizationId: paper.organization_id,
+      workspaceId: paper.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_CLEARED,
+      summary: `Working paper "${paper.title}" review cleared`,
+      metadata: { workingPaperId, clearanceNotes },
+    });
+    return paper;
+  }
+
   async listTickmarkLibrary(workspaceId: string): Promise<FieldworkTickmarkLibraryEntry[]> {
     const result = await applyActiveFilter(
       this.client

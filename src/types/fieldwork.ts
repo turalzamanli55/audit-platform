@@ -53,6 +53,8 @@ export type FieldworkWorkingPaperView = {
   assignedAuditorId: string | null;
   tickmarks: FieldworkTickmark[];
   version: number;
+  returnNotes: string | null;
+  clearanceNotes: string | null;
 };
 
 export type FieldworkEvidenceView = {
@@ -65,6 +67,8 @@ export type FieldworkEvidenceView = {
   mimeType: string | null;
   fileSize: number | null;
   storagePath: string | null;
+  storageBucket: string | null;
+  fileName: string | null;
   createdAt: string;
 };
 

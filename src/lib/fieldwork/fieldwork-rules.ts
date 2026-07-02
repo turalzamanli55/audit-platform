@@ -119,3 +119,44 @@ export function countCompleteProcedures(
 ): number {
   return procedures.filter((p) => isProcedureComplete(p.procedure_status)).length;
 }
+
+const SUBMITTABLE_WP_STATUSES = ["in_progress", "returned"] as const;
+const REVIEWABLE_WP_STATUSES = ["submitted", "under_review"] as const;
+
+export function assertCanSubmitWorkingPaper(
+  paper: Pick<import("@/repositories/fieldwork/fieldwork-repository").WorkingPaper, "paper_status">,
+): void {
+  if (
+    !SUBMITTABLE_WP_STATUSES.includes(
+      paper.paper_status as (typeof SUBMITTABLE_WP_STATUSES)[number],
+    )
+  ) {
+    throw new ValidationError(
+      "Only in-progress or returned working papers can be submitted for review.",
+    );
+  }
+}
+
+export function assertCanReturnWorkingPaper(
+  paper: Pick<import("@/repositories/fieldwork/fieldwork-repository").WorkingPaper, "paper_status">,
+): void {
+  if (
+    !REVIEWABLE_WP_STATUSES.includes(
+      paper.paper_status as (typeof REVIEWABLE_WP_STATUSES)[number],
+    )
+  ) {
+    throw new ValidationError("Only working papers pending review can be returned.");
+  }
+}
+
+export function assertCanClearWorkingPaper(
+  paper: Pick<import("@/repositories/fieldwork/fieldwork-repository").WorkingPaper, "paper_status">,
+): void {
+  if (
+    !REVIEWABLE_WP_STATUSES.includes(
+      paper.paper_status as (typeof REVIEWABLE_WP_STATUSES)[number],
+    )
+  ) {
+    throw new ValidationError("Only working papers pending review can be cleared.");
+  }
+}

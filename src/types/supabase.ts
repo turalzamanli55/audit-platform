@@ -1075,7 +1075,12 @@ export type Database = {
           organization_id?: string;
           paper_status?: Database["public"]["Enums"]["working_paper_status"];
           reference_code?: string | null;
+          return_notes?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
           status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
           tickmarks?: Json;
           title?: string;
           updated_at?: string;

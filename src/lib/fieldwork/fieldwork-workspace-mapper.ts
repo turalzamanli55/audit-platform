@@ -98,6 +98,8 @@ export function toFieldworkWorkspaceView(
     assignedAuditorId: paper.assigned_auditor_id,
     tickmarks: parseTickmarks(paper.tickmarks),
     version: paper.version,
+    returnNotes: paper.return_notes ?? null,
+    clearanceNotes: paper.clearance_notes ?? null,
   }));
 
   const evidenceViews: FieldworkEvidenceView[] = evidence.map((item) => ({
@@ -110,6 +112,8 @@ export function toFieldworkWorkspaceView(
     mimeType: item.mime_type,
     fileSize: item.file_size,
     storagePath: item.storage_path ?? null,
+    storageBucket: item.storage_bucket ?? null,
+    fileName: item.storage_path ? item.storage_path.split("/").pop() ?? null : null,
     createdAt: item.created_at,
   }));
 

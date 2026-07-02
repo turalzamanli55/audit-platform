@@ -72,6 +72,11 @@ export function buildFieldworkOverviewCards(
       value: `${completeCount}/${fieldwork.procedures.length}`,
     },
     {
+      id: "pendingReview",
+      label: labels.summaryPendingReview,
+      value: String(fieldwork.pendingReviewCount),
+    },
+    {
       id: "findings",
       label: labels.summaryFindings,
       value: String(fieldwork.findings.filter((f) => f.findingStatus === "open").length),
@@ -133,6 +138,9 @@ export function formatFieldworkActivityAction(
     [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_CLEARED]: actionLabels.procedureCleared,
     [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_ADDED]: actionLabels.workingPaperAdded,
     [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_UPDATED]: actionLabels.workingPaperUpdated,
+    [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_SUBMITTED]: actionLabels.workingPaperSubmitted,
+    [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_RETURNED]: actionLabels.workingPaperReturned,
+    [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_CLEARED]: actionLabels.workingPaperCleared,
     [FIELDWORK_ACTIVITY_ACTIONS.EVIDENCE_ADDED]: actionLabels.evidenceAdded,
     [FIELDWORK_ACTIVITY_ACTIONS.FINDING_ADDED]: actionLabels.findingAdded,
     [FIELDWORK_ACTIVITY_ACTIONS.NOTE_ADDED]: actionLabels.noteAdded,

@@ -1246,6 +1246,7 @@
       "queueDescription": "Procedures awaiting review or clearance.",
       "queueEmpty": "No procedures are pending review.",
       "pendingReviewCount": "Pending review",
+      "openProcedureAction": "Open procedure",
       "submitAction": "Submit for review",
       "returnAction": "Return for revision",
       "returnConfirmAction": "Confirm return",
@@ -1302,6 +1303,7 @@
       "summaryVersion": "Program version",
       "summaryProgress": "Overall progress",
       "summaryProcedures": "Procedures complete",
+      "summaryPendingReview": "Pending review",
       "summaryFindings": "Open findings",
       "status": {
         "title": "Execution status",
@@ -1336,6 +1338,7 @@
       "emptyDescription": "Create working papers linked to procedures.",
       "procedureLabel": "Linked procedure",
       "assignAuditor": "Paper owner",
+      "titlePlaceholder": "Working paper title",
       "tickmarkSymbol": "Symbol",
       "tickmarkMeaning": "Meaning",
       "libraryTitle": "Tickmark library",
@@ -1348,10 +1351,13 @@
       "emptyDescription": "Record evidence references as procedures are executed.",
       "fileLabel": "Attachment",
       "procedureLabel": "Linked procedure",
-      "uploadedBadge": "File attached"
+      "uploadedBadge": "File attached",
+      "namePlaceholder": "Evidence reference name",
+      "downloadAction": "Download",
+      "downloadError": "Unable to download evidence file"
     },
-    "findings": { "title": "Findings", "description": "Document audit findings discovered during fieldwork.", "emptyTitle": "No findings", "emptyDescription": "Findings will appear as they are documented." },
-    "notes": { "title": "Auditor notes", "description": "Preparer notes captured during fieldwork.", "emptyTitle": "No auditor notes", "emptyDescription": "Auditor notes will appear here." },
+    "findings": { "title": "Findings", "description": "Document audit findings discovered during fieldwork.", "emptyTitle": "No findings", "emptyDescription": "Findings will appear as they are documented.", "titlePlaceholder": "Finding title" },
+    "notes": { "title": "Auditor notes", "description": "Preparer notes captured during fieldwork.", "emptyTitle": "No auditor notes", "emptyDescription": "Auditor notes will appear here.", "bodyPlaceholder": "Add a note" },
     "reviewNotes": { "title": "Review notes", "description": "Review-level comments and clearance notes.", "emptyTitle": "No review notes", "emptyDescription": "Review notes will appear during review cycles." },
     "comments": { "title": "Internal comments", "description": "Internal team discussion on fieldwork matters.", "emptyTitle": "No internal comments", "emptyDescription": "Internal comments will appear here." },
     "history": {
@@ -1374,6 +1380,9 @@
         "procedureCleared": "Procedure cleared",
         "workingPaperAdded": "Working paper added",
         "workingPaperUpdated": "Working paper updated",
+        "workingPaperSubmitted": "Working paper submitted",
+        "workingPaperReturned": "Working paper returned",
+        "workingPaperCleared": "Working paper cleared",
         "evidenceAdded": "Evidence added",
         "findingAdded": "Finding added",
         "noteAdded": "Note added"

@@ -1,13 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { FieldworkWorkspaceHero } from "./fieldwork-workspace-hero";
-import { FieldworkWorkspaceSidebar, type FieldworkWorkspaceNavItem } from "./fieldwork-workspace-sidebar";
-import {
-  FieldworkWorkspaceProvider,
-} from "@/lib/fieldwork/use-fieldwork-workspace";
+import { FieldworkWorkspaceChrome } from "./fieldwork-workspace-chrome";
+import { FieldworkWorkspaceProvider } from "@/lib/fieldwork/use-fieldwork-workspace";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import type { FieldworkWorkspaceNavItem } from "./fieldwork-workspace-sidebar";
 
 type FieldworkWorkspaceShellProps = {
   locale: string;
@@ -44,29 +42,18 @@ export function FieldworkWorkspaceShell({
       engagementId={engagementId}
       planningApproved={planningApproved}
     >
-      <div className="space-y-8">
-        <FieldworkWorkspaceHero
-          locale={locale}
-          engagementSlug={engagementSlug}
-          engagementName={engagementName}
-          fieldwork={initialFieldwork}
-          planningApproved={planningApproved}
-          labels={labels}
-          engagementsLabels={engagementsLabels}
-          fieldworkLabels={fieldworkLabels}
-        />
-
-        <div className="grid gap-8 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[13rem_minmax(0,1fr)]">
-          <aside className="lg:sticky lg:top-6 lg:self-start">
-            <FieldworkWorkspaceSidebar
-              items={navItems}
-              ariaLabel={navAriaLabel}
-              isArchived={initialFieldwork?.isArchived}
-            />
-          </aside>
-          <main className="min-w-0 space-y-10">{children}</main>
-        </div>
-      </div>
+      <FieldworkWorkspaceChrome
+        locale={locale}
+        engagementSlug={engagementSlug}
+        engagementName={engagementName}
+        navItems={navItems}
+        navAriaLabel={navAriaLabel}
+        labels={labels}
+        fieldworkLabels={fieldworkLabels}
+        engagementsLabels={engagementsLabels}
+      >
+        {children}
+      </FieldworkWorkspaceChrome>
     </FieldworkWorkspaceProvider>
   );
 }

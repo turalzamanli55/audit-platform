@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState, useTransition, type ReactNode } from "react";
 import {
   addFieldworkEvidenceAction,
   addFieldworkFindingAction,
@@ -9,11 +9,11 @@ import {
   addTickmarkLibraryEntryAction,
   addWorkingPaperAction,
   addWorkingPaperTickmarkAction,
-  updateWorkingPaperAction,
+  downloadFieldworkEvidenceAction,
   uploadFieldworkEvidenceAction,
 } from "@/lib/actions/fieldwork";
 import { FieldworkProcedureRow } from "@/components/fieldwork/procedures/fieldwork-procedure-row";
-import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
+import { FieldworkWorkingPaperRow } from "@/components/fieldwork/working-papers/fieldwork-working-paper-row";
 import type { FieldworkActivityView } from "@/lib/fieldwork/load-fieldwork-activity";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import { useFieldworkWorkspace } from "@/lib/fieldwork/use-fieldwork-workspace";
@@ -125,6 +125,23 @@ export function FieldworkProcedureGroupsExperience(props: SectionProps) {
 
 export function FieldworkProceduresExperience(props: SectionProps & { locale: string }) {
   const fieldwork = useFieldworkOrEmpty(props);
+  const searchParams = useSearchParams();
+  const highlightId = searchParams.get("procedure");
+  const rowRefs = useRef<Record<string, HTMLLIElement | null>>({});
+
+  useEffect(() => {
+    if (!highlightId || typeof fieldwork !== "object" || !("procedures" in fieldwork)) return;
+    const node = rowRefs.current[highlightId];
+    if (node) {
+      node.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      node.classList.add("ring-2", "ring-primary/40");
+      const timer = window.setTimeout(() => {
+        node.classList.remove("ring-2", "ring-primary/40");
+      }, 2400);
+      return () => window.clearTimeout(timer);
+    }
+  }, [highlightId, fieldwork]);
+
   if (typeof fieldwork !== "object" || !("procedures" in fieldwork)) return fieldwork;
 
   return (
@@ -134,16 +151,23 @@ export function FieldworkProceduresExperience(props: SectionProps & { locale: st
       ) : (
         <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
           {fieldwork.procedures.map((procedure) => (
-            <FieldworkProcedureRow
+            <li
               key={procedure.id}
-              packageId={fieldwork.id}
-              procedure={procedure}
-              isArchived={fieldwork.isArchived}
-              canAssign={props.canAssign ?? false}
-              canUpdate={props.canUpdate ?? false}
-              canReview={props.canReview ?? false}
-              fieldworkLabels={props.fieldworkLabels}
-            />
+              ref={(node) => {
+                rowRefs.current[procedure.id] = node;
+              }}
+              className="rounded-lg transition-shadow"
+            >
+              <FieldworkProcedureRow
+                packageId={fieldwork.id}
+                procedure={procedure}
+                isArchived={fieldwork.isArchived}
+                canAssign={props.canAssign ?? false}
+                canUpdate={props.canUpdate ?? false}
+                canReview={props.canReview ?? false}
+                fieldworkLabels={props.fieldworkLabels}
+              />
+            </li>
           ))}
         </ul>
       )}
@@ -153,26 +177,32 @@ export function FieldworkProceduresExperience(props: SectionProps & { locale: st
 
 export function FieldworkWorkingPapersExperience(props: SectionProps) {
   const router = useRouter();
-  const { engagement } = useEngagementWorkspace();
   const [title, setTitle] = useState("");
   const [procedureId, setProcedureId] = useState("");
   const [tickmarkSymbol, setTickmarkSymbol] = useState("");
   const [tickmarkMeaning, setTickmarkMeaning] = useState("");
   const [selectedPaperId, setSelectedPaperId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const fieldwork = useFieldworkOrEmpty(props);
   if (typeof fieldwork !== "object" || !("workingPapers" in fieldwork)) return fieldwork;
 
   const wpLabels = props.fieldworkLabels.workingPapers;
+  const workflowLabels = props.fieldworkLabels.workflow;
 
   const addPaper = () => {
     if (!procedureId || !title.trim()) return;
     startTransition(async () => {
-      await addWorkingPaperAction({
+      setError(null);
+      const result = await addWorkingPaperAction({
         packageId: fieldwork.id,
         procedureId,
         title: title.trim(),
       });
+      if (!result.success) {
+        setError(result.error?.message ?? workflowLabels.errorGeneric);
+        return;
+      }
       setTitle("");
       router.refresh();
     });
@@ -181,13 +211,18 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
   const addTickmark = (paperId: string, paperVersion: number) => {
     if (!tickmarkSymbol.trim() || !tickmarkMeaning.trim()) return;
     startTransition(async () => {
-      await addWorkingPaperTickmarkAction({
+      setError(null);
+      const result = await addWorkingPaperTickmarkAction({
         packageId: fieldwork.id,
         workingPaperId: paperId,
         workingPaperVersion: paperVersion,
         symbol: tickmarkSymbol.trim(),
         meaning: tickmarkMeaning.trim(),
       });
+      if (!result.success) {
+        setError(result.error?.message ?? workflowLabels.errorGeneric);
+        return;
+      }
       setTickmarkSymbol("");
       setTickmarkMeaning("");
       setSelectedPaperId(null);
@@ -195,73 +230,89 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
     });
   };
 
-  const assignPaper = (paperId: string, paperVersion: number, assignedAuditorId: string | null) => {
+  const applyLibraryTickmark = (paperId: string, paperVersion: number, symbol: string, meaning: string) => {
     startTransition(async () => {
-      await updateWorkingPaperAction({
+      setError(null);
+      const result = await addWorkingPaperTickmarkAction({
         packageId: fieldwork.id,
         workingPaperId: paperId,
         workingPaperVersion: paperVersion,
-        assignedAuditorId,
+        symbol,
+        meaning,
       });
+      if (!result.success) {
+        setError(result.error?.message ?? workflowLabels.errorGeneric);
+        return;
+      }
+      setSelectedPaperId(null);
       router.refresh();
     });
   };
 
   return (
     <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-working-papers">
+      {error ? <Alert variant="error">{error}</Alert> : null}
       {fieldwork.workingPapers.length === 0 ? (
         <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <div className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
           {fieldwork.workingPapers.map((paper) => (
-            <li key={paper.id} className="space-y-3 px-5 py-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <p className="font-medium text-foreground">{paper.title}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {paper.procedureTitle} · {props.fieldworkLabels.workingPaperStatuses[paper.paperStatus]}
-                  </p>
-                </div>
-                <Button type="button" size="sm" variant="ghost" onClick={() => setSelectedPaperId(paper.id)}>
-                  {props.fieldworkLabels.actions.addTickmark}
-                </Button>
-              </div>
-              {paper.tickmarks.length > 0 ? (
-                <ul className="space-y-1 text-xs text-muted-foreground">
-                  {paper.tickmarks.map((tickmark) => (
-                    <li key={tickmark.id}>
-                      <span className="font-medium text-foreground">{tickmark.symbol}</span> — {tickmark.meaning}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-              {!fieldwork.isArchived && props.canAssign ? (
-                <select
-                  className="h-9 rounded-lg border border-border/60 bg-background px-2 text-sm"
-                  value={paper.assignedAuditorId ?? ""}
-                  onChange={(event) => assignPaper(paper.id, paper.version, event.target.value || null)}
-                  disabled={isPending}
-                >
-                  <option value="">{wpLabels.assignAuditor}</option>
-                  {engagement.members.map((member) => (
-                    <option key={member.userId} value={member.userId}>
-                      {member.displayName}
-                    </option>
-                  ))}
-                </select>
-              ) : null}
+            <div key={paper.id}>
+              <FieldworkWorkingPaperRow
+                packageId={fieldwork.id}
+                paper={paper}
+                isArchived={fieldwork.isArchived}
+                canAssign={props.canAssign ?? false}
+                canUpdate={props.canUpdate ?? false}
+                canReview={props.canReview ?? false}
+                fieldworkLabels={props.fieldworkLabels}
+                onAddTickmark={() =>
+                  setSelectedPaperId((current) => (current === paper.id ? null : paper.id))
+                }
+              />
               {selectedPaperId === paper.id ? (
-                <div className="flex flex-wrap gap-2">
-                  <Input value={tickmarkSymbol} onChange={(e) => setTickmarkSymbol(e.target.value)} placeholder={wpLabels.tickmarkSymbol} />
-                  <Input value={tickmarkMeaning} onChange={(e) => setTickmarkMeaning(e.target.value)} placeholder={wpLabels.tickmarkMeaning} />
-                  <Button type="button" size="sm" onClick={() => addTickmark(paper.id, paper.version)} disabled={isPending}>
-                    {props.fieldworkLabels.actions.addTickmark}
-                  </Button>
+                <div className="space-y-3 border-t border-border/40 bg-muted/20 px-5 py-4">
+                  {fieldwork.tickmarkLibrary.length > 0 ? (
+                    <div className="flex flex-wrap gap-2">
+                      {fieldwork.tickmarkLibrary.map((entry) => (
+                        <Button
+                          key={entry.id}
+                          type="button"
+                          size="sm"
+                          variant="secondary"
+                          disabled={isPending}
+                          onClick={() => applyLibraryTickmark(paper.id, paper.version, entry.symbol, entry.meaning)}
+                        >
+                          {entry.symbol}
+                        </Button>
+                      ))}
+                    </div>
+                  ) : null}
+                  <div className="flex flex-wrap gap-2">
+                    <Input
+                      value={tickmarkSymbol}
+                      onChange={(e) => setTickmarkSymbol(e.target.value)}
+                      placeholder={wpLabels.tickmarkSymbol}
+                    />
+                    <Input
+                      value={tickmarkMeaning}
+                      onChange={(e) => setTickmarkMeaning(e.target.value)}
+                      placeholder={wpLabels.tickmarkMeaning}
+                    />
+                    <Button
+                      type="button"
+                      size="sm"
+                      onClick={() => addTickmark(paper.id, paper.version)}
+                      disabled={isPending}
+                    >
+                      {props.fieldworkLabels.actions.addTickmark}
+                    </Button>
+                  </div>
                 </div>
               ) : null}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
       {!fieldwork.isArchived && fieldwork.procedures.length > 0 ? (
         <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
@@ -278,7 +329,11 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
               </option>
             ))}
           </select>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Working paper title" />
+          <Input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder={wpLabels.titlePlaceholder}
+          />
           <Button type="button" onClick={addPaper} disabled={isPending || !title.trim() || !procedureId}>
             {props.fieldworkLabels.actions.addWorkingPaper}
           </Button>
@@ -287,6 +342,7 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
       {fieldwork.tickmarkLibrary.length > 0 ? (
         <div className="mt-6 rounded-2xl border border-border/50 bg-card/40 p-5">
           <h3 className="text-sm font-semibold text-foreground">{wpLabels.libraryTitle}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{wpLabels.libraryDescription}</p>
           <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
             {fieldwork.tickmarkLibrary.map((entry) => (
               <li key={entry.id}>
@@ -305,15 +361,19 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
   const [name, setName] = useState("");
   const [procedureId, setProcedureId] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const fieldwork = useFieldworkOrEmpty(props);
   if (typeof fieldwork !== "object" || !("evidence" in fieldwork)) return fieldwork;
 
   const evidenceLabels = props.fieldworkLabels.evidence;
+  const workflowLabels = props.fieldworkLabels.workflow;
 
   const add = () => {
     if (!name.trim()) return;
     startTransition(async () => {
+      setError(null);
       if (file) {
         const buffer = await file.arrayBuffer();
         const bytes = new Uint8Array(buffer);
@@ -322,7 +382,7 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
           binary += String.fromCharCode(bytes[i] ?? 0);
         }
         const base64 = btoa(binary);
-        await uploadFieldworkEvidenceAction({
+        const result = await uploadFieldworkEvidenceAction({
           packageId: fieldwork.id,
           name: name.trim(),
           procedureId: procedureId || null,
@@ -331,12 +391,20 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
           mimeType: file.type || "application/octet-stream",
           fileSize: file.size,
         });
+        if (!result.success) {
+          setError(result.error?.message ?? workflowLabels.errorGeneric);
+          return;
+        }
       } else {
-        await addFieldworkEvidenceAction({
+        const result = await addFieldworkEvidenceAction({
           packageId: fieldwork.id,
           name: name.trim(),
           procedureId: procedureId || null,
         });
+        if (!result.success) {
+          setError(result.error?.message ?? workflowLabels.errorGeneric);
+          return;
+        }
       }
       setName("");
       setFile(null);
@@ -345,14 +413,38 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
     });
   };
 
+  const download = (evidenceId: string) => {
+    startTransition(async () => {
+      setDownloadError(null);
+      const result = await downloadFieldworkEvidenceAction({
+        packageId: fieldwork.id,
+        evidenceId,
+      });
+      if (!result.success) {
+        setDownloadError(result.error?.message ?? evidenceLabels.downloadError);
+        return;
+      }
+      const anchor = document.createElement("a");
+      anchor.href = result.data.signedUrl;
+      anchor.download = result.data.fileName;
+      anchor.rel = "noopener noreferrer";
+      anchor.target = "_blank";
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+    });
+  };
+
   return (
     <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-evidence">
+      {error ? <Alert variant="error">{error}</Alert> : null}
+      {downloadError ? <Alert variant="error">{downloadError}</Alert> : null}
       {fieldwork.evidence.length === 0 ? (
         <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
         <ul className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
           {fieldwork.evidence.map((item) => (
-            <li key={item.id} className="flex items-center justify-between px-5 py-4">
+            <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
               <div>
                 <p className="font-medium text-foreground">{item.name}</p>
                 <p className="text-xs text-muted-foreground">{item.documentType}</p>
@@ -360,16 +452,27 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
                   <p className="text-xs text-primary">{evidenceLabels.uploadedBadge}</p>
                 ) : null}
               </div>
-              <span className="text-xs uppercase tracking-wide text-muted-foreground">
-                {props.fieldworkLabels.evidenceStatuses[item.evidenceStatus]}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="text-xs uppercase tracking-wide text-muted-foreground">
+                  {props.fieldworkLabels.evidenceStatuses[item.evidenceStatus]}
+                </span>
+                {item.storagePath ? (
+                  <Button type="button" size="sm" variant="secondary" disabled={isPending} onClick={() => download(item.id)}>
+                    {evidenceLabels.downloadAction}
+                  </Button>
+                ) : null}
+              </div>
             </li>
           ))}
         </ul>
       )}
       {!fieldwork.isArchived ? (
         <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
-          <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Evidence reference name" />
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={evidenceLabels.namePlaceholder}
+          />
           <select
             className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
             value={procedureId}
@@ -402,6 +505,7 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
 export function FieldworkFindingsExperience(props: SectionProps) {
   const router = useRouter();
   const [title, setTitle] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const fieldwork = useFieldworkOrEmpty(props);
   if (typeof fieldwork !== "object" || !("findings" in fieldwork)) return fieldwork;
@@ -409,7 +513,12 @@ export function FieldworkFindingsExperience(props: SectionProps) {
   const add = () => {
     if (!title.trim()) return;
     startTransition(async () => {
-      await addFieldworkFindingAction({ packageId: fieldwork.id, title: title.trim() });
+      setError(null);
+      const result = await addFieldworkFindingAction({ packageId: fieldwork.id, title: title.trim() });
+      if (!result.success) {
+        setError(result.error?.message ?? props.fieldworkLabels.workflow.errorGeneric);
+        return;
+      }
       setTitle("");
       router.refresh();
     });
@@ -417,6 +526,7 @@ export function FieldworkFindingsExperience(props: SectionProps) {
 
   return (
     <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-findings">
+      {error ? <Alert variant="error">{error}</Alert> : null}
       {fieldwork.findings.length === 0 ? (
         <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -433,7 +543,11 @@ export function FieldworkFindingsExperience(props: SectionProps) {
       )}
       {!fieldwork.isArchived ? (
         <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Finding title" />
+          <Input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder={props.fieldworkLabels.findings.titlePlaceholder}
+          />
           <Button type="button" onClick={add} disabled={isPending || !title.trim()}>
             {props.fieldworkLabels.actions.addFinding}
           </Button>
@@ -498,7 +612,11 @@ function FieldworkNotesSection({
       )}
       {!fieldwork.isArchived ? (
         <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
-          <Input value={body} onChange={(e) => setBody(e.target.value)} placeholder="Add a note" />
+          <Input
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            placeholder={props.fieldworkLabels.notes.bodyPlaceholder}
+          />
           <Button type="button" onClick={submit} disabled={isPending || !body.trim()}>
             {props.fieldworkLabels.actions.addNote}
           </Button>
@@ -508,29 +626,66 @@ function FieldworkNotesSection({
   );
 }
 
+function FieldworkNotesGate(props: SectionProps & { locale: string; children: ReactNode }) {
+  const { fieldwork, planningApproved } = useFieldworkWorkspace();
+  if (!fieldwork) {
+    return (
+      <FieldworkCreateExperience
+        canCreate={props.canCreate ?? false}
+        planningApproved={props.planningApproved ?? planningApproved}
+        labels={props.emptyLabels}
+        gateLabels={props.fieldworkLabels.workspace}
+      />
+    );
+  }
+  return props.children;
+}
+
 export function FieldworkNotesExperience(props: SectionProps & { locale: string }) {
   const { fieldwork } = useFieldworkWorkspace();
-  if (!fieldwork) return <FieldworkCreateExperience canCreate={props.canCreate ?? false} planningApproved={props.planningApproved ?? false} labels={props.emptyLabels} gateLabels={props.fieldworkLabels.workspace} />;
-  return <FieldworkNotesSection noteType="auditor" notes={fieldwork.notes} props={props} />;
+  return (
+    <FieldworkNotesGate {...props}>
+      {fieldwork ? <FieldworkNotesSection noteType="auditor" notes={fieldwork.notes} props={props} /> : null}
+    </FieldworkNotesGate>
+  );
 }
 
 export function FieldworkReviewNotesExperience(props: SectionProps & { locale: string }) {
   const { fieldwork } = useFieldworkWorkspace();
-  if (!fieldwork) return <FieldworkCreateExperience canCreate={props.canCreate ?? false} planningApproved={props.planningApproved ?? false} labels={props.emptyLabels} gateLabels={props.fieldworkLabels.workspace} />;
   return (
-    <>
-      <FieldworkNotesSection noteType="review" notes={fieldwork.notes} props={props} />
-      {fieldwork.clearanceNotes.length > 0 ? (
-        <FieldworkNotesSection noteType="clearance" notes={fieldwork.notes} props={{ ...props, labels: { ...props.labels, title: props.fieldworkLabels.workflow.clearAction, description: props.fieldworkLabels.workflow.clearanceNotesPlaceholder, emptyTitle: props.labels.emptyTitle, emptyDescription: props.labels.emptyDescription } }} />
+    <FieldworkNotesGate {...props}>
+      {fieldwork ? (
+        <>
+          <FieldworkNotesSection noteType="review" notes={fieldwork.notes} props={props} />
+          {fieldwork.clearanceNotes.length > 0 ? (
+            <FieldworkNotesSection
+              noteType="clearance"
+              notes={fieldwork.notes}
+              props={{
+                ...props,
+                labels: {
+                  ...props.labels,
+                  title: props.fieldworkLabels.workflow.clearAction,
+                  description: props.fieldworkLabels.workflow.clearanceNotesPlaceholder,
+                  emptyTitle: props.labels.emptyTitle,
+                  emptyDescription: props.labels.emptyDescription,
+                },
+              }}
+            />
+          ) : null}
+        </>
       ) : null}
-    </>
+    </FieldworkNotesGate>
   );
 }
 
 export function FieldworkCommentsExperience(props: SectionProps & { locale: string }) {
   const { fieldwork } = useFieldworkWorkspace();
-  if (!fieldwork) return <FieldworkCreateExperience canCreate={props.canCreate ?? false} planningApproved={props.planningApproved ?? false} labels={props.emptyLabels} gateLabels={props.fieldworkLabels.workspace} />;
-  return <FieldworkNotesSection noteType="internal" notes={fieldwork.notes} props={props} />;
+  return (
+    <FieldworkNotesGate {...props}>
+      {fieldwork ? <FieldworkNotesSection noteType="internal" notes={fieldwork.notes} props={props} /> : null}
+    </FieldworkNotesGate>
+  );
 }
 
 export function FieldworkHistoryExperience(
@@ -586,7 +741,7 @@ export function FieldworkSettingsExperience(
   },
 ) {
   const router = useRouter();
-  const { fieldwork } = useFieldworkWorkspace();
+  const { fieldwork, planningApproved } = useFieldworkWorkspace();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [mode, setMode] = useState<"idle" | "archive" | "restore">("idle");
@@ -597,7 +752,7 @@ export function FieldworkSettingsExperience(
     return (
       <FieldworkCreateExperience
         canCreate={props.canCreate ?? false}
-        planningApproved={props.planningApproved ?? false}
+        planningApproved={props.planningApproved ?? planningApproved}
         labels={props.emptyLabels}
         gateLabels={props.fieldworkLabels.workspace}
       />

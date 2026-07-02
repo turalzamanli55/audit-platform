@@ -1131,6 +1131,7 @@ export type Dictionary = {
       queueDescription: string;
       queueEmpty: string;
       pendingReviewCount: string;
+      openProcedureAction: string;
       submitAction: string;
       returnAction: string;
       returnConfirmAction: string;
@@ -1177,6 +1178,7 @@ export type Dictionary = {
       summaryVersion: string;
       summaryProgress: string;
       summaryProcedures: string;
+      summaryPendingReview: string;
       summaryFindings: string;
       status: {
         title: string;
@@ -1222,6 +1224,7 @@ export type Dictionary = {
       emptyDescription: string;
       procedureLabel: string;
       assignAuditor: string;
+      titlePlaceholder: string;
       tickmarkSymbol: string;
       tickmarkMeaning: string;
       libraryTitle: string;
@@ -1235,9 +1238,24 @@ export type Dictionary = {
       fileLabel: string;
       procedureLabel: string;
       uploadedBadge: string;
+      namePlaceholder: string;
+      downloadAction: string;
+      downloadError: string;
     };
-    findings: { title: string; description: string; emptyTitle: string; emptyDescription: string };
-    notes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    findings: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      titlePlaceholder: string;
+    };
+    notes: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      bodyPlaceholder: string;
+    };
     reviewNotes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
     comments: { title: string; description: string; emptyTitle: string; emptyDescription: string };
     history: {
@@ -1260,6 +1278,9 @@ export type Dictionary = {
         procedureCleared: string;
         workingPaperAdded: string;
         workingPaperUpdated: string;
+        workingPaperSubmitted: string;
+        workingPaperReturned: string;
+        workingPaperCleared: string;
         evidenceAdded: string;
         findingAdded: string;
         noteAdded: string;

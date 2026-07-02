@@ -101,8 +101,13 @@ export async function loadDashboardWorkspace(
       companies: companyCount > 0 ? String(companyCount) : "—",
       engagements: engagementCount > 0 ? String(engagementCount) : "—",
       openTasks:
-        fieldworkMetrics && fieldworkMetrics.pendingReview > 0
-          ? String(fieldworkMetrics.pendingReview)
+        fieldworkMetrics
+          ? String(
+              Math.max(
+                fieldworkMetrics.pendingReview + fieldworkMetrics.assignedToMe,
+                fieldworkMetrics.openFindings,
+              ),
+            )
           : String(labels.tasks.items.length),
       reports: "—",
       aiSuggestions: String(labels.ai.suggestions.length),
