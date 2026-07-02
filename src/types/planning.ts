@@ -27,4 +27,23 @@ export type PlanningDocument = {
   documentType: string;
   status: "placeholder" | "uploaded";
   createdAt: string;
+  fileSize?: number | null;
+  mimeType?: string | null;
+};
+
+export type PlanningComment = {
+  id: string;
+  commentType: "review" | "general" | "return";
+  body: string;
+  authorId: string | null;
+  createdAt: string;
+  resolvedAt: string | null;
+};
+
+export type PlanningRevisionEntry = {
+  planVersion: number;
+  planningStatus: PlanningStatus;
+  revisedAt: string;
+  revisedBy: string | null;
+  summary?: string | null;
 };

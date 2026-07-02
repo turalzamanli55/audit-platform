@@ -2,6 +2,7 @@ import type { EngagementLifecycleStatus } from "@/types/engagement";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { EngagementWorkspaceNavItem } from "@/components/engagement/workspace/engagement-workspace-sidebar";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
+import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import {
   formatDate,
   formatDateRange,
@@ -34,7 +35,39 @@ export function buildPlanningSummaryItems(
   locale: string,
   labels: EngagementWorkspaceLabels,
   engagementsLabels: Dictionary["engagements"],
+  plan?: PlanningWorkspaceView | null,
+  planningLabels?: Dictionary["planning"],
 ) {
+  if (plan && planningLabels) {
+    return [
+      {
+        id: "status",
+        label: labels.planning.planningStatus,
+        value: planningLabels.statuses[plan.planningStatus],
+      },
+      {
+        id: "progress",
+        label: labels.planning.planningProgress,
+        value: `${plan.kpiProgress}%`,
+      },
+      {
+        id: "version",
+        label: labels.planning.planVersion,
+        value: String(plan.planVersion),
+      },
+      {
+        id: "checklist",
+        label: labels.planning.checklistProgress,
+        value: `${plan.checklistProgress}%`,
+      },
+      {
+        id: "framework",
+        label: labels.planning.reportingFramework,
+        value: formatOptionalText(plan.financialReportingFramework),
+      },
+    ];
+  }
+
   return [
     {
       id: "lifecycle",

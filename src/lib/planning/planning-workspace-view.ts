@@ -5,6 +5,7 @@ import type {
   PlanningTeamPlanning,
   PlanningTimelineMilestone,
   IntegrationReadinessStatus,
+  PlanningRevisionEntry,
 } from "@/types/planning";
 
 export type PlanningWorkspaceView = {
@@ -26,7 +27,17 @@ export type PlanningWorkspaceView = {
   teamPlanning: PlanningTeamPlanning;
   checklist: PlanningChecklistItem[];
   documents: PlanningDocument[];
+  revisionHistory: PlanningRevisionEntry[];
   checklistProgress: number;
+  kpiProgress: number;
+  isLocked: boolean;
+  submittedAt: string | null;
+  submittedBy: string | null;
+  approvedAt: string | null;
+  approvedBy: string | null;
+  returnedAt: string | null;
+  returnedBy: string | null;
+  returnNotes: string | null;
   status: string;
   version: number;
   isArchived: boolean;

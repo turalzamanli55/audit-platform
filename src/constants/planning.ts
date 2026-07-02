@@ -3,7 +3,17 @@ export const PLANNING_PERMISSIONS = {
   CREATE: "planning.create",
   UPDATE: "planning.update",
   ARCHIVE: "planning.archive",
+  SUBMIT: "planning.submit",
+  REVIEW: "planning.review",
+  APPROVE: "planning.approve",
+  COMMENT: "planning.comment",
 } as const;
+
+export const PLANNING_PARTNER_ROLES = ["engagement_partner"] as const;
+export const PLANNING_MANAGER_ROLES = ["engagement_partner", "engagement_manager"] as const;
+
+export const LOCKED_PLANNING_STATUSES = ["approved", "superseded"] as const;
+export const EDITABLE_PLANNING_STATUSES = ["not_started", "in_progress", "returned"] as const;
 
 export const PLANNING_STATUSES = [
   "not_started",
@@ -30,6 +40,13 @@ export const PLANNING_ACTIVITY_ACTIONS = {
   RESTORED: "planning.restored",
   CHECKLIST_UPDATED: "planning.checklist.updated",
   TIMELINE_UPDATED: "planning.timeline.updated",
+  SUBMITTED: "planning.submitted",
+  RETURNED: "planning.returned",
+  APPROVED: "planning.approved",
+  REVISED: "planning.revised",
+  COMMENT_ADDED: "planning.comment.added",
+  DOCUMENT_ADDED: "planning.document.added",
+  DOCUMENT_REMOVED: "planning.document.removed",
 } as const;
 
 export const DEFAULT_PLANNING_CHECKLIST = [

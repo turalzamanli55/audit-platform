@@ -12,3 +12,6 @@ export { PlanningDocumentsExperience } from "./documents/planning-documents-expe
 export { PlanningHistoryExperience } from "./history/planning-history-experience";
 export { PlanningSettingsExperience } from "./settings/planning-settings-experience";
 export { PlanningCreateExperience } from "./create/planning-create-experience";
+export { PlanningWorkflowPanel } from "./workflow/planning-workflow-panel";
+export { PlanningCommentsSection } from "./comments/planning-comments-section";
+export { PlanningWorkspaceHero } from "./workspace/planning-workspace-hero";

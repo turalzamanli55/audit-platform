@@ -1,6 +1,7 @@
 import type { PlanningActivityView } from "@/lib/planning/load-planning-activity";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { formatPlanningActivityAction } from "@/lib/planning/planning-workspace-display";
 import { formatDate, formatDateTime } from "@/lib/engagement/format-engagement-workspace";
 import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
 import { EngagementWorkspaceMetadataPanel } from "@/components/engagement/workspace/engagement-workspace-metadata-panel";
@@ -10,6 +11,7 @@ type PlanningHistoryExperienceProps = {
   activity: PlanningActivityView;
   locale: string;
   labels: Dictionary["planning"]["history"];
+  planningLabels: Dictionary["planning"];
 };
 
 export function PlanningHistoryExperience({
@@ -17,6 +19,7 @@ export function PlanningHistoryExperience({
   activity,
   locale,
   labels,
+  planningLabels,
 }: PlanningHistoryExperienceProps) {
   return (
     <div className="space-y-10">
@@ -40,8 +43,10 @@ export function PlanningHistoryExperience({
               {activity.entries.map((entry) => (
                 <li key={entry.id} className="space-y-1 px-5 py-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <p className="text-sm font-medium text-foreground">{entry.action}</p>
-                    <time className="text-xs text-muted-foreground">
+                    <p className="text-sm font-medium text-foreground">
+                      {formatPlanningActivityAction(entry.action, labels.actions)}
+                    </p>
+                    <time className="text-xs text-muted-foreground" dateTime={entry.createdAt}>
                       {formatDateTime(entry.createdAt, locale)}
                     </time>
                   </div>
@@ -54,6 +59,35 @@ export function PlanningHistoryExperience({
           </div>
         )}
       </PlanningWorkspaceSectionShell>
+
+      {plan && plan.revisionHistory.length > 0 ? (
+        <PlanningWorkspaceSectionShell
+          title={labels.revision.title}
+          description={labels.revision.description}
+          headingId="planning-revision-history"
+        >
+          <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+            {plan.revisionHistory.map((entry, index) => (
+              <li key={`${entry.planVersion}-${index}`} className="space-y-1 px-5 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-sm font-medium text-foreground">
+                    {labels.revision.entryTitle.replace("{version}", String(entry.planVersion))}
+                  </p>
+                  <time className="text-xs text-muted-foreground" dateTime={entry.revisedAt}>
+                    {formatDateTime(entry.revisedAt, locale)}
+                  </time>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {planningLabels.statuses[entry.planningStatus]}
+                </p>
+                {entry.summary ? (
+                  <p className="text-sm text-muted-foreground">{entry.summary}</p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </PlanningWorkspaceSectionShell>
+      ) : null}
 
       {plan ? (
         <PlanningWorkspaceSectionShell
@@ -69,6 +103,20 @@ export function PlanningHistoryExperience({
                 id: "plan-version",
                 label: labels.version.planVersion,
                 value: String(plan.planVersion),
+              },
+              {
+                id: "submitted",
+                label: labels.version.submitted,
+                value: plan.submittedAt
+                  ? formatDateTime(plan.submittedAt, locale)
+                  : labels.version.notSubmitted,
+              },
+              {
+                id: "approved",
+                label: labels.version.approved,
+                value: plan.approvedAt
+                  ? formatDateTime(plan.approvedAt, locale)
+                  : labels.version.notApproved,
               },
               {
                 id: "created",

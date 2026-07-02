@@ -670,11 +670,17 @@
       "metadataMembers": "Team members",
       "planning": {
         "title": "Planning summary",
-        "description": "Lifecycle stage, financial year, and planned schedule.",
+        "description": "Audit planning status, readiness, and progress for this engagement.",
         "lifecycleStage": "Lifecycle stage",
         "financialYear": "Financial year",
         "plannedSchedule": "Planned schedule",
-        "teamSize": "Team size"
+        "teamSize": "Team size",
+        "planningStatus": "Planning status",
+        "planningProgress": "Planning progress",
+        "planVersion": "Plan version",
+        "checklistProgress": "Checklist progress",
+        "reportingFramework": "Reporting framework",
+        "openPlanning": "Open audit planning"
       },
       "client": {
         "title": "Client information",
@@ -870,6 +876,8 @@
     },
     "workspace": {
       "heroEyebrow": "Audit planning",
+      "breadcrumbPlanning": "Planning",
+      "backToEngagement": "Back to engagement",
       "navAriaLabel": "Planning workspace sections",
       "navOverview": "Dashboard",
       "navStrategy": "Audit strategy",
@@ -902,6 +910,7 @@
         "planningStatus": "Status",
         "planVersion": "Plan version",
         "checklistProgress": "Checklist",
+        "kpiProgress": "Overall progress",
         "materiality": "Materiality",
         "risk": "Risk assessment"
       },
@@ -962,6 +971,38 @@
           "title": "Planning settings",
           "description": "Archive or restore this planning record."
         }
+      }
+    },
+    "workflow": {
+      "eyebrow": "Approval workflow",
+      "lockedBadge": "Locked",
+      "submitAction": "Submit for review",
+      "returnAction": "Return for revision",
+      "returnConfirmAction": "Confirm return",
+      "approveAction": "Approve planning",
+      "reviseAction": "Create revision",
+      "reviseConfirmAction": "Confirm revision",
+      "cancelAction": "Cancel",
+      "returnNotesTitle": "Return notes",
+      "returnNotesLabel": "Revision notes",
+      "returnNotesPlaceholder": "Describe what must be addressed before resubmission…",
+      "reviseNotesLabel": "Revision summary",
+      "reviseNotesPlaceholder": "Optional summary of why this approved plan is being revised…",
+      "pendingReviewNotice": "This plan is awaiting partner or manager review.",
+      "errorGeneric": "Unable to complete the planning workflow action."
+    },
+    "comments": {
+      "title": "Planning comments",
+      "description": "Review notes and discussion captured during planning approval.",
+      "emptyDescription": "No planning comments yet. Comments appear when reviewers add notes or return a plan.",
+      "addLabel": "Add comment",
+      "addPlaceholder": "Document a planning note or review comment…",
+      "addAction": "Add comment",
+      "reviewModeNotice": "Comments are captured when a plan is returned for revision.",
+      "types": {
+        "review": "Review",
+        "general": "General",
+        "return": "Return note"
       }
     },
     "integration": {
@@ -1031,20 +1072,61 @@
       "title": "Planning documents",
       "description": "Planning memoranda and supporting documentation.",
       "emptyTitle": "No planning documents",
-      "emptyDescription": "Uploaded planning documents will appear here when document management is connected.",
-      "integrationReady": "Document upload integration will connect in a future release."
+      "emptyDescription": "Add planning memoranda and supporting references for this audit plan.",
+      "addTitle": "Add document reference",
+      "nameLabel": "Document name",
+      "namePlaceholder": "Planning memorandum",
+      "typeLabel": "Document type",
+      "addAction": "Add document",
+      "metadataNotice": "File storage integration will attach binaries in a future release. References are recorded on the audit plan now.",
+      "documentTypes": {
+        "planning_memorandum": "Planning memorandum",
+        "risk_assessment": "Risk assessment",
+        "materiality_worksheet": "Materiality worksheet",
+        "other": "Other"
+      },
+      "statuses": {
+        "uploaded": "Recorded",
+        "pending": "Pending",
+        "archived": "Archived"
+      }
     },
     "history": {
       "title": "Planning history",
       "description": "Read-only timeline of planning changes and audit summary.",
       "emptyTitle": "No planning activity",
       "emptyDescription": "Planning activity will appear here as changes are recorded.",
+      "actions": {
+        "created": "Planning created",
+        "updated": "Planning updated",
+        "statusChanged": "Status changed",
+        "archived": "Planning archived",
+        "restored": "Planning restored",
+        "checklistUpdated": "Checklist updated",
+        "timelineUpdated": "Timeline updated",
+        "submitted": "Submitted for review",
+        "returned": "Returned for revision",
+        "approved": "Planning approved",
+        "revised": "Plan revised",
+        "commentAdded": "Comment added",
+        "documentAdded": "Document added",
+        "documentRemoved": "Document removed"
+      },
+      "revision": {
+        "title": "Revision history",
+        "description": "Prior approved plan versions superseded by revision.",
+        "entryTitle": "Plan version {version}"
+      },
       "version": {
         "title": "Version information",
         "description": "Current plan versions and lifecycle timestamps.",
         "cardTitle": "Plan metadata",
         "recordVersion": "Record version",
         "planVersion": "Plan version",
+        "submitted": "Submitted at",
+        "approved": "Approved at",
+        "notSubmitted": "Not submitted",
+        "notApproved": "Not approved",
         "created": "Created",
         "updated": "Updated",
         "archived": "Archived at",

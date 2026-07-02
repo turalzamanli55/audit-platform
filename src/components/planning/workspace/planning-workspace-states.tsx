@@ -1,15 +1,22 @@
+import type { ReactNode } from "react";
 import type { Dictionary } from "@/i18n/get-dictionary";
 
 type PlanningWorkspaceErrorProps = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
+  action?: ReactNode;
 };
 
-export function PlanningWorkspaceError({ title, description }: PlanningWorkspaceErrorProps) {
+export function PlanningWorkspaceError({
+  title = "Unable to load planning workspace",
+  description = "Something went wrong while loading audit planning.",
+  action,
+}: PlanningWorkspaceErrorProps) {
   return (
     <div className="mx-auto max-w-lg space-y-3 px-4 py-16 text-center">
       <h1 className="text-xl font-semibold tracking-tight text-foreground">{title}</h1>
       <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
+      {action ? <div className="pt-2">{action}</div> : null}
     </div>
   );
 }

@@ -662,6 +662,12 @@ export type Dictionary = {
         financialYear: string;
         plannedSchedule: string;
         teamSize: string;
+        planningStatus: string;
+        planningProgress: string;
+        planVersion: string;
+        checklistProgress: string;
+        reportingFramework: string;
+        openPlanning: string;
       };
       client: {
         title: string;
@@ -829,6 +835,8 @@ export type Dictionary = {
     };
     workspace: {
       heroEyebrow: string;
+      breadcrumbPlanning: string;
+      backToEngagement: string;
       navAriaLabel: string;
       navOverview: string;
       navStrategy: string;
@@ -861,6 +869,7 @@ export type Dictionary = {
         planningStatus: string;
         planVersion: string;
         checklistProgress: string;
+        kpiProgress: string;
         materiality: string;
         risk: string;
       };
@@ -881,6 +890,34 @@ export type Dictionary = {
         | "settings",
         { title: string; description: string }
       >;
+    };
+    workflow: {
+      eyebrow: string;
+      lockedBadge: string;
+      submitAction: string;
+      returnAction: string;
+      returnConfirmAction: string;
+      approveAction: string;
+      reviseAction: string;
+      reviseConfirmAction: string;
+      cancelAction: string;
+      returnNotesTitle: string;
+      returnNotesLabel: string;
+      returnNotesPlaceholder: string;
+      reviseNotesLabel: string;
+      reviseNotesPlaceholder: string;
+      pendingReviewNotice: string;
+      errorGeneric: string;
+    };
+    comments: {
+      title: string;
+      description: string;
+      emptyDescription: string;
+      addLabel: string;
+      addPlaceholder: string;
+      addAction: string;
+      reviewModeNotice: string;
+      types: Record<"review" | "general" | "return", string>;
     };
     integration: {
       integrationReady: string;
@@ -942,19 +979,54 @@ export type Dictionary = {
       description: string;
       emptyTitle: string;
       emptyDescription: string;
-      integrationReady: string;
+      addTitle: string;
+      nameLabel: string;
+      namePlaceholder: string;
+      typeLabel: string;
+      addAction: string;
+      metadataNotice: string;
+      documentTypes: Record<
+        "planning_memorandum" | "risk_assessment" | "materiality_worksheet" | "other",
+        string
+      >;
+      statuses: Record<"uploaded" | "pending" | "archived", string>;
     };
     history: {
       title: string;
       description: string;
       emptyTitle: string;
       emptyDescription: string;
+      actions: {
+        created: string;
+        updated: string;
+        statusChanged: string;
+        archived: string;
+        restored: string;
+        checklistUpdated: string;
+        timelineUpdated: string;
+        submitted: string;
+        returned: string;
+        approved: string;
+        revised: string;
+        commentAdded: string;
+        documentAdded: string;
+        documentRemoved: string;
+      };
+      revision: {
+        title: string;
+        description: string;
+        entryTitle: string;
+      };
       version: {
         title: string;
         description: string;
         cardTitle: string;
         recordVersion: string;
         planVersion: string;
+        submitted: string;
+        approved: string;
+        notSubmitted: string;
+        notApproved: string;
         created: string;
         updated: string;
         archived: string;

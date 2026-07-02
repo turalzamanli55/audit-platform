@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
+import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,17 +30,21 @@ import {
 type EngagementWorkspaceOverviewExperienceProps = {
   locale: string;
   canUpdate: boolean;
+  plan: PlanningWorkspaceView | null;
   labels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
   overviewLabels: Dictionary["engagements"]["overview"];
+  planningLabels: Dictionary["planning"];
 };
 
 export function EngagementWorkspaceOverviewExperience({
   locale,
   canUpdate,
+  plan,
   labels,
   engagementsLabels,
   overviewLabels,
+  planningLabels,
 }: EngagementWorkspaceOverviewExperienceProps) {
   const router = useRouter();
   const { engagement, refreshEngagement } = useEngagementWorkspace();
@@ -53,7 +59,14 @@ export function EngagementWorkspaceOverviewExperience({
 
   const summaryCards = buildOverviewSummaryCards(engagement, locale, labels, engagementsLabels);
   const metadataItems = buildOverviewMetadataItems(engagement, locale, labels, engagementsLabels);
-  const planningItems = buildPlanningSummaryItems(engagement, locale, labels, engagementsLabels);
+  const planningItems = buildPlanningSummaryItems(
+    engagement,
+    locale,
+    labels,
+    engagementsLabels,
+    plan,
+    planningLabels,
+  );
   const clientItems = buildClientInformationItems(engagement, locale, labels);
   const informationItems = buildEngagementInformationItems(
     engagement,
@@ -124,6 +137,14 @@ export function EngagementWorkspaceOverviewExperience({
         headingId="engagement-workspace-planning"
       >
         <EngagementWorkspaceMetadataPanel title={labels.planning.title} items={planningItems} embedded />
+        <div className="mt-4">
+          <Link
+            href={`/${locale}/app/engagements/${engagement.slug}/planning`}
+            className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {labels.planning.openPlanning}
+          </Link>
+        </div>
       </EngagementWorkspaceSectionShell>
 
       <EngagementWorkspaceSectionShell

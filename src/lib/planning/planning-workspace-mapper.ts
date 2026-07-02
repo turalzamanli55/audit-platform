@@ -4,10 +4,12 @@ import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-vi
 import type {
   PlanningChecklistItem,
   PlanningDocument,
+  PlanningRevisionEntry,
   PlanningTeamPlanning,
   PlanningTimelineMilestone,
 } from "@/types/planning";
 import { computeChecklistProgress } from "@/lib/planning/validation";
+import { computePlanningKpiProgress, isPlanLocked } from "@/lib/planning/planning-rules";
 
 function parseJsonArray<T>(value: unknown): T[] {
   if (!Array.isArray(value)) return [];
@@ -30,6 +32,7 @@ export function toPlanningWorkspaceView(
   const timeline = parseJsonArray<PlanningTimelineMilestone>(plan.timeline);
   const documents = parseJsonArray<PlanningDocument>(plan.documents);
   const teamPlanning = parseTeamPlanning(plan.team_planning);
+  const revisionHistory = parseJsonArray<PlanningRevisionEntry>(plan.revision_history);
 
   return {
     id: plan.id,
@@ -50,7 +53,17 @@ export function toPlanningWorkspaceView(
     teamPlanning,
     checklist,
     documents,
+    revisionHistory,
     checklistProgress: computeChecklistProgress(checklist),
+    kpiProgress: computePlanningKpiProgress(plan),
+    isLocked: isPlanLocked(plan),
+    submittedAt: plan.submitted_at,
+    submittedBy: plan.submitted_by,
+    approvedAt: plan.approved_at,
+    approvedBy: plan.approved_by,
+    returnedAt: plan.returned_at,
+    returnedBy: plan.returned_by,
+    returnNotes: plan.return_notes,
     status: plan.status,
     version: plan.version,
     isArchived: Boolean(plan.deleted_at) || plan.status === "archived",

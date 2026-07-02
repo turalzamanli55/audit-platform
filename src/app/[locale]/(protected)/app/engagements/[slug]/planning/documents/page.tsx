@@ -21,10 +21,14 @@ export default async function PlanningDocumentsPage({ params }: PlanningSectionP
   const canCreate = user
     ? authorizePermissionCodes(user.permissionCodes, PLANNING_PERMISSIONS.CREATE)
     : false;
+  const canUpdate = user
+    ? authorizePermissionCodes(user.permissionCodes, PLANNING_PERMISSIONS.UPDATE)
+    : false;
 
   return (
     <PlanningDocumentsExperience
       canCreate={canCreate}
+      canUpdate={canUpdate}
       labels={dictionary.planning.documents}
       emptyLabels={dictionary.planning.empty}
     />

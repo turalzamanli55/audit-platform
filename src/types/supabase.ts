@@ -438,6 +438,8 @@ export type Database = {
       };
       audit_plans: {
         Row: {
+          approved_at: string | null;
+          approved_by: string | null;
           audit_strategy: string | null;
           checklist: Json;
           created_at: string;
@@ -454,9 +456,15 @@ export type Database = {
           plan_version: number;
           planning_notes: string | null;
           planning_status: Database["public"]["Enums"]["planning_status"];
+          returned_at: string | null;
+          returned_by: string | null;
+          return_notes: string | null;
+          revision_history: Json;
           risk_status: Database["public"]["Enums"]["integration_readiness_status"];
           scope_of_audit: string | null;
           status: Database["public"]["Enums"]["record_status"];
+          submitted_at: string | null;
+          submitted_by: string | null;
           team_planning: Json;
           timeline: Json;
           updated_at: string;
@@ -465,6 +473,8 @@ export type Database = {
           workspace_id: string;
         };
         Insert: {
+          approved_at?: string | null;
+          approved_by?: string | null;
           audit_strategy?: string | null;
           checklist?: Json;
           created_at?: string;
@@ -481,9 +491,15 @@ export type Database = {
           plan_version?: number;
           planning_notes?: string | null;
           planning_status?: Database["public"]["Enums"]["planning_status"];
+          returned_at?: string | null;
+          returned_by?: string | null;
+          return_notes?: string | null;
+          revision_history?: Json;
           risk_status?: Database["public"]["Enums"]["integration_readiness_status"];
           scope_of_audit?: string | null;
           status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
           team_planning?: Json;
           timeline?: Json;
           updated_at?: string;
@@ -492,6 +508,8 @@ export type Database = {
           workspace_id: string;
         };
         Update: {
+          approved_at?: string | null;
+          approved_by?: string | null;
           audit_strategy?: string | null;
           checklist?: Json;
           created_at?: string;
@@ -508,9 +526,15 @@ export type Database = {
           plan_version?: number;
           planning_notes?: string | null;
           planning_status?: Database["public"]["Enums"]["planning_status"];
+          returned_at?: string | null;
+          returned_by?: string | null;
+          return_notes?: string | null;
+          revision_history?: Json;
           risk_status?: Database["public"]["Enums"]["integration_readiness_status"];
           scope_of_audit?: string | null;
           status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
           team_planning?: Json;
           timeline?: Json;
           updated_at?: string;
@@ -613,6 +637,77 @@ export type Database = {
             columns: ["engagement_id"];
             isOneToOne: false;
             referencedRelation: "engagements";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      planning_comments: {
+        Row: {
+          audit_plan_id: string;
+          author_id: string | null;
+          body: string;
+          comment_type: string;
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          engagement_id: string;
+          id: string;
+          organization_id: string;
+          resolved_at: string | null;
+          resolved_by: string | null;
+          status: Database["public"]["Enums"]["record_status"];
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          audit_plan_id: string;
+          author_id?: string | null;
+          body: string;
+          comment_type?: string;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          organization_id: string;
+          resolved_at?: string | null;
+          resolved_by?: string | null;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          audit_plan_id?: string;
+          author_id?: string | null;
+          body?: string;
+          comment_type?: string;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          organization_id?: string;
+          resolved_at?: string | null;
+          resolved_by?: string | null;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "planning_comments_audit_plan_id_fkey";
+            columns: ["audit_plan_id"];
+            isOneToOne: false;
+            referencedRelation: "audit_plans";
             referencedColumns: ["id"];
           },
         ];

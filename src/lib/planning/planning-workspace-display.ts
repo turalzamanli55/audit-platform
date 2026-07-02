@@ -2,21 +2,26 @@ import type { PlanningStatus } from "@/types/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { PlanningWorkspaceView, PlanningWorkspaceSection } from "@/lib/planning/planning-workspace-view";
 import type { PlanningWorkspaceNavItem } from "@/components/planning/workspace/planning-workspace-sidebar";
+import { PLANNING_ACTIVITY_ACTIONS } from "@/constants/planning";
 import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
 
 export type PlanningWorkspaceLabels = Dictionary["planning"]["workspace"];
 
-const PLANNING_STATUS_PROGRESS: Record<PlanningStatus, number> = {
-  not_started: 0,
-  in_progress: 25,
-  pending_review: 60,
-  returned: 40,
-  approved: 100,
-  superseded: 100,
-};
-
-export function computePlanningProgress(status: PlanningStatus): number {
-  return PLANNING_STATUS_PROGRESS[status] ?? 0;
+export function computePlanningProgress(
+  planOrStatus: PlanningWorkspaceView | PlanningStatus,
+): number {
+  if (typeof planOrStatus === "string") {
+    const statusProgress: Record<PlanningStatus, number> = {
+      not_started: 0,
+      in_progress: 25,
+      pending_review: 60,
+      returned: 40,
+      approved: 100,
+      superseded: 100,
+    };
+    return statusProgress[planOrStatus] ?? 0;
+  }
+  return planOrStatus.kpiProgress;
 }
 
 export function buildPlanningWorkspaceNavItems(
@@ -80,6 +85,11 @@ export function buildPlanningStatusItems(
       value: `${plan.checklistProgress}%`,
     },
     {
+      id: "kpi",
+      label: labels.status.kpiProgress,
+      value: `${plan.kpiProgress}%`,
+    },
+    {
       id: "materiality",
       label: labels.status.materiality,
       value: planningLabels.integrationStatuses[plan.materialityStatus],
@@ -120,4 +130,28 @@ export function buildPlanningOverviewCards(
       value: `${planningLabels.integrationStatuses[plan.materialityStatus]} · ${planningLabels.integrationStatuses[plan.riskStatus]}`,
     },
   ];
+}
+
+export function formatPlanningActivityAction(
+  action: string,
+  actionLabels: Dictionary["planning"]["history"]["actions"],
+): string {
+  const map: Record<string, string> = {
+    [PLANNING_ACTIVITY_ACTIONS.CREATED]: actionLabels.created,
+    [PLANNING_ACTIVITY_ACTIONS.UPDATED]: actionLabels.updated,
+    [PLANNING_ACTIVITY_ACTIONS.STATUS_CHANGED]: actionLabels.statusChanged,
+    [PLANNING_ACTIVITY_ACTIONS.ARCHIVED]: actionLabels.archived,
+    [PLANNING_ACTIVITY_ACTIONS.RESTORED]: actionLabels.restored,
+    [PLANNING_ACTIVITY_ACTIONS.CHECKLIST_UPDATED]: actionLabels.checklistUpdated,
+    [PLANNING_ACTIVITY_ACTIONS.TIMELINE_UPDATED]: actionLabels.timelineUpdated,
+    [PLANNING_ACTIVITY_ACTIONS.SUBMITTED]: actionLabels.submitted,
+    [PLANNING_ACTIVITY_ACTIONS.RETURNED]: actionLabels.returned,
+    [PLANNING_ACTIVITY_ACTIONS.APPROVED]: actionLabels.approved,
+    [PLANNING_ACTIVITY_ACTIONS.REVISED]: actionLabels.revised,
+    [PLANNING_ACTIVITY_ACTIONS.COMMENT_ADDED]: actionLabels.commentAdded,
+    [PLANNING_ACTIVITY_ACTIONS.DOCUMENT_ADDED]: actionLabels.documentAdded,
+    [PLANNING_ACTIVITY_ACTIONS.DOCUMENT_REMOVED]: actionLabels.documentRemoved,
+  };
+
+  return map[action] ?? action;
 }

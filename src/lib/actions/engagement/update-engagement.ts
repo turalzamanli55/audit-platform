@@ -6,6 +6,7 @@ import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createEngagementAction as defineEngagementAction } from "@/lib/actions/engagement/engagement-action";
 import { createServerClient } from "@/lib/supabase/server";
 import { EngagementRepository } from "@/repositories/engagement/engagement-repository";
+import { PlanningRepository } from "@/repositories/planning/planning-repository";
 import type { RepositoryContext } from "@/types/context";
 import type { EngagementLifecycleStatus } from "@/types/engagement";
 import { validateUpdateEngagementInput } from "@/lib/engagement/validation";
@@ -83,8 +84,18 @@ export const updateEngagementAction = defineEngagementAction<
     context.workspaceId,
   );
   const repository = new EngagementRepository(supabase, repositoryContext);
+  const planningRepository = new PlanningRepository(supabase, repositoryContext);
 
   await repository.validateWorkspaceOwnership(input.engagementId, context.workspaceId);
+
+  if (patch.lifecycleStatus === "fieldwork") {
+    const plan = await planningRepository.findByEngagementId(input.engagementId);
+    if (!plan || plan.planning_status !== "approved") {
+      throw new ValidationError(
+        "Engagement cannot advance to fieldwork until audit planning is approved.",
+      );
+    }
+  }
 
   const updatePayload: Parameters<EngagementRepository["update"]>[2] = {
     engagement_code: patch.engagementCode,

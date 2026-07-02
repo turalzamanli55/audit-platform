@@ -1,19 +1,26 @@
 "use client";
 
 import type { Dictionary } from "@/i18n/get-dictionary";
+import type { PlanningCommentView } from "@/lib/planning/load-planning-comments";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import {
   buildPlanningOverviewCards,
   buildPlanningStatusItems,
   computePlanningProgress,
 } from "@/lib/planning/planning-workspace-display";
+import { PlanningCommentsSection } from "@/components/planning/comments/planning-comments-section";
+import { PlanningWorkflowPanel } from "@/components/planning/workflow/planning-workflow-panel";
 import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningOverviewExperienceProps = {
   locale: string;
   canCreate: boolean;
-  canUpdate: boolean;
+  canSubmit: boolean;
+  canReview: boolean;
+  canApprove: boolean;
+  canComment: boolean;
+  comments: PlanningCommentView[];
   engagementReportingFramework?: string | null;
   labels: Dictionary["planning"]["workspace"];
   planningLabels: Dictionary["planning"];
@@ -21,9 +28,15 @@ type PlanningOverviewExperienceProps = {
 
 export function PlanningOverviewExperience({
   canCreate,
+  canSubmit,
+  canReview,
+  canApprove,
+  canComment,
+  comments,
   engagementReportingFramework,
   labels,
   planningLabels,
+  locale,
 }: PlanningOverviewExperienceProps) {
   const { plan } = usePlanningWorkspace();
 
@@ -39,10 +52,18 @@ export function PlanningOverviewExperience({
 
   const cards = buildPlanningOverviewCards(plan, labels, planningLabels);
   const statusItems = buildPlanningStatusItems(plan, labels, planningLabels);
-  const progress = computePlanningProgress(plan.planningStatus);
+  const progress = computePlanningProgress(plan);
 
   return (
     <div className="space-y-10">
+      <PlanningWorkflowPanel
+        canSubmit={canSubmit}
+        canReview={canReview}
+        canApprove={canApprove}
+        labels={planningLabels.workflow}
+        statusLabels={planningLabels.statuses}
+      />
+
       <PlanningWorkspaceSectionShell
         title={labels.sections.overview.title}
         description={labels.sections.overview.description}
@@ -83,6 +104,11 @@ export function PlanningOverviewExperience({
               <div
                 className="h-full rounded-full bg-foreground/80 transition-all duration-300"
                 style={{ width: `${progress}%` }}
+                role="progressbar"
+                aria-valuenow={progress}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={labels.status.progressLabel}
               />
             </div>
           </div>
@@ -98,6 +124,13 @@ export function PlanningOverviewExperience({
           </dl>
         </div>
       </PlanningWorkspaceSectionShell>
+
+      <PlanningCommentsSection
+        comments={comments}
+        canComment={canComment}
+        locale={locale}
+        labels={planningLabels.comments}
+      />
     </div>
   );
 }

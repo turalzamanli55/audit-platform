@@ -45,7 +45,7 @@ export function PlanningWorkspaceProvider({
   }, []);
 
   const serverSyncKey = initialPlan
-    ? `${initialPlan.id}:${initialPlan.version}:${initialPlan.updatedAt}:${initialPlan.isArchived}`
+    ? `${initialPlan.id}:${initialPlan.version}:${initialPlan.updatedAt}:${initialPlan.isArchived}:${initialPlan.planningStatus}:${initialPlan.planVersion}`
     : `empty:${engagementId}`;
 
   const syncedKeyRef = useRef(serverSyncKey);

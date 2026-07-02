@@ -31,22 +31,44 @@ export type CreateAuditPlanInput = Pick<
   | "financial_reporting_framework"
 >;
 
-export type UpdateAuditPlanInput = Pick<
-  TablesUpdate<"audit_plans">,
-  | "planning_status"
-  | "audit_strategy"
-  | "engagement_objectives"
-  | "scope_of_audit"
-  | "financial_reporting_framework"
-  | "planning_notes"
-  | "materiality_status"
-  | "risk_status"
-  | "timeline"
-  | "team_planning"
-  | "checklist"
-  | "documents"
-  | "status"
+export type UpdateAuditPlanInput = Partial<
+  Pick<
+    TablesUpdate<"audit_plans">,
+    | "planning_status"
+    | "audit_strategy"
+    | "engagement_objectives"
+    | "scope_of_audit"
+    | "financial_reporting_framework"
+    | "planning_notes"
+    | "materiality_status"
+    | "risk_status"
+    | "timeline"
+    | "team_planning"
+    | "checklist"
+    | "documents"
+    | "submitted_at"
+    | "submitted_by"
+    | "approved_at"
+    | "approved_by"
+    | "returned_at"
+    | "returned_by"
+    | "return_notes"
+    | "revision_history"
+    | "plan_version"
+    | "status"
+  >
 >;
+
+export type PlanningComment = Tables<"planning_comments">;
+
+export type AddPlanningCommentInput = {
+  auditPlanId: string;
+  engagementId: string;
+  organizationId: string;
+  workspaceId: string;
+  body: string;
+  commentType?: "review" | "general" | "return";
+};
 
 export type LogPlanningActivityInput = {
   auditPlanId: string;
@@ -171,6 +193,7 @@ export class PlanningRepository extends AuthenticatedRepository {
     id: string,
     expectedVersion: number,
     planningStatus: PlanningStatus,
+    extra?: Partial<UpdateAuditPlanInput>,
   ): Promise<AuditPlan> {
     const existing = await this.findById(id);
     if (!existing) {
@@ -182,7 +205,7 @@ export class PlanningRepository extends AuthenticatedRepository {
     const result = await applyActiveFilter(
       this.client
         .from("audit_plans")
-        .update({ planning_status: planningStatus })
+        .update({ planning_status: planningStatus, ...extra })
         .eq("id", id)
         .eq("version", expectedVersion)
         .select("*"),
@@ -200,6 +223,140 @@ export class PlanningRepository extends AuthenticatedRepository {
       metadata: {
         previousStatus: existing.planning_status,
         nextStatus: planningStatus,
+        version: plan.version,
+        planVersion: plan.plan_version,
+      },
+    });
+
+    return plan;
+  }
+
+  async submitForReview(id: string, expectedVersion: number): Promise<AuditPlan> {
+    const existing = await this.findById(id);
+    if (!existing) {
+      throw new NotFoundError("Audit plan not found", { id });
+    }
+
+    const plan = await this.updatePlanningStatus(id, expectedVersion, "pending_review", {
+      submitted_at: new Date().toISOString(),
+      submitted_by: this.userId,
+      returned_at: null,
+      returned_by: null,
+      return_notes: null,
+    });
+
+    await this.logActivity({
+      auditPlanId: plan.id,
+      engagementId: plan.engagement_id,
+      organizationId: plan.organization_id,
+      workspaceId: plan.workspace_id,
+      action: PLANNING_ACTIVITY_ACTIONS.SUBMITTED,
+      summary: "Audit plan submitted for partner review",
+      metadata: { planVersion: plan.plan_version, version: plan.version },
+    });
+
+    return plan;
+  }
+
+  async returnForRevision(
+    id: string,
+    expectedVersion: number,
+    returnNotes: string | null,
+  ): Promise<AuditPlan> {
+    const plan = await this.updatePlanningStatus(id, expectedVersion, "returned", {
+      returned_at: new Date().toISOString(),
+      returned_by: this.userId,
+      return_notes: returnNotes,
+    });
+
+    await this.logActivity({
+      auditPlanId: plan.id,
+      engagementId: plan.engagement_id,
+      organizationId: plan.organization_id,
+      workspaceId: plan.workspace_id,
+      action: PLANNING_ACTIVITY_ACTIONS.RETURNED,
+      summary: returnNotes ?? "Audit plan returned for revision",
+      metadata: { planVersion: plan.plan_version, version: plan.version },
+    });
+
+    return plan;
+  }
+
+  async approve(id: string, expectedVersion: number): Promise<AuditPlan> {
+    const plan = await this.updatePlanningStatus(id, expectedVersion, "approved", {
+      approved_at: new Date().toISOString(),
+      approved_by: this.userId,
+    });
+
+    await this.logActivity({
+      auditPlanId: plan.id,
+      engagementId: plan.engagement_id,
+      organizationId: plan.organization_id,
+      workspaceId: plan.workspace_id,
+      action: PLANNING_ACTIVITY_ACTIONS.APPROVED,
+      summary: "Audit plan approved — fieldwork gate cleared",
+      metadata: {
+        planVersion: plan.plan_version,
+        version: plan.version,
+        approvedBy: this.userId,
+      },
+    });
+
+    return plan;
+  }
+
+  async revise(id: string, expectedVersion: number, summary?: string | null): Promise<AuditPlan> {
+    const existing = await this.findById(id);
+    if (!existing) {
+      throw new NotFoundError("Audit plan not found", { id });
+    }
+
+    this.validateOptimisticLock(existing, expectedVersion);
+
+    const history = Array.isArray(existing.revision_history)
+      ? [...(existing.revision_history as Record<string, unknown>[])]
+      : [];
+
+    history.push({
+      planVersion: existing.plan_version,
+      planningStatus: existing.planning_status,
+      revisedAt: new Date().toISOString(),
+      revisedBy: this.userId,
+      summary: summary ?? null,
+    });
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("audit_plans")
+        .update({
+          planning_status: "in_progress",
+          plan_version: existing.plan_version + 1,
+          revision_history: history as never,
+          approved_at: null,
+          approved_by: null,
+          submitted_at: null,
+          submitted_by: null,
+          returned_at: null,
+          returned_by: null,
+          return_notes: null,
+        })
+        .eq("id", id)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const plan = requireRow(unwrapSupabaseMaybeSingle(result), "AuditPlan", id);
+
+    await this.logActivity({
+      auditPlanId: plan.id,
+      engagementId: plan.engagement_id,
+      organizationId: plan.organization_id,
+      workspaceId: plan.workspace_id,
+      action: PLANNING_ACTIVITY_ACTIONS.REVISED,
+      summary: summary ?? `Plan revised to version ${plan.plan_version}`,
+      metadata: {
+        previousPlanVersion: existing.plan_version,
+        planVersion: plan.plan_version,
         version: plan.version,
       },
     });
@@ -316,6 +473,49 @@ export class PlanningRepository extends AuthenticatedRepository {
       .single();
 
     return requireRow(unwrapSupabaseResult(result), "PlanningActivity");
+  }
+
+  async listComments(auditPlanId: string, limit = 100): Promise<PlanningComment[]> {
+    const result = await applyActiveFilter(
+      this.client
+        .from("planning_comments")
+        .select("*")
+        .eq("audit_plan_id", auditPlanId)
+        .order("created_at", { ascending: false })
+        .limit(limit),
+    );
+
+    return unwrapSupabaseList(result);
+  }
+
+  async addComment(input: AddPlanningCommentInput): Promise<PlanningComment> {
+    const result = await this.client
+      .from("planning_comments")
+      .insert({
+        audit_plan_id: input.auditPlanId,
+        engagement_id: input.engagementId,
+        organization_id: input.organizationId,
+        workspace_id: input.workspaceId,
+        author_id: this.userId,
+        body: input.body.trim(),
+        comment_type: input.commentType ?? "review",
+      })
+      .select("*")
+      .single();
+
+    const comment = requireRow(unwrapSupabaseResult(result), "PlanningComment");
+
+    await this.logActivity({
+      auditPlanId: input.auditPlanId,
+      engagementId: input.engagementId,
+      organizationId: input.organizationId,
+      workspaceId: input.workspaceId,
+      action: PLANNING_ACTIVITY_ACTIONS.COMMENT_ADDED,
+      summary: "Planning review comment added",
+      metadata: { commentId: comment.id },
+    });
+
+    return comment;
   }
 
   async validateWorkspaceOwnership(planId: string, workspaceId: string): Promise<AuditPlan> {

@@ -63,11 +63,16 @@ export default async function PlanningWorkspaceLayout({
 
   return (
     <PlanningWorkspaceShell
+      locale={locale}
+      engagementSlug={slug}
+      engagementName={engagementResult.engagement.name}
       initialPlan={planningResult.plan}
       engagementId={engagementResult.engagement.id}
       navItems={buildPlanningWorkspaceNavItems(locale, slug, labels)}
       navAriaLabel={labels.navAriaLabel}
       labels={labels}
+      planningLabels={planningLabels}
+      engagementsLabels={dictionary.engagements}
     >
       {children}
     </PlanningWorkspaceShell>

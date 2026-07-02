@@ -1,12 +1,10 @@
 import {
   INTEGRATION_READINESS_STATUSES,
-  PLANNING_STATUSES,
 } from "@/constants/planning";
 import type {
   IntegrationReadinessStatus,
   PlanningChecklistItem,
   PlanningDocument,
-  PlanningStatus,
   PlanningTeamPlanning,
   PlanningTimelineMilestone,
 } from "@/types/planning";
@@ -18,7 +16,6 @@ export type CreatePlanningInput = {
 };
 
 export type UpdatePlanningInput = {
-  planningStatus?: PlanningStatus;
   auditStrategy?: string | null;
   engagementObjectives?: string | null;
   scopeOfAudit?: string | null;
@@ -57,10 +54,6 @@ export function validateCreatePlanningInput(input: CreatePlanningInput) {
 }
 
 export function validateUpdatePlanningInput(input: UpdatePlanningInput) {
-  const planningStatus = input.planningStatus
-    ? assertEnumValue(input.planningStatus, PLANNING_STATUSES, "planning status")
-    : undefined;
-
   const materialityStatus = input.materialityStatus
     ? assertEnumValue(input.materialityStatus, INTEGRATION_READINESS_STATUSES, "materiality status")
     : undefined;
@@ -70,7 +63,6 @@ export function validateUpdatePlanningInput(input: UpdatePlanningInput) {
     : undefined;
 
   return {
-    planningStatus,
     auditStrategy: input.auditStrategy !== undefined ? normalizeOptionalText(input.auditStrategy) : undefined,
     engagementObjectives:
       input.engagementObjectives !== undefined

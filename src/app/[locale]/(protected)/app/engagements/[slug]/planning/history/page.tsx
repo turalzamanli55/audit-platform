@@ -34,6 +34,7 @@ export default async function PlanningHistoryPage({ params }: PlanningHistoryPag
       activity={activity}
       locale={locale}
       labels={dictionary.planning.history}
+      planningLabels={dictionary.planning}
     />
   );
 }

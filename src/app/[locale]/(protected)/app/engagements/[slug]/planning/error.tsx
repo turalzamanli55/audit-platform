@@ -1,12 +1,26 @@
 "use client";
 
-import { EngagementWorkspaceError } from "@/components/engagement/workspace";
+import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { PlanningWorkspaceError } from "@/components/planning";
 
-export default function PlanningError() {
+type PlanningErrorProps = {
+  error: Error & { digest?: string };
+  reset: () => void;
+};
+
+export default function PlanningError({ error, reset }: PlanningErrorProps) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
   return (
-    <EngagementWorkspaceError
-      title="Unable to load planning workspace"
-      description="Something went wrong while loading audit planning."
+    <PlanningWorkspaceError
+      action={
+        <Button type="button" variant="secondary" onClick={reset}>
+          Retry
+        </Button>
+      }
     />
   );
 }

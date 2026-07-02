@@ -5,6 +5,7 @@ import { AUDIT_RESOURCE_TYPE, PLANNING_PERMISSIONS } from "@/constants/planning"
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createPlanningAction as definePlanningAction } from "@/lib/actions/planning/planning-action";
 import { validateCreatePlanningInput } from "@/lib/planning/validation";
+import { assertEngagementAllowsPlanning } from "@/lib/planning/planning-rules";
 import { createServerClient } from "@/lib/supabase/server";
 import { EngagementRepository } from "@/repositories/engagement/engagement-repository";
 import { PlanningRepository } from "@/repositories/planning/planning-repository";
@@ -59,6 +60,8 @@ export const createPlanningAction = definePlanningAction<
   if (!engagement || engagement.workspace_id !== context.workspaceId) {
     throw new NotFoundError("Engagement not found");
   }
+
+  assertEngagementAllowsPlanning(engagement.lifecycle_status);
 
   const plan = await planningRepository.create({
     organization_id: context.organizationId,

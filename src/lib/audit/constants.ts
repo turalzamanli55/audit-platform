@@ -19,4 +19,10 @@ export const AUDIT_ACTIONS = {
   PLANNING_UPDATED: "planning.updated",
   PLANNING_ARCHIVED: "planning.archived",
   PLANNING_RESTORED: "planning.restored",
+  PLANNING_SUBMITTED: "planning.submitted",
+  PLANNING_RETURNED: "planning.returned",
+  PLANNING_APPROVED: "planning.approved",
+  PLANNING_REVISED: "planning.revised",
+  PLANNING_COMMENT_ADDED: "planning.comment.added",
+  PLANNING_DOCUMENT_ADDED: "planning.document.added",
 } as const;

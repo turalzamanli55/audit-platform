@@ -5,6 +5,7 @@ import { AUDIT_RESOURCE_TYPE, PLANNING_PERMISSIONS } from "@/constants/planning"
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createPlanningAction as definePlanningAction } from "@/lib/actions/planning/planning-action";
 import { validateUpdatePlanningInput } from "@/lib/planning/validation";
+import { assertPlanEditable } from "@/lib/planning/planning-rules";
 import { createServerClient } from "@/lib/supabase/server";
 import { PlanningRepository } from "@/repositories/planning/planning-repository";
 import type { RepositoryContext } from "@/types/context";
@@ -19,7 +20,6 @@ import { ValidationError } from "@/lib/errors";
 export type UpdatePlanningActionInput = {
   planId: string;
   version: number;
-  planningStatus?: import("@/types/planning").PlanningStatus;
   auditStrategy?: string | null;
   engagementObjectives?: string | null;
   scopeOfAudit?: string | null;
@@ -74,10 +74,10 @@ export const updatePlanningAction = definePlanningAction<
     createRepositoryContext(context.userId, context.organizationId, context.workspaceId),
   );
 
-  await repository.validateWorkspaceOwnership(input.planId, context.workspaceId);
+  const existing = await repository.validateWorkspaceOwnership(input.planId, context.workspaceId);
+  assertPlanEditable(existing);
 
   const plan = await repository.update(input.planId, input.version, {
-    planning_status: validated.planningStatus,
     audit_strategy: validated.auditStrategy,
     engagement_objectives: validated.engagementObjectives,
     scope_of_audit: validated.scopeOfAudit,
