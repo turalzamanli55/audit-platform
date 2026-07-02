@@ -46,6 +46,14 @@ export default async function Page({ params }: PageProps) {
         accountPlaceholder: dictionary.riskAssessment.matrix.accountPlaceholder,
         addAction: dictionary.riskAssessment.matrix.addAction,
       }}
+      matrixLabels={{
+        accountLabel: dictionary.riskAssessment.matrix.accountLabel ?? "Account",
+        assertionLabel: dictionary.riskAssessment.matrix.assertionLabel ?? "Assertion",
+        ratingLabel: dictionary.riskAssessment.matrix.ratingLabel ?? "Rating",
+        significantLabel: dictionary.riskAssessment.matrix.significantLabel ?? "Significant",
+        emptyDetail: dictionary.riskAssessment.matrix.emptyDetail ?? "",
+        selectRating: dictionary.riskAssessment.matrix.selectRating ?? "",
+      }}
     />
   );
 }

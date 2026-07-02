@@ -1558,12 +1558,15 @@
       "returnAction": "Düzəliş üçün qaytar",
       "returnConfirmAction": "Qaytarmanı təsdiqlə",
       "approveAction": "Risk qiymətləndirməsini təsdiqlə",
+      "acknowledgeAction": "Əhəmiyyətli riskləri təsdiqlə",
       "cancelAction": "Ləğv et",
       "returnNotesLabel": "Qaytarma qeydi",
       "returnNotesPlaceholder": "Yenidən təqdimatdan əvvəl nəyi düzəltmək lazım olduğunu yazın.",
       "readOnlyNotice": "Bu risk qiymətləndirməsi arxivdədir və yalnız oxunur.",
       "submittedNotice": "Bu risk qiymətləndirməsi təqdim olunub və yoxlama gözləyir.",
       "approvedNotice": "Bu risk qiymətləndirməsi təsdiqlənib.",
+      "acknowledgedNotice": "Əhəmiyyətli risklər təsdiqlənib.",
+      "pendingAcknowledgmentNotice": "Təsdiqdən əvvəl əhəmiyyətli risklər təsdiqlənməlidir.",
       "errorGeneric": "Risk iş axını əməliyyatını tamamlamaq mümkün olmadı."
     },
     "empty": {

@@ -31,6 +31,18 @@ type RiskAssessmentSectionLabels = {
   likelihood?: string;
   impact?: string;
   residual?: string;
+  auditAreaLabel?: string;
+  auditAreaPlaceholder?: string;
+  significantBadge?: string;
+  procedureLinkedBadge?: string;
+  procedureUnlinkedBadge?: string;
+  accountLabel?: string;
+  assertionLabel?: string;
+  ratingLabel?: string;
+  significantLabel?: string;
+  emptyDetail?: string;
+  filterSignificant?: string;
+  selectRating?: string;
 };
 
 type RiskAssessmentLabels = {
@@ -64,12 +76,15 @@ type RiskAssessmentLabels = {
     returnAction: string;
     returnConfirmAction: string;
     approveAction: string;
+    acknowledgeAction: string;
     cancelAction: string;
     returnNotesLabel: string;
     returnNotesPlaceholder: string;
     readOnlyNotice: string;
     submittedNotice: string;
     approvedNotice: string;
+    acknowledgedNotice: string;
+    pendingAcknowledgmentNotice: string;
     errorGeneric: string;
   };
   empty: {

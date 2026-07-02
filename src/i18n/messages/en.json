@@ -1503,12 +1503,15 @@
       "returnAction": "Return for revision",
       "returnConfirmAction": "Confirm return",
       "approveAction": "Approve risk assessment",
+      "acknowledgeAction": "Acknowledge significant risks",
       "cancelAction": "Cancel",
       "returnNotesLabel": "Return notes",
       "returnNotesPlaceholder": "Describe what must be revised before resubmission.",
       "readOnlyNotice": "This risk assessment is archived and read-only.",
       "submittedNotice": "This risk assessment is submitted and pending review.",
       "approvedNotice": "This risk assessment is approved.",
+      "acknowledgedNotice": "Significant risks have been acknowledged.",
+      "pendingAcknowledgmentNotice": "Significant risks must be acknowledged before approval.",
       "errorGeneric": "Unable to complete the risk assessment workflow action."
     },
     "empty": {
@@ -1602,7 +1605,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "controlRisks": {
       "title": "Control risks",
@@ -1616,7 +1624,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "detectionRisks": {
       "title": "Detection risks",
@@ -1630,7 +1643,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "fraudRisks": {
       "title": "Fraud risks",
@@ -1644,7 +1662,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "itRisks": {
       "title": "IT risks",
@@ -1658,7 +1681,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "complianceRisks": {
       "title": "Compliance risks",
@@ -1672,7 +1700,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "financialStatementRisks": {
       "title": "Financial statement risks",
@@ -1686,7 +1719,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "assertionRisks": {
       "title": "Assertion risks",
@@ -1700,7 +1738,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "significantRisks": {
       "title": "Significant risks",
@@ -1714,7 +1757,12 @@
       "riskTypeLabel": "Risk type",
       "likelihoodLabel": "Likelihood",
       "impactLabel": "Impact",
-      "inherentRatingLabel": "Inherent rating"
+      "inherentRatingLabel": "Inherent rating",
+      "auditAreaLabel": "Audit area",
+      "auditAreaPlaceholder": "Select audit area",
+      "significantBadge": "Significant",
+      "procedureLinkedBadge": "Procedure linked",
+      "procedureUnlinkedBadge": "Procedure required"
     },
     "categories": {
       "title": "Risk categories",
@@ -1741,7 +1789,13 @@
       "description": "Risk rating distribution across the register.",
       "emptyTitle": "No heatmap data",
       "emptyDescription": "Heatmap buckets appear when ratings are recorded.",
-      "unratedLabel": "Unrated"
+      "unratedLabel": "Unrated",
+      "accountLabel": "Account",
+      "assertionLabel": "Assertion",
+      "ratingLabel": "Rating",
+      "significantLabel": "Significant risk",
+      "emptyDetail": "Select a heatmap cell to view details.",
+      "filterSignificant": "Show significant and rated cells only"
     },
     "matrix": {
       "title": "Assertion matrix",
@@ -1749,7 +1803,13 @@
       "emptyTitle": "No assertion ratings",
       "emptyDescription": "Add assertion ratings to populate the matrix.",
       "accountPlaceholder": "Account name",
-      "addAction": "Add assertion rating"
+      "addAction": "Add assertion rating",
+      "accountLabel": "Account",
+      "assertionLabel": "Assertion",
+      "ratingLabel": "Rating",
+      "significantLabel": "Significant risk",
+      "emptyDetail": "Select a matrix cell to view or update ratings.",
+      "selectRating": "Select rating"
     },
     "responses": {
       "title": "Responses",

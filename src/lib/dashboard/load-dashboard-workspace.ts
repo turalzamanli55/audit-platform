@@ -113,13 +113,11 @@ export async function loadDashboardWorkspace(
       openTasks:
         fieldworkMetrics || riskAssessmentMetrics
           ? String(
-              Math.max(
-                (fieldworkMetrics?.pendingReview ?? 0) +
-                  (fieldworkMetrics?.assignedToMe ?? 0) +
-                  (riskAssessmentMetrics?.pendingReview ?? 0),
-                (fieldworkMetrics?.openFindings ?? 0) + (riskAssessmentMetrics?.openItems ?? 0),
-                riskAssessmentMetrics?.significantRiskCount ?? 0,
-              ),
+              (fieldworkMetrics?.pendingReview ?? 0) +
+                (fieldworkMetrics?.assignedToMe ?? 0) +
+                (riskAssessmentMetrics?.pendingReview ?? 0) +
+                (riskAssessmentMetrics?.openItems ?? 0) +
+                (fieldworkMetrics?.openFindings ?? 0),
             )
           : String(labels.tasks.items.length),
       reports: "—",

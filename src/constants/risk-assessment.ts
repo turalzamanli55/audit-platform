@@ -151,3 +151,23 @@ export const DEFAULT_SEED_RISKS = [
     impact: "moderate" as const,
   },
 ] as const;
+
+export const DEFAULT_AUDIT_AREAS = [
+  "Revenue",
+  "Cash and bank",
+  "Trade receivables",
+  "Inventory",
+  "Payables and accruals",
+  "IT general controls",
+  "Financial statement level",
+  "Compliance and regulatory",
+] as const;
+
+export const DEFAULT_PROCEDURE_TEMPLATES = [
+  { id: "rev-substantive", reference: "REV-01", label: "Substantive revenue testing" },
+  { id: "rev-cutoff", reference: "REV-02", label: "Revenue cutoff procedures" },
+  { id: "cash-confirm", reference: "CASH-01", label: "Bank confirmation and reconciliation" },
+  { id: "inv-count", reference: "INV-01", label: "Inventory observation and testing" },
+  { id: "it-access", reference: "IT-01", label: "IT access and change management testing" },
+  { id: "fraud-journal", reference: "FRD-01", label: "Journal entry testing for fraud risk" },
+] as const;

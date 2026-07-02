@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Alert, Button, Input } from "@/components/ui";
 import {
+  acknowledgeSignificantRisksAction,
   approveRiskAssessmentAction,
   returnRiskAssessmentAction,
   submitRiskAssessmentAction,
@@ -18,23 +19,32 @@ type RiskAssessmentWorkflowLabels = {
   returnAction: string;
   returnConfirmAction: string;
   approveAction: string;
+  acknowledgeAction: string;
   cancelAction: string;
   returnNotesLabel: string;
   returnNotesPlaceholder: string;
   readOnlyNotice: string;
   submittedNotice: string;
   approvedNotice: string;
+  acknowledgedNotice: string;
+  pendingAcknowledgmentNotice: string;
   errorGeneric: string;
 };
 
 type RiskAssessmentWorkflowPanelProps = {
   riskAssessment: RiskAssessmentWorkspaceView;
   labels: RiskAssessmentWorkflowLabels;
+  canSubmit?: boolean;
+  canReview?: boolean;
+  canApprove?: boolean;
 };
 
 export function RiskAssessmentWorkflowPanel({
   riskAssessment,
   labels,
+  canSubmit = true,
+  canReview = true,
+  canApprove = true,
 }: RiskAssessmentWorkflowPanelProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -43,16 +53,32 @@ export function RiskAssessmentWorkflowPanel({
   const [returnNotes, setReturnNotes] = useState("");
 
   const isArchived = riskAssessment.isArchived;
-  const canSubmit = ["not_started", "in_progress", "returned"].includes(
+  const statusAllowsSubmit = ["not_started", "in_progress", "returned"].includes(
     riskAssessment.assessmentStatus,
   );
-  const canReview = ["submitted", "under_review"].includes(riskAssessment.assessmentStatus);
-  const canApprove = canReview;
+  const statusAllowsReview = ["submitted", "under_review"].includes(riskAssessment.assessmentStatus);
+  const needsAcknowledgment =
+    riskAssessment.significantRiskCount > 0 && !riskAssessment.significantRisksAcknowledgedAt;
 
   const submit = () => {
     startTransition(async () => {
       setError(null);
       const result = await submitRiskAssessmentAction({
+        assessmentId: riskAssessment.id,
+        version: riskAssessment.version,
+      });
+      if (!result.success) {
+        setError(result.error?.message ?? labels.errorGeneric);
+        return;
+      }
+      router.refresh();
+    });
+  };
+
+  const acknowledge = () => {
+    startTransition(async () => {
+      setError(null);
+      const result = await acknowledgeSignificantRisksAction({
         assessmentId: riskAssessment.id,
         version: riskAssessment.version,
       });
@@ -113,48 +139,70 @@ export function RiskAssessmentWorkflowPanel({
         {riskAssessment.assessmentStatus === "submitted" ? (
           <Alert variant="info">{labels.submittedNotice}</Alert>
         ) : null}
+        {needsAcknowledgment ? (
+          <Alert variant="warning">{labels.pendingAcknowledgmentNotice}</Alert>
+        ) : null}
+        {riskAssessment.significantRisksAcknowledgedAt ? (
+          <Alert variant="success">{labels.acknowledgedNotice}</Alert>
+        ) : null}
 
         {!isArchived ? (
           <div className="flex flex-wrap items-center gap-2">
-            <Button type="button" onClick={submit} disabled={isPending || !canSubmit}>
-              {labels.submitAction}
-            </Button>
+            {canSubmit ? (
+              <Button type="button" onClick={submit} disabled={isPending || !statusAllowsSubmit}>
+                {labels.submitAction}
+              </Button>
+            ) : null}
 
-            {returnMode ? (
-              <>
-                <Input
-                  value={returnNotes}
-                  onChange={(event) => setReturnNotes(event.target.value)}
-                  placeholder={labels.returnNotesPlaceholder}
-                  aria-label={labels.returnNotesLabel}
-                  className="max-w-md"
-                />
-                <Button type="button" variant="secondary" onClick={sendBack} disabled={isPending}>
-                  {labels.returnConfirmAction}
-                </Button>
+            {canApprove && needsAcknowledgment && statusAllowsReview ? (
+              <Button type="button" variant="secondary" onClick={acknowledge} disabled={isPending}>
+                {labels.acknowledgeAction}
+              </Button>
+            ) : null}
+
+            {canReview ? (
+              returnMode ? (
+                <>
+                  <Input
+                    value={returnNotes}
+                    onChange={(event) => setReturnNotes(event.target.value)}
+                    placeholder={labels.returnNotesPlaceholder}
+                    aria-label={labels.returnNotesLabel}
+                    className="max-w-md"
+                  />
+                  <Button type="button" variant="secondary" onClick={sendBack} disabled={isPending}>
+                    {labels.returnConfirmAction}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setReturnMode(false)}
+                    disabled={isPending}
+                  >
+                    {labels.cancelAction}
+                  </Button>
+                </>
+              ) : (
                 <Button
                   type="button"
-                  variant="ghost"
-                  onClick={() => setReturnMode(false)}
-                  disabled={isPending}
+                  variant="secondary"
+                  onClick={() => setReturnMode(true)}
+                  disabled={isPending || !statusAllowsReview}
                 >
-                  {labels.cancelAction}
+                  {labels.returnAction}
                 </Button>
-              </>
-            ) : (
+              )
+            ) : null}
+
+            {canApprove ? (
               <Button
                 type="button"
-                variant="secondary"
-                onClick={() => setReturnMode(true)}
-                disabled={isPending || !canReview}
+                onClick={approve}
+                disabled={isPending || !statusAllowsReview || needsAcknowledgment}
               >
-                {labels.returnAction}
+                {labels.approveAction}
               </Button>
-            )}
-
-            <Button type="button" onClick={approve} disabled={isPending || !canApprove}>
-              {labels.approveAction}
-            </Button>
+            ) : null}
           </div>
         ) : null}
       </div>

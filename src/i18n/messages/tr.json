@@ -1558,12 +1558,15 @@
       "returnAction": "Revizyon için iade et",
       "returnConfirmAction": "İadeyi onayla",
       "approveAction": "Risk değerlendirmesini onayla",
+      "acknowledgeAction": "Önemli riskleri onayla",
       "cancelAction": "İptal",
       "returnNotesLabel": "İade notu",
       "returnNotesPlaceholder": "Yeniden göndermeden önce neyin revize edilmesi gerektiğini yazın.",
       "readOnlyNotice": "Bu risk değerlendirmesi arşivlenmiştir ve salt okunurdur.",
       "submittedNotice": "Bu risk değerlendirmesi gönderildi ve inceleme bekliyor.",
       "approvedNotice": "Bu risk değerlendirmesi onaylandı.",
+      "acknowledgedNotice": "Önemli riskler onaylandı.",
+      "pendingAcknowledgmentNotice": "Onaydan önce önemli riskler onaylanmalıdır.",
       "errorGeneric": "Risk iş akışı işlemi tamamlanamadı."
     },
     "empty": {

@@ -1,6 +1,10 @@
 import type { Engagement } from "@/repositories/engagement/engagement-repository";
 import { RISK_RATING_LEVELS } from "@/constants/risk-assessment";
-import { computeResidualRating, computeRiskAssessmentProgress } from "@/lib/risk-assessment/risk-assessment-rules";
+import {
+  computeOpenRiskItems,
+  computeResidualRating,
+  computeRiskAssessmentProgress,
+} from "@/lib/risk-assessment/risk-assessment-rules";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import type {
   AssertionType,
@@ -201,7 +205,11 @@ export function toRiskAssessmentWorkspaceView(
   }));
 
   const significantRiskCount = registerItemViews.filter((item) => item.isSignificant).length;
-  const openItemsCount = registerItemViews.filter((item) => !responseRiskIds.has(item.id)).length;
+  const openItemsCount = computeOpenRiskItems(
+    registerItemViews,
+    procedureLinkViews.map((link) => ({ riskItemId: link.riskItemId })),
+    responseRiskIds,
+  );
   const pendingReviewCount = ["submitted", "under_review"].includes(assessment.assessment_status) ? 1 : 0;
 
   const progressPct = computeRiskAssessmentProgress({

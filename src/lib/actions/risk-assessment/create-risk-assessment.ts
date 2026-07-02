@@ -74,7 +74,7 @@ export const createRiskAssessmentAction = defineRiskAssessmentAction<
   });
 
   const planUpdate = await planningRepository.update(plan!.id, plan!.version, {
-    risk_status: "integrated",
+    risk_status: "placeholder",
   });
 
   const requestHeaders = await headers();

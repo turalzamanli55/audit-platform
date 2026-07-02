@@ -41,6 +41,14 @@ export default async function Page({ params }: PageProps) {
         noteTypes: dictionary.riskAssessment.noteTypes,
       }}
       unratedLabel={dictionary.riskAssessment.heatmap.unratedLabel}
+      heatmapLabels={{
+        accountLabel: dictionary.riskAssessment.heatmap.accountLabel ?? "Account",
+        assertionLabel: dictionary.riskAssessment.heatmap.assertionLabel ?? "Assertion",
+        ratingLabel: dictionary.riskAssessment.heatmap.ratingLabel ?? "Rating",
+        significantLabel: dictionary.riskAssessment.heatmap.significantLabel ?? "Significant",
+        emptyDetail: dictionary.riskAssessment.heatmap.emptyDetail ?? "",
+        filterSignificant: dictionary.riskAssessment.heatmap.filterSignificant ?? "",
+      }}
     />
   );
 }

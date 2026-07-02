@@ -23,7 +23,11 @@ type RiskOverviewLabels = {
 
 type RiskAssessmentOverviewExperienceProps = {
   canCreate: boolean;
+  canSubmit?: boolean;
+  canReview?: boolean;
+  canApprove?: boolean;
   planningApproved: boolean;
+  unratedLabel?: string;
   workspaceLabels: {
     summaryStatus: string;
     summaryVersion: string;
@@ -47,12 +51,15 @@ type RiskAssessmentOverviewExperienceProps = {
     returnAction: string;
     returnConfirmAction: string;
     approveAction: string;
+    acknowledgeAction: string;
     cancelAction: string;
     returnNotesLabel: string;
     returnNotesPlaceholder: string;
     readOnlyNotice: string;
     submittedNotice: string;
     approvedNotice: string;
+    acknowledgedNotice: string;
+    pendingAcknowledgmentNotice: string;
     errorGeneric: string;
   };
   ratingLabels: Record<string, string>;
@@ -60,7 +67,11 @@ type RiskAssessmentOverviewExperienceProps = {
 
 export function RiskAssessmentOverviewExperience({
   canCreate,
+  canSubmit = true,
+  canReview = true,
+  canApprove = true,
   planningApproved,
+  unratedLabel,
   workspaceLabels,
   createLabels,
   statusLabels,
@@ -106,6 +117,9 @@ export function RiskAssessmentOverviewExperience({
 
       <RiskAssessmentWorkflowPanel
         riskAssessment={riskAssessment}
+        canSubmit={canSubmit}
+        canReview={canReview}
+        canApprove={canApprove}
         labels={{
           ...workflowLabels,
           title: labels.workflowTitle,
@@ -125,7 +139,7 @@ export function RiskAssessmentOverviewExperience({
               className={`rounded-xl border px-3 py-3 text-center ${bucket.cssClass}`}
             >
               <p className="text-xs uppercase tracking-wide">
-                {bucket.rating ? (ratingLabels[bucket.rating] ?? bucket.rating) : "Unrated"}
+                {bucket.rating ? (ratingLabels[bucket.rating] ?? bucket.rating) : (unratedLabel ?? "—")}
               </p>
               <p className="mt-1 text-lg font-semibold">{bucket.count}</p>
             </div>

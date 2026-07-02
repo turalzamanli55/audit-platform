@@ -8,6 +8,7 @@ import {
   assertFieldworkRiskGate,
   assertRiskAssessmentGate,
   assertSignificantRisksAcknowledged,
+  assertSubmitPrerequisites,
   computeResidualRating,
   computeRiskAssessmentProgress,
   isPlanningApproved,
@@ -138,6 +139,26 @@ describe("risk assessment rules", () => {
         [{ isSignificant: false }],
       ),
     ).not.toThrow();
+  });
+
+  it("requires fraud risk and procedure links before submit", () => {
+    expect(() =>
+      assertSubmitPrerequisites(
+        [
+          { id: "1", riskType: "fraud", isSignificant: true },
+          { id: "2", riskType: "inherent", isSignificant: false },
+        ],
+        [{ riskItemId: "1" }],
+      ),
+    ).not.toThrow();
+
+    expect(() =>
+      assertSubmitPrerequisites([{ id: "1", riskType: "inherent", isSignificant: false }], []),
+    ).toThrow(ValidationError);
+
+    expect(() =>
+      assertSubmitPrerequisites([{ id: "1", riskType: "fraud", isSignificant: true }], []),
+    ).toThrow(ValidationError);
   });
 
   it("computes progress from weighted sections", () => {

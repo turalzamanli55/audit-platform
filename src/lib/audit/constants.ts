@@ -52,4 +52,5 @@ export const AUDIT_ACTIONS = {
   RISK_ASSESSMENT_RESPONSE_ADDED: "risk_assessment.response.added",
   RISK_ASSESSMENT_PROCEDURE_LINKED: "risk_assessment.procedure.linked",
   RISK_ASSESSMENT_NOTE_ADDED: "risk_assessment.note.added",
+  RISK_ASSESSMENT_SIGNIFICANT_ACKNOWLEDGED: "risk_assessment.significant.acknowledged",
 } as const;

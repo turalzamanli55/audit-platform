@@ -33,7 +33,8 @@ export default async function Page({ params }: PageProps) {
       archivedReadOnlyLabel={dictionary.riskAssessment.workspace.archivedDescription}
       canUpdate={canUpdate}
       labels={dictionary.riskAssessment.significantRisks}
-      riskType="significant"
+      significantOnly
+      defaultSignificant
       maps={{
         riskTypes: dictionary.riskAssessment.riskTypes,
         ratings: dictionary.riskAssessment.ratingLevels,
@@ -52,6 +53,11 @@ export default async function Page({ params }: PageProps) {
         likelihoodLabel: dictionary.riskAssessment.significantRisks.likelihoodLabel,
         impactLabel: dictionary.riskAssessment.significantRisks.impactLabel,
         inherentRatingLabel: dictionary.riskAssessment.significantRisks.inherentRatingLabel,
+        auditAreaLabel: dictionary.riskAssessment.significantRisks.auditAreaLabel,
+        auditAreaPlaceholder: dictionary.riskAssessment.significantRisks.auditAreaPlaceholder,
+        significantBadge: dictionary.riskAssessment.significantRisks.significantBadge,
+        procedureLinkedBadge: dictionary.riskAssessment.significantRisks.procedureLinkedBadge,
+        procedureUnlinkedBadge: dictionary.riskAssessment.significantRisks.procedureUnlinkedBadge,
       }}
     />
   );

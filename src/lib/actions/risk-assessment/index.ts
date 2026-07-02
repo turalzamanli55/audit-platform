@@ -4,6 +4,7 @@ export {
   submitRiskAssessmentAction,
   returnRiskAssessmentAction,
   approveRiskAssessmentAction,
+  acknowledgeSignificantRisksAction,
 } from "./risk-assessment-workflow-actions";
 export {
   addRiskItemAction,

@@ -34,6 +34,16 @@ export type RiskAssessmentWorkflowTarget = {
 
 export type SignificantRiskItem = {
   isSignificant: boolean;
+  id?: string;
+};
+
+export type RiskItemSubmitCheck = SignificantRiskItem & {
+  id: string;
+  riskType: string;
+};
+
+export type ProcedureLinkCheck = {
+  riskItemId: string;
 };
 
 export type ComputeRiskAssessmentProgressInput = {
@@ -134,6 +144,44 @@ export function assertSignificantRisksAcknowledged(
       "Significant risks must be acknowledged before approving the risk assessment.",
     );
   }
+}
+
+export function assertSubmitPrerequisites(
+  riskItems: RiskItemSubmitCheck[],
+  procedureLinks: ProcedureLinkCheck[],
+): void {
+  if (riskItems.length === 0) {
+    throw new ValidationError("At least one risk item is required before submission.");
+  }
+
+  const hasFraudRisk = riskItems.some((item) => item.riskType === "fraud");
+  if (!hasFraudRisk) {
+    throw new ValidationError("At least one fraud risk item must be documented before submission.");
+  }
+
+  const linkedRiskIds = new Set(procedureLinks.map((link) => link.riskItemId));
+  const unlinkedSignificant = riskItems.filter(
+    (item) => item.isSignificant && !linkedRiskIds.has(item.id),
+  );
+  if (unlinkedSignificant.length > 0) {
+    throw new ValidationError(
+      "All significant risks must have linked procedures before submission.",
+    );
+  }
+}
+
+export function computeOpenRiskItems(
+  riskItems: Array<{ id: string; isSignificant: boolean; inherentRating: string | null; residualRating: string | null }>,
+  procedureLinks: ProcedureLinkCheck[],
+  responseRiskIds: Set<string>,
+): number {
+  const linkedRiskIds = new Set(procedureLinks.map((link) => link.riskItemId));
+  return riskItems.filter((item) => {
+    if (item.isSignificant && !linkedRiskIds.has(item.id)) return true;
+    if (!item.inherentRating && !item.residualRating) return true;
+    if (!responseRiskIds.has(item.id)) return true;
+    return false;
+  }).length;
 }
 
 export function computeRiskAssessmentProgress(input: ComputeRiskAssessmentProgressInput): number {

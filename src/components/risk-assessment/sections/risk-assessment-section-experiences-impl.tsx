@@ -23,6 +23,15 @@ import {
   formatRiskAssessmentActivityAction,
   formatRiskAssessmentActivitySummary,
 } from "@/lib/risk-assessment/risk-assessment-workspace-display";
+import {
+  buildAuditAreaOptions,
+  buildAssertionMatrixGrid,
+  HeatmapCellDetail,
+  matrixCellClass,
+  RiskSignificantBadge,
+  useProcedureOptions,
+  type MatrixGridCell,
+} from "@/components/risk-assessment/sections/risk-assessment-interactive-ui";
 import { useRiskAssessmentWorkspace } from "@/lib/risk-assessment/use-risk-assessment-workspace";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import type {
@@ -61,6 +70,11 @@ type AddLabelFields = {
   accountPlaceholder?: string;
   riskItemLabel?: string;
   referencePlaceholder?: string;
+  auditAreaLabel?: string;
+  auditAreaPlaceholder?: string;
+  significantBadge?: string;
+  procedureLinkedBadge?: string;
+  procedureUnlinkedBadge?: string;
 };
 
 type OwnerLabelFields = {
@@ -153,16 +167,21 @@ export function RiskRegisterExperience(
   props: BaseProps & {
     canUpdate?: boolean;
     riskType?: RiskType | "financial-statement";
+    significantOnly?: boolean;
+    defaultSignificant?: boolean;
     maps: LabelMaps;
     addLabels: AddLabelFields;
   },
 ) {
   const router = useRouter();
   const workspace = useWorkspaceOrCreate(props);
-  const normalizedType = props.riskType?.replace("-", "_") as RiskType | undefined;
+  const normalizedType = props.significantOnly
+    ? undefined
+    : (props.riskType?.replace("-", "_") as RiskType | undefined);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
+  const [auditArea, setAuditArea] = useState("");
   const [riskType, setRiskType] = useState<RiskType>(normalizedType ?? "inherent");
   const [likelihood, setLikelihood] = useState<RiskLikelihood | "">("");
   const [impact, setImpact] = useState<RiskImpact | "">("");
@@ -172,14 +191,24 @@ export function RiskRegisterExperience(
 
   if (typeof workspace !== "object" || !("registerItems" in workspace)) return workspace;
   const mutable = canMutate(workspace, props.canUpdate ?? false);
-  const items = normalizedType
-    ? workspace.registerItems.filter((item) => item.riskType === normalizedType)
-    : workspace.registerItems;
+  const auditAreas = buildAuditAreaOptions(workspace);
+  const linkedRiskIds = new Set(workspace.procedureLinks.map((link) => link.riskItemId));
+  const items = props.significantOnly
+    ? workspace.registerItems.filter((item) => item.isSignificant)
+    : normalizedType
+      ? workspace.registerItems.filter((item) => item.riskType === normalizedType)
+      : workspace.registerItems;
 
   const addRisk = () => {
     if (!title.trim()) return;
     startTransition(async () => {
       clearError();
+      const autoSignificant =
+        props.defaultSignificant ||
+        props.significantOnly ||
+        riskType === "fraud" ||
+        inherentRating === "significant" ||
+        (likelihood === "high" && impact === "high");
       const result = await addRiskItemAction({
         assessmentId: workspace.id,
         version: workspace.version,
@@ -187,9 +216,12 @@ export function RiskRegisterExperience(
         riskType: normalizedType ?? riskType,
         title: title.trim(),
         description: description.trim() || null,
+        auditArea: auditArea.trim() || null,
+        accountName: auditArea.trim() || null,
         likelihood: likelihood || null,
         impact: impact || null,
         inherentRating: inherentRating || null,
+        isSignificant: autoSignificant,
       });
       if (!result.success) {
         setError(result.error?.message ?? props.workflowLabels.errorGeneric);
@@ -198,6 +230,7 @@ export function RiskRegisterExperience(
       setTitle("");
       setDescription("");
       setCategoryId("");
+      setAuditArea("");
       setLikelihood("");
       setImpact("");
       setInherentRating("");
@@ -214,16 +247,42 @@ export function RiskRegisterExperience(
       ) : (
         <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
           {items.map((item) => (
-            <li key={item.id} className="px-5 py-4">
-              <p className="font-medium text-foreground">{item.title}</p>
+            <li key={item.id} className="space-y-1 px-5 py-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="font-medium text-foreground">{item.title}</p>
+                {item.isSignificant && props.addLabels.significantBadge ? (
+                  <RiskSignificantBadge label={props.addLabels.significantBadge} />
+                ) : null}
+                {item.isSignificant ? (
+                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                    {linkedRiskIds.has(item.id)
+                      ? props.addLabels.procedureLinkedBadge
+                      : props.addLabels.procedureUnlinkedBadge}
+                  </span>
+                ) : null}
+              </div>
               {item.description ? <p className="text-sm text-muted-foreground">{item.description}</p> : null}
+              <div className="flex flex-wrap gap-3 text-xs text-muted-foreground">
+                {item.auditArea ? <span>{props.addLabels.auditAreaLabel}: {item.auditArea}</span> : null}
+                {item.likelihood ? (
+                  <span>
+                    {props.addLabels.likelihoodLabel}: {props.maps.likelihoods[item.likelihood] ?? item.likelihood}
+                  </span>
+                ) : null}
+                {item.inherentRating ? (
+                  <span>
+                    {props.addLabels.inherentRatingLabel}:{" "}
+                    {props.maps.ratings[item.inherentRating] ?? item.inherentRating}
+                  </span>
+                ) : null}
+              </div>
             </li>
           ))}
         </ul>
       )}
       {mutable ? (
         <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
-          {!normalizedType ? (
+          {!normalizedType && !props.significantOnly ? (
             <select
               className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
               value={riskType}
@@ -248,6 +307,56 @@ export function RiskRegisterExperience(
               </option>
             ))}
           </select>
+          <select
+            className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
+            value={auditArea}
+            onChange={(event) => setAuditArea(event.target.value)}
+          >
+            <option value="">{props.addLabels.auditAreaPlaceholder ?? props.addLabels.auditAreaLabel}</option>
+            {auditAreas.map((area) => (
+              <option key={area} value={area}>
+                {area}
+              </option>
+            ))}
+          </select>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <select
+              className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
+              value={likelihood}
+              onChange={(event) => setLikelihood(event.target.value as RiskLikelihood | "")}
+            >
+              <option value="">{props.addLabels.likelihoodLabel}</option>
+              {Object.entries(props.maps.likelihoods).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <select
+              className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
+              value={impact}
+              onChange={(event) => setImpact(event.target.value as RiskImpact | "")}
+            >
+              <option value="">{props.addLabels.impactLabel}</option>
+              {Object.entries(props.maps.impacts).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <select
+              className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
+              value={inherentRating}
+              onChange={(event) => setInherentRating(event.target.value as RiskRatingLevel | "")}
+            >
+              <option value="">{props.addLabels.inherentRatingLabel}</option>
+              {Object.entries(props.maps.ratings).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </div>
           <Input value={title} onChange={(event) => setTitle(event.target.value)} placeholder={props.addLabels.titlePlaceholder} />
           <Input value={description} onChange={(event) => setDescription(event.target.value)} placeholder={props.addLabels.descriptionPlaceholder} />
           <Button type="button" onClick={addRisk} disabled={isPending || !title.trim()}>
@@ -343,57 +452,176 @@ function Metric({ label, value }: { label: string; value: number }) {
   );
 }
 
-export function RiskHeatmapExperience(props: BaseProps & { maps: LabelMaps; unratedLabel?: string }) {
+export function RiskHeatmapExperience(
+  props: BaseProps & {
+    maps: LabelMaps;
+    unratedLabel?: string;
+    heatmapLabels?: {
+      accountLabel: string;
+      assertionLabel: string;
+      ratingLabel: string;
+      significantLabel: string;
+      emptyDetail: string;
+      filterSignificant: string;
+    };
+  },
+) {
   const workspace = useWorkspaceOrCreate(props);
+  const [selectedCell, setSelectedCell] = useState<MatrixGridCell | null>(null);
+  const [significantOnly, setSignificantOnly] = useState(false);
   if (typeof workspace !== "object" || !("heatmap" in workspace)) return workspace;
-  if (workspace.heatmap.length === 0) {
+  const grid = buildAssertionMatrixGrid(workspace);
+  const visibleCells = significantOnly ? grid.cells.filter((cell) => cell.isSignificant || cell.rating) : grid.cells;
+  if (grid.cells.every((cell) => !cell.rating)) {
+    const buckets = buildRiskHeatmapData(workspace.heatmap);
     return (
       <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <div className="grid gap-3 rounded-2xl border border-border/50 bg-card/80 p-5 sm:grid-cols-5">
+          {buckets.map((bucket) => (
+            <button
+              key={bucket.rating ?? "none"}
+              type="button"
+              className={`rounded-xl border px-3 py-3 text-center transition hover:opacity-90 ${bucket.cssClass}`}
+              onClick={() =>
+                setSelectedCell({
+                  accountName: props.heatmapLabels?.accountLabel ?? "Summary",
+                  assertion: "existence",
+                  rating: bucket.rating,
+                  isSignificant: bucket.rating === "significant",
+                  rationale: null,
+                })
+              }
+            >
+              <p className="text-xs uppercase tracking-wide">
+                {bucket.rating ? (props.maps.ratings[bucket.rating] ?? bucket.rating) : props.unratedLabel}
+              </p>
+              <p className="mt-1 text-lg font-semibold">{bucket.count}</p>
+            </button>
+          ))}
+        </div>
+        {selectedCell && props.heatmapLabels ? (
+          <div className="mt-4">
+            <HeatmapCellDetail cell={selectedCell} labels={props.heatmapLabels} ratingLabels={props.maps.ratings} />
+          </div>
+        ) : null}
       </RiskAssessmentWorkspaceSectionShell>
     );
   }
-  const buckets = buildRiskHeatmapData(workspace.heatmap);
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      <div className="grid gap-3 rounded-2xl border border-border/50 bg-card/80 p-5 sm:grid-cols-5">
-        {buckets.map((bucket) => (
-          <div key={bucket.rating ?? "none"} className={`rounded-xl border px-3 py-3 text-center ${bucket.cssClass}`}>
-            <p className="text-xs uppercase tracking-wide">
-              {bucket.rating ? (props.maps.ratings[bucket.rating] ?? bucket.rating) : props.unratedLabel}
-            </p>
-            <p className="mt-1 text-lg font-semibold">{bucket.count}</p>
-          </div>
-        ))}
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <label className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+          <input
+            type="checkbox"
+            checked={significantOnly}
+            onChange={(event) => setSignificantOnly(event.target.checked)}
+            className="rounded border-border"
+          />
+          {props.heatmapLabels?.filterSignificant}
+        </label>
       </div>
+      <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card/80 p-4">
+        <table className="min-w-full border-collapse text-xs sm:text-sm">
+          <thead>
+            <tr>
+              <th className="px-2 py-2 text-left text-muted-foreground" />
+              {grid.assertions.map((assertion) => (
+                <th key={assertion} className="px-2 py-2 text-center text-muted-foreground">
+                  {props.maps.assertions[assertion] ?? assertion}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {grid.accounts.map((account) => (
+              <tr key={account}>
+                <th className="px-2 py-2 text-left font-medium text-foreground">{account}</th>
+                {grid.assertions.map((assertion) => {
+                  const cell =
+                    visibleCells.find(
+                      (entry) => entry.accountName === account && entry.assertion === assertion,
+                    ) ??
+                    ({
+                      accountName: account,
+                      assertion,
+                      rating: null,
+                      isSignificant: false,
+                      rationale: null,
+                    } as MatrixGridCell);
+                  if (significantOnly && !cell.isSignificant && !cell.rating) return null;
+                  return (
+                    <td key={`${account}-${assertion}`} className="px-1 py-1">
+                      <button
+                        type="button"
+                        className={`h-10 w-full min-w-[3rem] rounded-lg border text-center text-[10px] sm:text-xs ${matrixCellClass(cell, selectedCell?.accountName === account && selectedCell?.assertion === assertion)}`}
+                        onClick={() => setSelectedCell(cell)}
+                      >
+                        {cell.rating ? (props.maps.ratings[cell.rating] ?? cell.rating).slice(0, 3) : "—"}
+                      </button>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {selectedCell && props.heatmapLabels ? (
+        <div className="mt-4">
+          <HeatmapCellDetail cell={selectedCell} labels={props.heatmapLabels} ratingLabels={props.maps.ratings} />
+        </div>
+      ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
 }
 
-export function RiskMatrixExperience(props: BaseProps & { canUpdate?: boolean; maps: LabelMaps; addLabels: AddLabelFields }) {
+export function RiskMatrixExperience(
+  props: BaseProps & {
+    canUpdate?: boolean;
+    maps: LabelMaps;
+    addLabels: AddLabelFields;
+    matrixLabels?: {
+      accountLabel: string;
+      assertionLabel: string;
+      ratingLabel: string;
+      significantLabel: string;
+      emptyDetail: string;
+      selectRating: string;
+    };
+  },
+) {
   const router = useRouter();
   const workspace = useWorkspaceOrCreate(props);
   const [accountName, setAccountName] = useState("");
   const [assertion, setAssertion] = useState<AssertionType>("existence");
+  const [compositeRating, setCompositeRating] = useState<RiskRatingLevel | "">("");
+  const [selectedCell, setSelectedCell] = useState<MatrixGridCell | null>(null);
   const [isPending, startTransition] = useTransition();
   const { error, setError, clearError } = useMutationError();
   if (typeof workspace !== "object" || !("assertionRatings" in workspace)) return workspace;
   const mutable = canMutate(workspace, props.canUpdate ?? false);
-  const upsert = () => {
-    if (!accountName.trim()) return;
+  const grid = buildAssertionMatrixGrid(workspace);
+  const upsert = (cell?: MatrixGridCell, rating?: RiskRatingLevel | "") => {
+    const targetAccount = cell?.accountName ?? accountName.trim();
+    const targetAssertion = cell?.assertion ?? assertion;
+    const targetRating = rating ?? compositeRating;
+    if (!targetAccount) return;
     startTransition(async () => {
       clearError();
       const result = await upsertAssertionRatingAction({
         assessmentId: workspace.id,
         version: workspace.version,
-        accountName: accountName.trim(),
-        assertion,
+        accountName: targetAccount,
+        assertion: targetAssertion,
+        compositeRating: targetRating || null,
+        isSignificant: targetRating === "significant" || targetRating === "high",
       });
       if (!result.success) {
         setError(result.error?.message ?? props.workflowLabels.errorGeneric);
         return;
       }
       setAccountName("");
+      setCompositeRating("");
       router.refresh();
     });
   };
@@ -401,18 +629,85 @@ export function RiskMatrixExperience(props: BaseProps & { canUpdate?: boolean; m
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
-      {workspace.assertionRatings.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
-          {workspace.assertionRatings.map((rating) => <li key={rating.id} className="px-5 py-4"><p className="font-medium text-foreground">{rating.accountName} · {props.maps.assertions[rating.assertion] ?? rating.assertion}</p><p className="text-xs text-muted-foreground">{(rating.compositeRating && props.maps.ratings[rating.compositeRating]) || "—"}</p></li>)}
-        </ul>
+      {grid.cells.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
+        <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card/80 p-4">
+          <table className="min-w-full border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr>
+                <th className="px-2 py-2 text-left text-muted-foreground" />
+                {grid.assertions.map((item) => (
+                  <th key={item} className="px-2 py-2 text-center text-muted-foreground">
+                    {props.maps.assertions[item] ?? item}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {grid.accounts.map((account) => (
+                <tr key={account}>
+                  <th className="px-2 py-2 text-left font-medium text-foreground">{account}</th>
+                  {grid.assertions.map((item) => {
+                    const cell =
+                      grid.cells.find((entry) => entry.accountName === account && entry.assertion === item) ?? {
+                        accountName: account,
+                        assertion: item,
+                        rating: null,
+                        isSignificant: false,
+                        rationale: null,
+                      };
+                    return (
+                      <td key={`${account}-${item}`} className="px-1 py-1">
+                        <button
+                          type="button"
+                          className={`h-10 w-full min-w-[3rem] rounded-lg border text-center ${matrixCellClass(cell, selectedCell?.accountName === account && selectedCell?.assertion === item)}`}
+                          onClick={() => setSelectedCell(cell)}
+                        >
+                          {cell.rating ? (props.maps.ratings[cell.rating] ?? cell.rating).slice(0, 3) : "—"}
+                        </button>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
+      {selectedCell && props.matrixLabels ? (
+        <div className="mt-4 space-y-3">
+          <HeatmapCellDetail cell={selectedCell} labels={props.matrixLabels} ratingLabels={props.maps.ratings} />
+          {mutable ? (
+            <div className="flex flex-wrap gap-2">
+              <select
+                className="h-10 rounded-lg border border-border/60 bg-background px-3 text-sm"
+                value={compositeRating}
+                onChange={(event) => setCompositeRating(event.target.value as RiskRatingLevel | "")}
+              >
+                <option value="">{props.matrixLabels.selectRating}</option>
+                {Object.entries(props.maps.ratings).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+              <Button type="button" size="sm" onClick={() => upsert(selectedCell, compositeRating)} disabled={isPending || !compositeRating}>
+                {props.addLabels.addAction}
+              </Button>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
       {mutable ? (
-        <div className="mt-6 flex gap-2 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <div className="mt-6 flex flex-col gap-2 rounded-2xl border border-border/50 bg-card/60 p-5 sm:flex-row">
           <Input value={accountName} onChange={(event) => setAccountName(event.target.value)} placeholder={props.addLabels.accountPlaceholder} />
           <select className="h-10 rounded-lg border border-border/60 bg-background px-3 text-sm" value={assertion} onChange={(event) => setAssertion(event.target.value as AssertionType)}>
             {Object.entries(props.maps.assertions).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
           </select>
-          <Button type="button" onClick={upsert} disabled={isPending || !accountName.trim()}>
+          <select className="h-10 rounded-lg border border-border/60 bg-background px-3 text-sm" value={compositeRating} onChange={(event) => setCompositeRating(event.target.value as RiskRatingLevel | "")}>
+            <option value="">{props.matrixLabels?.selectRating}</option>
+            {Object.entries(props.maps.ratings).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+          </select>
+          <Button type="button" onClick={() => upsert()} disabled={isPending || !accountName.trim() || !compositeRating}>
             {props.addLabels.addAction}
           </Button>
         </div>
@@ -501,25 +796,42 @@ export function RiskResponsesExperience(props: BaseProps & { canUpdate?: boolean
   );
 }
 
-export function RiskProceduresExperience(props: BaseProps & { canUpdate?: boolean; addLabels: AddLabelFields }) {
+export function RiskProceduresExperience(
+  props: BaseProps & {
+    canUpdate?: boolean;
+    addLabels: AddLabelFields;
+    locale?: string;
+    engagementSlug?: string;
+  },
+) {
   const router = useRouter();
   const workspace = useWorkspaceOrCreate(props);
+  const procedureOptions = useProcedureOptions();
   const [riskItemId, setRiskItemId] = useState("");
+  const [procedureTemplateId, setProcedureTemplateId] = useState("");
   const [reference, setReference] = useState("");
   const [isPending, startTransition] = useTransition();
   const { error, setError, clearError } = useMutationError();
   if (typeof workspace !== "object" || !("procedureLinks" in workspace)) return workspace;
   const mutable = canMutate(workspace, props.canUpdate ?? false);
+  const selectedTemplate = procedureOptions.find((option) => option.id === procedureTemplateId);
   const addProcedure = () => {
-    if (!riskItemId || !reference.trim()) return;
+    const procedureReference = reference.trim() || selectedTemplate?.reference;
+    if (!riskItemId || !procedureReference) return;
     startTransition(async () => {
       clearError();
-      const result = await addProcedureLinkAction({ assessmentId: workspace.id, version: workspace.version, riskItemId, procedureReference: reference.trim() });
+      const result = await addProcedureLinkAction({
+        assessmentId: workspace.id,
+        version: workspace.version,
+        riskItemId,
+        procedureReference,
+      });
       if (!result.success) {
         setError(result.error?.message ?? props.workflowLabels.errorGeneric);
         return;
       }
       setRiskItemId("");
+      setProcedureTemplateId("");
       setReference("");
       router.refresh();
     });
@@ -529,9 +841,47 @@ export function RiskProceduresExperience(props: BaseProps & { canUpdate?: boolea
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {workspace.procedureLinks.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">{workspace.procedureLinks.map((link) => <li key={link.id} className="px-5 py-4"><p className="font-medium text-foreground">{link.riskItemTitle}</p><p className="text-sm text-muted-foreground">{link.procedureReference ?? "—"}</p></li>)}</ul>
+        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+          {workspace.procedureLinks.map((link) => (
+            <li key={link.id} className="px-5 py-4">
+              <p className="font-medium text-foreground">{link.riskItemTitle}</p>
+              <p className="text-sm text-muted-foreground">{link.procedureReference ?? "—"}</p>
+            </li>
+          ))}
+        </ul>
       )}
-      {mutable ? <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5"><select className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm" value={riskItemId} onChange={(event) => setRiskItemId(event.target.value)}><option value="">{props.addLabels.riskItemLabel}</option>{workspace.registerItems.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}</select><Input value={reference} onChange={(event) => setReference(event.target.value)} placeholder={props.addLabels.referencePlaceholder} /><Button type="button" onClick={addProcedure} disabled={isPending || !riskItemId || !reference.trim()}>{props.addLabels.addAction}</Button></div> : null}
+      {mutable ? (
+        <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+          <select className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm" value={riskItemId} onChange={(event) => setRiskItemId(event.target.value)}>
+            <option value="">{props.addLabels.riskItemLabel}</option>
+            {workspace.registerItems.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.isSignificant ? `★ ${item.title}` : item.title}
+              </option>
+            ))}
+          </select>
+          <select
+            className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
+            value={procedureTemplateId}
+            onChange={(event) => {
+              setProcedureTemplateId(event.target.value);
+              const template = procedureOptions.find((option) => option.id === event.target.value);
+              if (template) setReference(template.reference);
+            }}
+          >
+            <option value="">{props.addLabels.referencePlaceholder}</option>
+            {procedureOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <Input value={reference} onChange={(event) => setReference(event.target.value)} placeholder={props.addLabels.referencePlaceholder} />
+          <Button type="button" onClick={addProcedure} disabled={isPending || !riskItemId || (!reference.trim() && !selectedTemplate)}>
+            {props.addLabels.addAction}
+          </Button>
+        </div>
+      ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
 }
