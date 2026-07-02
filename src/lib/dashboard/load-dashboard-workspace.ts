@@ -8,6 +8,7 @@ import { loadCompanyList } from "@/lib/company/load-company-list";
 import { loadEngagementList } from "@/lib/engagement/load-engagement-list";
 import { resolveActiveCompany } from "@/lib/company/resolve-active-company";
 import { loadFieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
+import { loadRiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
 import { resolveTimeOfDay } from "./workspace-greeting";
 
 export type DashboardWorkspaceCompany = {
@@ -48,7 +49,15 @@ export async function loadDashboardWorkspace(
   locale: Locale,
   labels: DashboardWorkspaceLabels,
 ): Promise<DashboardWorkspaceViewModel> {
-  const [user, bootstrap, companyResult, preferredCompanySlug, engagementResult, fieldworkMetrics] =
+  const [
+    user,
+    bootstrap,
+    companyResult,
+    preferredCompanySlug,
+    engagementResult,
+    fieldworkMetrics,
+    riskAssessmentMetrics,
+  ] =
     await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
@@ -56,6 +65,7 @@ export async function loadDashboardWorkspace(
     readCompanySlugCookie(),
     loadEngagementList(),
     loadFieldworkDashboardMetrics(),
+    loadRiskAssessmentDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -101,11 +111,14 @@ export async function loadDashboardWorkspace(
       companies: companyCount > 0 ? String(companyCount) : "—",
       engagements: engagementCount > 0 ? String(engagementCount) : "—",
       openTasks:
-        fieldworkMetrics
+        fieldworkMetrics || riskAssessmentMetrics
           ? String(
               Math.max(
-                fieldworkMetrics.pendingReview + fieldworkMetrics.assignedToMe,
-                fieldworkMetrics.openFindings,
+                (fieldworkMetrics?.pendingReview ?? 0) +
+                  (fieldworkMetrics?.assignedToMe ?? 0) +
+                  (riskAssessmentMetrics?.pendingReview ?? 0),
+                (fieldworkMetrics?.openFindings ?? 0) + (riskAssessmentMetrics?.openItems ?? 0),
+                riskAssessmentMetrics?.significantRiskCount ?? 0,
               ),
             )
           : String(labels.tasks.items.length),

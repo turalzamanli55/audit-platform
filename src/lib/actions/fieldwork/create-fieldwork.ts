@@ -23,6 +23,23 @@ export type CreateFieldworkActionResult = {
   engagementId: string;
 };
 
+type RiskAssessmentGateRecord = {
+  assessment_status: string;
+};
+
+type QueryResult<T> = Promise<{ data: T | null; error: { message: string } | null }>;
+
+type UntypedQueryBuilder = {
+  select: (columns: string) => UntypedQueryBuilder;
+  eq: (column: string, value: unknown) => UntypedQueryBuilder;
+  is: (column: string, value: null) => UntypedQueryBuilder;
+  maybeSingle: <T>() => QueryResult<T>;
+};
+
+type UntypedSupabase = {
+  from: (table: string) => UntypedQueryBuilder;
+};
+
 function createRepositoryContext(
   userId: string,
   organizationId: string,
@@ -58,7 +75,20 @@ export const createFieldworkAction = defineFieldworkAction<
   }
 
   const plan = await planningRepository.findByEngagementId(engagement.id);
-  assertFieldworkGate(plan, engagement.lifecycle_status);
+  const db = supabase as unknown as UntypedSupabase;
+  const riskAssessmentResult = await db
+    .from("risk_assessments")
+    .select("assessment_status")
+    .eq("engagement_id", engagement.id)
+    .is("deleted_at", null)
+    .maybeSingle<RiskAssessmentGateRecord>();
+
+  if (riskAssessmentResult.error) {
+    throw new NotFoundError("Risk assessment could not be loaded");
+  }
+
+  const riskAssessment = (riskAssessmentResult.data ?? null) as RiskAssessmentGateRecord | null;
+  assertFieldworkGate(plan, engagement.lifecycle_status, riskAssessment);
 
   const pkg = await fieldworkRepository.createPackage({
     organization_id: context.organizationId,

@@ -30,6 +30,15 @@ describe("fieldwork rules", () => {
     expect(() => assertFieldworkGate(approvedPlan(), "planning")).toThrow(ValidationError);
   });
 
+  it("requires approved risk assessment when provided", () => {
+    expect(() =>
+      assertFieldworkGate(approvedPlan(), "fieldwork", { assessment_status: "approved" }),
+    ).not.toThrow();
+    expect(() =>
+      assertFieldworkGate(approvedPlan(), "fieldwork", { assessment_status: "submitted" }),
+    ).toThrow(ValidationError);
+  });
+
   it("blocks archived package edits", () => {
     expect(() =>
       assertPackageEditable({ package_status: "archived", deleted_at: null } as never),

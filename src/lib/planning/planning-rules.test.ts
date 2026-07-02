@@ -26,7 +26,7 @@ function basePlan(overrides: Partial<AuditPlan> = {}): AuditPlan {
     scope_of_audit: "Scope",
     financial_reporting_framework: "IFRS",
     materiality_status: "placeholder",
-    risk_status: "placeholder",
+    risk_status: "integrated",
     checklist: [
       { id: "1", key: "objectives", completed: true },
       { id: "2", key: "scope", completed: true },

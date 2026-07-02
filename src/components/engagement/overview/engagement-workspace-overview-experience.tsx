@@ -7,6 +7,7 @@ import { updateEngagementAction } from "@/lib/actions/engagement/update-engageme
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
+import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +19,7 @@ import {
   buildOverviewMetadataItems,
   buildOverviewSummaryCards,
   buildPlanningSummaryItems,
+  buildRiskAssessmentSummaryItems,
   computeLifecycleProgress,
 } from "@/lib/engagement/engagement-workspace-display";
 import { formatLifecycleStatusLabel, formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
@@ -33,11 +35,13 @@ type EngagementWorkspaceOverviewExperienceProps = {
   locale: string;
   canUpdate: boolean;
   plan: PlanningWorkspaceView | null;
+  riskAssessment: RiskAssessmentWorkspaceView | null;
   fieldwork: FieldworkWorkspaceView | null;
   labels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
   overviewLabels: Dictionary["engagements"]["overview"];
   planningLabels: Dictionary["planning"];
+  riskLabels: Dictionary["riskAssessment"];
   fieldworkLabels: Dictionary["fieldwork"];
 };
 
@@ -45,11 +49,13 @@ export function EngagementWorkspaceOverviewExperience({
   locale,
   canUpdate,
   plan,
+  riskAssessment,
   fieldwork,
   labels,
   engagementsLabels,
   overviewLabels,
   planningLabels,
+  riskLabels,
   fieldworkLabels,
 }: EngagementWorkspaceOverviewExperienceProps) {
   const router = useRouter();
@@ -81,6 +87,14 @@ export function EngagementWorkspaceOverviewExperience({
     fieldwork,
     fieldworkLabels,
   );
+  const riskAssessmentItems = buildRiskAssessmentSummaryItems(
+    engagement,
+    locale,
+    labels,
+    engagementsLabels,
+    riskAssessment,
+    riskLabels,
+  );
   const clientItems = buildClientInformationItems(engagement, locale, labels);
   const informationItems = buildEngagementInformationItems(
     engagement,
@@ -88,7 +102,10 @@ export function EngagementWorkspaceOverviewExperience({
     labels,
     engagementsLabels,
   );
-  const lifecycleProgress = computeLifecycleProgress(engagement.lifecycleStatus);
+  const lifecycleProgress = computeLifecycleProgress(
+    engagement.lifecycleStatus,
+    riskAssessment?.assessmentStatus,
+  );
   const lifecycleLabel = formatLifecycleStatusLabel(
     engagement.lifecycleStatus,
     engagementsLabels.lifecycleStatuses,
@@ -157,6 +174,26 @@ export function EngagementWorkspaceOverviewExperience({
             className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {labels.planning.openPlanning}
+          </Link>
+        </div>
+      </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceSectionShell
+        title={labels.riskAssessment.title}
+        description={labels.riskAssessment.description}
+        headingId="engagement-workspace-risk-assessment"
+      >
+        <EngagementWorkspaceMetadataPanel
+          title={labels.riskAssessment.title}
+          items={riskAssessmentItems}
+          embedded
+        />
+        <div className="mt-4">
+          <Link
+            href={`/${locale}/app/engagements/${engagement.slug}/risk-assessment`}
+            className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {labels.riskAssessment.openRiskAssessment}
           </Link>
         </div>
       </EngagementWorkspaceSectionShell>

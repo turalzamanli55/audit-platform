@@ -44,13 +44,13 @@ export function assertSubmissionPrerequisites(plan: AuditPlan): void {
 
   const materialityReady =
     plan.materiality_status === "integrated" || plan.materiality_status === "placeholder";
-  const riskReady = plan.risk_status === "integrated" || plan.risk_status === "placeholder";
+  const riskReady = plan.risk_status === "integrated";
 
   if (!materialityReady) {
     throw new ValidationError("Materiality must be documented or reviewed before submission.");
   }
   if (!riskReady) {
-    throw new ValidationError("Risk assessment must be documented or reviewed before submission.");
+    throw new ValidationError("Risk assessment must be integrated before submission.");
   }
 
   const checklist = (plan.checklist ?? []) as PlanningChecklistItem[];

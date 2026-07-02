@@ -4,6 +4,7 @@ import type { EngagementWorkspaceNavItem } from "@/components/engagement/workspa
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
+import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import {
   formatDate,
   formatDateRange,
@@ -14,13 +15,20 @@ import {
 } from "@/lib/engagement/format-engagement-workspace";
 import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
 
-export type EngagementWorkspaceSection = "overview" | "members" | "planning" | "fieldwork" | "history" | "settings";
+export type EngagementWorkspaceSection =
+  | "overview"
+  | "members"
+  | "planning"
+  | "risk-assessment"
+  | "fieldwork"
+  | "history"
+  | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
 
 const LIFECYCLE_PROGRESS: Record<EngagementLifecycleStatus, number> = {
   draft: 10,
-  planning: 25,
-  fieldwork: 50,
+  planning: 20,
+  fieldwork: 55,
   review: 75,
   completed: 90,
   closed: 100,
@@ -28,7 +36,11 @@ const LIFECYCLE_PROGRESS: Record<EngagementLifecycleStatus, number> = {
 
 export function computeLifecycleProgress(
   lifecycleStatus: EngagementLifecycleStatus,
+  riskAssessmentStatus?: string | null,
 ): number {
+  if (lifecycleStatus === "planning") {
+    return riskAssessmentStatus && riskAssessmentStatus !== "not_started" ? 35 : 20;
+  }
   return LIFECYCLE_PROGRESS[lifecycleStatus] ?? 0;
 }
 
@@ -162,6 +174,71 @@ export function buildFieldworkSummaryItems(
   ];
 }
 
+export function buildRiskAssessmentSummaryItems(
+  engagement: EngagementWorkspaceView,
+  locale: string,
+  labels: EngagementWorkspaceLabels,
+  engagementsLabels: Dictionary["engagements"],
+  riskAssessment?: RiskAssessmentWorkspaceView | null,
+  riskLabels?: Dictionary["riskAssessment"],
+) {
+  if (riskAssessment && riskLabels) {
+    return [
+      {
+        id: "status",
+        label: labels.riskAssessment.riskStatus,
+        value: riskLabels.statuses[riskAssessment.assessmentStatus],
+      },
+      {
+        id: "progress",
+        label: labels.riskAssessment.riskProgress,
+        value: `${riskAssessment.progressPct}%`,
+      },
+      {
+        id: "version",
+        label: labels.riskAssessment.assessmentVersion,
+        value: String(riskAssessment.assessmentVersion),
+      },
+      {
+        id: "significant",
+        label: labels.riskAssessment.significantRisks,
+        value: String(riskAssessment.significantRiskCount),
+      },
+      {
+        id: "pendingReview",
+        label: labels.riskAssessment.pendingReview,
+        value: String(riskAssessment.pendingReviewCount),
+      },
+    ];
+  }
+
+  return [
+    {
+      id: "lifecycle",
+      label: labels.riskAssessment.lifecycleStage,
+      value: formatLifecycleStatusLabel(
+        engagement.lifecycleStatus,
+        engagementsLabels.lifecycleStatuses,
+      ),
+    },
+    {
+      id: "period",
+      label: labels.riskAssessment.financialYear,
+      value: formatDateRange(engagement.periodStart, engagement.periodEnd, locale),
+    },
+    {
+      id: "planned",
+      label: labels.riskAssessment.plannedSchedule,
+      value: formatDateRange(engagement.plannedStart, engagement.plannedEnd, locale),
+    },
+    {
+      id: "members",
+      label: labels.riskAssessment.teamSize,
+      value: String(engagement.memberCount),
+    },
+  ];
+}
+
 export function buildClientInformationItems(
   engagement: EngagementWorkspaceView,
   locale: string,
@@ -250,6 +327,7 @@ export function buildEngagementWorkspaceNavItems(
     { id: "overview", label: labels.navOverview, href: base },
     { id: "members", label: labels.navMembers, href: `${base}/members` },
     { id: "planning", label: labels.navPlanning, href: `${base}/planning` },
+    { id: "risk-assessment", label: labels.navRiskAssessment, href: `${base}/risk-assessment` },
     { id: "fieldwork", label: labels.navFieldwork, href: `${base}/fieldwork` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
@@ -379,6 +457,8 @@ export function workspaceSectionTitle(
       return labels.sections.members.title;
     case "planning":
       return labels.navPlanning;
+    case "risk-assessment":
+      return labels.navRiskAssessment;
     case "fieldwork":
       return labels.navFieldwork;
     case "history":

@@ -16,10 +16,20 @@ export function isPlanningApproved(plan: Pick<AuditPlan, "planning_status">): bo
   return plan.planning_status === "approved";
 }
 
-export function assertFieldworkGate(plan: AuditPlan | null, lifecycleStatus: string): void {
+export function assertFieldworkGate(
+  plan: AuditPlan | null,
+  lifecycleStatus: string,
+  riskAssessment?: { assessment_status: string } | null,
+): void {
   if (!plan || !isPlanningApproved(plan)) {
     throw new ValidationError(
       "Fieldwork cannot begin until audit planning is approved (ENG-03).",
+    );
+  }
+
+  if (riskAssessment && riskAssessment.assessment_status !== "approved") {
+    throw new ValidationError(
+      "Fieldwork cannot begin until risk assessment is approved (RA-02).",
     );
   }
 
