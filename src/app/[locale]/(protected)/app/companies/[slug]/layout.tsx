@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { CompanyWorkspaceError, CompanyWorkspaceLayout } from "@/components/company/workspace";
 import { getDictionary, type Locale } from "@/i18n";
-import { setCompanySlugCookie } from "@/lib/auth/tenant-cookies";
+import { readCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import {
   buildCompanyWorkspaceNavItems,
   buildWorkspaceHeroLabels,
@@ -22,7 +22,10 @@ export default async function CompanyWorkspaceRouteLayout({
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const labels = dictionary.companies.workspace;
-  const result = await loadCompanyWorkspacePage(slug);
+  const [preferredCompanySlug, result] = await Promise.all([
+    readCompanySlugCookie(),
+    loadCompanyWorkspacePage(slug),
+  ]);
 
   if (!result.ok) {
     if (result.reason === "not_found") {
@@ -58,12 +61,12 @@ export default async function CompanyWorkspaceRouteLayout({
   }
 
   const { company } = result;
-  await setCompanySlugCookie(company.slug);
 
   return (
     <CompanyWorkspaceLayout
       locale={locale}
       company={company}
+      preferredCompanySlug={preferredCompanySlug}
       heroLabels={buildWorkspaceHeroLabels(labels, dictionary.companies)}
       navItems={buildCompanyWorkspaceNavItems(locale, company.slug, labels)}
       navAriaLabel={labels.navAriaLabel}

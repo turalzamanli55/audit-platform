@@ -83,6 +83,16 @@ export class CompanyRepository extends AuthenticatedRepository {
     return unwrapSupabaseMaybeSingle(result);
   }
 
+  async findBySlugInWorkspace(workspaceId: string, slug: string): Promise<Company | null> {
+    const active = await this.findBySlug(workspaceId, slug);
+    if (active) {
+      return active;
+    }
+
+    const companies = await this.listByWorkspace(workspaceId, { includeArchived: true });
+    return companies.find((row) => row.slug === slug) ?? null;
+  }
+
   async listByWorkspace(workspaceId: string, options?: { includeArchived?: boolean }): Promise<Company[]> {
     let query = this.client
       .from("companies")

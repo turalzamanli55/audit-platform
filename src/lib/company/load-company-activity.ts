@@ -5,7 +5,7 @@ import { COMPANY_PERMISSIONS } from "@/constants/company";
 import { AUDIT_ACTIONS } from "@/lib/audit/constants";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
-import { AuthenticationError, AuthorizationError } from "@/lib/errors";
+import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
 import type { Tables } from "@/types/supabase";
 import { unwrapSupabaseList } from "@/utils/supabase-result";
@@ -33,7 +33,10 @@ export type CompanyActivityView = {
 
 export type CompanyActivityLoadResult =
   | { ok: true; activity: CompanyActivityView }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" };
+  | {
+      ok: false;
+      reason: "unauthenticated" | "forbidden" | "no_workspace" | "error";
+    };
 
 function parseMetadata(value: unknown): Record<string, unknown> {
   if (typeof value === "object" && value !== null && !Array.isArray(value)) {
@@ -127,6 +130,9 @@ export async function loadCompanyActivity(companyId: string): Promise<CompanyAct
     if (error instanceof AuthorizationError) {
       return { ok: false, reason: "forbidden" };
     }
-    throw error;
+    if (error instanceof DatabaseError) {
+      return { ok: false, reason: "error" };
+    }
+    return { ok: false, reason: "error" };
   }
 }

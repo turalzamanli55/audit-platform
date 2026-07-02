@@ -1,3 +1,4 @@
+export { CompanyWorkspaceCookieSync } from "./company-workspace-cookie-sync";
 export { CompanyWorkspaceLayout } from "./company-workspace-layout";
 export { CompanyWorkspaceHero, type CompanyWorkspaceHeroLabels } from "./company-workspace-hero";
 export { CompanyWorkspaceSidebar, type CompanyWorkspaceNavItem } from "./company-workspace-sidebar";

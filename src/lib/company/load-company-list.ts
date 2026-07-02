@@ -1,11 +1,12 @@
 import "server-only";
 
+import { cache } from "react";
 import { COMPANY_PERMISSIONS } from "@/constants/company";
 import { parseCompanySettings } from "@/lib/company/settings";
 import type { CompanyListItem, CompanyListLoadResult } from "@/lib/company/company-list-item";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
-import { AuthenticationError, AuthorizationError } from "@/lib/errors";
+import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
 import { CompanyRepository } from "@/repositories/company/company-repository";
 import type { RepositoryContext } from "@/types/context";
@@ -27,7 +28,7 @@ function createRepositoryContext(
   };
 }
 
-export async function loadCompanyList(): Promise<CompanyListLoadResult> {
+export const loadCompanyList = cache(async function loadCompanyList(): Promise<CompanyListLoadResult> {
   try {
     const user = await getCurrentUser();
     if (!user) {
@@ -83,6 +84,9 @@ export async function loadCompanyList(): Promise<CompanyListLoadResult> {
     if (error instanceof AuthorizationError) {
       return { ok: false, reason: "forbidden" };
     }
-    throw error;
+    if (error instanceof DatabaseError) {
+      return { ok: false, reason: "error" };
+    }
+    return { ok: false, reason: "error" };
   }
-}
+});

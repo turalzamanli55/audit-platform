@@ -83,7 +83,7 @@ export async function getCompanyContext(): Promise<CompanyContext> {
     createRepositoryContext(user.id, user.organizationId, workspace.workspaceId),
   );
 
-  const company = await repository.findBySlug(workspace.workspaceId, slug);
+  const company = await repository.findBySlugInWorkspace(workspace.workspaceId, slug);
   if (!company) {
     return {
       companyId: null,

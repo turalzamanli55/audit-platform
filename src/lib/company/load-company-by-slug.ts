@@ -5,7 +5,7 @@ import { parseCompanySettings } from "@/lib/company/settings";
 import type { CompanyListItem } from "@/lib/company/company-list-item";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
-import { AuthenticationError, AuthorizationError } from "@/lib/errors";
+import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
 import { createServerClient } from "@/lib/supabase/server";
 import { CompanyRepository } from "@/repositories/company/company-repository";
 import type { RepositoryContext } from "@/types/context";
@@ -16,7 +16,7 @@ export type CompanyDetailLoadResult =
       ok: true;
       company: CompanyListItem;
     }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" };
+  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" | "error" };
 
 function createRepositoryContext(
   userId: string,
@@ -76,13 +76,7 @@ export async function loadCompanyBySlug(slug: string): Promise<CompanyDetailLoad
       createRepositoryContext(user.id, user.organizationId, workspace.workspaceId),
     );
 
-    let company = await repository.findBySlug(workspace.workspaceId, slug);
-    if (!company) {
-      const companies = await repository.listByWorkspace(workspace.workspaceId, {
-        includeArchived: true,
-      });
-      company = companies.find((row) => row.slug === slug) ?? null;
-    }
+    const company = await repository.findBySlugInWorkspace(workspace.workspaceId, slug);
 
     if (!company) {
       return { ok: false, reason: "not_found" };
@@ -99,6 +93,9 @@ export async function loadCompanyBySlug(slug: string): Promise<CompanyDetailLoad
     if (error instanceof AuthorizationError) {
       return { ok: false, reason: "forbidden" };
     }
-    throw error;
+    if (error instanceof DatabaseError) {
+      return { ok: false, reason: "error" };
+    }
+    return { ok: false, reason: "error" };
   }
 }

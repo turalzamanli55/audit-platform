@@ -22,7 +22,10 @@ export type CompanyWorkspaceView = {
 
 export type CompanyWorkspaceLoadResult =
   | { ok: true; company: CompanyWorkspaceView }
-  | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" };
+  | {
+      ok: false;
+      reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" | "error";
+    };
 
 export const COMPANY_WORKSPACE_SECTIONS = [
   "overview",
