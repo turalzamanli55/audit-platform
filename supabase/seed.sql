@@ -22,6 +22,10 @@ VALUES
   ('engagement.update', 'Update Engagement', 'Modify engagement information', 'workspace', 'engagement', 'active'),
   ('engagement.archive', 'Archive Engagement', 'Archive engagements', 'workspace', 'engagement', 'active'),
   ('engagement.delete', 'Delete Engagement', 'Permanently delete engagements (restricted)', 'workspace', 'engagement', 'active'),
+  ('planning.read', 'Read Planning', 'View audit planning workspace and documents', 'workspace', 'planning', 'active'),
+  ('planning.create', 'Create Planning', 'Initiate audit planning for an engagement', 'workspace', 'planning', 'active'),
+  ('planning.update', 'Update Planning', 'Modify audit planning content', 'workspace', 'planning', 'active'),
+  ('planning.archive', 'Archive Planning', 'Archive audit planning records', 'workspace', 'planning', 'active'),
   ('membership.read', 'Read Memberships', 'View organization and workspace memberships', 'organization', 'membership', 'active'),
   ('membership.administer', 'Administer Memberships', 'Manage user memberships and assignments', 'organization', 'membership', 'active'),
   ('role.read', 'Read Roles', 'View role definitions', 'organization', 'role', 'active'),
@@ -62,6 +66,7 @@ JOIN public.permissions p ON p.code IN (
   'workspace.read', 'workspace.administer', 'workspace.configure',
   'company.read', 'company.administer', 'company.configure',
   'engagement.read', 'engagement.create', 'engagement.update', 'engagement.archive',
+  'planning.read', 'planning.create', 'planning.update', 'planning.archive',
   'membership.read', 'membership.administer',
   'role.read', 'role.administer',
   'settings.read', 'settings.configure',
@@ -77,6 +82,7 @@ JOIN public.permissions p ON p.code IN (
   'workspace.read', 'workspace.administer', 'workspace.configure',
   'company.read', 'company.administer', 'company.configure',
   'engagement.read', 'engagement.create', 'engagement.update', 'engagement.archive',
+  'planning.read', 'planning.create', 'planning.update', 'planning.archive',
   'membership.read', 'membership.administer',
   'role.read',
   'settings.read', 'settings.configure',
@@ -91,6 +97,7 @@ JOIN public.permissions p ON p.code IN (
   'workspace.read', 'workspace.administer', 'workspace.configure',
   'company.read', 'company.administer', 'company.configure',
   'engagement.read', 'engagement.create', 'engagement.update', 'engagement.archive',
+  'planning.read', 'planning.create', 'planning.update', 'planning.archive',
   'membership.read',
   'role.read',
   'settings.read', 'settings.configure',
@@ -105,6 +112,7 @@ JOIN public.permissions p ON p.code IN (
   'workspace.read',
   'company.read', 'company.administer',
   'engagement.read', 'engagement.create', 'engagement.update',
+  'planning.read', 'planning.create', 'planning.update',
   'membership.read',
   'settings.read',
   'audit_log.read'
@@ -119,6 +127,7 @@ JOIN public.permissions p ON p.code IN (
   'workspace.read',
   'company.read',
   'engagement.read',
+  'planning.read',
   'membership.read',
   'settings.read'
 )
@@ -132,6 +141,7 @@ JOIN public.permissions p ON p.code IN (
   'workspace.read',
   'company.read',
   'engagement.read',
+  'planning.read',
   'settings.read',
   'audit_log.read'
 )

@@ -225,8 +225,18 @@
         "OTHER": "Digər"
       },
       "months": [
-        "Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun",
-        "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"
+        "Yanvar",
+        "Fevral",
+        "Mart",
+        "Aprel",
+        "May",
+        "İyun",
+        "İyul",
+        "Avqust",
+        "Sentyabr",
+        "Oktyabr",
+        "Noyabr",
+        "Dekabr"
       ]
     },
     "detail": {
@@ -705,7 +715,8 @@
           "title": "Settings",
           "description": "Configuration and lifecycle controls for this engagement."
         }
-      }
+      },
+      "navPlanning": "Planning"
     },
     "settings": {
       "title": "Settings",
@@ -818,6 +829,242 @@
         "notArchived": "Not archived",
         "restored": "Restored",
         "restoredHint": "See timeline for restore events"
+      }
+    }
+  },
+  "planning": {
+    "notFoundTitle": "Planning not found",
+    "notFoundDescription": "The planning workspace you requested could not be found for this engagement.",
+    "forbiddenTitle": "Permission required",
+    "forbiddenDescription": "You need planning permission to access audit planning.",
+    "noWorkspaceTitle": "Workspace required",
+    "noWorkspaceDescription": "Select a workspace before opening audit planning.",
+    "statuses": {
+      "not_started": "Not started",
+      "in_progress": "In progress",
+      "pending_review": "Pending review",
+      "returned": "Returned",
+      "approved": "Approved",
+      "superseded": "Superseded"
+    },
+    "integrationStatuses": {
+      "not_configured": "Not configured",
+      "placeholder": "Placeholder ready",
+      "integrated": "Integrated"
+    },
+    "empty": {
+      "title": "Planning not initiated",
+      "description": "Create an audit plan to begin documenting strategy, scope, team allocation, and readiness checks.",
+      "createAction": "Create planning",
+      "creating": "Creating planning…",
+      "forbiddenDescription": "You need planning creation permission to initiate audit planning."
+    },
+    "editor": {
+      "readOnlyNotice": "You have view-only access to this planning section.",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…",
+      "discardLabel": "Discard",
+      "placeholder": "Document professional judgment and engagement-specific context…"
+    },
+    "workspace": {
+      "heroEyebrow": "Audit planning",
+      "navAriaLabel": "Planning workspace sections",
+      "navOverview": "Dashboard",
+      "navStrategy": "Audit strategy",
+      "navObjectives": "Objectives",
+      "navScope": "Scope",
+      "navFramework": "Framework",
+      "navMateriality": "Materiality",
+      "navRisk": "Risk",
+      "navTeam": "Team",
+      "navTimeline": "Timeline",
+      "navNotes": "Notes",
+      "navChecklist": "Checklist",
+      "navDocuments": "Documents",
+      "navHistory": "History",
+      "navSettings": "Settings",
+      "loading": "Loading planning workspace",
+      "errorTitle": "Unable to load planning workspace",
+      "errorDescription": "Something went wrong while loading audit planning.",
+      "archivedTitle": "Planning archived",
+      "archivedDescription": "This planning record is read-only. Restore it to continue editing.",
+      "summaryStatus": "Planning status",
+      "summaryVersion": "Plan version",
+      "summaryFramework": "Reporting framework",
+      "summaryChecklist": "Checklist progress",
+      "summaryIntegration": "Integration readiness",
+      "status": {
+        "title": "Planning status",
+        "description": "Current planning lifecycle position and readiness indicators.",
+        "progressLabel": "Planning progress",
+        "planningStatus": "Status",
+        "planVersion": "Plan version",
+        "checklistProgress": "Checklist",
+        "materiality": "Materiality",
+        "risk": "Risk assessment"
+      },
+      "sections": {
+        "overview": {
+          "title": "Planning dashboard",
+          "description": "Overview of planning status, readiness, and key indicators."
+        },
+        "strategy": {
+          "title": "Audit strategy",
+          "description": "Document the overall audit approach and significant matters."
+        },
+        "objectives": {
+          "title": "Engagement objectives",
+          "description": "Declare the primary assurance objective and opinion scope."
+        },
+        "scope": {
+          "title": "Scope of audit",
+          "description": "Define financial periods, entities, and statements in scope."
+        },
+        "framework": {
+          "title": "Financial reporting framework",
+          "description": "Confirm the applicable reporting framework for this engagement."
+        },
+        "materiality": {
+          "title": "Materiality",
+          "description": "Integration-ready placeholder for materiality management."
+        },
+        "risk": {
+          "title": "Risk assessment",
+          "description": "Integration-ready placeholder for risk assessment."
+        },
+        "team": {
+          "title": "Team planning",
+          "description": "Review engagement team roster and capacity planning."
+        },
+        "timeline": {
+          "title": "Timeline",
+          "description": "Plan milestone dates across planning, fieldwork, and review."
+        },
+        "notes": {
+          "title": "Planning notes",
+          "description": "Internal planning notes and working context."
+        },
+        "checklist": {
+          "title": "Planning checklist",
+          "description": "Track completion of core planning deliverables."
+        },
+        "documents": {
+          "title": "Planning documents",
+          "description": "Planning memoranda and supporting documentation."
+        },
+        "history": {
+          "title": "Planning history",
+          "description": "Activity and version history for this audit plan."
+        },
+        "settings": {
+          "title": "Planning settings",
+          "description": "Archive or restore this planning record."
+        }
+      }
+    },
+    "integration": {
+      "integrationReady": "Integration ready",
+      "currentStatus": "Current status",
+      "statuses": {
+        "not_configured": "Not configured",
+        "placeholder": "Placeholder ready",
+        "integrated": "Integrated"
+      },
+      "materiality": {
+        "title": "Materiality",
+        "description": "Materiality thresholds will be documented in a dedicated module.",
+        "placeholderTitle": "Materiality module placeholder",
+        "placeholderDescription": "Overall, performance, and specific materiality worksheets will connect here when the Materiality module is implemented."
+      },
+      "risk": {
+        "title": "Risk assessment",
+        "description": "Risk of material misstatement assessment will be documented in a dedicated module.",
+        "placeholderTitle": "Risk assessment placeholder",
+        "placeholderDescription": "Risk identification, inherent risk, and control risk documentation will connect here when the Risk module is implemented."
+      }
+    },
+    "team": {
+      "title": "Team planning",
+      "description": "Engagement roster and capacity planning for this audit.",
+      "rosterTitle": "Engagement team",
+      "rosterEmpty": "No team members assigned to this engagement yet.",
+      "capacityTitle": "Capacity planning",
+      "estimatedHours": "Estimated hours",
+      "notes": "Planning notes",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…"
+    },
+    "timeline": {
+      "title": "Planning timeline",
+      "description": "Milestone dates for planning, fieldwork, review, and completion.",
+      "startDate": "Start",
+      "endDate": "End",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…",
+      "milestones": {
+        "planning": "Planning",
+        "fieldwork": "Fieldwork",
+        "review": "Review",
+        "completion": "Completion"
+      }
+    },
+    "checklist": {
+      "title": "Planning checklist",
+      "description": "Track completion of core planning deliverables before fieldwork.",
+      "progress": "Progress",
+      "saveLabel": "Save",
+      "savingLabel": "Saving…",
+      "items": {
+        "objectives": "Engagement objectives documented",
+        "scope": "Audit scope defined",
+        "strategy": "Audit strategy documented",
+        "framework": "Reporting framework confirmed",
+        "materiality": "Materiality placeholder reviewed",
+        "risk": "Risk placeholder reviewed",
+        "team": "Team planning completed",
+        "timeline": "Timeline established"
+      }
+    },
+    "documents": {
+      "title": "Planning documents",
+      "description": "Planning memoranda and supporting documentation.",
+      "emptyTitle": "No planning documents",
+      "emptyDescription": "Uploaded planning documents will appear here when document management is connected.",
+      "integrationReady": "Document upload integration will connect in a future release."
+    },
+    "history": {
+      "title": "Planning history",
+      "description": "Read-only timeline of planning changes and audit summary.",
+      "emptyTitle": "No planning activity",
+      "emptyDescription": "Planning activity will appear here as changes are recorded.",
+      "version": {
+        "title": "Version information",
+        "description": "Current plan versions and lifecycle timestamps.",
+        "cardTitle": "Plan metadata",
+        "recordVersion": "Record version",
+        "planVersion": "Plan version",
+        "created": "Created",
+        "updated": "Updated",
+        "archived": "Archived at",
+        "notArchived": "Not archived"
+      }
+    },
+    "settings": {
+      "title": "Planning settings",
+      "description": "Archive or restore this audit planning record.",
+      "readOnlyNotice": "You have view-only access to planning settings.",
+      "lifecycle": {
+        "archivedBannerTitle": "Planning is archived",
+        "archivedBannerDescription": "The planning workspace is read-only. Restore planning to make changes again.",
+        "archivePrompt": "Archiving makes this planning record read-only while preserving its history.",
+        "archiveAction": "Archive planning",
+        "archiveReasonPlaceholder": "Optional reason for archiving",
+        "archiveConfirmAction": "Confirm archive",
+        "restorePrompt": "Restore planning to resume documentation and review.",
+        "restoreAction": "Restore planning",
+        "restoreConfirmAction": "Confirm restore",
+        "reasonLabel": "Reason",
+        "cancelAction": "Cancel"
       }
     }
   }

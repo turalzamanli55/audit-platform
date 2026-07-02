@@ -11,7 +11,7 @@ import {
   formatOptionalText,
 } from "@/lib/engagement/format-engagement-workspace";
 
-export type EngagementWorkspaceSection = "overview" | "members" | "history" | "settings";
+export type EngagementWorkspaceSection = "overview" | "members" | "planning" | "history" | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
 
 const LIFECYCLE_PROGRESS: Record<EngagementLifecycleStatus, number> = {
@@ -149,6 +149,7 @@ export function buildEngagementWorkspaceNavItems(
   return [
     { id: "overview", label: labels.navOverview, href: base },
     { id: "members", label: labels.navMembers, href: `${base}/members` },
+    { id: "planning", label: labels.navPlanning, href: `${base}/planning` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
   ];
@@ -275,6 +276,8 @@ export function workspaceSectionTitle(
       return labels.sections.overview.title;
     case "members":
       return labels.sections.members.title;
+    case "planning":
+      return labels.navPlanning;
     case "history":
       return labels.sections.history.title;
     case "settings":

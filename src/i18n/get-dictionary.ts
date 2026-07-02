@@ -637,6 +637,7 @@ export type Dictionary = {
       navAriaLabel: string;
       navOverview: string;
       navMembers: string;
+      navPlanning: string;
       navHistory: string;
       navSettings: string;
       loading: string;
@@ -797,6 +798,185 @@ export type Dictionary = {
         notArchived: string;
         restored: string;
         restoredHint: string;
+      };
+    };
+  };
+  planning: {
+    notFoundTitle: string;
+    notFoundDescription: string;
+    forbiddenTitle: string;
+    forbiddenDescription: string;
+    noWorkspaceTitle: string;
+    noWorkspaceDescription: string;
+    statuses: Record<
+      "not_started" | "in_progress" | "pending_review" | "returned" | "approved" | "superseded",
+      string
+    >;
+    integrationStatuses: Record<"not_configured" | "placeholder" | "integrated", string>;
+    empty: {
+      title: string;
+      description: string;
+      createAction: string;
+      creating: string;
+      forbiddenDescription: string;
+    };
+    editor: {
+      readOnlyNotice: string;
+      saveLabel: string;
+      savingLabel: string;
+      discardLabel: string;
+      placeholder: string;
+    };
+    workspace: {
+      heroEyebrow: string;
+      navAriaLabel: string;
+      navOverview: string;
+      navStrategy: string;
+      navObjectives: string;
+      navScope: string;
+      navFramework: string;
+      navMateriality: string;
+      navRisk: string;
+      navTeam: string;
+      navTimeline: string;
+      navNotes: string;
+      navChecklist: string;
+      navDocuments: string;
+      navHistory: string;
+      navSettings: string;
+      loading: string;
+      errorTitle: string;
+      errorDescription: string;
+      archivedTitle: string;
+      archivedDescription: string;
+      summaryStatus: string;
+      summaryVersion: string;
+      summaryFramework: string;
+      summaryChecklist: string;
+      summaryIntegration: string;
+      status: {
+        title: string;
+        description: string;
+        progressLabel: string;
+        planningStatus: string;
+        planVersion: string;
+        checklistProgress: string;
+        materiality: string;
+        risk: string;
+      };
+      sections: Record<
+        | "overview"
+        | "strategy"
+        | "objectives"
+        | "scope"
+        | "framework"
+        | "materiality"
+        | "risk"
+        | "team"
+        | "timeline"
+        | "notes"
+        | "checklist"
+        | "documents"
+        | "history"
+        | "settings",
+        { title: string; description: string }
+      >;
+    };
+    integration: {
+      integrationReady: string;
+      currentStatus: string;
+      statuses: Record<"not_configured" | "placeholder" | "integrated", string>;
+      materiality: {
+        title: string;
+        description: string;
+        placeholderTitle: string;
+        placeholderDescription: string;
+      };
+      risk: {
+        title: string;
+        description: string;
+        placeholderTitle: string;
+        placeholderDescription: string;
+      };
+    };
+    team: {
+      title: string;
+      description: string;
+      rosterTitle: string;
+      rosterEmpty: string;
+      capacityTitle: string;
+      estimatedHours: string;
+      notes: string;
+      saveLabel: string;
+      savingLabel: string;
+    };
+    timeline: {
+      title: string;
+      description: string;
+      startDate: string;
+      endDate: string;
+      saveLabel: string;
+      savingLabel: string;
+      milestones: Record<"planning" | "fieldwork" | "review" | "completion", string>;
+    };
+    checklist: {
+      title: string;
+      description: string;
+      progress: string;
+      saveLabel: string;
+      savingLabel: string;
+      items: Record<
+        | "objectives"
+        | "scope"
+        | "strategy"
+        | "framework"
+        | "materiality"
+        | "risk"
+        | "team"
+        | "timeline",
+        string
+      >;
+    };
+    documents: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      integrationReady: string;
+    };
+    history: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      version: {
+        title: string;
+        description: string;
+        cardTitle: string;
+        recordVersion: string;
+        planVersion: string;
+        created: string;
+        updated: string;
+        archived: string;
+        notArchived: string;
+      };
+    };
+    settings: {
+      title: string;
+      description: string;
+      readOnlyNotice: string;
+      lifecycle: {
+        archivedBannerTitle: string;
+        archivedBannerDescription: string;
+        archivePrompt: string;
+        archiveAction: string;
+        archiveReasonPlaceholder: string;
+        archiveConfirmAction: string;
+        restorePrompt: string;
+        restoreAction: string;
+        restoreConfirmAction: string;
+        reasonLabel: string;
+        cancelAction: string;
       };
     };
   };

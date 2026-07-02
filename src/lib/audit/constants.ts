@@ -15,4 +15,8 @@ export const AUDIT_ACTIONS = {
   ENGAGEMENT_STATUS_CHANGED: "engagement.status.changed",
   ENGAGEMENT_ARCHIVED: "engagement.archived",
   ENGAGEMENT_RESTORED: "engagement.restored",
+  PLANNING_CREATED: "planning.created",
+  PLANNING_UPDATED: "planning.updated",
+  PLANNING_ARCHIVED: "planning.archived",
+  PLANNING_RESTORED: "planning.restored",
 } as const;
