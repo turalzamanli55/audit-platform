@@ -49,3 +49,18 @@ export async function readCompanySlugCookie(): Promise<string | null> {
   const cookieStore = await cookies();
   return cookieStore.get(siteConfig.companyCookieName)?.value ?? null;
 }
+
+export async function setEngagementSlugCookie(slug: string) {
+  const cookieStore = await cookies();
+  cookieStore.set(siteConfig.engagementCookieName, slug, TENANT_COOKIE_OPTIONS);
+}
+
+export async function clearEngagementSlugCookie() {
+  const cookieStore = await cookies();
+  cookieStore.delete(siteConfig.engagementCookieName);
+}
+
+export async function readEngagementSlugCookie(): Promise<string | null> {
+  const cookieStore = await cookies();
+  return cookieStore.get(siteConfig.engagementCookieName)?.value ?? null;
+}

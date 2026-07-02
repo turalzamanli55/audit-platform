@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import {
   ENGAGEMENT_LIFECYCLE_STATUSES,
@@ -12,13 +12,13 @@ import { restoreEngagementAction } from "@/lib/actions/engagement/restore-engage
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
 import type { EngagementReportingFramework } from "@/types/engagement";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
+import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert, Input } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { EngagementWorkspaceSectionShell } from "@/components/engagement/workspace/engagement-workspace-section-shell";
 
 type EngagementSettingsExperienceProps = {
-  engagement: EngagementWorkspaceView;
   canUpdate: boolean;
   canArchive: boolean;
   labels: Dictionary["engagements"]["settings"];
@@ -101,15 +101,33 @@ function Field({
 }
 
 export function EngagementSettingsExperience({
-  engagement: initialEngagement,
+  canUpdate,
+  canArchive,
+  labels,
+  engagementsLabels,
+}: EngagementSettingsExperienceProps) {
+  const { engagement } = useEngagementWorkspace();
+
+  return (
+    <EngagementSettingsForm
+      key={`${engagement.id}:${engagement.version}:${engagement.isArchived}`}
+      canUpdate={canUpdate}
+      canArchive={canArchive}
+      labels={labels}
+      engagementsLabels={engagementsLabels}
+    />
+  );
+}
+
+function EngagementSettingsForm({
   canUpdate,
   canArchive,
   labels,
   engagementsLabels,
 }: EngagementSettingsExperienceProps) {
   const router = useRouter();
-  const [engagement, setEngagement] = useState(initialEngagement);
-  const [form, setForm] = useState<SettingsFormState>(() => toFormState(initialEngagement));
+  const { engagement, refreshEngagement } = useEngagementWorkspace();
+  const [form, setForm] = useState<SettingsFormState>(() => toFormState(engagement));
   const [error, setError] = useState<string | null>(null);
   const [lifecycleMode, setLifecycleMode] = useState<"idle" | "archive" | "restore">("idle");
   const [archiveReason, setArchiveReason] = useState("");
@@ -118,21 +136,6 @@ export function EngagementSettingsExperience({
   const readOnly = !canUpdate || engagement.isArchived;
   const baseline = toFormState(engagement);
   const isDirty = JSON.stringify(form) !== JSON.stringify(baseline);
-
-  const serverSyncKey = `${initialEngagement.id}:${initialEngagement.version}:${initialEngagement.updatedAt}:${initialEngagement.isArchived}`;
-  const syncedKeyRef = useRef(serverSyncKey);
-
-  useEffect(() => {
-    if (syncedKeyRef.current === serverSyncKey) {
-      return;
-    }
-    syncedKeyRef.current = serverSyncKey;
-    setEngagement(initialEngagement);
-    setForm(toFormState(initialEngagement));
-    setError(null);
-    setLifecycleMode("idle");
-    setArchiveReason("");
-  }, [initialEngagement, serverSyncKey]);
 
   const setField = <K extends keyof SettingsFormState>(key: K, value: SettingsFormState[K]) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -163,8 +166,8 @@ export function EngagementSettingsExperience({
         return;
       }
 
-      setEngagement((current) => ({
-        ...current,
+      refreshEngagement({
+        ...engagement,
         name: form.name,
         slug: result.data.slug,
         engagementCode: form.engagementCode.trim() || null,
@@ -179,7 +182,7 @@ export function EngagementSettingsExperience({
         notes: form.notes.trim() || null,
         version: result.data.version,
         updatedAt: new Date().toISOString(),
-      }));
+      });
       router.refresh();
     });
   };
@@ -199,18 +202,16 @@ export function EngagementSettingsExperience({
       }
 
       const archivedAt = new Date().toISOString();
-      setEngagement((current) => {
-        const next = {
-          ...current,
-          isArchived: true,
-          status: result.data.status as EngagementWorkspaceView["status"],
-          version: result.data.version,
-          deletedAt: archivedAt,
-          updatedAt: archivedAt,
-        };
-        setForm(toFormState(next));
-        return next;
-      });
+      const next = {
+        ...engagement,
+        isArchived: true,
+        status: result.data.status as EngagementWorkspaceView["status"],
+        version: result.data.version,
+        deletedAt: archivedAt,
+        updatedAt: archivedAt,
+      };
+      refreshEngagement(next);
+      setForm(toFormState(next));
       setLifecycleMode("idle");
       setArchiveReason("");
       router.refresh();
@@ -231,18 +232,16 @@ export function EngagementSettingsExperience({
       }
 
       const restoredAt = new Date().toISOString();
-      setEngagement((current) => {
-        const next = {
-          ...current,
-          isArchived: false,
-          status: result.data.status as EngagementWorkspaceView["status"],
-          version: result.data.version,
-          deletedAt: null,
-          updatedAt: restoredAt,
-        };
-        setForm(toFormState(next));
-        return next;
-      });
+      const next = {
+        ...engagement,
+        isArchived: false,
+        status: result.data.status as EngagementWorkspaceView["status"],
+        version: result.data.version,
+        deletedAt: null,
+        updatedAt: restoredAt,
+      };
+      refreshEngagement(next);
+      setForm(toFormState(next));
       setLifecycleMode("idle");
       router.refresh();
     });

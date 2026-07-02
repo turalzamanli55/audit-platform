@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { ENGAGEMENT_PERMISSIONS } from "@/constants/engagement";
+import { enrichEngagementMembers } from "@/lib/engagement/engagement-member-view";
 import type {
   EngagementWorkspaceLoadResult,
   EngagementWorkspaceView,
@@ -41,6 +42,8 @@ async function toWorkspaceView(
     repository.listMembers(engagement.id),
   ]);
 
+  const memberViews = await enrichEngagementMembers(members);
+
   return {
     id: engagement.id,
     slug: engagement.slug,
@@ -64,8 +67,8 @@ async function toWorkspaceView(
     version: engagement.version,
     isArchived: Boolean(engagement.deleted_at) || engagement.status === "archived",
     deletedAt: engagement.deleted_at,
-    members,
-    memberCount: members.length,
+    members: memberViews,
+    memberCount: memberViews.length,
   };
 }
 

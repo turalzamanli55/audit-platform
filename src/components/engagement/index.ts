@@ -16,7 +16,7 @@ export { EngagementListRow } from "./engagement-list-row";
 export { EngagementListPagination } from "./engagement-list-pagination";
 export { EngagementCreateWizard, type EngagementCreateLabels } from "./create/engagement-create-wizard";
 export {
-  EngagementWorkspaceLayout,
+  EngagementWorkspaceShell,
   EngagementWorkspaceHero,
   EngagementWorkspaceSidebar,
   EngagementWorkspaceSummaryCards,

@@ -9,11 +9,13 @@ import {
   type EngagementWorkspaceNavItem,
 } from "./engagement-workspace-sidebar";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
+import type { Dictionary } from "@/i18n/get-dictionary";
 
 type EngagementWorkspaceLayoutProps = {
   locale: string;
   engagement: EngagementWorkspaceView;
   heroLabels: EngagementWorkspaceHeroLabels;
+  engagementsLabels: Dictionary["engagements"];
   navItems: EngagementWorkspaceNavItem[];
   navAriaLabel: string;
   children: ReactNode;
@@ -24,6 +26,7 @@ export function EngagementWorkspaceLayout({
   locale,
   engagement,
   heroLabels,
+  engagementsLabels,
   navItems,
   navAriaLabel,
   children,
@@ -31,7 +34,12 @@ export function EngagementWorkspaceLayout({
 }: EngagementWorkspaceLayoutProps) {
   return (
     <EngagementPageShell className={`max-w-[90rem] ${className}`}>
-      <EngagementWorkspaceHero locale={locale} engagement={engagement} labels={heroLabels} />
+      <EngagementWorkspaceHero
+        locale={locale}
+        engagement={engagement}
+        labels={heroLabels}
+        engagementsLabels={engagementsLabels}
+      />
 
       <div className="grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[14rem_minmax(0,1fr)]">
         <aside className="lg:sticky lg:top-6 lg:self-start">

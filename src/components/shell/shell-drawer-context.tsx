@@ -4,15 +4,20 @@ import { usePathname, useRouter } from "next/navigation";
 import { OrganizationSwitcher } from "@/components/dashboard/organization-switcher";
 import { WorkspaceSwitcher } from "@/components/dashboard/workspace-switcher";
 import { CompanySwitcher, type CompanySwitcherItem } from "./company-switcher";
+import { EngagementSwitcher, type EngagementSwitcherItem } from "./engagement-switcher";
 import { useActiveCompany } from "@/hooks/use-active-company";
+import { useActiveEngagement } from "@/hooks/use-active-engagement";
 import { switchCompanyAction } from "@/lib/actions/tenant/switch-company";
+import { switchEngagementAction } from "@/lib/actions/tenant/switch-engagement";
 import { defaultLocale, isValidLocale } from "@/i18n";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
+import type { EngagementListLoadReason } from "@/lib/engagement/engagement-list-item";
 
 export type ShellDrawerContextLabels = {
   organization: string;
   workspace: string;
   company: string;
+  engagement: string;
   contextTitle: string;
 };
 
@@ -22,6 +27,10 @@ type ShellDrawerContextProps = {
   preferredCompanySlug?: string | null;
   companiesLoadReason?: CompanyListLoadReason;
   companyEmptyHint?: string;
+  engagements: EngagementSwitcherItem[];
+  preferredEngagementSlug?: string | null;
+  engagementsLoadReason?: EngagementListLoadReason;
+  engagementEmptyHint?: string;
 };
 
 function resolveLocale(pathname: string): string {
@@ -29,8 +38,8 @@ function resolveLocale(pathname: string): string {
   return segment && isValidLocale(segment) ? segment : defaultLocale;
 }
 
-function resolveCompanyEmptyLabel(
-  reason: CompanyListLoadReason | undefined,
+function resolveEmptyLabel(
+  reason: CompanyListLoadReason | EngagementListLoadReason | undefined,
   hint?: string,
 ): string {
   if (hint) return hint;
@@ -45,11 +54,20 @@ export function ShellDrawerContext({
   preferredCompanySlug,
   companiesLoadReason,
   companyEmptyHint,
+  engagements,
+  preferredEngagementSlug,
+  engagementsLoadReason,
+  engagementEmptyHint,
 }: ShellDrawerContextProps) {
   const pathname = usePathname();
   const router = useRouter();
   const locale = resolveLocale(pathname);
   const currentCompany = useActiveCompany(companies, preferredCompanySlug);
+  const currentEngagement = useActiveEngagement(
+    engagements,
+    preferredEngagementSlug,
+    currentCompany?.id ?? null,
+  );
 
   async function handleCompanySelect(id: string) {
     const company = companies.find((item) => item.id === id);
@@ -61,6 +79,21 @@ export function ShellDrawerContext({
     }
     router.push(`/${locale}/app/companies/${company.slug}`);
   }
+
+  async function handleEngagementSelect(id: string) {
+    const engagement = engagements.find((item) => item.id === id);
+    if (!engagement?.slug) return;
+
+    const result = await switchEngagementAction({ slug: engagement.slug });
+    if (!result.success) {
+      return;
+    }
+    router.push(`/${locale}/app/engagements/${engagement.slug}`);
+  }
+
+  const scopedEngagements = engagements.filter(
+    (item) => !currentCompany?.id || item.companyId === currentCompany.id,
+  );
 
   return (
     <div className="space-y-3">
@@ -74,8 +107,15 @@ export function ShellDrawerContext({
           label={labels.company}
           items={companies}
           currentId={currentCompany?.id ?? null}
-          emptyLabel={resolveCompanyEmptyLabel(companiesLoadReason, companyEmptyHint)}
+          emptyLabel={resolveEmptyLabel(companiesLoadReason, companyEmptyHint)}
           onSelect={handleCompanySelect}
+        />
+        <EngagementSwitcher
+          label={labels.engagement}
+          items={scopedEngagements}
+          currentId={currentEngagement?.id ?? null}
+          emptyLabel={resolveEmptyLabel(engagementsLoadReason, engagementEmptyHint)}
+          onSelect={handleEngagementSelect}
         />
       </div>
     </div>

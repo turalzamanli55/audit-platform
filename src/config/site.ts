@@ -10,4 +10,5 @@ export const siteConfig = {
   organizationCookieName: "audit-organization-id",
   workspaceCookieName: "audit-workspace-id",
   companyCookieName: "audit-company-slug",
+  engagementCookieName: "audit-engagement-slug",
 } as const;

@@ -1,11 +1,16 @@
 import type { CreateEngagementActionInput } from "@/lib/actions/engagement/create-engagement";
-import { ENGAGEMENT_REPORTING_FRAMEWORKS, ENGAGEMENT_TYPES } from "@/constants/engagement";
-import type { EngagementReportingFramework, EngagementType } from "@/types/engagement";
+import { ENGAGEMENT_MEMBER_ROLES, ENGAGEMENT_REPORTING_FRAMEWORKS, ENGAGEMENT_TYPES } from "@/constants/engagement";
+import type { EngagementMemberRole, EngagementReportingFramework, EngagementType } from "@/types/engagement";
 
-export const ENGAGEMENT_WIZARD_DRAFT_VERSION = 1;
+export const ENGAGEMENT_WIZARD_DRAFT_VERSION = 2;
 export const ENGAGEMENT_WIZARD_DRAFT_STORAGE_KEY = "audit.engagement-wizard.draft";
 
 export type EngagementWizardStep = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+export type EngagementWizardTeamMember = {
+  userId: string;
+  memberRole: EngagementMemberRole;
+};
 
 export type EngagementWizardDraft = {
   version: number;
@@ -21,6 +26,7 @@ export type EngagementWizardDraft = {
   plannedEnd: string;
   description: string;
   notes: string;
+  teamMembers: EngagementWizardTeamMember[];
 };
 
 export const DEFAULT_ENGAGEMENT_WIZARD_DRAFT: EngagementWizardDraft = {
@@ -37,6 +43,7 @@ export const DEFAULT_ENGAGEMENT_WIZARD_DRAFT: EngagementWizardDraft = {
   plannedEnd: "",
   description: "",
   notes: "",
+  teamMembers: [],
 };
 
 export function draftToCreateEngagementInput(
@@ -54,7 +61,12 @@ export function draftToCreateEngagementInput(
     plannedEnd: draft.plannedEnd.trim() || null,
     description: draft.description.trim() || null,
     notes: draft.notes.trim() || null,
+    members: draft.teamMembers,
   };
+}
+
+export function isValidTeamMemberRole(value: string): value is EngagementMemberRole {
+  return (ENGAGEMENT_MEMBER_ROLES as readonly string[]).includes(value);
 }
 
 export function mergeWizardDraft(
@@ -65,5 +77,6 @@ export function mergeWizardDraft(
     ...current,
     ...patch,
     version: ENGAGEMENT_WIZARD_DRAFT_VERSION,
+    teamMembers: patch.teamMembers ?? current.teamMembers ?? [],
   };
 }

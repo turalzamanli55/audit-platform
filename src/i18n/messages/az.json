@@ -13,6 +13,7 @@
     "foundation": "Platforma təməli hazırdır",
     "searchPlaceholder": "Axtar və ya keç…",
     "companySwitcher": "Şirkətlər",
+    "engagementSwitcher": "Engagements",
     "language": "Dil",
     "notifications": "Bildirişlər",
     "notificationsEmpty": "Hələ bildiriş yoxdur",
@@ -637,8 +638,8 @@
       "heroEyebrow": "Engagement workspace",
       "navAriaLabel": "Engagement workspace sections",
       "navOverview": "Overview",
-      "navMembers": "Members",
-      "navHistory": "History",
+      "navMembers": "Team",
+      "navHistory": "Timeline",
       "navSettings": "Settings",
       "loading": "Loading engagement workspace",
       "errorTitle": "Unable to load engagement workspace",
@@ -655,6 +656,34 @@
       "metadataCreated": "Created",
       "metadataPlannedDates": "Planned dates",
       "metadataMembers": "Team members",
+      "planning": {
+        "title": "Planning summary",
+        "description": "Lifecycle stage, financial year, and planned schedule.",
+        "lifecycleStage": "Lifecycle stage",
+        "financialYear": "Financial year",
+        "plannedSchedule": "Planned schedule",
+        "teamSize": "Team size"
+      },
+      "client": {
+        "title": "Client information",
+        "description": "The legal entity this engagement serves.",
+        "companyName": "Client company",
+        "companySlug": "Company reference",
+        "engagementName": "Engagement name",
+        "engagementCode": "Engagement code",
+        "viewClient": "Open {name}"
+      },
+      "status": {
+        "title": "Status & progress",
+        "description": "Current lifecycle position and overall completion.",
+        "progressLabel": "Engagement progress"
+      },
+      "information": {
+        "title": "Engagement information",
+        "description": "Type, framework, reporting period, and internal notes.",
+        "reportingPeriod": "Reporting period",
+        "internalNotes": "Internal notes"
+      },
       "sections": {
         "overview": {
           "title": "Overview",

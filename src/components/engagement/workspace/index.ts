@@ -1,4 +1,8 @@
+export { EngagementWorkspaceLifecycleProgress } from "./engagement-workspace-lifecycle-progress";
+export { EngagementWorkspaceClientPanel } from "./engagement-workspace-client-panel";
 export { EngagementWorkspaceLayout } from "./engagement-workspace-layout";
+export { EngagementWorkspaceShell } from "./engagement-workspace-shell";
+export { EngagementWorkspaceCookieSync } from "./engagement-workspace-cookie-sync";
 export { EngagementWorkspaceHero, type EngagementWorkspaceHeroLabels } from "./engagement-workspace-hero";
 export {
   EngagementWorkspaceSidebar,

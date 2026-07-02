@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { ENGAGEMENT_PERMISSIONS, AUDIT_RESOURCE_TYPE } from "@/constants/engagement";
+import { ENGAGEMENT_PERMISSIONS, AUDIT_RESOURCE_TYPE, ENGAGEMENT_ACTIVITY_ACTIONS } from "@/constants/engagement";
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createEngagementAction as defineEngagementAction } from "@/lib/actions/engagement/engagement-action";
 import { createServerClient } from "@/lib/supabase/server";
@@ -11,7 +11,7 @@ import type { RepositoryContext } from "@/types/context";
 import { validateCreateEngagementInput } from "@/lib/engagement/validation";
 import { NotFoundError } from "@/lib/errors";
 
-import type { EngagementReportingFramework, EngagementType } from "@/types/engagement";
+import type { EngagementMemberRole, EngagementReportingFramework, EngagementType } from "@/types/engagement";
 
 export type CreateEngagementActionInput = {
   name: string;
@@ -25,6 +25,7 @@ export type CreateEngagementActionInput = {
   plannedEnd?: string | null;
   description?: string | null;
   notes?: string | null;
+  members?: Array<{ userId: string; memberRole: EngagementMemberRole }>;
 };
 
 export type CreateEngagementActionResult = {
@@ -88,6 +89,34 @@ export const createEngagementAction = defineEngagementAction<
     description: validated.description,
     notes: validated.notes,
   });
+
+  const requestedMembers = input.members ?? [];
+  const assignedUserIds = new Set<string>([context.userId]);
+
+  for (const member of requestedMembers) {
+    if (!member.userId || assignedUserIds.has(member.userId)) {
+      continue;
+    }
+
+    await repository.addMember({
+      engagementId: engagement.id,
+      organizationId: context.organizationId,
+      workspaceId: context.workspaceId,
+      userId: member.userId,
+      memberRole: member.memberRole,
+    });
+
+    await repository.logActivity({
+      engagementId: engagement.id,
+      organizationId: context.organizationId,
+      workspaceId: context.workspaceId,
+      action: ENGAGEMENT_ACTIVITY_ACTIONS.MEMBER_ADDED,
+      summary: "Team member assigned during engagement creation",
+      metadata: { userId: member.userId, memberRole: member.memberRole },
+    });
+
+    assignedUserIds.add(member.userId);
+  }
 
   const requestHeaders = await headers();
   await emitAuditEvent({

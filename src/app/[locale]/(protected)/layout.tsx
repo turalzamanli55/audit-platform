@@ -10,9 +10,11 @@ import {
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
 import { getTenantBootstrap } from "@/lib/auth/server";
-import { readCompanySlugCookie } from "@/lib/auth/tenant-cookies";
+import { readCompanySlugCookie, readEngagementSlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
+import { loadEngagementList } from "@/lib/engagement/load-engagement-list";
+import type { EngagementListLoadReason } from "@/lib/engagement/engagement-list-item";
 import { getDictionary, isValidLocale, type Locale } from "@/i18n";
 import { defaultLocale } from "@/i18n/config";
 
@@ -24,11 +26,14 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
   const headerStore = await headers();
   const localeHeader = headerStore.get("x-locale");
   const locale = (localeHeader && isValidLocale(localeHeader) ? localeHeader : defaultLocale) as Locale;
-  const [dictionary, bootstrap, companyResult, preferredCompanySlug] = await Promise.all([
+  const [dictionary, bootstrap, companyResult, engagementResult, preferredCompanySlug, preferredEngagementSlug] =
+    await Promise.all([
     getDictionary(locale),
     getTenantBootstrap(),
     loadCompanyList(),
+    loadEngagementList(),
     readCompanySlugCookie(),
+    readEngagementSlugCookie(),
   ]);
 
   const tenantBootstrap = bootstrap ?? {
@@ -49,6 +54,27 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
         slug: item.slug,
       }))
     : [];
+
+  const engagements = engagementResult.ok
+    ? engagementResult.items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        slug: item.slug,
+        companyId: item.companyId,
+        companyName: item.companyName,
+        isArchived: item.isArchived,
+      }))
+    : [];
+
+  const engagementEmptyHint =
+    engagementResult.ok ? undefined
+    : engagementResult.reason === "no_workspace" ? dictionary.engagements.noWorkspaceDescription
+    : engagementResult.reason === "forbidden" ? dictionary.engagements.forbiddenDescription
+    : undefined;
+
+  const engagementsLoadReason: EngagementListLoadReason | undefined = engagementResult.ok
+    ? undefined
+    : engagementResult.reason;
 
   const companyEmptyHint =
     companyResult.ok ? undefined
@@ -89,10 +115,15 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
             preferredCompanySlug={preferredCompanySlug}
             companiesLoadReason={companiesLoadReason}
             companyEmptyHint={companyEmptyHint}
+            engagements={engagements}
+            preferredEngagementSlug={preferredEngagementSlug}
+            engagementsLoadReason={engagementsLoadReason}
+            engagementEmptyHint={engagementEmptyHint}
             labels={{
               organization: dictionary.dashboard.organization,
               workspace: dictionary.dashboard.workspace,
               company: dictionary.shell.companySwitcher,
+              engagement: dictionary.shell.engagementSwitcher,
               themeLight: dictionary.dashboard.themeLight,
               themeDark: dictionary.dashboard.themeDark,
               theme: dictionary.dashboard.theme,

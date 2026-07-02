@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { EngagementWorkspaceError, EngagementWorkspaceLayout } from "@/components/engagement/workspace";
+import { EngagementWorkspaceError } from "@/components/engagement/workspace";
+import { EngagementWorkspaceShell } from "@/components/engagement/workspace/engagement-workspace-shell";
 import { getDictionary, type Locale } from "@/i18n";
+import { readEngagementSlugCookie } from "@/lib/auth/tenant-cookies";
 import {
   buildEngagementWorkspaceNavItems,
   buildWorkspaceHeroLabels,
@@ -21,7 +23,10 @@ export default async function EngagementWorkspaceRouteLayout({
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const labels = dictionary.engagements.workspace;
-  const result = await loadEngagementWorkspacePage(slug);
+  const [result, preferredEngagementSlug] = await Promise.all([
+    loadEngagementWorkspacePage(slug),
+    readEngagementSlugCookie(),
+  ]);
 
   if (!result.ok) {
     if (result.reason === "not_found") {
@@ -59,14 +64,16 @@ export default async function EngagementWorkspaceRouteLayout({
   const { engagement } = result;
 
   return (
-    <EngagementWorkspaceLayout
+    <EngagementWorkspaceShell
       locale={locale}
-      engagement={engagement}
+      initialEngagement={engagement}
+      preferredEngagementSlug={preferredEngagementSlug}
       heroLabels={buildWorkspaceHeroLabels(labels, dictionary.engagements)}
+      engagementsLabels={dictionary.engagements}
       navItems={buildEngagementWorkspaceNavItems(locale, engagement.slug, labels)}
       navAriaLabel={labels.navAriaLabel}
     >
       {children}
-    </EngagementWorkspaceLayout>
+    </EngagementWorkspaceShell>
   );
 }

@@ -19,6 +19,7 @@ export type Dictionary = {
     foundation: string;
     searchPlaceholder: string;
     companySwitcher: string;
+    engagementSwitcher: string;
     language: string;
     notifications: string;
     notificationsEmpty: string;
@@ -611,8 +612,20 @@ export type Dictionary = {
       autosaveHint: string;
       forbiddenTitle: string;
       forbiddenDescription: string;
-      teamPlaceholderTitle: string;
-      teamPlaceholderDescription: string;
+      teamHelper: string;
+      teamEmptyTitle: string;
+      teamEmptyDescription: string;
+      teamReviewLabel: string;
+      teamReviewEmpty: string;
+      teamRoles: Record<
+        | "engagement_partner"
+        | "engagement_manager"
+        | "senior"
+        | "staff"
+        | "reviewer"
+        | "observer",
+        string
+      >;
       engagementTypes: Record<
         "statutory_audit" | "review" | "agreed_upon_procedures" | "advisory" | "other",
         string
@@ -641,6 +654,34 @@ export type Dictionary = {
       metadataCreated: string;
       metadataPlannedDates: string;
       metadataMembers: string;
+      planning: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+      };
+      client: {
+        title: string;
+        description: string;
+        companyName: string;
+        companySlug: string;
+        engagementName: string;
+        engagementCode: string;
+        viewClient: string;
+      };
+      status: {
+        title: string;
+        description: string;
+        progressLabel: string;
+      };
+      information: {
+        title: string;
+        description: string;
+        reportingPeriod: string;
+        internalNotes: string;
+      };
       sections: {
         overview: {
           title: string;
@@ -708,8 +749,9 @@ export type Dictionary = {
       description: string;
       emptyTitle: string;
       emptyDescription: string;
-      memberIdHint: string;
-      placeholderNote: string;
+      joinedLabel: string;
+      forbiddenTitle: string;
+      forbiddenDescription: string;
       roles: Record<
         | "engagement_partner"
         | "engagement_manager"

@@ -1,7 +1,7 @@
 import "server-only";
 
 import type { Database } from "@/types/supabase";
-import type { EngagementMember } from "@/repositories/engagement/engagement-repository";
+import type { EngagementMemberView } from "@/lib/engagement/engagement-member-view";
 
 export type EngagementWorkspaceView = {
   id: string;
@@ -26,7 +26,7 @@ export type EngagementWorkspaceView = {
   version: number;
   isArchived: boolean;
   deletedAt: string | null;
-  members: EngagementMember[];
+  members: EngagementMemberView[];
   memberCount: number;
 };
 

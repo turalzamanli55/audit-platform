@@ -18,7 +18,9 @@ import {
 } from "@/components/shell/shell-drawer-context";
 import { ShellSidebarUserFooter } from "@/components/shell/shell-sidebar-user-footer";
 import type { CompanySwitcherItem } from "@/components/shell/company-switcher";
+import type { EngagementSwitcherItem } from "@/components/shell/engagement-switcher";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
+import type { EngagementListLoadReason } from "@/lib/engagement/engagement-list-item";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardNavItem } from "@/config/dashboard-navigation";
 import { COMPANIES_PATH, ENGAGEMENTS_PATH } from "@/config/dashboard-navigation";
@@ -48,6 +50,10 @@ type AppShellExperienceProps = {
   preferredCompanySlug?: string | null;
   companiesLoadReason?: CompanyListLoadReason;
   companyEmptyHint?: string;
+  engagements: EngagementSwitcherItem[];
+  preferredEngagementSlug?: string | null;
+  engagementsLoadReason?: EngagementListLoadReason;
+  engagementEmptyHint?: string;
   dashboardCommands: DashboardWorkspaceLabels["personalization"]["commands"];
 };
 
@@ -182,6 +188,10 @@ export function AppShellExperience({
   preferredCompanySlug,
   companiesLoadReason,
   companyEmptyHint,
+  engagements,
+  preferredEngagementSlug,
+  engagementsLoadReason,
+  engagementEmptyHint,
   dashboardCommands,
 }: AppShellExperienceProps) {
   const router = useRouter();
@@ -240,6 +250,7 @@ export function AppShellExperience({
     organization: labels.organization,
     workspace: labels.workspace,
     company: labels.company,
+    engagement: labels.engagement,
     contextTitle: labels.drawerContextTitle,
   };
 
@@ -260,6 +271,10 @@ export function AppShellExperience({
           preferredCompanySlug={preferredCompanySlug}
           companiesLoadReason={companiesLoadReason}
           companyEmptyHint={companyEmptyHint}
+          engagements={engagements}
+          preferredEngagementSlug={preferredEngagementSlug}
+          engagementsLoadReason={engagementsLoadReason}
+          engagementEmptyHint={engagementEmptyHint}
         />
       }
       sidebar={<DashboardNav items={navItems} />}
@@ -271,6 +286,10 @@ export function AppShellExperience({
           preferredCompanySlug={preferredCompanySlug}
           companiesLoadReason={companiesLoadReason}
           companyEmptyHint={companyEmptyHint}
+          engagements={engagements}
+          preferredEngagementSlug={preferredEngagementSlug}
+          engagementsLoadReason={engagementsLoadReason}
+          engagementEmptyHint={engagementEmptyHint}
         />
       }
       overlay={

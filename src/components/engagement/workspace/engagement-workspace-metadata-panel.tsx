@@ -12,6 +12,7 @@ type EngagementWorkspaceMetadataPanelProps = {
   description?: string;
   items: EngagementWorkspaceMetadataItem[];
   className?: string;
+  embedded?: boolean;
 };
 
 export function EngagementWorkspaceMetadataPanel({
@@ -19,16 +20,19 @@ export function EngagementWorkspaceMetadataPanel({
   description,
   items,
   className = "",
+  embedded = false,
 }: EngagementWorkspaceMetadataPanelProps) {
   return (
     <Card className={`border-border/60 p-0 shadow-xs ${className}`}>
-      <CardHeader className="space-y-1 p-6 pb-0">
-        <CardTitle className="text-lg font-semibold sm:text-xl">{title}</CardTitle>
-        {description ? (
-          <CardDescription className="text-sm leading-relaxed">{description}</CardDescription>
-        ) : null}
-      </CardHeader>
-      <dl className="divide-y divide-border/40 p-6 pt-5">
+      {embedded ? null : (
+        <CardHeader className="space-y-1 p-6 pb-0">
+          <CardTitle className="text-lg font-semibold sm:text-xl">{title}</CardTitle>
+          {description ? (
+            <CardDescription className="text-sm leading-relaxed">{description}</CardDescription>
+          ) : null}
+        </CardHeader>
+      )}
+      <dl className={`divide-y divide-border/40 p-6 ${embedded ? "pt-6" : "pt-5"}`}>
         {items.map((item) => (
           <div
             key={item.id}

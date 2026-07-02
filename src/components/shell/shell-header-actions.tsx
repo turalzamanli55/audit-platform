@@ -4,19 +4,24 @@ import { usePathname, useRouter } from "next/navigation";
 import { OrganizationSwitcher } from "@/components/dashboard/organization-switcher";
 import { WorkspaceSwitcher } from "@/components/dashboard/workspace-switcher";
 import { CompanySwitcher, type CompanySwitcherItem } from "./company-switcher";
+import { EngagementSwitcher, type EngagementSwitcherItem } from "./engagement-switcher";
+import { useActiveCompany } from "@/hooks/use-active-company";
+import { useActiveEngagement } from "@/hooks/use-active-engagement";
+import { switchCompanyAction } from "@/lib/actions/tenant/switch-company";
+import { switchEngagementAction } from "@/lib/actions/tenant/switch-engagement";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeSwitcher } from "./theme-switcher";
 import { NotificationMenu } from "./notification-menu";
 import { UserMenu } from "./user-menu";
-import { useActiveCompany } from "@/hooks/use-active-company";
-import { switchCompanyAction } from "@/lib/actions/tenant/switch-company";
 import { defaultLocale, isValidLocale } from "@/i18n";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
+import type { EngagementListLoadReason } from "@/lib/engagement/engagement-list-item";
 
 export type ShellHeaderActionsLabels = {
   organization: string;
   workspace: string;
   company: string;
+  engagement: string;
   theme: string;
   themeLight: string;
   themeDark: string;
@@ -36,6 +41,10 @@ type ShellHeaderActionsProps = {
   preferredCompanySlug?: string | null;
   companiesLoadReason?: CompanyListLoadReason;
   companyEmptyHint?: string;
+  engagements: EngagementSwitcherItem[];
+  preferredEngagementSlug?: string | null;
+  engagementsLoadReason?: EngagementListLoadReason;
+  engagementEmptyHint?: string;
 };
 
 function resolveLocale(pathname: string): string {
@@ -43,8 +52,8 @@ function resolveLocale(pathname: string): string {
   return segment && isValidLocale(segment) ? segment : defaultLocale;
 }
 
-function resolveCompanyEmptyLabel(
-  reason: CompanyListLoadReason | undefined,
+function resolveEmptyLabel(
+  reason: CompanyListLoadReason | EngagementListLoadReason | undefined,
   hint?: string,
 ): string {
   if (hint) return hint;
@@ -59,11 +68,20 @@ export function ShellHeaderActions({
   preferredCompanySlug,
   companiesLoadReason,
   companyEmptyHint,
+  engagements,
+  preferredEngagementSlug,
+  engagementsLoadReason,
+  engagementEmptyHint,
 }: ShellHeaderActionsProps) {
   const pathname = usePathname();
   const router = useRouter();
   const locale = resolveLocale(pathname);
   const currentCompany = useActiveCompany(companies, preferredCompanySlug);
+  const currentEngagement = useActiveEngagement(
+    engagements,
+    preferredEngagementSlug,
+    currentCompany?.id ?? null,
+  );
 
   const userLabels = {
     title: labels.userMenu,
@@ -88,6 +106,17 @@ export function ShellHeaderActions({
     router.push(`/${locale}/app/companies/${company.slug}`);
   }
 
+  async function handleEngagementSelect(id: string) {
+    const engagement = engagements.find((item) => item.id === id);
+    if (!engagement?.slug) return;
+
+    const result = await switchEngagementAction({ slug: engagement.slug });
+    if (!result.success) {
+      return;
+    }
+    router.push(`/${locale}/app/engagements/${engagement.slug}`);
+  }
+
   return (
     <div className="flex items-center gap-0.5 max-lg:gap-px sm:gap-1">
       <div className="hidden items-center gap-0.5 lg:flex">
@@ -97,8 +126,17 @@ export function ShellHeaderActions({
           label={labels.company}
           items={companies}
           currentId={currentCompany?.id ?? null}
-          emptyLabel={resolveCompanyEmptyLabel(companiesLoadReason, companyEmptyHint)}
+          emptyLabel={resolveEmptyLabel(companiesLoadReason, companyEmptyHint)}
           onSelect={handleCompanySelect}
+        />
+        <EngagementSwitcher
+          label={labels.engagement}
+          items={engagements.filter(
+            (item) => !currentCompany?.id || item.companyId === currentCompany.id,
+          )}
+          currentId={currentEngagement?.id ?? null}
+          emptyLabel={resolveEmptyLabel(engagementsLoadReason, engagementEmptyHint)}
+          onSelect={handleEngagementSelect}
         />
       </div>
 

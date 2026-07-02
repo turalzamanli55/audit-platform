@@ -3,10 +3,7 @@ import { ENGAGEMENT_PERMISSIONS } from "@/constants/engagement";
 import { getCurrentUser } from "@/lib/auth/server";
 import { authorizePermissionCodes } from "@/lib/auth/permissions";
 import { getDictionary, type Locale } from "@/i18n";
-import {
-  generateEngagementWorkspaceMetadata,
-  requireEngagementWorkspace,
-} from "@/lib/engagement/engagement-workspace-page";
+import { generateEngagementWorkspaceMetadata } from "@/lib/engagement/engagement-workspace-page";
 
 type EngagementSettingsPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -18,9 +15,8 @@ export async function generateMetadata({ params }: EngagementSettingsPageProps) 
 }
 
 export default async function EngagementSettingsPage({ params }: EngagementSettingsPageProps) {
-  const { locale: localeParam, slug } = await params;
+  const { locale: localeParam } = await params;
   const dictionary = await getDictionary(localeParam as Locale);
-  const engagement = await requireEngagementWorkspace(slug);
   const user = await getCurrentUser();
   const canUpdate = user
     ? authorizePermissionCodes(user.permissionCodes, ENGAGEMENT_PERMISSIONS.UPDATE)
@@ -31,7 +27,6 @@ export default async function EngagementSettingsPage({ params }: EngagementSetti
 
   return (
     <EngagementSettingsExperience
-      engagement={engagement}
       canUpdate={canUpdate}
       canArchive={canArchive}
       labels={dictionary.engagements.settings}

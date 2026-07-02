@@ -7,6 +7,7 @@ import { EngagementEmptyState, EngagementPageShell } from "@/components/engageme
 import { ENGAGEMENT_PERMISSIONS } from "@/constants/engagement";
 import { getDictionary, type Locale } from "@/i18n";
 import { loadCompanyList } from "@/lib/company/load-company-list";
+import { loadWorkspaceMemberDirectory } from "@/lib/engagement/load-workspace-member-directory";
 
 type EngagementCreatePageProps = {
   params: Promise<{ locale: string }>;
@@ -29,13 +30,17 @@ export default async function EngagementCreatePage({ params }: EngagementCreateP
   const dictionary = await getDictionary(locale);
   const labels = dictionary.engagements.create;
 
-  const listResult = await loadCompanyList();
+  const [listResult, memberDirectoryResult] = await Promise.all([
+    loadCompanyList(),
+    loadWorkspaceMemberDirectory(),
+  ]);
   const companyOptions =
     listResult.ok === true
       ? listResult.items
           .filter((company) => !company.isArchived)
           .map((company) => ({ id: company.id, name: company.name }))
       : [];
+  const workspaceMembers = memberDirectoryResult.ok ? memberDirectoryResult.items : [];
 
   return (
     <PermissionGuard
@@ -61,6 +66,7 @@ export default async function EngagementCreatePage({ params }: EngagementCreateP
         locale={locale}
         labels={labels}
         companyOptions={companyOptions}
+        workspaceMembers={workspaceMembers}
         engagementsLabels={dictionary.engagements}
       />
     </PermissionGuard>

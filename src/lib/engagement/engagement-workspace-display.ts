@@ -1,3 +1,4 @@
+import type { EngagementLifecycleStatus } from "@/types/engagement";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { EngagementWorkspaceNavItem } from "@/components/engagement/workspace/engagement-workspace-sidebar";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
@@ -11,8 +12,132 @@ import {
 } from "@/lib/engagement/format-engagement-workspace";
 
 export type EngagementWorkspaceSection = "overview" | "members" | "history" | "settings";
-
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
+
+const LIFECYCLE_PROGRESS: Record<EngagementLifecycleStatus, number> = {
+  draft: 10,
+  planning: 25,
+  fieldwork: 50,
+  review: 75,
+  completed: 90,
+  closed: 100,
+};
+
+export function computeLifecycleProgress(
+  lifecycleStatus: EngagementLifecycleStatus,
+): number {
+  return LIFECYCLE_PROGRESS[lifecycleStatus] ?? 0;
+}
+
+export function buildPlanningSummaryItems(
+  engagement: EngagementWorkspaceView,
+  locale: string,
+  labels: EngagementWorkspaceLabels,
+  engagementsLabels: Dictionary["engagements"],
+) {
+  return [
+    {
+      id: "lifecycle",
+      label: labels.planning.lifecycleStage,
+      value: formatLifecycleStatusLabel(
+        engagement.lifecycleStatus,
+        engagementsLabels.lifecycleStatuses,
+      ),
+    },
+    {
+      id: "period",
+      label: labels.planning.financialYear,
+      value: formatDateRange(engagement.periodStart, engagement.periodEnd, locale),
+    },
+    {
+      id: "planned",
+      label: labels.planning.plannedSchedule,
+      value: formatDateRange(engagement.plannedStart, engagement.plannedEnd, locale),
+    },
+    {
+      id: "members",
+      label: labels.planning.teamSize,
+      value: String(engagement.memberCount),
+    },
+  ];
+}
+
+export function buildClientInformationItems(
+  engagement: EngagementWorkspaceView,
+  locale: string,
+  labels: EngagementWorkspaceLabels,
+) {
+  return [
+    {
+      id: "client",
+      label: labels.client.companyName,
+      value: engagement.companyName,
+    },
+    {
+      id: "slug",
+      label: labels.client.companySlug,
+      value: engagement.companySlug || formatOptionalText(null),
+    },
+    {
+      id: "engagement",
+      label: labels.client.engagementName,
+      value: engagement.name,
+    },
+    {
+      id: "code",
+      label: labels.client.engagementCode,
+      value: formatOptionalText(engagement.engagementCode),
+    },
+  ];
+}
+
+export function buildEngagementInformationItems(
+  engagement: EngagementWorkspaceView,
+  locale: string,
+  labels: EngagementWorkspaceLabels,
+  engagementsLabels: Dictionary["engagements"],
+) {
+  return [
+    {
+      id: "type",
+      label: engagementsLabels.columnType,
+      value: formatEngagementTypeLabel(
+        engagement.engagementType,
+        engagementsLabels.create.engagementTypes,
+      ),
+    },
+    {
+      id: "framework",
+      label: engagementsLabels.columnFramework,
+      value: formatFrameworkLabel(engagement.reportingFramework, engagementsLabels),
+    },
+    {
+      id: "lifecycle",
+      label: engagementsLabels.columnLifecycle,
+      value: formatLifecycleStatusLabel(
+        engagement.lifecycleStatus,
+        engagementsLabels.lifecycleStatuses,
+      ),
+    },
+    {
+      id: "status",
+      label: engagementsLabels.columnStatus,
+      value: engagement.isArchived
+        ? engagementsLabels.filterArchived
+        : engagementsLabels.filterActive,
+    },
+    {
+      id: "period",
+      label: labels.information.reportingPeriod,
+      value: formatDateRange(engagement.periodStart, engagement.periodEnd, locale),
+    },
+    {
+      id: "notes",
+      label: labels.information.internalNotes,
+      value: formatOptionalText(engagement.notes),
+    },
+  ];
+}
 
 export function buildEngagementWorkspaceNavItems(
   locale: string,

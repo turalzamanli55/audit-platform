@@ -1,24 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
-import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
+import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Alert } from "@/components/ui";
 import {
+  buildClientInformationItems,
+  buildEngagementInformationItems,
   buildOverviewMetadataItems,
   buildOverviewSummaryCards,
+  buildPlanningSummaryItems,
+  computeLifecycleProgress,
 } from "@/lib/engagement/engagement-workspace-display";
-import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
-import { EngagementWorkspaceMetadataPanel } from "@/components/engagement/workspace/engagement-workspace-metadata-panel";
-import { EngagementWorkspaceSectionShell } from "@/components/engagement/workspace/engagement-workspace-section-shell";
-import { EngagementWorkspaceSummaryCards } from "@/components/engagement/workspace/engagement-workspace-summary-cards";
+import { formatLifecycleStatusLabel, formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
+import {
+  EngagementWorkspaceClientPanel,
+  EngagementWorkspaceLifecycleProgress,
+  EngagementWorkspaceMetadataPanel,
+  EngagementWorkspaceSectionShell,
+  EngagementWorkspaceSummaryCards,
+} from "@/components/engagement/workspace";
 
 type EngagementWorkspaceOverviewExperienceProps = {
-  engagement: EngagementWorkspaceView;
   locale: string;
   canUpdate: boolean;
   labels: Dictionary["engagements"]["workspace"];
@@ -27,7 +34,6 @@ type EngagementWorkspaceOverviewExperienceProps = {
 };
 
 export function EngagementWorkspaceOverviewExperience({
-  engagement: initialEngagement,
   locale,
   canUpdate,
   labels,
@@ -35,30 +41,33 @@ export function EngagementWorkspaceOverviewExperience({
   overviewLabels,
 }: EngagementWorkspaceOverviewExperienceProps) {
   const router = useRouter();
-  const [engagement, setEngagement] = useState(initialEngagement);
-  const [description, setDescription] = useState(initialEngagement.description ?? "");
+  const { engagement, refreshEngagement } = useEngagementWorkspace();
+  const [editingDescription, setEditingDescription] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  const description = isEditing
+    ? (editingDescription ?? "")
+    : (engagement.description ?? "");
+
   const summaryCards = buildOverviewSummaryCards(engagement, locale, labels, engagementsLabels);
   const metadataItems = buildOverviewMetadataItems(engagement, locale, labels, engagementsLabels);
-  const isDirty = description !== (engagement.description ?? "");
+  const planningItems = buildPlanningSummaryItems(engagement, locale, labels, engagementsLabels);
+  const clientItems = buildClientInformationItems(engagement, locale, labels);
+  const informationItems = buildEngagementInformationItems(
+    engagement,
+    locale,
+    labels,
+    engagementsLabels,
+  );
+  const lifecycleProgress = computeLifecycleProgress(engagement.lifecycleStatus);
+  const lifecycleLabel = formatLifecycleStatusLabel(
+    engagement.lifecycleStatus,
+    engagementsLabels.lifecycleStatuses,
+  );
+  const isDirty = isEditing && editingDescription !== (engagement.description ?? "");
   const canEdit = canUpdate && !engagement.isArchived;
-
-  const serverSyncKey = `${initialEngagement.id}:${initialEngagement.version}:${initialEngagement.updatedAt}:${initialEngagement.isArchived}`;
-  const syncedKeyRef = useRef(serverSyncKey);
-
-  useEffect(() => {
-    if (syncedKeyRef.current === serverSyncKey) {
-      return;
-    }
-    syncedKeyRef.current = serverSyncKey;
-    setEngagement(initialEngagement);
-    setDescription(initialEngagement.description ?? "");
-    setIsEditing(false);
-    setError(null);
-  }, [initialEngagement, serverSyncKey]);
 
   const saveDescription = () => {
     startTransition(async () => {
@@ -74,13 +83,14 @@ export function EngagementWorkspaceOverviewExperience({
         return;
       }
 
-      setEngagement((current) => ({
-        ...current,
+      refreshEngagement({
+        ...engagement,
         description: description.trim() || null,
         version: result.data.version,
         updatedAt: new Date().toISOString(),
-      }));
+      });
       setIsEditing(false);
+      setEditingDescription(null);
       router.refresh();
     });
   };
@@ -93,6 +103,43 @@ export function EngagementWorkspaceOverviewExperience({
         headingId="engagement-workspace-overview"
       >
         <EngagementWorkspaceSummaryCards cards={summaryCards} />
+      </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceSectionShell
+        title={labels.status.title}
+        description={labels.status.description}
+        headingId="engagement-workspace-status"
+      >
+        <EngagementWorkspaceLifecycleProgress
+          lifecycleStatus={engagement.lifecycleStatus}
+          lifecycleLabel={lifecycleLabel}
+          progressLabel={labels.status.progressLabel}
+          percent={lifecycleProgress}
+        />
+      </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceSectionShell
+        title={labels.planning.title}
+        description={labels.planning.description}
+        headingId="engagement-workspace-planning"
+      >
+        <EngagementWorkspaceMetadataPanel title={labels.planning.title} items={planningItems} embedded />
+      </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceSectionShell
+        title={labels.client.title}
+        description={labels.client.description}
+        headingId="engagement-workspace-client"
+      >
+        <EngagementWorkspaceClientPanel
+          locale={locale}
+          title={labels.client.title}
+          description={labels.client.description}
+          items={clientItems}
+          companySlug={engagement.companySlug}
+          companyName={engagement.companyName}
+          viewClientLabel={labels.client.viewClient}
+        />
       </EngagementWorkspaceSectionShell>
 
       <EngagementWorkspaceSectionShell
@@ -116,7 +163,7 @@ export function EngagementWorkspaceOverviewExperience({
                 id="overview-description"
                 name="overview-description"
                 value={description}
-                onChange={(event) => setDescription(event.target.value)}
+                onChange={(event) => setEditingDescription(event.target.value)}
               />
               <div className="flex flex-wrap gap-2">
                 <Button type="button" onClick={saveDescription} disabled={isPending || !isDirty}>
@@ -126,7 +173,7 @@ export function EngagementWorkspaceOverviewExperience({
                   type="button"
                   variant="secondary"
                   onClick={() => {
-                    setDescription(engagement.description ?? "");
+                    setEditingDescription(null);
                     setIsEditing(false);
                     setError(null);
                   }}
@@ -144,7 +191,14 @@ export function EngagementWorkspaceOverviewExperience({
                   : labels.sections.overview.noDescription}
               </p>
               {canEdit ? (
-                <Button type="button" variant="secondary" onClick={() => setIsEditing(true)}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    setEditingDescription(engagement.description ?? "");
+                    setIsEditing(true);
+                  }}
+                >
                   {overviewLabels.editDescription}
                 </Button>
               ) : null}
@@ -173,6 +227,12 @@ export function EngagementWorkspaceOverviewExperience({
           </dl>
         </div>
       </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceMetadataPanel
+        title={labels.information.title}
+        description={labels.information.description}
+        items={informationItems}
+      />
 
       <EngagementWorkspaceMetadataPanel
         title={labels.metadataTitle}

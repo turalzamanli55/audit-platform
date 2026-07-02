@@ -20,6 +20,8 @@ import {
   type WizardFieldErrors,
 } from "@/lib/engagement/wizard-step-validation";
 import { EngagementBreadcrumb, EngagementPageShell } from "@/components/engagement";
+import { EngagementTeamStep } from "@/components/engagement/create/engagement-team-step";
+import type { WorkspaceMemberDirectoryItem } from "@/lib/engagement/load-workspace-member-directory";
 import { Alert, Input } from "@/components/ui";
 import {
   WizardField,
@@ -46,6 +48,7 @@ type EngagementCreateWizardProps = {
   locale: string;
   labels: EngagementCreateLabels;
   companyOptions: CompanyOption[];
+  workspaceMembers: WorkspaceMemberDirectoryItem[];
   engagementsLabels: Dictionary["engagements"];
 };
 
@@ -53,6 +56,7 @@ export function EngagementCreateWizard({
   locale,
   labels,
   companyOptions,
+  workspaceMembers,
   engagementsLabels,
 }: EngagementCreateWizardProps) {
   const router = useRouter();
@@ -312,12 +316,12 @@ export function EngagementCreateWizard({
             description={labels.stepTeamDescription}
             visible={draft.step === 4}
           >
-            <div className="rounded-2xl border border-dashed border-border/70 bg-muted/15 px-6 py-8">
-              <p className="text-sm font-medium text-foreground">{labels.teamPlaceholderTitle}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {labels.teamPlaceholderDescription}
-              </p>
-            </div>
+            <EngagementTeamStep
+              draft={draft}
+              members={workspaceMembers}
+              labels={labels}
+              onChange={(teamMembers) => setField("teamMembers", teamMembers)}
+            />
           </WizardStepPanel>
 
           <WizardStepPanel
@@ -394,6 +398,20 @@ export function EngagementCreateWizard({
                 value={formatEngagementTypeLabel(draft.engagementType, labels.engagementTypes)}
               />
               <ReviewRow label={labels.clientCompany} value={selectedCompany?.name ?? "—"} />
+              <ReviewRow
+                label={labels.teamReviewLabel}
+                value={
+                  draft.teamMembers.length === 0
+                    ? labels.teamReviewEmpty
+                    : draft.teamMembers
+                        .map((member) => {
+                          const person = workspaceMembers.find((item) => item.userId === member.userId);
+                          const roleLabel = labels.teamRoles[member.memberRole] ?? member.memberRole;
+                          return `${person?.displayName ?? member.userId} (${roleLabel})`;
+                        })
+                        .join(", ")
+                }
+              />
               <ReviewRow
                 label={labels.reportingFramework}
                 value={formatFrameworkLabel(draft.reportingFramework, engagementsLabels)}
