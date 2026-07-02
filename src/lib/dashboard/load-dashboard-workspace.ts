@@ -7,6 +7,7 @@ import { readCompanySlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
 import { loadEngagementList } from "@/lib/engagement/load-engagement-list";
 import { resolveActiveCompany } from "@/lib/company/resolve-active-company";
+import { loadFieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
 import { resolveTimeOfDay } from "./workspace-greeting";
 
 export type DashboardWorkspaceCompany = {
@@ -47,12 +48,14 @@ export async function loadDashboardWorkspace(
   locale: Locale,
   labels: DashboardWorkspaceLabels,
 ): Promise<DashboardWorkspaceViewModel> {
-  const [user, bootstrap, companyResult, preferredCompanySlug, engagementResult] = await Promise.all([
+  const [user, bootstrap, companyResult, preferredCompanySlug, engagementResult, fieldworkMetrics] =
+    await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
     loadCompanyList(),
     readCompanySlugCookie(),
     loadEngagementList(),
+    loadFieldworkDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -97,7 +100,10 @@ export async function loadDashboardWorkspace(
     kpi: {
       companies: companyCount > 0 ? String(companyCount) : "—",
       engagements: engagementCount > 0 ? String(engagementCount) : "—",
-      openTasks: String(labels.tasks.items.length),
+      openTasks:
+        fieldworkMetrics && fieldworkMetrics.pendingReview > 0
+          ? String(fieldworkMetrics.pendingReview)
+          : String(labels.tasks.items.length),
       reports: "—",
       aiSuggestions: String(labels.ai.suggestions.length),
     },

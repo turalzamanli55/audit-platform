@@ -75,7 +75,7 @@ export async function loadFieldworkWorkspace(
       };
     }
 
-    const [programs, groups, procedures, workingPapers, evidence, findings, notes] =
+    const [programs, groups, procedures, workingPapers, evidence, findings, notes, tickmarkLibrary] =
       await Promise.all([
         fieldworkRepository.listPrograms(pkg.id),
         fieldworkRepository.listProcedureGroups(pkg.id),
@@ -84,6 +84,7 @@ export async function loadFieldworkWorkspace(
         fieldworkRepository.listEvidence(pkg.id),
         fieldworkRepository.listFindings(pkg.id),
         fieldworkRepository.listNotes(pkg.id),
+        fieldworkRepository.listTickmarkLibrary(workspace.workspaceId),
       ]);
 
     return {
@@ -99,6 +100,7 @@ export async function loadFieldworkWorkspace(
         evidence,
         findings,
         notes,
+        tickmarkLibrary,
       ),
       engagementSlug: engagement.slug,
       planningApproved,

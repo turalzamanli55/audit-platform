@@ -4,6 +4,14 @@ import type { AuditProcedure } from "@/repositories/fieldwork/fieldwork-reposito
 import { COMPLETE_PROCEDURE_STATUSES } from "@/constants/fieldwork";
 import { ValidationError } from "@/lib/errors";
 
+const SUBMITTABLE_PROCEDURE_STATUSES = [
+  "in_progress",
+  "pending_evidence",
+  "returned",
+] as const;
+
+const REVIEWABLE_PROCEDURE_STATUSES = ["submitted_for_review", "review_in_progress"] as const;
+
 export function isPlanningApproved(plan: Pick<AuditPlan, "planning_status">): boolean {
   return plan.planning_status === "approved";
 }
@@ -64,4 +72,50 @@ export function isProcedureComplete(status: AuditProcedure["procedure_status"]):
   return COMPLETE_PROCEDURE_STATUSES.includes(
     status as (typeof COMPLETE_PROCEDURE_STATUSES)[number],
   );
+}
+
+export function assertCanSubmitProcedure(procedure: Pick<AuditProcedure, "procedure_status">): void {
+  if (
+    !SUBMITTABLE_PROCEDURE_STATUSES.includes(
+      procedure.procedure_status as (typeof SUBMITTABLE_PROCEDURE_STATUSES)[number],
+    )
+  ) {
+    throw new ValidationError(
+      "Only in-progress, pending-evidence, or returned procedures can be submitted for review.",
+    );
+  }
+}
+
+export function assertCanReturnProcedure(procedure: Pick<AuditProcedure, "procedure_status">): void {
+  if (
+    !REVIEWABLE_PROCEDURE_STATUSES.includes(
+      procedure.procedure_status as (typeof REVIEWABLE_PROCEDURE_STATUSES)[number],
+    )
+  ) {
+    throw new ValidationError("Only procedures pending review can be returned.");
+  }
+}
+
+export function assertCanClearProcedure(procedure: Pick<AuditProcedure, "procedure_status">): void {
+  if (
+    !REVIEWABLE_PROCEDURE_STATUSES.includes(
+      procedure.procedure_status as (typeof REVIEWABLE_PROCEDURE_STATUSES)[number],
+    )
+  ) {
+    throw new ValidationError("Only procedures pending review can be cleared.");
+  }
+}
+
+export function assertCanCompleteProcedure(procedure: Pick<AuditProcedure, "procedure_status">): void {
+  if (procedure.procedure_status !== "review_cleared") {
+    throw new ValidationError(
+      "Procedures require review clearance before completion (WP-02).",
+    );
+  }
+}
+
+export function countCompleteProcedures(
+  procedures: Pick<AuditProcedure, "procedure_status">[],
+): number {
+  return procedures.filter((p) => isProcedureComplete(p.procedure_status)).length;
 }

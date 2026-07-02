@@ -7,6 +7,7 @@ import {
   buildFieldworkStatusItems,
 } from "@/lib/fieldwork/fieldwork-workspace-display";
 import { FieldworkCreateExperience } from "@/components/fieldwork/create/fieldwork-create-experience";
+import { FieldworkReviewQueuePanel } from "@/components/fieldwork/workflow/fieldwork-review-queue-panel";
 import { FieldworkWorkspaceSectionShell } from "@/components/fieldwork/workspace/fieldwork-workspace-section-shell";
 
 type FieldworkOverviewExperienceProps = {
@@ -64,6 +65,12 @@ export function FieldworkOverviewExperience({
           ))}
         </div>
       </FieldworkWorkspaceSectionShell>
+
+      <FieldworkReviewQueuePanel
+        fieldwork={fieldwork}
+        labels={fieldworkLabels.workflow}
+        fieldworkLabels={fieldworkLabels}
+      />
 
       <FieldworkWorkspaceSectionShell
         title={labels.status.title}

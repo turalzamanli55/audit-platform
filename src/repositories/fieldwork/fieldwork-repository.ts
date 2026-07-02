@@ -29,6 +29,7 @@ export type FieldworkEvidence = Tables<"fieldwork_evidence">;
 export type FieldworkFinding = Tables<"fieldwork_findings">;
 export type FieldworkNote = Tables<"fieldwork_notes">;
 export type FieldworkActivity = Tables<"fieldwork_activity">;
+export type FieldworkTickmarkLibraryEntry = Tables<"fieldwork_tickmark_library">;
 
 export type CreateFieldworkPackageInput = Pick<
   TablesInsert<"fieldwork_packages">,
@@ -372,6 +373,353 @@ export class FieldworkRepository extends AuthenticatedRepository {
     return unwrapSupabaseList(result);
   }
 
+  async findProcedureById(procedureId: string): Promise<AuditProcedure | null> {
+    const result = await applyActiveFilter(
+      this.client.from("audit_procedures").select("*").eq("id", procedureId),
+    ).maybeSingle();
+    return unwrapSupabaseMaybeSingle(result);
+  }
+
+  async findWorkingPaperById(workingPaperId: string): Promise<WorkingPaper | null> {
+    const result = await applyActiveFilter(
+      this.client.from("working_papers").select("*").eq("id", workingPaperId),
+    ).maybeSingle();
+    return unwrapSupabaseMaybeSingle(result);
+  }
+
+  async assignProcedure(
+    procedureId: string,
+    expectedVersion: number,
+    assignedAuditorId: string | null,
+    dueDate?: string | null,
+  ): Promise<AuditProcedure> {
+    const procedure = await this.updateProcedure(procedureId, expectedVersion, {
+      assigned_auditor_id: assignedAuditorId,
+      due_date: dueDate,
+    });
+
+    await this.logActivity({
+      fieldworkPackageId: procedure.fieldwork_package_id,
+      engagementId: procedure.engagement_id,
+      organizationId: procedure.organization_id,
+      workspaceId: procedure.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_ASSIGNED,
+      summary: assignedAuditorId
+        ? "Audit procedure assigned to auditor"
+        : "Audit procedure assignment cleared",
+      metadata: { procedureId, assignedAuditorId },
+    });
+
+    return procedure;
+  }
+
+  async submitProcedureForReview(
+    procedureId: string,
+    expectedVersion: number,
+  ): Promise<AuditProcedure> {
+    const existing = await this.findProcedureById(procedureId);
+    if (!existing) throw new NotFoundError("Audit procedure not found", { id: procedureId });
+    assertVersionMatch(existing.version, expectedVersion, "AuditProcedure");
+
+    const now = new Date().toISOString();
+    const result = await applyActiveFilter(
+      this.client
+        .from("audit_procedures")
+        .update({
+          procedure_status: "submitted_for_review",
+          completion_pct: this.computeProcedureCompletion("submitted_for_review"),
+          submitted_at: now,
+          submitted_by: this.userId,
+          returned_at: null,
+          returned_by: null,
+          return_notes: null,
+        })
+        .eq("id", procedureId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const procedure = requireRow(unwrapSupabaseMaybeSingle(result), "AuditProcedure", procedureId);
+
+    await this.logActivity({
+      fieldworkPackageId: procedure.fieldwork_package_id,
+      engagementId: procedure.engagement_id,
+      organizationId: procedure.organization_id,
+      workspaceId: procedure.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_SUBMITTED,
+      summary: `Procedure "${procedure.title}" submitted for review`,
+      metadata: { procedureId },
+    });
+
+    await this.recomputeProgress(procedure.fieldwork_package_id);
+    await this.recomputeGroupProgress(procedure.procedure_group_id);
+    return procedure;
+  }
+
+  async returnProcedure(
+    procedureId: string,
+    expectedVersion: number,
+    returnNotes: string | null,
+  ): Promise<AuditProcedure> {
+    const existing = await this.findProcedureById(procedureId);
+    if (!existing) throw new NotFoundError("Audit procedure not found", { id: procedureId });
+    assertVersionMatch(existing.version, expectedVersion, "AuditProcedure");
+
+    const now = new Date().toISOString();
+    const result = await applyActiveFilter(
+      this.client
+        .from("audit_procedures")
+        .update({
+          procedure_status: "returned",
+          completion_pct: this.computeProcedureCompletion("returned"),
+          returned_at: now,
+          returned_by: this.userId,
+          return_notes: returnNotes,
+        })
+        .eq("id", procedureId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const procedure = requireRow(unwrapSupabaseMaybeSingle(result), "AuditProcedure", procedureId);
+
+    await this.logActivity({
+      fieldworkPackageId: procedure.fieldwork_package_id,
+      engagementId: procedure.engagement_id,
+      organizationId: procedure.organization_id,
+      workspaceId: procedure.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_RETURNED,
+      summary: `Procedure "${procedure.title}" returned for revision`,
+      metadata: { procedureId, returnNotes },
+    });
+
+    await this.recomputeProgress(procedure.fieldwork_package_id);
+    await this.recomputeGroupProgress(procedure.procedure_group_id);
+    return procedure;
+  }
+
+  async clearProcedureReview(
+    procedureId: string,
+    expectedVersion: number,
+    clearanceNotes: string | null,
+  ): Promise<AuditProcedure> {
+    const existing = await this.findProcedureById(procedureId);
+    if (!existing) throw new NotFoundError("Audit procedure not found", { id: procedureId });
+    assertVersionMatch(existing.version, expectedVersion, "AuditProcedure");
+
+    const now = new Date().toISOString();
+    const result = await applyActiveFilter(
+      this.client
+        .from("audit_procedures")
+        .update({
+          procedure_status: "review_cleared",
+          completion_pct: this.computeProcedureCompletion("review_cleared"),
+          cleared_at: now,
+          cleared_by: this.userId,
+          clearance_notes: clearanceNotes,
+        })
+        .eq("id", procedureId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const procedure = requireRow(unwrapSupabaseMaybeSingle(result), "AuditProcedure", procedureId);
+
+    await this.logActivity({
+      fieldworkPackageId: procedure.fieldwork_package_id,
+      engagementId: procedure.engagement_id,
+      organizationId: procedure.organization_id,
+      workspaceId: procedure.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_CLEARED,
+      summary: `Procedure "${procedure.title}" review cleared`,
+      metadata: { procedureId, clearanceNotes },
+    });
+
+    await this.recomputeProgress(procedure.fieldwork_package_id);
+    await this.recomputeGroupProgress(procedure.procedure_group_id);
+    return procedure;
+  }
+
+  async completeProcedure(procedureId: string, expectedVersion: number): Promise<AuditProcedure> {
+    const procedure = await this.updateProcedure(procedureId, expectedVersion, {
+      procedure_status: "complete",
+      completion_pct: 100,
+    });
+
+    await this.logActivity({
+      fieldworkPackageId: procedure.fieldwork_package_id,
+      engagementId: procedure.engagement_id,
+      organizationId: procedure.organization_id,
+      workspaceId: procedure.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_COMPLETED,
+      summary: `Procedure "${procedure.title}" marked complete`,
+      metadata: { procedureId },
+    });
+
+    await this.recomputeProgress(procedure.fieldwork_package_id);
+    await this.recomputeGroupProgress(procedure.procedure_group_id);
+    return procedure;
+  }
+
+  async updateWorkingPaper(
+    workingPaperId: string,
+    expectedVersion: number,
+    patch: Partial<
+      Pick<
+        TablesUpdate<"working_papers">,
+        | "title"
+        | "reference_code"
+        | "content_notes"
+        | "paper_status"
+        | "audit_procedure_id"
+        | "assigned_auditor_id"
+        | "tickmarks"
+      >
+    >,
+  ): Promise<WorkingPaper> {
+    const existing = await applyActiveFilter(
+      this.client.from("working_papers").select("*").eq("id", workingPaperId),
+    ).maybeSingle();
+    const paper = requireRow(
+      unwrapSupabaseMaybeSingle(existing),
+      "WorkingPaper",
+      workingPaperId,
+    );
+    assertVersionMatch(paper.version, expectedVersion, "WorkingPaper");
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("working_papers")
+        .update(patch)
+        .eq("id", workingPaperId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "WorkingPaper", workingPaperId);
+
+    await this.logActivity({
+      fieldworkPackageId: updated.fieldwork_package_id,
+      engagementId: updated.engagement_id,
+      organizationId: updated.organization_id,
+      workspaceId: updated.workspace_id,
+      action: FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_UPDATED,
+      summary: `Working paper "${updated.title}" updated`,
+      metadata: { workingPaperId },
+    });
+
+    return updated;
+  }
+
+  async listTickmarkLibrary(workspaceId: string): Promise<FieldworkTickmarkLibraryEntry[]> {
+    const result = await applyActiveFilter(
+      this.client
+        .from("fieldwork_tickmark_library")
+        .select("*")
+        .eq("workspace_id", workspaceId)
+        .order("sort_order", { ascending: true }),
+    );
+    return unwrapSupabaseList(result);
+  }
+
+  async addTickmarkLibraryEntry(input: {
+    organizationId: string;
+    workspaceId: string;
+    symbol: string;
+    meaning: string;
+    sortOrder?: number;
+  }): Promise<FieldworkTickmarkLibraryEntry> {
+    const result = await this.client
+      .from("fieldwork_tickmark_library")
+      .insert({
+        organization_id: input.organizationId,
+        workspace_id: input.workspaceId,
+        symbol: input.symbol.trim(),
+        meaning: input.meaning.trim(),
+        sort_order: input.sortOrder ?? 0,
+      })
+      .select("*")
+      .single();
+
+    return requireRow(unwrapSupabaseResult(result), "FieldworkTickmarkLibraryEntry");
+  }
+
+  async recomputeGroupProgress(procedureGroupId: string): Promise<void> {
+    const groupResult = await applyActiveFilter(
+      this.client.from("procedure_groups").select("*").eq("id", procedureGroupId),
+    ).maybeSingle();
+    const group = unwrapSupabaseMaybeSingle(groupResult);
+    if (!group) return;
+
+    const procedures = await applyActiveFilter(
+      this.client
+        .from("audit_procedures")
+        .select("completion_pct")
+        .eq("procedure_group_id", procedureGroupId),
+    );
+    const rows = unwrapSupabaseList(procedures);
+    const progressPct =
+      rows.length === 0
+        ? 0
+        : Math.round(rows.reduce((sum, p) => sum + p.completion_pct, 0) / rows.length);
+
+    await applyActiveFilter(
+      this.client
+        .from("procedure_groups")
+        .update({ progress_pct: progressPct })
+        .eq("id", procedureGroupId),
+    );
+  }
+
+  async addEvidenceWithStorage(input: {
+    fieldworkPackageId: string;
+    engagementId: string;
+    organizationId: string;
+    workspaceId: string;
+    name: string;
+    documentType?: string;
+    auditProcedureId?: string | null;
+    workingPaperId?: string | null;
+    mimeType?: string | null;
+    fileSize?: number | null;
+    storagePath?: string | null;
+    storageBucket?: string;
+  }): Promise<FieldworkEvidence> {
+    const result = await this.client
+      .from("fieldwork_evidence")
+      .insert({
+        fieldwork_package_id: input.fieldworkPackageId,
+        engagement_id: input.engagementId,
+        organization_id: input.organizationId,
+        workspace_id: input.workspaceId,
+        name: input.name.trim(),
+        document_type: input.documentType?.trim() || "supporting_document",
+        audit_procedure_id: input.auditProcedureId ?? null,
+        working_paper_id: input.workingPaperId ?? null,
+        mime_type: input.mimeType ?? null,
+        file_size: input.fileSize ?? null,
+        storage_path: input.storagePath ?? null,
+        storage_bucket: input.storageBucket ?? "fieldwork-evidence",
+        evidence_status: input.storagePath ? "verified" : "recorded",
+      })
+      .select("*")
+      .single();
+
+    const evidence = requireRow(unwrapSupabaseResult(result), "FieldworkEvidence");
+
+    await this.logActivity({
+      fieldworkPackageId: input.fieldworkPackageId,
+      engagementId: input.engagementId,
+      organizationId: input.organizationId,
+      workspaceId: input.workspaceId,
+      action: FIELDWORK_ACTIVITY_ACTIONS.EVIDENCE_ADDED,
+      summary: `Evidence "${evidence.name}" recorded`,
+      metadata: { evidenceId: evidence.id, hasFile: Boolean(input.storagePath) },
+    });
+
+    return evidence;
+  }
+
   async updateProcedure(
     procedureId: string,
     expectedVersion: number,
@@ -406,7 +754,13 @@ export class FieldworkRepository extends AuthenticatedRepository {
         .select("*"),
     ).maybeSingle();
 
-    return requireRow(unwrapSupabaseMaybeSingle(result), "AuditProcedure", procedureId);
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "AuditProcedure", procedureId);
+
+    if (patch.procedure_status) {
+      await this.recomputeGroupProgress(updated.procedure_group_id);
+    }
+
+    return updated;
   }
 
   async addWorkingPaper(input: {
@@ -587,6 +941,12 @@ export class FieldworkRepository extends AuthenticatedRepository {
         .eq("id", fieldworkPackageId)
         .select("*"),
     ).maybeSingle();
+
+    await Promise.all(
+      (await this.listProcedureGroups(fieldworkPackageId)).map((group) =>
+        this.recomputeGroupProgress(group.id),
+      ),
+    );
 
     return requireRow(unwrapSupabaseMaybeSingle(result), "FieldworkPackage", fieldworkPackageId);
   }

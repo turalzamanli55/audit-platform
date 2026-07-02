@@ -30,15 +30,16 @@ export type FieldworkProcedureView = {
   completionPct: number;
   sortOrder: number;
   version: number;
+  returnNotes: string | null;
+  clearanceNotes: string | null;
+  submittedAt: string | null;
 };
 
-export type FieldworkProcedureGroupView = {
+export type FieldworkTickmarkLibraryView = {
   id: string;
-  name: string;
-  description: string | null;
+  symbol: string;
+  meaning: string;
   sortOrder: number;
-  progressPct: number;
-  procedures: FieldworkProcedureView[];
 };
 
 export type FieldworkWorkingPaperView = {
@@ -49,7 +50,9 @@ export type FieldworkWorkingPaperView = {
   referenceCode: string | null;
   paperStatus: WorkingPaperStatus;
   contentNotes: string | null;
+  assignedAuditorId: string | null;
   tickmarks: FieldworkTickmark[];
+  version: number;
 };
 
 export type FieldworkEvidenceView = {
@@ -61,7 +64,17 @@ export type FieldworkEvidenceView = {
   workingPaperId: string | null;
   mimeType: string | null;
   fileSize: number | null;
+  storagePath: string | null;
   createdAt: string;
+};
+
+export type FieldworkProcedureGroupView = {
+  id: string;
+  name: string;
+  description: string | null;
+  sortOrder: number;
+  progressPct: number;
+  procedures: FieldworkProcedureView[];
 };
 
 export type FieldworkFindingView = {

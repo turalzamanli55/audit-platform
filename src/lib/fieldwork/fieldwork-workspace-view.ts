@@ -28,7 +28,10 @@ export type FieldworkWorkspaceView = {
   notes: FieldworkNoteView[];
   auditorNotes: FieldworkNoteView[];
   reviewNotes: FieldworkNoteView[];
+  clearanceNotes: FieldworkNoteView[];
   internalComments: FieldworkNoteView[];
+  tickmarkLibrary: import("@/types/fieldwork").FieldworkTickmarkLibraryView[];
+  pendingReviewCount: number;
   status: string;
   version: number;
   isArchived: boolean;

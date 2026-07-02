@@ -1235,7 +1235,9 @@
       "addWorkingPaper": "Add working paper",
       "addEvidence": "Add evidence",
       "addFinding": "Add finding",
-      "addNote": "Add note"
+      "addNote": "Add note",
+      "addTickmark": "Add tickmark",
+      "uploadEvidence": "Upload evidence"
     },
     "empty": {
       "title": "Fieldwork not initiated",
@@ -1349,19 +1351,32 @@
       "title": "Audit procedures",
       "description": "Track assignment, due dates, and completion.",
       "emptyTitle": "No procedures",
-      "emptyDescription": "Procedures are seeded when fieldwork is initiated."
+      "emptyDescription": "Procedures are seeded when fieldwork is initiated.",
+      "assignAuditor": "Assigned auditor",
+      "unassigned": "Unassigned",
+      "dueDate": "Due date",
+      "assignedTo": "Assigned to"
     },
     "workingPapers": {
       "title": "Working papers",
       "description": "Working paper references with tickmark support.",
       "emptyTitle": "No working papers",
-      "emptyDescription": "Create working papers linked to procedures."
+      "emptyDescription": "Create working papers linked to procedures.",
+      "procedureLabel": "Linked procedure",
+      "assignAuditor": "Paper owner",
+      "tickmarkSymbol": "Symbol",
+      "tickmarkMeaning": "Meaning",
+      "libraryTitle": "Tickmark library",
+      "libraryDescription": "Reusable tickmarks for this workspace."
     },
     "evidence": {
       "title": "Evidence register",
       "description": "Evidence references and attachment metadata.",
       "emptyTitle": "No evidence",
-      "emptyDescription": "Record evidence references as procedures are executed."
+      "emptyDescription": "Record evidence references as procedures are executed.",
+      "fileLabel": "Attachment",
+      "procedureLabel": "Linked procedure",
+      "uploadedBadge": "File attached"
     },
     "findings": {
       "title": "Findings",
@@ -1406,7 +1421,10 @@
         "workingPaperUpdated": "Working paper updated",
         "evidenceAdded": "Evidence added",
         "findingAdded": "Finding added",
-        "noteAdded": "Note added"
+        "noteAdded": "Note added",
+        "procedureSubmitted": "Procedure submitted",
+        "procedureReturned": "Procedure returned",
+        "procedureCleared": "Procedure cleared"
       }
     },
     "settings": {
@@ -1423,7 +1441,28 @@
         "restoreAction": "Restore fieldwork",
         "restoreConfirmAction": "Confirm restore",
         "cancelAction": "Cancel"
-      }
+      },
+      "tickmarkLibraryTitle": "Tickmark library",
+      "tickmarkLibraryDescription": "Manage reusable tickmarks for working papers.",
+      "tickmarkSymbol": "Symbol",
+      "tickmarkMeaning": "Meaning",
+      "addTickmark": "Add to library"
+    },
+    "workflow": {
+      "queueTitle": "Review queue",
+      "queueDescription": "Procedures awaiting review or clearance.",
+      "queueEmpty": "No procedures are pending review.",
+      "pendingReviewCount": "Pending review",
+      "submitAction": "Submit for review",
+      "returnAction": "Return for revision",
+      "returnConfirmAction": "Confirm return",
+      "clearAction": "Clear review",
+      "clearConfirmAction": "Confirm clearance",
+      "cancelAction": "Cancel",
+      "returnNotesTitle": "Return notes",
+      "returnNotesPlaceholder": "Describe what must be revised",
+      "clearanceNotesPlaceholder": "Document review clearance",
+      "errorGeneric": "Unable to update procedure workflow"
     }
   }
 }

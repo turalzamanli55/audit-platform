@@ -1123,6 +1123,24 @@ export type Dictionary = {
       addEvidence: string;
       addFinding: string;
       addNote: string;
+      addTickmark: string;
+      uploadEvidence: string;
+    };
+    workflow: {
+      queueTitle: string;
+      queueDescription: string;
+      queueEmpty: string;
+      pendingReviewCount: string;
+      submitAction: string;
+      returnAction: string;
+      returnConfirmAction: string;
+      clearAction: string;
+      clearConfirmAction: string;
+      cancelAction: string;
+      returnNotesTitle: string;
+      returnNotesPlaceholder: string;
+      clearanceNotesPlaceholder: string;
+      errorGeneric: string;
     };
     empty: {
       title: string;
@@ -1187,9 +1205,37 @@ export type Dictionary = {
     };
     program: { title: string; description: string; emptyTitle: string; emptyDescription: string };
     procedureGroups: { title: string; description: string; emptyTitle: string; emptyDescription: string };
-    procedures: { title: string; description: string; emptyTitle: string; emptyDescription: string };
-    workingPapers: { title: string; description: string; emptyTitle: string; emptyDescription: string };
-    evidence: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    procedures: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      assignAuditor: string;
+      unassigned: string;
+      dueDate: string;
+      assignedTo: string;
+    };
+    workingPapers: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      procedureLabel: string;
+      assignAuditor: string;
+      tickmarkSymbol: string;
+      tickmarkMeaning: string;
+      libraryTitle: string;
+      libraryDescription: string;
+    };
+    evidence: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      fileLabel: string;
+      procedureLabel: string;
+      uploadedBadge: string;
+    };
     findings: { title: string; description: string; emptyTitle: string; emptyDescription: string };
     notes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
     reviewNotes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
@@ -1209,6 +1255,9 @@ export type Dictionary = {
         procedureAssigned: string;
         procedureUpdated: string;
         procedureCompleted: string;
+        procedureSubmitted: string;
+        procedureReturned: string;
+        procedureCleared: string;
         workingPaperAdded: string;
         workingPaperUpdated: string;
         evidenceAdded: string;
@@ -1220,6 +1269,11 @@ export type Dictionary = {
       title: string;
       description: string;
       readOnlyNotice: string;
+      tickmarkLibraryTitle: string;
+      tickmarkLibraryDescription: string;
+      tickmarkSymbol: string;
+      tickmarkMeaning: string;
+      addTickmark: string;
       lifecycle: {
         archivedBannerTitle: string;
         archivedBannerDescription: string;

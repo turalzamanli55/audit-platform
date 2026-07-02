@@ -5,6 +5,7 @@ import type {
 } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { FieldworkWorkspaceNavItem } from "@/components/fieldwork/workspace/fieldwork-workspace-sidebar";
 import { FIELDWORK_ACTIVITY_ACTIONS } from "@/constants/fieldwork";
+import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
 import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
 
 export type FieldworkWorkspaceLabels = Dictionary["fieldwork"]["workspace"];
@@ -51,7 +52,7 @@ export function buildFieldworkOverviewCards(
   labels: FieldworkWorkspaceLabels,
   fieldworkLabels: Dictionary["fieldwork"],
 ) {
-  const completeCount = fieldwork.procedures.filter((p) => p.completionPct >= 100).length;
+  const completeCount = fieldwork.procedures.filter((p) => isProcedureComplete(p.procedureStatus)).length;
 
   return [
     {
@@ -127,6 +128,9 @@ export function formatFieldworkActivityAction(
     [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_ASSIGNED]: actionLabels.procedureAssigned,
     [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_UPDATED]: actionLabels.procedureUpdated,
     [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_COMPLETED]: actionLabels.procedureCompleted,
+    [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_SUBMITTED]: actionLabels.procedureSubmitted,
+    [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_RETURNED]: actionLabels.procedureReturned,
+    [FIELDWORK_ACTIVITY_ACTIONS.PROCEDURE_CLEARED]: actionLabels.procedureCleared,
     [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_ADDED]: actionLabels.workingPaperAdded,
     [FIELDWORK_ACTIVITY_ACTIONS.WORKING_PAPER_UPDATED]: actionLabels.workingPaperUpdated,
     [FIELDWORK_ACTIVITY_ACTIONS.EVIDENCE_ADDED]: actionLabels.evidenceAdded,

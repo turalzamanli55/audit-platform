@@ -5,6 +5,7 @@ import type {
   FieldworkFinding,
   FieldworkNote,
   FieldworkPackage,
+  FieldworkTickmarkLibraryEntry,
   ProcedureGroup,
   WorkingPaper,
 } from "@/repositories/fieldwork/fieldwork-repository";
@@ -18,6 +19,7 @@ import type {
   FieldworkProcedureView,
   FieldworkProgramView,
   FieldworkTickmark,
+  FieldworkTickmarkLibraryView,
   FieldworkWorkingPaperView,
 } from "@/types/fieldwork";
 import { computeFieldworkProgress } from "@/lib/fieldwork/fieldwork-rules";
@@ -38,6 +40,7 @@ export function toFieldworkWorkspaceView(
   evidence: FieldworkEvidence[],
   findings: FieldworkFinding[],
   notes: FieldworkNote[],
+  tickmarkLibrary: FieldworkTickmarkLibraryEntry[] = [],
 ): FieldworkWorkspaceView {
   const groupMap = new Map(groups.map((group) => [group.id, group]));
   const procedureViews: FieldworkProcedureView[] = procedures.map((procedure) => ({
@@ -54,6 +57,9 @@ export function toFieldworkWorkspaceView(
     completionPct: procedure.completion_pct,
     sortOrder: procedure.sort_order,
     version: procedure.version,
+    returnNotes: procedure.return_notes ?? null,
+    clearanceNotes: procedure.clearance_notes ?? null,
+    submittedAt: procedure.submitted_at ?? null,
   }));
 
   const groupsView: FieldworkProcedureGroupView[] = groups.map((group) => {
@@ -89,7 +95,9 @@ export function toFieldworkWorkspaceView(
     referenceCode: paper.reference_code,
     paperStatus: paper.paper_status,
     contentNotes: paper.content_notes,
+    assignedAuditorId: paper.assigned_auditor_id,
     tickmarks: parseTickmarks(paper.tickmarks),
+    version: paper.version,
   }));
 
   const evidenceViews: FieldworkEvidenceView[] = evidence.map((item) => ({
@@ -101,6 +109,7 @@ export function toFieldworkWorkspaceView(
     workingPaperId: item.working_paper_id,
     mimeType: item.mime_type,
     fileSize: item.file_size,
+    storagePath: item.storage_path ?? null,
     createdAt: item.created_at,
   }));
 
@@ -126,6 +135,13 @@ export function toFieldworkWorkspaceView(
 
   const progressPct = computeFieldworkProgress(procedures);
 
+  const tickmarkLibraryViews: FieldworkTickmarkLibraryView[] = tickmarkLibrary.map((entry) => ({
+    id: entry.id,
+    symbol: entry.symbol,
+    meaning: entry.meaning,
+    sortOrder: entry.sort_order,
+  }));
+
   return {
     id: pkg.id,
     engagementId: pkg.engagement_id,
@@ -145,7 +161,12 @@ export function toFieldworkWorkspaceView(
     notes: noteViews,
     auditorNotes: noteViews.filter((n) => n.noteType === "auditor"),
     reviewNotes: noteViews.filter((n) => n.noteType === "review"),
+    clearanceNotes: noteViews.filter((n) => n.noteType === "clearance"),
     internalComments: noteViews.filter((n) => n.noteType === "internal"),
+    tickmarkLibrary: tickmarkLibraryViews,
+    pendingReviewCount: procedureViews.filter((p) =>
+      ["submitted_for_review", "review_in_progress"].includes(p.procedureStatus),
+    ).length,
     status: pkg.status,
     version: pkg.version,
     isArchived: Boolean(pkg.deleted_at) || pkg.status === "archived",

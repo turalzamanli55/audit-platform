@@ -12,6 +12,7 @@ import {
   formatLifecycleStatusLabel,
   formatOptionalText,
 } from "@/lib/engagement/format-engagement-workspace";
+import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
 
 export type EngagementWorkspaceSection = "overview" | "members" | "planning" | "fieldwork" | "history" | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
@@ -119,7 +120,7 @@ export function buildFieldworkSummaryItems(
       {
         id: "procedures",
         label: labels.fieldwork.proceduresComplete,
-        value: `${fieldwork.procedures.filter((p) => p.procedureStatus === "complete").length}/${fieldwork.procedures.length}`,
+        value: `${fieldwork.procedures.filter((p) => isProcedureComplete(p.procedureStatus)).length}/${fieldwork.procedures.length}`,
       },
       {
         id: "findings",

@@ -74,7 +74,9 @@ export const FIELDWORK_FINDING_STATUSES = [
   "closed",
 ] as const;
 
-export const FIELDWORK_NOTE_TYPES = ["auditor", "review", "internal"] as const;
+export const FIELDWORK_NOTE_TYPES = ["auditor", "review", "internal", "clearance"] as const;
+
+export const FIELDWORK_EVIDENCE_STORAGE_BUCKET = "fieldwork-evidence";
 
 export const LOCKED_FIELDWORK_STATUSES = ["archived"] as const;
 
@@ -89,6 +91,9 @@ export const FIELDWORK_ACTIVITY_ACTIONS = {
   PROCEDURE_ASSIGNED: "fieldwork.procedure.assigned",
   PROCEDURE_UPDATED: "fieldwork.procedure.updated",
   PROCEDURE_COMPLETED: "fieldwork.procedure.completed",
+  PROCEDURE_SUBMITTED: "fieldwork.procedure.submitted",
+  PROCEDURE_RETURNED: "fieldwork.procedure.returned",
+  PROCEDURE_CLEARED: "fieldwork.procedure.cleared",
   WORKING_PAPER_ADDED: "fieldwork.working_paper.added",
   WORKING_PAPER_UPDATED: "fieldwork.working_paper.updated",
   EVIDENCE_ADDED: "fieldwork.evidence.added",

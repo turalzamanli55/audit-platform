@@ -33,4 +33,9 @@ export const AUDIT_ACTIONS = {
   FIELDWORK_EVIDENCE_ADDED: "fieldwork.evidence.added",
   FIELDWORK_FINDING_ADDED: "fieldwork.finding.added",
   FIELDWORK_NOTE_ADDED: "fieldwork.note.added",
+  FIELDWORK_PROCEDURE_ASSIGNED: "fieldwork.procedure.assigned",
+  FIELDWORK_PROCEDURE_SUBMITTED: "fieldwork.procedure.submitted",
+  FIELDWORK_PROCEDURE_RETURNED: "fieldwork.procedure.returned",
+  FIELDWORK_PROCEDURE_CLEARED: "fieldwork.procedure.cleared",
+  FIELDWORK_TICKMARK_ADDED: "fieldwork.tickmark.added",
 } as const;

@@ -897,6 +897,9 @@ export type Database = {
           assertion: string | null;
           assigned_auditor_id: string | null;
           audit_program_id: string;
+          clearance_notes: string | null;
+          cleared_at: string | null;
+          cleared_by: string | null;
           completion_pct: number;
           created_at: string;
           created_by: string | null;
@@ -911,7 +914,12 @@ export type Database = {
           procedure_group_id: string;
           procedure_status: Database["public"]["Enums"]["procedure_status"];
           procedure_type: Database["public"]["Enums"]["procedure_type"];
+          return_notes: string | null;
+          returned_at: string | null;
+          returned_by: string | null;
           sort_order: number;
+          submitted_at: string | null;
+          submitted_by: string | null;
           status: Database["public"]["Enums"]["record_status"];
           title: string;
           updated_at: string;
@@ -923,6 +931,9 @@ export type Database = {
           assertion?: string | null;
           assigned_auditor_id?: string | null;
           audit_program_id: string;
+          clearance_notes?: string | null;
+          cleared_at?: string | null;
+          cleared_by?: string | null;
           completion_pct?: number;
           created_at?: string;
           created_by?: string | null;
@@ -937,8 +948,13 @@ export type Database = {
           procedure_group_id: string;
           procedure_status?: Database["public"]["Enums"]["procedure_status"];
           procedure_type?: Database["public"]["Enums"]["procedure_type"];
+          return_notes?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
           sort_order?: number;
           status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
           title: string;
           updated_at?: string;
           updated_by?: string | null;
@@ -949,6 +965,9 @@ export type Database = {
           assertion?: string | null;
           assigned_auditor_id?: string | null;
           audit_program_id?: string;
+          clearance_notes?: string | null;
+          cleared_at?: string | null;
+          cleared_by?: string | null;
           completion_pct?: number;
           created_at?: string;
           created_by?: string | null;
@@ -963,8 +982,13 @@ export type Database = {
           procedure_group_id?: string;
           procedure_status?: Database["public"]["Enums"]["procedure_status"];
           procedure_type?: Database["public"]["Enums"]["procedure_type"];
+          return_notes?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
           sort_order?: number;
           status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
           title?: string;
           updated_at?: string;
           updated_by?: string | null;
@@ -975,7 +999,11 @@ export type Database = {
       };
       working_papers: {
         Row: {
+          assigned_auditor_id: string | null;
           audit_procedure_id: string;
+          clearance_notes: string | null;
+          cleared_at: string | null;
+          cleared_by: string | null;
           content_notes: string | null;
           created_at: string;
           created_by: string | null;
@@ -987,7 +1015,12 @@ export type Database = {
           organization_id: string;
           paper_status: Database["public"]["Enums"]["working_paper_status"];
           reference_code: string | null;
+          return_notes: string | null;
+          returned_at: string | null;
+          returned_by: string | null;
           status: Database["public"]["Enums"]["record_status"];
+          submitted_at: string | null;
+          submitted_by: string | null;
           tickmarks: Json;
           title: string;
           updated_at: string;
@@ -996,7 +1029,11 @@ export type Database = {
           workspace_id: string;
         };
         Insert: {
+          assigned_auditor_id?: string | null;
           audit_procedure_id: string;
+          clearance_notes?: string | null;
+          cleared_at?: string | null;
+          cleared_by?: string | null;
           content_notes?: string | null;
           created_at?: string;
           created_by?: string | null;
@@ -1008,7 +1045,12 @@ export type Database = {
           organization_id: string;
           paper_status?: Database["public"]["Enums"]["working_paper_status"];
           reference_code?: string | null;
+          return_notes?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
           status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
           tickmarks?: Json;
           title: string;
           updated_at?: string;
@@ -1017,7 +1059,11 @@ export type Database = {
           workspace_id: string;
         };
         Update: {
+          assigned_auditor_id?: string | null;
           audit_procedure_id?: string;
+          clearance_notes?: string | null;
+          cleared_at?: string | null;
+          cleared_by?: string | null;
           content_notes?: string | null;
           created_at?: string;
           created_by?: string | null;
@@ -1057,6 +1103,8 @@ export type Database = {
           name: string;
           organization_id: string;
           status: Database["public"]["Enums"]["record_status"];
+          storage_bucket: string;
+          storage_path: string | null;
           updated_at: string;
           updated_by: string | null;
           version: number;
@@ -1080,6 +1128,8 @@ export type Database = {
           name: string;
           organization_id: string;
           status?: Database["public"]["Enums"]["record_status"];
+          storage_bucket?: string;
+          storage_path?: string | null;
           updated_at?: string;
           updated_by?: string | null;
           version?: number;
@@ -1103,6 +1153,8 @@ export type Database = {
           name?: string;
           organization_id?: string;
           status?: Database["public"]["Enums"]["record_status"];
+          storage_bucket?: string;
+          storage_path?: string | null;
           updated_at?: string;
           updated_by?: string | null;
           version?: number;
@@ -1233,6 +1285,57 @@ export type Database = {
           updated_by?: string | null;
           version?: number;
           working_paper_id?: string | null;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
+      fieldwork_tickmark_library: {
+        Row: {
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          id: string;
+          meaning: string;
+          organization_id: string;
+          sort_order: number;
+          status: Database["public"]["Enums"]["record_status"];
+          symbol: string;
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          id?: string;
+          meaning: string;
+          organization_id: string;
+          sort_order?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+          symbol: string;
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          id?: string;
+          meaning?: string;
+          organization_id?: string;
+          sort_order?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+          symbol?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
           workspace_id?: string;
         };
         Relationships: [];
@@ -1794,7 +1897,7 @@ export type Database = {
       working_paper_status: "draft" | "in_progress" | "submitted" | "under_review" | "returned" | "cleared" | "complete" | "archived";
       fieldwork_evidence_status: "pending" | "recorded" | "verified" | "archived";
       fieldwork_finding_status: "open" | "in_review" | "resolved" | "closed";
-      fieldwork_note_type: "auditor" | "review" | "internal";
+      fieldwork_note_type: "auditor" | "review" | "internal" | "clearance";
       role_scope: "platform" | "organization" | "workspace";
     };
     CompositeTypes: Record<string, never>;
