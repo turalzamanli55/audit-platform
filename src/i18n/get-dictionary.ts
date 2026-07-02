@@ -638,6 +638,7 @@ export type Dictionary = {
       navOverview: string;
       navMembers: string;
       navPlanning: string;
+      navFieldwork: string;
       navHistory: string;
       navSettings: string;
       loading: string;
@@ -668,6 +669,20 @@ export type Dictionary = {
         checklistProgress: string;
         reportingFramework: string;
         openPlanning: string;
+      };
+      fieldwork: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+        fieldworkStatus: string;
+        fieldworkProgress: string;
+        proceduresComplete: string;
+        findingsCount: string;
+        evidenceCount: string;
+        openFieldwork: string;
       };
       client: {
         title: string;
@@ -1048,6 +1063,172 @@ export type Dictionary = {
         restoreAction: string;
         restoreConfirmAction: string;
         reasonLabel: string;
+        cancelAction: string;
+      };
+    };
+  };
+  fieldwork: {
+    notFoundTitle: string;
+    notFoundDescription: string;
+    forbiddenTitle: string;
+    forbiddenDescription: string;
+    noWorkspaceTitle: string;
+    noWorkspaceDescription: string;
+    statuses: Record<"not_started" | "in_progress" | "substantially_complete" | "archived", string>;
+    programStatuses: Record<
+      "draft" | "approved" | "in_execution" | "substantially_complete" | "superseded",
+      string
+    >;
+    procedureStatuses: Record<
+      | "not_started"
+      | "in_progress"
+      | "pending_evidence"
+      | "submitted_for_review"
+      | "review_in_progress"
+      | "returned"
+      | "review_cleared"
+      | "complete"
+      | "blocked"
+      | "deferred",
+      string
+    >;
+    procedureTypes: Record<
+      | "test_of_controls"
+      | "substantive"
+      | "analytical"
+      | "sampling"
+      | "inquiry"
+      | "observation"
+      | "inspection"
+      | "reperformance",
+      string
+    >;
+    workingPaperStatuses: Record<
+      | "draft"
+      | "in_progress"
+      | "submitted"
+      | "under_review"
+      | "returned"
+      | "cleared"
+      | "complete"
+      | "archived",
+      string
+    >;
+    evidenceStatuses: Record<"pending" | "recorded" | "verified" | "archived", string>;
+    findingStatuses: Record<"open" | "in_review" | "resolved" | "closed", string>;
+    actions: {
+      start: string;
+      complete: string;
+      addWorkingPaper: string;
+      addEvidence: string;
+      addFinding: string;
+      addNote: string;
+    };
+    empty: {
+      title: string;
+      description: string;
+      createAction: string;
+      creating: string;
+      forbiddenDescription: string;
+    };
+    workspace: {
+      heroEyebrow: string;
+      breadcrumbFieldwork: string;
+      backToEngagement: string;
+      planningGateTitle: string;
+      planningGateDescription: string;
+      navAriaLabel: string;
+      navOverview: string;
+      navProgram: string;
+      navProcedureGroups: string;
+      navProcedures: string;
+      navWorkingPapers: string;
+      navEvidence: string;
+      navFindings: string;
+      navNotes: string;
+      navReviewNotes: string;
+      navComments: string;
+      navHistory: string;
+      navSettings: string;
+      loading: string;
+      errorTitle: string;
+      errorDescription: string;
+      archivedTitle: string;
+      archivedDescription: string;
+      summaryStatus: string;
+      summaryVersion: string;
+      summaryProgress: string;
+      summaryProcedures: string;
+      summaryFindings: string;
+      status: {
+        title: string;
+        description: string;
+        packageStatus: string;
+        programStatus: string;
+        progress: string;
+        workingPapers: string;
+        evidence: string;
+      };
+      sections: Record<
+        | "overview"
+        | "program"
+        | "procedure-groups"
+        | "procedures"
+        | "working-papers"
+        | "evidence"
+        | "findings"
+        | "notes"
+        | "review-notes"
+        | "comments"
+        | "history"
+        | "settings",
+        { title: string; description: string }
+      >;
+    };
+    program: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    procedureGroups: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    procedures: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    workingPapers: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    evidence: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    findings: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    notes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    reviewNotes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    comments: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    history: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      versionLabel: string;
+      actions: {
+        created: string;
+        updated: string;
+        archived: string;
+        restored: string;
+        programUpdated: string;
+        procedureAssigned: string;
+        procedureUpdated: string;
+        procedureCompleted: string;
+        workingPaperAdded: string;
+        workingPaperUpdated: string;
+        evidenceAdded: string;
+        findingAdded: string;
+        noteAdded: string;
+      };
+    };
+    settings: {
+      title: string;
+      description: string;
+      readOnlyNotice: string;
+      lifecycle: {
+        archivedBannerTitle: string;
+        archivedBannerDescription: string;
+        archivePrompt: string;
+        archiveAction: string;
+        archiveConfirmAction: string;
+        restorePrompt: string;
+        restoreAction: string;
+        restoreConfirmAction: string;
         cancelAction: string;
       };
     };

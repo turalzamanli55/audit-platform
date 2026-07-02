@@ -680,6 +680,20 @@
         "reportingFramework": "Reporting framework",
         "openPlanning": "Open audit planning"
       },
+      "fieldwork": {
+        "title": "Fieldwork summary",
+        "description": "Audit execution status, procedure progress, and evidence for this engagement.",
+        "lifecycleStage": "Lifecycle stage",
+        "financialYear": "Financial year",
+        "plannedSchedule": "Planned schedule",
+        "teamSize": "Team size",
+        "fieldworkStatus": "Fieldwork status",
+        "fieldworkProgress": "Fieldwork progress",
+        "proceduresComplete": "Procedures complete",
+        "findingsCount": "Findings",
+        "evidenceCount": "Evidence items",
+        "openFieldwork": "Open audit fieldwork"
+      },
       "client": {
         "title": "Client information",
         "description": "The legal entity this engagement serves.",
@@ -722,7 +736,8 @@
           "description": "Configuration and lifecycle controls for this engagement."
         }
       },
-      "navPlanning": "Planning"
+      "navPlanning": "Planning",
+      "navFieldwork": "Fieldwork"
     },
     "settings": {
       "title": "Settings",
@@ -1147,6 +1162,267 @@
         "review": "Review",
         "general": "General",
         "return": "Return note"
+      }
+    }
+  },
+  "fieldwork": {
+    "notFoundTitle": "Fieldwork not found",
+    "notFoundDescription": "The fieldwork workspace you requested could not be found for this engagement.",
+    "forbiddenTitle": "Permission required",
+    "forbiddenDescription": "You need fieldwork permission to access audit execution.",
+    "noWorkspaceTitle": "Workspace required",
+    "noWorkspaceDescription": "Select a workspace before opening audit fieldwork.",
+    "statuses": {
+      "not_started": "Not started",
+      "in_progress": "In progress",
+      "substantially_complete": "Substantially complete",
+      "archived": "Archived"
+    },
+    "programStatuses": {
+      "draft": "Draft",
+      "approved": "Approved",
+      "in_execution": "In execution",
+      "substantially_complete": "Substantially complete",
+      "superseded": "Superseded"
+    },
+    "procedureStatuses": {
+      "not_started": "Not started",
+      "in_progress": "In progress",
+      "pending_evidence": "Pending evidence",
+      "submitted_for_review": "Submitted for review",
+      "review_in_progress": "Review in progress",
+      "returned": "Returned",
+      "review_cleared": "Review cleared",
+      "complete": "Complete",
+      "blocked": "Blocked",
+      "deferred": "Deferred"
+    },
+    "procedureTypes": {
+      "test_of_controls": "Test of controls",
+      "substantive": "Substantive",
+      "analytical": "Analytical",
+      "sampling": "Sampling",
+      "inquiry": "Inquiry",
+      "observation": "Observation",
+      "inspection": "Inspection",
+      "reperformance": "Reperformance"
+    },
+    "workingPaperStatuses": {
+      "draft": "Draft",
+      "in_progress": "In progress",
+      "submitted": "Submitted",
+      "under_review": "Under review",
+      "returned": "Returned",
+      "cleared": "Cleared",
+      "complete": "Complete",
+      "archived": "Archived"
+    },
+    "evidenceStatuses": {
+      "pending": "Pending",
+      "recorded": "Recorded",
+      "verified": "Verified",
+      "archived": "Archived"
+    },
+    "findingStatuses": {
+      "open": "Open",
+      "in_review": "In review",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "actions": {
+      "start": "Start procedure",
+      "complete": "Mark complete",
+      "addWorkingPaper": "Add working paper",
+      "addEvidence": "Add evidence",
+      "addFinding": "Add finding",
+      "addNote": "Add note"
+    },
+    "empty": {
+      "title": "Fieldwork not initiated",
+      "description": "Create a fieldwork package to begin executing audit procedures after planning approval.",
+      "createAction": "Start fieldwork",
+      "creating": "Starting fieldwork…",
+      "forbiddenDescription": "You need fieldwork creation permission to initiate audit execution."
+    },
+    "workspace": {
+      "heroEyebrow": "Audit fieldwork",
+      "breadcrumbFieldwork": "Fieldwork",
+      "backToEngagement": "Back to engagement",
+      "planningGateTitle": "Planning approval required",
+      "planningGateDescription": "Audit planning must be approved before fieldwork can begin (ENG-03).",
+      "navAriaLabel": "Fieldwork workspace sections",
+      "navOverview": "Dashboard",
+      "navProgram": "Audit program",
+      "navProcedureGroups": "Procedure groups",
+      "navProcedures": "Procedures",
+      "navWorkingPapers": "Working papers",
+      "navEvidence": "Evidence register",
+      "navFindings": "Findings",
+      "navNotes": "Auditor notes",
+      "navReviewNotes": "Review notes",
+      "navComments": "Internal comments",
+      "navHistory": "History",
+      "navSettings": "Settings",
+      "loading": "Loading fieldwork workspace",
+      "errorTitle": "Unable to load fieldwork workspace",
+      "errorDescription": "Something went wrong while loading audit fieldwork.",
+      "archivedTitle": "Fieldwork archived",
+      "archivedDescription": "This fieldwork package is read-only. Restore it to continue execution.",
+      "summaryStatus": "Fieldwork status",
+      "summaryVersion": "Program version",
+      "summaryProgress": "Overall progress",
+      "summaryProcedures": "Procedures complete",
+      "summaryFindings": "Open findings",
+      "status": {
+        "title": "Execution status",
+        "description": "Procedure completion, evidence linkage, and review readiness.",
+        "packageStatus": "Package status",
+        "programStatus": "Program status",
+        "progress": "Overall progress",
+        "workingPapers": "Working papers",
+        "evidence": "Evidence items"
+      },
+      "sections": {
+        "overview": {
+          "title": "Fieldwork dashboard",
+          "description": "Progress, assignments, and execution indicators."
+        },
+        "program": {
+          "title": "Audit program",
+          "description": "Approved program version governing procedure execution."
+        },
+        "procedure-groups": {
+          "title": "Procedure groups",
+          "description": "Grouped audit areas and completion progress."
+        },
+        "procedures": {
+          "title": "Audit procedures",
+          "description": "Assignable units of audit work with status tracking."
+        },
+        "working-papers": {
+          "title": "Working papers",
+          "description": "Documentation, tickmarks, and conclusions."
+        },
+        "evidence": {
+          "title": "Evidence register",
+          "description": "Indexed audit evidence and attachments."
+        },
+        "findings": {
+          "title": "Findings",
+          "description": "Misstatements, deficiencies, and recommendations."
+        },
+        "notes": {
+          "title": "Auditor notes",
+          "description": "Preparer documentation and professional judgment."
+        },
+        "review-notes": {
+          "title": "Review notes",
+          "description": "Reviewer comments and clearance tracking."
+        },
+        "comments": {
+          "title": "Internal comments",
+          "description": "Team discussion captured during fieldwork."
+        },
+        "history": {
+          "title": "Fieldwork history",
+          "description": "Chronological activity and audit trail."
+        },
+        "settings": {
+          "title": "Fieldwork settings",
+          "description": "Archive or restore this fieldwork package."
+        }
+      }
+    },
+    "program": {
+      "title": "Audit program",
+      "description": "Program metadata and execution status.",
+      "emptyTitle": "No audit program",
+      "emptyDescription": "The audit program is created when fieldwork is initiated."
+    },
+    "procedureGroups": {
+      "title": "Procedure groups",
+      "description": "Audit areas grouping related procedures.",
+      "emptyTitle": "No procedure groups",
+      "emptyDescription": "Procedure groups appear when fieldwork is initiated."
+    },
+    "procedures": {
+      "title": "Audit procedures",
+      "description": "Track assignment, due dates, and completion.",
+      "emptyTitle": "No procedures",
+      "emptyDescription": "Procedures are seeded when fieldwork is initiated."
+    },
+    "workingPapers": {
+      "title": "Working papers",
+      "description": "Working paper references with tickmark support.",
+      "emptyTitle": "No working papers",
+      "emptyDescription": "Create working papers linked to procedures."
+    },
+    "evidence": {
+      "title": "Evidence register",
+      "description": "Evidence references and attachment metadata.",
+      "emptyTitle": "No evidence",
+      "emptyDescription": "Record evidence references as procedures are executed."
+    },
+    "findings": {
+      "title": "Findings",
+      "description": "Document audit findings discovered during fieldwork.",
+      "emptyTitle": "No findings",
+      "emptyDescription": "Findings will appear as they are documented."
+    },
+    "notes": {
+      "title": "Auditor notes",
+      "description": "Preparer notes captured during fieldwork.",
+      "emptyTitle": "No auditor notes",
+      "emptyDescription": "Auditor notes will appear here."
+    },
+    "reviewNotes": {
+      "title": "Review notes",
+      "description": "Review-level comments and clearance notes.",
+      "emptyTitle": "No review notes",
+      "emptyDescription": "Review notes will appear during review cycles."
+    },
+    "comments": {
+      "title": "Internal comments",
+      "description": "Internal team discussion on fieldwork matters.",
+      "emptyTitle": "No internal comments",
+      "emptyDescription": "Internal comments will appear here."
+    },
+    "history": {
+      "title": "Fieldwork history",
+      "description": "Read-only timeline of fieldwork changes.",
+      "emptyTitle": "No fieldwork activity",
+      "emptyDescription": "Activity will appear as fieldwork progresses.",
+      "versionLabel": "Program version",
+      "actions": {
+        "created": "Fieldwork created",
+        "updated": "Fieldwork updated",
+        "archived": "Fieldwork archived",
+        "restored": "Fieldwork restored",
+        "programUpdated": "Program updated",
+        "procedureAssigned": "Procedure assigned",
+        "procedureUpdated": "Procedure updated",
+        "procedureCompleted": "Procedure completed",
+        "workingPaperAdded": "Working paper added",
+        "workingPaperUpdated": "Working paper updated",
+        "evidenceAdded": "Evidence added",
+        "findingAdded": "Finding added",
+        "noteAdded": "Note added"
+      }
+    },
+    "settings": {
+      "title": "Fieldwork settings",
+      "description": "Archive or restore this fieldwork package.",
+      "readOnlyNotice": "You have view-only access to fieldwork settings.",
+      "lifecycle": {
+        "archivedBannerTitle": "Fieldwork is archived",
+        "archivedBannerDescription": "The fieldwork workspace is read-only. Restore fieldwork to continue execution.",
+        "archivePrompt": "Archiving makes this fieldwork package read-only while preserving its history.",
+        "archiveAction": "Archive fieldwork",
+        "archiveConfirmAction": "Confirm archive",
+        "restorePrompt": "Restore fieldwork to resume procedure execution.",
+        "restoreAction": "Restore fieldwork",
+        "restoreConfirmAction": "Confirm restore",
+        "cancelAction": "Cancel"
       }
     }
   }

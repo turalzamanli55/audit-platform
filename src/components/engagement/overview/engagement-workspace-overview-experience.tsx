@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
+import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,7 @@ import { Alert } from "@/components/ui";
 import {
   buildClientInformationItems,
   buildEngagementInformationItems,
+  buildFieldworkSummaryItems,
   buildOverviewMetadataItems,
   buildOverviewSummaryCards,
   buildPlanningSummaryItems,
@@ -31,20 +33,24 @@ type EngagementWorkspaceOverviewExperienceProps = {
   locale: string;
   canUpdate: boolean;
   plan: PlanningWorkspaceView | null;
+  fieldwork: FieldworkWorkspaceView | null;
   labels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
   overviewLabels: Dictionary["engagements"]["overview"];
   planningLabels: Dictionary["planning"];
+  fieldworkLabels: Dictionary["fieldwork"];
 };
 
 export function EngagementWorkspaceOverviewExperience({
   locale,
   canUpdate,
   plan,
+  fieldwork,
   labels,
   engagementsLabels,
   overviewLabels,
   planningLabels,
+  fieldworkLabels,
 }: EngagementWorkspaceOverviewExperienceProps) {
   const router = useRouter();
   const { engagement, refreshEngagement } = useEngagementWorkspace();
@@ -66,6 +72,14 @@ export function EngagementWorkspaceOverviewExperience({
     engagementsLabels,
     plan,
     planningLabels,
+  );
+  const fieldworkItems = buildFieldworkSummaryItems(
+    engagement,
+    locale,
+    labels,
+    engagementsLabels,
+    fieldwork,
+    fieldworkLabels,
   );
   const clientItems = buildClientInformationItems(engagement, locale, labels);
   const informationItems = buildEngagementInformationItems(
@@ -143,6 +157,22 @@ export function EngagementWorkspaceOverviewExperience({
             className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {labels.planning.openPlanning}
+          </Link>
+        </div>
+      </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceSectionShell
+        title={labels.fieldwork.title}
+        description={labels.fieldwork.description}
+        headingId="engagement-workspace-fieldwork"
+      >
+        <EngagementWorkspaceMetadataPanel title={labels.fieldwork.title} items={fieldworkItems} embedded />
+        <div className="mt-4">
+          <Link
+            href={`/${locale}/app/engagements/${engagement.slug}/fieldwork`}
+            className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {labels.fieldwork.openFieldwork}
           </Link>
         </div>
       </EngagementWorkspaceSectionShell>

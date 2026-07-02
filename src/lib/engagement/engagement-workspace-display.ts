@@ -2,6 +2,7 @@ import type { EngagementLifecycleStatus } from "@/types/engagement";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { EngagementWorkspaceNavItem } from "@/components/engagement/workspace/engagement-workspace-sidebar";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
+import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import {
   formatDate,
@@ -12,7 +13,7 @@ import {
   formatOptionalText,
 } from "@/lib/engagement/format-engagement-workspace";
 
-export type EngagementWorkspaceSection = "overview" | "members" | "planning" | "history" | "settings";
+export type EngagementWorkspaceSection = "overview" | "members" | "planning" | "fieldwork" | "history" | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
 
 const LIFECYCLE_PROGRESS: Record<EngagementLifecycleStatus, number> = {
@@ -90,6 +91,71 @@ export function buildPlanningSummaryItems(
     {
       id: "members",
       label: labels.planning.teamSize,
+      value: String(engagement.memberCount),
+    },
+  ];
+}
+
+export function buildFieldworkSummaryItems(
+  engagement: EngagementWorkspaceView,
+  locale: string,
+  labels: EngagementWorkspaceLabels,
+  engagementsLabels: Dictionary["engagements"],
+  fieldwork?: FieldworkWorkspaceView | null,
+  fieldworkLabels?: Dictionary["fieldwork"],
+) {
+  if (fieldwork && fieldworkLabels) {
+    return [
+      {
+        id: "status",
+        label: labels.fieldwork.fieldworkStatus,
+        value: fieldworkLabels.statuses[fieldwork.packageStatus],
+      },
+      {
+        id: "progress",
+        label: labels.fieldwork.fieldworkProgress,
+        value: `${fieldwork.progressPct}%`,
+      },
+      {
+        id: "procedures",
+        label: labels.fieldwork.proceduresComplete,
+        value: `${fieldwork.procedures.filter((p) => p.procedureStatus === "complete").length}/${fieldwork.procedures.length}`,
+      },
+      {
+        id: "findings",
+        label: labels.fieldwork.findingsCount,
+        value: String(fieldwork.findings.length),
+      },
+      {
+        id: "evidence",
+        label: labels.fieldwork.evidenceCount,
+        value: String(fieldwork.evidence.length),
+      },
+    ];
+  }
+
+  return [
+    {
+      id: "lifecycle",
+      label: labels.fieldwork.lifecycleStage,
+      value: formatLifecycleStatusLabel(
+        engagement.lifecycleStatus,
+        engagementsLabels.lifecycleStatuses,
+      ),
+    },
+    {
+      id: "period",
+      label: labels.fieldwork.financialYear,
+      value: formatDateRange(engagement.periodStart, engagement.periodEnd, locale),
+    },
+    {
+      id: "planned",
+      label: labels.fieldwork.plannedSchedule,
+      value: formatDateRange(engagement.plannedStart, engagement.plannedEnd, locale),
+    },
+    {
+      id: "members",
+      label: labels.fieldwork.teamSize,
       value: String(engagement.memberCount),
     },
   ];
@@ -183,6 +249,7 @@ export function buildEngagementWorkspaceNavItems(
     { id: "overview", label: labels.navOverview, href: base },
     { id: "members", label: labels.navMembers, href: `${base}/members` },
     { id: "planning", label: labels.navPlanning, href: `${base}/planning` },
+    { id: "fieldwork", label: labels.navFieldwork, href: `${base}/fieldwork` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
   ];
@@ -311,6 +378,8 @@ export function workspaceSectionTitle(
       return labels.sections.members.title;
     case "planning":
       return labels.navPlanning;
+    case "fieldwork":
+      return labels.navFieldwork;
     case "history":
       return labels.sections.history.title;
     case "settings":

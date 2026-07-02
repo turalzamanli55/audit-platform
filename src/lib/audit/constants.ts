@@ -25,4 +25,12 @@ export const AUDIT_ACTIONS = {
   PLANNING_REVISED: "planning.revised",
   PLANNING_COMMENT_ADDED: "planning.comment.added",
   PLANNING_DOCUMENT_ADDED: "planning.document.added",
+  FIELDWORK_CREATED: "fieldwork.created",
+  FIELDWORK_ARCHIVED: "fieldwork.archived",
+  FIELDWORK_RESTORED: "fieldwork.restored",
+  FIELDWORK_PROCEDURE_UPDATED: "fieldwork.procedure.updated",
+  FIELDWORK_WORKING_PAPER_ADDED: "fieldwork.working_paper.added",
+  FIELDWORK_EVIDENCE_ADDED: "fieldwork.evidence.added",
+  FIELDWORK_FINDING_ADDED: "fieldwork.finding.added",
+  FIELDWORK_NOTE_ADDED: "fieldwork.note.added",
 } as const;
