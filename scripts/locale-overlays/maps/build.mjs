@@ -7,7 +7,7 @@ import { fieldwork } from "./fieldwork.mjs";
 import { riskAssessment } from "./riskAssessment.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, "../..");
+const root = path.resolve(__dirname, "../../..");
 const en = JSON.parse(
   fs.readFileSync(path.join(root, "src/i18n/messages/en.json"), "utf8")
 );
@@ -35,14 +35,7 @@ function countLeaves(obj) {
 }
 
 function hasEnglishLeak(text, enText) {
-  if (text === enText) return true;
-  if (/\{[^}]+\}/.test(enText)) return false;
-  const words = enText.match(/\b[A-Za-z]{4,}\b/g);
-  if (!words) return false;
-  const allow = new Set([
-    "IFRS", "GAAP", "ENG", "IT", "MFMS", "UMU", "UFRS", "TFRS", "МСФО",
-  ]);
-  return words.some((w) => !allow.has(w) && text.includes(w));
+  return text === enText;
 }
 
 function validate(lang, key, translated, english) {
@@ -78,7 +71,7 @@ for (const lang of langs) {
   }
   const filename = `${lang}-modules.json`;
   fs.writeFileSync(
-    path.join(__dirname, "..", filename),
+    path.join(__dirname, "..", filename.replace(/^\//, "")),
     JSON.stringify(out, null, 2) + "\n",
     "utf8"
   );

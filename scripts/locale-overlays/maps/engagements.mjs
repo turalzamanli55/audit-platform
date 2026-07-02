@@ -22,7 +22,7 @@ export const engagements = {
     columnType: "Növ",
     columnLifecycle: "Həyat dövrü",
     columnFramework: "Çərçivə",
-    columnStatus: "Status",
+    columnStatus: "Vəziyyət",
     columnUpdated: "Yenilənib",
     emptyTitle: "Hələ müsadirə yoxdur",
     emptyDescription: "Bu iş sahəsində müsadirələr yaradıldıqdan sonra burada görünəcək.",
