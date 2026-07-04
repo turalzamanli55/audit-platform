@@ -6,6 +6,7 @@ import {
   CompanyWorkspaceSidebar,
   type CompanyWorkspaceNavItem,
 } from "./company-workspace-sidebar";
+import type { Dictionary } from "@/i18n/get-dictionary";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
 
 type CompanyWorkspaceLayoutProps = {
@@ -15,6 +16,7 @@ type CompanyWorkspaceLayoutProps = {
   heroLabels: CompanyWorkspaceHeroLabels;
   navItems: CompanyWorkspaceNavItem[];
   navAriaLabel: string;
+  companiesLabels?: Dictionary["companies"];
   children: ReactNode;
   className?: string;
 };
@@ -29,6 +31,7 @@ export function CompanyWorkspaceLayout({
   heroLabels,
   navItems,
   navAriaLabel,
+  companiesLabels,
   children,
   className = "",
 }: CompanyWorkspaceLayoutProps) {
@@ -38,13 +41,18 @@ export function CompanyWorkspaceLayout({
         companySlug={company.slug}
         preferredCompanySlug={preferredCompanySlug}
       />
-      <CompanyWorkspaceHero locale={locale} company={company} labels={heroLabels} />
+      <CompanyWorkspaceHero
+        locale={locale}
+        company={company}
+        labels={heroLabels}
+        companiesLabels={companiesLabels}
+      />
 
       <div className="grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[14rem_minmax(0,1fr)]">
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <CompanyWorkspaceSidebar items={navItems} ariaLabel={navAriaLabel} />
         </aside>
-        <main className="min-w-0 space-y-10">{children}</main>
+        <main className="min-w-0 space-y-6">{children}</main>
       </div>
     </CompanyPageShell>
   );

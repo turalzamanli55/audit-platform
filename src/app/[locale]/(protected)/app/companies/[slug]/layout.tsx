@@ -70,6 +70,7 @@ export default async function CompanyWorkspaceRouteLayout({
       heroLabels={buildWorkspaceHeroLabels(labels, dictionary.companies)}
       navItems={buildCompanyWorkspaceNavItems(locale, company.slug, labels)}
       navAriaLabel={labels.navAriaLabel}
+      companiesLabels={dictionary.companies}
     >
       {children}
     </CompanyWorkspaceLayout>

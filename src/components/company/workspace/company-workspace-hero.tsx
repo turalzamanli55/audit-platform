@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import {
   CompanyArchiveBadge,
   CompanyAvatar,
@@ -7,6 +8,7 @@ import {
 } from "@/components/company";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
 import { formatOptionalText } from "@/lib/company/format-company-workspace";
+import type { Dictionary } from "@/i18n/get-dictionary";
 
 export type CompanyWorkspaceHeroLabels = {
   breadcrumbRoot: string;
@@ -22,6 +24,7 @@ type CompanyWorkspaceHeroProps = {
   locale: string;
   company: CompanyWorkspaceView;
   labels: CompanyWorkspaceHeroLabels;
+  companiesLabels?: Dictionary["companies"];
   className?: string;
 };
 
@@ -50,6 +53,7 @@ export function CompanyWorkspaceHero({
   locale,
   company,
   labels,
+  companiesLabels,
   className = "",
 }: CompanyWorkspaceHeroProps) {
   const basePath = `/${locale}/app/companies`;
@@ -98,6 +102,19 @@ export function CompanyWorkspaceHero({
                   label={statusLabel(company.status, labels)}
                 />
               )}
+              {companiesLabels ? (
+                <>
+                  <Badge variant="secondary" className="rounded-full text-xs">
+                    {companiesLabels.create.frameworks[company.settings.reporting_framework]}
+                  </Badge>
+                  <Badge variant="secondary" className="rounded-full text-xs">
+                    {company.settings.functional_currency}
+                  </Badge>
+                  <Badge variant="secondary" className="rounded-full text-xs">
+                    {company.settings.jurisdiction}
+                  </Badge>
+                </>
+              ) : null}
             </div>
           </div>
         </div>
