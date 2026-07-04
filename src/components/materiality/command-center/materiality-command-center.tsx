@@ -13,6 +13,7 @@ import { MaterialityWorkflowPanel } from "@/components/materiality/workflow/mate
 import { useMaterialityWorkspace } from "@/lib/materiality/use-materiality-workspace";
 import type { MaterialityCommandCenterData } from "@/types/materiality-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { workspaceTokens } from "@/components/workspace";
 import { IconArrowRight } from "@/components/ui/icons";
 
 type MaterialityCommandCenterProps = {
@@ -56,7 +57,7 @@ export function MaterialityCommandCenter({
                 <Link
                   key={threshold.id}
                   href={threshold.href}
-                  className="rounded-xl border border-border/50 bg-card/80 px-4 py-3 transition-colors hover:bg-card"
+                  className={workspaceTokens.actionLink}
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                     {threshold.label}

@@ -13,6 +13,7 @@ import {
   CommandKpiRow,
   CommandListRow,
 } from "@/components/dashboard/command-center/command-center-primitives";
+import { workspaceTokens } from "@/components/workspace";
 import { ENGAGEMENTS_NEW_PATH } from "@/config/dashboard-navigation";
 import { updateCompanyAction } from "@/lib/actions/company/update-company";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
@@ -164,7 +165,7 @@ export function CompanyCommandCenter({
                 <Link
                   key={action.id}
                   href={action.href}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border/50 bg-card/80 px-3 py-2.5 text-xs font-medium transition-colors hover:bg-card sm:text-sm"
+                  className={`${workspaceTokens.actionLink} px-3 py-2.5 text-xs sm:text-sm`}
                 >
                   <Icon width={14} height={14} className="shrink-0 text-primary" />
                   <span className="truncate">{action.label}</span>
@@ -184,7 +185,7 @@ export function CompanyCommandCenter({
             <Link
               key={module.id}
               href={module.href ?? `/${locale}/app/engagements`}
-              className="rounded-xl border border-border/50 bg-muted/10 p-4 transition-all hover:border-border-strong hover:bg-card/80"
+              className={workspaceTokens.moduleTile}
             >
               <div className="flex items-start justify-between gap-2">
                 <p className="text-sm font-semibold text-foreground">{module.label}</p>

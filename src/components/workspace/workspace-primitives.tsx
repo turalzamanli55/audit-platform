@@ -16,7 +16,7 @@ const kpiVariants: Record<WorkspaceKpiVariant, string> = {
 export function WorkspaceKpiRow({ title, items }: { title: string; items: WorkspaceKpiCard[] }) {
   return (
     <section className={workspaceTokens.sectionGap}>
-      <h2 className={workspaceTokens.sectionEyebrow}>{title}</h2>
+      {title ? <h2 className={workspaceTokens.sectionEyebrow}>{title}</h2> : null}
       <div className={workspaceTokens.kpiGrid}>
         {items.map((item) => {
           const panel = (
@@ -75,16 +75,22 @@ export function WorkspaceCard({
         className,
       )}
     >
-      <div className={workspaceTokens.cardHeader}>
-        <div className="min-w-0 space-y-0.5">
-          <h3 className="text-sm font-semibold tracking-tight text-foreground">{title}</h3>
-          {description ? (
-            <p className="text-xs leading-relaxed text-muted-foreground">{description}</p>
-          ) : null}
+      {title || description || action ? (
+        <div className={workspaceTokens.cardHeader}>
+          <div className="min-w-0 space-y-0.5">
+            {title ? (
+              <h3 className="text-sm font-semibold tracking-tight text-foreground">{title}</h3>
+            ) : null}
+            {description ? (
+              <p className="text-xs leading-relaxed text-muted-foreground">{description}</p>
+            ) : null}
+          </div>
+          {action}
         </div>
-        {action}
+      ) : null}
+      <div className={title || description || action ? workspaceTokens.cardBody : "p-4 sm:p-5"}>
+        {children}
       </div>
-      <div className={workspaceTokens.cardBody}>{children}</div>
     </section>
   );
 }

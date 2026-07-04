@@ -54,7 +54,7 @@ export function WorkspaceQuickActions({
           const content = (
             <WorkspacePanel
               variant="soft"
-              className="group flex h-full flex-col justify-between gap-4 p-5 transition-all duration-200 hover:border-border-strong hover:bg-card/80 hover:shadow-sm motion-reduce:transition-none"
+              className="group flex h-full flex-col justify-between gap-4 p-5 transition-all duration-200 hover:border-border-strong hover:bg-card/90 hover:shadow-sm motion-reduce:transition-none"
             >
               <div className="flex items-start justify-between gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform duration-200 group-hover:scale-105 motion-reduce:transform-none">

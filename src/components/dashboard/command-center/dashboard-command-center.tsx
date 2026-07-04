@@ -11,6 +11,7 @@ import { buildWelcomeGreeting, buildWelcomeSummary } from "@/lib/dashboard/works
 import { useSettings } from "@/providers";
 import { useShell } from "@/components/shell/shell-provider";
 import { useTheme } from "@/providers";
+import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 import { WorkspaceContextHeader } from "../workspace/workspace-welcome";
 import { WorkspaceTasks } from "../workspace/workspace-tasks";
@@ -127,7 +128,7 @@ export function DashboardCommandCenter({ model }: DashboardCommandCenterProps) {
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row lg:flex-col">
             <Link
               href={`/${locale}${COMPANIES_NEW_PATH}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/80 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-card"
+              className={workspaceTokens.actionLink}
             >
               <IconBriefcase width={16} height={16} />
               {labels.quickActions.createCompany}
@@ -155,7 +156,7 @@ export function DashboardCommandCenter({ model }: DashboardCommandCenterProps) {
             <Link
               key={module.id}
               href={module.href}
-              className="rounded-xl border border-border/50 bg-muted/10 p-4 transition-all hover:border-border-strong hover:bg-card/80"
+              className={workspaceTokens.moduleTile}
             >
               <p className="text-sm font-semibold text-foreground">{module.label}</p>
               <dl className="mt-3 grid grid-cols-3 gap-2 text-center">

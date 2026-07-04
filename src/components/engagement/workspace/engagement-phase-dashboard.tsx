@@ -2,6 +2,12 @@
 
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import {
+  WorkspaceEmpty,
+  WorkspacePanel,
+  WorkspaceProgressBar,
+  workspaceTokens,
+} from "@/components/workspace";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
@@ -59,10 +65,7 @@ export function EngagementPhaseDashboard({
 
       <div className="grid gap-4 md:grid-cols-2">
         {cards.map((card) => (
-          <article
-            key={card.id}
-            className="flex flex-col rounded-2xl border border-border/50 bg-card/80 p-5 shadow-xs sm:p-6"
-          >
+          <WorkspacePanel key={card.id} padding="md" className="flex flex-col">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="text-base font-semibold tracking-tight text-foreground">{card.title}</h3>
@@ -72,44 +75,29 @@ export function EngagementPhaseDashboard({
             </div>
 
             {card.isEmpty ? (
-              <div className="mt-5 flex flex-1 flex-col justify-center rounded-xl border border-dashed border-border/60 bg-muted/10 px-4 py-6 text-center">
-                <p className="text-sm font-medium text-foreground">{card.emptyTitle}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{card.emptyDescription}</p>
+              <div className="mt-5 flex flex-1 flex-col justify-center">
+                <WorkspaceEmpty title={card.emptyTitle} description={card.emptyDescription} />
               </div>
             ) : (
-              <>
-                <div className="mt-5 space-y-2">
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{card.kpiPrimary.label}</span>
-                    <span className="font-medium text-foreground">{card.kpiPrimary.value}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{card.kpiSecondary.label}</span>
-                    <span className="font-medium text-foreground">{card.kpiSecondary.value}</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className="h-full rounded-full bg-foreground/75 transition-all"
-                      style={{ width: `${card.progressPct}%` }}
-                      role="progressbar"
-                      aria-valuenow={card.progressPct}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    />
-                  </div>
+              <div className="mt-5 space-y-3">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{card.kpiPrimary.label}</span>
+                  <span className="font-medium text-foreground">{card.kpiPrimary.value}</span>
                 </div>
-              </>
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{card.kpiSecondary.label}</span>
+                  <span className="font-medium text-foreground">{card.kpiSecondary.value}</span>
+                </div>
+                <WorkspaceProgressBar label={card.kpiPrimary.label} value={card.progressPct} />
+              </div>
             )}
 
             <div className="mt-5">
-              <Link
-                href={card.href}
-                className="inline-flex h-10 w-full items-center justify-center rounded-xl border border-border/60 bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:w-auto"
-              >
+              <Link href={card.href} className={`${workspaceTokens.backButton} w-full justify-center sm:w-auto`}>
                 {card.ctaLabel}
               </Link>
             </div>
-          </article>
+          </WorkspacePanel>
         ))}
       </div>
     </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { IconArrowRight } from "@/components/ui/icons";
 import type { EngagementPipelinePhase } from "@/types/engagement-command-center";
+import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 
 type EngagementAuditPipelineProps = {
@@ -27,7 +28,7 @@ export function EngagementAuditPipeline({
                 "flex min-w-[8.5rem] flex-1 flex-col rounded-xl border p-3.5 transition-all sm:min-w-[9.5rem] sm:p-4",
                 phase.isActive
                   ? "border-primary/40 bg-primary/5 shadow-xs"
-                  : "border-border/50 bg-card/80",
+                  : workspaceTokens.card,
               )}
             >
               <div className="flex items-start justify-between gap-2">

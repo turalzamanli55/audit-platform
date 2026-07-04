@@ -47,6 +47,8 @@ export {
   WorkspacePanel,
   WorkspaceFormPanel,
   WorkspaceMetricCard,
+  WorkspaceSummaryGrid,
+  type WorkspaceSummaryItem,
 } from "./workspace-panel";
 export {
   WorkspaceList,

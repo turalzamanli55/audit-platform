@@ -67,3 +67,38 @@ export function WorkspaceMetricCard({
     </WorkspacePanel>
   );
 }
+
+export type WorkspaceSummaryItem = {
+  id: string;
+  label: string;
+  value: ReactNode;
+  hint?: string;
+};
+
+export function WorkspaceSummaryGrid({
+  items,
+  className,
+  ariaLabel,
+}: {
+  items: WorkspaceSummaryItem[];
+  className?: string;
+  ariaLabel?: string;
+}) {
+  return (
+    <div className={className} role="list" aria-label={ariaLabel}>
+      <div className={workspaceTokens.kpiGrid}>
+        {items.map((item) => (
+          <div key={item.id} role="listitem">
+            <WorkspacePanel padding="md" className="space-y-3 h-full">
+              <p className={workspaceTokens.kpiLabel}>{item.label}</p>
+              <div className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                {item.value}
+              </div>
+              {item.hint ? <p className={workspaceTokens.kpiHint}>{item.hint}</p> : null}
+            </WorkspacePanel>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

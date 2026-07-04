@@ -13,6 +13,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
+import { WorkspaceFormPanel } from "@/components/workspace";
 
 type PlanningWorkflowPanelProps = {
   canSubmit: boolean;
@@ -65,9 +66,8 @@ export function PlanningWorkflowPanel({
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-      <div className="space-y-5 p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+    <WorkspaceFormPanel>
+      <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
               {labels.eyebrow}
@@ -199,7 +199,6 @@ export function PlanningWorkflowPanel({
         {status === "pending_review" && !canReview && !canApprove ? (
           <p className="text-sm text-muted-foreground">{labels.pendingReviewNotice}</p>
         ) : null}
-      </div>
-    </div>
+    </WorkspaceFormPanel>
   );
 }

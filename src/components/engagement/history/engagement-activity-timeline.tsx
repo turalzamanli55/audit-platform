@@ -1,3 +1,4 @@
+import { WorkspaceEmpty, WorkspacePanel } from "@/components/workspace";
 import { AUDIT_ACTIONS } from "@/lib/audit/constants";
 import type { EngagementActivityEntry } from "@/lib/engagement/load-engagement-activity";
 import { formatDateTime } from "@/lib/engagement/format-engagement-workspace";
@@ -58,10 +59,7 @@ export function EngagementActivityTimeline({
           <h3 className="text-lg font-semibold tracking-tight text-foreground">{labels.title}</h3>
           <p className="text-sm text-muted-foreground">{labels.description}</p>
         </div>
-        <div className="rounded-2xl border border-dashed border-border/70 bg-muted/15 px-6 py-10 text-center">
-          <p className="text-sm font-medium text-foreground">{labels.emptyTitle}</p>
-          <p className="mt-2 text-sm text-muted-foreground">{labels.emptyDescription}</p>
-        </div>
+        <WorkspaceEmpty title={labels.emptyTitle} description={labels.emptyDescription} />
       </section>
     );
   }
@@ -76,10 +74,8 @@ export function EngagementActivityTimeline({
         {entries.map((entry) => {
           const detail = metadataDetail(entry, labels);
           return (
-            <li
-              key={entry.id}
-              className="rounded-2xl border border-border/50 bg-card/80 px-4 py-4 shadow-xs sm:px-5"
-            >
+            <li key={entry.id}>
+              <WorkspacePanel padding="sm" className="px-4 py-4 sm:px-5">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-foreground">
@@ -96,6 +92,7 @@ export function EngagementActivityTimeline({
                   {formatDateTime(entry.createdAt, locale)}
                 </time>
               </div>
+              </WorkspacePanel>
             </li>
           );
         })}
