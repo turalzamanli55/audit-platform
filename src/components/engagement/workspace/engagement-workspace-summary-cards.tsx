@@ -11,17 +11,19 @@ export type EngagementWorkspaceSummaryCard = {
 type EngagementWorkspaceSummaryCardsProps = {
   cards: EngagementWorkspaceSummaryCard[];
   className?: string;
+  ariaLabel?: string;
 };
 
 export function EngagementWorkspaceSummaryCards({
   cards,
   className = "",
+  ariaLabel,
 }: EngagementWorkspaceSummaryCardsProps) {
   return (
     <WorkspaceSummaryGrid
       items={cards}
       className={className}
-      ariaLabel="Engagement summary"
+      ariaLabel={ariaLabel}
     />
   );
 }

@@ -9,8 +9,8 @@ type EngagementRestoreBannerProps = {
 };
 
 export function EngagementRestoreBanner({
-  title = "This engagement is archived",
-  description = "The workspace is read-only. Restore the engagement to make changes again.",
+  title,
+  description,
   action,
   className = "",
 }: EngagementRestoreBannerProps) {

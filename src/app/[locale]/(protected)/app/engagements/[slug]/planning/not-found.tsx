@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { getDictionary, type Locale } from "@/i18n";
+import { getDictionary } from "@/i18n";
+import { resolveRouteLocale } from "@/lib/i18n/resolve-route-locale";
 
 type PlanningNotFoundProps = {
-  params: Promise<{ locale: string; slug: string }>;
+  params?: Promise<{ locale: string; slug: string }>;
 };
 
 export default async function PlanningNotFound({ params }: PlanningNotFoundProps) {
-  const { locale: localeParam, slug } = await params;
-  const locale = localeParam as Locale;
+  const { locale, slug } = await resolveRouteLocale(params);
   const dictionary = await getDictionary(locale);
 
   return (

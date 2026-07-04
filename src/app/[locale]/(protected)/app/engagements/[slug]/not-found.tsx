@@ -1,16 +1,16 @@
-import { getDictionary, type Locale } from "@/i18n";
+import { getDictionary } from "@/i18n";
 import { EngagementEmptyState, EngagementPageShell } from "@/components/engagement";
+import { resolveRouteLocale } from "@/lib/i18n/resolve-route-locale";
 import Link from "next/link";
 
 type EngagementWorkspaceNotFoundProps = {
-  params: Promise<{ locale: string }>;
+  params?: Promise<{ locale: string }>;
 };
 
 export default async function EngagementWorkspaceNotFound({
   params,
 }: EngagementWorkspaceNotFoundProps) {
-  const { locale: localeParam } = await params;
-  const locale = localeParam as Locale;
+  const { locale } = await resolveRouteLocale(params);
   const dictionary = await getDictionary(locale);
   const labels = dictionary.engagements;
 

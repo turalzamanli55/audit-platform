@@ -9,8 +9,8 @@ type EngagementWorkspaceErrorProps = {
 };
 
 export function EngagementWorkspaceError({
-  title = "Unable to load engagement workspace",
-  description = "Something went wrong while loading this engagement. Try again in a moment.",
+  title,
+  description,
   action,
   className = "",
 }: EngagementWorkspaceErrorProps) {

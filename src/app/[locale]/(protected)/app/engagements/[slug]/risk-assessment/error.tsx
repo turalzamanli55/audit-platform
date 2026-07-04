@@ -1,15 +1,9 @@
 "use client";
-import { useEffect } from "react";
-import { useParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { RiskAssessmentWorkspaceError } from "@/components/risk-assessment";
 
-const retryLabels: Record<string, string> = {
-  en: "Retry",
-  az: "Yenidən cəhd et",
-  ru: "Повторить",
-  tr: "Yeniden dene",
-};
+import { useEffect } from "react";
+import { RiskAssessmentWorkspaceError } from "@/components/risk-assessment";
+import { WorkspaceErrorRetryAction } from "@/components/workspace";
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
 
 export default function RiskAssessmentError({
   error,
@@ -18,8 +12,8 @@ export default function RiskAssessmentError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const params = useParams();
-  const locale = typeof params.locale === "string" ? params.locale : "en";
+  const dictionary = useClientDictionary();
+  const labels = dictionary.riskAssessment.workspace;
 
   useEffect(() => {
     console.error(error);
@@ -27,11 +21,9 @@ export default function RiskAssessmentError({
 
   return (
     <RiskAssessmentWorkspaceError
-      action={
-        <Button type="button" variant="secondary" onClick={reset}>
-          {retryLabels[locale] ?? retryLabels.en}
-        </Button>
-      }
+      title={labels.errorTitle}
+      description={labels.errorDescription}
+      action={<WorkspaceErrorRetryAction onRetry={reset} />}
     />
   );
 }

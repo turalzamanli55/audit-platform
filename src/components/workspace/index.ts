@@ -56,3 +56,4 @@ export {
   WorkspaceListEntry,
 } from "./workspace-list";
 export { WorkspaceNoticeBanner } from "./workspace-notice-banner";
+export { WorkspaceErrorRetryAction } from "./workspace-error-retry-action";

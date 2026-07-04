@@ -1943,7 +1943,7 @@
       "under_review": "На проверке",
       "approved": "Утверждено",
       "archived": "В архиве",
-      "returned": "Returned"
+      "returned": "Возвращено"
     },
     "riskTypes": {
       "inherent": "Неотъемлемый риск",
@@ -2662,99 +2662,37 @@
       "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
     },
     "workspace": {
-      "title": "Существенность overview",
-      "description": "Overview of current materiality status and key thresholds.",
-      "statusTitle": "Status summary",
-      "statusDescription": "Current completion and readiness indicators for this materiality package.",
-      "progress": "Overall progress",
-      "workflowTitle": "Workflow",
-      "workflowDescription": "Submission and approval workflow for the materiality package.",
-      "thresholdsPreviewTitle": "Thresholds preview",
-      "thresholdsPreviewDescription": "Current overall, performance, and trivial materiality thresholds.",
+      "title": "Существенность — обзор",
+      "description": "Обзор текущего статуса существенности и ключевых порогов.",
+      "statusTitle": "Сводка статуса",
+      "statusDescription": "Текущие показатели завершённости и готовности для этого пакета существенности.",
+      "progress": "Общий прогресс",
+      "workflowTitle": "Рабочий процесс",
+      "workflowDescription": "Процесс подачи и утверждения пакета существенности.",
+      "thresholdsPreviewTitle": "Предпросмотр порогов",
+      "thresholdsPreviewDescription": "Текущие общие, рабочие и тривиальные пороги существенности.",
+      "benchmarksPreviewTitle": "Предпросмотр бенчмарков",
+      "benchmarksPreviewDescription": "Суммы бенчмарков, проценты и рассчитанная существенность.",
       "heroEyebrow": "Существенность",
       "breadcrumbСущественность": "Существенность",
-      "backToEngagement": "Back to engagement",
-      "planningGateTitle": "Planning approval required",
-      "planningGateDescription": "Audit planning must be approved before materiality can begin.",
-      "navAriaLabel": "Существенность workspace sections",
+      "backToEngagement": "Вернуться к проекту",
+      "planningGateTitle": "Требуется утверждение планирования",
+      "planningGateDescription": "Планирование аудита должно быть утверждено до начала работы с существенностью.",
+      "navAriaLabel": "Разделы рабочей области существенности",
       "navOverview": "Панель",
-      "navOverall": "Overall",
-      "navPerformance": "Performance",
-      "navSpecific": "Specific",
-      "navБенчмарки": "Бенчмарки",
-      "navРасчёты": "Расчёты",
-      "navВерсии": "Версии",
-      "navКомментарии": "Комментарии",
-      "navИстория": "История",
-      "navНастройки": "Настройки",
-      "loading": "Loading materiality workspace",
-      "errorTitle": "Unable to load materiality workspace",
-      "errorDescription": "Something went wrong while loading this materiality workspace.",
-      "archivedTitle": "Существенность archived",
-      "archivedDescription": "This materiality package is read-only. Restore it to continue updates.",
-      "summaryStatus": "Существенность status",
-      "summaryVersion": "Package version",
-      "summaryProgress": "Overall progress",
+      "navOverall": "Общая",
+      "navPerformance": "Рабочая",
+      "navSpecific": "Специфическая",
+      "loading": "Загрузка рабочей области существенности",
+      "errorTitle": "Не удалось загрузить рабочую область существенности",
+      "errorDescription": "При загрузке этой рабочей области существенности произошла ошибка.",
+      "archivedTitle": "Существенность в архиве",
+      "archivedDescription": "Этот пакет существенности доступен только для чтения. Восстановите его, чтобы продолжить обновления.",
+      "summaryStatus": "Статус существенности",
+      "summaryVersion": "Версия пакета",
+      "summaryProgress": "Общий прогресс",
       "summaryOverall": "Общая существенность",
-      "summaryБенчмарки": "Бенчмарки",
-      "summaryPendingReview": "Pending review",
-      "sections": {
-        "overview": {
-          "title": "Существенность dashboard",
-          "description": "Status, progress, and threshold readiness indicators."
-        },
-        "overall": {
-          "title": "Общая существенность",
-          "description": "Общая существенность threshold and basis of determination."
-        },
-        "performance": {
-          "title": "Рабочая существенность",
-          "description": "Рабочая существенность threshold and percentage applied."
-        },
-        "specific": {
-          "title": "Специфическая существенность",
-          "description": "Account or disclosure specific materiality thresholds."
-        },
-        "benchmarks": {
-          "title": "Бенчмарки",
-          "description": "Benchmark amounts, percentages, and selected basis."
-        },
-        "calculations": {
-          "title": "Расчёты",
-          "description": "Recorded materiality calculations and manual overrides."
-        },
-        "versions": {
-          "title": "Версии",
-          "description": "Version history snapshots of the materiality package."
-        },
-        "comments": {
-          "title": "Комментарии",
-          "description": "Review and internal comments on materiality documentation."
-        },
-        "history": {
-          "title": "История",
-          "description": "Timeline of materiality changes and approvals."
-        },
-        "settings": {
-          "title": "Настройки",
-          "description": "Archive and restore controls for this materiality package."
-        }
-      },
-      "historyActions": {
-        "materiality.created": "Существенность package created",
-        "materiality.updated": "Существенность package updated",
-        "materiality.archived": "Существенность package archived",
-        "materiality.restored": "Существенность package restored",
-        "materiality.submitted": "Существенность package submitted",
-        "materiality.returned": "Существенность package returned",
-        "materiality.approved": "Существенность package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
-      },
+      "summaryPendingReview": "Ожидает проверки",
       "commandCenter": {
         "heroTitle": "ISA 320 [[МАТЕРИАЛЬНОСТЬ]] командный центр",
         "executiveTitle": "[[МАТЕРИАЛЬНОСТЬ]] пороговые значения",
@@ -2863,7 +2801,72 @@
         "analysis": "Анализ",
         "governance": "Управление",
         "admin": "Администрирование"
-      }
+      },
+      "sections": {
+        "overview": {
+          "title": "Существенность dashboard",
+          "description": "Status, progress, and threshold readiness indicators."
+        },
+        "overall": {
+          "title": "Общая существенность",
+          "description": "Общая существенность threshold and basis of determination."
+        },
+        "performance": {
+          "title": "Рабочая существенность",
+          "description": "Рабочая существенность threshold and percentage applied."
+        },
+        "specific": {
+          "title": "Специфическая существенность",
+          "description": "Account or disclosure specific materiality thresholds."
+        },
+        "benchmarks": {
+          "title": "Бенчмарки",
+          "description": "Benchmark amounts, percentages, and selected basis."
+        },
+        "calculations": {
+          "title": "Расчёты",
+          "description": "Recorded materiality calculations and manual overrides."
+        },
+        "versions": {
+          "title": "Версии",
+          "description": "Version history snapshots of the materiality package."
+        },
+        "comments": {
+          "title": "Комментарии",
+          "description": "Review and internal comments on materiality documentation."
+        },
+        "history": {
+          "title": "История",
+          "description": "Timeline of materiality changes and approvals."
+        },
+        "settings": {
+          "title": "Настройки",
+          "description": "Archive and restore controls for this materiality package."
+        }
+      },
+      "historyActions": {
+        "materiality.created": "Существенность package created",
+        "materiality.updated": "Существенность package updated",
+        "materiality.archived": "Существенность package archived",
+        "materiality.restored": "Существенность package restored",
+        "materiality.submitted": "Существенность package submitted",
+        "materiality.returned": "Существенность package returned",
+        "materiality.approved": "Существенность package approved",
+        "materiality.benchmark.added": "Benchmark added",
+        "materiality.benchmark.updated": "Benchmark updated",
+        "materiality.calculation.recorded": "Calculation recorded",
+        "materiality.threshold.updated": "Threshold updated",
+        "materiality.comment.added": "Comment added",
+        "materiality.version.created": "Version created"
+      },
+      "breadcrumbMateriality": "Существенность",
+      "navBenchmarks": "Бенчмарки",
+      "navCalculations": "Расчёты",
+      "navVersions": "Версии",
+      "navComments": "Комментарии",
+      "navHistory": "История",
+      "navSettings": "Настройки",
+      "summaryBenchmarks": "Бенчмарки"
     },
     "calculator": {
       "title": "Существенность calculator",
@@ -2987,12 +2990,12 @@
       "readOnlyNotice": "У вас доступ только для просмотра настроек существенности."
     },
     "states": {
-      "loadingTitle": "Loading materiality",
-      "loadingDescription": "Please wait while the materiality workspace loads.",
-      "archiveTitle": "Существенность archived",
-      "archiveDescription": "This materiality package is archived and cannot be edited.",
-      "readonlyTitle": "Read-only access",
-      "readonlyDescription": "You can view this section but cannot make changes.",
+      "loadingTitle": "Загрузка существенности",
+      "loadingDescription": "Подождите, пока загружается рабочая область существенности.",
+      "archiveTitle": "Существенность в архиве",
+      "archiveDescription": "Этот пакет существенности архивирован и не может быть отредактирован.",
+      "readonlyTitle": "Только чтение",
+      "readonlyDescription": "Вы можете просматривать этот раздел, но не можете вносить изменения.",
       "permissionTitle": "Требуется разрешение",
       "permissionDescription": "You do not have permission to perform this action."
     }

@@ -1943,7 +1943,7 @@
       "under_review": "Yoxlama altında",
       "approved": "Təsdiqlənib",
       "archived": "Arxivlənib",
-      "returned": "Returned"
+      "returned": "Geri qaytarılıb"
     },
     "riskTypes": {
       "inherent": "Təbii risk",
@@ -2662,99 +2662,36 @@
       "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
     },
     "workspace": {
-      "title": "Mahiyyətllik overview",
-      "description": "Overview of current materiality status and key thresholds.",
-      "statusTitle": "Status summary",
-      "statusDescription": "Current completion and readiness indicators for this materiality package.",
-      "progress": "Overall progress",
-      "workflowTitle": "Workflow",
-      "workflowDescription": "Submission and approval workflow for the materiality package.",
-      "thresholdsPreviewTitle": "Thresholds preview",
-      "thresholdsPreviewDescription": "Current overall, performance, and trivial materiality thresholds.",
+      "title": "Mahiyyətllik icmalı",
+      "description": "Cari mahiyyətllik statusu və əsas həddlərin icmalı.",
+      "statusTitle": "Status xülasəsi",
+      "statusDescription": "Bu mahiyyətllik paketi üçün cari tamamlanma və hazırlıq göstəriciləri.",
+      "progress": "Ümumi gedişat",
+      "workflowTitle": "İş axını",
+      "workflowDescription": "Mahiyyətllik paketi üçün təqdimat və təsdiq iş axını.",
+      "thresholdsPreviewTitle": "Hədlərin önizləməsi",
+      "thresholdsPreviewDescription": "Cari ümumi, performans və əhəmiyyətsiz mahiyyətllik həddləri.",
+      "benchmarksPreviewTitle": "Bənchmark önizləməsi",
+      "benchmarksPreviewDescription": "Bənchmark məbləğləri, faizlər və hesablanmış mahiyyətllik.",
       "heroEyebrow": "Mahiyyətllik",
-      "breadcrumbMahiyyətllik": "Mahiyyətllik",
-      "backToEngagement": "Back to engagement",
-      "planningGateTitle": "Planning approval required",
-      "planningGateDescription": "Audit planning must be approved before materiality can begin.",
-      "navAriaLabel": "Mahiyyətllik workspace sections",
+      "backToEngagement": "Müsadirəyə qayıt",
+      "planningGateTitle": "Planlaşdırma təsdiqi tələb olunur",
+      "planningGateDescription": "Mahiyyətllik başlamazdan əvvəl audit planlaşdırması təsdiqlənməlidir.",
+      "navAriaLabel": "Mahiyyətllik iş sahəsi bölmələri",
       "navOverview": "İdarə paneli",
-      "navOverall": "Overall",
-      "navPerformance": "Performance",
-      "navSpecific": "Specific",
-      "navBənchmarklar": "Bənchmarklar",
-      "navHesablamalar": "Hesablamalar",
-      "navVersiyalar": "Versiyalar",
-      "navŞərhlər": "Şərhlər",
-      "navTarixçə": "Tarixçə",
-      "navParametrlər": "Parametrlər",
-      "loading": "Loading materiality workspace",
-      "errorTitle": "Unable to load materiality workspace",
-      "errorDescription": "Something went wrong while loading this materiality workspace.",
-      "archivedTitle": "Mahiyyətllik archived",
-      "archivedDescription": "This materiality package is read-only. Restore it to continue updates.",
-      "summaryStatus": "Mahiyyətllik status",
-      "summaryVersion": "Package version",
-      "summaryProgress": "Overall progress",
+      "navOverall": "Ümumi",
+      "navPerformance": "Performans",
+      "navSpecific": "Xüsusi",
+      "loading": "Mahiyyətllik iş sahəsi yüklənir",
+      "errorTitle": "Mahiyyətllik iş sahəsi yüklənə bilmədi",
+      "errorDescription": "Bu mahiyyətllik iş sahəsi yüklənərkən xəta baş verdi.",
+      "archivedTitle": "Mahiyyətllik arxivlənib",
+      "archivedDescription": "Bu mahiyyətllik paketi yalnız oxumaq üçündür. Yeniləməyə davam etmək üçün bərpa edin.",
+      "summaryStatus": "Mahiyyətllik statusu",
+      "summaryVersion": "Paket versiyası",
+      "summaryProgress": "Ümumi gedişat",
       "summaryOverall": "Ümumi mahiyyətllik",
-      "summaryBənchmarklar": "Bənchmarklar",
-      "summaryPendingReview": "Pending review",
-      "sections": {
-        "overview": {
-          "title": "Mahiyyətllik dashboard",
-          "description": "Status, progress, and threshold readiness indicators."
-        },
-        "overall": {
-          "title": "Ümumi mahiyyətllik",
-          "description": "Ümumi mahiyyətllik threshold and basis of determination."
-        },
-        "performance": {
-          "title": "Performans mahiyyətlliyi",
-          "description": "Performans mahiyyətlliyi threshold and percentage applied."
-        },
-        "specific": {
-          "title": "Xüsusi mahiyyətllik",
-          "description": "Account or disclosure specific materiality thresholds."
-        },
-        "benchmarks": {
-          "title": "Bənchmarklar",
-          "description": "Benchmark amounts, percentages, and selected basis."
-        },
-        "calculations": {
-          "title": "Hesablamalar",
-          "description": "Recorded materiality calculations and manual overrides."
-        },
-        "versions": {
-          "title": "Versiyalar",
-          "description": "Version history snapshots of the materiality package."
-        },
-        "comments": {
-          "title": "Şərhlər",
-          "description": "Review and internal comments on materiality documentation."
-        },
-        "history": {
-          "title": "Tarixçə",
-          "description": "Timeline of materiality changes and approvals."
-        },
-        "settings": {
-          "title": "Parametrlər",
-          "description": "Archive and restore controls for this materiality package."
-        }
-      },
-      "historyActions": {
-        "materiality.created": "Mahiyyətllik package created",
-        "materiality.updated": "Mahiyyətllik package updated",
-        "materiality.archived": "Mahiyyətllik package archived",
-        "materiality.restored": "Mahiyyətllik package restored",
-        "materiality.submitted": "Mahiyyətllik package submitted",
-        "materiality.returned": "Mahiyyətllik package returned",
-        "materiality.approved": "Mahiyyətllik package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
-      },
+      "summaryPendingReview": "Yoxlama gözləyir",
       "commandCenter": {
         "heroTitle": "ISA 320 mahiyyətlilik komanda mərkəzi",
         "executiveTitle": "mahiyyətlilik həddi",
@@ -2863,7 +2800,72 @@
         "analysis": "Təhlil",
         "governance": "Nəzarət",
         "admin": "İdarəetmə"
-      }
+      },
+      "sections": {
+        "overview": {
+          "title": "Mahiyyətllik dashboard",
+          "description": "Status, progress, and threshold readiness indicators."
+        },
+        "overall": {
+          "title": "Ümumi mahiyyətllik",
+          "description": "Ümumi mahiyyətllik threshold and basis of determination."
+        },
+        "performance": {
+          "title": "Performans mahiyyətlliyi",
+          "description": "Performans mahiyyətlliyi threshold and percentage applied."
+        },
+        "specific": {
+          "title": "Xüsusi mahiyyətllik",
+          "description": "Account or disclosure specific materiality thresholds."
+        },
+        "benchmarks": {
+          "title": "Bənchmarklar",
+          "description": "Benchmark amounts, percentages, and selected basis."
+        },
+        "calculations": {
+          "title": "Hesablamalar",
+          "description": "Recorded materiality calculations and manual overrides."
+        },
+        "versions": {
+          "title": "Versiyalar",
+          "description": "Version history snapshots of the materiality package."
+        },
+        "comments": {
+          "title": "Şərhlər",
+          "description": "Review and internal comments on materiality documentation."
+        },
+        "history": {
+          "title": "Tarixçə",
+          "description": "Timeline of materiality changes and approvals."
+        },
+        "settings": {
+          "title": "Parametrlər",
+          "description": "Archive and restore controls for this materiality package."
+        }
+      },
+      "historyActions": {
+        "materiality.created": "Mahiyyətllik package created",
+        "materiality.updated": "Mahiyyətllik package updated",
+        "materiality.archived": "Mahiyyətllik package archived",
+        "materiality.restored": "Mahiyyətllik package restored",
+        "materiality.submitted": "Mahiyyətllik package submitted",
+        "materiality.returned": "Mahiyyətllik package returned",
+        "materiality.approved": "Mahiyyətllik package approved",
+        "materiality.benchmark.added": "Benchmark added",
+        "materiality.benchmark.updated": "Benchmark updated",
+        "materiality.calculation.recorded": "Calculation recorded",
+        "materiality.threshold.updated": "Threshold updated",
+        "materiality.comment.added": "Comment added",
+        "materiality.version.created": "Version created"
+      },
+      "breadcrumbMateriality": "Mahiyyətllik",
+      "navBenchmarks": "Bənchmarklar",
+      "navCalculations": "Hesablamalar",
+      "navVersions": "Versiyalar",
+      "navComments": "Şərhlər",
+      "navHistory": "Tarixçə",
+      "navSettings": "Parametrlər",
+      "summaryBenchmarks": "Bənchmarklar"
     },
     "calculator": {
       "title": "Mahiyyətllik calculator",
@@ -2987,12 +2989,12 @@
       "readOnlyNotice": "Mahiyyətlilik parametrlərinə yalnız baxış hüququnuz var."
     },
     "states": {
-      "loadingTitle": "Loading materiality",
-      "loadingDescription": "Please wait while the materiality workspace loads.",
-      "archiveTitle": "Mahiyyətllik archived",
-      "archiveDescription": "This materiality package is archived and cannot be edited.",
-      "readonlyTitle": "Read-only access",
-      "readonlyDescription": "You can view this section but cannot make changes.",
+      "loadingTitle": "Mahiyyətllik yüklənir",
+      "loadingDescription": "Mahiyyətllik iş sahəsi yüklənərkən gözləyin.",
+      "archiveTitle": "Mahiyyətllik arxivlənib",
+      "archiveDescription": "Bu mahiyyətllik paketi arxivlənib və redaktə edilə bilməz.",
+      "readonlyTitle": "Yalnız oxumaq",
+      "readonlyDescription": "Bu bölməyə baxa bilərsiniz, lakin dəyişiklik edə bilməzsiniz.",
       "permissionTitle": "İcazə tələb olunur",
       "permissionDescription": "You do not have permission to perform this action."
     }

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { PlanningWorkspaceError } from "@/components/planning";
+import { WorkspaceErrorRetryAction } from "@/components/workspace";
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
 
 type PlanningErrorProps = {
   error: Error & { digest?: string };
@@ -10,17 +11,18 @@ type PlanningErrorProps = {
 };
 
 export default function PlanningError({ error, reset }: PlanningErrorProps) {
+  const dictionary = useClientDictionary();
+  const labels = dictionary.planning.workspace;
+
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
     <PlanningWorkspaceError
-      action={
-        <Button type="button" variant="secondary" onClick={reset}>
-          Retry
-        </Button>
-      }
+      title={labels.errorTitle}
+      description={labels.errorDescription}
+      action={<WorkspaceErrorRetryAction onRetry={reset} />}
     />
   );
 }
