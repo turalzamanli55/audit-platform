@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { RiskAssessmentWorkspaceError, RiskAssessmentWorkspaceShell } from "@/components/risk-assessment";
 import { getDictionary, type Locale } from "@/i18n";
 import { loadEngagementWorkspacePage } from "@/lib/engagement/engagement-workspace-page";
-import { buildRiskAssessmentWorkspaceNavItems } from "@/lib/risk-assessment/risk-assessment-workspace-display";
+import { buildRiskAssessmentWorkspaceNavGroups, buildRiskAssessmentWorkspaceNavItems } from "@/lib/risk-assessment/risk-assessment-workspace-display";
 import { loadRiskAssessmentWorkspacePage } from "@/lib/risk-assessment/risk-assessment-workspace-page";
 
 type Props = { children: ReactNode; params: Promise<{ locale: string; slug: string }> };
@@ -58,6 +58,7 @@ export default async function RiskAssessmentLayout({ children, params }: Props) 
       materialityApproved={riskResult.materialityApproved}
       engagementId={engagementResult.engagement.id}
       navItems={buildRiskAssessmentWorkspaceNavItems(locale, slug, labels)}
+      navGroups={buildRiskAssessmentWorkspaceNavGroups(locale, slug, labels)}
       navAriaLabel={labels.navAriaLabel}
       labels={labels}
       riskLabels={riskLabels}

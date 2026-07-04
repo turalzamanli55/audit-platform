@@ -2,6 +2,7 @@ export { RiskAssessmentWorkspaceShell } from "./workspace/risk-assessment-worksp
 export { RiskAssessmentWorkspaceChrome } from "./workspace/risk-assessment-workspace-chrome";
 export {
   RiskAssessmentWorkspaceSidebar,
+  type RiskAssessmentWorkspaceNavGroup,
   type RiskAssessmentWorkspaceNavItem,
 } from "./workspace/risk-assessment-workspace-sidebar";
 export { RiskAssessmentWorkspaceSectionShell } from "./workspace/risk-assessment-workspace-section-shell";

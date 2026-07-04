@@ -6,7 +6,7 @@ import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-ass
 import {
   RiskAssessmentWorkspaceProvider,
 } from "@/lib/risk-assessment/use-risk-assessment-workspace";
-import type { RiskAssessmentWorkspaceNavItem } from "./risk-assessment-workspace-sidebar";
+import type { RiskAssessmentWorkspaceNavGroup, RiskAssessmentWorkspaceNavItem } from "./risk-assessment-workspace-sidebar";
 
 type RiskAssessmentWorkspaceShellProps = {
   locale: string;
@@ -17,16 +17,22 @@ type RiskAssessmentWorkspaceShellProps = {
   materialityApproved: boolean;
   engagementId: string;
   navItems: RiskAssessmentWorkspaceNavItem[];
+  navGroups: RiskAssessmentWorkspaceNavGroup[];
   navAriaLabel: string;
   labels: {
     breadcrumbRiskAssessment: string;
     heroEyebrow: string;
     summaryProgress: string;
+    summaryVersion: string;
+    summarySignificant: string;
     backToEngagement: string;
     planningGateTitle: string;
     planningGateDescription: string;
+    materialityGateTitle: string;
+    materialityGateDescription: string;
     archivedTitle: string;
     archivedDescription: string;
+    progress: string;
   };
   riskLabels?: unknown;
   statusLabels: Record<string, string>;
@@ -43,6 +49,7 @@ export function RiskAssessmentWorkspaceShell({
   materialityApproved,
   engagementId,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   statusLabels,
@@ -61,6 +68,7 @@ export function RiskAssessmentWorkspaceShell({
         engagementSlug={engagementSlug}
         engagementName={engagementName}
         navItems={navItems}
+        navGroups={navGroups}
         navAriaLabel={navAriaLabel}
         labels={labels}
         statusLabels={statusLabels}

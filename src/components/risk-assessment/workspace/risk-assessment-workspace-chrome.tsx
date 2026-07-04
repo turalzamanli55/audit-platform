@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { RiskAssessmentWorkspaceHero } from "./risk-assessment-workspace-hero";
 import {
   RiskAssessmentWorkspaceSidebar,
+  type RiskAssessmentWorkspaceNavGroup,
   type RiskAssessmentWorkspaceNavItem,
 } from "./risk-assessment-workspace-sidebar";
 import { useRiskAssessmentWorkspace } from "@/lib/risk-assessment/use-risk-assessment-workspace";
@@ -13,16 +14,22 @@ type RiskAssessmentWorkspaceChromeProps = {
   engagementSlug: string;
   engagementName: string;
   navItems: RiskAssessmentWorkspaceNavItem[];
+  navGroups: RiskAssessmentWorkspaceNavGroup[];
   navAriaLabel: string;
   labels: {
     breadcrumbRiskAssessment: string;
     heroEyebrow: string;
     summaryProgress: string;
+    summaryVersion: string;
+    summarySignificant: string;
     backToEngagement: string;
     planningGateTitle: string;
     planningGateDescription: string;
+    materialityGateTitle: string;
+    materialityGateDescription: string;
     archivedTitle: string;
     archivedDescription: string;
+    progress: string;
   };
   statusLabels: Record<string, string>;
   engagementsLabels: { breadcrumbRoot: string };
@@ -34,13 +41,14 @@ export function RiskAssessmentWorkspaceChrome({
   engagementSlug,
   engagementName,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   statusLabels,
   engagementsLabels,
   children,
 }: RiskAssessmentWorkspaceChromeProps) {
-  const { riskAssessment, planningApproved } = useRiskAssessmentWorkspace();
+  const { riskAssessment, planningApproved, materialityApproved } = useRiskAssessmentWorkspace();
 
   return (
     <div className="space-y-8">
@@ -50,6 +58,7 @@ export function RiskAssessmentWorkspaceChrome({
         engagementName={engagementName}
         riskAssessment={riskAssessment}
         planningApproved={planningApproved}
+        materialityApproved={materialityApproved}
         labels={labels}
         statusLabels={statusLabels}
         engagementsLabels={engagementsLabels}
@@ -59,6 +68,7 @@ export function RiskAssessmentWorkspaceChrome({
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <RiskAssessmentWorkspaceSidebar
             items={navItems}
+            groups={navGroups}
             ariaLabel={navAriaLabel}
             isArchived={riskAssessment?.isArchived}
           />

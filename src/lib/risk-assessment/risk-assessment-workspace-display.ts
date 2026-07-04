@@ -18,6 +18,12 @@ export type RiskAssessmentWorkspaceNavItem = {
   href: string;
 };
 
+export type RiskAssessmentWorkspaceNavGroup = {
+  id: "overview" | "register" | "analysis" | "response" | "governance" | "admin";
+  label: string;
+  items: RiskAssessmentWorkspaceNavItem[];
+};
+
 export type RiskAssessmentWorkspaceLabels = {
   navAriaLabel: string;
   navOverview: string;
@@ -47,6 +53,14 @@ export type RiskAssessmentWorkspaceLabels = {
   summarySignificant: string;
   summaryPendingReview: string;
   summaryOpenItems: string;
+  navGroups: {
+    overview: string;
+    register: string;
+    analysis: string;
+    response: string;
+    governance: string;
+    admin: string;
+  };
   sections: Record<RiskAssessmentWorkspaceSection, { title: string; description: string }>;
   historyActions: Record<string, string>;
 };
@@ -77,6 +91,7 @@ export function buildRiskAssessmentWorkspaceNavItems(
     | "navComments"
     | "navHistory"
     | "navSettings"
+    | "navGroups"
   >,
 ): RiskAssessmentWorkspaceNavItem[] {
   const base = `/${locale}/app/engagements/${engagementSlug}/risk-assessment`;
@@ -106,6 +121,65 @@ export function buildRiskAssessmentWorkspaceNavItems(
     { id: "comments", label: labels.navComments, href: `${base}/comments` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
+  ];
+}
+
+export function buildRiskAssessmentWorkspaceNavGroups(
+  locale: string,
+  engagementSlug: string,
+  labels: Pick<
+    RiskAssessmentWorkspaceLabels,
+    | "navOverview"
+    | "navInherentRisks"
+    | "navControlRisks"
+    | "navDetectionRisks"
+    | "navFraudRisks"
+    | "navItRisks"
+    | "navComplianceRisks"
+    | "navFinancialStatementRisks"
+    | "navAssertionRisks"
+    | "navSignificantRisks"
+    | "navCategories"
+    | "navScoring"
+    | "navHeatmap"
+    | "navMatrix"
+    | "navResponses"
+    | "navProcedures"
+    | "navOwners"
+    | "navReviewNotes"
+    | "navComments"
+    | "navHistory"
+    | "navSettings"
+    | "navGroups"
+  >,
+): RiskAssessmentWorkspaceNavGroup[] {
+  const items = buildRiskAssessmentWorkspaceNavItems(locale, engagementSlug, labels);
+  const byId = (id: RiskAssessmentWorkspaceSection) => items.find((item) => item.id === id)!;
+
+  const overviewIds = ["overview"] as const;
+  const registerIds = [
+    "inherent-risks",
+    "control-risks",
+    "detection-risks",
+    "fraud-risks",
+    "it-risks",
+    "compliance-risks",
+    "financial-statement-risks",
+    "assertion-risks",
+    "significant-risks",
+  ] as const;
+  const analysisIds = ["categories", "scoring", "heatmap", "matrix"] as const;
+  const responseIds = ["responses", "procedures", "owners"] as const;
+  const governanceIds = ["review-notes", "comments", "history"] as const;
+  const adminIds = ["settings"] as const;
+
+  return [
+    { id: "overview", label: labels.navGroups.overview, items: overviewIds.map(byId) },
+    { id: "register", label: labels.navGroups.register, items: registerIds.map(byId) },
+    { id: "analysis", label: labels.navGroups.analysis, items: analysisIds.map(byId) },
+    { id: "response", label: labels.navGroups.response, items: responseIds.map(byId) },
+    { id: "governance", label: labels.navGroups.governance, items: governanceIds.map(byId) },
+    { id: "admin", label: labels.navGroups.admin, items: adminIds.map(byId) },
   ];
 }
 
