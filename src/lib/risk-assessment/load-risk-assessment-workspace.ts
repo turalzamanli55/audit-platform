@@ -17,6 +17,7 @@ import {
   isPlanningApproved,
   isRiskAssessmentApproved,
 } from "@/lib/risk-assessment/risk-assessment-rules";
+import { isMaterialityApproved } from "@/lib/materiality/materiality-rules";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
 import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
@@ -122,16 +123,26 @@ export async function loadRiskAssessmentWorkspace(
 
     const assessment = (assessmentResult.data ?? null) as RiskAssessmentRecord | null;
     if (!assessment) {
+      const materialityResult = await db
+        .from("materiality_packages")
+        .select("package_status")
+        .eq("engagement_id", engagement.id)
+        .is("deleted_at", null)
+        .maybeSingle();
+
+      const materialityRow = (materialityResult as { data: { package_status: string } | null }).data;
+
       return {
         ok: true,
         riskAssessment: null,
         engagementSlug: engagement.slug,
         planningApproved,
+        materialityApproved: materialityRow ? isMaterialityApproved(materialityRow) : false,
         riskAssessmentApproved: false,
       };
     }
 
-    const [categories, registerItems, assertionRatings, responses, procedureLinks, notes, company] =
+    const [categories, registerItems, assertionRatings, responses, procedureLinks, notes, company, materialityResult] =
       await Promise.all([
         listRows<RiskCategoryRecord>(db, "risk_categories", assessment.id, "sort_order"),
         listRows<RiskRegisterItemRecord>(db, "risk_register_items", assessment.id, "sort_order"),
@@ -140,7 +151,15 @@ export async function loadRiskAssessmentWorkspace(
         listRows<RiskProcedureLinkRecord>(db, "risk_procedure_links", assessment.id),
         listRows<RiskNoteRecord>(db, "risk_notes", assessment.id),
         companyRepository.findByIdAnyState(engagement.company_id),
+        db
+          .from("materiality_packages")
+          .select("package_status")
+          .eq("engagement_id", engagement.id)
+          .is("deleted_at", null)
+          .maybeSingle(),
       ]);
+
+    const materialityRow = (materialityResult as { data: { package_status: string } | null }).data;
 
     return {
       ok: true,
@@ -157,6 +176,7 @@ export async function loadRiskAssessmentWorkspace(
       ),
       engagementSlug: engagement.slug,
       planningApproved,
+      materialityApproved: materialityRow ? isMaterialityApproved(materialityRow) : false,
       riskAssessmentApproved: isRiskAssessmentApproved(assessment),
     };
   } catch (error) {

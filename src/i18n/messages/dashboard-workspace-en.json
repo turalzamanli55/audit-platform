@@ -82,7 +82,8 @@
       "engagement": "Engagement workspace activity",
       "planning": "Audit planning activity",
       "fieldwork": "Fieldwork execution activity",
-      "riskAssessment": "Risk assessment activity"
+      "riskAssessment": "Risk assessment activity",
+      "materiality": "Materiality activity"
     }
   },
   "tasks": {
@@ -102,7 +103,9 @@
     "assignedProcedures": "{count} procedures assigned to you",
     "openFindings": "Address {count} open findings",
     "reviewRisk": "Review {count} risk assessments",
-    "openRiskItems": "Complete {count} open risk items"
+    "openRiskItems": "Complete {count} open risk items",
+    "reviewMateriality": "Review {count} materiality packages",
+    "draftMateriality": "Complete {count} draft materiality packages"
   },
   "ai": {
     "title": "AI assistant",
@@ -146,6 +149,7 @@
     "metricPlanning": "Planning in progress",
     "metricFindings": "Open findings",
     "metricSignificantRisks": "Significant risks",
+    "metricMateriality": "Materiality packages",
     "trendActive": "Active in workspace",
     "trendClear": "Nothing pending",
     "trendAttention": "Needs attention",

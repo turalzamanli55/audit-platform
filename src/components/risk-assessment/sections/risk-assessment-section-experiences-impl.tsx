@@ -110,7 +110,7 @@ type GateProps = {
   canCreate?: boolean;
   planningApproved?: boolean;
   emptyLabels: CreateLabels;
-  workspaceLabels: { planningGateDescription: string };
+  workspaceLabels: { planningGateDescription: string; materialityGateDescription: string };
 };
 
 type BaseProps = GateProps & {
@@ -130,12 +130,13 @@ function EmptyPanel({ title, description }: { title: string; description: string
 }
 
 function useWorkspaceOrCreate(props: GateProps) {
-  const { riskAssessment, planningApproved } = useRiskAssessmentWorkspace();
+  const { riskAssessment, planningApproved, materialityApproved } = useRiskAssessmentWorkspace();
   if (!riskAssessment) {
     return (
       <RiskAssessmentCreateExperience
         canCreate={props.canCreate ?? false}
         planningApproved={props.planningApproved ?? planningApproved}
+        materialityApproved={materialityApproved}
         labels={props.emptyLabels}
         gateLabels={props.workspaceLabels}
       />

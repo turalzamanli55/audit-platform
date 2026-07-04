@@ -15,6 +15,7 @@ type RiskAssessmentWorkspaceContextValue = {
   riskAssessment: RiskAssessmentWorkspaceView | null;
   engagementId: string;
   planningApproved: boolean;
+  materialityApproved: boolean;
   refreshRiskAssessment: (riskAssessment: RiskAssessmentWorkspaceView | null) => void;
 };
 
@@ -36,6 +37,7 @@ type RiskAssessmentWorkspaceProviderProps = {
   initialRiskAssessment: RiskAssessmentWorkspaceView | null;
   engagementId: string;
   planningApproved: boolean;
+  materialityApproved: boolean;
   children: ReactNode;
 };
 
@@ -43,6 +45,7 @@ export function RiskAssessmentWorkspaceProvider({
   initialRiskAssessment,
   engagementId,
   planningApproved,
+  materialityApproved,
   children,
 }: RiskAssessmentWorkspaceProviderProps) {
   const [riskAssessment, setRiskAssessment] = useState(initialRiskAssessment);
@@ -65,7 +68,7 @@ export function RiskAssessmentWorkspaceProvider({
 
   return (
     <RiskAssessmentWorkspaceContext.Provider
-      value={{ riskAssessment, engagementId, planningApproved, refreshRiskAssessment }}
+      value={{ riskAssessment, engagementId, planningApproved, materialityApproved, refreshRiskAssessment }}
     >
       {children}
     </RiskAssessmentWorkspaceContext.Provider>

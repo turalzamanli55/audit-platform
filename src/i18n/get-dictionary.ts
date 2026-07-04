@@ -109,6 +109,8 @@ type RiskAssessmentLabels = {
     backToEngagement: string;
     planningGateTitle: string;
     planningGateDescription: string;
+    materialityGateTitle: string;
+    materialityGateDescription: string;
     navAriaLabel: string;
     navOverview: string;
     navInherentRisks: string;
@@ -177,6 +179,165 @@ type RiskAssessmentLabels = {
     cancelAction: string;
     archivedBanner: string;
     readOnlyNotice: string;
+  };
+};
+
+type MaterialitySectionLabels = {
+  title: string;
+  description: string;
+  emptyTitle: string;
+  emptyDescription: string;
+  bodyPlaceholder?: string;
+  addAction?: string;
+};
+
+type MaterialityLabels = {
+  notFoundTitle: string;
+  notFoundDescription: string;
+  forbiddenTitle: string;
+  forbiddenDescription: string;
+  noWorkspaceTitle: string;
+  noWorkspaceDescription: string;
+  statuses: Record<string, string>;
+  benchmarkTypes: Record<string, string>;
+  calculationTypes: Record<string, string>;
+  commentTypes: Record<string, string>;
+  thresholds: {
+    overall: string;
+    performance: string;
+    trivial: string;
+    notSet: string;
+  };
+  workflow: {
+    title: string;
+    description: string;
+    submitAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    cancelAction: string;
+    returnNotesLabel: string;
+    returnNotesPlaceholder: string;
+    readOnlyNotice: string;
+    submittedNotice: string;
+    approvedNotice: string;
+    returnedNotice: string;
+    errorGeneric: string;
+  };
+  empty: {
+    title: string;
+    description: string;
+    createAction: string;
+    creating: string;
+    forbiddenDescription: string;
+  };
+  workspace: {
+    title: string;
+    description: string;
+    statusTitle: string;
+    statusDescription: string;
+    progress: string;
+    workflowTitle: string;
+    workflowDescription: string;
+    thresholdsPreviewTitle: string;
+    thresholdsPreviewDescription: string;
+    heroEyebrow: string;
+    breadcrumbMateriality: string;
+    backToEngagement: string;
+    planningGateTitle: string;
+    planningGateDescription: string;
+    navAriaLabel: string;
+    navOverview: string;
+    navOverall: string;
+    navPerformance: string;
+    navSpecific: string;
+    navBenchmarks: string;
+    navCalculations: string;
+    navVersions: string;
+    navComments: string;
+    navHistory: string;
+    navSettings: string;
+    loading: string;
+    errorTitle: string;
+    errorDescription: string;
+    archivedTitle: string;
+    archivedDescription: string;
+    summaryStatus: string;
+    summaryVersion: string;
+    summaryProgress: string;
+    summaryOverall: string;
+    summaryBenchmarks: string;
+    summaryPendingReview: string;
+    sections: Record<string, { title: string; description: string }>;
+    historyActions: Record<string, string>;
+  };
+  calculator: {
+    title: string;
+    description: string;
+    benchmarkLabel: string;
+    benchmarkPlaceholder: string;
+    amountLabel: string;
+    amountPlaceholder: string;
+    percentageLabel: string;
+    percentagePlaceholder: string;
+    calculatedLabel: string;
+    manualOverrideLabel: string;
+    overrideReasonLabel: string;
+    overrideReasonPlaceholder: string;
+    applyAction: string;
+    selectBenchmarkAction: string;
+    autoCalcNotice: string;
+    manualOverrideNotice: string;
+    noBenchmarksTitle: string;
+    noBenchmarksDescription: string;
+    benchmarkTypes: Record<string, string>;
+  };
+  overall: MaterialitySectionLabels;
+  overallFields: {
+    overallLabel: string;
+    basisNotesLabel: string;
+    notSetLabel: string;
+  };
+  performance: MaterialitySectionLabels;
+  performanceFields: {
+    performanceLabel: string;
+    percentageLabel: string;
+    notSetLabel: string;
+  };
+  specific: MaterialitySectionLabels;
+  specificFields: {
+    amountLabel: string;
+    rationaleLabel: string;
+  };
+  benchmarks: MaterialitySectionLabels;
+  calculations: MaterialitySectionLabels;
+  versions: MaterialitySectionLabels;
+  comments: MaterialitySectionLabels;
+  history: MaterialitySectionLabels & {
+    versionLabel: string;
+    updatedLabel: string;
+    actions: Record<string, string>;
+  };
+  settings: {
+    title: string;
+    description: string;
+    archiveAction: string;
+    archiveConfirmAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    archivedBanner: string;
+    readOnlyNotice: string;
+  };
+  states: {
+    loadingTitle: string;
+    loadingDescription: string;
+    archiveTitle: string;
+    archiveDescription: string;
+    readonlyTitle: string;
+    readonlyDescription: string;
+    permissionTitle: string;
+    permissionDescription: string;
   };
 };
 
@@ -831,6 +992,7 @@ export type Dictionary = {
       navOverview: string;
       navMembers: string;
       navPlanning: string;
+      navMateriality: string;
       navRiskAssessment: string;
       navFieldwork: string;
       navHistory: string;
@@ -863,6 +1025,20 @@ export type Dictionary = {
         checklistProgress: string;
         reportingFramework: string;
         openPlanning: string;
+      };
+      materiality: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+        materialityStatus: string;
+        materialityProgress: string;
+        packageVersion: string;
+        overallMateriality: string;
+        benchmarkCount: string;
+        openMateriality: string;
       };
       riskAssessment: {
         title: string;
@@ -1276,6 +1452,7 @@ export type Dictionary = {
     };
   };
   riskAssessment: RiskAssessmentLabels;
+  materiality: MaterialityLabels;
   fieldwork: {
     notFoundTitle: string;
     notFoundDescription: string;

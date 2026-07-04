@@ -55,6 +55,7 @@ export default async function RiskAssessmentLayout({ children, params }: Props) 
       engagementName={engagementResult.engagement.name}
       initialRiskAssessment={riskResult.riskAssessment}
       planningApproved={riskResult.planningApproved}
+      materialityApproved={riskResult.materialityApproved}
       engagementId={engagementResult.engagement.id}
       navItems={buildRiskAssessmentWorkspaceNavItems(locale, slug, labels)}
       navAriaLabel={labels.navAriaLabel}

@@ -4,10 +4,12 @@ import { headers } from "next/headers";
 import { AUDIT_RESOURCE_TYPE, RISK_ASSESSMENT_PERMISSIONS } from "@/constants/risk-assessment";
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createRiskAssessmentAction as defineRiskAssessmentAction } from "@/lib/actions/risk-assessment/risk-assessment-action";
+import { assertMaterialityGate } from "@/lib/materiality/materiality-rules";
 import { assertRiskAssessmentGate } from "@/lib/risk-assessment/risk-assessment-rules";
 import { validateCreateRiskAssessmentInput } from "@/lib/risk-assessment/validation";
 import { createServerClient } from "@/lib/supabase/server";
 import { EngagementRepository } from "@/repositories/engagement/engagement-repository";
+import { MaterialityRepository } from "@/repositories/materiality/materiality-repository";
 import { PlanningRepository } from "@/repositories/planning/planning-repository";
 import { RiskAssessmentRepository } from "@/repositories/risk-assessment/risk-assessment-repository";
 import type { RepositoryContext } from "@/types/context";
@@ -56,6 +58,7 @@ export const createRiskAssessmentAction = defineRiskAssessmentAction<
   );
   const engagementRepository = new EngagementRepository(supabase, repositoryContext);
   const planningRepository = new PlanningRepository(supabase, repositoryContext);
+  const materialityRepository = new MaterialityRepository(supabase, repositoryContext);
   const riskRepository = new RiskAssessmentRepository(supabase, repositoryContext);
 
   const engagement = await engagementRepository.findById(validated.engagementId);
@@ -65,6 +68,9 @@ export const createRiskAssessmentAction = defineRiskAssessmentAction<
 
   const plan = await planningRepository.findByEngagementId(engagement.id);
   assertRiskAssessmentGate(plan);
+
+  const materialityPackage = await materialityRepository.findByEngagementId(engagement.id);
+  assertMaterialityGate(materialityPackage);
 
   const assessment = await riskRepository.createAssessment({
     organization_id: context.organizationId,

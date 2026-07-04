@@ -24,6 +24,7 @@ export default async function Page({ params }: PageProps) {
   const canReview = user ? authorizePermissionCodes(user.permissionCodes, RISK_ASSESSMENT_PERMISSIONS.REVIEW) : false;
   const canApprove = user ? authorizePermissionCodes(user.permissionCodes, RISK_ASSESSMENT_PERMISSIONS.APPROVE) : false;
   const planningApproved = riskResult.ok ? riskResult.planningApproved : false;
+  const materialityApproved = riskResult.ok ? riskResult.materialityApproved : false;
   return (
     <RiskAssessmentOverviewExperience
       canCreate={canCreate}

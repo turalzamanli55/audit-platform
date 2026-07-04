@@ -11,6 +11,7 @@ import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { createServerClient } from "@/lib/supabase/server";
 import type { EngagementListItem } from "@/lib/engagement/engagement-list-item";
 import type { FieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
+import type { MaterialityDashboardMetrics } from "@/lib/materiality/load-materiality-dashboard-metrics";
 import type { RiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
 import { unwrapSupabaseList } from "@/utils/supabase-result";
 
@@ -123,6 +124,7 @@ function resolveActivityDescription(
   if (action.startsWith("planning.")) return descriptions.planning;
   if (action.startsWith("fieldwork.")) return descriptions.fieldwork;
   if (action.startsWith("risk_assessment.")) return descriptions.riskAssessment;
+  if (action.startsWith("materiality.")) return descriptions.materiality;
   return descriptions.generic;
 }
 
@@ -183,6 +185,7 @@ function buildTaskItems(
   labels: DashboardWorkspaceLabels["tasks"],
   fieldworkMetrics: FieldworkDashboardMetrics | null,
   riskMetrics: RiskAssessmentDashboardMetrics | null,
+  materialityMetrics: MaterialityDashboardMetrics | null,
 ): DashboardWorkspaceTaskItem[] {
   const items: DashboardWorkspaceTaskItem[] = [];
   let index = 0;
@@ -247,6 +250,30 @@ function buildTaskItems(
     });
   }
 
+  if (materialityMetrics && materialityMetrics.pendingReview > 0) {
+    items.push({
+      id: `mat-review-${index++}`,
+      title: labels.reviewMateriality.replace("{count}", String(materialityMetrics.pendingReview)),
+      status: labels.statusOpen,
+      priority: labels.priorityHigh,
+      due: labels.dueSoon,
+      statusVariant: "warning",
+      priorityVariant: "destructive",
+    });
+  }
+
+  if (materialityMetrics && materialityMetrics.draftPackages > 0) {
+    items.push({
+      id: `mat-draft-${index++}`,
+      title: labels.draftMateriality.replace("{count}", String(materialityMetrics.draftPackages)),
+      status: labels.statusInProgress,
+      priority: labels.priorityMedium,
+      due: labels.dueSoon,
+      statusVariant: "default",
+      priorityVariant: "warning",
+    });
+  }
+
   return items.slice(0, 8);
 }
 
@@ -256,10 +283,13 @@ function buildInsightsMetrics(
   engagementCount: number,
   fieldworkMetrics: FieldworkDashboardMetrics | null,
   riskMetrics: RiskAssessmentDashboardMetrics | null,
+  materialityMetrics: MaterialityDashboardMetrics | null,
   planningMetrics: DashboardPlanningMetrics | null,
 ): DashboardWorkspaceLabels["insights"]["metrics"] {
   const pendingReviews =
-    (fieldworkMetrics?.pendingReview ?? 0) + (riskMetrics?.pendingReview ?? 0);
+    (fieldworkMetrics?.pendingReview ?? 0) +
+    (riskMetrics?.pendingReview ?? 0) +
+    (materialityMetrics?.pendingReview ?? 0);
   const openFindings = fieldworkMetrics?.openFindings ?? 0;
   const significantRisks = riskMetrics?.significantRiskCount ?? 0;
   const planningActive = planningMetrics
@@ -304,6 +334,25 @@ function buildInsightsMetrics(
       label: labels.metricSignificantRisks,
       value: significantRisks > 0 ? String(significantRisks) : "—",
       trend: significantRisks > 0 ? labels.trendAttention : labels.trendClear,
+    },
+    {
+      id: "materiality",
+      label: labels.metricMateriality,
+      value:
+        materialityMetrics && materialityMetrics.approvedPackages > 0
+          ? String(materialityMetrics.approvedPackages)
+          : materialityMetrics && materialityMetrics.draftPackages > 0
+            ? String(materialityMetrics.draftPackages)
+            : "—",
+      trend:
+        materialityMetrics && materialityMetrics.pendingReview > 0
+          ? labels.trendAttention
+          : materialityMetrics && materialityMetrics.approvedPackages > 0
+            ? labels.trendApproved.replace(
+                "{count}",
+                String(materialityMetrics.approvedPackages),
+              )
+            : labels.trendClear,
     },
   ];
 }
@@ -355,8 +404,10 @@ export async function loadDashboardFeed(input: {
   engagements: EngagementListItem[];
   fieldworkMetrics: FieldworkDashboardMetrics | null;
   riskMetrics: RiskAssessmentDashboardMetrics | null;
+  materialityMetrics: MaterialityDashboardMetrics | null;
 }): Promise<DashboardFeed> {
-  const { locale, labels, companyCount, engagements, fieldworkMetrics, riskMetrics } = input;
+  const { locale, labels, companyCount, engagements, fieldworkMetrics, riskMetrics, materialityMetrics } =
+    input;
 
   const user = await getCurrentUser();
   const workspace = await getWorkspaceContext();
@@ -372,18 +423,21 @@ export async function loadDashboardFeed(input: {
       : null;
 
   const pendingReviews =
-    (fieldworkMetrics?.pendingReview ?? 0) + (riskMetrics?.pendingReview ?? 0);
+    (fieldworkMetrics?.pendingReview ?? 0) +
+    (riskMetrics?.pendingReview ?? 0) +
+    (materialityMetrics?.pendingReview ?? 0);
   const openFindings = fieldworkMetrics?.openFindings ?? 0;
 
   return {
     activity,
-    tasks: buildTaskItems(labels.tasks, fieldworkMetrics, riskMetrics),
+    tasks: buildTaskItems(labels.tasks, fieldworkMetrics, riskMetrics, materialityMetrics),
     insights: buildInsightsMetrics(
       labels.insights,
       companyCount,
       engagements.length,
       fieldworkMetrics,
       riskMetrics,
+      materialityMetrics,
       planningMetrics,
     ),
     recentEngagements: buildRecentEngagements(engagements),

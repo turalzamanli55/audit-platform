@@ -14,6 +14,7 @@ type RiskAssessmentWorkspaceShellProps = {
   engagementName: string;
   initialRiskAssessment: RiskAssessmentWorkspaceView | null;
   planningApproved: boolean;
+  materialityApproved: boolean;
   engagementId: string;
   navItems: RiskAssessmentWorkspaceNavItem[];
   navAriaLabel: string;
@@ -39,6 +40,7 @@ export function RiskAssessmentWorkspaceShell({
   engagementName,
   initialRiskAssessment,
   planningApproved,
+  materialityApproved,
   engagementId,
   navItems,
   navAriaLabel,
@@ -52,6 +54,7 @@ export function RiskAssessmentWorkspaceShell({
       initialRiskAssessment={initialRiskAssessment}
       engagementId={engagementId}
       planningApproved={planningApproved}
+      materialityApproved={materialityApproved}
     >
       <RiskAssessmentWorkspaceChrome
         locale={locale}

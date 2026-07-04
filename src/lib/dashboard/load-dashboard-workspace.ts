@@ -8,6 +8,7 @@ import { loadCompanyList } from "@/lib/company/load-company-list";
 import { loadEngagementList } from "@/lib/engagement/load-engagement-list";
 import { resolveActiveCompany } from "@/lib/company/resolve-active-company";
 import { loadFieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
+import { loadMaterialityDashboardMetrics } from "@/lib/materiality/load-materiality-dashboard-metrics";
 import { loadRiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
 import {
   loadDashboardFeed,
@@ -71,6 +72,7 @@ export async function loadDashboardWorkspace(
     engagementResult,
     fieldworkMetrics,
     riskAssessmentMetrics,
+    materialityMetrics,
   ] =
     await Promise.all([
     getCurrentUser(locale),
@@ -80,6 +82,7 @@ export async function loadDashboardWorkspace(
     loadEngagementList(),
     loadFieldworkDashboardMetrics(),
     loadRiskAssessmentDashboardMetrics(),
+    loadMaterialityDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -117,6 +120,7 @@ export async function loadDashboardWorkspace(
     engagements: engagementItems,
     fieldworkMetrics,
     riskMetrics: riskAssessmentMetrics,
+    materialityMetrics,
   });
 
   const openTasksCount =
@@ -124,9 +128,11 @@ export async function loadDashboardWorkspace(
     (fieldworkMetrics?.assignedToMe ?? 0) +
     (riskAssessmentMetrics?.pendingReview ?? 0) +
     (riskAssessmentMetrics?.openItems ?? 0) +
+    (materialityMetrics?.pendingReview ?? 0) +
+    (materialityMetrics?.draftPackages ?? 0) +
     (fieldworkMetrics?.openFindings ?? 0);
 
-  const hasFieldworkOrRisk = Boolean(fieldworkMetrics || riskAssessmentMetrics);
+  const hasFieldworkOrRisk = Boolean(fieldworkMetrics || riskAssessmentMetrics || materialityMetrics);
 
   return {
     locale,

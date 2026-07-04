@@ -780,6 +780,21 @@
           "title": "Настройки",
           "description": "Конфигурация и управление жизненным циклом этого проекта."
         }
+      },
+      "navMateriality": "Существенность",
+      "materiality": {
+        "title": "Сводка по существенности",
+        "description": "Статус ISA 320, пороги и готовность бенчмарков для этого задания.",
+        "lifecycleStage": "Этап жизненного цикла",
+        "financialYear": "Финансовый год",
+        "plannedSchedule": "Плановый график",
+        "teamSize": "Размер команды",
+        "materialityStatus": "Статус существенности",
+        "materialityProgress": "Прогресс существенности",
+        "packageVersion": "Версия пакета",
+        "overallMateriality": "Общая существенность",
+        "benchmarkCount": "Бенчмарки",
+        "openMateriality": "Открыть рабочую область существенности"
       }
     },
     "settings": {
@@ -1749,7 +1764,9 @@
           "title": "Настройки",
           "description": "Управление архивированием и восстановлением этой оценки рисков."
         }
-      }
+      },
+      "materialityGateTitle": "Требуется утверждение существенности",
+      "materialityGateDescription": "Оценка рисков не может начаться, пока не утверждена существенность по ISA 320."
     },
     "inherentRisks": {
       "title": "Неотъемлемые риски",
@@ -2047,6 +2064,296 @@
       "cancelAction": "Отмена",
       "archivedBanner": "Эта оценка рисков архивирована.",
       "readOnlyNotice": "У вас доступ только для просмотра настроек оценки рисков."
+    }
+  },
+  "materiality": {
+    "notFoundTitle": "Существенность не найдена",
+    "notFoundDescription": "The materiality workspace you requested could not be found for this engagement.",
+    "forbiddenTitle": "Требуется разрешение",
+    "forbiddenDescription": "You need materiality permission to access this workspace.",
+    "noWorkspaceTitle": "Требуется рабочая область",
+    "noWorkspaceDescription": "Select a workspace before opening materiality.",
+    "statuses": {
+      "draft": "Черновик",
+      "submitted": "Отправлено",
+      "under_review": "На проверке",
+      "returned": "Возвращено",
+      "approved": "Утверждено",
+      "archived": "В архиве"
+    },
+    "benchmarkTypes": {
+      "revenue": "Выручка",
+      "profit_before_tax": "Прибыль до налогообложения",
+      "ebitda": "EBITDA",
+      "total_assets": "Всего активов",
+      "equity": "Капитал",
+      "expenses": "Расходы",
+      "manual": "Ручной бенчмарк"
+    },
+    "calculationTypes": {
+      "overall": "Общая существенность",
+      "performance": "Рабочая существенность",
+      "specific": "Специфическая существенность",
+      "trivial": "Порог тривиальности"
+    },
+    "commentTypes": {
+      "review": "Review comment",
+      "internal": "Internal comment"
+    },
+    "thresholds": {
+      "overall": "Общая существенность",
+      "performance": "Рабочая существенность",
+      "trivial": "Порог тривиальности",
+      "notSet": "Не задано"
+    },
+    "workflow": {
+      "title": "Существенность workflow",
+      "description": "Submit, return, and approve ISA 320 materiality documentation.",
+      "submitAction": "Отправить на проверку",
+      "returnAction": "Вернуть на доработку",
+      "returnConfirmAction": "Подтвердить возврат",
+      "approveAction": "Утвердить существенность",
+      "cancelAction": "Отмена",
+      "returnNotesLabel": "Return notes",
+      "returnNotesPlaceholder": "Describe what must be revised before resubmission.",
+      "readOnlyNotice": "This materiality package is archived and read-only.",
+      "submittedNotice": "This materiality package is submitted and pending review.",
+      "approvedNotice": "This materiality package is approved.",
+      "returnedNotice": "This materiality package was returned for revision.",
+      "errorGeneric": "Unable to complete the materiality workflow action."
+    },
+    "empty": {
+      "title": "Существенность not initiated",
+      "description": "Create a materiality package to document overall, performance, and specific thresholds per ISA 320.",
+      "createAction": "Create materiality package",
+      "creating": "Creating materiality package...",
+      "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
+    },
+    "workspace": {
+      "title": "Существенность overview",
+      "description": "Overview of current materiality status and key thresholds.",
+      "statusTitle": "Status summary",
+      "statusDescription": "Current completion and readiness indicators for this materiality package.",
+      "progress": "Overall progress",
+      "workflowTitle": "Workflow",
+      "workflowDescription": "Submission and approval workflow for the materiality package.",
+      "thresholdsPreviewTitle": "Thresholds preview",
+      "thresholdsPreviewDescription": "Current overall, performance, and trivial materiality thresholds.",
+      "heroEyebrow": "Существенность",
+      "breadcrumbСущественность": "Существенность",
+      "backToEngagement": "Back to engagement",
+      "planningGateTitle": "Planning approval required",
+      "planningGateDescription": "Audit planning must be approved before materiality can begin.",
+      "navAriaLabel": "Существенность workspace sections",
+      "navOverview": "Панель",
+      "navOverall": "Overall",
+      "navPerformance": "Performance",
+      "navSpecific": "Specific",
+      "navБенчмарки": "Бенчмарки",
+      "navРасчёты": "Расчёты",
+      "navВерсии": "Версии",
+      "navКомментарии": "Комментарии",
+      "navИстория": "История",
+      "navНастройки": "Настройки",
+      "loading": "Loading materiality workspace",
+      "errorTitle": "Unable to load materiality workspace",
+      "errorDescription": "Something went wrong while loading this materiality workspace.",
+      "archivedTitle": "Существенность archived",
+      "archivedDescription": "This materiality package is read-only. Restore it to continue updates.",
+      "summaryStatus": "Существенность status",
+      "summaryVersion": "Package version",
+      "summaryProgress": "Overall progress",
+      "summaryOverall": "Общая существенность",
+      "summaryБенчмарки": "Бенчмарки",
+      "summaryPendingReview": "Pending review",
+      "sections": {
+        "overview": {
+          "title": "Существенность dashboard",
+          "description": "Status, progress, and threshold readiness indicators."
+        },
+        "overall": {
+          "title": "Общая существенность",
+          "description": "Общая существенность threshold and basis of determination."
+        },
+        "performance": {
+          "title": "Рабочая существенность",
+          "description": "Рабочая существенность threshold and percentage applied."
+        },
+        "specific": {
+          "title": "Специфическая существенность",
+          "description": "Account or disclosure specific materiality thresholds."
+        },
+        "benchmarks": {
+          "title": "Бенчмарки",
+          "description": "Benchmark amounts, percentages, and selected basis."
+        },
+        "calculations": {
+          "title": "Расчёты",
+          "description": "Recorded materiality calculations and manual overrides."
+        },
+        "versions": {
+          "title": "Версии",
+          "description": "Version history snapshots of the materiality package."
+        },
+        "comments": {
+          "title": "Комментарии",
+          "description": "Review and internal comments on materiality documentation."
+        },
+        "history": {
+          "title": "История",
+          "description": "Timeline of materiality changes and approvals."
+        },
+        "settings": {
+          "title": "Настройки",
+          "description": "Archive and restore controls for this materiality package."
+        }
+      },
+      "historyActions": {
+        "materiality.created": "Существенность package created",
+        "materiality.updated": "Существенность package updated",
+        "materiality.archived": "Существенность package archived",
+        "materiality.restored": "Существенность package restored",
+        "materiality.submitted": "Существенность package submitted",
+        "materiality.returned": "Существенность package returned",
+        "materiality.approved": "Существенность package approved",
+        "materiality.benchmark.added": "Benchmark added",
+        "materiality.benchmark.updated": "Benchmark updated",
+        "materiality.calculation.recorded": "Calculation recorded",
+        "materiality.threshold.updated": "Threshold updated",
+        "materiality.comment.added": "Comment added",
+        "materiality.version.created": "Version created"
+      }
+    },
+    "calculator": {
+      "title": "Существенность calculator",
+      "description": "Select a benchmark, apply a percentage, and calculate overall materiality.",
+      "benchmarkLabel": "Benchmark selection",
+      "benchmarkPlaceholder": "Select benchmark",
+      "amountLabel": "Benchmark amount",
+      "amountPlaceholder": "Enter benchmark amount",
+      "percentageLabel": "Percentage",
+      "percentagePlaceholder": "Enter percentage",
+      "calculatedLabel": "Calculated materiality",
+      "manualOverrideLabel": "Manual override",
+      "overrideReasonLabel": "Override reason",
+      "overrideReasonPlaceholder": "Explain why the calculated amount was overridden.",
+      "applyAction": "Apply calculation",
+      "selectBenchmarkAction": "Selected",
+      "autoCalcNotice": "Существенность is calculated automatically from benchmark amount and percentage.",
+      "manualOverrideNotice": "Manual override is enabled. Document the rationale before applying.",
+      "noБенчмаркиTitle": "No benchmarks configured",
+      "noБенчмаркиDescription": "Add benchmarks before using the materiality calculator.",
+      "benchmarkTypes": {
+        "revenue": "Выручка",
+        "profit_before_tax": "Прибыль до налогообложения",
+        "ebitda": "EBITDA",
+        "total_assets": "Всего активов",
+        "equity": "Капитал",
+        "expenses": "Расходы",
+        "manual": "Ручной бенчмарк"
+      }
+    },
+    "overall": {
+      "title": "Общая существенность",
+      "description": "Document the overall materiality threshold and basis of determination.",
+      "emptyTitle": "Общая существенность not set",
+      "emptyDescription": "Set overall materiality after selecting a benchmark and completing calculations."
+    },
+    "overallFields": {
+      "overallLabel": "Общая существенность",
+      "basisNotesLabel": "Basis of determination",
+      "notSetLabel": "Не задано"
+    },
+    "performance": {
+      "title": "Рабочая существенность",
+      "description": "Document performance materiality as a percentage of overall materiality.",
+      "emptyTitle": "Рабочая существенность not set",
+      "emptyDescription": "Set performance materiality after overall materiality is determined."
+    },
+    "performanceFields": {
+      "performanceLabel": "Рабочая существенность",
+      "percentageLabel": "Percentage of overall",
+      "notSetLabel": "Не задано"
+    },
+    "specific": {
+      "title": "Специфическая существенность",
+      "description": "Document specific materiality for accounts, disclosures, or classes of transactions.",
+      "emptyTitle": "No specific materiality items",
+      "emptyDescription": "Add specific materiality thresholds where lower amounts apply."
+    },
+    "specificFields": {
+      "amountLabel": "Amount",
+      "rationaleLabel": "Rationale"
+    },
+    "benchmarks": {
+      "title": "Бенчмарки",
+      "description": "Configure and compare benchmark amounts used to determine materiality.",
+      "emptyTitle": "No benchmarks",
+      "emptyDescription": "Add benchmarks to support overall materiality determination."
+    },
+    "calculations": {
+      "title": "Расчёты",
+      "description": "Review recorded materiality calculations and manual overrides.",
+      "emptyTitle": "No calculations recorded",
+      "emptyDescription": "Расчёты appear here when benchmarks are applied."
+    },
+    "versions": {
+      "title": "Версии",
+      "description": "Review version snapshots of the materiality package.",
+      "emptyTitle": "No versions",
+      "emptyDescription": "Version snapshots are created when materiality is revised or approved."
+    },
+    "comments": {
+      "title": "Комментарии",
+      "description": "Capture review and internal comments related to materiality.",
+      "emptyTitle": "No comments",
+      "emptyDescription": "Комментарии appear here once added.",
+      "bodyPlaceholder": "Добавить комментарий",
+      "addAction": "Добавить комментарий"
+    },
+    "history": {
+      "title": "История",
+      "description": "Read-only timeline of materiality activity.",
+      "emptyTitle": "No materiality activity",
+      "emptyDescription": "Существенность activity will appear here as changes are recorded.",
+      "versionLabel": "Package version",
+      "updatedLabel": "Updated",
+      "actions": {
+        "materiality.created": "Существенность package created",
+        "materiality.updated": "Существенность package updated",
+        "materiality.archived": "Существенность package archived",
+        "materiality.restored": "Существенность package restored",
+        "materiality.submitted": "Существенность package submitted",
+        "materiality.returned": "Существенность package returned",
+        "materiality.approved": "Существенность package approved",
+        "materiality.benchmark.added": "Benchmark added",
+        "materiality.benchmark.updated": "Benchmark updated",
+        "materiality.calculation.recorded": "Calculation recorded",
+        "materiality.threshold.updated": "Threshold updated",
+        "materiality.comment.added": "Comment added",
+        "materiality.version.created": "Version created"
+      }
+    },
+    "settings": {
+      "title": "Настройки",
+      "description": "Archive or restore this materiality package.",
+      "archiveAction": "Архивировать пакет существенности",
+      "archiveConfirmAction": "Confirm archive",
+      "restoreAction": "Восстановить пакет существенности",
+      "restoreConfirmAction": "Confirm restore",
+      "cancelAction": "Отмена",
+      "archivedBanner": "This materiality package is archived.",
+      "readOnlyNotice": "You have view-only access to materiality settings."
+    },
+    "states": {
+      "loadingTitle": "Loading materiality",
+      "loadingDescription": "Please wait while the materiality workspace loads.",
+      "archiveTitle": "Существенность archived",
+      "archiveDescription": "This materiality package is archived and cannot be edited.",
+      "readonlyTitle": "Read-only access",
+      "readonlyDescription": "You can view this section but cannot make changes.",
+      "permissionTitle": "Требуется разрешение",
+      "permissionDescription": "You do not have permission to perform this action."
     }
   }
 }

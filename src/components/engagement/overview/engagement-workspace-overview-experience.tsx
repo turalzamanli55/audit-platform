@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
+import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
@@ -16,6 +17,7 @@ import {
   buildClientInformationItems,
   buildEngagementInformationItems,
   buildFieldworkSummaryItems,
+  buildMaterialitySummaryItems,
   buildOverviewMetadataItems,
   buildOverviewSummaryCards,
   buildPlanningSummaryItems,
@@ -35,12 +37,14 @@ type EngagementWorkspaceOverviewExperienceProps = {
   locale: string;
   canUpdate: boolean;
   plan: PlanningWorkspaceView | null;
+  materiality: MaterialityWorkspaceView | null;
   riskAssessment: RiskAssessmentWorkspaceView | null;
   fieldwork: FieldworkWorkspaceView | null;
   labels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
   overviewLabels: Dictionary["engagements"]["overview"];
   planningLabels: Dictionary["planning"];
+  materialityLabels: Dictionary["materiality"];
   riskLabels: Dictionary["riskAssessment"];
   fieldworkLabels: Dictionary["fieldwork"];
 };
@@ -49,12 +53,14 @@ export function EngagementWorkspaceOverviewExperience({
   locale,
   canUpdate,
   plan,
+  materiality,
   riskAssessment,
   fieldwork,
   labels,
   engagementsLabels,
   overviewLabels,
   planningLabels,
+  materialityLabels,
   riskLabels,
   fieldworkLabels,
 }: EngagementWorkspaceOverviewExperienceProps) {
@@ -78,6 +84,14 @@ export function EngagementWorkspaceOverviewExperience({
     engagementsLabels,
     plan,
     planningLabels,
+  );
+  const materialityItems = buildMaterialitySummaryItems(
+    engagement,
+    locale,
+    labels,
+    engagementsLabels,
+    materiality,
+    materialityLabels,
   );
   const fieldworkItems = buildFieldworkSummaryItems(
     engagement,
@@ -174,6 +188,26 @@ export function EngagementWorkspaceOverviewExperience({
             className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {labels.planning.openPlanning}
+          </Link>
+        </div>
+      </EngagementWorkspaceSectionShell>
+
+      <EngagementWorkspaceSectionShell
+        title={labels.materiality.title}
+        description={labels.materiality.description}
+        headingId="engagement-workspace-materiality"
+      >
+        <EngagementWorkspaceMetadataPanel
+          title={labels.materiality.title}
+          items={materialityItems}
+          embedded
+        />
+        <div className="mt-4">
+          <Link
+            href={`/${locale}/app/engagements/${engagement.slug}/materiality`}
+            className="inline-flex h-10 items-center rounded-xl border border-border/60 bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {labels.materiality.openMateriality}
           </Link>
         </div>
       </EngagementWorkspaceSectionShell>

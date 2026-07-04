@@ -36,6 +36,7 @@ type RiskAssessmentOverviewExperienceProps = {
     summaryPendingReview: string;
     summaryOpenItems: string;
     planningGateDescription: string;
+    materialityGateDescription: string;
   };
   createLabels: {
     title: string;
@@ -79,15 +80,19 @@ export function RiskAssessmentOverviewExperience({
   workflowLabels,
   ratingLabels,
 }: RiskAssessmentOverviewExperienceProps) {
-  const { riskAssessment } = useRiskAssessmentWorkspace();
+  const { riskAssessment, materialityApproved } = useRiskAssessmentWorkspace();
 
   if (!riskAssessment) {
     return (
       <RiskAssessmentCreateExperience
         canCreate={canCreate}
         planningApproved={planningApproved}
+        materialityApproved={materialityApproved}
         labels={createLabels}
-        gateLabels={{ planningGateDescription: workspaceLabels.planningGateDescription }}
+        gateLabels={{
+          planningGateDescription: workspaceLabels.planningGateDescription,
+          materialityGateDescription: workspaceLabels.materialityGateDescription,
+        }}
       />
     );
   }

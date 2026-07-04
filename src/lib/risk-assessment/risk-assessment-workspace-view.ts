@@ -48,6 +48,7 @@ export type RiskAssessmentWorkspaceLoadResult =
       riskAssessment: RiskAssessmentWorkspaceView | null;
       engagementSlug: string;
       planningApproved: boolean;
+      materialityApproved: boolean;
       riskAssessmentApproved: boolean;
     }
   | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" | "error" };

@@ -68,6 +68,7 @@ export type DashboardWorkspaceLabels = {
       planning: string;
       fieldwork: string;
       riskAssessment: string;
+      materiality: string;
     };
     items: DashboardWorkspaceActivityItem[];
   };
@@ -88,6 +89,8 @@ export type DashboardWorkspaceLabels = {
     openFindings: string;
     reviewRisk: string;
     openRiskItems: string;
+    reviewMateriality: string;
+    draftMateriality: string;
     items: DashboardWorkspaceTaskItem[];
   };
   ai: {
@@ -125,6 +128,7 @@ export type DashboardWorkspaceLabels = {
     metricPlanning: string;
     metricFindings: string;
     metricSignificantRisks: string;
+    metricMateriality: string;
     trendActive: string;
     trendClear: string;
     trendAttention: string;

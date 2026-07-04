@@ -61,7 +61,8 @@
       "engagement": "Görev çalışma alanı etkinliği",
       "planning": "Denetim planlama etkinliği",
       "fieldwork": "Saha çalışması etkinliği",
-      "riskAssessment": "Risk değerlendirme etkinliği"
+      "riskAssessment": "Risk değerlendirme etkinliği",
+      "materiality": "Önemlilik etkinliği"
     }
   },
   "tasks": {
@@ -81,7 +82,9 @@
     "assignedProcedures": "Size atanan {count} prosedür",
     "openFindings": "{count} açık bulguyu gider",
     "reviewRisk": "{count} risk değerlendirmesini incele",
-    "openRiskItems": "{count} açık risk öğesini tamamla"
+    "openRiskItems": "{count} açık risk öğesini tamamla",
+    "reviewMateriality": "{count} önemlilik paketini incele",
+    "draftMateriality": "{count} taslak önemlilik paketini tamamla"
   },
   "ai": {
     "title": "AI asistan",
@@ -125,6 +128,7 @@
     "metricPlanning": "Devam eden planlama",
     "metricFindings": "Açık bulgular",
     "metricSignificantRisks": "Önemli riskler",
+    "metricMateriality": "Önemlilik paketleri",
     "trendActive": "Çalışma alanında aktif",
     "trendClear": "Bekleyen yok",
     "trendAttention": "Dikkat gerekiyor",

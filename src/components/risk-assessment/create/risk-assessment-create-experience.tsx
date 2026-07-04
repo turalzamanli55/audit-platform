@@ -17,15 +17,18 @@ type RiskAssessmentCreateLabels = {
 type RiskAssessmentCreateExperienceProps = {
   canCreate: boolean;
   planningApproved: boolean;
+  materialityApproved: boolean;
   labels: RiskAssessmentCreateLabels;
   gateLabels: {
     planningGateDescription: string;
+    materialityGateDescription: string;
   };
 };
 
 export function RiskAssessmentCreateExperience({
   canCreate,
   planningApproved,
+  materialityApproved,
   labels,
   gateLabels,
 }: RiskAssessmentCreateExperienceProps) {
@@ -49,8 +52,14 @@ export function RiskAssessmentCreateExperience({
       actionLabel={labels.createAction}
       onAction={handleCreate}
       isPending={isPending}
-      canCreate={canCreate && planningApproved}
-      gateDescription={!planningApproved ? gateLabels.planningGateDescription : undefined}
+      canCreate={canCreate && planningApproved && materialityApproved}
+      gateDescription={
+        !planningApproved
+          ? gateLabels.planningGateDescription
+          : !materialityApproved
+            ? gateLabels.materialityGateDescription
+            : undefined
+      }
       forbiddenDescription={labels.forbiddenDescription}
       creatingLabel={labels.creating}
     />

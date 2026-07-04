@@ -4,6 +4,7 @@ import type { EngagementWorkspaceNavItem } from "@/components/engagement/workspa
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
+import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import {
   formatDate,
@@ -19,6 +20,7 @@ export type EngagementWorkspaceSection =
   | "overview"
   | "members"
   | "planning"
+  | "materiality"
   | "risk-assessment"
   | "fieldwork"
   | "history"
@@ -169,6 +171,78 @@ export function buildFieldworkSummaryItems(
     {
       id: "members",
       label: labels.fieldwork.teamSize,
+      value: String(engagement.memberCount),
+    },
+  ];
+}
+
+export function buildMaterialitySummaryItems(
+  engagement: EngagementWorkspaceView,
+  locale: string,
+  labels: EngagementWorkspaceLabels,
+  engagementsLabels: Dictionary["engagements"],
+  materiality?: MaterialityWorkspaceView | null,
+  materialityLabels?: Dictionary["materiality"],
+) {
+  if (materiality && materialityLabels) {
+    return [
+      {
+        id: "status",
+        label: labels.materiality.materialityStatus,
+        value: materialityLabels.statuses[materiality.packageStatus],
+      },
+      {
+        id: "progress",
+        label: labels.materiality.materialityProgress,
+        value: `${materiality.progressPct}%`,
+      },
+      {
+        id: "version",
+        label: labels.materiality.packageVersion,
+        value: String(materiality.packageVersion),
+      },
+      {
+        id: "overall",
+        label: labels.materiality.overallMateriality,
+        value:
+          materiality.overallMateriality != null
+            ? new Intl.NumberFormat(locale, {
+                style: "currency",
+                currency: materiality.currencyCode,
+                maximumFractionDigits: 0,
+              }).format(materiality.overallMateriality)
+            : formatOptionalText(null),
+      },
+      {
+        id: "benchmarks",
+        label: labels.materiality.benchmarkCount,
+        value: String(materiality.benchmarks.length),
+      },
+    ];
+  }
+
+  return [
+    {
+      id: "lifecycle",
+      label: labels.materiality.lifecycleStage,
+      value: formatLifecycleStatusLabel(
+        engagement.lifecycleStatus,
+        engagementsLabels.lifecycleStatuses,
+      ),
+    },
+    {
+      id: "period",
+      label: labels.materiality.financialYear,
+      value: formatDateRange(engagement.periodStart, engagement.periodEnd, locale),
+    },
+    {
+      id: "planned",
+      label: labels.materiality.plannedSchedule,
+      value: formatDateRange(engagement.plannedStart, engagement.plannedEnd, locale),
+    },
+    {
+      id: "members",
+      label: labels.materiality.teamSize,
       value: String(engagement.memberCount),
     },
   ];
@@ -327,6 +401,7 @@ export function buildEngagementWorkspaceNavItems(
     { id: "overview", label: labels.navOverview, href: base },
     { id: "members", label: labels.navMembers, href: `${base}/members` },
     { id: "planning", label: labels.navPlanning, href: `${base}/planning` },
+    { id: "materiality", label: labels.navMateriality, href: `${base}/materiality` },
     { id: "risk-assessment", label: labels.navRiskAssessment, href: `${base}/risk-assessment` },
     { id: "fieldwork", label: labels.navFieldwork, href: `${base}/fieldwork` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
@@ -457,6 +532,8 @@ export function workspaceSectionTitle(
       return labels.sections.members.title;
     case "planning":
       return labels.navPlanning;
+    case "materiality":
+      return labels.navMateriality;
     case "risk-assessment":
       return labels.navRiskAssessment;
     case "fieldwork":

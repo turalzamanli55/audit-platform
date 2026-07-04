@@ -11,6 +11,7 @@ export type RiskAssessmentWorkspacePageResult =
       riskAssessment: import("@/lib/risk-assessment/risk-assessment-workspace-view").RiskAssessmentWorkspaceView | null;
       engagementSlug: string;
       planningApproved: boolean;
+      materialityApproved: boolean;
       riskAssessmentApproved: boolean;
     }
   | { ok: false; reason: "unauthenticated" | "forbidden" | "no_workspace" | "not_found" | "error" };

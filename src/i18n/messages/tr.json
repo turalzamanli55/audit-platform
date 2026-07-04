@@ -780,6 +780,21 @@
           "title": "Ayarlar",
           "description": "Bu görev için yapılandırma ve yaşam döngüsü denetimleri."
         }
+      },
+      "navMateriality": "Önemlilik",
+      "materiality": {
+        "title": "Önemlilik özeti",
+        "description": "Bu görev için ISA 320 önemlilik durumu, eşikler ve kıyaslama hazırlığı.",
+        "lifecycleStage": "Yaşam döngüsü aşaması",
+        "financialYear": "Mali yıl",
+        "plannedSchedule": "Planlanan takvim",
+        "teamSize": "Ekip büyüklüğü",
+        "materialityStatus": "Önemlilik durumu",
+        "materialityProgress": "Önemlilik ilerlemesi",
+        "packageVersion": "Paket sürümü",
+        "overallMateriality": "Genel önemlilik",
+        "benchmarkCount": "Kıyaslamalar",
+        "openMateriality": "Önemlilik çalışma alanını aç"
       }
     },
     "settings": {
@@ -1749,7 +1764,9 @@
           "title": "Ayarlar",
           "description": "Bu risk değerlendirmesi için arşivleme ve geri yükleme kontrolleri."
         }
-      }
+      },
+      "materialityGateTitle": "Önemlilik onayı gerekli",
+      "materialityGateDescription": "ISA 320 önemliliği onaylanmadan risk değerlendirmesi başlayamaz."
     },
     "inherentRisks": {
       "title": "Doğal riskler",
@@ -2047,6 +2064,296 @@
       "cancelAction": "İptal",
       "archivedBanner": "Bu risk değerlendirmesi arşivlenmiştir.",
       "readOnlyNotice": "Risk değerlendirmesi ayarlarına yalnızca görüntüleme erişiminiz var."
+    }
+  },
+  "materiality": {
+    "notFoundTitle": "Önemlilik bulunamadı",
+    "notFoundDescription": "The materiality workspace you requested could not be found for this engagement.",
+    "forbiddenTitle": "İzin gerekli",
+    "forbiddenDescription": "You need materiality permission to access this workspace.",
+    "noWorkspaceTitle": "Çalışma alanı gerekli",
+    "noWorkspaceDescription": "Select a workspace before opening materiality.",
+    "statuses": {
+      "draft": "Taslak",
+      "submitted": "Gönderildi",
+      "under_review": "İncelemede",
+      "returned": "İade edildi",
+      "approved": "Onaylandı",
+      "archived": "Arşivlendi"
+    },
+    "benchmarkTypes": {
+      "revenue": "Gelir",
+      "profit_before_tax": "Vergi öncesi kâr",
+      "ebitda": "EBITDA",
+      "total_assets": "Toplam varlıklar",
+      "equity": "Özkaynak",
+      "expenses": "Giderler",
+      "manual": "Manuel kıyaslama"
+    },
+    "calculationTypes": {
+      "overall": "Genel önemlilik",
+      "performance": "Performans önemliliği",
+      "specific": "Özel önemlilik",
+      "trivial": "Önemsizlik eşiği"
+    },
+    "commentTypes": {
+      "review": "Review comment",
+      "internal": "Internal comment"
+    },
+    "thresholds": {
+      "overall": "Genel önemlilik",
+      "performance": "Performans önemliliği",
+      "trivial": "Önemsizlik eşiği",
+      "notSet": "Belirlenmedi"
+    },
+    "workflow": {
+      "title": "Önemlilik workflow",
+      "description": "Submit, return, and approve ISA 320 materiality documentation.",
+      "submitAction": "İncelemeye gönder",
+      "returnAction": "Revizyon için iade et",
+      "returnConfirmAction": "İadeyi onayla",
+      "approveAction": "Önemliliği onayla",
+      "cancelAction": "İptal",
+      "returnNotesLabel": "Return notes",
+      "returnNotesPlaceholder": "Describe what must be revised before resubmission.",
+      "readOnlyNotice": "This materiality package is archived and read-only.",
+      "submittedNotice": "This materiality package is submitted and pending review.",
+      "approvedNotice": "This materiality package is approved.",
+      "returnedNotice": "This materiality package was returned for revision.",
+      "errorGeneric": "Unable to complete the materiality workflow action."
+    },
+    "empty": {
+      "title": "Önemlilik not initiated",
+      "description": "Create a materiality package to document overall, performance, and specific thresholds per ISA 320.",
+      "createAction": "Create materiality package",
+      "creating": "Creating materiality package...",
+      "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
+    },
+    "workspace": {
+      "title": "Önemlilik overview",
+      "description": "Overview of current materiality status and key thresholds.",
+      "statusTitle": "Status summary",
+      "statusDescription": "Current completion and readiness indicators for this materiality package.",
+      "progress": "Overall progress",
+      "workflowTitle": "Workflow",
+      "workflowDescription": "Submission and approval workflow for the materiality package.",
+      "thresholdsPreviewTitle": "Thresholds preview",
+      "thresholdsPreviewDescription": "Current overall, performance, and trivial materiality thresholds.",
+      "heroEyebrow": "Önemlilik",
+      "breadcrumbÖnemlilik": "Önemlilik",
+      "backToEngagement": "Back to engagement",
+      "planningGateTitle": "Planning approval required",
+      "planningGateDescription": "Audit planning must be approved before materiality can begin.",
+      "navAriaLabel": "Önemlilik workspace sections",
+      "navOverview": "Kontrol paneli",
+      "navOverall": "Overall",
+      "navPerformance": "Performance",
+      "navSpecific": "Specific",
+      "navKıyaslamalar": "Kıyaslamalar",
+      "navHesaplamalar": "Hesaplamalar",
+      "navSürümler": "Sürümler",
+      "navYorumlar": "Yorumlar",
+      "navGeçmiş": "Geçmiş",
+      "navAyarlar": "Ayarlar",
+      "loading": "Loading materiality workspace",
+      "errorTitle": "Unable to load materiality workspace",
+      "errorDescription": "Something went wrong while loading this materiality workspace.",
+      "archivedTitle": "Önemlilik archived",
+      "archivedDescription": "This materiality package is read-only. Restore it to continue updates.",
+      "summaryStatus": "Önemlilik status",
+      "summaryVersion": "Package version",
+      "summaryProgress": "Overall progress",
+      "summaryOverall": "Genel önemlilik",
+      "summaryKıyaslamalar": "Kıyaslamalar",
+      "summaryPendingReview": "Pending review",
+      "sections": {
+        "overview": {
+          "title": "Önemlilik dashboard",
+          "description": "Status, progress, and threshold readiness indicators."
+        },
+        "overall": {
+          "title": "Genel önemlilik",
+          "description": "Genel önemlilik threshold and basis of determination."
+        },
+        "performance": {
+          "title": "Performans önemliliği",
+          "description": "Performans önemliliği threshold and percentage applied."
+        },
+        "specific": {
+          "title": "Özel önemlilik",
+          "description": "Account or disclosure specific materiality thresholds."
+        },
+        "benchmarks": {
+          "title": "Kıyaslamalar",
+          "description": "Benchmark amounts, percentages, and selected basis."
+        },
+        "calculations": {
+          "title": "Hesaplamalar",
+          "description": "Recorded materiality calculations and manual overrides."
+        },
+        "versions": {
+          "title": "Sürümler",
+          "description": "Version history snapshots of the materiality package."
+        },
+        "comments": {
+          "title": "Yorumlar",
+          "description": "Review and internal comments on materiality documentation."
+        },
+        "history": {
+          "title": "Geçmiş",
+          "description": "Timeline of materiality changes and approvals."
+        },
+        "settings": {
+          "title": "Ayarlar",
+          "description": "Archive and restore controls for this materiality package."
+        }
+      },
+      "historyActions": {
+        "materiality.created": "Önemlilik package created",
+        "materiality.updated": "Önemlilik package updated",
+        "materiality.archived": "Önemlilik package archived",
+        "materiality.restored": "Önemlilik package restored",
+        "materiality.submitted": "Önemlilik package submitted",
+        "materiality.returned": "Önemlilik package returned",
+        "materiality.approved": "Önemlilik package approved",
+        "materiality.benchmark.added": "Benchmark added",
+        "materiality.benchmark.updated": "Benchmark updated",
+        "materiality.calculation.recorded": "Calculation recorded",
+        "materiality.threshold.updated": "Threshold updated",
+        "materiality.comment.added": "Comment added",
+        "materiality.version.created": "Version created"
+      }
+    },
+    "calculator": {
+      "title": "Önemlilik calculator",
+      "description": "Select a benchmark, apply a percentage, and calculate overall materiality.",
+      "benchmarkLabel": "Benchmark selection",
+      "benchmarkPlaceholder": "Select benchmark",
+      "amountLabel": "Benchmark amount",
+      "amountPlaceholder": "Enter benchmark amount",
+      "percentageLabel": "Percentage",
+      "percentagePlaceholder": "Enter percentage",
+      "calculatedLabel": "Calculated materiality",
+      "manualOverrideLabel": "Manual override",
+      "overrideReasonLabel": "Override reason",
+      "overrideReasonPlaceholder": "Explain why the calculated amount was overridden.",
+      "applyAction": "Apply calculation",
+      "selectBenchmarkAction": "Selected",
+      "autoCalcNotice": "Önemlilik is calculated automatically from benchmark amount and percentage.",
+      "manualOverrideNotice": "Manual override is enabled. Document the rationale before applying.",
+      "noKıyaslamalarTitle": "No benchmarks configured",
+      "noKıyaslamalarDescription": "Add benchmarks before using the materiality calculator.",
+      "benchmarkTypes": {
+        "revenue": "Gelir",
+        "profit_before_tax": "Vergi öncesi kâr",
+        "ebitda": "EBITDA",
+        "total_assets": "Toplam varlıklar",
+        "equity": "Özkaynak",
+        "expenses": "Giderler",
+        "manual": "Manuel kıyaslama"
+      }
+    },
+    "overall": {
+      "title": "Genel önemlilik",
+      "description": "Document the overall materiality threshold and basis of determination.",
+      "emptyTitle": "Genel önemlilik not set",
+      "emptyDescription": "Set overall materiality after selecting a benchmark and completing calculations."
+    },
+    "overallFields": {
+      "overallLabel": "Genel önemlilik",
+      "basisNotesLabel": "Basis of determination",
+      "notSetLabel": "Belirlenmedi"
+    },
+    "performance": {
+      "title": "Performans önemliliği",
+      "description": "Document performance materiality as a percentage of overall materiality.",
+      "emptyTitle": "Performans önemliliği not set",
+      "emptyDescription": "Set performance materiality after overall materiality is determined."
+    },
+    "performanceFields": {
+      "performanceLabel": "Performans önemliliği",
+      "percentageLabel": "Percentage of overall",
+      "notSetLabel": "Belirlenmedi"
+    },
+    "specific": {
+      "title": "Özel önemlilik",
+      "description": "Document specific materiality for accounts, disclosures, or classes of transactions.",
+      "emptyTitle": "No specific materiality items",
+      "emptyDescription": "Add specific materiality thresholds where lower amounts apply."
+    },
+    "specificFields": {
+      "amountLabel": "Amount",
+      "rationaleLabel": "Rationale"
+    },
+    "benchmarks": {
+      "title": "Kıyaslamalar",
+      "description": "Configure and compare benchmark amounts used to determine materiality.",
+      "emptyTitle": "No benchmarks",
+      "emptyDescription": "Add benchmarks to support overall materiality determination."
+    },
+    "calculations": {
+      "title": "Hesaplamalar",
+      "description": "Review recorded materiality calculations and manual overrides.",
+      "emptyTitle": "No calculations recorded",
+      "emptyDescription": "Hesaplamalar appear here when benchmarks are applied."
+    },
+    "versions": {
+      "title": "Sürümler",
+      "description": "Review version snapshots of the materiality package.",
+      "emptyTitle": "No versions",
+      "emptyDescription": "Version snapshots are created when materiality is revised or approved."
+    },
+    "comments": {
+      "title": "Yorumlar",
+      "description": "Capture review and internal comments related to materiality.",
+      "emptyTitle": "No comments",
+      "emptyDescription": "Yorumlar appear here once added.",
+      "bodyPlaceholder": "Yorum ekle",
+      "addAction": "Yorum ekle"
+    },
+    "history": {
+      "title": "Geçmiş",
+      "description": "Read-only timeline of materiality activity.",
+      "emptyTitle": "No materiality activity",
+      "emptyDescription": "Önemlilik activity will appear here as changes are recorded.",
+      "versionLabel": "Package version",
+      "updatedLabel": "Updated",
+      "actions": {
+        "materiality.created": "Önemlilik package created",
+        "materiality.updated": "Önemlilik package updated",
+        "materiality.archived": "Önemlilik package archived",
+        "materiality.restored": "Önemlilik package restored",
+        "materiality.submitted": "Önemlilik package submitted",
+        "materiality.returned": "Önemlilik package returned",
+        "materiality.approved": "Önemlilik package approved",
+        "materiality.benchmark.added": "Benchmark added",
+        "materiality.benchmark.updated": "Benchmark updated",
+        "materiality.calculation.recorded": "Calculation recorded",
+        "materiality.threshold.updated": "Threshold updated",
+        "materiality.comment.added": "Comment added",
+        "materiality.version.created": "Version created"
+      }
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "description": "Archive or restore this materiality package.",
+      "archiveAction": "Önemlilik paketini arşivle",
+      "archiveConfirmAction": "Confirm archive",
+      "restoreAction": "Önemlilik paketini geri yükle",
+      "restoreConfirmAction": "Confirm restore",
+      "cancelAction": "İptal",
+      "archivedBanner": "This materiality package is archived.",
+      "readOnlyNotice": "You have view-only access to materiality settings."
+    },
+    "states": {
+      "loadingTitle": "Loading materiality",
+      "loadingDescription": "Please wait while the materiality workspace loads.",
+      "archiveTitle": "Önemlilik archived",
+      "archiveDescription": "This materiality package is archived and cannot be edited.",
+      "readonlyTitle": "Read-only access",
+      "readonlyDescription": "You can view this section but cannot make changes.",
+      "permissionTitle": "İzin gerekli",
+      "permissionDescription": "You do not have permission to perform this action."
     }
   }
 }

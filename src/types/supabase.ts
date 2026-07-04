@@ -1924,6 +1924,369 @@ export type Database = {
         };
         Relationships: [];
       };
+      materiality_activity: {
+        Row: {
+          action: string;
+          created_at: string;
+          created_by: string | null;
+          engagement_id: string;
+          id: string;
+          materiality_package_id: string;
+          metadata: Json;
+          organization_id: string;
+          summary: string | null;
+          workspace_id: string;
+        };
+        Insert: {
+          action: string;
+          created_at?: string;
+          created_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          materiality_package_id: string;
+          metadata?: Json;
+          organization_id: string;
+          summary?: string | null;
+          workspace_id: string;
+        };
+        Update: {
+          action?: string;
+          created_at?: string;
+          created_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          materiality_package_id?: string;
+          metadata?: Json;
+          organization_id?: string;
+          summary?: string | null;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
+      materiality_benchmarks: {
+        Row: {
+          benchmark_amount: number;
+          benchmark_label: string | null;
+          benchmark_type: Database["public"]["Enums"]["materiality_benchmark_type"];
+          calculated_materiality: number | null;
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          engagement_id: string;
+          id: string;
+          is_selected: boolean;
+          materiality_package_id: string;
+          organization_id: string;
+          percentage: number;
+          rationale: string | null;
+          sort_order: number;
+          status: Database["public"]["Enums"]["record_status"];
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          benchmark_amount: number;
+          benchmark_label?: string | null;
+          benchmark_type: Database["public"]["Enums"]["materiality_benchmark_type"];
+          calculated_materiality?: number | null;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          is_selected?: boolean;
+          materiality_package_id: string;
+          organization_id: string;
+          percentage: number;
+          rationale?: string | null;
+          sort_order?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          benchmark_amount?: number;
+          benchmark_label?: string | null;
+          benchmark_type?: Database["public"]["Enums"]["materiality_benchmark_type"];
+          calculated_materiality?: number | null;
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          is_selected?: boolean;
+          materiality_package_id?: string;
+          organization_id?: string;
+          percentage?: number;
+          rationale?: string | null;
+          sort_order?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
+      materiality_calculations: {
+        Row: {
+          benchmark_id: string | null;
+          calculation_type: Database["public"]["Enums"]["materiality_calculation_type"];
+          created_at: string;
+          created_by: string | null;
+          engagement_id: string;
+          explanation: string | null;
+          formula: string | null;
+          id: string;
+          input_amount: number | null;
+          is_manual_override: boolean;
+          materiality_package_id: string;
+          organization_id: string;
+          percentage: number | null;
+          result_amount: number | null;
+          workspace_id: string;
+        };
+        Insert: {
+          benchmark_id?: string | null;
+          calculation_type: Database["public"]["Enums"]["materiality_calculation_type"];
+          created_at?: string;
+          created_by?: string | null;
+          engagement_id: string;
+          explanation?: string | null;
+          formula?: string | null;
+          id?: string;
+          input_amount?: number | null;
+          is_manual_override?: boolean;
+          materiality_package_id: string;
+          organization_id: string;
+          percentage?: number | null;
+          result_amount?: number | null;
+          workspace_id: string;
+        };
+        Update: {
+          benchmark_id?: string | null;
+          calculation_type?: Database["public"]["Enums"]["materiality_calculation_type"];
+          created_at?: string;
+          created_by?: string | null;
+          engagement_id?: string;
+          explanation?: string | null;
+          formula?: string | null;
+          id?: string;
+          input_amount?: number | null;
+          is_manual_override?: boolean;
+          materiality_package_id?: string;
+          organization_id?: string;
+          percentage?: number | null;
+          result_amount?: number | null;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
+      materiality_comments: {
+        Row: {
+          body: string;
+          comment_type: Database["public"]["Enums"]["materiality_comment_type"];
+          created_at: string;
+          created_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          engagement_id: string;
+          id: string;
+          materiality_package_id: string;
+          organization_id: string;
+          status: Database["public"]["Enums"]["record_status"];
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          body: string;
+          comment_type?: Database["public"]["Enums"]["materiality_comment_type"];
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          materiality_package_id: string;
+          organization_id: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          body?: string;
+          comment_type?: Database["public"]["Enums"]["materiality_comment_type"];
+          created_at?: string;
+          created_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          materiality_package_id?: string;
+          organization_id?: string;
+          status?: Database["public"]["Enums"]["record_status"];
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
+      materiality_packages: {
+        Row: {
+          approved_at: string | null;
+          approved_by: string | null;
+          audit_plan_id: string;
+          basis_notes: string | null;
+          created_at: string;
+          created_by: string | null;
+          currency_code: string;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          engagement_id: string;
+          id: string;
+          organization_id: string;
+          overall_materiality: number | null;
+          package_status: Database["public"]["Enums"]["materiality_package_status"];
+          package_version: number;
+          performance_materiality: number | null;
+          performance_materiality_pct: number | null;
+          progress_pct: number;
+          return_notes: string | null;
+          returned_at: string | null;
+          returned_by: string | null;
+          selected_benchmark_id: string | null;
+          specific_materiality: Json;
+          status: Database["public"]["Enums"]["record_status"];
+          submitted_at: string | null;
+          submitted_by: string | null;
+          trivial_threshold: number | null;
+          trivial_threshold_pct: number | null;
+          updated_at: string;
+          updated_by: string | null;
+          version: number;
+          workspace_id: string;
+        };
+        Insert: {
+          approved_at?: string | null;
+          approved_by?: string | null;
+          audit_plan_id: string;
+          basis_notes?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          currency_code?: string;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          organization_id: string;
+          overall_materiality?: number | null;
+          package_status?: Database["public"]["Enums"]["materiality_package_status"];
+          package_version?: number;
+          performance_materiality?: number | null;
+          performance_materiality_pct?: number | null;
+          progress_pct?: number;
+          return_notes?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
+          selected_benchmark_id?: string | null;
+          specific_materiality?: Json;
+          status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
+          trivial_threshold?: number | null;
+          trivial_threshold_pct?: number | null;
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id: string;
+        };
+        Update: {
+          approved_at?: string | null;
+          approved_by?: string | null;
+          audit_plan_id?: string;
+          basis_notes?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          currency_code?: string;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          organization_id?: string;
+          overall_materiality?: number | null;
+          package_status?: Database["public"]["Enums"]["materiality_package_status"];
+          package_version?: number;
+          performance_materiality?: number | null;
+          performance_materiality_pct?: number | null;
+          progress_pct?: number;
+          return_notes?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
+          selected_benchmark_id?: string | null;
+          specific_materiality?: Json;
+          status?: Database["public"]["Enums"]["record_status"];
+          submitted_at?: string | null;
+          submitted_by?: string | null;
+          trivial_threshold?: number | null;
+          trivial_threshold_pct?: number | null;
+          updated_at?: string;
+          updated_by?: string | null;
+          version?: number;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
+      materiality_versions: {
+        Row: {
+          change_summary: string | null;
+          created_at: string;
+          created_by: string | null;
+          engagement_id: string;
+          id: string;
+          materiality_package_id: string;
+          organization_id: string;
+          snapshot: Json;
+          version_number: number;
+          workspace_id: string;
+        };
+        Insert: {
+          change_summary?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          engagement_id: string;
+          id?: string;
+          materiality_package_id: string;
+          organization_id: string;
+          snapshot?: Json;
+          version_number: number;
+          workspace_id: string;
+        };
+        Update: {
+          change_summary?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          engagement_id?: string;
+          id?: string;
+          materiality_package_id?: string;
+          organization_id?: string;
+          snapshot?: Json;
+          version_number?: number;
+          workspace_id?: string;
+        };
+        Relationships: [];
+      };
       memberships: {
         Row: {
           company_id: string | null;
@@ -2387,6 +2750,10 @@ export type Database = {
       user_belongs_to_organization: { Args: { target_organization_id: string }; Returns: boolean };
       user_belongs_to_workspace: { Args: { target_workspace_id: string }; Returns: boolean };
       user_can_access_engagement: { Args: { target_engagement_id: string }; Returns: boolean };
+      user_can_access_materiality_package: {
+        Args: { target_materiality_package_id: string };
+        Returns: boolean;
+      };
     };
     Enums: {
       engagement_lifecycle_status: "draft" | "planning" | "fieldwork" | "review" | "completed" | "closed";
@@ -2404,6 +2771,23 @@ export type Database = {
         | "advisory"
         | "other";
       integration_readiness_status: "not_configured" | "placeholder" | "integrated";
+      materiality_benchmark_type:
+        | "revenue"
+        | "profit_before_tax"
+        | "ebitda"
+        | "total_assets"
+        | "equity"
+        | "expenses"
+        | "manual";
+      materiality_calculation_type: "overall" | "performance" | "specific" | "trivial";
+      materiality_comment_type: "review" | "internal";
+      materiality_package_status:
+        | "draft"
+        | "submitted"
+        | "under_review"
+        | "returned"
+        | "approved"
+        | "archived";
       membership_scope: "organization" | "workspace";
       permission_scope: "platform" | "organization" | "workspace" | "company";
       planning_status:
