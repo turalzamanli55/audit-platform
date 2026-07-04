@@ -17,6 +17,7 @@ type PlanningCommentsSectionProps = {
   canComment: boolean;
   locale: string;
   labels: Dictionary["planning"]["comments"];
+  embedded?: boolean;
 };
 
 export function PlanningCommentsSection({
@@ -24,6 +25,7 @@ export function PlanningCommentsSection({
   canComment,
   locale,
   labels,
+  embedded = false,
 }: PlanningCommentsSectionProps) {
   const router = useRouter();
   const { plan } = usePlanningWorkspace();
@@ -60,12 +62,8 @@ export function PlanningCommentsSection({
   const commentTypeLabel = (type: string) =>
     labels.types[type as keyof typeof labels.types] ?? labels.types.general;
 
-  return (
-    <PlanningWorkspaceSectionShell
-      title={labels.title}
-      description={labels.description}
-      headingId="planning-comments"
-    >
+  const content = (
+    <>
       {error ? <Alert variant="error">{error}</Alert> : null}
 
       {comments.length === 0 ? (
@@ -108,6 +106,28 @@ export function PlanningCommentsSection({
       ) : plan.planningStatus === "pending_review" && canComment ? (
         <p className="text-sm text-muted-foreground">{labels.reviewModeNotice}</p>
       ) : null}
+    </>
+  );
+
+  if (embedded) {
+    return (
+      <div className="rounded-2xl border border-border/50 bg-card/90 shadow-xs">
+        <div className="border-b border-border/40 px-4 py-3.5 sm:px-5">
+          <h3 className="text-sm font-semibold tracking-tight text-foreground">{labels.title}</h3>
+          <p className="text-xs text-muted-foreground">{labels.description}</p>
+        </div>
+        <div className="p-4 sm:p-5">{content}</div>
+      </div>
+    );
+  }
+
+  return (
+    <PlanningWorkspaceSectionShell
+      title={labels.title}
+      description={labels.description}
+      headingId="planning-comments"
+    >
+      {content}
     </PlanningWorkspaceSectionShell>
   );
 }

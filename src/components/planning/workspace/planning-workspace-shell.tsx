@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { PlanningWorkspaceHero } from "./planning-workspace-hero";
-import { PlanningWorkspaceSidebar, type PlanningWorkspaceNavItem } from "./planning-workspace-sidebar";
+import { PlanningWorkspaceSidebar, type PlanningWorkspaceNavGroup, type PlanningWorkspaceNavItem } from "./planning-workspace-sidebar";
 import {
   PlanningWorkspaceProvider,
   usePlanningWorkspace,
@@ -17,6 +17,7 @@ type PlanningWorkspaceShellProps = {
   initialPlan: PlanningWorkspaceView | null;
   engagementId: string;
   navItems: PlanningWorkspaceNavItem[];
+  navGroups: PlanningWorkspaceNavGroup[];
   navAriaLabel: string;
   labels: Dictionary["planning"]["workspace"];
   planningLabels: Dictionary["planning"];
@@ -29,6 +30,7 @@ function PlanningWorkspaceShellContent({
   engagementSlug,
   engagementName,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   planningLabels,
@@ -53,6 +55,7 @@ function PlanningWorkspaceShellContent({
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <PlanningWorkspaceSidebar
             items={navItems}
+            groups={navGroups}
             ariaLabel={navAriaLabel}
             isArchived={plan?.isArchived}
           />
@@ -70,6 +73,7 @@ export function PlanningWorkspaceShell({
   initialPlan,
   engagementId,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   planningLabels,
@@ -83,6 +87,7 @@ export function PlanningWorkspaceShell({
         engagementSlug={engagementSlug}
         engagementName={engagementName}
         navItems={navItems}
+        navGroups={navGroups}
         navAriaLabel={navAriaLabel}
         labels={labels}
         planningLabels={planningLabels}

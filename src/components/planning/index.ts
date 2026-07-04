@@ -1,5 +1,5 @@
 export { PlanningWorkspaceShell } from "./workspace/planning-workspace-shell";
-export { PlanningWorkspaceSidebar, type PlanningWorkspaceNavItem } from "./workspace/planning-workspace-sidebar";
+export { PlanningWorkspaceSidebar, type PlanningWorkspaceNavGroup, type PlanningWorkspaceNavItem } from "./workspace/planning-workspace-sidebar";
 export { PlanningWorkspaceSectionShell } from "./workspace/planning-workspace-section-shell";
 export { PlanningWorkspaceError, PlanningWorkspaceEmpty } from "./workspace/planning-workspace-states";
 export { PlanningOverviewExperience } from "./overview/planning-overview-experience";

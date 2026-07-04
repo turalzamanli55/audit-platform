@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { PlanningWorkspaceError, PlanningWorkspaceShell } from "@/components/planning";
 import { getDictionary, type Locale } from "@/i18n";
 import { loadEngagementWorkspacePage } from "@/lib/engagement/engagement-workspace-page";
-import { buildPlanningWorkspaceNavItems } from "@/lib/planning/planning-workspace-display";
+import { buildPlanningWorkspaceNavGroups, buildPlanningWorkspaceNavItems } from "@/lib/planning/planning-workspace-display";
 import { loadPlanningWorkspacePage } from "@/lib/planning/planning-workspace-page";
 
 type PlanningWorkspaceLayoutProps = {
@@ -69,6 +69,7 @@ export default async function PlanningWorkspaceLayout({
       initialPlan={planningResult.plan}
       engagementId={engagementResult.engagement.id}
       navItems={buildPlanningWorkspaceNavItems(locale, slug, labels)}
+      navGroups={buildPlanningWorkspaceNavGroups(locale, slug, labels)}
       navAriaLabel={labels.navAriaLabel}
       labels={labels}
       planningLabels={planningLabels}

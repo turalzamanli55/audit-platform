@@ -1,7 +1,7 @@
 import type { PlanningStatus } from "@/types/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { PlanningWorkspaceView, PlanningWorkspaceSection } from "@/lib/planning/planning-workspace-view";
-import type { PlanningWorkspaceNavItem } from "@/components/planning/workspace/planning-workspace-sidebar";
+import type { PlanningWorkspaceNavGroup, PlanningWorkspaceNavItem } from "@/components/planning/workspace/planning-workspace-sidebar";
 import { PLANNING_ACTIVITY_ACTIONS } from "@/constants/planning";
 import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
 
@@ -46,6 +46,43 @@ export function buildPlanningWorkspaceNavItems(
     { id: "documents", label: labels.navDocuments, href: `${base}/documents` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
+  ];
+}
+
+export function buildPlanningWorkspaceNavGroups(
+  locale: string,
+  engagementSlug: string,
+  labels: PlanningWorkspaceLabels,
+): PlanningWorkspaceNavGroup[] {
+  const items = buildPlanningWorkspaceNavItems(locale, engagementSlug, labels);
+  const byId = (id: PlanningWorkspaceSection) => items.find((item) => item.id === id)!;
+
+  const contentIds = ["overview", "strategy", "objectives", "scope", "framework"] as const;
+  const integrationIds = ["materiality", "risk"] as const;
+  const executionIds = ["team", "timeline", "notes", "checklist", "documents"] as const;
+  const adminIds = ["history", "settings"] as const;
+
+  return [
+    {
+      id: "content",
+      label: labels.navGroups.content,
+      items: contentIds.map(byId),
+    },
+    {
+      id: "integrations",
+      label: labels.navGroups.integrations,
+      items: integrationIds.map(byId),
+    },
+    {
+      id: "execution",
+      label: labels.navGroups.execution,
+      items: executionIds.map(byId),
+    },
+    {
+      id: "admin",
+      label: labels.navGroups.admin,
+      items: adminIds.map(byId),
+    },
   ];
 }
 
