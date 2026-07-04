@@ -698,6 +698,27 @@
       "metadataCreated": "Created",
       "metadataPlannedDates": "Planned dates",
       "metadataMembers": "Team members",
+      "phaseDashboard": {
+        "title": "Engagement pipeline",
+        "description": "Planning, materiality, risk assessment, and fieldwork readiness for this engagement.",
+        "attentionTitle": "Requires attention",
+        "attentionDescription": "Review and resolve these items before advancing the engagement.",
+        "attentionPlanning": "Planning pending review",
+        "attentionMateriality": "Materiality pending review",
+        "attentionRisk": "Risk assessment pending review",
+        "attentionFieldwork": "{count} fieldwork procedures pending review"
+      },
+      "phaseEmpty": {
+        "notStarted": "Not started",
+        "planningTitle": "Planning not started",
+        "planningDescription": "Create an audit plan to document strategy, scope, and team readiness.",
+        "materialityTitle": "Materiality not started",
+        "materialityDescription": "Document ISA 320 thresholds after planning is approved.",
+        "riskTitle": "Risk assessment not started",
+        "riskDescription": "Identify and assess risks after materiality is approved.",
+        "fieldworkTitle": "Fieldwork not started",
+        "fieldworkDescription": "Execute audit procedures after risk assessment is approved."
+      },
       "planning": {
         "title": "Planning summary",
         "description": "Audit planning status, readiness, and progress for this engagement.",
@@ -2139,6 +2160,8 @@
       "workflowDescription": "Submission and approval workflow for the materiality package.",
       "thresholdsPreviewTitle": "Thresholds preview",
       "thresholdsPreviewDescription": "Current overall, performance, and trivial materiality thresholds.",
+      "benchmarksPreviewTitle": "Benchmark preview",
+      "benchmarksPreviewDescription": "Benchmark amounts, percentages, and calculated materiality.",
       "heroEyebrow": "Materiality",
       "breadcrumbMateriality": "Materiality",
       "backToEngagement": "Back to engagement",

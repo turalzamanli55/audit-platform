@@ -24,7 +24,11 @@
     "reports": "Reports",
     "aiSuggestions": "AI suggestions",
     "placeholder": "Live metrics arrive in future sprints",
-    "liveHint": "Live workspace metric"
+    "liveHint": "Live workspace metric",
+    "hintCompanies": "Active in workspace",
+    "hintEngagements": "Open engagements",
+    "hintOpenTasks": "Requires your attention",
+    "comingSoon": "Coming soon"
   },
   "quickActions": {
     "title": "Quick actions",
@@ -105,7 +109,10 @@
     "reviewRisk": "Review {count} risk assessments",
     "openRiskItems": "Complete {count} open risk items",
     "reviewMateriality": "Review {count} materiality packages",
-    "draftMateriality": "Complete {count} draft materiality packages"
+    "draftMateriality": "Complete {count} draft materiality packages",
+    "moduleFieldwork": "Fieldwork",
+    "moduleRisk": "Risk assessment",
+    "moduleMateriality": "Materiality"
   },
   "ai": {
     "title": "AI assistant",
@@ -153,11 +160,13 @@
     "trendActive": "Active in workspace",
     "trendClear": "Nothing pending",
     "trendAttention": "Needs attention",
-    "trendApproved": "{count} approved"
+    "trendApproved": "{count} approved",
+    "emptySummary": "Workspace metrics will appear as you add companies and engagements."
   },
   "pinned": {
     "title": "Pinned",
     "recentCompanies": "Recent companies",
+    "allCompanies": "Companies",
     "favoriteCompanies": "Favorite companies",
     "recentEngagements": "Recent engagements",
     "emptyRecent": "Companies you open will appear here",

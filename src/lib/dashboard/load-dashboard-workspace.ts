@@ -132,8 +132,6 @@ export async function loadDashboardWorkspace(
     (materialityMetrics?.draftPackages ?? 0) +
     (fieldworkMetrics?.openFindings ?? 0);
 
-  const hasFieldworkOrRisk = Boolean(fieldworkMetrics || riskAssessmentMetrics || materialityMetrics);
-
   return {
     locale,
     labels,
@@ -149,17 +147,22 @@ export async function loadDashboardWorkspace(
     recentEngagements: feed.recentEngagements,
     feed,
     kpi: {
-      companies: companyCount > 0 ? String(companyCount) : "—",
-      engagements: engagementCount > 0 ? String(engagementCount) : "—",
-      openTasks: hasFieldworkOrRisk ? String(openTasksCount) : feed.tasks.length > 0 ? String(feed.tasks.length) : "—",
+      companies: String(companyCount),
+      engagements: String(engagementCount),
+      openTasks:
+        openTasksCount > 0
+          ? String(openTasksCount)
+          : feed.tasks.length > 0
+            ? String(feed.tasks.length)
+            : "0",
       reports: "—",
       aiSuggestions: "—",
       live: {
-        companies: companyCount > 0,
-        engagements: engagementCount > 0,
-        openTasks: hasFieldworkOrRisk || feed.tasks.length > 0,
-        reports: false,
-        aiSuggestions: false,
+        companies: true,
+        engagements: true,
+        openTasks: true,
+        reports: true,
+        aiSuggestions: true,
       },
     },
   };

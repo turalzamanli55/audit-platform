@@ -17,4 +17,9 @@ export {
   type EngagementWorkspaceMetadataItem,
 } from "./engagement-workspace-metadata-panel";
 export { EngagementWorkspaceSectionShell } from "./engagement-workspace-section-shell";
+export {
+  EngagementPhaseDashboard,
+  buildEngagementPhaseCards,
+  buildEngagementAttentionItems,
+} from "./engagement-phase-dashboard";
 export { EngagementWorkspaceError } from "./engagement-workspace-error";

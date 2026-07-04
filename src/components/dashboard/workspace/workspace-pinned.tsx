@@ -19,8 +19,6 @@ type WorkspacePinnedProps = {
   onOpenCompany: (companyId: string) => void;
   personalizationLabels: DashboardWorkspaceLabels["personalization"];
   recentEngagements: DashboardEngagementPreview[];
-  favoriteEngagementIds: string[];
-  favoriteReportIds: string[];
 };
 
 function CompanyList({
@@ -87,17 +85,17 @@ export function WorkspacePinned({
   onOpenCompany,
   personalizationLabels,
   recentEngagements,
-  favoriteEngagementIds,
-  favoriteReportIds,
 }: WorkspacePinnedProps) {
   const recent = recentCompanies.length > 0 ? recentCompanies : companies.slice(0, 4);
   const favorites = favoriteCompanies;
+  const recentLabel =
+    recentCompanies.length > 0 ? labels.recentCompanies : labels.allCompanies ?? labels.recentCompanies;
 
   return (
     <WorkspaceSection title={labels.title}>
-      <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3">
         <WorkspacePanel className="workspace-panel">
-          <h3 className="mb-4 text-sm font-medium text-foreground">{labels.recentCompanies}</h3>
+          <h3 className="mb-4 text-sm font-medium text-foreground">{recentLabel}</h3>
           <CompanyList
             items={recent}
             locale={locale}
@@ -147,26 +145,6 @@ export function WorkspacePinned({
               ))}
             </ul>
           )}
-        </WorkspacePanel>
-        <WorkspacePanel className="workspace-panel lg:col-span-2 xl:col-span-1">
-          <h3 className="mb-4 text-sm font-medium text-foreground">
-            {personalizationLabels.favoriteEngagements}
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            {favoriteEngagementIds.length > 0
-              ? favoriteEngagementIds.join(", ")
-              : personalizationLabels.engagementsPlaceholder}
-          </p>
-        </WorkspacePanel>
-        <WorkspacePanel className="workspace-panel">
-          <h3 className="mb-4 text-sm font-medium text-foreground">
-            {personalizationLabels.favoriteReports}
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            {favoriteReportIds.length > 0
-              ? favoriteReportIds.join(", ")
-              : personalizationLabels.reportsPlaceholder}
-          </p>
         </WorkspacePanel>
       </div>
     </WorkspaceSection>

@@ -1012,6 +1012,27 @@ export type Dictionary = {
       metadataCreated: string;
       metadataPlannedDates: string;
       metadataMembers: string;
+      phaseDashboard: {
+        title: string;
+        description: string;
+        attentionTitle: string;
+        attentionDescription: string;
+        attentionPlanning: string;
+        attentionMateriality: string;
+        attentionRisk: string;
+        attentionFieldwork: string;
+      };
+      phaseEmpty: {
+        notStarted: string;
+        planningTitle: string;
+        planningDescription: string;
+        materialityTitle: string;
+        materialityDescription: string;
+        riskTitle: string;
+        riskDescription: string;
+        fieldworkTitle: string;
+        fieldworkDescription: string;
+      };
       planning: {
         title: string;
         description: string;

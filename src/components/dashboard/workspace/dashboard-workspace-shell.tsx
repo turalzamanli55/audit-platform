@@ -172,7 +172,14 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
             />
           );
         case "kpi":
-          return <WorkspaceKpiGrid labels={labels.kpi} values={model.kpi} live={model.kpi.live} />;
+          return (
+            <WorkspaceKpiGrid
+              locale={locale}
+              labels={labels.kpi}
+              values={model.kpi}
+              live={model.kpi.live}
+            />
+          );
         case "quick-actions":
           return (
             <WorkspaceQuickActions
@@ -208,8 +215,6 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
               onOpenCompany={trackCompany}
               personalizationLabels={labels.personalization}
               recentEngagements={model.recentEngagements}
-              favoriteEngagementIds={preferences.favoriteEngagementIds}
-              favoriteReportIds={preferences.favoriteReportIds}
             />
           );
         case "ai":
@@ -219,7 +224,13 @@ export function DashboardWorkspaceShell({ model }: DashboardWorkspaceShellProps)
         case "notifications":
           return <WorkspaceNotificationsCard labels={labels.notifications} />;
         case "insights":
-          return <WorkspaceInsightsCard labels={labels.insights} metrics={model.feed.insights} />;
+          return (
+            <WorkspaceInsightsCard
+              locale={locale}
+              labels={labels.insights}
+              metrics={model.feed.insights}
+            />
+          );
         case "shortcuts":
           return <WorkspaceShortcutsCard labels={labels.shortcuts} />;
         case "tips":

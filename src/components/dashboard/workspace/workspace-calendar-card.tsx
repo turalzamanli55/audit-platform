@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { IconCalendar } from "@/components/ui/icons";
@@ -12,7 +13,7 @@ type WorkspaceCalendarCardProps = {
 export function WorkspaceCalendarCard({ labels, items }: WorkspaceCalendarCardProps) {
   return (
     <WorkspacePanel>
-      <div className="mb-5 flex items-center gap-3">
+      <div className="mb-4 flex items-center gap-3">
         <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-muted text-muted-foreground">
           <IconCalendar />
         </span>
@@ -30,15 +31,31 @@ export function WorkspaceCalendarCard({ labels, items }: WorkspaceCalendarCardPr
             {labels.upcoming}
           </p>
           <ul className="space-y-2">
-            {items.map((item) => (
-              <li
-                key={item.id}
-                className="flex items-center justify-between gap-3 rounded-2xl border border-border/40 bg-muted/10 px-4 py-3"
-              >
-                <span className="text-sm font-medium text-foreground">{item.title}</span>
-                <Badge variant={item.tone === "warning" ? "warning" : "secondary"}>{item.date}</Badge>
-              </li>
-            ))}
+            {items.map((item) => {
+              const row = (
+                <>
+                  <span className="text-sm font-medium text-foreground">{item.title}</span>
+                  <Badge variant={item.tone === "warning" ? "warning" : "secondary"}>{item.date}</Badge>
+                </>
+              );
+
+              return (
+                <li key={item.id}>
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className="flex items-center justify-between gap-3 rounded-2xl border border-border/40 bg-muted/10 px-4 py-3 transition-colors hover:bg-muted/30"
+                    >
+                      {row}
+                    </Link>
+                  ) : (
+                    <div className="flex items-center justify-between gap-3 rounded-2xl border border-border/40 bg-muted/10 px-4 py-3">
+                      {row}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

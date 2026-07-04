@@ -47,7 +47,10 @@ type MaterialityOverviewExperienceProps = {
     notSet: string;
   };
   statusLabels: Record<string, string>;
-  labels: MaterialityOverviewLabels;
+  labels: MaterialityOverviewLabels & {
+    benchmarksPreviewTitle?: string;
+    benchmarksPreviewDescription?: string;
+  };
   workflowLabels: {
     submitAction: string;
     returnAction: string;
@@ -183,8 +186,21 @@ export function MaterialityOverviewExperience({
         description={labels.statusDescription}
         headingId="materiality-status-summary"
       >
-        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/80 p-5">
-          <div className="mb-2 flex items-center justify-between text-sm">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { label: workspaceLabels.summaryStatus, value: statusLabels[materiality.packageStatus] ?? materiality.packageStatus },
+            { label: workspaceLabels.summaryVersion, value: String(materiality.packageVersion) },
+            { label: workspaceLabels.summaryPendingReview, value: String(materiality.pendingReviewCount) },
+            { label: workspaceLabels.summaryBenchmarks, value: String(materiality.benchmarks.length) },
+          ].map((item) => (
+            <div key={item.label} className="rounded-xl border border-border/50 bg-card px-4 py-3">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground">{item.label}</p>
+              <p className="mt-1 text-lg font-semibold text-foreground">{item.value}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 space-y-2 rounded-2xl border border-border/50 bg-card/80 p-5">
+          <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">{labels.progress}</span>
             <span className="font-medium text-foreground">{materiality.progressPct}%</span>
           </div>
@@ -201,6 +217,61 @@ export function MaterialityOverviewExperience({
           </div>
         </div>
       </MaterialityWorkspaceSectionShell>
+
+      {materiality.benchmarks.length > 0 ? (
+        <MaterialityWorkspaceSectionShell
+          title={labels.benchmarksPreviewTitle ?? "Benchmark preview"}
+          description={labels.benchmarksPreviewDescription ?? "Selected benchmark and comparison basis."}
+          headingId="materiality-benchmarks-preview"
+        >
+          <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border/50 bg-muted/20 text-left text-xs uppercase tracking-wide text-muted-foreground">
+                  <th className="px-4 py-3 font-medium">Benchmark</th>
+                  <th className="px-4 py-3 font-medium">Amount</th>
+                  <th className="px-4 py-3 font-medium">%</th>
+                  <th className="px-4 py-3 font-medium">Calculated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {materiality.benchmarks.slice(0, 5).map((benchmark) => (
+                  <tr
+                    key={benchmark.id}
+                    className={`border-b border-border/30 last:border-0 ${
+                      benchmark.isSelected ? "bg-primary/5" : ""
+                    }`}
+                  >
+                    <td className="px-4 py-3 font-medium text-foreground">
+                      {benchmark.benchmarkLabel ?? benchmark.benchmarkType}
+                      {benchmark.isSelected ? (
+                        <span className="ml-2 text-xs text-primary">●</span>
+                      ) : null}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {new Intl.NumberFormat(undefined, {
+                        style: "currency",
+                        currency: materiality.currencyCode,
+                        maximumFractionDigits: 0,
+                      }).format(benchmark.benchmarkAmount)}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">{benchmark.percentage}%</td>
+                    <td className="px-4 py-3 text-foreground">
+                      {benchmark.calculatedMateriality != null
+                        ? new Intl.NumberFormat(undefined, {
+                            style: "currency",
+                            currency: materiality.currencyCode,
+                            maximumFractionDigits: 0,
+                          }).format(benchmark.calculatedMateriality)
+                        : "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </MaterialityWorkspaceSectionShell>
+      ) : null}
     </div>
   );
 }

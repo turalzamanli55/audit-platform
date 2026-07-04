@@ -182,6 +182,7 @@ async function loadPlanningMetrics(
 }
 
 function buildTaskItems(
+  locale: Locale,
   labels: DashboardWorkspaceLabels["tasks"],
   fieldworkMetrics: FieldworkDashboardMetrics | null,
   riskMetrics: RiskAssessmentDashboardMetrics | null,
@@ -189,6 +190,7 @@ function buildTaskItems(
 ): DashboardWorkspaceTaskItem[] {
   const items: DashboardWorkspaceTaskItem[] = [];
   let index = 0;
+  const engagementsHref = `/${locale}/app/engagements`;
 
   if (fieldworkMetrics && fieldworkMetrics.pendingReview > 0) {
     items.push({
@@ -199,6 +201,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "warning",
       priorityVariant: "destructive",
+      module: labels.moduleFieldwork,
+      href: engagementsHref,
     });
   }
 
@@ -211,6 +215,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "warning",
       priorityVariant: "warning",
+      module: labels.moduleFieldwork,
+      href: engagementsHref,
     });
   }
 
@@ -223,6 +229,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "default",
       priorityVariant: "destructive",
+      module: labels.moduleFieldwork,
+      href: engagementsHref,
     });
   }
 
@@ -235,6 +243,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "warning",
       priorityVariant: "destructive",
+      module: labels.moduleRisk,
+      href: engagementsHref,
     });
   }
 
@@ -247,6 +257,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "default",
       priorityVariant: "warning",
+      module: labels.moduleRisk,
+      href: engagementsHref,
     });
   }
 
@@ -259,6 +271,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "warning",
       priorityVariant: "destructive",
+      module: labels.moduleMateriality,
+      href: engagementsHref,
     });
   }
 
@@ -271,6 +285,8 @@ function buildTaskItems(
       due: labels.dueSoon,
       statusVariant: "default",
       priorityVariant: "warning",
+      module: labels.moduleMateriality,
+      href: engagementsHref,
     });
   }
 
@@ -380,6 +396,7 @@ function buildCalendarItems(
       .replace("{company}", item.companyName),
     date: new Intl.DateTimeFormat(locale, { month: "short", day: "numeric" }).format(new Date(end)),
     tone: end - now < 7 * 86_400_000 ? ("warning" as const) : ("default" as const),
+    href: `/${locale}/app/engagements/${item.slug}`,
   }));
 }
 
@@ -430,7 +447,7 @@ export async function loadDashboardFeed(input: {
 
   return {
     activity,
-    tasks: buildTaskItems(labels.tasks, fieldworkMetrics, riskMetrics, materialityMetrics),
+    tasks: buildTaskItems(locale, labels.tasks, fieldworkMetrics, riskMetrics, materialityMetrics),
     insights: buildInsightsMetrics(
       labels.insights,
       companyCount,

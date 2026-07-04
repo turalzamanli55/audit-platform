@@ -24,7 +24,11 @@
     "reports": "Hesabatlar",
     "aiSuggestions": "AI təklifləri",
     "placeholder": "Canlı göstəricilər gələcək sprintlərdə",
-    "liveHint": "Canlı iş sahəsi göstəricisi"
+    "liveHint": "Canlı iş sahəsi göstəricisi",
+    "hintCompanies": "İş sahəsində aktiv",
+    "hintEngagements": "Açıq müqavilələr",
+    "hintOpenTasks": "Diqqət tələb edir",
+    "comingSoon": "Tezliklə"
   },
   "quickActions": {
     "title": "Sürətli əməliyyatlar",
