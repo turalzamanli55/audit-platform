@@ -55,3 +55,4 @@ export {
   WorkspaceListItem,
   WorkspaceListEntry,
 } from "./workspace-list";
+export { WorkspaceNoticeBanner } from "./workspace-notice-banner";

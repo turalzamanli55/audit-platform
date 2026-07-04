@@ -21,8 +21,13 @@ const supabase = createClient(supabaseUrl, serviceKey);
 const LOCALES = ["en", "az", "ru", "tr"];
 const VIEWPORTS = [
   { name: "1920", width: 1920, height: 1080 },
+  { name: "1600", width: 1600, height: 900 },
   { name: "1440", width: 1440, height: 900 },
+  { name: "1280", width: 1280, height: 800 },
+  { name: "1024", width: 1024, height: 768 },
+  { name: "768", width: 768, height: 1024 },
   { name: "390", width: 390, height: 844 },
+  { name: "360", width: 360, height: 740 },
 ];
 const THEMES = ["light", "dark"];
 
@@ -230,12 +235,35 @@ async function main() {
   console.log(`Routes: ${enRoutes.length}, locales: ${LOCALES.length}`);
 
   let checks = 0;
+  let sessionRefreshAt = 0;
   for (const locale of LOCALES) {
     for (const enRoute of enRoutes) {
       const route = toLocaleRoute(enRoute, locale);
       for (const theme of THEMES) {
         for (const vp of VIEWPORTS) {
           checks++;
+          if (checks - sessionRefreshAt > 40) {
+            const fresh = await getSession();
+            await context.addCookies([
+              {
+                name: cookieName,
+                value: JSON.stringify({
+                  access_token: fresh.access_token,
+                  refresh_token: fresh.refresh_token,
+                  expires_at: fresh.expires_at,
+                  expires_in: fresh.expires_in,
+                  token_type: fresh.token_type,
+                  user: fresh.user,
+                }),
+                domain: "localhost",
+                path: "/",
+                httpOnly: false,
+                secure: false,
+                sameSite: "Lax",
+              },
+            ]);
+            sessionRefreshAt = checks;
+          }
           await page.setViewportSize({ width: vp.width, height: vp.height });
           await setTheme(page, theme);
           try {

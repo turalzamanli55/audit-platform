@@ -180,7 +180,7 @@ export function MaterialityCommandCenter({
                     </div>
                     <Link
                       href={calc.href}
-                      className="flex-1 rounded-xl border border-border/50 bg-card/60 px-4 py-3 transition-colors hover:bg-card"
+                      className={`flex-1 ${workspaceTokens.bucketTile} px-4 py-3`}
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <p className="text-sm font-medium text-foreground">{calc.type}</p>

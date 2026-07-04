@@ -72,7 +72,7 @@ export function WorkspaceQuickActions({
               key={action.id}
               href={action.href}
               onClick={action.id === "continue" ? onContinueSelect : undefined}
-              className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {content}
             </Link>

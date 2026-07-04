@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { WorkspacePanel } from "@/components/workspace";
 import { DEFAULT_AUDIT_AREAS, DEFAULT_MATRIX_ACCOUNTS, DEFAULT_PROCEDURE_TEMPLATES } from "@/constants/risk-assessment";
 import { ratingToHeatmapColor } from "@/lib/risk-assessment/risk-assessment-rules";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
@@ -105,7 +106,7 @@ export function useProcedureOptions() {
 
 export function RiskSignificantBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-800">
+    <span className="inline-flex items-center rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-destructive">
       {label}
     </span>
   );
@@ -136,7 +137,7 @@ export function HeatmapCellDetail({
   const isSignificant = cell.isSignificant;
 
   return (
-    <div className="space-y-2 rounded-xl border border-border/50 bg-card/60 p-4 text-sm">
+    <WorkspacePanel padding="sm" className="space-y-2 text-sm">
       <p>
         <span className="text-muted-foreground">{labels.accountLabel}: </span>
         <span className="font-medium text-foreground">{accountName}</span>
@@ -152,8 +153,8 @@ export function HeatmapCellDetail({
         </span>
       </p>
       {isSignificant ? (
-        <p className="text-xs font-medium uppercase tracking-wide text-red-700">{labels.significantLabel}</p>
+        <p className="text-xs font-medium uppercase tracking-wide text-destructive">{labels.significantLabel}</p>
       ) : null}
-    </div>
+    </WorkspacePanel>
   );
 }

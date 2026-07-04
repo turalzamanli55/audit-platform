@@ -16,6 +16,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
+import { WorkspacePanel } from "@/components/workspace";
 
 type FieldworkProcedureRowProps = {
   packageId: string;
@@ -115,7 +116,7 @@ export function FieldworkProcedureRow({
       {error ? <Alert variant="error">{error}</Alert> : null}
 
       {!isArchived && canAssign ? (
-        <div className="flex flex-wrap items-end gap-2 rounded-xl border border-border/40 bg-muted/20 p-3">
+        <WorkspacePanel variant="muted" padding="sm" className="flex flex-wrap items-end gap-2">
           <label className="flex flex-col gap-1 text-xs text-muted-foreground">
             {fieldworkLabels.procedures.assignAuditor}
             <select
@@ -152,7 +153,7 @@ export function FieldworkProcedureRow({
               }}
             />
           </label>
-        </div>
+        </WorkspacePanel>
       ) : null}
 
       {mode === "return" || mode === "clear" ? (

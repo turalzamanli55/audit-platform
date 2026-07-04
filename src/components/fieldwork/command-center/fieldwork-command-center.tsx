@@ -12,6 +12,7 @@ import { PlanningWorkflowPipeline } from "@/components/planning/command-center/p
 import { useFieldworkWorkspace } from "@/lib/fieldwork/use-fieldwork-workspace";
 import type { FieldworkCommandCenterData } from "@/types/fieldwork-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { workspaceTokens } from "@/components/workspace";
 import { IconArrowRight } from "@/components/ui/icons";
 
 type FieldworkCommandCenterProps = {
@@ -143,7 +144,7 @@ export function FieldworkCommandCenter({
                 <Link
                   key={bucket.id}
                   href={bucket.href}
-                  className="rounded-xl border border-border/50 bg-card/60 px-3 py-3 transition-colors hover:bg-card"
+                  className={workspaceTokens.bucketTile}
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {bucket.label}
@@ -160,7 +161,7 @@ export function FieldworkCommandCenter({
                 <Link
                   key={bucket.id}
                   href={bucket.href}
-                  className="rounded-xl border border-border/50 bg-card/60 px-3 py-3 transition-colors hover:bg-card"
+                  className={workspaceTokens.bucketTile}
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {bucket.label}
@@ -177,7 +178,7 @@ export function FieldworkCommandCenter({
                 <Link
                   key={bucket.id}
                   href={bucket.href}
-                  className="rounded-xl border border-border/50 bg-card/60 px-3 py-3 transition-colors hover:bg-card"
+                  className={workspaceTokens.bucketTile}
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {bucket.label}

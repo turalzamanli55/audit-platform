@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { EmptyState } from "@/components/ui/empty-state";
 import { IconArrowRight } from "@/components/ui/icons";
+import { WorkspaceEmpty, WorkspacePanel } from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardWorkspaceCompany } from "@/lib/dashboard/load-dashboard-workspace";
-import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
+import { WorkspaceSection } from "./workspace-section";
 
 type WorkspaceContinueWorkingProps = {
   locale: string;
@@ -21,12 +21,12 @@ export function WorkspaceContinueWorking({
   return (
     <WorkspaceSection title={labels.title} description={labels.description}>
       {!continueCompany ? (
-        <EmptyState title={labels.emptyTitle} description={labels.emptyDescription} />
+        <WorkspaceEmpty title={labels.emptyTitle} description={labels.emptyDescription} />
       ) : (
         <Link
           href={`/${locale}/app/companies/${continueCompany.slug}`}
           onClick={onOpen}
-          className="block rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <WorkspacePanel
             variant="elevated"
