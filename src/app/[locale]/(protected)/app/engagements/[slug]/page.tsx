@@ -4,6 +4,8 @@ import { getCurrentUser } from "@/lib/auth/server";
 import { authorizePermissionCodes } from "@/lib/auth/permissions";
 import { getDictionary, type Locale } from "@/i18n";
 import { generateEngagementWorkspaceMetadata } from "@/lib/engagement/engagement-workspace-page";
+import { requireEngagementWorkspace } from "@/lib/engagement/engagement-workspace-page";
+import { loadEngagementCommandCenter } from "@/lib/engagement/load-engagement-command-center";
 import { loadMaterialityWorkspacePage } from "@/lib/materiality/materiality-workspace-page";
 import { loadPlanningWorkspacePage } from "@/lib/planning/planning-workspace-page";
 import { loadFieldworkWorkspacePage } from "@/lib/fieldwork/fieldwork-workspace-page";
@@ -25,12 +27,15 @@ export default async function EngagementWorkspaceOverviewPage({
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const user = await getCurrentUser();
-  const [planningResult, materialityResult, riskAssessmentResult, fieldworkResult] = await Promise.all([
-    loadPlanningWorkspacePage(slug),
-    loadMaterialityWorkspacePage(slug),
-    loadRiskAssessmentWorkspacePage(slug),
-    loadFieldworkWorkspacePage(slug),
-  ]);
+  const [engagement, planningResult, materialityResult, riskAssessmentResult, fieldworkResult] =
+    await Promise.all([
+      requireEngagementWorkspace(slug),
+      loadPlanningWorkspacePage(slug),
+      loadMaterialityWorkspacePage(slug),
+      loadRiskAssessmentWorkspacePage(slug),
+      loadFieldworkWorkspacePage(slug),
+    ]);
+
   const canUpdate = user
     ? authorizePermissionCodes(user.permissionCodes, ENGAGEMENT_PERMISSIONS.UPDATE)
     : false;
@@ -40,21 +45,30 @@ export default async function EngagementWorkspaceOverviewPage({
   const riskAssessment = riskAssessmentResult.ok ? riskAssessmentResult.riskAssessment : null;
   const fieldwork = fieldworkResult.ok ? fieldworkResult.fieldwork : null;
 
+  const commandCenter = await loadEngagementCommandCenter({
+    locale,
+    engagement,
+    plan,
+    materiality,
+    riskAssessment,
+    fieldwork,
+    labels: dictionary.engagements.workspace.commandCenter,
+    workspaceLabels: dictionary.engagements.workspace,
+    engagementsLabels: dictionary.engagements,
+    planningLabels: dictionary.planning,
+    materialityLabels: dictionary.materiality,
+    riskLabels: dictionary.riskAssessment,
+    fieldworkLabels: dictionary.fieldwork,
+  });
+
   return (
     <EngagementWorkspaceOverviewExperience
       locale={locale}
       canUpdate={canUpdate}
-      plan={plan}
-      materiality={materiality}
-      riskAssessment={riskAssessment}
-      fieldwork={fieldwork}
+      commandCenter={commandCenter}
       labels={dictionary.engagements.workspace}
       engagementsLabels={dictionary.engagements}
       overviewLabels={dictionary.engagements.overview}
-      planningLabels={dictionary.planning}
-      materialityLabels={dictionary.materiality}
-      riskLabels={dictionary.riskAssessment}
-      fieldworkLabels={dictionary.fieldwork}
     />
   );
 }
