@@ -4,6 +4,7 @@ import { generateMaterialityWorkspaceMetadata } from "@/lib/materiality/material
 import { MATERIALITY_PERMISSIONS } from "@/constants/materiality";
 import { getCurrentUser } from "@/lib/auth/server";
 import { authorizePermissionCodes } from "@/lib/auth/permissions";
+import { loadMaterialityCommandCenter } from "@/lib/materiality/load-materiality-command-center";
 import { loadMaterialityWorkspaceCached } from "@/lib/materiality/load-materiality-workspace";
 
 type PageProps = { params: Promise<{ locale: string; slug: string }> };
@@ -19,6 +20,7 @@ export default async function Page({ params }: PageProps) {
   const dictionary = await getDictionary(locale);
   const user = await getCurrentUser();
   const materialityResult = await loadMaterialityWorkspaceCached(slug);
+
   const canCreate = user
     ? authorizePermissionCodes(user.permissionCodes, MATERIALITY_PERMISSIONS.CREATE)
     : false;
@@ -31,31 +33,32 @@ export default async function Page({ params }: PageProps) {
   const canApprove = user
     ? authorizePermissionCodes(user.permissionCodes, MATERIALITY_PERMISSIONS.APPROVE)
     : false;
+
   const planningApproved = materialityResult.ok ? materialityResult.planningApproved : false;
+  const materiality = materialityResult.ok ? materialityResult.materiality : null;
+
+  const commandCenter = materiality
+    ? loadMaterialityCommandCenter({
+        locale,
+        materiality,
+        labels: dictionary.materiality.workspace.commandCenter,
+        materialityLabels: dictionary.materiality,
+      })
+    : null;
 
   return (
     <MaterialityOverviewExperience
+      locale={locale}
+      slug={slug}
       canCreate={canCreate}
       canSubmit={canSubmit}
       canReview={canReview}
       canApprove={canApprove}
       planningApproved={planningApproved}
-      workspaceLabels={dictionary.materiality.workspace}
-      createLabels={dictionary.materiality.empty}
-      thresholdLabels={dictionary.materiality.thresholds}
-      statusLabels={dictionary.materiality.statuses}
-      labels={{
-        title: dictionary.materiality.workspace.title,
-        description: dictionary.materiality.workspace.description,
-        statusTitle: dictionary.materiality.workspace.statusTitle,
-        statusDescription: dictionary.materiality.workspace.statusDescription,
-        progress: dictionary.materiality.workspace.progress,
-        workflowTitle: dictionary.materiality.workspace.workflowTitle,
-        workflowDescription: dictionary.materiality.workspace.workflowDescription,
-        thresholdsPreviewTitle: dictionary.materiality.workspace.thresholdsPreviewTitle,
-        thresholdsPreviewDescription: dictionary.materiality.workspace.thresholdsPreviewDescription,
-      }}
-      workflowLabels={dictionary.materiality.workflow}
+      hasMateriality={Boolean(materiality)}
+      commandCenter={commandCenter}
+      labels={dictionary.materiality.workspace}
+      materialityLabels={dictionary.materiality}
     />
   );
 }

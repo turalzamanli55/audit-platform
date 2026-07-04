@@ -2,6 +2,7 @@ export { MaterialityWorkspaceShell } from "./workspace/materiality-workspace-she
 export { MaterialityWorkspaceChrome } from "./workspace/materiality-workspace-chrome";
 export {
   MaterialityWorkspaceSidebar,
+  type MaterialityWorkspaceNavGroup,
   type MaterialityWorkspaceNavItem,
 } from "./workspace/materiality-workspace-sidebar";
 export { MaterialityWorkspaceSectionShell } from "./workspace/materiality-workspace-section-shell";

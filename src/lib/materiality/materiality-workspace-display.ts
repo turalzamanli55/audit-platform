@@ -14,6 +14,12 @@ export type MaterialityWorkspaceNavItem = {
   href: string;
 };
 
+export type MaterialityWorkspaceNavGroup = {
+  id: "overview" | "thresholds" | "analysis" | "governance" | "admin";
+  label: string;
+  items: MaterialityWorkspaceNavItem[];
+};
+
 export type MaterialityWorkspaceLabels = {
   navAriaLabel: string;
   navOverview: string;
@@ -33,6 +39,13 @@ export type MaterialityWorkspaceLabels = {
   summaryBenchmarks?: string;
   summaryOpenItems?: string;
   summaryPendingReview: string;
+  navGroups: {
+    overview: string;
+    thresholds: string;
+    analysis: string;
+    governance: string;
+    admin: string;
+  };
   sections: Record<MaterialityWorkspaceSection, { title: string; description: string }>;
   historyActions: Record<string, string>;
 };
@@ -64,6 +77,7 @@ export function buildMaterialityWorkspaceNavItems(
     | "navComments"
     | "navHistory"
     | "navSettings"
+    | "navGroups"
   >,
 ): MaterialityWorkspaceNavItem[] {
   const base = `/${locale}/app/engagements/${engagementSlug}/materiality`;
@@ -78,6 +92,42 @@ export function buildMaterialityWorkspaceNavItems(
     { id: "comments", label: labels.navComments, href: `${base}/comments` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
+  ];
+}
+
+export function buildMaterialityWorkspaceNavGroups(
+  locale: string,
+  engagementSlug: string,
+  labels: Pick<
+    MaterialityWorkspaceLabels,
+    | "navOverview"
+    | "navOverall"
+    | "navPerformance"
+    | "navSpecific"
+    | "navBenchmarks"
+    | "navCalculations"
+    | "navVersions"
+    | "navComments"
+    | "navHistory"
+    | "navSettings"
+    | "navGroups"
+  >,
+): MaterialityWorkspaceNavGroup[] {
+  const items = buildMaterialityWorkspaceNavItems(locale, engagementSlug, labels);
+  const byId = (id: MaterialityWorkspaceSection) => items.find((item) => item.id === id)!;
+
+  const overviewIds = ["overview"] as const;
+  const thresholdIds = ["overall", "performance", "specific"] as const;
+  const analysisIds = ["benchmarks", "calculations"] as const;
+  const governanceIds = ["versions", "comments", "history"] as const;
+  const adminIds = ["settings"] as const;
+
+  return [
+    { id: "overview", label: labels.navGroups.overview, items: overviewIds.map(byId) },
+    { id: "thresholds", label: labels.navGroups.thresholds, items: thresholdIds.map(byId) },
+    { id: "analysis", label: labels.navGroups.analysis, items: analysisIds.map(byId) },
+    { id: "governance", label: labels.navGroups.governance, items: governanceIds.map(byId) },
+    { id: "admin", label: labels.navGroups.admin, items: adminIds.map(byId) },
   ];
 }
 

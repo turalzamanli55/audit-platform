@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { MaterialityWorkspaceHero } from "./materiality-workspace-hero";
 import {
   MaterialityWorkspaceSidebar,
+  type MaterialityWorkspaceNavGroup,
   type MaterialityWorkspaceNavItem,
 } from "./materiality-workspace-sidebar";
 import { useMaterialityWorkspace } from "@/lib/materiality/use-materiality-workspace";
@@ -13,16 +14,20 @@ type MaterialityWorkspaceChromeProps = {
   engagementSlug: string;
   engagementName: string;
   navItems: MaterialityWorkspaceNavItem[];
+  navGroups: MaterialityWorkspaceNavGroup[];
   navAriaLabel: string;
   labels: {
     breadcrumbMateriality: string;
     heroEyebrow: string;
     summaryProgress: string;
+    summaryVersion: string;
+    summaryOverall: string;
     backToEngagement: string;
     planningGateTitle: string;
     planningGateDescription: string;
     archivedTitle: string;
     archivedDescription: string;
+    progress: string;
   };
   statusLabels: Record<string, string>;
   engagementsLabels: { breadcrumbRoot: string };
@@ -34,6 +39,7 @@ export function MaterialityWorkspaceChrome({
   engagementSlug,
   engagementName,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   statusLabels,
@@ -59,6 +65,7 @@ export function MaterialityWorkspaceChrome({
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <MaterialityWorkspaceSidebar
             items={navItems}
+            groups={navGroups}
             ariaLabel={navAriaLabel}
             isArchived={materiality?.isArchived}
           />
