@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Button } from "./button";
 import { cn } from "@/lib/ui/cn";
+import { workspaceTokens } from "@/components/workspace/workspace-tokens";
 
 type EmptyStateProps = {
   title: string;
@@ -65,6 +66,26 @@ export function ErrorState({
             {retryLabel}
           </Button>
         </div>
+      ) : null}
+    </div>
+  );
+}
+
+/** Inline empty state for widgets — matches command center density. */
+export function InlineEmptyState({
+  title,
+  description,
+  className,
+}: {
+  title: string;
+  description?: string;
+  className?: string;
+}) {
+  return (
+    <div className={cn(workspaceTokens.emptyInline, className)}>
+      <p className="text-sm font-medium text-foreground">{title}</p>
+      {description ? (
+        <p className="mt-1 max-w-xs text-xs leading-relaxed text-muted-foreground">{description}</p>
       ) : null}
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { workspaceTokens } from "@/components/workspace";
 import type { ReactNode } from "react";
 import { EngagementPageShell } from "@/components/engagement";
 import {
@@ -50,12 +51,13 @@ function EngagementWorkspaceShellContent({
         engagementsLabels={engagementsLabels}
       />
 
-      <div className="grid gap-10 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 xl:grid-cols-[14rem_minmax(0,1fr)]">
+      <div className={workspaceTokens.layoutGrid}>
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <EngagementWorkspaceSidebar
             items={navItems}
             ariaLabel={navAriaLabel}
             isArchived={engagement.isArchived}
+            archivedNotice={heroLabels.archivedTitle}
           />
         </aside>
         <main className="min-w-0 space-y-10">{children}</main>

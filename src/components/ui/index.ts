@@ -16,7 +16,7 @@ export {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "./dropdown-menu";
-export { EmptyState, ErrorState } from "./empty-state";
+export { EmptyState, ErrorState, InlineEmptyState } from "./empty-state";
 export * from "./icons";
 export { Input } from "./input";
 export { Label } from "./label";
