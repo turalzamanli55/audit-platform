@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { FieldworkWorkspaceError, FieldworkWorkspaceShell } from "@/components/fieldwork";
 import { getDictionary, type Locale } from "@/i18n";
 import { loadEngagementWorkspacePage } from "@/lib/engagement/engagement-workspace-page";
-import { buildFieldworkWorkspaceNavItems } from "@/lib/fieldwork/fieldwork-workspace-display";
+import { buildFieldworkWorkspaceNavGroups, buildFieldworkWorkspaceNavItems } from "@/lib/fieldwork/fieldwork-workspace-display";
 import { loadFieldworkWorkspacePage } from "@/lib/fieldwork/fieldwork-workspace-page";
 
 type Props = { children: ReactNode; params: Promise<{ locale: string; slug: string }> };
@@ -57,6 +57,7 @@ export default async function FieldworkLayout({ children, params }: Props) {
       planningApproved={fieldworkResult.planningApproved}
       engagementId={engagementResult.engagement.id}
       navItems={buildFieldworkWorkspaceNavItems(locale, slug, labels)}
+      navGroups={buildFieldworkWorkspaceNavGroups(locale, slug, labels)}
       navAriaLabel={labels.navAriaLabel}
       labels={labels}
       fieldworkLabels={fieldworkLabels}

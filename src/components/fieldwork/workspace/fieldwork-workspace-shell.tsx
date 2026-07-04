@@ -5,7 +5,7 @@ import { FieldworkWorkspaceChrome } from "./fieldwork-workspace-chrome";
 import { FieldworkWorkspaceProvider } from "@/lib/fieldwork/use-fieldwork-workspace";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import type { FieldworkWorkspaceNavItem } from "./fieldwork-workspace-sidebar";
+import type { FieldworkWorkspaceNavGroup, FieldworkWorkspaceNavItem } from "./fieldwork-workspace-sidebar";
 
 type FieldworkWorkspaceShellProps = {
   locale: string;
@@ -15,6 +15,7 @@ type FieldworkWorkspaceShellProps = {
   planningApproved: boolean;
   engagementId: string;
   navItems: FieldworkWorkspaceNavItem[];
+  navGroups?: FieldworkWorkspaceNavGroup[];
   navAriaLabel: string;
   labels: Dictionary["fieldwork"]["workspace"];
   fieldworkLabels: Dictionary["fieldwork"];
@@ -30,6 +31,7 @@ export function FieldworkWorkspaceShell({
   planningApproved,
   engagementId,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   fieldworkLabels,
@@ -47,6 +49,7 @@ export function FieldworkWorkspaceShell({
         engagementSlug={engagementSlug}
         engagementName={engagementName}
         navItems={navItems}
+        navGroups={navGroups}
         navAriaLabel={navAriaLabel}
         labels={labels}
         fieldworkLabels={fieldworkLabels}

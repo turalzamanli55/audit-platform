@@ -3,7 +3,7 @@ import type {
   FieldworkWorkspaceSection,
   FieldworkWorkspaceView,
 } from "@/lib/fieldwork/fieldwork-workspace-view";
-import type { FieldworkWorkspaceNavItem } from "@/components/fieldwork/workspace/fieldwork-workspace-sidebar";
+import type { FieldworkWorkspaceNavGroup, FieldworkWorkspaceNavItem } from "@/components/fieldwork/workspace/fieldwork-workspace-sidebar";
 import { FIELDWORK_ACTIVITY_ACTIONS } from "@/constants/fieldwork";
 import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
 import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
@@ -30,6 +30,31 @@ export function buildFieldworkWorkspaceNavItems(
     { id: "comments", label: labels.navComments, href: `${base}/comments` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
+  ];
+}
+
+export function buildFieldworkWorkspaceNavGroups(
+  locale: string,
+  engagementSlug: string,
+  labels: FieldworkWorkspaceLabels,
+): FieldworkWorkspaceNavGroup[] {
+  const items = buildFieldworkWorkspaceNavItems(locale, engagementSlug, labels);
+  const byId = (id: FieldworkWorkspaceSection) => items.find((item) => item.id === id)!;
+
+  const overviewIds = ["overview"] as const;
+  const programIds = ["program", "procedure-groups"] as const;
+  const executionIds = ["procedures"] as const;
+  const documentationIds = ["working-papers", "evidence", "findings", "notes"] as const;
+  const governanceIds = ["review-notes", "comments", "history"] as const;
+  const adminIds = ["settings"] as const;
+
+  return [
+    { id: "overview", label: labels.navGroups.overview, items: overviewIds.map(byId) },
+    { id: "program", label: labels.navGroups.program, items: programIds.map(byId) },
+    { id: "execution", label: labels.navGroups.execution, items: executionIds.map(byId) },
+    { id: "documentation", label: labels.navGroups.documentation, items: documentationIds.map(byId) },
+    { id: "governance", label: labels.navGroups.governance, items: governanceIds.map(byId) },
+    { id: "admin", label: labels.navGroups.admin, items: adminIds.map(byId) },
   ];
 }
 

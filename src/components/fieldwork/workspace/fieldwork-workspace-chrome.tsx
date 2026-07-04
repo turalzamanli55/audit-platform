@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { FieldworkWorkspaceHero } from "./fieldwork-workspace-hero";
-import { FieldworkWorkspaceSidebar, type FieldworkWorkspaceNavItem } from "./fieldwork-workspace-sidebar";
+import { FieldworkWorkspaceSidebar, type FieldworkWorkspaceNavGroup, type FieldworkWorkspaceNavItem } from "./fieldwork-workspace-sidebar";
 import { useFieldworkWorkspace } from "@/lib/fieldwork/use-fieldwork-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 
@@ -11,6 +11,7 @@ type FieldworkWorkspaceChromeProps = {
   engagementSlug: string;
   engagementName: string;
   navItems: FieldworkWorkspaceNavItem[];
+  navGroups?: FieldworkWorkspaceNavGroup[];
   navAriaLabel: string;
   labels: Dictionary["fieldwork"]["workspace"];
   fieldworkLabels: Dictionary["fieldwork"];
@@ -23,6 +24,7 @@ export function FieldworkWorkspaceChrome({
   engagementSlug,
   engagementName,
   navItems,
+  navGroups,
   navAriaLabel,
   labels,
   fieldworkLabels,
@@ -48,6 +50,7 @@ export function FieldworkWorkspaceChrome({
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <FieldworkWorkspaceSidebar
             items={navItems}
+            groups={navGroups}
             ariaLabel={navAriaLabel}
             isArchived={fieldwork?.isArchived}
           />
