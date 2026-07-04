@@ -10,6 +10,15 @@ import {
   restoreMaterialityPackageAction,
 } from "@/lib/actions/materiality";
 import { Alert, Button, Input } from "@/components/ui";
+import {
+  WorkspaceEmptyPanel,
+  WorkspaceFormPanel,
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspaceMetricCard,
+  WorkspacePanel,
+  WorkspaceTable,
+} from "@/components/workspace";
 import { MaterialityCalculatorPanel } from "@/components/materiality/calculator/materiality-calculator-panel";
 import { MaterialityCreateExperience } from "@/components/materiality/create/materiality-create-experience";
 import { MaterialityWorkspaceSectionShell } from "@/components/materiality/workspace/materiality-workspace-section-shell";
@@ -60,15 +69,6 @@ type BaseProps = GateProps & {
   locale?: string;
 };
 
-function EmptyPanel({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 py-10 text-center">
-      <h3 className="text-lg font-semibold tracking-tight text-foreground">{title}</h3>
-      <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
-
 function useWorkspaceOrCreate(props: GateProps) {
   const { materiality, planningApproved } = useMaterialityWorkspace();
   if (!materiality) {
@@ -103,24 +103,6 @@ function useMutationError() {
   return { error, setError, clearError };
 }
 
-function ThresholdCard({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint?: string | null;
-}) {
-  return (
-    <div className="rounded-2xl border border-border/50 bg-card/80 p-5">
-      <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">{label}</p>
-      <p className="mt-2 text-2xl font-semibold tracking-tight text-foreground">{value}</p>
-      {hint ? <p className="mt-1 text-sm text-muted-foreground">{hint}</p> : null}
-    </div>
-  );
-}
-
 export function MaterialityOverallExperience(
   props: BaseProps & {
     canUpdate?: boolean;
@@ -147,16 +129,16 @@ export function MaterialityOverallExperience(
     >
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       <div className="space-y-4">
-        <ThresholdCard label={props.fieldLabels.overallLabel} value={value} />
+        <WorkspaceMetricCard label={props.fieldLabels.overallLabel} value={value} />
         {workspace.basisNotes ? (
-          <div className="rounded-2xl border border-border/50 bg-card/80 p-5">
+          <WorkspacePanel>
             <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
               {props.fieldLabels.basisNotesLabel}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-foreground">{workspace.basisNotes}</p>
-          </div>
+          </WorkspacePanel>
         ) : (
-          <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+          <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
         )}
       </div>
     </MaterialityWorkspaceSectionShell>
@@ -193,9 +175,9 @@ export function MaterialityPerformanceExperience(
     >
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {workspace.performanceMateriality != null ? (
-        <ThresholdCard label={props.fieldLabels.performanceLabel} value={value} hint={hint} />
+        <WorkspaceMetricCard label={props.fieldLabels.performanceLabel} value={value} hint={hint} />
       ) : (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       )}
     </MaterialityWorkspaceSectionShell>
   );
@@ -220,11 +202,11 @@ export function MaterialitySpecificExperience(
     >
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {items.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <div className="space-y-3">
+        <WorkspaceList>
           {items.map((item: SpecificMaterialityItem) => (
-            <div key={item.id} className="rounded-2xl border border-border/50 bg-card/80 p-5">
+            <WorkspaceListItem key={item.id}>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <p className="font-medium text-foreground">{item.label}</p>
@@ -236,9 +218,9 @@ export function MaterialitySpecificExperience(
                   {formatCurrency(item.amount, workspace.currencyCode)}
                 </p>
               </div>
-            </div>
+            </WorkspaceListItem>
           ))}
-        </div>
+        </WorkspaceList>
       )}
     </MaterialityWorkspaceSectionShell>
   );
@@ -263,11 +245,11 @@ export function MaterialityBenchmarksExperience(
       >
         {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
         {workspace.benchmarks.length === 0 ? (
-          <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+          <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
         ) : (
-          <div className="space-y-3">
+          <WorkspaceList>
             {workspace.benchmarks.map((benchmark: MaterialityBenchmarkView) => (
-              <div key={benchmark.id} className="rounded-2xl border border-border/50 bg-card/80 p-5">
+              <WorkspaceListItem key={benchmark.id}>
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <p className="font-medium text-foreground">
@@ -296,9 +278,9 @@ export function MaterialityBenchmarksExperience(
                     ) : null}
                   </div>
                 </div>
-              </div>
+              </WorkspaceListItem>
             ))}
-          </div>
+          </WorkspaceList>
         )}
       </MaterialityWorkspaceSectionShell>
 
@@ -328,11 +310,11 @@ export function MaterialityCalculationsExperience(
     >
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {workspace.calculations.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <div className="space-y-3">
+        <WorkspaceList>
           {workspace.calculations.map((calculation: MaterialityCalculationView) => (
-            <div key={calculation.id} className="rounded-2xl border border-border/50 bg-card/80 p-5">
+            <WorkspaceListItem key={calculation.id}>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <p className="font-medium text-foreground">
@@ -357,9 +339,9 @@ export function MaterialityCalculationsExperience(
                   ) : null}
                 </div>
               </div>
-            </div>
+            </WorkspaceListItem>
           ))}
-        </div>
+        </WorkspaceList>
       )}
     </MaterialityWorkspaceSectionShell>
   );
@@ -375,27 +357,30 @@ export function MaterialityVersionsExperience(props: BaseProps) {
       description={props.labels.description}
       headingId="materiality-versions"
     >
-      {workspace.versions.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
-      ) : (
-        <div className="space-y-3">
-          {workspace.versions.map((version: MaterialityVersionView) => (
-            <div key={version.id} className="rounded-2xl border border-border/50 bg-card/80 p-5">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="font-medium text-foreground">v{version.versionNumber}</p>
-                  {version.changeSummary ? (
-                    <p className="mt-1 text-sm text-muted-foreground">{version.changeSummary}</p>
-                  ) : null}
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {formatDateTime(version.createdAt, props.locale ?? "en")}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      <WorkspaceTable<MaterialityVersionView>
+        columns={[
+          {
+            id: "version",
+            header: "Version",
+            cell: (version) => `v${version.versionNumber}`,
+          },
+          {
+            id: "summary",
+            header: "Summary",
+            cell: (version) => version.changeSummary ?? "—",
+          },
+          {
+            id: "created",
+            header: "Created",
+            cell: (version) => formatDateTime(version.createdAt, props.locale ?? "en"),
+            hideOnMobile: true,
+          },
+        ]}
+        rows={workspace.versions}
+        keyFn={(version) => version.id}
+        emptyTitle={props.labels.emptyTitle}
+        emptyDescription={props.labels.emptyDescription}
+      />
     </MaterialityWorkspaceSectionShell>
   );
 }
@@ -444,7 +429,7 @@ export function MaterialityCommentsExperience(
       {error ? <Alert variant="error">{error}</Alert> : null}
 
       {mutable ? (
-        <div className="flex flex-col gap-3 rounded-2xl border border-border/50 bg-card/80 p-5 sm:flex-row">
+        <WorkspacePanel variant="form" className="flex flex-col gap-3 sm:flex-row">
           <Input
             value={body}
             onChange={(event) => setBody(event.target.value)}
@@ -454,17 +439,17 @@ export function MaterialityCommentsExperience(
           <Button type="button" onClick={addComment} disabled={isPending || !body.trim()}>
             {props.noteLabels.addAction}
           </Button>
-        </div>
+        </WorkspacePanel>
       ) : (
         <MaterialityWorkspaceReadonlyNotice message={props.archivedReadOnlyLabel ?? ""} />
       )}
 
       {workspace.comments.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <div className="space-y-3">
+        <WorkspaceList>
           {workspace.comments.map((comment: MaterialityCommentView) => (
-            <div key={comment.id} className="rounded-2xl border border-border/50 bg-card/80 p-5">
+            <WorkspaceListItem key={comment.id}>
               <div className="flex items-start justify-between gap-3">
                 <p className="text-sm leading-relaxed text-foreground">{comment.body}</p>
                 <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
@@ -474,9 +459,9 @@ export function MaterialityCommentsExperience(
               <p className="mt-2 text-xs text-muted-foreground">
                 {formatDateTime(comment.createdAt, props.locale ?? "en")}
               </p>
-            </div>
+            </WorkspaceListItem>
           ))}
-        </div>
+        </WorkspaceList>
       )}
     </MaterialityWorkspaceSectionShell>
   );
@@ -501,34 +486,37 @@ export function MaterialityHistoryExperience(
       description={props.labels.description}
       headingId="materiality-history"
     >
-      {props.activity.entries.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
-      ) : (
-        <div className="space-y-3">
-          {props.activity.entries.map((entry) => (
-            <div key={entry.id} className="rounded-2xl border border-border/50 bg-card/80 p-5">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <p className="font-medium text-foreground">
-                    {formatMaterialityActivityAction(entry.action, props.historyLabels.actions)}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {formatMaterialityActivitySummary(entry.summary)}
-                  </p>
-                </div>
-                <div className="text-right text-xs text-muted-foreground">
-                  <p>{formatDateTime(entry.createdAt, props.locale ?? "en")}</p>
-                  {entry.versionNumber != null ? (
-                    <p className="mt-1">
-                      {props.historyLabels.versionLabel}: {entry.versionNumber}
-                    </p>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      <WorkspaceTable
+        columns={[
+          {
+            id: "action",
+            header: "Action",
+            cell: (entry) =>
+              formatMaterialityActivityAction(entry.action, props.historyLabels.actions),
+          },
+          {
+            id: "summary",
+            header: "Summary",
+            cell: (entry) => formatMaterialityActivitySummary(entry.summary),
+          },
+          {
+            id: "created",
+            header: "Date",
+            cell: (entry) => formatDateTime(entry.createdAt, props.locale ?? "en"),
+            hideOnMobile: true,
+          },
+          {
+            id: "version",
+            header: props.historyLabels.versionLabel,
+            cell: (entry) => (entry.versionNumber != null ? String(entry.versionNumber) : "—"),
+            hideOnMobile: true,
+          },
+        ]}
+        rows={props.activity.entries}
+        keyFn={(entry) => entry.id}
+        emptyTitle={props.labels.emptyTitle}
+        emptyDescription={props.labels.emptyDescription}
+      />
     </MaterialityWorkspaceSectionShell>
   );
 }
@@ -603,7 +591,7 @@ export function MaterialitySettingsExperience(
       ) : null}
 
       {props.canArchive ? (
-        <div className="rounded-2xl border border-border/50 bg-card/80 p-5">
+        <WorkspacePanel>
           <div className="flex flex-wrap gap-2">
             {workspace.isArchived ? (
               confirmRestore ? (
@@ -645,7 +633,7 @@ export function MaterialitySettingsExperience(
               </Button>
             )}
           </div>
-        </div>
+        </WorkspacePanel>
       ) : null}
     </MaterialityWorkspaceSectionShell>
   );

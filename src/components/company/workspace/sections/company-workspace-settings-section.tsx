@@ -2,7 +2,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
 import { formatAddress, formatDateTime, formatOptionalText } from "@/lib/company/format-company-workspace";
 import { CompanyInfoCard, CompanyInfoList, CompanyInfoRow } from "@/components/company";
-import { CompanyWorkspaceSectionShell } from "../company-workspace-section-shell";
+import { WorkspaceSectionShell } from "@/components/workspace";
 
 type CompanyWorkspaceSettingsSectionProps = {
   company: CompanyWorkspaceView;
@@ -25,7 +25,7 @@ export function CompanyWorkspaceSettingsSection({
   const operatingAddress = formatAddress(settings.operating_address);
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-workspace-settings"
@@ -84,6 +84,6 @@ export function CompanyWorkspaceSettingsSection({
           </CompanyInfoList>
         </CompanyInfoCard>
       </div>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

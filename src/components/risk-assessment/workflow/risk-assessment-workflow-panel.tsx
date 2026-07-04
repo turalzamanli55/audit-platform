@@ -11,6 +11,7 @@ import {
 } from "@/lib/actions/risk-assessment";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import { RiskAssessmentWorkspaceSectionShell } from "@/components/risk-assessment/workspace/risk-assessment-workspace-section-shell";
+import { WorkspaceFormPanel } from "@/components/workspace";
 
 type RiskAssessmentWorkflowLabels = {
   title: string;
@@ -129,7 +130,7 @@ export function RiskAssessmentWorkflowPanel({
       description={labels.description}
       headingId="risk-workflow"
     >
-      <div className="space-y-4 rounded-2xl border border-border/50 bg-card/80 p-5">
+      <WorkspaceFormPanel>
         {error ? <Alert variant="error">{error}</Alert> : null}
 
         {isArchived ? <Alert variant="warning">{labels.readOnlyNotice}</Alert> : null}
@@ -205,7 +206,7 @@ export function RiskAssessmentWorkflowPanel({
             ) : null}
           </div>
         ) : null}
-      </div>
+      </WorkspaceFormPanel>
     </RiskAssessmentWorkspaceSectionShell>
   );
 }

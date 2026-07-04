@@ -59,8 +59,8 @@ export function WorkspaceCard({
   className,
   id,
 }: {
-  title: string;
-  description?: string;
+  title: ReactNode;
+  description?: ReactNode;
   action?: ReactNode;
   children: ReactNode;
   className?: string;

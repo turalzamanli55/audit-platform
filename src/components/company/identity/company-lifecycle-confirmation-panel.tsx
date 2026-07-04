@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { WorkspacePanel } from "@/components/workspace";
 
 type CompanyLifecycleConfirmationPanelProps = {
   title: string;
@@ -32,7 +33,7 @@ export function CompanyLifecycleConfirmationPanel({
   const [reason, setReason] = useState("");
 
   return (
-    <div className="space-y-4 rounded-2xl border border-border/60 bg-muted/20 p-5 sm:p-6">
+    <WorkspacePanel variant="muted" className="space-y-4">
       <div className="space-y-1">
         <p className="text-sm font-medium text-foreground">{title}</p>
         <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
@@ -52,7 +53,7 @@ export function CompanyLifecycleConfirmationPanel({
       <div className="flex flex-wrap gap-2">
         <Button
           type="button"
-          variant={variant === "destructive" ? "secondary" : "secondary"}
+          variant="secondary"
           onClick={onCancel}
           disabled={isPending}
           className={
@@ -76,6 +77,6 @@ export function CompanyLifecycleConfirmationPanel({
           {confirmLabel}
         </Button>
       </div>
-    </div>
+    </WorkspacePanel>
   );
 }

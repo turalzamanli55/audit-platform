@@ -9,7 +9,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import { WorkspaceFormPanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningSettingsExperienceProps = {
@@ -74,76 +74,74 @@ export function PlanningSettingsExperience({
   };
 
   return (
-    <PlanningWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={labels.title}
       description={labels.description}
       headingId="planning-settings"
     >
       {error ? <Alert variant="error">{error}</Alert> : null}
 
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-        <div className="space-y-5 p-5 sm:p-6">
-          {plan.isArchived ? (
-            <>
-              <Alert variant="warning" title={labels.lifecycle.archivedBannerTitle}>
-                {labels.lifecycle.archivedBannerDescription}
-              </Alert>
-              {canArchive ? (
-                <>
-                  <p className="text-sm text-muted-foreground">{labels.lifecycle.restorePrompt}</p>
-                  {mode === "restore" ? (
-                    <div className="flex flex-wrap gap-3">
-                      <Button type="button" onClick={restore} disabled={isPending}>
-                        {labels.lifecycle.restoreConfirmAction}
-                      </Button>
-                      <Button type="button" variant="ghost" onClick={() => setMode("idle")}>
-                        {labels.lifecycle.cancelAction}
-                      </Button>
-                    </div>
-                  ) : (
-                    <Button type="button" onClick={() => setMode("restore")}>
-                      {labels.lifecycle.restoreAction}
-                    </Button>
-                  )}
-                </>
-              ) : null}
-            </>
-          ) : canArchive ? (
-            <>
-              <p className="text-sm text-muted-foreground">{labels.lifecycle.archivePrompt}</p>
-              {mode === "archive" ? (
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <label htmlFor="archive-reason" className="text-sm font-medium text-foreground">
-                      {labels.lifecycle.reasonLabel}
-                    </label>
-                    <Input
-                      id="archive-reason"
-                      value={archiveReason}
-                      onChange={(event) => setArchiveReason(event.target.value)}
-                      placeholder={labels.lifecycle.archiveReasonPlaceholder}
-                    />
-                  </div>
+      <WorkspaceFormPanel>
+        {plan.isArchived ? (
+          <>
+            <Alert variant="warning" title={labels.lifecycle.archivedBannerTitle}>
+              {labels.lifecycle.archivedBannerDescription}
+            </Alert>
+            {canArchive ? (
+              <>
+                <p className="text-sm text-muted-foreground">{labels.lifecycle.restorePrompt}</p>
+                {mode === "restore" ? (
                   <div className="flex flex-wrap gap-3">
-                    <Button type="button" onClick={archive} disabled={isPending}>
-                      {labels.lifecycle.archiveConfirmAction}
+                    <Button type="button" onClick={restore} disabled={isPending}>
+                      {labels.lifecycle.restoreConfirmAction}
                     </Button>
                     <Button type="button" variant="ghost" onClick={() => setMode("idle")}>
                       {labels.lifecycle.cancelAction}
                     </Button>
                   </div>
+                ) : (
+                  <Button type="button" onClick={() => setMode("restore")}>
+                    {labels.lifecycle.restoreAction}
+                  </Button>
+                )}
+              </>
+            ) : null}
+          </>
+        ) : canArchive ? (
+          <>
+            <p className="text-sm text-muted-foreground">{labels.lifecycle.archivePrompt}</p>
+            {mode === "archive" ? (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="archive-reason" className="text-sm font-medium text-foreground">
+                    {labels.lifecycle.reasonLabel}
+                  </label>
+                  <Input
+                    id="archive-reason"
+                    value={archiveReason}
+                    onChange={(event) => setArchiveReason(event.target.value)}
+                    placeholder={labels.lifecycle.archiveReasonPlaceholder}
+                  />
                 </div>
-              ) : (
-                <Button type="button" variant="destructive" onClick={() => setMode("archive")}>
-                  {labels.lifecycle.archiveAction}
-                </Button>
-              )}
-            </>
-          ) : (
-            <p className="text-sm text-muted-foreground">{labels.readOnlyNotice}</p>
-          )}
-        </div>
-      </div>
-    </PlanningWorkspaceSectionShell>
+                <div className="flex flex-wrap gap-3">
+                  <Button type="button" onClick={archive} disabled={isPending}>
+                    {labels.lifecycle.archiveConfirmAction}
+                  </Button>
+                  <Button type="button" variant="ghost" onClick={() => setMode("idle")}>
+                    {labels.lifecycle.cancelAction}
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <Button type="button" variant="destructive" onClick={() => setMode("archive")}>
+                {labels.lifecycle.archiveAction}
+              </Button>
+            )}
+          </>
+        ) : (
+          <p className="text-sm text-muted-foreground">{labels.readOnlyNotice}</p>
+        )}
+      </WorkspaceFormPanel>
+    </WorkspaceSectionShell>
   );
 }

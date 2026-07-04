@@ -2,8 +2,8 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
 import { formatContact, formatOptionalText } from "@/lib/company/format-company-workspace";
 import { CompanyInfoCard, CompanyInfoList, CompanyInfoRow } from "@/components/company";
+import { WorkspaceEmpty, WorkspaceSectionShell } from "@/components/workspace";
 import { CompanyWorkspaceEmptySection } from "../company-workspace-empty-section";
-import { CompanyWorkspaceSectionShell } from "../company-workspace-section-shell";
 
 type CompanyWorkspaceContactsSectionProps = {
   company: CompanyWorkspaceView;
@@ -23,7 +23,7 @@ export function CompanyWorkspaceContactsSection({
   const hasAuditor = Boolean(formatContact(auditor));
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-workspace-contacts"
@@ -51,10 +51,9 @@ export function CompanyWorkspaceContactsSection({
                 />
               </CompanyInfoList>
             ) : (
-              <CompanyWorkspaceEmptySection
+              <WorkspaceEmpty
                 title={section.financeEmptyTitle}
                 description={section.financeEmptyDescription}
-                className="min-h-[10rem] border-0 bg-transparent"
               />
             )}
           </CompanyInfoCard>
@@ -80,10 +79,9 @@ export function CompanyWorkspaceContactsSection({
                 />
               </CompanyInfoList>
             ) : (
-              <CompanyWorkspaceEmptySection
+              <WorkspaceEmpty
                 title={section.auditorEmptyTitle}
                 description={section.auditorEmptyDescription}
-                className="min-h-[10rem] border-0 bg-transparent"
               />
             )}
           </CompanyInfoCard>
@@ -94,6 +92,6 @@ export function CompanyWorkspaceContactsSection({
           description={section.emptyDescription}
         />
       )}
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

@@ -2848,6 +2848,2010 @@ const EMBEDDED_PATCHES = {
   }
 };
 
+
+/** Embedded professional audit translations for module namespace keys (workflow, history, etc.). */
+const EMBEDDED_NAMESPACE_PATCHES = {
+  "az": {
+    "planning": {
+      "workflow": {
+        "eyebrow": "Təsdiq iş axını",
+        "lockedBadge": "Kilidlənib",
+        "submitAction": "Yoxlamaya təqdim et",
+        "returnAction": "Düzəlişə qaytar",
+        "returnConfirmAction": "Qaytarmanı təsdiqlə",
+        "approveAction": "Planlaşdırmanı təsdiqlə",
+        "reviseAction": "Düzəliş yarat",
+        "reviseConfirmAction": "Düzəlişi təsdiqlə",
+        "cancelAction": "Ləğv et",
+        "returnNotesTitle": "Qaytarma qeydləri",
+        "returnNotesLabel": "Düzəliş qeydləri",
+        "returnNotesPlaceholder": "Yenidən təqdim etməzdən əvvəl nəyin həll edilməli olduğunu təsvir edin…",
+        "reviseNotesLabel": "Düzəliş icmalı",
+        "reviseNotesPlaceholder": "Təsdiqlənmiş planın niyə düzəldildiyinə dair istəyə bağlı icmal…",
+        "pendingReviewNotice": "Bu plan tərəfdaş və ya menecer yoxlamasını gözləyir.",
+        "errorGeneric": "Planlaşdırma iş axını əməliyyatı tamamlana bilmədi."
+      },
+      "history": {
+        "title": "Planlaşdırma tarixçəsi",
+        "description": "Planlaşdırma dəyişikliklərinin və audit icmalının yalnız oxuma zaman xətti.",
+        "emptyTitle": "Planlaşdırma fəaliyyəti yoxdur",
+        "emptyDescription": "Dəyişikliklər qeydə alındıqca planlaşdırma fəaliyyəti burada görünəcək.",
+        "actions": {
+          "created": "Planlaşdırma yaradılıb",
+          "updated": "Planlaşdırma yenilənib",
+          "statusChanged": "Status dəyişib",
+          "archived": "Planlaşdırma arxivlənib",
+          "restored": "Planlaşdırma bərpa edilib",
+          "checklistUpdated": "Yoxlama siyahısı yenilənib",
+          "timelineUpdated": "Zaman xətti yenilənib",
+          "submitted": "Yoxlamaya təqdim edilib",
+          "returned": "Düzəlişə qaytarılıb",
+          "approved": "Planlaşdırma təsdiqlənib",
+          "revised": "Plan düzəldilib",
+          "commentAdded": "Şərh əlavə edilib",
+          "documentAdded": "Sənəd əlavə edilib",
+          "documentRemoved": "Sənəd silinib"
+        },
+        "revision": {
+          "title": "Düzəliş tarixçəsi",
+          "description": "Düzəlişlə əvəz edilmiş əvvəlki təsdiqlənmiş plan versiyaları.",
+          "entryTitle": "Plan versiyası {version}"
+        },
+        "version": {
+          "title": "Versiya məlumatı",
+          "description": "Cari plan versiyaları və həyat dövrü vaxt möhürləri.",
+          "cardTitle": "Plan metadatası",
+          "recordVersion": "Qeyd versiyası",
+          "planVersion": "Plan versiyası",
+          "submitted": "Təqdim edilmə vaxtı",
+          "approved": "Təsdiq vaxtı",
+          "notSubmitted": "Təqdim edilməyib",
+          "notApproved": "Təsdiqlənməyib",
+          "created": "Yaradılıb",
+          "updated": "Yenilənib",
+          "archived": "Arxivlənmə vaxtı",
+          "notArchived": "Arxivlənməyib"
+        }
+      },
+      "comments": {
+        "title": "Planlaşdırma şərhləri",
+        "description": "Planlaşdırma təsdiqi zamanı qeydə alınan yoxlama qeydləri və müzakirə.",
+        "emptyDescription": "Hələ planlaşdırma şərhi yoxdur. Yoxlayıcılar qeyd əlavə etdikdə və ya planı qaytardıqda şərhlər görünür.",
+        "addLabel": "Şərh əlavə et",
+        "addPlaceholder": "Planlaşdırma qeydi və ya yoxlama şərhi sənədləşdirin…",
+        "addAction": "Şərh əlavə et",
+        "reviewModeNotice": "Plan düzəlişə qaytarıldıqda şərhlər qeydə alınır.",
+        "types": {
+          "review": "Yoxlama",
+          "general": "Ümumi",
+          "return": "Qaytarma qeydi"
+        }
+      },
+      "settings": {
+        "title": "Planlaşdırma parametrləri",
+        "description": "Bu audit planlaşdırma qeydini arxivləyin və ya bərpa edin.",
+        "readOnlyNotice": "Planlaşdırma parametrlərinə yalnız baxış girişiniz var.",
+        "lifecycle": {
+          "archivedBannerTitle": "Planlaşdırma arxivlənib",
+          "archivedBannerDescription": "Planlaşdırma iş sahəsi yalnız oxuma rejimindədir. Dəyişiklik etmək üçün planlaşdırmanı bərpa edin.",
+          "archivePrompt": "Arxivləmə bu planlaşdırma qeydini tarixçəsini qoruyaraq yalnız oxuma rejiminə keçirir.",
+          "archiveAction": "Planlaşdırmanı arxivlə",
+          "archiveReasonPlaceholder": "Arxivləmə üçün istəyə bağlı səbəb",
+          "archiveConfirmAction": "Arxivləməni təsdiqlə",
+          "restorePrompt": "Sənədləşdirmə və yoxlamaya davam etmək üçün planlaşdırmanı bərpa edin.",
+          "restoreAction": "Planlaşdırmanı bərpa et",
+          "restoreConfirmAction": "Bərpanı təsdiqlə",
+          "reasonLabel": "Səbəb",
+          "cancelAction": "Ləğv et"
+        }
+      },
+      "documents": {
+        "title": "Planlaşdırma sənədləri",
+        "description": "Planlaşdırma memorandumları və dəstək sənədləri.",
+        "emptyTitle": "Planlaşdırma sənədi yoxdur",
+        "emptyDescription": "Bu audit planı üçün planlaşdırma memorandumları və dəstək istinadları əlavə edin.",
+        "addTitle": "Sənəd istinadı əlavə et",
+        "nameLabel": "Sənəd adı",
+        "namePlaceholder": "Planlaşdırma memorandumu",
+        "typeLabel": "Sənəd növü",
+        "addAction": "Sənəd əlavə et",
+        "metadataNotice": "Fayl saxlama inteqrasiyası gələcək buraxılışda ikili faylları əlavə edəcək. İstinadlar indi audit planında qeydə alınır.",
+        "documentTypes": {
+          "planning_memorandum": "Planlaşdırma memorandumu",
+          "risk_assessment": "Risk qiymətləndirilməsi",
+          "materiality_worksheet": "Mahiyyətllik vərəqi",
+          "other": "Digər"
+        },
+        "statuses": {
+          "uploaded": "Qeydə alınıb",
+          "pending": "Gözləyir",
+          "archived": "Arxivlənib"
+        }
+      },
+      "checklist": {
+        "title": "Planlaşdırma yoxlama siyahısı",
+        "description": "Sahə işindən əvvəl əsas planlaşdırma nəticələrinin tamamlanmasını izləyin.",
+        "progress": "Gedişat",
+        "saveLabel": "Saxla",
+        "savingLabel": "Saxlanılır…",
+        "items": {
+          "objectives": "Müsadirə məqsədləri sənədləşdirilib",
+          "scope": "Audit əhatə dairəsi müəyyən edilib",
+          "strategy": "Audit strategiyası sənədləşdirilib",
+          "framework": "Hesabat çərçivəsi təsdiqlənib",
+          "materiality": "Mahiyyətllik müvəqqəti yeri nəzərdən keçirilib",
+          "risk": "Risk müvəqqəti yeri nəzərdən keçirilib",
+          "team": "Komanda planlaşdırması tamamlanıb",
+          "timeline": "Zaman xətti müəyyən edilib"
+        }
+      },
+      "editor": {
+        "readOnlyNotice": "Bu planlaşdırma bölməsinə yalnız baxış girişiniz var.",
+        "saveLabel": "Saxla",
+        "savingLabel": "Saxlanılır…",
+        "discardLabel": "Ləğv et",
+        "placeholder": "Peşəkar mühakiməni və müsadirəyə xas konteksti sənədləşdirin…"
+      },
+      "team": {
+        "title": "Komanda planlaşdırması",
+        "description": "Bu audit üçün müsadirə siyahısı və tutum planlaşdırması.",
+        "rosterTitle": "Müsadirə komandası",
+        "rosterEmpty": "Bu müsadirəyə hələ komanda üzvü təyin edilməyib.",
+        "capacityTitle": "Tutum planlaşdırması",
+        "estimatedHours": "Təxmini saatlar",
+        "notes": "Planlaşdırma qeydləri",
+        "saveLabel": "Saxla",
+        "savingLabel": "Saxlanılır…"
+      },
+      "timeline": {
+        "title": "Planlaşdırma zaman xətti",
+        "description": "Planlaşdırma, sahə işi, yoxlama və tamamlanma üçün mərhələ tarixləri.",
+        "startDate": "Başlanğıc",
+        "endDate": "Son",
+        "saveLabel": "Saxla",
+        "savingLabel": "Saxlanılır…",
+        "milestones": {
+          "planning": "Planlaşdırma",
+          "fieldwork": "Sahə işi",
+          "review": "Yoxlama",
+          "completion": "Tamamlanma"
+        }
+      },
+      "integration": {
+        "integrationReady": "İnteqrasiyaya hazırdır",
+        "currentStatus": "Cari status",
+        "statuses": {
+          "not_configured": "Konfiqurasiya edilməyib",
+          "placeholder": "Müvəqqəti yer hazırdır",
+          "integrated": "İnteqrasiya edilib"
+        },
+        "materiality": {
+          "title": "Mahiyyətllik",
+          "description": "Mahiyyətllik həddləri xüsusi modulda sənədləşdiriləcək.",
+          "placeholderTitle": "Mahiyyətllik modulu müvəqqəti yeri",
+          "placeholderDescription": "Ümumi, icra və xüsusi mahiyyətllik vərəqləri Mahiyyətllik modulu tətbiq olunduqda buraya qoşulacaq."
+        },
+        "risk": {
+          "title": "Risk qiymətləndirilməsi",
+          "description": "Planlaşdırmadan müsadirə risk qiymətləndirilməsi iş sahəsini açın.",
+          "placeholderTitle": "Risk qiymətləndirilməsi inteqrasiya edilib",
+          "placeholderDescription": "Planlaşdırma xüsusi risk qiymətləndirilməsi iş sahəsinə bağlanır. Müsadirə yan panelindən Risk qiymətləndirilməsini istifadə edin və ya planlaşdırma risk bölməsindən davam edin."
+        }
+      }
+    },
+    "materiality": {
+      "workflow": {
+        "title": "Mahiyyətllik workflow",
+        "description": "ISA 320 mahiyyətlilik sənədlərini təqdim edin, geri qaytarın və təsdiqləyin.",
+        "submitAction": "Nəzərdən keçirməyə təqdim et",
+        "returnAction": "Düzəliş üçün geri qaytar",
+        "returnConfirmAction": "Geri qaytarmanı təsdiqlə",
+        "approveAction": "Mahiyyətlliyi təsdiqlə",
+        "cancelAction": "Ləğv et",
+        "returnNotesLabel": "Geri qaytarma qeydləri",
+        "returnNotesPlaceholder": "Yenidən təqdim etmədən əvvəl nəyin düzəldilməli olduğunu təsvir edin.",
+        "readOnlyNotice": "Bu mahiyyətlilik paketi arxivlənib və yalnız oxuma üçündür.",
+        "submittedNotice": "Bu mahiyyətlilik paketi təqdim edilib və yoxlama gözləyir.",
+        "approvedNotice": "Bu mahiyyətlilik paketi təsdiqlənib.",
+        "returnedNotice": "Bu mahiyyətlilik paketi reviziya üçün geri qaytarılıb.",
+        "errorGeneric": "Mahiyyətlilik iş axını əməliyyatını tamamlamaq mümkün olmadı."
+      },
+      "history": {
+        "title": "Tarixçə",
+        "description": "Mahiyyətlilik fəaliyyətinin yalnız oxuma üçün xronologiyası.",
+        "emptyTitle": "Mahiyyətlilik fəaliyyəti yoxdur",
+        "emptyDescription": "Mahiyyətllik activity will appear here as changes are recorded.",
+        "versionLabel": "Paket versiyası",
+        "updatedLabel": "Yenilənib",
+        "actions": {
+          "materiality.benchmark.added": "Müqayisə göstəricisi əlavə edildi",
+          "materiality.benchmark.updated": "Müqayisə göstəricisi yeniləndi",
+          "materiality.calculation.recorded": "Hesablama qeydə alındı",
+          "materiality.threshold.updated": "Hədd yeniləndi",
+          "materiality.comment.added": "Şərh əlavə edildi",
+          "materiality.version.created": "Versiya yaradıldı"
+        }
+      },
+      "comments": {
+        "title": "Şərhlər",
+        "description": "Mahiyyətliliklə bağlı yoxlama və daxili şərhləri qeydə alın.",
+        "emptyTitle": "Şərh yoxdur",
+        "emptyDescription": "Şərhlər appear here once added.",
+        "bodyPlaceholder": "Şərh əlavə et",
+        "addAction": "Şərh əlavə et"
+      },
+      "settings": {
+        "title": "Parametrlər",
+        "description": "Bu mahiyyətlilik paketini arxivləşdirin və ya bərpa edin.",
+        "archiveAction": "Mahiyyətllik paketini arxivləşdir",
+        "archiveConfirmAction": "Arxivləşdirməni təsdiqləyin",
+        "restoreAction": "Mahiyyətllik paketini bərpa et",
+        "restoreConfirmAction": "Bərpanı təsdiqləyin",
+        "cancelAction": "Ləğv et",
+        "archivedBanner": "Bu mahiyyətlilik paketi arxivlənib.",
+        "readOnlyNotice": "Mahiyyətlilik parametrlərinə yalnız baxış hüququnuz var."
+      },
+      "versions": {
+        "title": "Versiyalar",
+        "description": "Mahiyyətlilik paketinin versiya anlıq görüntülərinə baxın.",
+        "emptyTitle": "Versiya yoxdur",
+        "emptyDescription": "Mahiyyətlilik reviziya edildikdə və ya təsdiqləndikdə versiya anlıq görüntüləri yaradılır."
+      }
+    },
+    "riskAssessment": {
+      "workflow": {
+        "title": "Risk iş axını",
+        "description": "Risk qiymətləndirməsini təqdim et, qaytar və təsdiqlə.",
+        "submitAction": "Yoxlamaya təqdim et",
+        "returnAction": "Düzəliş üçün qaytar",
+        "returnConfirmAction": "Qaytarmanı təsdiqlə",
+        "approveAction": "Risk qiymətləndirməsini təsdiqlə",
+        "acknowledgeAction": "Əhəmiyyətli riskləri təsdiqlə",
+        "cancelAction": "Ləğv et",
+        "returnNotesLabel": "Qaytarma qeydi",
+        "returnNotesPlaceholder": "Yenidən təqdimatdan əvvəl nəyi düzəltmək lazım olduğunu yazın.",
+        "readOnlyNotice": "Bu risk qiymətləndirməsi arxivdədir və yalnız oxunur.",
+        "submittedNotice": "Bu risk qiymətləndirməsi təqdim olunub və yoxlama gözləyir.",
+        "approvedNotice": "Bu risk qiymətləndirməsi təsdiqlənib.",
+        "acknowledgedNotice": "Əhəmiyyətli risklər təsdiqlənib.",
+        "pendingAcknowledgmentNotice": "Təsdiqdən əvvəl əhəmiyyətli risklər təsdiqlənməlidir.",
+        "errorGeneric": "Risk iş axını əməliyyatını tamamlamaq mümkün olmadı."
+      },
+      "history": {
+        "title": "Tarixçə",
+        "description": "Risk qiymətləndirməsi fəaliyyətinin yalnız oxunan xronologiyası.",
+        "emptyTitle": "Risk fəaliyyəti yoxdur",
+        "emptyDescription": "Dəyişikliklər qeydə alındıqca risk fəaliyyəti burada görünəcək.",
+        "versionLabel": "Qiymətləndirmə versiyası",
+        "updatedLabel": "Yenilənib",
+        "actions": {
+          "risk_assessment.created": "Risk qiymətləndirməsi yaradıldı",
+          "risk_assessment.updated": "Risk qiymətləndirməsi yeniləndi",
+          "risk_assessment.archived": "Risk qiymətləndirməsi arxivləndi",
+          "risk_assessment.restored": "Risk qiymətləndirməsi bərpa edildi",
+          "risk_assessment.submitted": "Risk qiymətləndirməsi təqdim olundu",
+          "risk_assessment.returned": "Risk qiymətləndirməsi qaytarıldı",
+          "risk_assessment.approved": "Risk qiymətləndirməsi təsdiqləndi",
+          "risk_assessment.category.added": "Kateqoriya əlavə edildi",
+          "risk_assessment.risk_item.added": "Risk maddəsi əlavə edildi",
+          "risk_assessment.risk_item.updated": "Risk maddəsi yeniləndi",
+          "risk_assessment.assertion_rating.updated": "İddia reytinqi yeniləndi",
+          "risk_assessment.response.added": "Cavab əlavə edildi",
+          "risk_assessment.procedure.linked": "Prosedur bağlandı",
+          "risk_assessment.note.added": "Qeyd əlavə edildi",
+          "risk_assessment.significant.acknowledged": "Əhəmiyyətli risklər təsdiqləndi"
+        }
+      },
+      "comments": {
+        "title": "Şərhlər",
+        "description": "Risklərlə bağlı daxili şərhləri qeydə alın.",
+        "emptyTitle": "Şərh yoxdur",
+        "emptyDescription": "Şərhlər əlavə edildikdən sonra burada görünür.",
+        "bodyPlaceholder": "Daxili şərh əlavə et",
+        "addAction": "Şərh əlavə et"
+      },
+      "settings": {
+        "title": "Parametrlər",
+        "description": "Bu risk qiymətləndirməsini arxivləyin və ya bərpa edin.",
+        "archiveAction": "Risk qiymətləndirməsini arxivlə",
+        "archiveConfirmAction": "Arxivləməni təsdiqlə",
+        "restoreAction": "Risk qiymətləndirməsini bərpa et",
+        "restoreConfirmAction": "Bərpanı təsdiqlə",
+        "cancelAction": "Ləğv et",
+        "archivedBanner": "Bu risk qiymətləndirməsi arxivlənib.",
+        "readOnlyNotice": "Risk qiymətləndirməsi parametrlərinə yalnız baxış icazəniz var."
+      },
+      "procedures": {
+        "title": "Prosedurlar",
+        "description": "Planlaşdırılmış prosedurları risk maddələrinə bağlayın.",
+        "emptyTitle": "Bağlı prosedur yoxdur",
+        "emptyDescription": "Cavab icrasını xəritələmək üçün prosedur bağlantıları əlavə edin.",
+        "riskItemLabel": "Risk maddəsini seçin",
+        "referencePlaceholder": "Prosedur istinadı",
+        "addAction": "Prosedur bağlantısı əlavə et"
+      }
+    },
+    "fieldwork": {
+      "workflow": {
+        "queueTitle": "Yoxlama növbəsi",
+        "queueDescription": "Yoxlama və ya təmizləmə gözləyən prosedurlar.",
+        "queueEmpty": "Yoxlama gözləyən prosedur yoxdur.",
+        "pendingReviewCount": "Yoxlama gözləyir",
+        "openProcedureAction": "Proseduru aç",
+        "submitAction": "Yoxlamaya təqdim et",
+        "returnAction": "Düzəlişə qaytar",
+        "returnConfirmAction": "Qaytarmanı təsdiqlə",
+        "clearAction": "Yoxlamanı təmizlə",
+        "clearConfirmAction": "Təmizləməni təsdiqlə",
+        "cancelAction": "Ləğv et",
+        "returnNotesTitle": "Qaytarma qeydləri",
+        "returnNotesPlaceholder": "Nəyin düzəldilməli olduğunu təsvir edin",
+        "clearanceNotesPlaceholder": "Yoxlama təmizləməsini sənədləşdirin",
+        "errorGeneric": "Prosedur iş axını yenilənə bilmədi"
+      },
+      "history": {
+        "title": "Sahə işi tarixçəsi",
+        "description": "Sahə işi dəyişikliklərinin yalnız oxuma zaman xətti.",
+        "emptyTitle": "Sahə işi fəaliyyəti yoxdur",
+        "emptyDescription": "Sahə işi irəlilədikcə fəaliyyət görünəcək.",
+        "versionLabel": "Proqram versiyası",
+        "actions": {
+          "created": "Sahə işi yaradılıb",
+          "updated": "Sahə işi yenilənib",
+          "archived": "Sahə işi arxivlənib",
+          "restored": "Sahə işi bərpa edilib",
+          "programUpdated": "Proqram yenilənib",
+          "procedureAssigned": "Prosedur təyin edilib",
+          "procedureUpdated": "Prosedur yenilənib",
+          "procedureCompleted": "Prosedur tamamlanıb",
+          "procedureSubmitted": "Prosedur təqdim edilib",
+          "procedureReturned": "Prosedur qaytarılıb",
+          "procedureCleared": "Prosedur təmizlənib",
+          "workingPaperAdded": "İş vərəqi əlavə edilib",
+          "workingPaperUpdated": "İş vərəqi yenilənib",
+          "workingPaperSubmitted": "İş vərəqi təqdim edilib",
+          "workingPaperReturned": "İş vərəqi qaytarılıb",
+          "workingPaperCleared": "İş vərəqi təmizlənib",
+          "evidenceAdded": "Sübut əlavə edilib",
+          "findingAdded": "Nəticə əlavə edilib",
+          "noteAdded": "Qeyd əlavə edilib"
+        }
+      },
+      "comments": {
+        "title": "Daxili şərhlər",
+        "description": "Sahə işi məsələləri üzrə daxili komanda müzakirəsi.",
+        "emptyTitle": "Daxili şərh yoxdur",
+        "emptyDescription": "Daxili şərhlər burada görünəcək."
+      },
+      "settings": {
+        "title": "Sahə işi parametrləri",
+        "description": "Bu sahə işi paketini arxivləyin və ya bərpa edin.",
+        "readOnlyNotice": "Sahə işi parametrlərinə yalnız baxış girişiniz var.",
+        "tickmarkLibraryTitle": "İşarə kitabxanası",
+        "tickmarkLibraryDescription": "İş vərəqləri üçün təkrar istifadə olunan işarələri idarə edin.",
+        "tickmarkSymbol": "Simvol",
+        "tickmarkMeaning": "Mənası",
+        "addTickmark": "Kitabxanaya əlavə et",
+        "lifecycle": {
+          "archivedBannerTitle": "Sahə işi arxivlənib",
+          "archivedBannerDescription": "Sahə işi iş sahəsi yalnız oxuma rejimindədir. İcraya davam etmək üçün sahə işini bərpa edin.",
+          "archivePrompt": "Arxivləmə bu sahə işi paketini tarixçəsini qoruyaraq yalnız oxuma rejiminə keçirir.",
+          "archiveAction": "Sahə işini arxivlə",
+          "archiveConfirmAction": "Arxivləməni təsdiqlə",
+          "restorePrompt": "Prosedur icrasına davam etmək üçün sahə işini bərpa edin.",
+          "restoreAction": "Sahə işini bərpa et",
+          "restoreConfirmAction": "Bərpanı təsdiqlə",
+          "cancelAction": "Ləğv et"
+        }
+      },
+      "procedures": {
+        "title": "Audit prosedurları",
+        "description": "Təyinat, son tarixlər və tamamlanmanı izləyin.",
+        "emptyTitle": "Prosedur yoxdur",
+        "emptyDescription": "Sahə işi başladıldıqda prosedurlar yaradılır.",
+        "assignAuditor": "Təyin edilmiş auditor",
+        "unassigned": "Təyin edilməyib",
+        "dueDate": "Son tarix",
+        "assignedTo": "Təyin edilib"
+      },
+      "findings": {
+        "title": "Nəticələr",
+        "description": "Sahə işi zamanı aşkar edilmiş audit nəticələrini sənədləşdirin.",
+        "emptyTitle": "Nəticə yoxdur",
+        "emptyDescription": "Nəticələr sənədləşdirildikcə görünəcək.",
+        "titlePlaceholder": "Nəticə başlığı"
+      },
+      "evidence": {
+        "title": "Sübut reyestri",
+        "description": "Sübut istinadları və əlavə metadatası.",
+        "emptyTitle": "Sübut yoxdur",
+        "emptyDescription": "Prosedurlar icra olunarkən sübut istinadlarını qeydə alın.",
+        "fileLabel": "Əlavə",
+        "procedureLabel": "Bağlı prosedur",
+        "uploadedBadge": "Fayl əlavə edilib",
+        "namePlaceholder": "Sübut istinad adı",
+        "downloadAction": "Yüklə",
+        "downloadError": "Sübut faylı yüklənə bilmədi"
+      }
+    },
+    "engagements": {
+      "history": {
+        "title": "Fəaliyyət və audit",
+        "description": "Müsadirə dəyişikliklərinin və audit icmalının yalnız oxuma zaman xətti.",
+        "errorTitle": "Fəaliyyət yüklənə bilmədi",
+        "errorDescription": "Müsadirə fəaliyyəti yüklənərkən xəta baş verdi.",
+        "summary": {
+          "title": "Audit icmalı",
+          "description": "Bu müsadirə üçün qeydə alınmış hadisələrin sayı.",
+          "total": "Ümumi hadisələr",
+          "created": "Yaradılıb",
+          "updated": "Yenilənib",
+          "statusChanged": "Status dəyişib",
+          "archived": "Arxivlənib",
+          "restored": "Bərpa edilib"
+        },
+        "timeline": {
+          "title": "Fəaliyyət zaman xətti",
+          "description": "Bu müsadirə üçün xronoloji audit izi.",
+          "emptyTitle": "Qeydə alınmış fəaliyyət yoxdur",
+          "emptyDescription": "Bu müsadirədəki dəyişikliklər audita alındıqca burada görünəcək.",
+          "reasonArchive": "Arxivləmə səbəbi",
+          "reasonRestore": "Bərpa səbəbi",
+          "fieldsChanged": "Dəyişdirilmiş sahələr",
+          "actions": {
+            "engagement.created": "Müsadirə yaradılıb",
+            "engagement.updated": "Müsadirə yenilənib",
+            "engagement.status.changed": "Status dəyişib",
+            "engagement.archived": "Müsadirə arxivlənib",
+            "engagement.restored": "Müsadirə bərpa edilib"
+          }
+        },
+        "version": {
+          "title": "Versiya məlumatı",
+          "description": "Cari qeyd versiyaları və həyat dövrü vaxt möhürləri.",
+          "cardTitle": "Qeyd metadatası",
+          "recordVersion": "Qeyd versiyası",
+          "created": "Yaradılıb",
+          "archived": "Arxivlənmə vaxtı",
+          "notArchived": "Arxivlənməyib",
+          "restored": "Bərpa edilib",
+          "restoredHint": "Bərpa hadisələri üçün zaman xəttinə baxın"
+        }
+      },
+      "settings": {
+        "title": "Parametrlər",
+        "description": "Müsadirə məlumatlarını, hesabatı və həyat dövrü statusunu konfiqurasiya edin.",
+        "readOnlyNotice": "Müsadirə parametrlərinə yalnız baxış girişiniz var.",
+        "saveLabel": "Saxla",
+        "savingLabel": "Saxlanılır…",
+        "discardLabel": "Ləğv et",
+        "sections": {
+          "general": {
+            "title": "Ümumi",
+            "description": "Ad, kod, növ və həyat dövrü statusu."
+          },
+          "client": {
+            "title": "Müştəri",
+            "description": "Bu müsadirənin xidmət etdiyi hüquqi şəxs."
+          },
+          "reporting": {
+            "title": "Hesabat",
+            "description": "Çərçivə və hesabat dövrü."
+          },
+          "dates": {
+            "title": "Tarixlər",
+            "description": "Bu müsadirə üçün planlaşdırılmış cədvəl."
+          },
+          "notes": {
+            "title": "Qeydlər",
+            "description": "Təsvir və daxili qeydlər."
+          }
+        },
+        "lifecycle": {
+          "title": "Həyat dövrü",
+          "description": "Status dəyişdikdə bu müsadirəni arxivləyin və ya bərpa edin.",
+          "archivedBannerTitle": "Bu müsadirə arxivlənib",
+          "archivedBannerDescription": "İş sahəsi yalnız oxuma rejimindədir. Yenidən dəyişiklik etmək üçün müsadirəni bərpa edin.",
+          "archivePrompt": "Arxivləmə bu müsadirəni tarixçəsini qoruyaraq yalnız oxuma rejiminə keçirir.",
+          "archiveAction": "Müsadirəni arxivlə",
+          "archiveConfirmTitle": "Bu müsadirə arxivlənsin?",
+          "archiveConfirmDescription": "Müsadirə yalnız oxuma rejiminə keçəcək. Lazım olsa, sonra bərpa edə bilərsiniz.",
+          "archiveReasonPlaceholder": "Arxivləmə üçün istəyə bağlı səbəb",
+          "archiveConfirmAction": "Arxivləməni təsdiqlə",
+          "restorePrompt": "Konfiqurasiya və sahə işini davam etdirmək üçün bu müsadirəni bərpa edin.",
+          "restoreAction": "Müsadirəni bərpa et",
+          "restoreConfirmTitle": "Bu müsadirə bərpa edilsin?",
+          "restoreConfirmDescription": "Müsadirə yenidən aktiv olacaq və səlahiyyətli istifadəçilər üçün redaktə edilə biləcək.",
+          "restoreConfirmAction": "Bərpanı təsdiqlə",
+          "reasonLabel": "Səbəb",
+          "cancelAction": "Ləğv et"
+        }
+      },
+      "members": {
+        "title": "Komanda üzvləri",
+        "description": "Bu müsadirəyə təyin edilmiş şəxslər.",
+        "emptyTitle": "Təyin edilmiş üzv yoxdur",
+        "emptyDescription": "Komanda üzvləri bu müsadirəyə təyin edildikdən sonra burada görünəcək.",
+        "joinedLabel": "Qoşulub",
+        "forbiddenTitle": "Giriş məhdudlaşdırılıb",
+        "forbiddenDescription": "Müsadirə üzvlərinə baxmaq üçün icazəniz yoxdur.",
+        "roles": {
+          "engagement_partner": "Müsadirə tərəfdaşı",
+          "engagement_manager": "Müsadirə meneceri",
+          "senior": "Baş mütəxəssis",
+          "staff": "İşçi heyət",
+          "reviewer": "Yoxlayıcı",
+          "observer": "Müşahidəçi"
+        }
+      }
+    },
+    "companies": {
+      "history": {
+        "title": "Fəaliyyət və audit",
+        "description": "Şirkət dəyişikliklərinin yalnız oxunan xronologiyası və audit icmalı.",
+        "errorTitle": "Fəaliyyət yüklənə bilmədi",
+        "errorDescription": "Şirkət fəaliyyəti yüklənərkən xəta baş verdi.",
+        "summary": {
+          "title": "Audit icmalı",
+          "description": "Bu şirkət üçün qeydə alınmış hadisələrin sayı.",
+          "total": "Ümumi hadisələr",
+          "created": "Yaradılıb",
+          "updated": "Yenilənib",
+          "settingsUpdated": "Parametrlər yenilənib",
+          "archived": "Arxivlənib",
+          "restored": "Bərpa edilib"
+        },
+        "timeline": {
+          "title": "Fəaliyyət xətti",
+          "description": "Bu şirkət üçün xronoloji audit izi.",
+          "emptyTitle": "Fəaliyyət qeydə alınmayıb",
+          "emptyDescription": "Bu şirkətə edilən dəyişikliklər audit edildikcə burada görünəcək.",
+          "reasonArchive": "Arxiv səbəbi",
+          "reasonRestore": "Bərpa səbəbi",
+          "fieldsChanged": "Dəyişən sahələr",
+          "actions": {
+            "company.created": "Şirkət yaradılıb",
+            "company.updated": "Şirkət yenilənib",
+            "company.settings.updated": "Parametrlər yenilənib",
+            "company.archived": "Şirkət arxivlənib",
+            "company.restored": "Şirkət bərpa edilib"
+          }
+        },
+        "version": {
+          "title": "Versiya məlumatı",
+          "description": "Cari qeyd versiyaları və həyat dövrü vaxt damğaları.",
+          "cardTitle": "Qeyd metadatası",
+          "recordVersion": "Qeyd versiyası",
+          "settingsVersion": "Parametr versiyası",
+          "created": "Yaradılıb",
+          "archived": "Arxivlənib",
+          "notArchived": "Arxivlənməyib",
+          "restored": "Bərpa edilib",
+          "restoredHint": "Bərpa hadisələri üçün xəttə baxın"
+        }
+      },
+      "settings": {
+        "title": "Parametrlər",
+        "description": "Bu şirkət üçün hesabat, maliyyə və əməliyyat seçimlərini konfiqurasiya edin.",
+        "navAriaLabel": "Şirkət parametrləri bölmələri",
+        "navGeneral": "Ümumi",
+        "navReporting": "Hesabat",
+        "navFinancial": "Maliyyə",
+        "navContacts": "Əlaqələr",
+        "navPreferences": "Seçimlər",
+        "navValidation": "Təsdiqləmə",
+        "readOnlyBadge": "Yalnız baxış",
+        "saveIdle": "Bütün dəyişikliklər saxlanılıb",
+        "saveSaving": "Dəyişikliklər saxlanılır…",
+        "saveSaved": "Dəyişikliklər saxlanıldı",
+        "saveError": "Dəyişikliklər saxlanıla bilmədi",
+        "unsavedMessage": "Saxlanmamış dəyişiklikləriniz var",
+        "discardLabel": "Ləğv et",
+        "saveLabel": "Saxla",
+        "savingLabel": "Saxlanılır…",
+        "conflictTitle": "Parametrlər başqa yerdə yeniləndi",
+        "conflictDescription": "Başqa sessiya bu parametrləri dəyişdi. Ən son versiyanı yükləmək üçün yeniləyin və ya dəyişikliklərinizi ləğv edin.",
+        "conflictRefresh": "Yenilə",
+        "conflictDiscard": "Dəyişiklikləri ləğv et",
+        "loading": "Şirkət parametrləri yüklənir",
+        "errorTitle": "Parametrlər yüklənə bilmədi",
+        "errorDescription": "Şirkət parametrləri yüklənərkən xəta baş verdi.",
+        "sections": {
+          "general": {
+            "title": "Ümumi",
+            "description": "Bu subyekt üçün yurisdiksiya, təsnifat və ünvanlar.",
+            "classificationTitle": "Təsnifat",
+            "registeredAddressTitle": "Qeydiyyat ünvanı",
+            "operatingAddressTitle": "Fəaliyyət ünvanı",
+            "addressHint": "İstəyə bağlı — təqdimatlar və yazışmalar üçün istifadə olunur."
+          },
+          "reporting": {
+            "title": "Hesabat",
+            "description": "Qanuni və idarəetmə hesabatları üçün çərçivə.",
+            "groupTitle": "Hesabat çərçivəsi",
+            "groupDescription": "Bu subyektə tətbiq olunan uçot standartlarını müəyyən edir."
+          },
+          "financial": {
+            "title": "Maliyyə",
+            "description": "Valyuta və maliyyə ili konfiqurasiyası.",
+            "groupTitle": "Maliyyə konfiqurasiyası",
+            "groupDescription": "Funksional valyuta və maliyyə dövrü sərhədləri.",
+            "currencyHint": "ISO 4217 üç hərfli kod, məs. USD"
+          },
+          "contacts": {
+            "title": "Əlaqələr",
+            "description": "Maliyyə və xarici audit koordinasiyasından məsul şəxslər."
+          },
+          "preferences": {
+            "title": "Seçimlər",
+            "description": "Əməliyyat standartları və göstərmə seçimləri.",
+            "groupTitle": "İş mühiti seçimləri",
+            "groupDescription": "İdxal, dil və yuvarlaqlaşdırma üçün istəyə bağlı standartlar.",
+            "defaultLocale": "Varsayılan dil",
+            "dataImportSource": "Məlumat idxalı mənbəyi",
+            "roundingConvention": "Yuvarlaqlaşdırma qaydası",
+            "tradeNameHint": "İstəyə bağlı ticarət adı — hüquqi ad deyil."
+          },
+          "validation": {
+            "title": "Təsdiqləmə",
+            "description": "Şirkət parametrləri üçün sxem təsdiqləmə statusu.",
+            "groupTitle": "Təsdiqləmə icmalı",
+            "readOnlyNotice": "Təsdiqləmə metadatası platforma tərəfindən idarə olunur və burada redaktə edilə bilməz."
+          }
+        }
+      }
+    }
+  },
+  "ru": {
+    "planning": {
+      "workflow": {
+        "eyebrow": "Процесс утверждения",
+        "lockedBadge": "Заблокировано",
+        "submitAction": "Отправить на проверку",
+        "returnAction": "Вернуть на доработку",
+        "returnConfirmAction": "Подтвердить возврат",
+        "approveAction": "Утвердить планирование",
+        "reviseAction": "Создать редакцию",
+        "reviseConfirmAction": "Подтвердить редакцию",
+        "cancelAction": "Отмена",
+        "returnNotesTitle": "Заметки о возврате",
+        "returnNotesLabel": "Заметки о доработке",
+        "returnNotesPlaceholder": "Опишите, что нужно исправить перед повторной отправкой…",
+        "reviseNotesLabel": "Сводка редакции",
+        "reviseNotesPlaceholder": "Необязательная сводка причин пересмотра утверждённого плана…",
+        "pendingReviewNotice": "Этот план ожидает проверки партнёром или руководителем.",
+        "errorGeneric": "Не удалось выполнить действие процесса планирования."
+      },
+      "history": {
+        "title": "История планирования",
+        "description": "Хронология изменений планирования и сводка аудита только для чтения.",
+        "emptyTitle": "Нет активности планирования",
+        "emptyDescription": "Активность планирования появится здесь по мере фиксации изменений.",
+        "actions": {
+          "created": "Планирование создано",
+          "updated": "Планирование обновлено",
+          "statusChanged": "Статус изменён",
+          "archived": "Планирование архивировано",
+          "restored": "Планирование восстановлено",
+          "checklistUpdated": "Контрольный список обновлён",
+          "timelineUpdated": "График обновлён",
+          "submitted": "Отправлено на проверку",
+          "returned": "Возвращено на доработку",
+          "approved": "Планирование утверждено",
+          "revised": "План пересмотрен",
+          "commentAdded": "Комментарий добавлен",
+          "documentAdded": "Документ добавлен",
+          "documentRemoved": "Документ удалён"
+        },
+        "revision": {
+          "title": "История редакций",
+          "description": "Предыдущие утверждённые версии плана, заменённые редакцией.",
+          "entryTitle": "Версия плана {version}"
+        },
+        "version": {
+          "title": "Информация о версии",
+          "description": "Текущие версии плана и метки времени жизненного цикла.",
+          "cardTitle": "Метаданные плана",
+          "recordVersion": "Версия записи",
+          "planVersion": "Версия плана",
+          "submitted": "Отправлено",
+          "approved": "Утверждено",
+          "notSubmitted": "Не отправлено",
+          "notApproved": "Не утверждено",
+          "created": "Создано",
+          "updated": "Обновлено",
+          "archived": "Архивировано",
+          "notArchived": "Не в архиве"
+        }
+      },
+      "comments": {
+        "title": "Комментарии к планированию",
+        "description": "Заметки проверки и обсуждение, зафиксированные при утверждении планирования.",
+        "emptyDescription": "Комментариев к планированию пока нет. Они появляются, когда рецензенты добавляют заметки или возвращают план.",
+        "addLabel": "Добавить комментарий",
+        "addPlaceholder": "Задокументируйте заметку по планированию или комментарий проверки…",
+        "addAction": "Добавить комментарий",
+        "reviewModeNotice": "Комментарии фиксируются, когда план возвращается на доработку.",
+        "types": {
+          "review": "Проверка",
+          "general": "Общее",
+          "return": "Заметка о возврате"
+        }
+      },
+      "settings": {
+        "title": "Настройки планирования",
+        "description": "Архивируйте или восстанавливайте эту запись аудиторского планирования.",
+        "readOnlyNotice": "У вас доступ только для просмотра настроек планирования.",
+        "lifecycle": {
+          "archivedBannerTitle": "Планирование в архиве",
+          "archivedBannerDescription": "Рабочее пространство планирования доступно только для чтения. Восстановите планирование для внесения изменений.",
+          "archivePrompt": "Архивация переводит запись планирования в режим только для чтения, сохраняя историю.",
+          "archiveAction": "Архивировать планирование",
+          "archiveReasonPlaceholder": "Необязательная причина архивации",
+          "archiveConfirmAction": "Подтвердить архивацию",
+          "restorePrompt": "Восстановите планирование для продолжения документирования и проверки.",
+          "restoreAction": "Восстановить планирование",
+          "restoreConfirmAction": "Подтвердить восстановление",
+          "reasonLabel": "Причина",
+          "cancelAction": "Отмена"
+        }
+      },
+      "documents": {
+        "title": "Документы планирования",
+        "description": "Меморандумы по планированию и сопроводительная документация.",
+        "emptyTitle": "Нет документов планирования",
+        "emptyDescription": "Добавьте меморандумы по планированию и сопроводительные ссылки для этого аудиторского плана.",
+        "addTitle": "Добавить ссылку на документ",
+        "nameLabel": "Название документа",
+        "namePlaceholder": "Меморандум по планированию",
+        "typeLabel": "Тип документа",
+        "addAction": "Добавить документ",
+        "metadataNotice": "Интеграция хранения файлов прикрепит двоичные файлы в будущем релизе. Ссылки сейчас записываются в аудиторский план.",
+        "documentTypes": {
+          "planning_memorandum": "Меморандум по планированию",
+          "risk_assessment": "Оценка рисков",
+          "materiality_worksheet": "Рабочий лист существенности",
+          "other": "Другое"
+        },
+        "statuses": {
+          "uploaded": "Записано",
+          "pending": "Ожидает",
+          "archived": "В архиве"
+        }
+      },
+      "checklist": {
+        "title": "Контрольный список планирования",
+        "description": "Отслеживайте выполнение основных результатов планирования перед полевыми работами.",
+        "progress": "Прогресс",
+        "saveLabel": "Сохранить",
+        "savingLabel": "Сохранение…",
+        "items": {
+          "objectives": "Цели проекта задокументированы",
+          "scope": "Объём аудита определён",
+          "strategy": "Аудиторская стратегия задокументирована",
+          "framework": "Стандарт отчётности подтверждён",
+          "materiality": "Заглушка существенности проверена",
+          "risk": "Заглушка рисков проверена",
+          "team": "Планирование команды завершено",
+          "timeline": "График установлен"
+        }
+      },
+      "editor": {
+        "readOnlyNotice": "У вас доступ только для просмотра этого раздела планирования.",
+        "saveLabel": "Сохранить",
+        "savingLabel": "Сохранение…",
+        "discardLabel": "Отменить",
+        "placeholder": "Задокументируйте профессиональное суждение и контекст проекта…"
+      },
+      "team": {
+        "title": "Планирование команды",
+        "description": "Состав проекта и планирование загрузки для этого аудита.",
+        "rosterTitle": "Команда проекта",
+        "rosterEmpty": "Участники команды для этого проекта ещё не назначены.",
+        "capacityTitle": "Планирование загрузки",
+        "estimatedHours": "Оценочные часы",
+        "notes": "Заметки по планированию",
+        "saveLabel": "Сохранить",
+        "savingLabel": "Сохранение…"
+      },
+      "timeline": {
+        "title": "График планирования",
+        "description": "Контрольные даты планирования, полевых работ, проверки и завершения.",
+        "startDate": "Начало",
+        "endDate": "Окончание",
+        "saveLabel": "Сохранить",
+        "savingLabel": "Сохранение…",
+        "milestones": {
+          "planning": "Планирование",
+          "fieldwork": "Полевые работы",
+          "review": "Проверка",
+          "completion": "Завершение"
+        }
+      },
+      "integration": {
+        "integrationReady": "Готово к интеграции",
+        "currentStatus": "Текущий статус",
+        "statuses": {
+          "not_configured": "Не настроено",
+          "placeholder": "Заглушка готова",
+          "integrated": "Интегрировано"
+        },
+        "materiality": {
+          "title": "Существенность",
+          "description": "Пороги существенности будут задокументированы в отдельном модуле.",
+          "placeholderTitle": "Заглушка модуля существенности",
+          "placeholderDescription": "Рабочие листы общей, исполнительской и специфической существенности будут подключены здесь после реализации модуля существенности."
+        },
+        "risk": {
+          "title": "Оценка рисков",
+          "description": "Откройте рабочее пространство оценки рисков проекта из планирования.",
+          "placeholderTitle": "Оценка рисков интегрирована",
+          "placeholderDescription": "Планирование связано с отдельным рабочим пространством оценки рисков. Используйте Оценку рисков в боковой панели проекта или продолжите из раздела рисков планирования."
+        }
+      }
+    },
+    "materiality": {
+      "workflow": {
+        "title": "Существенность workflow",
+        "description": "Подача, возврат и утверждение документации по существенности ISA 320.",
+        "submitAction": "Отправить на проверку",
+        "returnAction": "Вернуть на доработку",
+        "returnConfirmAction": "Подтвердить возврат",
+        "approveAction": "Утвердить существенность",
+        "cancelAction": "Отмена",
+        "returnNotesLabel": "Примечания к возврату",
+        "returnNotesPlaceholder": "Опишите, что необходимо исправить перед повторной подачей.",
+        "readOnlyNotice": "Этот пакет существенности архивирован и доступен только для чтения.",
+        "submittedNotice": "Этот пакет существенности подан и ожидает проверки.",
+        "approvedNotice": "Этот пакет существенности утверждён.",
+        "returnedNotice": "Этот пакет существенности возвращён на доработку.",
+        "errorGeneric": "Не удалось выполнить действие рабочего процесса существенности."
+      },
+      "history": {
+        "title": "История",
+        "description": "Хронология активности по существенности (только для чтения).",
+        "emptyTitle": "Нет активности по существенности",
+        "emptyDescription": "Существенность activity will appear here as changes are recorded.",
+        "versionLabel": "Версия пакета",
+        "updatedLabel": "Обновлено",
+        "actions": {
+          "materiality.benchmark.added": "Добавлен контрольный показатель",
+          "materiality.benchmark.updated": "Контрольный показатель обновлён",
+          "materiality.calculation.recorded": "Расчёт зафиксирован",
+          "materiality.threshold.updated": "Порог обновлён",
+          "materiality.comment.added": "Добавлен комментарий",
+          "materiality.version.created": "Создана версия"
+        }
+      },
+      "comments": {
+        "title": "Комментарии",
+        "description": "Фиксация комментариев проверки и внутренних заметок по существенности.",
+        "emptyTitle": "Нет комментариев",
+        "emptyDescription": "Комментарии appear here once added.",
+        "bodyPlaceholder": "Добавить комментарий",
+        "addAction": "Добавить комментарий"
+      },
+      "settings": {
+        "title": "Настройки",
+        "description": "Архивирование или восстановление этого пакета существенности.",
+        "archiveAction": "Архивировать пакет существенности",
+        "archiveConfirmAction": "Подтвердить архивирование",
+        "restoreAction": "Восстановить пакет существенности",
+        "restoreConfirmAction": "Подтвердить восстановление",
+        "cancelAction": "Отмена",
+        "archivedBanner": "Этот пакет существенности архивирован.",
+        "readOnlyNotice": "У вас доступ только для просмотра настроек существенности."
+      },
+      "versions": {
+        "title": "Версии",
+        "description": "Просмотр снимков версий пакета существенности.",
+        "emptyTitle": "Нет версий",
+        "emptyDescription": "Снимки версий создаются при пересмотре или утверждении существенности."
+      }
+    },
+    "riskAssessment": {
+      "workflow": {
+        "title": "Рабочий процесс рисков",
+        "description": "Отправка, возврат и утверждение документации оценки рисков.",
+        "submitAction": "Отправить на проверку",
+        "returnAction": "Вернуть на доработку",
+        "returnConfirmAction": "Подтвердить возврат",
+        "approveAction": "Утвердить оценку рисков",
+        "acknowledgeAction": "Подтвердить значимые риски",
+        "cancelAction": "Отмена",
+        "returnNotesLabel": "Примечание при возврате",
+        "returnNotesPlaceholder": "Опишите, что нужно исправить перед повторной отправкой.",
+        "readOnlyNotice": "Эта оценка рисков архивирована и доступна только для чтения.",
+        "submittedNotice": "Эта оценка рисков отправлена и ожидает проверки.",
+        "approvedNotice": "Эта оценка рисков утверждена.",
+        "acknowledgedNotice": "Значимые риски подтверждены.",
+        "pendingAcknowledgmentNotice": "Перед утверждением необходимо подтвердить значимые риски.",
+        "errorGeneric": "Не удалось выполнить действие рабочего процесса оценки рисков."
+      },
+      "history": {
+        "title": "История",
+        "description": "Хронология активности оценки рисков только для чтения.",
+        "emptyTitle": "Активности по рискам нет",
+        "emptyDescription": "Активность по рискам появится здесь по мере записи изменений.",
+        "versionLabel": "Версия оценки",
+        "updatedLabel": "Обновлено",
+        "actions": {
+          "risk_assessment.created": "Оценка рисков создана",
+          "risk_assessment.updated": "Оценка рисков обновлена",
+          "risk_assessment.archived": "Оценка рисков архивирована",
+          "risk_assessment.restored": "Оценка рисков восстановлена",
+          "risk_assessment.submitted": "Оценка рисков отправлена",
+          "risk_assessment.returned": "Оценка рисков возвращена",
+          "risk_assessment.approved": "Оценка рисков утверждена",
+          "risk_assessment.category.added": "Категория добавлена",
+          "risk_assessment.risk_item.added": "Элемент риска добавлен",
+          "risk_assessment.risk_item.updated": "Элемент риска обновлён",
+          "risk_assessment.assertion_rating.updated": "Рейтинг предпосылки обновлён",
+          "risk_assessment.response.added": "Ответная мера добавлена",
+          "risk_assessment.procedure.linked": "Процедура связана",
+          "risk_assessment.note.added": "Заметка добавлена",
+          "risk_assessment.significant.acknowledged": "Значимые риски подтверждены"
+        }
+      },
+      "comments": {
+        "title": "Комментарии",
+        "description": "Фиксируйте внутренние комментарии, связанные с рисками.",
+        "emptyTitle": "Комментариев нет",
+        "emptyDescription": "Комментарии появятся здесь после добавления.",
+        "bodyPlaceholder": "Добавить внутренний комментарий",
+        "addAction": "Добавить комментарий"
+      },
+      "settings": {
+        "title": "Настройки",
+        "description": "Архивируйте или восстановите эту оценку рисков.",
+        "archiveAction": "Архивировать оценку рисков",
+        "archiveConfirmAction": "Подтвердить архивирование",
+        "restoreAction": "Восстановить оценку рисков",
+        "restoreConfirmAction": "Подтвердить восстановление",
+        "cancelAction": "Отмена",
+        "archivedBanner": "Эта оценка рисков архивирована.",
+        "readOnlyNotice": "У вас доступ только для просмотра настроек оценки рисков."
+      },
+      "procedures": {
+        "title": "Процедуры",
+        "description": "Свяжите запланированные процедуры с элементами риска.",
+        "emptyTitle": "Связанных процедур нет",
+        "emptyDescription": "Добавьте связи с процедурами для отображения выполнения ответных мер.",
+        "riskItemLabel": "Выберите элемент риска",
+        "referencePlaceholder": "Ссылка на процедуру",
+        "addAction": "Добавить связь с процедурой"
+      }
+    },
+    "fieldwork": {
+      "workflow": {
+        "queueTitle": "Очередь проверки",
+        "queueDescription": "Процедуры, ожидающие проверки или завершения.",
+        "queueEmpty": "Нет процедур, ожидающих проверки.",
+        "pendingReviewCount": "Ожидает проверки",
+        "openProcedureAction": "Открыть процедуру",
+        "submitAction": "Отправить на проверку",
+        "returnAction": "Вернуть на доработку",
+        "returnConfirmAction": "Подтвердить возврат",
+        "clearAction": "Завершить проверку",
+        "clearConfirmAction": "Подтвердить завершение",
+        "cancelAction": "Отмена",
+        "returnNotesTitle": "Заметки о возврате",
+        "returnNotesPlaceholder": "Опишите, что нужно исправить",
+        "clearanceNotesPlaceholder": "Задокументируйте завершение проверки",
+        "errorGeneric": "Не удалось обновить процесс процедуры"
+      },
+      "history": {
+        "title": "История полевых работ",
+        "description": "Хронология изменений полевых работ только для чтения.",
+        "emptyTitle": "Нет активности полевых работ",
+        "emptyDescription": "Активность появится по мере выполнения полевых работ.",
+        "versionLabel": "Версия программы",
+        "actions": {
+          "created": "Полевые работы созданы",
+          "updated": "Полевые работы обновлены",
+          "archived": "Полевые работы архивированы",
+          "restored": "Полевые работы восстановлены",
+          "programUpdated": "Программа обновлена",
+          "procedureAssigned": "Процедура назначена",
+          "procedureUpdated": "Процедура обновлена",
+          "procedureCompleted": "Процедура завершена",
+          "procedureSubmitted": "Процедура отправлена",
+          "procedureReturned": "Процедура возвращена",
+          "procedureCleared": "Процедура очищена",
+          "workingPaperAdded": "Рабочий документ добавлен",
+          "workingPaperUpdated": "Рабочий документ обновлён",
+          "workingPaperSubmitted": "Рабочий документ отправлен",
+          "workingPaperReturned": "Рабочий документ возвращён",
+          "workingPaperCleared": "Рабочий документ очищен",
+          "evidenceAdded": "Доказательство добавлено",
+          "findingAdded": "Выявление добавлено",
+          "noteAdded": "Заметка добавлена"
+        }
+      },
+      "comments": {
+        "title": "Внутренние комментарии",
+        "description": "Внутреннее обсуждение команды по вопросам полевых работ.",
+        "emptyTitle": "Нет внутренних комментариев",
+        "emptyDescription": "Внутренние комментарии появятся здесь."
+      },
+      "settings": {
+        "title": "Настройки полевых работ",
+        "description": "Архивируйте или восстанавливайте этот пакет полевых работ.",
+        "readOnlyNotice": "У вас доступ только для просмотра настроек полевых работ.",
+        "tickmarkLibraryTitle": "Библиотека меток",
+        "tickmarkLibraryDescription": "Управляйте повторно используемыми метками для рабочих документов.",
+        "tickmarkSymbol": "Символ",
+        "tickmarkMeaning": "Значение",
+        "addTickmark": "Добавить в библиотеку",
+        "lifecycle": {
+          "archivedBannerTitle": "Полевые работы в архиве",
+          "archivedBannerDescription": "Рабочее пространство полевых работ доступно только для чтения. Восстановите полевые работы для продолжения выполнения.",
+          "archivePrompt": "Архивация переводит пакет полевых работ в режим только для чтения, сохраняя историю.",
+          "archiveAction": "Архивировать полевые работы",
+          "archiveConfirmAction": "Подтвердить архивацию",
+          "restorePrompt": "Восстановите полевые работы для возобновления выполнения процедур.",
+          "restoreAction": "Восстановить полевые работы",
+          "restoreConfirmAction": "Подтвердить восстановление",
+          "cancelAction": "Отмена"
+        }
+      },
+      "procedures": {
+        "title": "Аудиторские процедуры",
+        "description": "Отслеживайте назначение, сроки и завершение.",
+        "emptyTitle": "Нет процедур",
+        "emptyDescription": "Процедуры создаются при инициации полевых работ.",
+        "assignAuditor": "Назначенный аудитор",
+        "unassigned": "Не назначено",
+        "dueDate": "Срок",
+        "assignedTo": "Назначено"
+      },
+      "findings": {
+        "title": "Выявления",
+        "description": "Задокументируйте аудиторские выявления, обнаруженные во время полевых работ.",
+        "emptyTitle": "Нет выявлений",
+        "emptyDescription": "Выявления появятся по мере документирования.",
+        "titlePlaceholder": "Название выявления"
+      },
+      "evidence": {
+        "title": "Реестр доказательств",
+        "description": "Ссылки на доказательства и метаданные вложений.",
+        "emptyTitle": "Нет доказательств",
+        "emptyDescription": "Записывайте ссылки на доказательства по мере выполнения процедур.",
+        "fileLabel": "Вложение",
+        "procedureLabel": "Связанная процедура",
+        "uploadedBadge": "Файл прикреплён",
+        "namePlaceholder": "Название ссылки на доказательство",
+        "downloadAction": "Скачать",
+        "downloadError": "Не удалось скачать файл доказательства"
+      }
+    },
+    "engagements": {
+      "history": {
+        "title": "Активность и аудит",
+        "description": "Хронология изменений проекта и сводка аудита только для чтения.",
+        "errorTitle": "Не удалось загрузить активность",
+        "errorDescription": "При загрузке активности проекта произошла ошибка.",
+        "summary": {
+          "title": "Сводка аудита",
+          "description": "Количество зафиксированных событий для этого проекта.",
+          "total": "Всего событий",
+          "created": "Создано",
+          "updated": "Обновлено",
+          "statusChanged": "Статус изменён",
+          "archived": "В архиве",
+          "restored": "Восстановлено"
+        },
+        "timeline": {
+          "title": "Хронология активности",
+          "description": "Хронологический аудиторский след для этого проекта.",
+          "emptyTitle": "Активность не зафиксирована",
+          "emptyDescription": "Изменения в этом проекте появятся здесь по мере аудита.",
+          "reasonArchive": "Причина архивации",
+          "reasonRestore": "Причина восстановления",
+          "fieldsChanged": "Изменённые поля",
+          "actions": {
+            "engagement.created": "Проект создан",
+            "engagement.updated": "Проект обновлён",
+            "engagement.status.changed": "Статус изменён",
+            "engagement.archived": "Проект архивирован",
+            "engagement.restored": "Проект восстановлен"
+          }
+        },
+        "version": {
+          "title": "Информация о версии",
+          "description": "Текущие версии записи и метки времени жизненного цикла.",
+          "cardTitle": "Метаданные записи",
+          "recordVersion": "Версия записи",
+          "created": "Создано",
+          "archived": "Архивировано",
+          "notArchived": "Не в архиве",
+          "restored": "Восстановлено",
+          "restoredHint": "См. хронологию для событий восстановления"
+        }
+      },
+      "settings": {
+        "title": "Настройки",
+        "description": "Настройте сведения о проекте, отчётность и статус жизненного цикла.",
+        "readOnlyNotice": "У вас доступ только для просмотра настроек проекта.",
+        "saveLabel": "Сохранить",
+        "savingLabel": "Сохранение…",
+        "discardLabel": "Отменить",
+        "sections": {
+          "general": {
+            "title": "Общее",
+            "description": "Название, код, тип и статус жизненного цикла."
+          },
+          "client": {
+            "title": "Клиент",
+            "description": "Юридическое лицо, для которого выполняется этот проект."
+          },
+          "reporting": {
+            "title": "Отчётность",
+            "description": "Стандарт и отчётный период."
+          },
+          "dates": {
+            "title": "Даты",
+            "description": "Плановый график для этого проекта."
+          },
+          "notes": {
+            "title": "Заметки",
+            "description": "Описание и внутренние заметки."
+          }
+        },
+        "lifecycle": {
+          "title": "Жизненный цикл",
+          "description": "Архивируйте или восстанавливайте этот проект при изменении статуса.",
+          "archivedBannerTitle": "Этот проект в архиве",
+          "archivedBannerDescription": "Рабочее пространство доступно только для чтения. Восстановите проект, чтобы снова вносить изменения.",
+          "archivePrompt": "Архивация переводит проект в режим только для чтения, сохраняя историю.",
+          "archiveAction": "Архивировать проект",
+          "archiveConfirmTitle": "Архивировать этот проект?",
+          "archiveConfirmDescription": "Проект станет доступен только для чтения. При необходимости вы сможете восстановить его позже.",
+          "archiveReasonPlaceholder": "Необязательная причина архивации",
+          "archiveConfirmAction": "Подтвердить архивацию",
+          "restorePrompt": "Восстановите проект, чтобы продолжить настройку и полевые работы.",
+          "restoreAction": "Восстановить проект",
+          "restoreConfirmTitle": "Восстановить этот проект?",
+          "restoreConfirmDescription": "Проект снова станет активным и доступным для редактирования уполномоченными пользователями.",
+          "restoreConfirmAction": "Подтвердить восстановление",
+          "reasonLabel": "Причина",
+          "cancelAction": "Отмена"
+        }
+      },
+      "members": {
+        "title": "Участники команды",
+        "description": "Люди, назначенные на этот проект.",
+        "emptyTitle": "Участники не назначены",
+        "emptyDescription": "Участники команды появятся здесь после назначения на проект.",
+        "joinedLabel": "Присоединился",
+        "forbiddenTitle": "Доступ ограничен",
+        "forbiddenDescription": "У вас нет прав на просмотр участников проекта.",
+        "roles": {
+          "engagement_partner": "Партнёр проекта",
+          "engagement_manager": "Руководитель проекта",
+          "senior": "Старший",
+          "staff": "Исполнитель",
+          "reviewer": "Рецензент",
+          "observer": "Наблюдатель"
+        }
+      }
+    },
+    "companies": {
+      "history": {
+        "title": "Активность и аудит",
+        "description": "Хронология изменений компании и сводка аудита (только чтение).",
+        "errorTitle": "Не удалось загрузить активность",
+        "errorDescription": "При загрузке активности компании произошла ошибка.",
+        "summary": {
+          "title": "Сводка аудита",
+          "description": "Количество зарегистрированных событий для этой компании.",
+          "total": "Всего событий",
+          "created": "Создано",
+          "updated": "Обновлено",
+          "settingsUpdated": "Настройки обновлены",
+          "archived": "Архивировано",
+          "restored": "Восстановлено"
+        },
+        "timeline": {
+          "title": "Хронология активности",
+          "description": "Хронологический аудиторский след компании.",
+          "emptyTitle": "Активность не записана",
+          "emptyDescription": "Изменения компании появятся здесь после аудита.",
+          "reasonArchive": "Причина архивации",
+          "reasonRestore": "Причина восстановления",
+          "fieldsChanged": "Изменённые поля",
+          "actions": {
+            "company.created": "Компания создана",
+            "company.updated": "Компания обновлена",
+            "company.settings.updated": "Настройки обновлены",
+            "company.archived": "Компания архивирована",
+            "company.restored": "Компания восстановлена"
+          }
+        },
+        "version": {
+          "title": "Информация о версиях",
+          "description": "Текущие версии записей и метки жизненного цикла.",
+          "cardTitle": "Метаданные записи",
+          "recordVersion": "Версия записи",
+          "settingsVersion": "Версия настроек",
+          "created": "Создано",
+          "archived": "Архивировано",
+          "notArchived": "Не в архиве",
+          "restored": "Восстановлено",
+          "restoredHint": "См. хронологию для событий восстановления"
+        }
+      },
+      "settings": {
+        "title": "Настройки",
+        "description": "Настройте отчётность, финансы и операционные параметры для этой компании.",
+        "navAriaLabel": "Разделы настроек компании",
+        "navGeneral": "Общие",
+        "navReporting": "Отчётность",
+        "navFinancial": "Финансы",
+        "navContacts": "Контакты",
+        "navPreferences": "Предпочтения",
+        "navValidation": "Проверка",
+        "readOnlyBadge": "Только просмотр",
+        "saveIdle": "Все изменения сохранены",
+        "saveSaving": "Сохранение изменений…",
+        "saveSaved": "Изменения сохранены",
+        "saveError": "Не удалось сохранить изменения",
+        "unsavedMessage": "Есть несохранённые изменения",
+        "discardLabel": "Отменить",
+        "saveLabel": "Сохранить",
+        "savingLabel": "Сохранение…",
+        "conflictTitle": "Настройки обновлены в другом месте",
+        "conflictDescription": "Другая сессия изменила эти настройки. Обновите страницу или отмените свои изменения.",
+        "conflictRefresh": "Обновить",
+        "conflictDiscard": "Отменить изменения",
+        "loading": "Загрузка настроек компании",
+        "errorTitle": "Не удалось загрузить настройки",
+        "errorDescription": "При загрузке настроек компании произошла ошибка.",
+        "sections": {
+          "general": {
+            "title": "Общие",
+            "description": "Юрисдикция, классификация и адреса для этого субъекта.",
+            "classificationTitle": "Классификация",
+            "registeredAddressTitle": "Юридический адрес",
+            "operatingAddressTitle": "Операционный адрес",
+            "addressHint": "Необязательно — для отчётности и корреспонденции."
+          },
+          "reporting": {
+            "title": "Отчётность",
+            "description": "База для статутной и управленческой отчётности.",
+            "groupTitle": "Отчётная база",
+            "groupDescription": "Определяет применяемые стандарты учёта для этого субъекта."
+          },
+          "financial": {
+            "title": "Финансы",
+            "description": "Валюта и настройки финансового года.",
+            "groupTitle": "Финансовая конфигурация",
+            "groupDescription": "Функциональная валюта и границы финансового периода.",
+            "currencyHint": "Трёхбуквенный код ISO 4217, напр. USD"
+          },
+          "contacts": {
+            "title": "Контакты",
+            "description": "Ответственные за финансы и внешний аудит."
+          },
+          "preferences": {
+            "title": "Предпочтения",
+            "description": "Операционные значения по умолчанию и параметры отображения.",
+            "groupTitle": "Параметры рабочего пространства",
+            "groupDescription": "Необязательные значения для импорта, языка и округления.",
+            "defaultLocale": "Язык по умолчанию",
+            "dataImportSource": "Источник импорта данных",
+            "roundingConvention": "Правило округления",
+            "tradeNameHint": "Необязательное торговое наименование — не юридическое имя."
+          },
+          "validation": {
+            "title": "Проверка",
+            "description": "Статус проверки схемы настроек компании.",
+            "groupTitle": "Сводка проверки",
+            "readOnlyNotice": "Метаданные проверки поддерживаются платформой и не редактируются здесь."
+          }
+        }
+      }
+    }
+  },
+  "tr": {
+    "planning": {
+      "workflow": {
+        "eyebrow": "Onay iş akışı",
+        "lockedBadge": "Kilitli",
+        "submitAction": "İncelemeye gönder",
+        "returnAction": "Revizyona iade et",
+        "returnConfirmAction": "İadeyi onayla",
+        "approveAction": "Planlamayı onayla",
+        "reviseAction": "Revizyon oluştur",
+        "reviseConfirmAction": "Revizyonu onayla",
+        "cancelAction": "İptal",
+        "returnNotesTitle": "İade notları",
+        "returnNotesLabel": "Revizyon notları",
+        "returnNotesPlaceholder": "Yeniden göndermeden önce ele alınması gerekenleri açıklayın…",
+        "reviseNotesLabel": "Revizyon özeti",
+        "reviseNotesPlaceholder": "Onaylanmış planın neden revize edildiğine dair isteğe bağlı özet…",
+        "pendingReviewNotice": "Bu plan ortak veya yönetici incelemesini bekliyor.",
+        "errorGeneric": "Planlama iş akışı eylemi tamamlanamadı."
+      },
+      "history": {
+        "title": "Planlama geçmişi",
+        "description": "Planlama değişikliklerinin salt okunur zaman çizelgesi ve denetim özeti.",
+        "emptyTitle": "Planlama etkinliği yok",
+        "emptyDescription": "Değişiklikler kaydedildikçe planlama etkinliği burada görünecek.",
+        "actions": {
+          "created": "Planlama oluşturuldu",
+          "updated": "Planlama güncellendi",
+          "statusChanged": "Durum değişti",
+          "archived": "Planlama arşivlendi",
+          "restored": "Planlama geri yüklendi",
+          "checklistUpdated": "Kontrol listesi güncellendi",
+          "timelineUpdated": "Zaman çizelgesi güncellendi",
+          "submitted": "İncelemeye gönderildi",
+          "returned": "Revizyona iade edildi",
+          "approved": "Planlama onaylandı",
+          "revised": "Plan revize edildi",
+          "commentAdded": "Yorum eklendi",
+          "documentAdded": "Belge eklendi",
+          "documentRemoved": "Belge kaldırıldı"
+        },
+        "revision": {
+          "title": "Revizyon geçmişi",
+          "description": "Revizyonla yerini alan önceki onaylanmış plan sürümleri.",
+          "entryTitle": "Plan sürümü {version}"
+        },
+        "version": {
+          "title": "Sürüm bilgileri",
+          "description": "Mevcut plan sürümleri ve yaşam döngüsü zaman damgaları.",
+          "cardTitle": "Plan meta verileri",
+          "recordVersion": "Kayıt sürümü",
+          "planVersion": "Plan sürümü",
+          "submitted": "Gönderilme zamanı",
+          "approved": "Onay zamanı",
+          "notSubmitted": "Gönderilmedi",
+          "notApproved": "Onaylanmadı",
+          "created": "Oluşturuldu",
+          "updated": "Güncellendi",
+          "archived": "Arşivlenme zamanı",
+          "notArchived": "Arşivlenmedi"
+        }
+      },
+      "comments": {
+        "title": "Planlama yorumları",
+        "description": "Planlama onayı sırasında kaydedilen inceleme notları ve tartışma.",
+        "emptyDescription": "Henüz planlama yorumu yok. İnceleyiciler not eklediğinde veya planı iade ettiğinde yorumlar görünür.",
+        "addLabel": "Yorum ekle",
+        "addPlaceholder": "Bir planlama notu veya inceleme yorumu belgeleyin…",
+        "addAction": "Yorum ekle",
+        "reviewModeNotice": "Plan revizyona iade edildiğinde yorumlar kaydedilir.",
+        "types": {
+          "review": "İnceleme",
+          "general": "Genel",
+          "return": "İade notu"
+        }
+      },
+      "settings": {
+        "title": "Planlama ayarları",
+        "description": "Bu denetim planlama kaydını arşivleyin veya geri yükleyin.",
+        "readOnlyNotice": "Planlama ayarlarına yalnızca görüntüleme erişiminiz var.",
+        "lifecycle": {
+          "archivedBannerTitle": "Planlama arşivlendi",
+          "archivedBannerDescription": "Planlama çalışma alanı salt okunurdur. Değişiklik yapmak için planlamayı geri yükleyin.",
+          "archivePrompt": "Arşivleme, geçmişi koruyarak bu planlama kaydını salt okunur yapar.",
+          "archiveAction": "Planlamayı arşivle",
+          "archiveReasonPlaceholder": "Arşivleme için isteğe bağlı neden",
+          "archiveConfirmAction": "Arşivlemeyi onayla",
+          "restorePrompt": "Belgelemeye ve incelemeye devam etmek için planlamayı geri yükleyin.",
+          "restoreAction": "Planlamayı geri yükle",
+          "restoreConfirmAction": "Geri yüklemeyi onayla",
+          "reasonLabel": "Neden",
+          "cancelAction": "İptal"
+        }
+      },
+      "documents": {
+        "title": "Planlama belgeleri",
+        "description": "Planlama memorandumları ve destekleyici belgeler.",
+        "emptyTitle": "Planlama belgesi yok",
+        "emptyDescription": "Bu denetim planı için planlama memorandumları ve destekleyici referanslar ekleyin.",
+        "addTitle": "Belge referansı ekle",
+        "nameLabel": "Belge adı",
+        "namePlaceholder": "Planlama memorandumu",
+        "typeLabel": "Belge türü",
+        "addAction": "Belge ekle",
+        "metadataNotice": "Dosya depolama entegrasyonu gelecek sürümde ikili dosyaları ekleyecek. Referanslar şimdilik denetim planına kaydedilir.",
+        "documentTypes": {
+          "planning_memorandum": "Planlama memorandumu",
+          "risk_assessment": "Risk değerlendirmesi",
+          "materiality_worksheet": "Önemlilik çalışma sayfası",
+          "other": "Diğer"
+        },
+        "statuses": {
+          "uploaded": "Kaydedildi",
+          "pending": "Bekliyor",
+          "archived": "Arşivlendi"
+        }
+      },
+      "checklist": {
+        "title": "Planlama kontrol listesi",
+        "description": "Saha çalışmasından önce temel planlama çıktılarının tamamlanmasını izleyin.",
+        "progress": "İlerleme",
+        "saveLabel": "Kaydet",
+        "savingLabel": "Kaydediliyor…",
+        "items": {
+          "objectives": "Görev hedefleri belgelendi",
+          "scope": "Denetim kapsamı tanımlandı",
+          "strategy": "Denetim stratejisi belgelendi",
+          "framework": "Raporlama çerçevesi onaylandı",
+          "materiality": "Önemlilik yer tutucusu incelendi",
+          "risk": "Risk yer tutucusu incelendi",
+          "team": "Ekip planlaması tamamlandı",
+          "timeline": "Zaman çizelgesi oluşturuldu"
+        }
+      },
+      "editor": {
+        "readOnlyNotice": "Bu planlama bölümüne yalnızca görüntüleme erişiminiz var.",
+        "saveLabel": "Kaydet",
+        "savingLabel": "Kaydediliyor…",
+        "discardLabel": "Vazgeç",
+        "placeholder": "Mesleki muhakeme ve göreve özel bağlamı belgeleyin…"
+      },
+      "team": {
+        "title": "Ekip planlaması",
+        "description": "Bu denetim için görev listesi ve kapasite planlaması.",
+        "rosterTitle": "Görev ekibi",
+        "rosterEmpty": "Bu göreve henüz ekip üyesi atanmadı.",
+        "capacityTitle": "Kapasite planlaması",
+        "estimatedHours": "Tahmini saatler",
+        "notes": "Planlama notları",
+        "saveLabel": "Kaydet",
+        "savingLabel": "Kaydediliyor…"
+      },
+      "timeline": {
+        "title": "Planlama zaman çizelgesi",
+        "description": "Planlama, saha çalışması, inceleme ve tamamlama için kilometre taşı tarihleri.",
+        "startDate": "Başlangıç",
+        "endDate": "Bitiş",
+        "saveLabel": "Kaydet",
+        "savingLabel": "Kaydediliyor…",
+        "milestones": {
+          "planning": "Planlama",
+          "fieldwork": "Saha çalışması",
+          "review": "İnceleme",
+          "completion": "Tamamlanma"
+        }
+      },
+      "integration": {
+        "integrationReady": "Entegrasyona hazır",
+        "currentStatus": "Mevcut durum",
+        "statuses": {
+          "not_configured": "Yapılandırılmadı",
+          "placeholder": "Yer tutucu hazır",
+          "integrated": "Entegre edildi"
+        },
+        "materiality": {
+          "title": "Önemlilik",
+          "description": "Önemlilik eşikleri ayrı bir modülde belgelenecek.",
+          "placeholderTitle": "Önemlilik modülü yer tutucusu",
+          "placeholderDescription": "Genel, performans ve özel önemlilik çalışma sayfaları Önemlilik modülü uygulandığında buraya bağlanacak."
+        },
+        "risk": {
+          "title": "Risk değerlendirmesi",
+          "description": "Planlamadan görev risk değerlendirmesi çalışma alanını açın.",
+          "placeholderTitle": "Risk değerlendirmesi entegre edildi",
+          "placeholderDescription": "Planlama, ayrılmış risk değerlendirmesi çalışma alanına bağlanır. Görev kenar çubuğundan Risk değerlendirmesini kullanın veya planlama risk bölümünden devam edin."
+        }
+      }
+    },
+    "materiality": {
+      "workflow": {
+        "title": "Önemlilik workflow",
+        "description": "ISA 320 önemlilik dokümantasyonunu gönderin, iade edin ve onaylayın.",
+        "submitAction": "İncelemeye gönder",
+        "returnAction": "Revizyon için iade et",
+        "returnConfirmAction": "İadeyi onayla",
+        "approveAction": "Önemliliği onayla",
+        "cancelAction": "İptal",
+        "returnNotesLabel": "İade notları",
+        "returnNotesPlaceholder": "Yeniden gönderimden önce nelerin revize edilmesi gerektiğini açıklayın.",
+        "readOnlyNotice": "Bu önemlilik paketi arşivlendi ve salt okunurdur.",
+        "submittedNotice": "Bu önemlilik paketi gönderildi ve inceleme bekliyor.",
+        "approvedNotice": "Bu önemlilik paketi onaylandı.",
+        "returnedNotice": "Bu önemlilik paketi revizyon için iade edildi.",
+        "errorGeneric": "Önemlilik iş akışı eylemi tamamlanamadı."
+      },
+      "history": {
+        "title": "Geçmiş",
+        "description": "Önemlilik faaliyetinin salt okunur zaman çizelgesi.",
+        "emptyTitle": "Önemlilik faaliyeti yok",
+        "emptyDescription": "Önemlilik activity will appear here as changes are recorded.",
+        "versionLabel": "Paket sürümü",
+        "updatedLabel": "Güncellendi",
+        "actions": {
+          "materiality.benchmark.added": "Kıyaslama eklendi",
+          "materiality.benchmark.updated": "Kıyaslama güncellendi",
+          "materiality.calculation.recorded": "Hesaplama kaydedildi",
+          "materiality.threshold.updated": "Eşik güncellendi",
+          "materiality.comment.added": "Yorum eklendi",
+          "materiality.version.created": "Sürüm oluşturuldu"
+        }
+      },
+      "comments": {
+        "title": "Yorumlar",
+        "description": "Önemlilikle ilgili inceleme ve dahili yorumları kaydedin.",
+        "emptyTitle": "Yorum yok",
+        "emptyDescription": "Yorumlar appear here once added.",
+        "bodyPlaceholder": "Yorum ekle",
+        "addAction": "Yorum ekle"
+      },
+      "settings": {
+        "title": "Ayarlar",
+        "description": "Bu önemlilik paketini arşivleyin veya geri yükleyin.",
+        "archiveAction": "Önemlilik paketini arşivle",
+        "archiveConfirmAction": "Arşivlemeyi onayla",
+        "restoreAction": "Önemlilik paketini geri yükle",
+        "restoreConfirmAction": "Geri yüklemeyi onayla",
+        "cancelAction": "İptal",
+        "archivedBanner": "Bu önemlilik paketi arşivlendi.",
+        "readOnlyNotice": "Önemlilik ayarlarına yalnızca görüntüleme erişiminiz var."
+      },
+      "versions": {
+        "title": "Sürümler",
+        "description": "Önemlilik paketinin sürüm anlık görüntülerini inceleyin.",
+        "emptyTitle": "Sürüm yok",
+        "emptyDescription": "Önemlilik revize edildiğinde veya onaylandığında sürüm anlık görüntüleri oluşturulur."
+      }
+    },
+    "riskAssessment": {
+      "workflow": {
+        "title": "Risk iş akışı",
+        "description": "Risk değerlendirmesi dokümantasyonunu gönder, iade et ve onayla.",
+        "submitAction": "İncelemeye gönder",
+        "returnAction": "Revizyon için iade et",
+        "returnConfirmAction": "İadeyi onayla",
+        "approveAction": "Risk değerlendirmesini onayla",
+        "acknowledgeAction": "Önemli riskleri onayla",
+        "cancelAction": "İptal",
+        "returnNotesLabel": "İade notu",
+        "returnNotesPlaceholder": "Yeniden göndermeden önce neyin revize edilmesi gerektiğini yazın.",
+        "readOnlyNotice": "Bu risk değerlendirmesi arşivlenmiştir ve salt okunurdur.",
+        "submittedNotice": "Bu risk değerlendirmesi gönderildi ve inceleme bekliyor.",
+        "approvedNotice": "Bu risk değerlendirmesi onaylandı.",
+        "acknowledgedNotice": "Önemli riskler onaylandı.",
+        "pendingAcknowledgmentNotice": "Onaydan önce önemli riskler onaylanmalıdır.",
+        "errorGeneric": "Risk iş akışı işlemi tamamlanamadı."
+      },
+      "history": {
+        "title": "Geçmiş",
+        "description": "Risk değerlendirmesi etkinliğinin salt okunur zaman çizelgesi.",
+        "emptyTitle": "Risk etkinliği yok",
+        "emptyDescription": "Değişiklikler kaydedildikçe risk etkinliği burada görünecek.",
+        "versionLabel": "Değerlendirme sürümü",
+        "updatedLabel": "Güncellendi",
+        "actions": {
+          "risk_assessment.created": "Risk değerlendirmesi oluşturuldu",
+          "risk_assessment.updated": "Risk değerlendirmesi güncellendi",
+          "risk_assessment.archived": "Risk değerlendirmesi arşivlendi",
+          "risk_assessment.restored": "Risk değerlendirmesi geri yüklendi",
+          "risk_assessment.submitted": "Risk değerlendirmesi gönderildi",
+          "risk_assessment.returned": "Risk değerlendirmesi iade edildi",
+          "risk_assessment.approved": "Risk değerlendirmesi onaylandı",
+          "risk_assessment.category.added": "Kategori eklendi",
+          "risk_assessment.risk_item.added": "Risk kalemi eklendi",
+          "risk_assessment.risk_item.updated": "Risk kalemi güncellendi",
+          "risk_assessment.assertion_rating.updated": "İddia derecelendirmesi güncellendi",
+          "risk_assessment.response.added": "Yanıt eklendi",
+          "risk_assessment.procedure.linked": "Prosedür bağlandı",
+          "risk_assessment.note.added": "Not eklendi",
+          "risk_assessment.significant.acknowledged": "Önemli riskler onaylandı"
+        }
+      },
+      "comments": {
+        "title": "Yorumlar",
+        "description": "Risklerle ilgili dahili yorumları kaydedin.",
+        "emptyTitle": "Yorum yok",
+        "emptyDescription": "Yorumlar eklendikten sonra burada görünür.",
+        "bodyPlaceholder": "Dahili yorum ekle",
+        "addAction": "Yorum ekle"
+      },
+      "settings": {
+        "title": "Ayarlar",
+        "description": "Bu risk değerlendirmesini arşivleyin veya geri yükleyin.",
+        "archiveAction": "Risk değerlendirmesini arşivle",
+        "archiveConfirmAction": "Arşivlemeyi onayla",
+        "restoreAction": "Risk değerlendirmesini geri yükle",
+        "restoreConfirmAction": "Geri yüklemeyi onayla",
+        "cancelAction": "İptal",
+        "archivedBanner": "Bu risk değerlendirmesi arşivlenmiştir.",
+        "readOnlyNotice": "Risk değerlendirmesi ayarlarına yalnızca görüntüleme erişiminiz var."
+      },
+      "procedures": {
+        "title": "Prosedürler",
+        "description": "Planlanan prosedürleri risk kalemlerine bağlayın.",
+        "emptyTitle": "Bağlı prosedür yok",
+        "emptyDescription": "Yanıt yürütmesini eşlemek için prosedür bağlantıları ekleyin.",
+        "riskItemLabel": "Risk kalemi seçin",
+        "referencePlaceholder": "Prosedür referansı",
+        "addAction": "Prosedür bağlantısı ekle"
+      }
+    },
+    "fieldwork": {
+      "workflow": {
+        "queueTitle": "İnceleme kuyruğu",
+        "queueDescription": "İnceleme veya onay bekleyen prosedürler.",
+        "queueEmpty": "İnceleme bekleyen prosedür yok.",
+        "pendingReviewCount": "İnceleme bekliyor",
+        "openProcedureAction": "Prosedürü aç",
+        "submitAction": "İncelemeye gönder",
+        "returnAction": "Revizyona iade et",
+        "returnConfirmAction": "İadeyi onayla",
+        "clearAction": "İncelemeyi tamamla",
+        "clearConfirmAction": "Onayı doğrula",
+        "cancelAction": "İptal",
+        "returnNotesTitle": "İade notları",
+        "returnNotesPlaceholder": "Neyin revize edilmesi gerektiğini açıklayın",
+        "clearanceNotesPlaceholder": "İnceleme onayını belgeleyin",
+        "errorGeneric": "Prosedür iş akışı güncellenemedi"
+      },
+      "history": {
+        "title": "Saha çalışması geçmişi",
+        "description": "Saha çalışması değişikliklerinin salt okunur zaman çizelgesi.",
+        "emptyTitle": "Saha çalışması etkinliği yok",
+        "emptyDescription": "Saha çalışması ilerledikçe etkinlik görünecek.",
+        "versionLabel": "Program sürümü",
+        "actions": {
+          "created": "Saha çalışması oluşturuldu",
+          "updated": "Saha çalışması güncellendi",
+          "archived": "Saha çalışması arşivlendi",
+          "restored": "Saha çalışması geri yüklendi",
+          "programUpdated": "Program güncellendi",
+          "procedureAssigned": "Prosedür atandı",
+          "procedureUpdated": "Prosedür güncellendi",
+          "procedureCompleted": "Prosedür tamamlandı",
+          "procedureSubmitted": "Prosedür gönderildi",
+          "procedureReturned": "Prosedür iade edildi",
+          "procedureCleared": "Prosedür onaylandı",
+          "workingPaperAdded": "Çalışma kağıdı eklendi",
+          "workingPaperUpdated": "Çalışma kağıdı güncellendi",
+          "workingPaperSubmitted": "Çalışma kağıdı gönderildi",
+          "workingPaperReturned": "Çalışma kağıdı iade edildi",
+          "workingPaperCleared": "Çalışma kağıdı onaylandı",
+          "evidenceAdded": "Kanıt eklendi",
+          "findingAdded": "Bulgu eklendi",
+          "noteAdded": "Not eklendi"
+        }
+      },
+      "comments": {
+        "title": "Dahili yorumlar",
+        "description": "Saha çalışması konularında dahili ekip tartışması.",
+        "emptyTitle": "Dahili yorum yok",
+        "emptyDescription": "Dahili yorumlar burada görünecek."
+      },
+      "settings": {
+        "title": "Saha çalışması ayarları",
+        "description": "Bu saha çalışması paketini arşivleyin veya geri yükleyin.",
+        "readOnlyNotice": "Saha çalışması ayarlarına yalnızca görüntüleme erişiminiz var.",
+        "tickmarkLibraryTitle": "İşaret kütüphanesi",
+        "tickmarkLibraryDescription": "Çalışma kağıtları için yeniden kullanılabilir işaretleri yönetin.",
+        "tickmarkSymbol": "Sembol",
+        "tickmarkMeaning": "Anlam",
+        "addTickmark": "Kütüphaneye ekle",
+        "lifecycle": {
+          "archivedBannerTitle": "Saha çalışması arşivlendi",
+          "archivedBannerDescription": "Saha çalışması çalışma alanı salt okunurdur. Yürütmeye devam etmek için saha çalışmasını geri yükleyin.",
+          "archivePrompt": "Arşivleme, geçmişi koruyarak bu saha çalışması paketini salt okunur yapar.",
+          "archiveAction": "Saha çalışmasını arşivle",
+          "archiveConfirmAction": "Arşivlemeyi onayla",
+          "restorePrompt": "Prosedür yürütmeye devam etmek için saha çalışmasını geri yükleyin.",
+          "restoreAction": "Saha çalışmasını geri yükle",
+          "restoreConfirmAction": "Geri yüklemeyi onayla",
+          "cancelAction": "İptal"
+        }
+      },
+      "procedures": {
+        "title": "Denetim prosedürleri",
+        "description": "Atama, son tarihler ve tamamlanmayı izleyin.",
+        "emptyTitle": "Prosedür yok",
+        "emptyDescription": "Saha çalışması başlatıldığında prosedürler oluşturulur.",
+        "assignAuditor": "Atanan denetçi",
+        "unassigned": "Atanmadı",
+        "dueDate": "Son tarih",
+        "assignedTo": "Atanan"
+      },
+      "findings": {
+        "title": "Bulgular",
+        "description": "Saha çalışması sırasında keşfedilen denetim bulgularını belgeleyin.",
+        "emptyTitle": "Bulgu yok",
+        "emptyDescription": "Bulgular belgelendikçe görünecek.",
+        "titlePlaceholder": "Bulgu başlığı"
+      },
+      "evidence": {
+        "title": "Kanıt kaydı",
+        "description": "Kanıt referansları ve ek meta verileri.",
+        "emptyTitle": "Kanıt yok",
+        "emptyDescription": "Prosedürler yürütülürken kanıt referanslarını kaydedin.",
+        "fileLabel": "Ek",
+        "procedureLabel": "Bağlı prosedür",
+        "uploadedBadge": "Dosya eklendi",
+        "namePlaceholder": "Kanıt referans adı",
+        "downloadAction": "İndir",
+        "downloadError": "Kanıt dosyası indirilemedi"
+      }
+    },
+    "engagements": {
+      "history": {
+        "title": "Etkinlik ve denetim",
+        "description": "Görev değişikliklerinin salt okunur zaman çizelgesi ve denetim özeti.",
+        "errorTitle": "Etkinlik yüklenemedi",
+        "errorDescription": "Görev etkinliği yüklenirken bir hata oluştu.",
+        "summary": {
+          "title": "Denetim özeti",
+          "description": "Bu görev için kayıtlı olay sayıları.",
+          "total": "Toplam olay",
+          "created": "Oluşturuldu",
+          "updated": "Güncellendi",
+          "statusChanged": "Durum değişti",
+          "archived": "Arşivlendi",
+          "restored": "Geri yüklendi"
+        },
+        "timeline": {
+          "title": "Etkinlik zaman çizelgesi",
+          "description": "Bu görev için kronolojik denetim izi.",
+          "emptyTitle": "Kayıtlı etkinlik yok",
+          "emptyDescription": "Bu görevdeki değişiklikler denetlendikçe burada görünecek.",
+          "reasonArchive": "Arşivleme nedeni",
+          "reasonRestore": "Geri yükleme nedeni",
+          "fieldsChanged": "Değiştirilen alanlar",
+          "actions": {
+            "engagement.created": "Görev oluşturuldu",
+            "engagement.updated": "Görev güncellendi",
+            "engagement.status.changed": "Durum değişti",
+            "engagement.archived": "Görev arşivlendi",
+            "engagement.restored": "Görev geri yüklendi"
+          }
+        },
+        "version": {
+          "title": "Sürüm bilgileri",
+          "description": "Mevcut kayıt sürümleri ve yaşam döngüsü zaman damgaları.",
+          "cardTitle": "Kayıt meta verileri",
+          "recordVersion": "Kayıt sürümü",
+          "created": "Oluşturuldu",
+          "archived": "Arşivlenme zamanı",
+          "notArchived": "Arşivlenmedi",
+          "restored": "Geri yüklendi",
+          "restoredHint": "Geri yükleme olayları için zaman çizelgesine bakın"
+        }
+      },
+      "settings": {
+        "title": "Ayarlar",
+        "description": "Görev ayrıntılarını, raporlamayı ve yaşam döngüsü durumunu yapılandırın.",
+        "readOnlyNotice": "Görev ayarlarına yalnızca görüntüleme erişiminiz var.",
+        "saveLabel": "Kaydet",
+        "savingLabel": "Kaydediliyor…",
+        "discardLabel": "Vazgeç",
+        "sections": {
+          "general": {
+            "title": "Genel",
+            "description": "Ad, kod, tür ve yaşam döngüsü durumu."
+          },
+          "client": {
+            "title": "Müşteri",
+            "description": "Bu görevin hizmet verdiği tüzel kişi."
+          },
+          "reporting": {
+            "title": "Raporlama",
+            "description": "Çerçeve ve raporlama dönemi."
+          },
+          "dates": {
+            "title": "Tarihler",
+            "description": "Bu görev için planlanan takvim."
+          },
+          "notes": {
+            "title": "Notlar",
+            "description": "Açıklama ve dahili notlar."
+          }
+        },
+        "lifecycle": {
+          "title": "Yaşam döngüsü",
+          "description": "Durum değiştiğinde bu görevi arşivleyin veya geri yükleyin.",
+          "archivedBannerTitle": "Bu görev arşivlendi",
+          "archivedBannerDescription": "Çalışma alanı salt okunurdur. Değişiklik yapmak için görevi geri yükleyin.",
+          "archivePrompt": "Arşivleme, geçmişi koruyarak bu görevi salt okunur yapar.",
+          "archiveAction": "Görevi arşivle",
+          "archiveConfirmTitle": "Bu görev arşivlensin mi?",
+          "archiveConfirmDescription": "Görev salt okunur olacak. Gerekirse daha sonra geri yükleyebilirsiniz.",
+          "archiveReasonPlaceholder": "Arşivleme için isteğe bağlı neden",
+          "archiveConfirmAction": "Arşivlemeyi onayla",
+          "restorePrompt": "Yapılandırma ve saha çalışmasına devam etmek için bu görevi geri yükleyin.",
+          "restoreAction": "Görevi geri yükle",
+          "restoreConfirmTitle": "Bu görev geri yüklensin mi?",
+          "restoreConfirmDescription": "Görev yeniden etkin olacak ve yetkili kullanıcılar tarafından düzenlenebilecek.",
+          "restoreConfirmAction": "Geri yüklemeyi onayla",
+          "reasonLabel": "Neden",
+          "cancelAction": "İptal"
+        }
+      },
+      "members": {
+        "title": "Ekip üyeleri",
+        "description": "Bu göreve atanan kişiler.",
+        "emptyTitle": "Atanmış üye yok",
+        "emptyDescription": "Ekip üyeleri bu göreve atandıktan sonra burada görünecek.",
+        "joinedLabel": "Katıldı",
+        "forbiddenTitle": "Erişim kısıtlı",
+        "forbiddenDescription": "Görev üyelerini görüntüleme izniniz yok.",
+        "roles": {
+          "engagement_partner": "Görev ortağı",
+          "engagement_manager": "Görev yöneticisi",
+          "senior": "Kıdemli",
+          "staff": "Personel",
+          "reviewer": "İnceleyici",
+          "observer": "Gözlemci"
+        }
+      }
+    },
+    "companies": {
+      "history": {
+        "title": "Aktivite ve denetim",
+        "description": "Şirket değişikliklerinin salt okunur zaman çizelgesi ve denetim özeti.",
+        "errorTitle": "Aktivite yüklenemedi",
+        "errorDescription": "Şirket aktivitesi yüklenirken bir hata oluştu.",
+        "summary": {
+          "title": "Denetim özeti",
+          "description": "Bu şirket için kayıtlı olay sayıları.",
+          "total": "Toplam olay",
+          "created": "Oluşturuldu",
+          "updated": "Güncellendi",
+          "settingsUpdated": "Ayarlar güncellendi",
+          "archived": "Arşivlendi",
+          "restored": "Geri yüklendi"
+        },
+        "timeline": {
+          "title": "Aktivite zaman çizelgesi",
+          "description": "Bu şirket için kronolojik denetim izi.",
+          "emptyTitle": "Aktivite kaydedilmedi",
+          "emptyDescription": "Bu şirketteki değişiklikler denetlendikçe burada görünecek.",
+          "reasonArchive": "Arşiv nedeni",
+          "reasonRestore": "Geri yükleme nedeni",
+          "fieldsChanged": "Değişen alanlar",
+          "actions": {
+            "company.created": "Şirket oluşturuldu",
+            "company.updated": "Şirket güncellendi",
+            "company.settings.updated": "Ayarlar güncellendi",
+            "company.archived": "Şirket arşivlendi",
+            "company.restored": "Şirket geri yüklendi"
+          }
+        },
+        "version": {
+          "title": "Sürüm bilgisi",
+          "description": "Güncel kayıt sürümleri ve yaşam döngüsü zaman damgaları.",
+          "cardTitle": "Kayıt meta verileri",
+          "recordVersion": "Kayıt sürümü",
+          "settingsVersion": "Ayar sürümü",
+          "created": "Oluşturulma",
+          "archived": "Arşivlenme",
+          "notArchived": "Arşivlenmedi",
+          "restored": "Geri yüklendi",
+          "restoredHint": "Geri yükleme olayları için zaman çizelgesine bakın"
+        }
+      },
+      "settings": {
+        "title": "Ayarlar",
+        "description": "Bu şirket için raporlama, finansal ve operasyonel tercihleri yapılandırın.",
+        "navAriaLabel": "Şirket ayarları bölümleri",
+        "navGeneral": "Genel",
+        "navReporting": "Raporlama",
+        "navFinancial": "Finansal",
+        "navContacts": "İletişim",
+        "navPreferences": "Tercihler",
+        "navValidation": "Doğrulama",
+        "readOnlyBadge": "Salt okunur",
+        "saveIdle": "Tüm değişiklikler kaydedildi",
+        "saveSaving": "Değişiklikler kaydediliyor…",
+        "saveSaved": "Değişiklikler kaydedildi",
+        "saveError": "Değişiklikler kaydedilemedi",
+        "unsavedMessage": "Kaydedilmemiş değişiklikleriniz var",
+        "discardLabel": "Vazgeç",
+        "saveLabel": "Kaydet",
+        "savingLabel": "Kaydediliyor…",
+        "conflictTitle": "Ayarlar başka bir oturumda güncellendi",
+        "conflictDescription": "Başka bir oturum bu ayarları değiştirdi. En son sürümü yüklemek için yenileyin veya değişikliklerinizi vazgeçin.",
+        "conflictRefresh": "Yenile",
+        "conflictDiscard": "Değişiklikleri vazgeç",
+        "loading": "Şirket ayarları yükleniyor",
+        "errorTitle": "Ayarlar yüklenemedi",
+        "errorDescription": "Şirket ayarları yüklenirken bir hata oluştu.",
+        "sections": {
+          "general": {
+            "title": "Genel",
+            "description": "Bu tüzel kişilik için yargı alanı, sınıflandırma ve adresler.",
+            "classificationTitle": "Sınıflandırma",
+            "registeredAddressTitle": "Kayıtlı adres",
+            "operatingAddressTitle": "Faaliyet adresi",
+            "addressHint": "İsteğe bağlı — bildirimler ve yazışmalar için kullanılır."
+          },
+          "reporting": {
+            "title": "Raporlama",
+            "description": "Yasal ve yönetim raporlaması için çerçeve.",
+            "groupTitle": "Raporlama çerçevesi",
+            "groupDescription": "Bu tüzel kişiliğe uygulanan muhasebe standartlarını tanımlar."
+          },
+          "financial": {
+            "title": "Finansal",
+            "description": "Para birimi ve mali yıl yapılandırması.",
+            "groupTitle": "Finansal yapılandırma",
+            "groupDescription": "Fonksiyonel para birimi ve mali dönem sınırları.",
+            "currencyHint": "ISO 4217 üç harfli kod, örn. USD"
+          },
+          "contacts": {
+            "title": "İletişim",
+            "description": "Finans ve dış denetim koordinasyonundan sorumlu kişiler."
+          },
+          "preferences": {
+            "title": "Tercihler",
+            "description": "Operasyonel varsayılanlar ve görüntüleme tercihleri.",
+            "groupTitle": "Çalışma alanı tercihleri",
+            "groupDescription": "İçe aktarma, dil ve yuvarlama için isteğe bağlı varsayılanlar.",
+            "defaultLocale": "Varsayılan dil",
+            "dataImportSource": "Veri içe aktarma kaynağı",
+            "roundingConvention": "Yuvarlama kuralı",
+            "tradeNameHint": "İsteğe bağlı ticari unvan — yasal ad değil."
+          },
+          "validation": {
+            "title": "Doğrulama",
+            "description": "Şirket ayarları için şema doğrulama durumu.",
+            "groupTitle": "Doğrulama özeti",
+            "readOnlyNotice": "Doğrulama meta verileri platform tarafından yönetilir ve burada düzenlenemez."
+          }
+        }
+      }
+    }
+  }
+};
+
+const NAMESPACE_NAMES = [
+  "workflow", "history", "comments", "settings", "documents", "checklist",
+  "procedures", "findings", "evidence", "versions", "members", "editor",
+  "team", "timeline", "integration",
+];
+
+function applyConditionalNamespaceKeys(localeObj, enObj, patchObj) {
+  let updated = 0;
+  if (!patchObj || !enObj || !localeObj) return updated;
+  for (const [key, patchValue] of Object.entries(patchObj)) {
+    const enValue = enObj[key];
+    const localeValue = localeObj[key];
+    if (typeof patchValue === "string") {
+      if (typeof enValue === "string" && localeValue === enValue) {
+        localeObj[key] = patchValue;
+        updated++;
+      }
+    } else if (patchValue && typeof patchValue === "object" && !Array.isArray(patchValue)) {
+      if (!localeObj[key] || typeof localeObj[key] !== "object") localeObj[key] = {};
+      if (!enObj[key] || typeof enObj[key] !== "object") continue;
+      updated += applyConditionalNamespaceKeys(localeObj[key], enObj[key], patchValue);
+    }
+  }
+  return updated;
+}
+
+function applyNamespacePatches(localeCode, locale, en) {
+  const patches = EMBEDDED_NAMESPACE_PATCHES[localeCode];
+  if (!patches) return 0;
+  let updated = 0;
+  for (const module of MODULES) {
+    const modulePatch = patches[module];
+    const enModule = en[module];
+    const localeModule = locale[module];
+    if (!modulePatch || !enModule || !localeModule) continue;
+    for (const ns of NAMESPACE_NAMES) {
+      const patchNs = modulePatch[ns];
+      const enNs = enModule[ns];
+      const localeNs = localeModule[ns];
+      if (!patchNs || !enNs || !localeNs) continue;
+      updated += applyConditionalNamespaceKeys(localeNs, enNs, patchNs);
+    }
+  }
+  return updated;
+}
+
 const MODULES = ["companies", "engagements", "planning", "fieldwork", "riskAssessment", "materiality"];
 const NAV_GROUP_MODULES = new Set(["planning", "fieldwork", "riskAssessment", "materiality"]);
 const CONDITIONAL_MODULES = new Set(["planning", "fieldwork", "riskAssessment", "materiality"]);
@@ -2939,18 +4943,30 @@ function applyPatches(localeCode) {
     }
   }
 
+  updated += applyNamespacePatches(localeCode, locale, en);
+
   fs.writeFileSync(localePath, `${JSON.stringify(locale, null, 2)}\n`, "utf8");
   return updated;
 }
 
 const locales = ["az", "ru", "tr"];
-const results = {};
+const results = { workspace: {}, namespaces: {}, total: {} };
 let hadError = false;
 
 for (const code of locales) {
   try {
-    results[code] = applyPatches(code);
-    console.log(`${code}.json: updated ${results[code]} strings`);
+    const localePath = path.join(messagesDir, `${code}.json`);
+    const enPath = path.join(messagesDir, "en.json");
+    const localeBefore = JSON.parse(fs.readFileSync(localePath, "utf8"));
+    const en = JSON.parse(fs.readFileSync(enPath, "utf8"));
+    const beforeStr = JSON.stringify(localeBefore);
+    const totalUpdated = applyPatches(code);
+    const localeSnap = JSON.parse(beforeStr);
+    const nsUpdated = applyNamespacePatches(code, localeSnap, en);
+    results.total[code] = totalUpdated;
+    results.namespaces[code] = nsUpdated;
+    results.workspace[code] = totalUpdated - nsUpdated;
+    console.log(`${code}.json: updated ${totalUpdated} strings (workspace: ${results.workspace[code]}, namespaces: ${results.namespaces[code]})`);
   } catch (err) {
     hadError = true;
     console.error(`${code}.json: ERROR`, err.message);
@@ -2959,3 +4975,4 @@ for (const code of locales) {
 
 if (hadError) process.exit(1);
 console.log("Done.");
+

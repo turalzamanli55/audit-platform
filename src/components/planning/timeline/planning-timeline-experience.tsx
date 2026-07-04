@@ -9,7 +9,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import { WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningTimelineExperienceProps = {
@@ -89,13 +89,13 @@ function PlanningTimelineForm({
   };
 
   return (
-    <PlanningWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={labels.title}
       description={labels.description}
       headingId="planning-timeline"
     >
       {error ? <Alert variant="error">{error}</Alert> : null}
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
+      <WorkspacePanel padding="none">
         <div className="divide-y divide-border/40">
           {timeline.map((milestone) => (
             <div key={milestone.id} className="grid gap-4 p-5 sm:grid-cols-[1fr_1fr_1fr] sm:items-end">
@@ -136,7 +136,7 @@ function PlanningTimelineForm({
             </Button>
           </div>
         ) : null}
-      </div>
-    </PlanningWorkspaceSectionShell>
+      </WorkspacePanel>
+    </WorkspaceSectionShell>
   );
 }

@@ -4,6 +4,11 @@ import { useMemo, useState } from "react";
 import { Alert, Button, Input } from "@/components/ui";
 import { MaterialityWorkspaceSectionShell } from "@/components/materiality/workspace/materiality-workspace-section-shell";
 import {
+  WorkspaceEmptyPanel,
+  WorkspaceFormPanel,
+  WorkspacePanel,
+} from "@/components/workspace";
+import {
   calculateMaterialityAmount,
   formatCurrency,
 } from "@/lib/materiality/materiality-workspace-display";
@@ -98,10 +103,7 @@ export function MaterialityCalculatorPanel({
   if (materiality.benchmarks.length === 0) {
     return (
       <MaterialityWorkspaceSectionShell title={labels.title} description={labels.description} headingId="materiality-calculator">
-        <div className="rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 py-10 text-center">
-          <h3 className="text-lg font-semibold tracking-tight text-foreground">{labels.noBenchmarksTitle}</h3>
-          <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">{labels.noBenchmarksDescription}</p>
-        </div>
+        <WorkspaceEmptyPanel title={labels.noBenchmarksTitle} description={labels.noBenchmarksDescription} />
       </MaterialityWorkspaceSectionShell>
     );
   }
@@ -109,7 +111,7 @@ export function MaterialityCalculatorPanel({
   return (
     <MaterialityWorkspaceSectionShell title={labels.title} description={labels.description} headingId="materiality-calculator">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/80 p-5">
+        <WorkspacePanel className="space-y-3">
           <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
             {labels.benchmarkLabel}
           </p>
@@ -150,9 +152,9 @@ export function MaterialityCalculatorPanel({
               );
             })}
           </ul>
-        </div>
+        </WorkspacePanel>
 
-        <div className="space-y-4 rounded-2xl border border-border/50 bg-card/80 p-5">
+        <WorkspaceFormPanel>
           <Alert variant="info">{manualOverride ? labels.manualOverrideNotice : labels.autoCalcNotice}</Alert>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -222,7 +224,7 @@ export function MaterialityCalculatorPanel({
               {labels.applyAction}
             </Button>
           ) : null}
-        </div>
+        </WorkspaceFormPanel>
       </div>
     </MaterialityWorkspaceSectionShell>
   );

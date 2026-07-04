@@ -16,7 +16,7 @@ import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspac
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert, Input } from "@/components/ui";
 import { Button } from "@/components/ui/button";
-import { EngagementWorkspaceSectionShell } from "@/components/engagement/workspace/engagement-workspace-section-shell";
+import { WorkspaceFormPanel, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 
 type EngagementSettingsExperienceProps = {
   canUpdate: boolean;
@@ -74,9 +74,7 @@ function SettingsGroup({
           <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
         ) : null}
       </div>
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-        <div className="space-y-4 p-5 sm:p-6">{children}</div>
-      </div>
+      <WorkspaceFormPanel>{children}</WorkspaceFormPanel>
     </section>
   );
 }
@@ -249,15 +247,15 @@ function EngagementSettingsForm({
 
   return (
     <div className="space-y-10">
-      <EngagementWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={labels.title}
         description={labels.description}
         headingId="engagement-settings"
       >
         {readOnly && !engagement.isArchived ? (
-          <p className="rounded-2xl border border-border/50 bg-muted/20 px-5 py-4 text-sm text-muted-foreground">
-            {labels.readOnlyNotice}
-          </p>
+          <WorkspacePanel variant="muted" padding="sm">
+            <p className="text-sm text-muted-foreground">{labels.readOnlyNotice}</p>
+          </WorkspacePanel>
         ) : null}
 
         {error ? <Alert variant="error">{error}</Alert> : null}
@@ -430,16 +428,16 @@ function EngagementSettingsForm({
             </div>
           ) : null}
         </div>
-      </EngagementWorkspaceSectionShell>
+      </WorkspaceSectionShell>
 
       {canArchive ? (
-        <EngagementWorkspaceSectionShell
+        <WorkspaceSectionShell
           title={labels.lifecycle.title}
           description={labels.lifecycle.description}
           headingId="engagement-settings-lifecycle"
         >
           {lifecycleMode === "idle" ? (
-            <div className="rounded-2xl border border-border/50 bg-card/80 p-5 sm:p-6">
+            <WorkspaceFormPanel>
               {engagement.isArchived ? (
                 <div className="space-y-3">
                   <p className="text-sm text-muted-foreground">{labels.lifecycle.restorePrompt}</p>
@@ -461,11 +459,11 @@ function EngagementSettingsForm({
                   </Button>
                 </div>
               )}
-            </div>
+            </WorkspaceFormPanel>
           ) : null}
 
           {lifecycleMode === "archive" ? (
-            <div className="space-y-4 rounded-2xl border border-border/60 bg-muted/20 p-5 sm:p-6">
+            <WorkspacePanel variant="muted" className="space-y-4">
               <div className="space-y-1">
                 <p className="text-sm font-medium text-foreground">{labels.lifecycle.archiveConfirmTitle}</p>
                 <p className="text-sm text-muted-foreground">{labels.lifecycle.archiveConfirmDescription}</p>
@@ -491,11 +489,11 @@ function EngagementSettingsForm({
                   {labels.lifecycle.archiveConfirmAction}
                 </Button>
               </div>
-            </div>
+            </WorkspacePanel>
           ) : null}
 
           {lifecycleMode === "restore" ? (
-            <div className="space-y-4 rounded-2xl border border-border/60 bg-muted/20 p-5 sm:p-6">
+            <WorkspacePanel variant="muted" className="space-y-4">
               <div className="space-y-1">
                 <p className="text-sm font-medium text-foreground">{labels.lifecycle.restoreConfirmTitle}</p>
                 <p className="text-sm text-muted-foreground">{labels.lifecycle.restoreConfirmDescription}</p>
@@ -508,9 +506,9 @@ function EngagementSettingsForm({
                   {labels.lifecycle.restoreConfirmAction}
                 </Button>
               </div>
-            </div>
+            </WorkspacePanel>
           ) : null}
-        </EngagementWorkspaceSectionShell>
+        </WorkspaceSectionShell>
       ) : null}
     </div>
   );

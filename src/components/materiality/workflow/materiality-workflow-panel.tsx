@@ -10,6 +10,7 @@ import {
 } from "@/lib/actions/materiality";
 import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import { MaterialityWorkspaceSectionShell } from "@/components/materiality/workspace/materiality-workspace-section-shell";
+import { WorkspaceFormPanel } from "@/components/workspace";
 
 type MaterialityWorkflowLabels = {
   title: string;
@@ -107,7 +108,7 @@ export function MaterialityWorkflowPanel({
       description={labels.description}
       headingId="materiality-workflow"
     >
-      <div className="space-y-4 rounded-2xl border border-border/50 bg-card/80 p-5">
+      <WorkspaceFormPanel>
         {error ? <Alert variant="error">{error}</Alert> : null}
 
         {isArchived ? <Alert variant="warning">{labels.readOnlyNotice}</Alert> : null}
@@ -170,7 +171,7 @@ export function MaterialityWorkflowPanel({
             ) : null}
           </div>
         ) : null}
-      </div>
+      </WorkspaceFormPanel>
     </MaterialityWorkspaceSectionShell>
   );
 }

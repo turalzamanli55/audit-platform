@@ -14,6 +14,15 @@ import {
   upsertAssertionRatingAction,
 } from "@/lib/actions/risk-assessment";
 import { Alert, Button, Input } from "@/components/ui";
+import {
+  WorkspaceEmptyPanel,
+  WorkspaceFormPanel,
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspaceMetricCard,
+  WorkspacePanel,
+  WorkspaceTable,
+} from "@/components/workspace";
 import { RiskAssessmentCreateExperience } from "@/components/risk-assessment/create/risk-assessment-create-experience";
 import { RiskAssessmentWorkspaceSectionShell } from "@/components/risk-assessment/workspace/risk-assessment-workspace-section-shell";
 import { formatDateTime } from "@/lib/engagement/format-engagement-workspace";
@@ -119,15 +128,6 @@ type BaseProps = GateProps & {
   archivedReadOnlyLabel?: string;
   locale?: string;
 };
-
-function EmptyPanel({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 py-10 text-center">
-      <h3 className="text-lg font-semibold tracking-tight text-foreground">{title}</h3>
-      <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
 
 function useWorkspaceOrCreate(props: GateProps) {
   const { riskAssessment, planningApproved, materialityApproved } = useRiskAssessmentWorkspace();
@@ -244,11 +244,11 @@ export function RiskRegisterExperience(
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {items.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {items.map((item) => (
-            <li key={item.id} className="space-y-1 px-5 py-4">
+            <WorkspaceListItem key={item.id} className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="font-medium text-foreground">{item.title}</p>
                 {item.isSignificant && props.addLabels.significantBadge ? (
@@ -277,12 +277,12 @@ export function RiskRegisterExperience(
                   </span>
                 ) : null}
               </div>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {mutable ? (
-        <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel className="mt-6">
           {!normalizedType && !props.significantOnly ? (
             <select
               className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
@@ -363,7 +363,7 @@ export function RiskRegisterExperience(
           <Button type="button" onClick={addRisk} disabled={isPending || !title.trim()}>
             {props.addLabels.addAction}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
@@ -402,25 +402,25 @@ export function RiskCategoriesExperience(props: BaseProps & { canUpdate?: boolea
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {workspace.categories.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {workspace.categories.map((category) => (
-            <li key={category.id} className="px-5 py-4">
+            <WorkspaceListItem key={category.id}>
               <p className="font-medium text-foreground">{category.name}</p>
               <p className="text-sm text-muted-foreground">{category.description ?? "—"}</p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {mutable ? (
-        <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel className="mt-6">
           <Input value={name} onChange={(event) => setName(event.target.value)} placeholder={props.addLabels.namePlaceholder} />
           <Input value={description} onChange={(event) => setDescription(event.target.value)} placeholder={props.addLabels.descriptionPlaceholder} />
           <Button type="button" onClick={addCategory} disabled={isPending || !name.trim()}>
             {props.addLabels.addAction}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
@@ -431,25 +431,33 @@ export function RiskScoringExperience(props: BaseProps & { maps: LabelMaps; summ
   if (typeof workspace !== "object" || !("registerItems" in workspace)) return workspace;
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {workspace.registerItems.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <div className="grid gap-3 rounded-2xl border border-border/50 bg-card/80 p-5 sm:grid-cols-2 xl:grid-cols-5">
-          <Metric label={props.summaryLabels.ratedItems ?? ""} value={workspace.registerItems.filter((item) => item.inherentRating || item.residualRating).length} />
-          <Metric label={props.summaryLabels.significant ?? ""} value={workspace.significantRiskCount} />
-          <Metric label={props.summaryLabels.likelihood ?? ""} value={workspace.registerItems.filter((item) => item.likelihood === "high").length} />
-          <Metric label={props.summaryLabels.impact ?? ""} value={workspace.registerItems.filter((item) => item.impact === "high").length} />
-          <Metric label={props.summaryLabels.residual ?? ""} value={workspace.registerItems.filter((item) => item.residualRating === "significant").length} />
+      {workspace.registerItems.length === 0 ? (
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+      ) : (
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+          <WorkspaceMetricCard
+            label={props.summaryLabels.ratedItems ?? ""}
+            value={String(workspace.registerItems.filter((item) => item.inherentRating || item.residualRating).length)}
+          />
+          <WorkspaceMetricCard
+            label={props.summaryLabels.significant ?? ""}
+            value={String(workspace.significantRiskCount)}
+          />
+          <WorkspaceMetricCard
+            label={props.summaryLabels.likelihood ?? ""}
+            value={String(workspace.registerItems.filter((item) => item.likelihood === "high").length)}
+          />
+          <WorkspaceMetricCard
+            label={props.summaryLabels.impact ?? ""}
+            value={String(workspace.registerItems.filter((item) => item.impact === "high").length)}
+          />
+          <WorkspaceMetricCard
+            label={props.summaryLabels.residual ?? ""}
+            value={String(workspace.registerItems.filter((item) => item.residualRating === "significant").length)}
+          />
         </div>
       )}
     </RiskAssessmentWorkspaceSectionShell>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: number }) {
-  return (
-    <div>
-      <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="text-lg font-semibold text-foreground">{value}</p>
-    </div>
   );
 }
 
@@ -477,7 +485,7 @@ export function RiskHeatmapExperience(
     const buckets = buildRiskHeatmapData(workspace.heatmap);
     return (
       <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-        <div className="grid gap-3 rounded-2xl border border-border/50 bg-card/80 p-5 sm:grid-cols-5">
+        <WorkspacePanel padding="md" className="grid gap-3 sm:grid-cols-5">
           {buckets.map((bucket) => (
             <button
               key={bucket.rating ?? "none"}
@@ -499,7 +507,7 @@ export function RiskHeatmapExperience(
               <p className="mt-1 text-lg font-semibold">{bucket.count}</p>
             </button>
           ))}
-        </div>
+        </WorkspacePanel>
         {selectedCell && props.heatmapLabels ? (
           <div className="mt-4">
             <HeatmapCellDetail cell={selectedCell} labels={props.heatmapLabels} ratingLabels={props.maps.ratings} />
@@ -521,7 +529,7 @@ export function RiskHeatmapExperience(
           {props.heatmapLabels?.filterSignificant}
         </label>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card/80 p-4">
+      <WorkspacePanel padding="sm" className="overflow-x-auto">
         <table className="min-w-full border-collapse text-xs sm:text-sm">
           <thead>
             <tr>
@@ -566,7 +574,7 @@ export function RiskHeatmapExperience(
             ))}
           </tbody>
         </table>
-      </div>
+      </WorkspacePanel>
       {selectedCell && props.heatmapLabels ? (
         <div className="mt-4">
           <HeatmapCellDetail cell={selectedCell} labels={props.heatmapLabels} ratingLabels={props.maps.ratings} />
@@ -630,8 +638,10 @@ export function RiskMatrixExperience(
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
-      {grid.cells.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card/80 p-4">
+      {grid.cells.length === 0 ? (
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+      ) : (
+        <WorkspacePanel padding="sm" className="overflow-x-auto">
           <table className="min-w-full border-collapse text-xs sm:text-sm">
             <thead>
               <tr>
@@ -672,7 +682,7 @@ export function RiskMatrixExperience(
               ))}
             </tbody>
           </table>
-        </div>
+        </WorkspacePanel>
       )}
       {selectedCell && props.matrixLabels ? (
         <div className="mt-4 space-y-3">
@@ -699,7 +709,7 @@ export function RiskMatrixExperience(
         </div>
       ) : null}
       {mutable ? (
-        <div className="mt-6 flex flex-col gap-2 rounded-2xl border border-border/50 bg-card/60 p-5 sm:flex-row">
+        <WorkspacePanel variant="form" className="mt-6 flex flex-col gap-2 sm:flex-row">
           <Input value={accountName} onChange={(event) => setAccountName(event.target.value)} placeholder={props.addLabels.accountPlaceholder} />
           <select className="h-10 rounded-lg border border-border/60 bg-background px-3 text-sm" value={assertion} onChange={(event) => setAssertion(event.target.value as AssertionType)}>
             {Object.entries(props.maps.assertions).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
@@ -711,7 +721,7 @@ export function RiskMatrixExperience(
           <Button type="button" onClick={() => upsert()} disabled={isPending || !accountName.trim() || !compositeRating}>
             {props.addLabels.addAction}
           </Button>
-        </div>
+        </WorkspacePanel>
       ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
@@ -751,22 +761,22 @@ export function RiskResponsesExperience(props: BaseProps & { canUpdate?: boolean
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
       {workspace.responses.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {workspace.responses.map((response) => (
-            <li key={response.id} className="px-5 py-4">
+            <WorkspaceListItem key={response.id}>
               <p className="font-medium text-foreground">{response.riskItemTitle}</p>
               <p className="text-sm text-muted-foreground">{response.description}</p>
               <p className="text-xs text-muted-foreground">
                 {props.maps.responseTypes[response.responseType] ?? response.responseType}
               </p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {mutable ? (
-        <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel className="mt-6">
           <select
             className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
             value={riskItemId}
@@ -791,7 +801,7 @@ export function RiskResponsesExperience(props: BaseProps & { canUpdate?: boolean
           >
             {props.addLabels.addAction}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
@@ -841,18 +851,20 @@ export function RiskProceduresExperience(
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
-      {workspace.procedureLinks.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+      {workspace.procedureLinks.length === 0 ? (
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+      ) : (
+        <WorkspaceList>
           {workspace.procedureLinks.map((link) => (
-            <li key={link.id} className="px-5 py-4">
+            <WorkspaceListItem key={link.id}>
               <p className="font-medium text-foreground">{link.riskItemTitle}</p>
               <p className="text-sm text-muted-foreground">{link.procedureReference ?? "—"}</p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {mutable ? (
-        <div className="mt-6 space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel className="mt-6">
           <select className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm" value={riskItemId} onChange={(event) => setRiskItemId(event.target.value)}>
             <option value="">{props.addLabels.riskItemLabel}</option>
             {workspace.registerItems.map((item) => (
@@ -881,7 +893,7 @@ export function RiskProceduresExperience(
           <Button type="button" onClick={addProcedure} disabled={isPending || !riskItemId || (!reference.trim() && !selectedTemplate)}>
             {props.addLabels.addAction}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
@@ -916,8 +928,31 @@ export function RiskOwnersExperience(props: BaseProps & { canUpdate?: boolean; o
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
-      {workspace.registerItems.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">{workspace.registerItems.map((item) => <li key={item.id} className="space-y-2 px-5 py-4"><div className="flex justify-between"><p className="font-medium text-foreground">{item.title}</p><p className="text-xs text-muted-foreground">{item.ownerId || props.ownerLabels.unassignedLabel}</p></div>{mutable ? <div className="flex gap-2"><Input value={ownerInputs[item.id] ?? item.ownerId ?? ""} onChange={(event) => setOwnerInputs((prev) => ({ ...prev, [item.id]: event.target.value }))} placeholder={props.ownerLabels.ownerPlaceholder} /><Button type="button" size="sm" onClick={() => updateOwner(item.id, item.version)} disabled={isPending}>{props.ownerLabels.updateAction}</Button></div> : null}</li>)}</ul>
+      {workspace.registerItems.length === 0 ? (
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+      ) : (
+        <WorkspaceList>
+          {workspace.registerItems.map((item) => (
+            <WorkspaceListItem key={item.id} className="space-y-2">
+              <div className="flex justify-between">
+                <p className="font-medium text-foreground">{item.title}</p>
+                <p className="text-xs text-muted-foreground">{item.ownerId || props.ownerLabels.unassignedLabel}</p>
+              </div>
+              {mutable ? (
+                <div className="flex gap-2">
+                  <Input
+                    value={ownerInputs[item.id] ?? item.ownerId ?? ""}
+                    onChange={(event) => setOwnerInputs((prev) => ({ ...prev, [item.id]: event.target.value }))}
+                    placeholder={props.ownerLabels.ownerPlaceholder}
+                  />
+                  <Button type="button" size="sm" onClick={() => updateOwner(item.id, item.version)} disabled={isPending}>
+                    {props.ownerLabels.updateAction}
+                  </Button>
+                </div>
+              ) : null}
+            </WorkspaceListItem>
+          ))}
+        </WorkspaceList>
       )}
     </RiskAssessmentWorkspaceSectionShell>
   );
@@ -949,10 +984,29 @@ function NotesExperience(props: BaseProps & { canUpdate?: boolean; maps: LabelMa
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
-      {notes.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">{notes.map((note) => <li key={note.id} className="px-5 py-4"><p className="text-xs text-muted-foreground">{props.maps.noteTypes[note.noteType] ?? note.noteType} · {props.locale ? formatDateTime(note.createdAt, props.locale) : note.createdAt}</p><p className="text-sm text-foreground">{note.body}</p></li>)}</ul>
+      {notes.length === 0 ? (
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+      ) : (
+        <WorkspaceList>
+          {notes.map((note) => (
+            <WorkspaceListItem key={note.id}>
+              <p className="text-xs text-muted-foreground">
+                {props.maps.noteTypes[note.noteType] ?? note.noteType} ·{" "}
+                {props.locale ? formatDateTime(note.createdAt, props.locale) : note.createdAt}
+              </p>
+              <p className="text-sm text-foreground">{note.body}</p>
+            </WorkspaceListItem>
+          ))}
+        </WorkspaceList>
       )}
-      {mutable ? <div className="mt-6 flex gap-2 rounded-2xl border border-border/50 bg-card/60 p-5"><Input value={body} onChange={(event) => setBody(event.target.value)} placeholder={props.noteLabels.bodyPlaceholder} /><Button type="button" onClick={addNote} disabled={isPending || !body.trim()}>{props.noteLabels.addAction}</Button></div> : null}
+      {mutable ? (
+        <WorkspacePanel variant="form" className="mt-6 flex gap-2">
+          <Input value={body} onChange={(event) => setBody(event.target.value)} placeholder={props.noteLabels.bodyPlaceholder} />
+          <Button type="button" onClick={addNote} disabled={isPending || !body.trim()}>
+            {props.noteLabels.addAction}
+          </Button>
+        </WorkspacePanel>
+      ) : null}
     </RiskAssessmentWorkspaceSectionShell>
   );
 }
@@ -970,13 +1024,42 @@ export function RiskHistoryExperience(props: BaseProps & { activity: RiskAssessm
   if (typeof workspace !== "object" || !("id" in workspace)) return workspace;
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {props.activity.entries.length === 0 ? <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} /> : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">{props.activity.entries.map((entry) => <li key={entry.id} className="px-5 py-4"><p className="text-sm font-medium text-foreground">{formatRiskAssessmentActivityAction(entry.action, props.historyLabels.actions)}</p><p className="text-xs text-muted-foreground">{props.locale ? formatDateTime(entry.createdAt, props.locale) : entry.createdAt}</p><p className="text-sm text-muted-foreground">{formatRiskAssessmentActivitySummary(entry.summary)}</p></li>)}</ul>
-      )}
-      <div className="grid gap-3 rounded-2xl border border-border/50 bg-card/40 p-4 sm:grid-cols-2">
-        <p className="text-sm text-muted-foreground">{props.historyLabels.versionLabel}: <span className="font-medium text-foreground">{workspace.assessmentVersion}</span></p>
-        <p className="text-sm text-muted-foreground">{props.historyLabels.updatedLabel}: <span className="font-medium text-foreground">{props.locale ? formatDateTime(workspace.updatedAt, props.locale) : workspace.updatedAt}</span></p>
-      </div>
+      <WorkspaceTable
+        columns={[
+          {
+            id: "action",
+            header: "Action",
+            cell: (entry) => formatRiskAssessmentActivityAction(entry.action, props.historyLabels.actions),
+          },
+          {
+            id: "date",
+            header: "Date",
+            cell: (entry) => (props.locale ? formatDateTime(entry.createdAt, props.locale) : entry.createdAt),
+            hideOnMobile: true,
+          },
+          {
+            id: "summary",
+            header: "Summary",
+            cell: (entry) => formatRiskAssessmentActivitySummary(entry.summary),
+          },
+        ]}
+        rows={props.activity.entries}
+        keyFn={(entry) => entry.id}
+        emptyTitle={props.labels.emptyTitle}
+        emptyDescription={props.labels.emptyDescription}
+      />
+      <WorkspacePanel variant="muted" padding="sm" className="grid gap-3 sm:grid-cols-2">
+        <p className="text-sm text-muted-foreground">
+          {props.historyLabels.versionLabel}:{" "}
+          <span className="font-medium text-foreground">{workspace.assessmentVersion}</span>
+        </p>
+        <p className="text-sm text-muted-foreground">
+          {props.historyLabels.updatedLabel}:{" "}
+          <span className="font-medium text-foreground">
+            {props.locale ? formatDateTime(workspace.updatedAt, props.locale) : workspace.updatedAt}
+          </span>
+        </p>
+      </WorkspacePanel>
     </RiskAssessmentWorkspaceSectionShell>
   );
 }
@@ -1012,9 +1095,39 @@ export function RiskSettingsExperience(props: GateProps & { canArchive?: boolean
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.labels.archivedBanner} /> : null}
-      <div className="rounded-2xl border border-border/50 bg-card/80 p-5">
-        {!props.canArchive ? <p className="text-sm text-muted-foreground">{props.labels.readOnlyNotice}</p> : workspace.isArchived ? (mode === "restore" ? <div className="flex gap-3"><Button type="button" onClick={restore} disabled={isPending}>{props.labels.restoreConfirmAction}</Button><Button type="button" variant="ghost" onClick={() => setMode("idle")}>{props.labels.cancelAction}</Button></div> : <Button type="button" onClick={() => setMode("restore")}>{props.labels.restoreAction}</Button>) : (mode === "archive" ? <div className="flex gap-3"><Button type="button" onClick={archive} disabled={isPending}>{props.labels.archiveConfirmAction}</Button><Button type="button" variant="ghost" onClick={() => setMode("idle")}>{props.labels.cancelAction}</Button></div> : <Button type="button" onClick={() => setMode("archive")}>{props.labels.archiveAction}</Button>)}
-      </div>
+      <WorkspacePanel>
+        {!props.canArchive ? (
+          <p className="text-sm text-muted-foreground">{props.labels.readOnlyNotice}</p>
+        ) : workspace.isArchived ? (
+          mode === "restore" ? (
+            <div className="flex gap-3">
+              <Button type="button" onClick={restore} disabled={isPending}>
+                {props.labels.restoreConfirmAction}
+              </Button>
+              <Button type="button" variant="ghost" onClick={() => setMode("idle")}>
+                {props.labels.cancelAction}
+              </Button>
+            </div>
+          ) : (
+            <Button type="button" onClick={() => setMode("restore")}>
+              {props.labels.restoreAction}
+            </Button>
+          )
+        ) : mode === "archive" ? (
+          <div className="flex gap-3">
+            <Button type="button" onClick={archive} disabled={isPending}>
+              {props.labels.archiveConfirmAction}
+            </Button>
+            <Button type="button" variant="ghost" onClick={() => setMode("idle")}>
+              {props.labels.cancelAction}
+            </Button>
+          </div>
+        ) : (
+          <Button type="button" onClick={() => setMode("archive")}>
+            {props.labels.archiveAction}
+          </Button>
+        )}
+      </WorkspacePanel>
     </RiskAssessmentWorkspaceSectionShell>
   );
 }

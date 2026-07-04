@@ -40,5 +40,16 @@ export { WorkspaceChrome } from "./workspace-chrome";
 export {
   WorkspaceTable,
   WorkspaceDataList,
+  WorkspaceStatusBadge,
   type WorkspaceTableColumn,
 } from "./workspace-table";
+export {
+  WorkspacePanel,
+  WorkspaceFormPanel,
+  WorkspaceMetricCard,
+} from "./workspace-panel";
+export {
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspaceListEntry,
+} from "./workspace-list";

@@ -3,7 +3,7 @@ import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view"
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { CompanyInfoCard, CompanyInfoList, CompanyInfoRow } from "@/components/company";
 import { formatDate, formatDateTime } from "@/lib/company/format-company-workspace";
-import { CompanyWorkspaceSectionShell } from "@/components/company/workspace";
+import { WorkspaceSectionShell } from "@/components/workspace";
 import { CompanyAuditSummary } from "./company-audit-summary";
 import { CompanyActivityTimeline } from "./company-activity-timeline";
 
@@ -24,13 +24,13 @@ export function CompanyHistoryExperience({
 }: CompanyHistoryExperienceProps) {
   return (
     <div className="space-y-10">
-      <CompanyWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={labels.title}
         description={labels.description}
         headingId="company-workspace-history"
       >
         <CompanyAuditSummary summary={activity.summary} labels={labels.summary} />
-      </CompanyWorkspaceSectionShell>
+      </WorkspaceSectionShell>
 
       <CompanyActivityTimeline
         entries={activity.entries}
@@ -38,7 +38,7 @@ export function CompanyHistoryExperience({
         labels={labels.timeline}
       />
 
-      <CompanyWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={labels.version.title}
         description={labels.version.description}
         headingId="company-history-version"
@@ -72,7 +72,7 @@ export function CompanyHistoryExperience({
             />
           </CompanyInfoList>
         </CompanyInfoCard>
-      </CompanyWorkspaceSectionShell>
+      </WorkspaceSectionShell>
     </div>
   );
 }

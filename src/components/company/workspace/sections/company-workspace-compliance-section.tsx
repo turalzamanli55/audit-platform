@@ -1,6 +1,6 @@
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { WorkspaceSectionShell } from "@/components/workspace";
 import { CompanyWorkspaceEmptySection } from "../company-workspace-empty-section";
-import { CompanyWorkspaceSectionShell } from "../company-workspace-section-shell";
 
 type CompanyWorkspaceComplianceSectionProps = {
   labels: Dictionary["companies"]["workspace"];
@@ -12,7 +12,7 @@ export function CompanyWorkspaceComplianceSection({
   const section = labels.sections.compliance;
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-workspace-compliance"
@@ -21,6 +21,6 @@ export function CompanyWorkspaceComplianceSection({
         title={section.emptyTitle}
         description={section.emptyDescription}
       />
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

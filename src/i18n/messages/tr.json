@@ -2640,19 +2640,19 @@
     },
     "workflow": {
       "title": "Önemlilik workflow",
-      "description": "Submit, return, and approve ISA 320 materiality documentation.",
+      "description": "ISA 320 önemlilik dokümantasyonunu gönderin, iade edin ve onaylayın.",
       "submitAction": "İncelemeye gönder",
       "returnAction": "Revizyon için iade et",
       "returnConfirmAction": "İadeyi onayla",
       "approveAction": "Önemliliği onayla",
       "cancelAction": "İptal",
-      "returnNotesLabel": "Return notes",
-      "returnNotesPlaceholder": "Describe what must be revised before resubmission.",
-      "readOnlyNotice": "This materiality package is archived and read-only.",
-      "submittedNotice": "This materiality package is submitted and pending review.",
-      "approvedNotice": "This materiality package is approved.",
-      "returnedNotice": "This materiality package was returned for revision.",
-      "errorGeneric": "Unable to complete the materiality workflow action."
+      "returnNotesLabel": "İade notları",
+      "returnNotesPlaceholder": "Yeniden gönderimden önce nelerin revize edilmesi gerektiğini açıklayın.",
+      "readOnlyNotice": "Bu önemlilik paketi arşivlendi ve salt okunurdur.",
+      "submittedNotice": "Bu önemlilik paketi gönderildi ve inceleme bekliyor.",
+      "approvedNotice": "Bu önemlilik paketi onaylandı.",
+      "returnedNotice": "Bu önemlilik paketi revizyon için iade edildi.",
+      "errorGeneric": "Önemlilik iş akışı eylemi tamamlanamadı."
     },
     "empty": {
       "title": "Önemlilik not initiated",
@@ -2940,25 +2940,25 @@
     },
     "versions": {
       "title": "Sürümler",
-      "description": "Review version snapshots of the materiality package.",
-      "emptyTitle": "No versions",
-      "emptyDescription": "Version snapshots are created when materiality is revised or approved."
+      "description": "Önemlilik paketinin sürüm anlık görüntülerini inceleyin.",
+      "emptyTitle": "Sürüm yok",
+      "emptyDescription": "Önemlilik revize edildiğinde veya onaylandığında sürüm anlık görüntüleri oluşturulur."
     },
     "comments": {
       "title": "Yorumlar",
-      "description": "Capture review and internal comments related to materiality.",
-      "emptyTitle": "No comments",
+      "description": "Önemlilikle ilgili inceleme ve dahili yorumları kaydedin.",
+      "emptyTitle": "Yorum yok",
       "emptyDescription": "Yorumlar appear here once added.",
       "bodyPlaceholder": "Yorum ekle",
       "addAction": "Yorum ekle"
     },
     "history": {
       "title": "Geçmiş",
-      "description": "Read-only timeline of materiality activity.",
-      "emptyTitle": "No materiality activity",
+      "description": "Önemlilik faaliyetinin salt okunur zaman çizelgesi.",
+      "emptyTitle": "Önemlilik faaliyeti yok",
       "emptyDescription": "Önemlilik activity will appear here as changes are recorded.",
-      "versionLabel": "Package version",
-      "updatedLabel": "Updated",
+      "versionLabel": "Paket sürümü",
+      "updatedLabel": "Güncellendi",
       "actions": {
         "materiality.created": "Önemlilik package created",
         "materiality.updated": "Önemlilik package updated",
@@ -2967,24 +2967,24 @@
         "materiality.submitted": "Önemlilik package submitted",
         "materiality.returned": "Önemlilik package returned",
         "materiality.approved": "Önemlilik package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
+        "materiality.benchmark.added": "Kıyaslama eklendi",
+        "materiality.benchmark.updated": "Kıyaslama güncellendi",
+        "materiality.calculation.recorded": "Hesaplama kaydedildi",
+        "materiality.threshold.updated": "Eşik güncellendi",
+        "materiality.comment.added": "Yorum eklendi",
+        "materiality.version.created": "Sürüm oluşturuldu"
       }
     },
     "settings": {
       "title": "Ayarlar",
-      "description": "Archive or restore this materiality package.",
+      "description": "Bu önemlilik paketini arşivleyin veya geri yükleyin.",
       "archiveAction": "Önemlilik paketini arşivle",
-      "archiveConfirmAction": "Confirm archive",
+      "archiveConfirmAction": "Arşivlemeyi onayla",
       "restoreAction": "Önemlilik paketini geri yükle",
-      "restoreConfirmAction": "Confirm restore",
+      "restoreConfirmAction": "Geri yüklemeyi onayla",
       "cancelAction": "İptal",
-      "archivedBanner": "This materiality package is archived.",
-      "readOnlyNotice": "You have view-only access to materiality settings."
+      "archivedBanner": "Bu önemlilik paketi arşivlendi.",
+      "readOnlyNotice": "Önemlilik ayarlarına yalnızca görüntüleme erişiminiz var."
     },
     "states": {
       "loadingTitle": "Loading materiality",

@@ -2,7 +2,7 @@
 
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import { WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningIntegrationPlaceholderProps = {
@@ -28,13 +28,13 @@ export function PlanningIntegrationPlaceholder({
   const statusLabel = labels.statuses[plan[`${module}Status`]];
 
   return (
-    <PlanningWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={moduleLabels.title}
       description={moduleLabels.description}
       headingId={`planning-${module}`}
     >
-      <div className="overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/40 p-6 sm:p-8">
-        <div className="mx-auto max-w-xl space-y-4 text-center">
+      <WorkspacePanel variant="muted" className="text-center">
+        <div className="mx-auto max-w-xl space-y-4">
           <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
             {labels.integrationReady}
           </p>
@@ -48,7 +48,7 @@ export function PlanningIntegrationPlaceholder({
             {labels.currentStatus}: {statusLabel}
           </p>
         </div>
-      </div>
-    </PlanningWorkspaceSectionShell>
+      </WorkspacePanel>
+    </WorkspaceSectionShell>
   );
 }

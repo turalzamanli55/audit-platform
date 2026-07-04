@@ -8,7 +8,7 @@ import {
   formatOptionalText,
 } from "@/lib/company/format-company-workspace";
 import { CompanyInfoCard, CompanyInfoList, CompanyInfoRow } from "@/components/company";
-import { CompanyWorkspaceSectionShell } from "../company-workspace-section-shell";
+import { WorkspaceSectionShell } from "@/components/workspace";
 
 type CompanyWorkspaceFinancialSectionProps = {
   company: CompanyWorkspaceView;
@@ -25,7 +25,7 @@ export function CompanyWorkspaceFinancialSection({
   const section = labels.sections.financial;
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-workspace-financial"
@@ -61,6 +61,6 @@ export function CompanyWorkspaceFinancialSection({
           />
         </CompanyInfoList>
       </CompanyInfoCard>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

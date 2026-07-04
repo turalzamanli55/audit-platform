@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CompanyEmptyState } from "@/components/company";
+import { WorkspaceEmptyPanel } from "@/components/workspace";
 
 type CompanyWorkspaceEmptySectionProps = {
   title: ReactNode;
@@ -16,10 +16,10 @@ export function CompanyWorkspaceEmptySection({
   className = "",
 }: CompanyWorkspaceEmptySectionProps) {
   return (
-    <CompanyEmptyState
-      title={title}
-      description={description}
-      className={`min-h-[14rem] bg-muted/10 sm:min-h-[16rem] ${className}`}
+    <WorkspaceEmptyPanel
+      title={String(title)}
+      description={description != null ? String(description) : ""}
+      className={className}
     />
   );
 }

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { WorkspaceCard } from "@/components/workspace";
 
 type CompanyInfoCardProps = {
   title: ReactNode;
@@ -21,22 +21,25 @@ export function CompanyInfoCard({
   children,
   className = "",
 }: CompanyInfoCardProps) {
+  const cardTitle =
+    leading != null ? (
+      <span className="flex items-start gap-4">
+        <span className="shrink-0">{leading}</span>
+        <span>{title}</span>
+      </span>
+    ) : (
+      title
+    );
+
   return (
-    <Card className={`border-border/60 p-0 shadow-xs ${className}`}>
-      <div className="flex items-start justify-between gap-4 p-6 pb-0">
-        <div className="flex min-w-0 flex-1 items-start gap-4">
-          {leading ? <div className="shrink-0">{leading}</div> : null}
-          <CardHeader className="mb-0 min-w-0 flex-1 space-y-1 p-0">
-            <CardTitle className="text-lg font-semibold sm:text-xl">{title}</CardTitle>
-            {description ? (
-              <CardDescription className="text-sm leading-relaxed">{description}</CardDescription>
-            ) : null}
-          </CardHeader>
-        </div>
-        {trailing ? <div className="shrink-0">{trailing}</div> : null}
-      </div>
-      {children ? <div className="space-y-4 p-6 pt-5">{children}</div> : null}
-    </Card>
+    <WorkspaceCard
+      title={cardTitle}
+      description={description}
+      action={trailing}
+      className={className}
+    >
+      {children}
+    </WorkspaceCard>
   );
 }
 

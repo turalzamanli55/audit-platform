@@ -2640,19 +2640,19 @@
     },
     "workflow": {
       "title": "Существенность workflow",
-      "description": "Submit, return, and approve ISA 320 materiality documentation.",
+      "description": "Подача, возврат и утверждение документации по существенности ISA 320.",
       "submitAction": "Отправить на проверку",
       "returnAction": "Вернуть на доработку",
       "returnConfirmAction": "Подтвердить возврат",
       "approveAction": "Утвердить существенность",
       "cancelAction": "Отмена",
-      "returnNotesLabel": "Return notes",
-      "returnNotesPlaceholder": "Describe what must be revised before resubmission.",
-      "readOnlyNotice": "This materiality package is archived and read-only.",
-      "submittedNotice": "This materiality package is submitted and pending review.",
-      "approvedNotice": "This materiality package is approved.",
-      "returnedNotice": "This materiality package was returned for revision.",
-      "errorGeneric": "Unable to complete the materiality workflow action."
+      "returnNotesLabel": "Примечания к возврату",
+      "returnNotesPlaceholder": "Опишите, что необходимо исправить перед повторной подачей.",
+      "readOnlyNotice": "Этот пакет существенности архивирован и доступен только для чтения.",
+      "submittedNotice": "Этот пакет существенности подан и ожидает проверки.",
+      "approvedNotice": "Этот пакет существенности утверждён.",
+      "returnedNotice": "Этот пакет существенности возвращён на доработку.",
+      "errorGeneric": "Не удалось выполнить действие рабочего процесса существенности."
     },
     "empty": {
       "title": "Существенность not initiated",
@@ -2940,25 +2940,25 @@
     },
     "versions": {
       "title": "Версии",
-      "description": "Review version snapshots of the materiality package.",
-      "emptyTitle": "No versions",
-      "emptyDescription": "Version snapshots are created when materiality is revised or approved."
+      "description": "Просмотр снимков версий пакета существенности.",
+      "emptyTitle": "Нет версий",
+      "emptyDescription": "Снимки версий создаются при пересмотре или утверждении существенности."
     },
     "comments": {
       "title": "Комментарии",
-      "description": "Capture review and internal comments related to materiality.",
-      "emptyTitle": "No comments",
+      "description": "Фиксация комментариев проверки и внутренних заметок по существенности.",
+      "emptyTitle": "Нет комментариев",
       "emptyDescription": "Комментарии appear here once added.",
       "bodyPlaceholder": "Добавить комментарий",
       "addAction": "Добавить комментарий"
     },
     "history": {
       "title": "История",
-      "description": "Read-only timeline of materiality activity.",
-      "emptyTitle": "No materiality activity",
+      "description": "Хронология активности по существенности (только для чтения).",
+      "emptyTitle": "Нет активности по существенности",
       "emptyDescription": "Существенность activity will appear here as changes are recorded.",
-      "versionLabel": "Package version",
-      "updatedLabel": "Updated",
+      "versionLabel": "Версия пакета",
+      "updatedLabel": "Обновлено",
       "actions": {
         "materiality.created": "Существенность package created",
         "materiality.updated": "Существенность package updated",
@@ -2967,24 +2967,24 @@
         "materiality.submitted": "Существенность package submitted",
         "materiality.returned": "Существенность package returned",
         "materiality.approved": "Существенность package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
+        "materiality.benchmark.added": "Добавлен контрольный показатель",
+        "materiality.benchmark.updated": "Контрольный показатель обновлён",
+        "materiality.calculation.recorded": "Расчёт зафиксирован",
+        "materiality.threshold.updated": "Порог обновлён",
+        "materiality.comment.added": "Добавлен комментарий",
+        "materiality.version.created": "Создана версия"
       }
     },
     "settings": {
       "title": "Настройки",
-      "description": "Archive or restore this materiality package.",
+      "description": "Архивирование или восстановление этого пакета существенности.",
       "archiveAction": "Архивировать пакет существенности",
-      "archiveConfirmAction": "Confirm archive",
+      "archiveConfirmAction": "Подтвердить архивирование",
       "restoreAction": "Восстановить пакет существенности",
-      "restoreConfirmAction": "Confirm restore",
+      "restoreConfirmAction": "Подтвердить восстановление",
       "cancelAction": "Отмена",
-      "archivedBanner": "This materiality package is archived.",
-      "readOnlyNotice": "You have view-only access to materiality settings."
+      "archivedBanner": "Этот пакет существенности архивирован.",
+      "readOnlyNotice": "У вас доступ только для просмотра настроек существенности."
     },
     "states": {
       "loadingTitle": "Loading materiality",

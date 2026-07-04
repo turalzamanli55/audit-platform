@@ -8,7 +8,7 @@ import type { PlanningChecklistItem } from "@/types/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import { WorkspaceList, WorkspaceListItem, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningChecklistExperienceProps = {
@@ -86,21 +86,21 @@ function PlanningChecklistForm({
   const completedCount = checklist.filter((item) => item.completed).length;
 
   return (
-    <PlanningWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={labels.title}
       description={labels.description}
       headingId="planning-checklist"
     >
       {error ? <Alert variant="error">{error}</Alert> : null}
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
+      <WorkspacePanel padding="none">
         <div className="border-b border-border/40 px-5 py-4">
           <p className="text-sm text-muted-foreground">
             {labels.progress}: {completedCount}/{checklist.length}
           </p>
         </div>
-        <ul className="divide-y divide-border/40">
+        <WorkspaceList className="rounded-none border-0 bg-transparent">
           {checklist.map((item) => (
-            <li key={item.id} className="flex items-center gap-3 px-5 py-4">
+            <WorkspaceListItem key={item.id} className="flex items-center gap-3">
               <input
                 id={`checklist-${item.id}`}
                 type="checkbox"
@@ -112,9 +112,9 @@ function PlanningChecklistForm({
               <label htmlFor={`checklist-${item.id}`} className="text-sm text-foreground">
                 {itemLabels[item.key as keyof typeof itemLabels] ?? item.key}
               </label>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
         {!readOnly ? (
           <div className="border-t border-border/40 p-5">
             <Button type="button" onClick={save} disabled={isPending}>
@@ -122,7 +122,7 @@ function PlanningChecklistForm({
             </Button>
           </div>
         ) : null}
-      </div>
-    </PlanningWorkspaceSectionShell>
+      </WorkspacePanel>
+    </WorkspaceSectionShell>
   );
 }

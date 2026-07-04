@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { WorkspacePanel } from "@/components/workspace";
 import { useCompanyIdentity } from "@/lib/company/use-company-identity";
 
 type CompanyIdentityConflictBannerProps = {
@@ -23,10 +24,8 @@ export function CompanyIdentityConflictBanner({
   }
 
   return (
-    <div
-      role="alert"
-      className="rounded-2xl border border-warning/25 bg-warning/10 px-4 py-4 sm:px-5"
-    >
+    <div role="alert">
+      <WorkspacePanel variant="muted" padding="sm" className="border-warning/25 bg-warning/10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
           <p className="text-sm font-medium text-foreground">{title}</p>
@@ -48,6 +47,7 @@ export function CompanyIdentityConflictBanner({
           </Button>
         </div>
       </div>
+      </WorkspacePanel>
     </div>
   );
 }

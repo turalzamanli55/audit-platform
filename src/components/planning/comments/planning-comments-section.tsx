@@ -10,7 +10,14 @@ import { formatDateTime } from "@/lib/engagement/format-engagement-workspace";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import {
+  WorkspaceCard,
+  WorkspaceEmpty,
+  WorkspaceFormPanel,
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspaceSectionShell,
+} from "@/components/workspace";
 
 type PlanningCommentsSectionProps = {
   comments: PlanningCommentView[];
@@ -67,13 +74,11 @@ export function PlanningCommentsSection({
       {error ? <Alert variant="error">{error}</Alert> : null}
 
       {comments.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 py-8 text-center">
-          <p className="text-sm text-muted-foreground">{labels.emptyDescription}</p>
-        </div>
+        <WorkspaceEmpty description={labels.emptyDescription} title={labels.title} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {comments.map((comment) => (
-            <li key={comment.id} className="space-y-1 px-5 py-4">
+            <WorkspaceListItem key={comment.id} className="space-y-1">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">
                   {commentTypeLabel(comment.commentType)}
@@ -83,13 +88,13 @@ export function PlanningCommentsSection({
                 </time>
               </div>
               <p className="text-sm text-foreground">{comment.body}</p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
 
       {canComment && !plan.isArchived && !plan.isLocked && plan.planningStatus !== "pending_review" ? (
-        <div className="space-y-3 pt-2">
+        <WorkspaceFormPanel className="pt-2">
           <label htmlFor="planning-comment" className="text-sm font-medium text-foreground">
             {labels.addLabel}
           </label>
@@ -102,7 +107,7 @@ export function PlanningCommentsSection({
           <Button type="button" onClick={submit} disabled={isPending || !body.trim()}>
             {labels.addAction}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : plan.planningStatus === "pending_review" && canComment ? (
         <p className="text-sm text-muted-foreground">{labels.reviewModeNotice}</p>
       ) : null}
@@ -111,23 +116,19 @@ export function PlanningCommentsSection({
 
   if (embedded) {
     return (
-      <div className="rounded-2xl border border-border/50 bg-card/90 shadow-xs">
-        <div className="border-b border-border/40 px-4 py-3.5 sm:px-5">
-          <h3 className="text-sm font-semibold tracking-tight text-foreground">{labels.title}</h3>
-          <p className="text-xs text-muted-foreground">{labels.description}</p>
-        </div>
-        <div className="p-4 sm:p-5">{content}</div>
-      </div>
+      <WorkspaceCard title={labels.title} description={labels.description}>
+        {content}
+      </WorkspaceCard>
     );
   }
 
   return (
-    <PlanningWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={labels.title}
       description={labels.description}
       headingId="planning-comments"
     >
       {content}
-    </PlanningWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

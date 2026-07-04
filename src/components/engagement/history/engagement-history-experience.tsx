@@ -2,8 +2,8 @@ import type { EngagementActivityView } from "@/lib/engagement/load-engagement-ac
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { formatDate, formatDateTime } from "@/lib/engagement/format-engagement-workspace";
-import { EngagementWorkspaceSectionShell } from "@/components/engagement/workspace/engagement-workspace-section-shell";
-import { EngagementWorkspaceMetadataPanel } from "@/components/engagement/workspace/engagement-workspace-metadata-panel";
+import { CompanyInfoList, CompanyInfoRow } from "@/components/company";
+import { WorkspaceCard, WorkspaceSectionShell } from "@/components/workspace";
 import { EngagementActivitySummaryCard } from "./engagement-activity-summary";
 import { EngagementActivityTimeline } from "./engagement-activity-timeline";
 
@@ -24,13 +24,13 @@ export function EngagementHistoryExperience({
 }: EngagementHistoryExperienceProps) {
   return (
     <div className="space-y-10">
-      <EngagementWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={labels.title}
         description={labels.description}
         headingId="engagement-workspace-history"
       >
         <EngagementActivitySummaryCard summary={activity.summary} labels={labels.summary} />
-      </EngagementWorkspaceSectionShell>
+      </WorkspaceSectionShell>
 
       <EngagementActivityTimeline
         entries={activity.entries}
@@ -38,40 +38,34 @@ export function EngagementHistoryExperience({
         labels={labels.timeline}
       />
 
-      <EngagementWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={labels.version.title}
         description={labels.version.description}
         headingId="engagement-history-version"
       >
-        <EngagementWorkspaceMetadataPanel
-          title={labels.version.cardTitle}
-          items={[
-            { id: "version", label: labels.version.recordVersion, value: String(engagement.version) },
-            {
-              id: "created",
-              label: labels.version.created,
-              value: formatDate(engagement.createdAt, locale),
-            },
-            {
-              id: "updated",
-              label: engagementsLabels.columnUpdated,
-              value: formatDate(engagement.updatedAt, locale),
-            },
-            {
-              id: "archived",
-              label: labels.version.archived,
-              value: engagement.deletedAt
-                ? formatDateTime(engagement.deletedAt, locale)
-                : labels.version.notArchived,
-            },
-            {
-              id: "restored",
-              label: labels.version.restored,
-              value: labels.version.restoredHint,
-            },
-          ]}
-        />
-      </EngagementWorkspaceSectionShell>
+        <WorkspaceCard title={labels.version.cardTitle}>
+          <CompanyInfoList>
+            <CompanyInfoRow label={labels.version.recordVersion} value={String(engagement.version)} />
+            <CompanyInfoRow
+              label={labels.version.created}
+              value={formatDate(engagement.createdAt, locale)}
+            />
+            <CompanyInfoRow
+              label={engagementsLabels.columnUpdated}
+              value={formatDate(engagement.updatedAt, locale)}
+            />
+            <CompanyInfoRow
+              label={labels.version.archived}
+              value={
+                engagement.deletedAt
+                  ? formatDateTime(engagement.deletedAt, locale)
+                  : labels.version.notArchived
+              }
+            />
+            <CompanyInfoRow label={labels.version.restored} value={labels.version.restoredHint} />
+          </CompanyInfoList>
+        </WorkspaceCard>
+      </WorkspaceSectionShell>
     </div>
   );
 }

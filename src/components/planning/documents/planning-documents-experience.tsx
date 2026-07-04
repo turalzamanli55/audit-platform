@@ -8,7 +8,13 @@ import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import {
+  WorkspaceEmptyPanel,
+  WorkspaceFormPanel,
+  WorkspaceList,
+  WorkspaceListEntry,
+  WorkspaceSectionShell,
+} from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningDocumentsExperienceProps = {
@@ -69,7 +75,7 @@ export function PlanningDocumentsExperience({
   };
 
   return (
-    <PlanningWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={labels.title}
       description={labels.description}
       headingId="planning-documents"
@@ -77,35 +83,27 @@ export function PlanningDocumentsExperience({
       {error ? <Alert variant="error">{error}</Alert> : null}
 
       {plan.documents.length === 0 ? (
-        <div className="overflow-hidden rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 py-12 text-center">
-          <h3 className="text-lg font-semibold tracking-tight text-foreground">
-            {labels.emptyTitle}
-          </h3>
-          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-            {labels.emptyDescription}
-          </p>
-        </div>
+        <WorkspaceEmptyPanel title={labels.emptyTitle} description={labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {plan.documents.map((document) => (
-            <li key={document.id} className="flex items-center justify-between px-5 py-4">
-              <div>
-                <p className="text-sm font-medium text-foreground">{document.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  {labels.documentTypes[document.documentType as keyof typeof labels.documentTypes] ??
-                    document.documentType}
-                </p>
-              </div>
-              <span className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">
-                {labels.statuses[document.status as keyof typeof labels.statuses] ?? document.status}
-              </span>
-            </li>
+            <WorkspaceListEntry
+              key={document.id}
+              title={document.name}
+              subtitle={
+                labels.documentTypes[document.documentType as keyof typeof labels.documentTypes] ??
+                document.documentType
+              }
+              meta={
+                labels.statuses[document.status as keyof typeof labels.statuses] ?? document.status
+              }
+            />
           ))}
-        </ul>
+        </WorkspaceList>
       )}
 
       {canAdd ? (
-        <div className="mt-6 space-y-4 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel className="mt-6">
           <p className="text-sm font-medium text-foreground">{labels.addTitle}</p>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
@@ -143,8 +141,8 @@ export function PlanningDocumentsExperience({
             {labels.addAction}
           </Button>
           <p className="text-xs text-muted-foreground">{labels.metadataNotice}</p>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
-    </PlanningWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

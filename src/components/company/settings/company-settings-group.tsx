@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { WorkspacePanel } from "@/components/workspace";
 
 type CompanySettingsGroupProps = {
   title?: ReactNode;
@@ -25,9 +26,9 @@ export function CompanySettingsGroup({
           ) : null}
         </div>
       ) : null}
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-        <div className="divide-y divide-border/40">{children}</div>
-      </div>
+      <WorkspacePanel padding="none" className="divide-y divide-border/40">
+        {children}
+      </WorkspacePanel>
     </section>
   );
 }

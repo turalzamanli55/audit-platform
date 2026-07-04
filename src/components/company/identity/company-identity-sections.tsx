@@ -9,7 +9,7 @@ import {
   CompanySettingsSelectRow,
 } from "@/components/company/settings";
 import { CompanySettingsReadOnlyBadge } from "@/components/company/settings";
-import { CompanyWorkspaceSectionShell } from "@/components/company/workspace";
+import { WorkspaceSectionShell } from "@/components/workspace";
 
 type CompanyIdentityExperienceLabels = Dictionary["companies"]["identity"];
 
@@ -26,7 +26,7 @@ export function CompanyIdentityLegalSection({
   const section = labels.sections.legal;
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-identity-legal"
@@ -60,7 +60,7 @@ export function CompanyIdentityLegalSection({
           onChange={(value) => updateDraft({ description: value })}
         />
       </CompanySettingsGroup>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -77,7 +77,7 @@ export function CompanyIdentityRegistrationSection({
   const section = labels.sections.registration;
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-identity-registration"
@@ -98,7 +98,7 @@ export function CompanyIdentityRegistrationSection({
           value={company.slug}
         />
       </CompanySettingsGroup>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -123,7 +123,7 @@ export function CompanyIdentityClassificationSection({
   ];
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-identity-classification"
@@ -170,7 +170,7 @@ export function CompanyIdentityClassificationSection({
           options={industryOptions}
         />
       </CompanySettingsGroup>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -200,7 +200,7 @@ export function CompanyIdentityStatusSection({
   })();
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-identity-status"
@@ -219,6 +219,6 @@ export function CompanyIdentityStatusSection({
           value={company.isArchived ? labels.archivedYes : labels.archivedNo}
         />
       </CompanySettingsGroup>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }

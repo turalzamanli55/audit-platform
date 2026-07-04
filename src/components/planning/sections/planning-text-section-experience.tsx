@@ -7,7 +7,7 @@ import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import { WorkspaceFormPanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningTextSectionExperienceProps = {
@@ -86,42 +86,40 @@ function PlanningTextSectionForm({
   };
 
   return (
-    <PlanningWorkspaceSectionShell title={title} description={description} headingId={sectionId}>
+    <WorkspaceSectionShell title={title} description={description} headingId={sectionId}>
       {readOnly ? (
         <p className="text-sm text-muted-foreground">{labels.readOnlyNotice}</p>
       ) : null}
       {error ? <Alert variant="error">{error}</Alert> : null}
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-        <div className="space-y-4 p-5 sm:p-6">
-          <textarea
-            id={sectionId}
-            value={value}
-            onChange={(event) => {
-              setValue(event.target.value);
-              setError(null);
-            }}
-            readOnly={readOnly}
-            rows={10}
-            className="min-h-[12rem] w-full resize-y rounded-xl border border-border/60 bg-background px-4 py-3 text-sm leading-relaxed text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-70"
-            placeholder={labels.placeholder}
-          />
-          {!readOnly ? (
-            <div className="flex flex-wrap gap-3">
-              <Button type="button" onClick={save} disabled={!isDirty || isPending}>
-                {isPending ? labels.savingLabel : labels.saveLabel}
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => setValue(initialValue)}
-                disabled={!isDirty || isPending}
-              >
-                {labels.discardLabel}
-              </Button>
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </PlanningWorkspaceSectionShell>
+      <WorkspaceFormPanel>
+        <textarea
+          id={sectionId}
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.value);
+            setError(null);
+          }}
+          readOnly={readOnly}
+          rows={10}
+          className="min-h-[12rem] w-full resize-y rounded-xl border border-border/60 bg-background px-4 py-3 text-sm leading-relaxed text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-70"
+          placeholder={labels.placeholder}
+        />
+        {!readOnly ? (
+          <div className="flex flex-wrap gap-3">
+            <Button type="button" onClick={save} disabled={!isDirty || isPending}>
+              {isPending ? labels.savingLabel : labels.saveLabel}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setValue(initialValue)}
+              disabled={!isDirty || isPending}
+            >
+              {labels.discardLabel}
+            </Button>
+          </div>
+        ) : null}
+      </WorkspaceFormPanel>
+    </WorkspaceSectionShell>
   );
 }

@@ -9,7 +9,14 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { PlanningWorkspaceSectionShell } from "@/components/planning/workspace/planning-workspace-section-shell";
+import {
+  WorkspaceCard,
+  WorkspaceEmpty,
+  WorkspaceFormPanel,
+  WorkspaceList,
+  WorkspaceListEntry,
+  WorkspaceSectionShell,
+} from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningTeamExperienceProps = {
@@ -88,79 +95,66 @@ function PlanningTeamForm({
 
   return (
     <div className="space-y-10">
-      <PlanningWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={labels.title}
         description={labels.description}
         headingId="planning-team"
       >
         {error ? <Alert variant="error">{error}</Alert> : null}
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-            <div className="space-y-4 p-5 sm:p-6">
-              <h3 className="text-sm font-medium text-foreground">{labels.rosterTitle}</h3>
-              {engagement.members.length === 0 ? (
-                <p className="text-sm text-muted-foreground">{labels.rosterEmpty}</p>
-              ) : (
-                <ul className="space-y-3">
-                  {engagement.members.map((member) => (
-                    <li
-                      key={member.id}
-                      className="flex items-center justify-between rounded-xl border border-border/40 px-4 py-3"
-                    >
-                      <div>
-                        <p className="text-sm font-medium text-foreground">
-                          {member.displayName}
-                        </p>
-                        <p className="text-xs text-muted-foreground">{member.email}</p>
-                      </div>
-                      <span className="text-xs font-medium text-muted-foreground">
-                        {memberRoleLabels[member.memberRole]}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
+          <WorkspaceCard title={labels.rosterTitle}>
+            {engagement.members.length === 0 ? (
+              <WorkspaceEmpty title={labels.rosterEmpty} />
+            ) : (
+              <WorkspaceList className="rounded-xl">
+                {engagement.members.map((member) => (
+                  <WorkspaceListEntry
+                    key={member.id}
+                    title={member.displayName}
+                    subtitle={member.email}
+                    meta={memberRoleLabels[member.memberRole]}
+                  />
+                ))}
+              </WorkspaceList>
+            )}
+          </WorkspaceCard>
 
-          <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 shadow-xs">
-            <div className="space-y-4 p-5 sm:p-6">
-              <h3 className="text-sm font-medium text-foreground">{labels.capacityTitle}</h3>
-              <div className="space-y-2">
-                <label htmlFor="estimated-hours" className="text-sm font-medium text-foreground">
-                  {labels.estimatedHours}
-                </label>
-                <Input
-                  id="estimated-hours"
-                  type="number"
-                  min={0}
-                  value={estimatedHours}
-                  onChange={(event) => setEstimatedHours(event.target.value)}
-                  readOnly={readOnly}
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="team-notes" className="text-sm font-medium text-foreground">
-                  {labels.notes}
-                </label>
-                <textarea
-                  id="team-notes"
-                  value={notes}
-                  onChange={(event) => setNotes(event.target.value)}
-                  readOnly={readOnly}
-                  rows={5}
-                  className="w-full rounded-xl border border-border/60 bg-background px-4 py-3 text-sm leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-                />
-              </div>
-              {!readOnly ? (
-                <Button type="button" onClick={save} disabled={isPending}>
-                  {isPending ? labels.savingLabel : labels.saveLabel}
-                </Button>
-              ) : null}
+          <WorkspaceFormPanel>
+            <h3 className="text-sm font-medium text-foreground">{labels.capacityTitle}</h3>
+            <div className="space-y-2">
+              <label htmlFor="estimated-hours" className="text-sm font-medium text-foreground">
+                {labels.estimatedHours}
+              </label>
+              <Input
+                id="estimated-hours"
+                type="number"
+                min={0}
+                value={estimatedHours}
+                onChange={(event) => setEstimatedHours(event.target.value)}
+                readOnly={readOnly}
+              />
             </div>
-          </div>
+            <div className="space-y-2">
+              <label htmlFor="team-notes" className="text-sm font-medium text-foreground">
+                {labels.notes}
+              </label>
+              <textarea
+                id="team-notes"
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
+                readOnly={readOnly}
+                rows={5}
+                className="w-full rounded-xl border border-border/60 bg-background px-4 py-3 text-sm leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+              />
+            </div>
+            {!readOnly ? (
+              <Button type="button" onClick={save} disabled={isPending}>
+                {isPending ? labels.savingLabel : labels.saveLabel}
+              </Button>
+            ) : null}
+          </WorkspaceFormPanel>
         </div>
-      </PlanningWorkspaceSectionShell>
+      </WorkspaceSectionShell>
     </div>
   );
 }

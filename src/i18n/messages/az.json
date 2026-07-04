@@ -2640,19 +2640,19 @@
     },
     "workflow": {
       "title": "Mahiyyətllik workflow",
-      "description": "Submit, return, and approve ISA 320 materiality documentation.",
+      "description": "ISA 320 mahiyyətlilik sənədlərini təqdim edin, geri qaytarın və təsdiqləyin.",
       "submitAction": "Nəzərdən keçirməyə təqdim et",
       "returnAction": "Düzəliş üçün geri qaytar",
       "returnConfirmAction": "Geri qaytarmanı təsdiqlə",
       "approveAction": "Mahiyyətlliyi təsdiqlə",
       "cancelAction": "Ləğv et",
-      "returnNotesLabel": "Return notes",
-      "returnNotesPlaceholder": "Describe what must be revised before resubmission.",
-      "readOnlyNotice": "This materiality package is archived and read-only.",
-      "submittedNotice": "This materiality package is submitted and pending review.",
-      "approvedNotice": "This materiality package is approved.",
-      "returnedNotice": "This materiality package was returned for revision.",
-      "errorGeneric": "Unable to complete the materiality workflow action."
+      "returnNotesLabel": "Geri qaytarma qeydləri",
+      "returnNotesPlaceholder": "Yenidən təqdim etmədən əvvəl nəyin düzəldilməli olduğunu təsvir edin.",
+      "readOnlyNotice": "Bu mahiyyətlilik paketi arxivlənib və yalnız oxuma üçündür.",
+      "submittedNotice": "Bu mahiyyətlilik paketi təqdim edilib və yoxlama gözləyir.",
+      "approvedNotice": "Bu mahiyyətlilik paketi təsdiqlənib.",
+      "returnedNotice": "Bu mahiyyətlilik paketi reviziya üçün geri qaytarılıb.",
+      "errorGeneric": "Mahiyyətlilik iş axını əməliyyatını tamamlamaq mümkün olmadı."
     },
     "empty": {
       "title": "Mahiyyətllik not initiated",
@@ -2940,25 +2940,25 @@
     },
     "versions": {
       "title": "Versiyalar",
-      "description": "Review version snapshots of the materiality package.",
-      "emptyTitle": "No versions",
-      "emptyDescription": "Version snapshots are created when materiality is revised or approved."
+      "description": "Mahiyyətlilik paketinin versiya anlıq görüntülərinə baxın.",
+      "emptyTitle": "Versiya yoxdur",
+      "emptyDescription": "Mahiyyətlilik reviziya edildikdə və ya təsdiqləndikdə versiya anlıq görüntüləri yaradılır."
     },
     "comments": {
       "title": "Şərhlər",
-      "description": "Capture review and internal comments related to materiality.",
-      "emptyTitle": "No comments",
+      "description": "Mahiyyətliliklə bağlı yoxlama və daxili şərhləri qeydə alın.",
+      "emptyTitle": "Şərh yoxdur",
       "emptyDescription": "Şərhlər appear here once added.",
       "bodyPlaceholder": "Şərh əlavə et",
       "addAction": "Şərh əlavə et"
     },
     "history": {
       "title": "Tarixçə",
-      "description": "Read-only timeline of materiality activity.",
-      "emptyTitle": "No materiality activity",
+      "description": "Mahiyyətlilik fəaliyyətinin yalnız oxuma üçün xronologiyası.",
+      "emptyTitle": "Mahiyyətlilik fəaliyyəti yoxdur",
       "emptyDescription": "Mahiyyətllik activity will appear here as changes are recorded.",
-      "versionLabel": "Package version",
-      "updatedLabel": "Updated",
+      "versionLabel": "Paket versiyası",
+      "updatedLabel": "Yenilənib",
       "actions": {
         "materiality.created": "Mahiyyətllik package created",
         "materiality.updated": "Mahiyyətllik package updated",
@@ -2967,24 +2967,24 @@
         "materiality.submitted": "Mahiyyətllik package submitted",
         "materiality.returned": "Mahiyyətllik package returned",
         "materiality.approved": "Mahiyyətllik package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
+        "materiality.benchmark.added": "Müqayisə göstəricisi əlavə edildi",
+        "materiality.benchmark.updated": "Müqayisə göstəricisi yeniləndi",
+        "materiality.calculation.recorded": "Hesablama qeydə alındı",
+        "materiality.threshold.updated": "Hədd yeniləndi",
+        "materiality.comment.added": "Şərh əlavə edildi",
+        "materiality.version.created": "Versiya yaradıldı"
       }
     },
     "settings": {
       "title": "Parametrlər",
-      "description": "Archive or restore this materiality package.",
+      "description": "Bu mahiyyətlilik paketini arxivləşdirin və ya bərpa edin.",
       "archiveAction": "Mahiyyətllik paketini arxivləşdir",
-      "archiveConfirmAction": "Confirm archive",
+      "archiveConfirmAction": "Arxivləşdirməni təsdiqləyin",
       "restoreAction": "Mahiyyətllik paketini bərpa et",
-      "restoreConfirmAction": "Confirm restore",
+      "restoreConfirmAction": "Bərpanı təsdiqləyin",
       "cancelAction": "Ləğv et",
-      "archivedBanner": "This materiality package is archived.",
-      "readOnlyNotice": "You have view-only access to materiality settings."
+      "archivedBanner": "Bu mahiyyətlilik paketi arxivlənib.",
+      "readOnlyNotice": "Mahiyyətlilik parametrlərinə yalnız baxış hüququnuz var."
     },
     "states": {
       "loadingTitle": "Loading materiality",

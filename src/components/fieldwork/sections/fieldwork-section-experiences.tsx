@@ -25,16 +25,15 @@ import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
 import { FieldworkCreateExperience } from "@/components/fieldwork/create/fieldwork-create-experience";
-import { FieldworkWorkspaceSectionShell } from "@/components/fieldwork/workspace/fieldwork-workspace-section-shell";
-
-function EmptyPanel({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 py-10 text-center">
-      <h3 className="text-lg font-semibold tracking-tight text-foreground">{title}</h3>
-      <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
+import {
+  WorkspaceDataList,
+  WorkspaceEmptyPanel,
+  WorkspaceFormPanel,
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspacePanel,
+  WorkspaceSectionShell,
+} from "@/components/workspace";
 
 type SectionProps = {
   locale?: string;
@@ -69,11 +68,11 @@ export function FieldworkProgramExperience(props: SectionProps) {
   const { labels, fieldworkLabels } = props;
 
   return (
-    <FieldworkWorkspaceSectionShell title={labels.title} description={labels.description} headingId="fieldwork-program">
+    <WorkspaceSectionShell title={labels.title} description={labels.description} headingId="fieldwork-program">
       {!fieldwork.program ? (
-        <EmptyPanel title={labels.emptyTitle} description={labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={labels.emptyTitle} description={labels.emptyDescription} />
       ) : (
-        <div className="space-y-4 rounded-2xl border border-border/50 bg-card/80 p-5">
+        <WorkspacePanel className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-lg font-semibold text-foreground">{fieldwork.program.title}</h3>
             <span className="text-sm text-muted-foreground">
@@ -87,9 +86,9 @@ export function FieldworkProgramExperience(props: SectionProps) {
           <p className="text-sm text-muted-foreground">
             {fieldwork.program.groups.length} procedure groups · {fieldwork.procedures.length} procedures
           </p>
-        </div>
+        </WorkspacePanel>
       )}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -98,13 +97,13 @@ export function FieldworkProcedureGroupsExperience(props: SectionProps) {
   if (typeof fieldwork !== "object" || !("procedureGroups" in fieldwork)) return fieldwork;
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-procedure-groups">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-procedure-groups">
       {fieldwork.procedureGroups.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {fieldwork.procedureGroups.map((group) => (
-            <li key={group.id} className="space-y-1 px-5 py-4">
+            <WorkspaceListItem key={group.id} className="space-y-1">
               <div className="flex items-center justify-between gap-2">
                 <p className="font-medium text-foreground">{group.name}</p>
                 <span className="text-sm text-muted-foreground">{group.progressPct}%</span>
@@ -115,11 +114,11 @@ export function FieldworkProcedureGroupsExperience(props: SectionProps) {
               <p className="text-xs text-muted-foreground">
                 {group.procedures.length} procedures
               </p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -127,7 +126,7 @@ export function FieldworkProceduresExperience(props: SectionProps & { locale: st
   const fieldwork = useFieldworkOrEmpty(props);
   const searchParams = useSearchParams();
   const highlightId = searchParams.get("procedure");
-  const rowRefs = useRef<Record<string, HTMLLIElement | null>>({});
+  const rowRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     if (!highlightId || typeof fieldwork !== "object" || !("procedures" in fieldwork)) return;
@@ -145,33 +144,36 @@ export function FieldworkProceduresExperience(props: SectionProps & { locale: st
   if (typeof fieldwork !== "object" || !("procedures" in fieldwork)) return fieldwork;
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-procedures">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-procedures">
       {fieldwork.procedures.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {fieldwork.procedures.map((procedure) => (
-            <li
+            <WorkspaceListItem
               key={procedure.id}
-              ref={(node) => {
-                rowRefs.current[procedure.id] = node;
-              }}
-              className="rounded-lg transition-shadow"
+              className="rounded-lg p-0 transition-shadow hover:bg-transparent"
             >
-              <FieldworkProcedureRow
-                packageId={fieldwork.id}
-                procedure={procedure}
-                isArchived={fieldwork.isArchived}
-                canAssign={props.canAssign ?? false}
-                canUpdate={props.canUpdate ?? false}
-                canReview={props.canReview ?? false}
-                fieldworkLabels={props.fieldworkLabels}
-              />
-            </li>
+              <div
+                ref={(node) => {
+                  rowRefs.current[procedure.id] = node;
+                }}
+              >
+                <FieldworkProcedureRow
+                  packageId={fieldwork.id}
+                  procedure={procedure}
+                  isArchived={fieldwork.isArchived}
+                  canAssign={props.canAssign ?? false}
+                  canUpdate={props.canUpdate ?? false}
+                  canReview={props.canReview ?? false}
+                  fieldworkLabels={props.fieldworkLabels}
+                />
+              </div>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -250,12 +252,12 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
   };
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-working-papers">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-working-papers">
       {error ? <Alert variant="error">{error}</Alert> : null}
       {fieldwork.workingPapers.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <div className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList as="div" className="mb-6">
           {fieldwork.workingPapers.map((paper) => (
             <div key={paper.id}>
               <FieldworkWorkingPaperRow
@@ -312,10 +314,10 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
               ) : null}
             </div>
           ))}
-        </div>
+        </WorkspaceList>
       )}
       {!fieldwork.isArchived && fieldwork.procedures.length > 0 ? (
-        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel>
           <label className="text-sm font-medium text-foreground">{wpLabels.procedureLabel}</label>
           <select
             className="h-10 w-full rounded-lg border border-border/60 bg-background px-3 text-sm"
@@ -337,22 +339,22 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
           <Button type="button" onClick={addPaper} disabled={isPending || !title.trim() || !procedureId}>
             {props.fieldworkLabels.actions.addWorkingPaper}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
       {fieldwork.tickmarkLibrary.length > 0 ? (
-        <div className="mt-6 rounded-2xl border border-border/50 bg-card/40 p-5">
+        <WorkspacePanel className="mt-6 bg-card/40">
           <h3 className="text-sm font-semibold text-foreground">{wpLabels.libraryTitle}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{wpLabels.libraryDescription}</p>
-          <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
+          <WorkspaceDataList className="mt-3 space-y-1 text-sm text-muted-foreground">
             {fieldwork.tickmarkLibrary.map((entry) => (
-              <li key={entry.id}>
+              <div key={entry.id}>
                 <span className="font-medium text-foreground">{entry.symbol}</span> — {entry.meaning}
-              </li>
+              </div>
             ))}
-          </ul>
-        </div>
+          </WorkspaceDataList>
+        </WorkspacePanel>
       ) : null}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -436,15 +438,15 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
   };
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-evidence">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-evidence">
       {error ? <Alert variant="error">{error}</Alert> : null}
       {downloadError ? <Alert variant="error">{downloadError}</Alert> : null}
       {fieldwork.evidence.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList className="mb-6">
           {fieldwork.evidence.map((item) => (
-            <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
+            <WorkspaceListItem key={item.id} className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="font-medium text-foreground">{item.name}</p>
                 <p className="text-xs text-muted-foreground">{item.documentType}</p>
@@ -462,12 +464,12 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
                   </Button>
                 ) : null}
               </div>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {!fieldwork.isArchived ? (
-        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel>
           <Input
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -496,9 +498,9 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
           <Button type="button" onClick={add} disabled={isPending || !name.trim()}>
             {file ? props.fieldworkLabels.actions.uploadEvidence : props.fieldworkLabels.actions.addEvidence}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -525,24 +527,24 @@ export function FieldworkFindingsExperience(props: SectionProps) {
   };
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-findings">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-findings">
       {error ? <Alert variant="error">{error}</Alert> : null}
       {fieldwork.findings.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList className="mb-6">
           {fieldwork.findings.map((finding) => (
-            <li key={finding.id} className="px-5 py-4">
+            <WorkspaceListItem key={finding.id}>
               <p className="font-medium text-foreground">{finding.title}</p>
               <p className="text-xs text-muted-foreground">
                 {finding.severity} · {props.fieldworkLabels.findingStatuses[finding.findingStatus]}
               </p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {!fieldwork.isArchived ? (
-        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel>
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -551,9 +553,9 @@ export function FieldworkFindingsExperience(props: SectionProps) {
           <Button type="button" onClick={add} disabled={isPending || !title.trim()}>
             {props.fieldworkLabels.actions.addFinding}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -594,24 +596,24 @@ function FieldworkNotesSection({
   };
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId={`fieldwork-notes-${noteType}`}>
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId={`fieldwork-notes-${noteType}`}>
       {error ? <Alert variant="error">{error}</Alert> : null}
       {filtered.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="mb-6 divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList className="mb-6">
           {filtered.map((note) => (
-            <li key={note.id} className="space-y-1 px-5 py-4">
+            <WorkspaceListItem key={note.id} className="space-y-1">
               <time className="text-xs text-muted-foreground">
                 {formatDateTime(note.createdAt, props.locale)}
               </time>
               <p className="text-sm text-foreground">{note.body}</p>
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {!fieldwork.isArchived ? (
-        <div className="space-y-3 rounded-2xl border border-border/50 bg-card/60 p-5">
+        <WorkspaceFormPanel>
           <Input
             value={body}
             onChange={(e) => setBody(e.target.value)}
@@ -620,9 +622,9 @@ function FieldworkNotesSection({
           <Button type="button" onClick={submit} disabled={isPending || !body.trim()}>
             {props.fieldworkLabels.actions.addNote}
           </Button>
-        </div>
+        </WorkspaceFormPanel>
       ) : null}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -698,13 +700,13 @@ export function FieldworkHistoryExperience(
   const fieldwork = props.plan;
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-history">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-history">
       {props.activity.entries.length === 0 ? (
-        <EmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
+        <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <ul className="divide-y divide-border/40 overflow-hidden rounded-2xl border border-border/50 bg-card/80">
+        <WorkspaceList>
           {props.activity.entries.map((entry) => (
-            <li key={entry.id} className="space-y-1 px-5 py-4">
+            <WorkspaceListItem key={entry.id} className="space-y-1">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-sm font-medium text-foreground">
                   {formatFieldworkActivityAction(entry.action, props.fieldworkLabels.history.actions)}
@@ -716,9 +718,9 @@ export function FieldworkHistoryExperience(
               {entry.summary ? (
                 <p className="text-sm text-muted-foreground">{entry.summary}</p>
               ) : null}
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
       {fieldwork ? (
         <p className="text-sm text-muted-foreground">
@@ -726,7 +728,7 @@ export function FieldworkHistoryExperience(
           {fieldwork.progressPct}%
         </p>
       ) : null}
-    </FieldworkWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
 
@@ -810,20 +812,20 @@ export function FieldworkSettingsExperience(
   };
 
   return (
-    <FieldworkWorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-settings">
+    <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-settings">
       {error ? <Alert variant="error">{error}</Alert> : null}
       {!fieldwork.isArchived ? (
-        <div className="mb-6 space-y-3 rounded-2xl border border-border/50 bg-card/80 p-5">
+        <WorkspacePanel className="mb-6 space-y-3">
           <h3 className="text-sm font-semibold text-foreground">{props.labels.tickmarkLibraryTitle}</h3>
           <p className="text-sm text-muted-foreground">{props.labels.tickmarkLibraryDescription}</p>
           {fieldwork.tickmarkLibrary.length > 0 ? (
-            <ul className="space-y-1 text-sm text-muted-foreground">
+            <WorkspaceDataList className="space-y-1 text-sm text-muted-foreground">
               {fieldwork.tickmarkLibrary.map((entry) => (
-                <li key={entry.id}>
+                <div key={entry.id}>
                   <span className="font-medium text-foreground">{entry.symbol}</span> — {entry.meaning}
-                </li>
+                </div>
               ))}
-            </ul>
+            </WorkspaceDataList>
           ) : null}
           <div className="flex flex-wrap gap-2">
             <Input value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder={props.labels.tickmarkSymbol} />
@@ -832,9 +834,9 @@ export function FieldworkSettingsExperience(
               {props.labels.addTickmark}
             </Button>
           </div>
-        </div>
+        </WorkspacePanel>
       ) : null}
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/80 p-5">
+      <WorkspacePanel>
         {fieldwork.isArchived ? (
           <>
             <Alert variant="warning" title={lifecycle.archivedBannerTitle}>
@@ -880,7 +882,7 @@ export function FieldworkSettingsExperience(
         ) : (
           <p className="text-sm text-muted-foreground">{props.fieldworkLabels.settings.readOnlyNotice}</p>
         )}
-      </div>
-    </FieldworkWorkspaceSectionShell>
+      </WorkspacePanel>
+    </WorkspaceSectionShell>
   );
 }

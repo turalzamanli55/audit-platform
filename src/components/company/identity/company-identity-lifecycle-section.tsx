@@ -6,7 +6,7 @@ import { Alert } from "@/components/ui";
 import { useCompanyIdentity } from "@/lib/company/use-company-identity";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { CompanySettingsGroup } from "@/components/company/settings";
-import { CompanyWorkspaceSectionShell } from "@/components/company/workspace";
+import { WorkspaceFormPanel, WorkspaceSectionShell } from "@/components/workspace";
 import { CompanyLifecycleConfirmationPanel } from "./company-lifecycle-confirmation-panel";
 
 type CompanyIdentityLifecycleSectionProps = {
@@ -28,22 +28,20 @@ export function CompanyIdentityLifecycleSection({ labels }: CompanyIdentityLifec
 
   if (!canAdminister) {
     return (
-      <CompanyWorkspaceSectionShell
+      <WorkspaceSectionShell
         title={section.title}
         description={section.readOnlyDescription}
         headingId="company-identity-lifecycle"
       >
-        <CompanySettingsGroup>
-          <p className="px-4 py-5 text-sm leading-relaxed text-muted-foreground sm:px-5">
-            {section.readOnlyNotice}
-          </p>
-        </CompanySettingsGroup>
-      </CompanyWorkspaceSectionShell>
+        <WorkspaceFormPanel>
+          <p className="text-sm leading-relaxed text-muted-foreground">{section.readOnlyNotice}</p>
+        </WorkspaceFormPanel>
+      </WorkspaceSectionShell>
     );
   }
 
   return (
-    <CompanyWorkspaceSectionShell
+    <WorkspaceSectionShell
       title={section.title}
       description={section.description}
       headingId="company-identity-lifecycle"
@@ -113,6 +111,6 @@ export function CompanyIdentityLifecycleSection({ labels }: CompanyIdentityLifec
           />
         ) : null}
       </div>
-    </CompanyWorkspaceSectionShell>
+    </WorkspaceSectionShell>
   );
 }
