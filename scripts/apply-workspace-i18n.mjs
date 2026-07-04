@@ -4836,10 +4836,10 @@ function applyNamespacePatches(localeCode, locale, en) {
   const patches = EMBEDDED_NAMESPACE_PATCHES[localeCode];
   if (!patches) return 0;
   let updated = 0;
-  for (const module of MODULES) {
-    const modulePatch = patches[module];
-    const enModule = en[module];
-    const localeModule = locale[module];
+  for (const moduleName of MODULES) {
+    const modulePatch = patches[moduleName];
+    const enModule = en[moduleName];
+    const localeModule = locale[moduleName];
     if (!modulePatch || !enModule || !localeModule) continue;
     for (const ns of NAMESPACE_NAMES) {
       const patchNs = modulePatch[ns];
@@ -4915,10 +4915,10 @@ function applyPatches(localeCode) {
   const patches = EMBEDDED_PATCHES[localeCode];
   let updated = 0;
 
-  for (const module of MODULES) {
-    const patch = patches[module]?.workspace;
-    const enWs = en[module]?.workspace;
-    const localeWs = locale[module]?.workspace;
+  for (const moduleName of MODULES) {
+    const patch = patches[moduleName]?.workspace;
+    const enWs = en[moduleName]?.workspace;
+    const localeWs = locale[moduleName]?.workspace;
     if (!patch || !enWs || !localeWs) continue;
 
     if (patch.commandCenter) {
@@ -4929,7 +4929,7 @@ function applyPatches(localeCode) {
       }
     }
 
-    if (NAV_GROUP_MODULES.has(module) && patch.navGroups) {
+    if (NAV_GROUP_MODULES.has(moduleName) && patch.navGroups) {
       if (!localeWs.navGroups) localeWs.navGroups = {};
       const before = JSON.stringify(localeWs.navGroups);
       localeWs.navGroups = { ...localeWs.navGroups, ...structuredClone(patch.navGroups) };
@@ -4938,7 +4938,7 @@ function applyPatches(localeCode) {
       }
     }
 
-    if (CONDITIONAL_MODULES.has(module)) {
+    if (CONDITIONAL_MODULES.has(moduleName)) {
       updated += applyConditionalWorkspaceKeys(localeWs, enWs, patch, en);
     }
   }

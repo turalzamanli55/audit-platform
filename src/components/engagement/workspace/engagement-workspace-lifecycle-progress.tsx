@@ -9,11 +9,12 @@ type EngagementWorkspaceLifecycleProgressProps = {
 };
 
 export function EngagementWorkspaceLifecycleProgress({
-  lifecycleStatus: _lifecycleStatus,
+  lifecycleStatus,
   lifecycleLabel,
   progressLabel,
   percent,
 }: EngagementWorkspaceLifecycleProgressProps) {
+  void lifecycleStatus;
   const clamped = Math.min(100, Math.max(0, percent));
 
   return (

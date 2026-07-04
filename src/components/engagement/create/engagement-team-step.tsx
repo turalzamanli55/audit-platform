@@ -1,7 +1,7 @@
 "use client";
 
+import { WorkspacePanel } from "@/components/workspace";
 import { Avatar } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
 import { ENGAGEMENT_MEMBER_ROLES } from "@/constants/engagement";
 import type {
   EngagementWizardDraft,
@@ -70,9 +70,10 @@ export function EngagementTeamStep({
         const isSelected = selectedRole !== null;
 
         return (
-          <Card
+          <WorkspacePanel
             key={member.userId}
-            className="flex flex-col gap-4 border-border/50 bg-card/80 p-5 shadow-xs sm:flex-row sm:items-center sm:justify-between"
+            padding="md"
+            className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
           >
             <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-4">
               <input
@@ -110,7 +111,7 @@ export function EngagementTeamStep({
                 ))}
               </select>
             ) : null}
-          </Card>
+          </WorkspacePanel>
         );
       })}
     </div>
