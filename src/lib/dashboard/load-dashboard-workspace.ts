@@ -15,7 +15,9 @@ import {
   type DashboardEngagementPreview,
   type DashboardFeed,
 } from "./load-dashboard-feed";
+import { loadDashboardCommandCenter } from "./load-dashboard-command-center";
 import { resolveTimeOfDay } from "./workspace-greeting";
+import type { DashboardCommandCenterData } from "@/types/dashboard-command-center";
 
 export type DashboardWorkspaceCompany = {
   id: string;
@@ -51,6 +53,7 @@ export type DashboardWorkspaceViewModel = {
   };
   feed: DashboardFeed;
   recentEngagements: DashboardEngagementPreview[];
+  commandCenter: DashboardCommandCenterData;
 };
 
 function resolveTimeOfDayFromLabels(
@@ -123,6 +126,19 @@ export async function loadDashboardWorkspace(
     materialityMetrics,
   });
 
+  const commandCenter = await loadDashboardCommandCenter({
+    locale,
+    labels,
+    companyCount,
+    engagements: engagementItems,
+    fieldworkMetrics,
+    riskMetrics: riskAssessmentMetrics,
+    materialityMetrics,
+    planningMetrics: feed.planningMetrics,
+    activity: feed.activity,
+    workspaceId: bootstrap?.currentWorkspaceId ?? null,
+  });
+
   const openTasksCount =
     (fieldworkMetrics?.pendingReview ?? 0) +
     (fieldworkMetrics?.assignedToMe ?? 0) +
@@ -146,6 +162,7 @@ export async function loadDashboardWorkspace(
     continueCompany: activeCompany,
     recentEngagements: feed.recentEngagements,
     feed,
+    commandCenter,
     kpi: {
       companies: String(companyCount),
       engagements: String(engagementCount),
