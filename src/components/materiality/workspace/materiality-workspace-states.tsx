@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { EngagementLoadingSkeleton } from "@/components/engagement";
-import { WorkspaceEmptyPanel, WorkspaceError } from "@/components/workspace";
+import { WorkspaceEmptyPanel, WorkspaceError, WorkspacePanel } from "@/components/workspace";
 
 export function MaterialityWorkspaceError({
   title = "Unable to load materiality workspace",
@@ -71,9 +71,9 @@ export function MaterialityWorkspaceArchiveNotice({
 
 export function MaterialityWorkspaceReadonlyNotice({ message }: { message: string }) {
   return (
-    <div className="rounded-2xl border border-border/50 bg-muted/30 px-5 py-4">
+    <WorkspacePanel variant="muted" padding="md">
       <p className="text-sm text-muted-foreground">{message}</p>
-    </div>
+    </WorkspacePanel>
   );
 }
 

@@ -24,6 +24,10 @@ export const workspaceTokens = {
   navItemInactive: "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
   navGroupLabel:
     "mb-1.5 hidden px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground lg:block",
+  contextChip:
+    "inline-flex min-h-10 items-center gap-2 rounded-xl border border-border/50 bg-card/90 px-3.5 py-2 text-sm",
+  listRow:
+    "flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-border/50 bg-muted/10 px-3 py-2.5 transition-colors hover:border-border-strong hover:bg-card/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
   actionLink:
     "inline-flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/90 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
   moduleTile:

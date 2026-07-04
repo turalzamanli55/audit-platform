@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/icons";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardWidgetId, DashboardWidgetPreference } from "@/types/dashboard-preferences";
+import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 
 type DashboardWidgetChromeProps = {
@@ -115,7 +116,7 @@ export function DashboardWidgetChrome({
         <button
           type="button"
           onClick={onCollapse}
-          className="flex w-full items-center justify-between rounded-2xl border border-border/50 bg-card/70 px-5 py-4 text-left text-sm font-medium text-foreground hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className={`flex w-full items-center justify-between ${workspaceTokens.card} px-5 py-4 text-left text-sm font-medium text-foreground hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
         >
           {label}
           <span className="text-muted-foreground">{labels.expand}</span>

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { WorkspaceFormPanel } from "@/components/workspace";
 
 type WizardStepPanelProps = {
   title: ReactNode;
@@ -26,9 +27,7 @@ export function WizardStepPanel({
         <h2 className="text-lg font-semibold tracking-tight text-foreground">{title}</h2>
         {description ? <p className="text-sm text-muted-foreground">{description}</p> : null}
       </div>
-      <div className="space-y-5 rounded-2xl border border-border/50 bg-card/60 p-5 shadow-xs sm:p-6">
-        {children}
-      </div>
+      <WorkspaceFormPanel>{children}</WorkspaceFormPanel>
     </section>
   );
 }

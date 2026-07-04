@@ -1,11 +1,10 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { EmptyState } from "@/components/ui/empty-state";
 import { IconBell } from "@/components/ui/icons";
 import { useNotifications } from "@/providers";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
-import { WorkspacePanel } from "./workspace-section";
+import { WorkspaceEmpty, WorkspaceList, WorkspaceListItem, WorkspacePanel } from "@/components/workspace";
 
 type WorkspaceNotificationsCardProps = {
   labels: DashboardWorkspaceLabels["notifications"];
@@ -31,26 +30,18 @@ export function WorkspaceNotificationsCard({ labels }: WorkspaceNotificationsCar
       </div>
 
       {preview.length === 0 ? (
-        <EmptyState
-          title={labels.emptyTitle}
-          description={labels.emptyDescription}
-          icon={<IconBell />}
-          className="py-10"
-        />
+        <WorkspaceEmpty title={labels.emptyTitle} description={labels.emptyDescription} />
       ) : (
-        <ul className="space-y-2">
+        <WorkspaceList>
           {preview.map((notification) => (
-            <li
-              key={notification.id}
-              className="rounded-2xl border border-border/40 bg-muted/10 px-4 py-3"
-            >
+            <WorkspaceListItem key={notification.id}>
               <p className="text-sm font-medium text-foreground">{notification.title}</p>
               {notification.message ? (
                 <p className="mt-1 text-xs text-muted-foreground">{notification.message}</p>
               ) : null}
-            </li>
+            </WorkspaceListItem>
           ))}
-        </ul>
+        </WorkspaceList>
       )}
     </WorkspacePanel>
   );

@@ -6,7 +6,7 @@ type WorkspacePanelProps = {
   children: ReactNode;
   className?: string;
   padding?: "none" | "sm" | "md";
-  variant?: "default" | "muted" | "form";
+  variant?: "default" | "muted" | "form" | "soft" | "elevated";
 };
 
 const paddingClasses = {
@@ -19,6 +19,8 @@ const variantClasses = {
   default: workspaceTokens.card,
   muted: "rounded-2xl border border-border/50 bg-muted/10",
   form: "rounded-2xl border border-border/50 bg-card/90 shadow-xs",
+  soft: "rounded-2xl border border-border/30 bg-muted/15",
+  elevated: "rounded-2xl border border-border/40 bg-surface-elevated shadow-sm",
 };
 
 export function WorkspacePanel({

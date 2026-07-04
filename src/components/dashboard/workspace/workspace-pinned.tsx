@@ -6,6 +6,7 @@ import { IconBriefcase, IconStar } from "@/components/ui/icons";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardEngagementPreview } from "@/lib/dashboard/load-dashboard-feed";
 import type { DashboardWorkspaceCompany } from "@/lib/dashboard/load-dashboard-workspace";
+import { workspaceTokens } from "@/components/workspace";
 import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
 
 type WorkspacePinnedProps = {
@@ -53,7 +54,7 @@ function CompanyList({
             <Link
               href={`/${locale}/app/companies/${company.slug}`}
               onClick={() => onOpenCompany(company.id)}
-              className="flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-border/40 bg-muted/10 px-3 py-2.5 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={workspaceTokens.listRow}
             >
               <Avatar name={company.name} size="sm" />
               <span className="truncate text-sm font-medium">{company.name}</span>
@@ -133,7 +134,7 @@ export function WorkspacePinned({
                 <li key={engagement.id}>
                   <Link
                     href={`/${locale}/app/engagements/${engagement.slug}`}
-                    className="flex items-center gap-3 rounded-2xl border border-border/40 bg-muted/10 px-3 py-2.5 text-sm transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className={workspaceTokens.listRow}
                   >
                     <IconBriefcase width={16} height={16} className="shrink-0 text-muted-foreground" />
                     <span className="min-w-0">

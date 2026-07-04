@@ -1,6 +1,6 @@
 "use client";
 
-import { WorkspacePanel } from "@/components/workspace";
+import { WorkspaceEmpty, WorkspacePanel } from "@/components/workspace";
 import { Avatar } from "@/components/ui/avatar";
 import { ENGAGEMENT_MEMBER_ROLES } from "@/constants/engagement";
 import type {
@@ -53,12 +53,7 @@ export function EngagementTeamStep({
 
   if (members.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-border/70 bg-muted/15 px-6 py-8">
-        <p className="text-sm font-medium text-foreground">{labels.teamEmptyTitle}</p>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {labels.teamEmptyDescription}
-        </p>
-      </div>
+      <WorkspaceEmpty title={labels.teamEmptyTitle} description={labels.teamEmptyDescription} />
     );
   }
 

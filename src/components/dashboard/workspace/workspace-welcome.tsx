@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { IconBuilding, IconBriefcase } from "@/components/ui/icons";
+import { workspaceTokens } from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { cn } from "@/lib/ui/cn";
 
@@ -34,7 +35,7 @@ export function WorkspaceContextHeader({
         {chips.map((chip) => (
           <div
             key={chip.label}
-            className="inline-flex min-h-10 items-center gap-2 rounded-2xl border border-border/50 bg-card/70 px-3.5 py-2 text-sm shadow-xs"
+            className={workspaceTokens.contextChip}
           >
             <span className="text-muted-foreground">{chip.icon}</span>
             <span className="text-muted-foreground">{chip.label}</span>
@@ -59,7 +60,7 @@ export function WorkspaceWelcome({ greeting, summary, motivation }: WorkspaceWel
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[2rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/20 p-8 sm:p-10 lg:p-12",
+        "relative overflow-hidden rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-6 sm:p-8",
         "shadow-sm ds-animate-fade-in motion-reduce:animate-none",
       )}
     >
