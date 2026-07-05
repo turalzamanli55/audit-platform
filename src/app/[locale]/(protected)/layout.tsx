@@ -142,6 +142,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
               commandPalette: dictionary.shell.commandPalette,
               expandSidebar: dictionary.shell.expandSidebar,
               collapseSidebar: dictionary.shell.collapseSidebar,
+              navMainAria: dictionary.dashboard.navMainAria,
             }}
             dashboardCommands={dictionary.dashboardWorkspace.personalization.commands}
           >

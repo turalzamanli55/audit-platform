@@ -9,6 +9,7 @@ import { defaultLocale, isValidLocale } from "@/i18n";
 
 type DashboardNavProps = {
   items: DashboardNavItem[] | unknown;
+  navAriaLabel?: string;
 };
 
 function resolveLocale(pathname: string): string {
@@ -26,18 +27,18 @@ function navIcon(href: string) {
   return <IconLayoutDashboard width={18} height={18} />;
 }
 
-export function DashboardNav({ items }: DashboardNavProps) {
+export function DashboardNav({ items, navAriaLabel }: DashboardNavProps) {
   const pathname = usePathname();
   const locale = resolveLocale(pathname);
   const { sidebarCollapsed } = useShell();
   const safeItems = coerceDashboardNavItems(items);
 
   if (safeItems.length === 0) {
-    return <nav className="space-y-1" aria-label="Main navigation" />;
+    return <nav className="space-y-1" aria-label={navAriaLabel} />;
   }
 
   return (
-    <nav className="space-y-1" aria-label="Main navigation">
+    <nav className="space-y-1" aria-label={navAriaLabel}>
       {safeItems.map((item) => (
         <ShellNavItem
           key={item.href}

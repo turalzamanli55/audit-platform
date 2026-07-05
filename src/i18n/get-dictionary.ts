@@ -693,6 +693,7 @@ export type Dictionary = {
     themeDark: string;
     theme: string;
     navDashboard: string;
+    navMainAria: string;
     userCardTitle: string;
     roles: string;
     permissions: string;

@@ -46,6 +46,7 @@ type AppShellExperienceLabels = ShellHeaderActionsLabels & {
   };
   expandSidebar: string;
   collapseSidebar: string;
+  navMainAria: string;
 };
 
 type AppShellExperienceProps = {
@@ -286,7 +287,7 @@ export function AppShellExperience({
           engagementEmptyHint={engagementEmptyHint}
         />
       }
-      sidebar={<DashboardNav items={navItems} />}
+      sidebar={<DashboardNav items={navItems} navAriaLabel={labels.navMainAria} />}
       sidebarDesktopFooter={
         <ShellSidebarUserFooter
           expandLabel={labels.expandSidebar}
