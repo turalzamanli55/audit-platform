@@ -15,6 +15,8 @@ import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { PlanningCommentView } from "@/lib/planning/load-planning-comments";
 import type { PlanningCommandCenterData } from "@/types/planning-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { workspaceTokens } from "@/components/workspace";
+import { cn } from "@/lib/ui/cn";
 import { IconArrowRight, IconUsers } from "@/components/ui/icons";
 
 type PlanningCommandCenterProps = {
@@ -49,10 +51,10 @@ export function PlanningCommandCenter({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-5 sm:p-6">
+      <section className={workspaceTokens.commandHero}>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className={workspaceTokens.heroEyebrow}>
               {cc.heroTitle}
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -69,9 +71,9 @@ export function PlanningCommandCenter({
                 </Badge>
               ) : null}
             </div>
-            <div className="h-2 max-w-md overflow-hidden rounded-full bg-muted">
+            <div className={cn(workspaceTokens.progressTrack, "max-w-md")}>
               <div
-                className="h-full rounded-full bg-primary transition-all"
+                className={workspaceTokens.progressFill}
                 style={{ width: `${progressPct}%` }}
                 role="progressbar"
                 aria-valuenow={progressPct}
@@ -90,7 +92,7 @@ export function PlanningCommandCenter({
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl border border-border/50 px-3 py-2 text-xs font-medium transition-colors hover:bg-card sm:text-sm"
+                className={cn(workspaceTokens.actionLink, "px-3 py-2 text-xs sm:text-sm")}
               >
                 {link.label}
               </Link>
