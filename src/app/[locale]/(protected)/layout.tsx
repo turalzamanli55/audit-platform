@@ -137,6 +137,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
               openSearch: dictionary.shell.openSearch,
               workspaceRequired: dictionary.shell.workspaceRequired,
               accessRestricted: dictionary.shell.accessRestricted,
+              toggleTheme: dictionary.shell.toggleTheme,
               drawerContextTitle: dictionary.shell.drawerContextTitle,
               searchPlaceholder: dictionary.shell.searchPlaceholder,
               commandPalette: dictionary.shell.commandPalette,

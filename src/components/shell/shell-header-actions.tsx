@@ -25,6 +25,7 @@ export type ShellHeaderActionsLabels = {
   theme: string;
   themeLight: string;
   themeDark: string;
+  toggleTheme: string;
   language: string;
   notifications: string;
   notificationsEmpty: string;
@@ -151,6 +152,7 @@ export function ShellHeaderActions({
         label={labels.theme}
         themeLight={labels.themeLight}
         themeDark={labels.themeDark}
+        toggleTheme={labels.toggleTheme}
       />
 
       <UserMenu labels={userLabels} />

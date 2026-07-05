@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { IconX } from "@/components/ui/icons";
 import { useShell } from "./shell-provider";
+import { useShellLabels } from "@/i18n/use-shell-labels";
 import { cn } from "@/lib/ui/cn";
 import { Portal } from "@/components/ui/portal";
 
@@ -24,6 +25,7 @@ export function AppSidebar({
   desktopFooter,
   mobileDrawerContext,
 }: AppSidebarProps) {
+  const shell = useShellLabels();
   const { sidebarCollapsed, mobileNavOpen, setMobileNavOpen } = useShell();
 
   return (
@@ -36,7 +38,7 @@ export function AppSidebar({
             : "var(--ds-sidebar-width)",
         }}
         role="navigation"
-        aria-label="Main navigation"
+        aria-label={shell.mainNavigation}
       >
         <div
           className={cn(
@@ -67,14 +69,14 @@ export function AppSidebar({
             <button
               type="button"
               className="absolute inset-0 bg-overlay"
-              aria-label="Close navigation overlay"
+              aria-label={shell.closeNavigationOverlay}
               onClick={() => setMobileNavOpen(false)}
             />
             <aside
               id="mobile-navigation"
               className="absolute inset-y-0 left-0 flex w-[min(100%,18rem)] flex-col bg-sidebar text-sidebar-foreground shadow-xl ds-animate-slide-up ds-safe-top ds-safe-bottom"
               role="navigation"
-              aria-label="Main navigation"
+              aria-label={shell.mainNavigation}
             >
               <div className="flex h-[var(--ds-header-height)] shrink-0 items-center justify-between border-b border-sidebar-border px-4">
                 <div className="min-w-0 flex-1">{brand}</div>
@@ -83,7 +85,7 @@ export function AppSidebar({
                   size="icon"
                   onClick={() => setMobileNavOpen(false)}
                   className="text-sidebar-muted hover:bg-sidebar-accent/60"
-                  aria-label="Close navigation"
+                  aria-label={shell.closeNavigation}
                 >
                   <IconX />
                 </Button>

@@ -1,7 +1,10 @@
 import { EngagementBreadcrumb } from "@/components/engagement";
-import { Alert } from "@/components/ui";
-import { Badge } from "@/components/ui/badge";
-import { WorkspaceBackLink, WorkspaceHero } from "@/components/workspace";
+import {
+  WorkspaceBackLink,
+  WorkspaceHero,
+  WorkspaceNoticeBanner,
+  WorkspaceStatusBadge,
+} from "@/components/workspace";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 
@@ -49,9 +52,10 @@ export function PlanningWorkspaceHero({
       }
       alerts={
         plan?.isArchived ? (
-          <Alert variant="warning" title={labels.archivedTitle}>
-            {labels.archivedDescription}
-          </Alert>
+          <WorkspaceNoticeBanner
+            title={labels.archivedTitle}
+            description={labels.archivedDescription}
+          />
         ) : null
       }
       eyebrow={labels.heroEyebrow}
@@ -68,16 +72,24 @@ export function PlanningWorkspaceHero({
       badges={
         plan ? (
           <>
-            <Badge variant={statusVariant}>{planningLabels.statuses[plan.planningStatus]}</Badge>
+            <WorkspaceStatusBadge
+              label={planningLabels.statuses[plan.planningStatus]}
+              variant={statusVariant}
+            />
             {plan.isLocked ? (
-              <Badge variant="outline">{planningLabels.workflow.lockedBadge}</Badge>
+              <WorkspaceStatusBadge
+                label={planningLabels.workflow.lockedBadge}
+                variant="outline"
+              />
             ) : null}
-            <Badge variant="outline">
-              {labels.status.checklistProgress}: {plan.checklistProgress}%
-            </Badge>
-            <Badge variant="outline">
-              {labels.status.kpiProgress}: {plan.kpiProgress}%
-            </Badge>
+            <WorkspaceStatusBadge
+              label={`${labels.status.checklistProgress}: ${plan.checklistProgress}%`}
+              variant="outline"
+            />
+            <WorkspaceStatusBadge
+              label={`${labels.status.kpiProgress}: ${plan.kpiProgress}%`}
+              variant="outline"
+            />
           </>
         ) : undefined
       }

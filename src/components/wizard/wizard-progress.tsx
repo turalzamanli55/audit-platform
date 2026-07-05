@@ -1,4 +1,7 @@
+"use client";
+
 import { Fragment } from "react";
+import { useUiLabels } from "@/i18n/use-shell-labels";
 import type { WizardStepDefinition } from "./wizard-shell";
 
 type WizardProgressProps = {
@@ -8,8 +11,10 @@ type WizardProgressProps = {
 };
 
 export function WizardProgress({ steps, currentStep, onStepSelect }: WizardProgressProps) {
+  const { wizardProgress } = useUiLabels();
+
   return (
-    <nav aria-label="Wizard progress" className="mb-8 overflow-x-auto">
+    <nav aria-label={wizardProgress} className="mb-8 overflow-x-auto">
       <ol className="flex w-max min-w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
         {steps.map((step, index) => {
           const stepNumber = index + 1;

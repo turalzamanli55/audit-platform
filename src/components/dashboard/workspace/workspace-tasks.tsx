@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { EmptyState } from "@/components/ui/empty-state";
-import { IconCheck } from "@/components/ui/icons";
+import { WorkspaceEmpty, WorkspaceStatusBadge } from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
 
@@ -14,7 +12,9 @@ type WorkspaceTasksProps = {
 export function WorkspaceTasks({ labels, items, embedded = false }: WorkspaceTasksProps) {
   const content =
     items.length === 0 ? (
-      <EmptyState title={labels.emptyTitle} description={labels.emptyDescription} icon={<IconCheck />} />
+      <WorkspacePanel className="p-8" variant={embedded ? "soft" : "default"}>
+        <WorkspaceEmpty title={labels.emptyTitle} description={labels.emptyDescription} />
+      </WorkspacePanel>
     ) : (
       <WorkspacePanel className="space-y-3 p-0" variant={embedded ? "soft" : "default"}>
         <ul className="divide-y divide-border/50">
@@ -28,8 +28,8 @@ export function WorkspaceTasks({ labels, items, embedded = false }: WorkspaceTas
                   ) : null}
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant={task.priorityVariant}>{task.priority}</Badge>
-                  <Badge variant={task.statusVariant}>{task.status}</Badge>
+                  <WorkspaceStatusBadge label={task.priority} variant={task.priorityVariant} />
+                  <WorkspaceStatusBadge label={task.status} variant={task.statusVariant} />
                 </div>
               </>
             );

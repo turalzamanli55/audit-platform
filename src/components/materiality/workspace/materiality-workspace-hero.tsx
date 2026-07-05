@@ -1,7 +1,10 @@
 import { EngagementBreadcrumb } from "@/components/engagement";
-import { Alert } from "@/components/ui";
-import { Badge } from "@/components/ui/badge";
-import { WorkspaceBackLink, WorkspaceHero } from "@/components/workspace";
+import {
+  WorkspaceBackLink,
+  WorkspaceHero,
+  WorkspaceNoticeBanner,
+  WorkspaceStatusBadge,
+} from "@/components/workspace";
 import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import { formatCurrency } from "@/lib/materiality/materiality-workspace-display";
 
@@ -64,14 +67,16 @@ export function MaterialityWorkspaceHero({
   const alerts = (
     <>
       {!planningApproved ? (
-        <Alert variant="warning" title={labels.planningGateTitle}>
-          {labels.planningGateDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.planningGateTitle}
+          description={labels.planningGateDescription}
+        />
       ) : null}
       {materiality?.isArchived ? (
-        <Alert variant="warning" title={labels.archivedTitle}>
-          {labels.archivedDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.archivedTitle}
+          description={labels.archivedDescription}
+        />
       ) : null}
     </>
   );
@@ -102,20 +107,22 @@ export function MaterialityWorkspaceHero({
       badges={
         materiality ? (
           <>
-            <Badge variant={statusVariant}>
-              {statusLabels[materiality.packageStatus] ?? materiality.packageStatus}
-            </Badge>
-            <Badge variant="outline">
-              {labels.summaryOverall}:{" "}
-              {formatCurrency(materiality.overallMateriality, materiality.currencyCode)}
-            </Badge>
+            <WorkspaceStatusBadge
+              label={statusLabels[materiality.packageStatus] ?? materiality.packageStatus}
+              variant={statusVariant}
+            />
+            <WorkspaceStatusBadge
+              label={`${labels.summaryOverall}: ${formatCurrency(materiality.overallMateriality, materiality.currencyCode)}`}
+              variant="outline"
+            />
             {materiality.pendingReviewCount > 0 ? (
-              <Badge variant="warning">
-                {labels.summaryPendingReviewBadge.replace(
+              <WorkspaceStatusBadge
+                label={labels.summaryPendingReviewBadge.replace(
                   "{count}",
                   String(materiality.pendingReviewCount),
                 )}
-              </Badge>
+                variant="warning"
+              />
             ) : null}
           </>
         ) : undefined

@@ -1,5 +1,4 @@
-import { EmptyState } from "@/components/ui/empty-state";
-import { IconClock } from "@/components/ui/icons";
+import { WorkspaceEmpty } from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { cn } from "@/lib/ui/cn";
 import { WorkspacePanel, WorkspaceSection } from "./workspace-section";
@@ -19,7 +18,9 @@ export function WorkspaceActivity({ labels, items }: WorkspaceActivityProps) {
   return (
     <WorkspaceSection title={labels.title} description={labels.description}>
       {items.length === 0 ? (
-        <EmptyState title={labels.emptyTitle} description={labels.emptyDescription} icon={<IconClock />} />
+        <WorkspacePanel className="p-8">
+          <WorkspaceEmpty title={labels.emptyTitle} description={labels.emptyDescription} />
+        </WorkspacePanel>
       ) : (
         <WorkspacePanel className="p-0">
           <ol className="divide-y divide-border/50">

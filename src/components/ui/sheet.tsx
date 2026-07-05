@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { IconX } from "./icons";
 import { Portal } from "./portal";
+import { useUiLabels } from "@/i18n/use-shell-labels";
 import { cn } from "@/lib/ui/cn";
 
 type SheetProps = {
@@ -22,6 +23,7 @@ export function Sheet({
   children,
   side = "right",
 }: SheetProps) {
+  const ui = useUiLabels();
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,7 +51,7 @@ export function Sheet({
         <button
           type="button"
           className="absolute inset-0 bg-overlay ds-animate-fade-in"
-          aria-label="Close panel"
+          aria-label={ui.closePanel}
           onClick={() => onOpenChange(false)}
         />
         <div
@@ -74,7 +76,7 @@ export function Sheet({
               type="button"
               onClick={() => onOpenChange(false)}
               className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-              aria-label="Close"
+              aria-label={ui.close}
             >
               <IconX />
             </button>

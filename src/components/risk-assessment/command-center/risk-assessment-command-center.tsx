@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import {
+  WorkspaceProgressBar,
+  WorkspaceStatusBadge,
+  WorkspaceTable,
+  workspaceTokens,
+} from "@/components/workspace";
 import {
   CommandCard,
   CommandEmpty,
@@ -13,7 +18,6 @@ import { RiskAssessmentWorkflowPanel } from "@/components/risk-assessment/workfl
 import { useRiskAssessmentWorkspace } from "@/lib/risk-assessment/use-risk-assessment-workspace";
 import type { RiskAssessmentCommandCenterData } from "@/types/risk-assessment-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 import { IconArrowRight } from "@/components/ui/icons";
 
@@ -54,33 +58,20 @@ export function RiskAssessmentCommandCenter({
               {cc.heroTitle}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <Badge variant={commandCenter.riskHealthVariant}>{commandCenter.riskHealth}</Badge>
-              <Badge variant={commandCenter.approvalVariant}>{commandCenter.approvalStatus}</Badge>
-              <Badge variant="outline">
-                {cc.packageVersion} {riskAssessment.assessmentVersion}
-              </Badge>
+              <WorkspaceStatusBadge label={commandCenter.riskHealth} variant={commandCenter.riskHealthVariant} />
+              <WorkspaceStatusBadge label={commandCenter.approvalStatus} variant={commandCenter.approvalVariant} />
+              <WorkspaceStatusBadge
+                label={`${cc.packageVersion} ${riskAssessment.assessmentVersion}`}
+                variant="outline"
+              />
               {commandCenter.lastUpdated ? (
-                <Badge variant="secondary" className="rounded-full">
-                  {cc.lastUpdate}: {commandCenter.lastUpdated}
-                </Badge>
+                <WorkspaceStatusBadge
+                  label={`${cc.lastUpdate}: ${commandCenter.lastUpdated}`}
+                  variant="secondary"
+                />
               ) : null}
             </div>
-            <div className="max-w-md space-y-1.5">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{labels.progress}</span>
-                <span className="font-medium tabular-nums text-foreground">{progressPct}%</span>
-              </div>
-              <div className={workspaceTokens.progressTrack}>
-                <div
-                  className={workspaceTokens.progressFill}
-                  style={{ width: `${progressPct}%` }}
-                  role="progressbar"
-                  aria-valuenow={progressPct}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                />
-              </div>
-            </div>
+            <WorkspaceProgressBar label={labels.progress} value={progressPct} />
           </div>
           <div className="flex flex-wrap gap-2">
             {[
@@ -163,42 +154,48 @@ export function RiskAssessmentCommandCenter({
             {commandCenter.matrixPreview.length === 0 ? (
               <CommandEmpty title={cc.emptyMatrix} description={cc.emptyMatrixDescription} />
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[28rem] text-sm">
-                  <thead>
-                    <tr className="border-b border-border/50 text-left text-[10px] uppercase tracking-wide text-muted-foreground">
-                      <th className="px-3 py-2 font-medium">{cc.accountColumn}</th>
-                      <th className="px-3 py-2 font-medium">{cc.assertionColumn}</th>
-                      <th className="px-3 py-2 font-medium">{cc.ratingColumn}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {commandCenter.matrixPreview.map((cell) => (
-                      <tr key={cell.id} className="border-b border-border/30 last:border-0">
-                        <td className="px-3 py-2.5 font-medium text-foreground">{cell.accountName}</td>
-                        <td className="px-3 py-2.5 text-muted-foreground">{cell.assertion}</td>
-                        <td className="px-3 py-2.5">
-                          <Link
-                            href={cell.href}
-                            className={`inline-flex items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium ${
-                              cell.rating === "significant"
-                                ? "border-destructive/30 bg-destructive/10 text-destructive"
-                                : cell.rating === "high"
-                                  ? "border-warning/30 bg-warning/10 text-warning"
-                                  : "border-border/50 bg-muted/30 text-foreground"
-                            }`}
-                          >
-                            {cell.ratingLabel}
-                            {cell.isSignificant ? (
-                              <span className="text-[10px] text-destructive">●</span>
-                            ) : null}
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <WorkspaceTable
+                columns={[
+                  {
+                    id: "account",
+                    header: cc.accountColumn,
+                    cell: (cell) => cell.accountName,
+                    className: "font-medium text-foreground",
+                  },
+                  {
+                    id: "assertion",
+                    header: cc.assertionColumn,
+                    cell: (cell) => cell.assertion,
+                    className: "text-muted-foreground",
+                  },
+                  {
+                    id: "rating",
+                    header: cc.ratingColumn,
+                    cell: (cell) => (
+                      <Link
+                        href={cell.href}
+                        className={`inline-flex items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium ${
+                          cell.rating === "significant"
+                            ? "border-destructive/30 bg-destructive/10 text-destructive"
+                            : cell.rating === "high"
+                              ? "border-warning/30 bg-warning/10 text-warning"
+                              : "border-border/50 bg-muted/30 text-foreground"
+                        }`}
+                      >
+                        {cell.ratingLabel}
+                        {cell.isSignificant ? (
+                          <span className="text-[10px] text-destructive">●</span>
+                        ) : null}
+                      </Link>
+                    ),
+                  },
+                ]}
+                rows={commandCenter.matrixPreview}
+                keyFn={(cell) => cell.id}
+                emptyTitle={cc.emptyMatrix}
+                emptyDescription={cc.emptyMatrixDescription}
+                className="min-w-[28rem]"
+              />
             )}
             <Link
               href={`${base}/matrix`}
@@ -239,9 +236,7 @@ export function RiskAssessmentCommandCenter({
                       title={risk.title}
                       subtitle={`${risk.riskType} · ${risk.residualRating ?? cc.notSet}`}
                       badge={
-                        <Badge variant="destructive" className="text-[10px]">
-                          {cc.significant}
-                        </Badge>
+                        <WorkspaceStatusBadge label={cc.significant} variant="destructive" />
                       }
                     />
                   </li>
@@ -348,9 +343,7 @@ export function RiskAssessmentCommandCenter({
                 {commandCenter.reviewComments.map((comment) => (
                   <li key={comment.id} className="py-3">
                     <div className="flex items-center justify-between gap-2">
-                      <Badge variant="outline" className="text-[10px]">
-                        {comment.type}
-                      </Badge>
+                      <WorkspaceStatusBadge label={comment.type} variant="outline" />
                       <time className="text-[10px] text-muted-foreground">{comment.time}</time>
                     </div>
                     <p className="mt-2 text-sm text-foreground">{comment.body}</p>

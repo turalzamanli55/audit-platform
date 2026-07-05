@@ -30,6 +30,7 @@
     "openSearch": "Open search",
     "drawerContextTitle": "Workspace",
     "commandPalette": {
+      "title": "Command palette",
       "placeholder": "Search pages, actions, and settings…",
       "empty": "No matching commands",
       "recent": "Recent",
@@ -47,7 +48,19 @@
     "accessRestricted": "Access restricted",
     "expandSidebar": "Expand sidebar",
     "collapseSidebar": "Collapse sidebar",
-    "dashboardHome": "Dashboard"
+    "dashboardHome": "Dashboard",
+    "mainNavigation": "Main navigation",
+    "closeNavigationOverlay": "Close navigation overlay",
+    "closeNavigation": "Close navigation",
+    "openNavigation": "Open navigation",
+    "toggleTheme": "Toggle theme"
+  },
+  "ui": {
+    "closeDialog": "Close dialog",
+    "close": "Close",
+    "closePanel": "Close panel",
+    "dismiss": "Dismiss",
+    "wizardProgress": "Wizard progress"
   },
   "auth": {
     "signIn": "Sign in",

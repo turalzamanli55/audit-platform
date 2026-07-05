@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { EngagementBreadcrumb } from "@/components/engagement";
-import { Alert } from "@/components/ui";
-import { Badge } from "@/components/ui/badge";
-import { WorkspaceBackLink, WorkspaceHero } from "@/components/workspace";
+import {
+  WorkspaceBackLink,
+  WorkspaceHero,
+  WorkspaceNoticeBanner,
+  WorkspaceStatusBadge,
+} from "@/components/workspace";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
@@ -49,14 +52,16 @@ export function FieldworkWorkspaceHero({
   const alerts = (
     <>
       {!planningApproved ? (
-        <Alert variant="warning" title={labels.planningGateTitle}>
-          {labels.planningGateDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.planningGateTitle}
+          description={labels.planningGateDescription}
+        />
       ) : null}
       {fieldwork?.isArchived ? (
-        <Alert variant="warning" title={labels.archivedTitle}>
-          {labels.archivedDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.archivedTitle}
+          description={labels.archivedDescription}
+        />
       ) : null}
     </>
   );
@@ -83,19 +88,26 @@ export function FieldworkWorkspaceHero({
       badges={
         fieldwork ? (
           <>
-            <Badge variant={statusVariant}>
-              {fieldworkLabels.statuses[fieldwork.packageStatus]}
-            </Badge>
-            <Badge variant="outline">
-              {labels.summaryProcedures}: {completeCount}/{fieldwork.procedures.length}
-            </Badge>
-            <Badge variant="outline">
-              {labels.summaryFindings}: {openFindings}
-            </Badge>
+            <WorkspaceStatusBadge
+              label={fieldworkLabels.statuses[fieldwork.packageStatus]}
+              variant={statusVariant}
+            />
+            <WorkspaceStatusBadge
+              label={`${labels.summaryProcedures}: ${completeCount}/${fieldwork.procedures.length}`}
+              variant="outline"
+            />
+            <WorkspaceStatusBadge
+              label={`${labels.summaryFindings}: ${openFindings}`}
+              variant="outline"
+            />
             {fieldwork.pendingReviewCount > 0 ? (
-              <Badge variant="warning">
-                {formatFieldworkCount(labels.summaryPendingReviewBadge, fieldwork.pendingReviewCount)}
-              </Badge>
+              <WorkspaceStatusBadge
+                label={formatFieldworkCount(
+                  labels.summaryPendingReviewBadge,
+                  fieldwork.pendingReviewCount,
+                )}
+                variant="warning"
+              />
             ) : null}
           </>
         ) : undefined

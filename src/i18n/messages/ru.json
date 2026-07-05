@@ -30,6 +30,7 @@
     "openSearch": "Открыть поиск",
     "drawerContextTitle": "Рабочее пространство",
     "commandPalette": {
+      "title": "Палитра команд",
       "placeholder": "Поиск страниц, действий и настроек…",
       "empty": "Команды не найдены",
       "recent": "Недавние",
@@ -47,7 +48,19 @@
     "accessRestricted": "Доступ ограничен",
     "expandSidebar": "Развернуть боковую панель",
     "collapseSidebar": "Свернуть боковую панель",
-    "dashboardHome": "Панель управления"
+    "dashboardHome": "Панель управления",
+    "mainNavigation": "Основная навигация",
+    "closeNavigationOverlay": "Закрыть оверлей навигации",
+    "closeNavigation": "Закрыть навигацию",
+    "openNavigation": "Открыть навигацию",
+    "toggleTheme": "Переключить тему"
+  },
+  "ui": {
+    "closeDialog": "Закрыть диалог",
+    "close": "Закрыть",
+    "closePanel": "Закрыть панель",
+    "dismiss": "Закрыть",
+    "wizardProgress": "Прогресс мастера"
   },
   "auth": {
     "signIn": "Войти",

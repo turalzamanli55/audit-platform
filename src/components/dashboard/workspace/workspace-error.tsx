@@ -1,4 +1,4 @@
-import { ErrorState } from "@/components/ui/empty-state";
+import { WorkspaceError } from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 
 type DashboardWorkspaceErrorProps = {
@@ -7,8 +7,6 @@ type DashboardWorkspaceErrorProps = {
 
 export function DashboardWorkspaceError({ labels }: DashboardWorkspaceErrorProps) {
   return (
-    <div className="mx-auto w-full max-w-3xl py-10">
-      <ErrorState title={labels.title} description={labels.description} />
-    </div>
+    <WorkspaceError title={labels.title} description={labels.description} />
   );
 }

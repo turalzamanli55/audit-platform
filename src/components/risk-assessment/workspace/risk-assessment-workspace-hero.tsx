@@ -1,7 +1,10 @@
 import { EngagementBreadcrumb } from "@/components/engagement";
-import { Alert } from "@/components/ui";
-import { Badge } from "@/components/ui/badge";
-import { WorkspaceBackLink, WorkspaceHero } from "@/components/workspace";
+import {
+  WorkspaceBackLink,
+  WorkspaceHero,
+  WorkspaceNoticeBanner,
+  WorkspaceStatusBadge,
+} from "@/components/workspace";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 
 type RiskAssessmentHeroLabels = {
@@ -67,19 +70,22 @@ export function RiskAssessmentWorkspaceHero({
   const alerts = (
     <>
       {!planningApproved ? (
-        <Alert variant="warning" title={labels.planningGateTitle}>
-          {labels.planningGateDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.planningGateTitle}
+          description={labels.planningGateDescription}
+        />
       ) : null}
       {!materialityApproved ? (
-        <Alert variant="warning" title={labels.materialityGateTitle}>
-          {labels.materialityGateDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.materialityGateTitle}
+          description={labels.materialityGateDescription}
+        />
       ) : null}
       {riskAssessment?.isArchived ? (
-        <Alert variant="warning" title={labels.archivedTitle}>
-          {labels.archivedDescription}
-        </Alert>
+        <WorkspaceNoticeBanner
+          title={labels.archivedTitle}
+          description={labels.archivedDescription}
+        />
       ) : null}
     </>
   );
@@ -106,19 +112,24 @@ export function RiskAssessmentWorkspaceHero({
       badges={
         riskAssessment ? (
           <>
-            <Badge variant={statusVariant}>
-              {statusLabels[riskAssessment.assessmentStatus] ?? riskAssessment.assessmentStatus}
-            </Badge>
-            <Badge variant="outline">
-              {labels.summarySignificant}: {riskAssessment.significantRiskCount}
-            </Badge>
+            <WorkspaceStatusBadge
+              label={
+                statusLabels[riskAssessment.assessmentStatus] ?? riskAssessment.assessmentStatus
+              }
+              variant={statusVariant}
+            />
+            <WorkspaceStatusBadge
+              label={`${labels.summarySignificant}: ${riskAssessment.significantRiskCount}`}
+              variant="outline"
+            />
             {riskAssessment.pendingReviewCount > 0 ? (
-              <Badge variant="warning">
-                {labels.summaryPendingReviewBadge.replace(
+              <WorkspaceStatusBadge
+                label={labels.summaryPendingReviewBadge.replace(
                   "{count}",
                   String(riskAssessment.pendingReviewCount),
                 )}
-              </Badge>
+                variant="warning"
+              />
             ) : null}
           </>
         ) : undefined

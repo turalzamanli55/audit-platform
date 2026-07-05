@@ -30,6 +30,7 @@
     "openSearch": "Axtarışı aç",
     "drawerContextTitle": "İş sahəsi",
     "commandPalette": {
+      "title": "Əmr paneli",
       "placeholder": "Səhifələr, əməliyyatlar və parametrlər axtar…",
       "empty": "Uyğun əmr tapılmadı",
       "recent": "Son",
@@ -47,7 +48,19 @@
     "accessRestricted": "Giriş məhdudlaşdırılıb",
     "expandSidebar": "Yan paneli genişlət",
     "collapseSidebar": "Yan paneli yığ",
-    "dashboardHome": "İdarə paneli"
+    "dashboardHome": "İdarə paneli",
+    "mainNavigation": "Əsas naviqasiya",
+    "closeNavigationOverlay": "Naviqasiya örtüyünü bağla",
+    "closeNavigation": "Naviqasiyanı bağla",
+    "openNavigation": "Naviqasiyanı aç",
+    "toggleTheme": "Mövzunu dəyiş"
+  },
+  "ui": {
+    "closeDialog": "Dialoqu bağla",
+    "close": "Bağla",
+    "closePanel": "Paneli bağla",
+    "dismiss": "Rədd et",
+    "wizardProgress": "Sihirbaz irəliləyişi"
   },
   "auth": {
     "signIn": "Daxil ol",

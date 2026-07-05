@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/ui/cn";
 import { workspaceTokens, type WorkspaceKpiCard, type WorkspaceKpiVariant } from "./workspace-tokens";
 
@@ -156,9 +155,9 @@ export function WorkspaceListRow({
 
 export function WorkspaceModuleBadge({ label }: { label: string }) {
   return (
-    <Badge variant="secondary" className="text-[10px] font-medium uppercase tracking-wide">
+    <span className="inline-flex items-center rounded-full border border-border/60 bg-muted px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
       {label}
-    </Badge>
+    </span>
   );
 }
 

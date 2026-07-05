@@ -9,10 +9,11 @@ type ThemeSwitcherProps = {
   label: string;
   themeLight: string;
   themeDark: string;
+  toggleTheme: string;
   className?: string;
 };
 
-export function ThemeSwitcher({ label, themeLight, themeDark, className }: ThemeSwitcherProps) {
+export function ThemeSwitcher({ label, themeLight, themeDark, toggleTheme, className }: ThemeSwitcherProps) {
   const { resolvedTheme, setMode } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -27,7 +28,7 @@ export function ThemeSwitcher({ label, themeLight, themeDark, className }: Theme
       variant="ghost"
       size="icon"
       className={cn("relative h-9 w-9 shrink-0 overflow-hidden sm:h-10 sm:w-10", className)}
-      aria-label={`${label}: ${modeLabel}. Toggle theme.`}
+      aria-label={`${label}: ${modeLabel}. ${toggleTheme}.`}
       onClick={handleToggle}
     >
       <IconSun

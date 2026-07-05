@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { IconMenu } from "@/components/ui/icons";
 import { useShell } from "./shell-provider";
+import { useShellLabels } from "@/i18n/use-shell-labels";
 import { cn } from "@/lib/ui/cn";
 
 type AppHeaderProps = {
@@ -14,6 +15,7 @@ type AppHeaderProps = {
 };
 
 export function AppHeader({ mobileSearch, center, right, className }: AppHeaderProps) {
+  const shell = useShellLabels();
   const { mobileNavOpen, setMobileNavOpen } = useShell();
 
   return (
@@ -30,7 +32,7 @@ export function AppHeader({ mobileSearch, center, right, className }: AppHeaderP
           size="icon"
           className="h-9 w-9 shrink-0 sm:h-10 sm:w-10 lg:hidden"
           onClick={() => setMobileNavOpen(true)}
-          aria-label="Open navigation"
+          aria-label={shell.openNavigation}
           aria-expanded={mobileNavOpen}
           aria-controls="mobile-navigation"
         >

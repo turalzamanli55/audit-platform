@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { EmptyState } from "@/components/ui/empty-state";
+import { WorkspaceEmpty } from "@/components/workspace";
 import { IconBriefcase, IconStar } from "@/components/ui/icons";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardEngagementPreview } from "@/lib/dashboard/load-dashboard-feed";
@@ -127,7 +127,7 @@ export function WorkspacePinned({
         <WorkspacePanel className="workspace-panel">
           <h3 className="mb-4 text-sm font-medium text-foreground">{labels.recentEngagements}</h3>
           {recentEngagements.length === 0 ? (
-            <EmptyState title={labels.emptyEngagements} className="py-8" />
+            <WorkspaceEmpty title={labels.emptyEngagements} />
           ) : (
             <ul className="space-y-2">
               {recentEngagements.map((engagement) => (

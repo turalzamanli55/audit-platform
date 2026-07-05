@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import {
+  WorkspaceProgressBar,
+  WorkspaceStatusBadge,
+  WorkspaceTable,
+  workspaceTokens,
+} from "@/components/workspace";
 import {
   CommandCard,
   CommandEmpty,
@@ -13,7 +18,6 @@ import { MaterialityWorkflowPanel } from "@/components/materiality/workflow/mate
 import { useMaterialityWorkspace } from "@/lib/materiality/use-materiality-workspace";
 import type { MaterialityCommandCenterData } from "@/types/materiality-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 import { IconArrowRight } from "@/components/ui/icons";
 
@@ -73,32 +77,19 @@ export function MaterialityCommandCenter({
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant={commandCenter.approvalVariant}>{commandCenter.approvalStatus}</Badge>
-              <Badge variant="outline">
-                {cc.packageVersion} {materiality.packageVersion}
-              </Badge>
+              <WorkspaceStatusBadge label={commandCenter.approvalStatus} variant={commandCenter.approvalVariant} />
+              <WorkspaceStatusBadge
+                label={`${cc.packageVersion} ${materiality.packageVersion}`}
+                variant="outline"
+              />
               {commandCenter.lastUpdated ? (
-                <Badge variant="secondary" className="rounded-full">
-                  {cc.lastUpdate}: {commandCenter.lastUpdated}
-                </Badge>
+                <WorkspaceStatusBadge
+                  label={`${cc.lastUpdate}: ${commandCenter.lastUpdated}`}
+                  variant="secondary"
+                />
               ) : null}
             </div>
-            <div className="max-w-md space-y-1.5">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{labels.progress}</span>
-                <span className="font-medium tabular-nums text-foreground">{progressPct}%</span>
-              </div>
-              <div className={workspaceTokens.progressTrack}>
-                <div
-                  className={workspaceTokens.progressFill}
-                  style={{ width: `${progressPct}%` }}
-                  role="progressbar"
-                  aria-valuenow={progressPct}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                />
-              </div>
-            </div>
+            <WorkspaceProgressBar label={labels.progress} value={progressPct} />
           </div>
           <div className="flex flex-wrap gap-2">
             {[
@@ -185,9 +176,10 @@ export function MaterialityCommandCenter({
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <p className="text-sm font-medium text-foreground">{calc.type}</p>
-                        <Badge variant={calc.isManualOverride ? "warning" : "secondary"} className="text-[10px]">
-                          {calc.method}
-                        </Badge>
+                        <WorkspaceStatusBadge
+                          label={calc.method}
+                          variant={calc.isManualOverride ? "warning" : "secondary"}
+                        />
                       </div>
                       <p className="mt-1 text-xs text-muted-foreground">
                         {calc.input} × {calc.percentage} = {calc.result}
@@ -203,44 +195,50 @@ export function MaterialityCommandCenter({
             {commandCenter.benchmarkRanking.length === 0 ? (
               <CommandEmpty title={cc.emptyBenchmarks} description={cc.emptyBenchmarksDescription} />
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[32rem] text-sm">
-                  <thead>
-                    <tr className="border-b border-border/50 text-left text-[10px] uppercase tracking-wide text-muted-foreground">
-                      <th className="px-3 py-2 font-medium">{cc.rankColumn}</th>
-                      <th className="px-3 py-2 font-medium">{cc.benchmarkColumn}</th>
-                      <th className="px-3 py-2 font-medium">{cc.amountColumn}</th>
-                      <th className="px-3 py-2 font-medium">{cc.percentageColumn}</th>
-                      <th className="px-3 py-2 font-medium">{cc.calculatedColumn}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {commandCenter.benchmarkRanking.map((row) => (
-                      <tr
-                        key={row.id}
-                        className={`border-b border-border/30 last:border-0 ${
-                          row.isSelected ? "bg-primary/5" : ""
-                        }`}
-                      >
-                        <td className="px-3 py-2.5 text-muted-foreground">{row.rank}</td>
-                        <td className="px-3 py-2.5">
-                          <Link href={row.href} className="font-medium text-foreground hover:underline">
-                            {row.label}
-                            {row.isSelected ? (
-                              <Badge variant="success" className="ml-2 text-[10px]">
-                                {cc.selected}
-                              </Badge>
-                            ) : null}
-                          </Link>
-                        </td>
-                        <td className="px-3 py-2.5 tabular-nums text-muted-foreground">{row.amount}</td>
-                        <td className="px-3 py-2.5 tabular-nums text-muted-foreground">{row.percentage}</td>
-                        <td className="px-3 py-2.5 tabular-nums font-medium text-foreground">{row.calculated}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <WorkspaceTable
+                columns={[
+                  {
+                    id: "rank",
+                    header: cc.rankColumn,
+                    cell: (row) => row.rank,
+                    className: "text-muted-foreground",
+                  },
+                  {
+                    id: "benchmark",
+                    header: cc.benchmarkColumn,
+                    cell: (row) => (
+                      <Link href={row.href} className="font-medium text-foreground hover:underline">
+                        {row.label}
+                        {row.isSelected ? (
+                          <WorkspaceStatusBadge label={cc.selected} variant="success" />
+                        ) : null}
+                      </Link>
+                    ),
+                  },
+                  {
+                    id: "amount",
+                    header: cc.amountColumn,
+                    cell: (row) => row.amount,
+                    className: "tabular-nums text-muted-foreground",
+                  },
+                  {
+                    id: "percentage",
+                    header: cc.percentageColumn,
+                    cell: (row) => row.percentage,
+                    className: "tabular-nums text-muted-foreground",
+                  },
+                  {
+                    id: "calculated",
+                    header: cc.calculatedColumn,
+                    cell: (row) => row.calculated,
+                    className: "tabular-nums font-medium text-foreground",
+                  },
+                ]}
+                rows={commandCenter.benchmarkRanking}
+                keyFn={(row) => row.id}
+                emptyTitle={cc.emptyBenchmarks}
+                emptyDescription={cc.emptyBenchmarksDescription}
+              />
             )}
           </CommandCard>
 
@@ -261,9 +259,7 @@ export function MaterialityCommandCenter({
                       meta={calc.time}
                       badge={
                         calc.isManualOverride ? (
-                          <Badge variant="warning" className="text-[10px]">
-                            {cc.override}
-                          </Badge>
+                          <WorkspaceStatusBadge label={cc.override} variant="warning" />
                         ) : undefined
                       }
                     />
@@ -355,9 +351,7 @@ export function MaterialityCommandCenter({
                 {commandCenter.reviewComments.map((comment) => (
                   <li key={comment.id} className="py-3">
                     <div className="flex items-center justify-between gap-2">
-                      <Badge variant="outline" className="text-[10px]">
-                        {comment.type}
-                      </Badge>
+                      <WorkspaceStatusBadge label={comment.type} variant="outline" />
                       <time className="text-[10px] text-muted-foreground">{comment.time}</time>
                     </div>
                     <p className="mt-2 text-sm text-foreground">{comment.body}</p>

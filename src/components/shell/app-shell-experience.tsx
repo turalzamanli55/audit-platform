@@ -31,6 +31,7 @@ type AppShellExperienceLabels = ShellHeaderActionsLabels & {
   searchPlaceholder: string;
   drawerContextTitle: string;
   commandPalette: {
+    title: string;
     placeholder: string;
     empty: string;
     recent: string;

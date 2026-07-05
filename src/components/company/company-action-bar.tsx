@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
 
 type CompanyActionBarProps = {
   primary?: ReactNode;
@@ -16,6 +19,9 @@ export function CompanyActionBar({
   className = "",
   sticky = false,
 }: CompanyActionBarProps) {
+  const dictionary = useClientDictionary();
+  const ariaLabel = dictionary.companies.actionsAriaLabel;
+
   if (!primary && !secondary) {
     return null;
   }
@@ -28,7 +34,7 @@ export function CompanyActionBar({
           : ""
       } ${className}`}
       role="toolbar"
-      aria-label="Company actions"
+      aria-label={ariaLabel}
     >
       <div className="flex flex-wrap items-center gap-2">{secondary}</div>
       <div className="flex flex-wrap items-center gap-2 sm:justify-end">{primary}</div>

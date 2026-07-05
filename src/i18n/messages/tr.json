@@ -30,6 +30,7 @@
     "openSearch": "Aramayı aç",
     "drawerContextTitle": "Çalışma alanı",
     "commandPalette": {
+      "title": "Komut paleti",
       "placeholder": "Sayfalar, eylemler ve ayarlar ara…",
       "empty": "Eşleşen komut yok",
       "recent": "Son",
@@ -47,7 +48,19 @@
     "accessRestricted": "Erişim kısıtlı",
     "expandSidebar": "Kenar çubuğunu genişlet",
     "collapseSidebar": "Kenar çubuğunu daralt",
-    "dashboardHome": "Pano"
+    "dashboardHome": "Pano",
+    "mainNavigation": "Ana gezinme",
+    "closeNavigationOverlay": "Gezinme katmanını kapat",
+    "closeNavigation": "Gezinmeyi kapat",
+    "openNavigation": "Gezinmeyi aç",
+    "toggleTheme": "Temayı değiştir"
+  },
+  "ui": {
+    "closeDialog": "İletişim kutusunu kapat",
+    "close": "Kapat",
+    "closePanel": "Paneli kapat",
+    "dismiss": "Kapat",
+    "wizardProgress": "Sihirbaz ilerlemesi"
   },
   "auth": {
     "signIn": "Giriş yap",

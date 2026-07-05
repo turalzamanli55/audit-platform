@@ -644,6 +644,7 @@ export type Dictionary = {
     openSearch: string;
     drawerContextTitle: string;
     commandPalette: {
+      title: string;
       placeholder: string;
       empty: string;
       recent: string;
@@ -662,6 +663,18 @@ export type Dictionary = {
     expandSidebar: string;
     collapseSidebar: string;
     dashboardHome: string;
+    mainNavigation: string;
+    closeNavigationOverlay: string;
+    closeNavigation: string;
+    openNavigation: string;
+    toggleTheme: string;
+  };
+  ui: {
+    closeDialog: string;
+    close: string;
+    closePanel: string;
+    dismiss: string;
+    wizardProgress: string;
   };
   auth: {
     signIn: string;

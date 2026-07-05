@@ -20,6 +20,7 @@ export type CommandPaletteItem = {
 type CommandPaletteProps = {
   items: CommandPaletteItem[];
   labels: {
+    title: string;
     placeholder: string;
     empty: string;
     recent: string;
@@ -157,7 +158,7 @@ export function CommandPalette({ items, labels, locale }: CommandPaletteProps) {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Command palette"
+          aria-label={labels.title}
           className="relative z-10 w-full max-w-xl overflow-hidden rounded-2xl border border-border/60 bg-popover shadow-xl ds-animate-scale-in"
         >
           <div className="flex items-center gap-3 border-b border-border/60 px-4">

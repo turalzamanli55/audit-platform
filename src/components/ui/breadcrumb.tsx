@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { IconChevronLeft, IconChevronRight } from "./icons";
+import { useCommonLabels } from "@/i18n/use-common-labels";
 import { cn } from "@/lib/ui/cn";
 
 export type BreadcrumbItem = {
@@ -20,6 +23,8 @@ function Separator() {
 }
 
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
+  const { breadcrumbLabel } = useCommonLabels();
+
   if (items.length === 0) return null;
 
   const current = items[items.length - 1];
@@ -27,7 +32,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
   const backHref = ancestors.length > 0 ? ancestors[ancestors.length - 1]?.href : undefined;
 
   return (
-    <nav aria-label="Breadcrumb" className={className}>
+    <nav aria-label={breadcrumbLabel} className={className}>
       <div className="flex min-w-0 items-center gap-2 lg:hidden">
         {backHref ? (
           <Link

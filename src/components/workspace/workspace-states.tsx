@@ -2,10 +2,47 @@
 
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { EmptyState, ErrorState } from "@/components/ui/empty-state";
-import { Skeleton, SkeletonCard } from "@/components/ui/skeleton";
 import { useCommonLabels } from "@/i18n/use-common-labels";
+import { workspaceTokens } from "./workspace-tokens";
 import { cn } from "@/lib/ui/cn";
+
+function WorkspaceSkeletonBlock({ className }: { className?: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("animate-pulse rounded-xl bg-muted/80", className)}
+    />
+  );
+}
+
+function WorkspaceErrorPanel({
+  title,
+  description,
+}: {
+  title: ReactNode;
+  description?: ReactNode;
+}) {
+  return (
+    <div className="flex min-h-[12rem] flex-col items-center justify-center gap-4 rounded-2xl border border-destructive/15 bg-destructive/[0.03] px-8 py-10 text-center">
+      <div
+        aria-hidden="true"
+        className="flex h-12 w-12 items-center justify-center rounded-2xl bg-destructive/10 text-destructive"
+      >
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M11 7v5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="11" cy="15" r="0.75" fill="currentColor" />
+        </svg>
+      </div>
+      <div className="max-w-md space-y-2">
+        <p className="text-base font-medium tracking-tight text-foreground">{title}</p>
+        {description ? (
+          <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
 export function WorkspaceError({
   title,
@@ -20,7 +57,7 @@ export function WorkspaceError({
 }) {
   return (
     <div className={cn("mx-auto max-w-lg px-4 py-16 text-center", className)}>
-      <ErrorState title={title} description={description} />
+      <WorkspaceErrorPanel title={title} description={description} />
       {action ? <div className="mt-4">{action}</div> : null}
     </div>
   );
@@ -86,23 +123,54 @@ export function WorkspaceLoading({ rows = 3 }: { rows?: number }) {
   return (
     <div className="space-y-4" aria-busy="true" aria-label={loading}>
       {Array.from({ length: rows }).map((_, i) => (
-        <SkeletonCard key={i} />
+        <div key={i} className={cn(workspaceTokens.card, "p-5")}>
+          <WorkspaceSkeletonBlock className="mb-3 h-4 w-1/3" />
+          <WorkspaceSkeletonBlock className="h-3 w-full" />
+          <WorkspaceSkeletonBlock className="mt-2 h-3 w-2/3" />
+        </div>
       ))}
     </div>
   );
 }
 
 export function WorkspaceInlineLoading() {
+  const { loading } = useCommonLabels();
+
   return (
-    <div className="space-y-3 p-4" aria-busy="true">
-      <Skeleton className="h-4 w-1/3" />
-      <Skeleton className="h-3 w-full" />
-      <Skeleton className="h-3 w-2/3" />
+    <div className="space-y-3 p-4" aria-busy="true" aria-label={loading}>
+      <WorkspaceSkeletonBlock className="h-4 w-1/3" />
+      <WorkspaceSkeletonBlock className="h-3 w-full" />
+      <WorkspaceSkeletonBlock className="h-3 w-2/3" />
     </div>
   );
 }
 
-export { EmptyState as WorkspaceEmptyState, ErrorState as WorkspaceErrorState };
+export function WorkspaceEmptyState({
+  title,
+  description,
+}: {
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className={workspaceTokens.emptyInline}>
+      <p className="text-sm font-medium text-foreground">{title}</p>
+      {description ? (
+        <p className="mt-1 max-w-xs text-xs leading-relaxed text-muted-foreground">{description}</p>
+      ) : null}
+    </div>
+  );
+}
+
+export function WorkspaceErrorState({
+  title,
+  description,
+}: {
+  title: string;
+  description?: string;
+}) {
+  return <WorkspaceErrorPanel title={title} description={description} />;
+}
 
 export function WorkspaceRetryButton({
   label,

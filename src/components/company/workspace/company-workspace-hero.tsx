@@ -5,8 +5,7 @@ import {
   CompanyRestoreBanner,
   CompanyStatusBadge,
 } from "@/components/company";
-import { Badge } from "@/components/ui/badge";
-import { WorkspaceHero } from "@/components/workspace";
+import { WorkspaceHero, WorkspaceStatusBadge } from "@/components/workspace";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
 import { formatOptionalText } from "@/lib/company/format-company-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -100,15 +99,18 @@ export function CompanyWorkspaceHero({
           )}
           {companiesLabels ? (
             <>
-              <Badge variant="secondary" className="rounded-full text-xs">
-                {companiesLabels.create.frameworks[company.settings.reporting_framework]}
-              </Badge>
-              <Badge variant="secondary" className="rounded-full text-xs">
-                {company.settings.functional_currency}
-              </Badge>
-              <Badge variant="secondary" className="rounded-full text-xs">
-                {company.settings.jurisdiction}
-              </Badge>
+              <WorkspaceStatusBadge
+                label={companiesLabels.create.frameworks[company.settings.reporting_framework]}
+                variant="secondary"
+              />
+              <WorkspaceStatusBadge
+                label={company.settings.functional_currency}
+                variant="secondary"
+              />
+              <WorkspaceStatusBadge
+                label={company.settings.jurisdiction}
+                variant="secondary"
+              />
             </>
           ) : null}
         </>

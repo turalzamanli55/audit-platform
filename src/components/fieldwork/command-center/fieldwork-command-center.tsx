@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { WorkspaceProgressBar, WorkspaceStatusBadge, workspaceTokens } from "@/components/workspace";
 import {
   CommandCard,
   CommandEmpty,
@@ -12,7 +12,6 @@ import { PlanningWorkflowPipeline } from "@/components/planning/command-center/p
 import { useFieldworkWorkspace } from "@/lib/fieldwork/use-fieldwork-workspace";
 import type { FieldworkCommandCenterData } from "@/types/fieldwork-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 import {
   formatFieldworkDocumentType,
@@ -52,37 +51,26 @@ export function FieldworkCommandCenter({
               {cc.heroTitle}
             </p>
             <div className="flex flex-wrap items-center gap-3">
-              <Badge variant={commandCenter.fieldworkHealthVariant}>
-                {commandCenter.fieldworkHealth}
-              </Badge>
-              <Badge variant="outline">
-                {fieldworkLabels.statuses[fieldwork.packageStatus]}
-              </Badge>
-              <Badge variant="outline">
-                {cc.programVersion} {fieldwork.programVersion}
-              </Badge>
+              <WorkspaceStatusBadge
+                label={commandCenter.fieldworkHealth}
+                variant={commandCenter.fieldworkHealthVariant}
+              />
+              <WorkspaceStatusBadge
+                label={fieldworkLabels.statuses[fieldwork.packageStatus]}
+                variant="outline"
+              />
+              <WorkspaceStatusBadge
+                label={`${cc.programVersion} ${fieldwork.programVersion}`}
+                variant="outline"
+              />
               {commandCenter.lastUpdated ? (
-                <Badge variant="secondary" className="rounded-full">
-                  {cc.lastUpdate}: {commandCenter.lastUpdated}
-                </Badge>
+                <WorkspaceStatusBadge
+                  label={`${cc.lastUpdate}: ${commandCenter.lastUpdated}`}
+                  variant="secondary"
+                />
               ) : null}
             </div>
-            <div className="max-w-md space-y-1.5">
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{labels.summaryProgress}</span>
-                <span className="font-medium tabular-nums text-foreground">{progressPct}%</span>
-              </div>
-              <div className={workspaceTokens.progressTrack}>
-                <div
-                  className={workspaceTokens.progressFill}
-                  style={{ width: `${progressPct}%` }}
-                  role="progressbar"
-                  aria-valuenow={progressPct}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                />
-              </div>
-            </div>
+            <WorkspaceProgressBar label={labels.summaryProgress} value={progressPct} />
           </div>
           <div className="flex flex-wrap gap-2">
             {[
@@ -311,9 +299,10 @@ export function FieldworkCommandCenter({
                       meta={paper.referenceCode ?? undefined}
                       badge={
                         paper.tickmarkCount > 0 ? (
-                          <Badge variant="outline" className="text-[10px]">
-                            {paper.tickmarkCount} {cc.tickmarkAbbrev}
-                          </Badge>
+                          <WorkspaceStatusBadge
+                            label={`${paper.tickmarkCount} ${cc.tickmarkAbbrev}`}
+                            variant="outline"
+                          />
                         ) : undefined
                       }
                     />

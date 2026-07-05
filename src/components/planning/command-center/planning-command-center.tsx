@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { WorkspaceProgressBar, WorkspaceStatusBadge, workspaceTokens } from "@/components/workspace";
 import {
   CommandCard,
   CommandEmpty,
@@ -15,7 +15,6 @@ import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { PlanningCommentView } from "@/lib/planning/load-planning-comments";
 import type { PlanningCommandCenterData } from "@/types/planning-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 import { IconArrowRight, IconUsers } from "@/components/ui/icons";
 
@@ -61,26 +60,18 @@ export function PlanningCommandCenter({
               <span className="text-3xl font-semibold tabular-nums tracking-tight text-foreground">
                 {progressPct}%
               </span>
-              <Badge variant={commandCenter.approvalVariant}>{commandCenter.approvalStatus}</Badge>
+              <WorkspaceStatusBadge
+                label={commandCenter.approvalStatus}
+                variant={commandCenter.approvalVariant}
+              />
               {commandCenter.deadlineLabel ? (
-                <Badge
+                <WorkspaceStatusBadge
+                  label={`${commandCenter.isOverdue ? cc.overdue : cc.deadline}: ${commandCenter.deadlineLabel}`}
                   variant={commandCenter.isOverdue ? "destructive" : "secondary"}
-                  className="rounded-full"
-                >
-                  {commandCenter.isOverdue ? cc.overdue : cc.deadline}: {commandCenter.deadlineLabel}
-                </Badge>
+                />
               ) : null}
             </div>
-            <div className={cn(workspaceTokens.progressTrack, "max-w-md")}>
-              <div
-                className={workspaceTokens.progressFill}
-                style={{ width: `${progressPct}%` }}
-                role="progressbar"
-                aria-valuenow={progressPct}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              />
-            </div>
+            <WorkspaceProgressBar label={labels.status.progressLabel} value={progressPct} className="max-w-md" />
           </div>
           <div className="flex flex-wrap gap-2">
             {[
@@ -148,9 +139,10 @@ export function PlanningCommandCenter({
                       href={item.href}
                       title={item.label}
                       badge={
-                        <Badge variant={item.completed ? "success" : "warning"} className="text-[10px]">
-                          {item.completed ? cc.complete : cc.open}
-                        </Badge>
+                        <WorkspaceStatusBadge
+                          label={item.completed ? cc.complete : cc.open}
+                          variant={item.completed ? "success" : "warning"}
+                        />
                       }
                     />
                   </li>

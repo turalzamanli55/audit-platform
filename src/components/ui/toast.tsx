@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { IconAlertCircle, IconCheck, IconInfo, IconX } from "./icons";
+import { useShellLabels, useUiLabels } from "@/i18n/use-shell-labels";
 import { cn } from "@/lib/ui/cn";
 
 export type ToastVariant = "success" | "error" | "info" | "warning";
@@ -57,6 +58,7 @@ function variantClasses(variant: ToastVariant) {
 }
 
 function ToastCard({ item, onDismiss }: { item: ToastItem; onDismiss: (id: string) => void }) {
+  const ui = useUiLabels();
   const variant = item.variant ?? "info";
 
   return (
@@ -88,7 +90,7 @@ function ToastCard({ item, onDismiss }: { item: ToastItem; onDismiss: (id: strin
         type="button"
         onClick={() => onDismiss(item.id)}
         className="rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
-        aria-label="Dismiss"
+        aria-label={ui.dismiss}
       >
         <IconX />
       </button>
@@ -97,6 +99,7 @@ function ToastCard({ item, onDismiss }: { item: ToastItem; onDismiss: (id: strin
 }
 
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const shell = useShellLabels();
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   const dismiss = useCallback((id: string) => {
@@ -122,7 +125,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       {children}
       <div
         className="pointer-events-none fixed bottom-4 right-4 z-[1600] flex flex-col gap-3"
-        aria-label="Notifications"
+        aria-label={shell.notifications}
       >
         {toasts.map((item) => (
           <ToastCard key={item.id} item={item} onDismiss={dismiss} />

@@ -1,8 +1,7 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
+import { WorkspaceInlineLoading } from "./workspace-states";
 import { cn } from "@/lib/ui/cn";
 import { WorkspaceEmpty } from "./workspace-primitives";
 import { WorkspaceErrorState } from "./workspace-states";
@@ -72,11 +71,8 @@ export function WorkspaceTable<T>({
 
   if (isLoading) {
     return (
-      <div className={cn("space-y-2 rounded-2xl border border-border/50 p-4", className)}>
-        <Skeleton className="h-8 w-full" />
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-10 w-full" />
+      <div className={cn("rounded-2xl border border-border/50 p-4", className)}>
+        <WorkspaceInlineLoading />
       </div>
     );
   }
@@ -153,6 +149,18 @@ export function WorkspaceDataList({
   return <div className={cn("divide-y divide-border/30", className)}>{children}</div>;
 }
 
+const badgeVariants: Record<
+  "default" | "secondary" | "success" | "warning" | "destructive" | "outline",
+  string
+> = {
+  default: "border-primary/20 bg-primary/10 text-primary",
+  secondary: "border-border/60 bg-muted text-muted-foreground",
+  success: "border-success/20 bg-success/10 text-success",
+  warning: "border-warning/25 bg-warning/10 text-warning",
+  destructive: "border-destructive/20 bg-destructive/10 text-destructive",
+  outline: "border-border/60 bg-transparent text-foreground",
+};
+
 export function WorkspaceStatusBadge({
   label,
   variant = "secondary",
@@ -161,8 +169,13 @@ export function WorkspaceStatusBadge({
   variant?: "default" | "secondary" | "success" | "warning" | "destructive" | "outline";
 }) {
   return (
-    <Badge variant={variant} className="rounded-full text-[10px] font-medium uppercase tracking-wide">
+    <span
+      className={cn(
+        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide",
+        badgeVariants[variant],
+      )}
+    >
       {label}
-    </Badge>
+    </span>
   );
 }
