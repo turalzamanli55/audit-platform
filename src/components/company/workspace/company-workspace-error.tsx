@@ -12,8 +12,8 @@ type CompanyWorkspaceErrorProps = {
  * Calm error surface for company workspace load failures.
  */
 export function CompanyWorkspaceError({
-  title = "Unable to load company workspace",
-  description = "Something went wrong while loading this company. Try again in a moment.",
+  title,
+  description,
   action,
   className = "",
 }: CompanyWorkspaceErrorProps) {

@@ -11,13 +11,15 @@ export type CompanyWorkspaceSummaryCard = {
 type CompanyWorkspaceSummaryCardsProps = {
   cards: CompanyWorkspaceSummaryCard[];
   className?: string;
+  ariaLabel?: string;
 };
 
 export function CompanyWorkspaceSummaryCards({
   cards,
   className = "",
+  ariaLabel,
 }: CompanyWorkspaceSummaryCardsProps) {
   return (
-    <WorkspaceSummaryGrid items={cards} className={className} ariaLabel="Company summary" />
+    <WorkspaceSummaryGrid items={cards} className={className} ariaLabel={ariaLabel} />
   );
 }

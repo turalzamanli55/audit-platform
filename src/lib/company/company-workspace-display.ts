@@ -34,6 +34,7 @@ export function buildCompanyWorkspaceNavItems(
 export function buildWorkspaceHeroLabels(
   labels: CompanyWorkspaceLabels,
   companiesLabels: Dictionary["companies"],
+  commonLabels: Dictionary["common"],
 ): {
   breadcrumbRoot: string;
   eyebrow: string;
@@ -42,6 +43,9 @@ export function buildWorkspaceHeroLabels(
   statusInactive: string;
   statusArchived: string;
   statusSuspended: string;
+  archivedTitle: string;
+  archivedDescription: string;
+  backToLabel: string;
 } {
   return {
     breadcrumbRoot: companiesLabels.breadcrumbRoot,
@@ -51,6 +55,9 @@ export function buildWorkspaceHeroLabels(
     statusInactive: companiesLabels.filterInactive,
     statusArchived: companiesLabels.filterArchived,
     statusSuspended: companiesLabels.filterSuspended,
+    archivedTitle: labels.archivedBannerTitle,
+    archivedDescription: labels.archivedBannerDescription,
+    backToLabel: commonLabels.backTo,
   };
 }
 

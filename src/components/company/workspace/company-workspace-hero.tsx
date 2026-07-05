@@ -19,6 +19,9 @@ export type CompanyWorkspaceHeroLabels = {
   statusInactive: string;
   statusArchived: string;
   statusSuspended: string;
+  archivedTitle: string;
+  archivedDescription: string;
+  backToLabel: string;
 };
 
 type CompanyWorkspaceHeroProps = {
@@ -65,13 +68,21 @@ export function CompanyWorkspaceHero({
       className={className}
       breadcrumb={
         <CompanyBreadcrumb
+          backToLabel={labels.backToLabel}
           items={[
             { label: labels.breadcrumbRoot, href: basePath },
             { label: company.name },
           ]}
         />
       }
-      alerts={company.isArchived ? <CompanyRestoreBanner /> : null}
+      alerts={
+        company.isArchived ? (
+          <CompanyRestoreBanner
+            title={labels.archivedTitle}
+            description={labels.archivedDescription}
+          />
+        ) : null
+      }
       leading={<CompanyAvatar name={company.name} size="lg" className="h-14 w-14 sm:h-16 sm:w-16" />}
       eyebrow={labels.eyebrow}
       title={company.name}
@@ -80,7 +91,7 @@ export function CompanyWorkspaceHero({
       badges={
         <>
           {company.isArchived ? (
-            <CompanyArchiveBadge />
+            <CompanyArchiveBadge label={labels.statusArchived} />
           ) : (
             <CompanyStatusBadge
               status={company.status}

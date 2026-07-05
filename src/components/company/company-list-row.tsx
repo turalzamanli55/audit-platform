@@ -43,6 +43,21 @@ function formatUpdatedAt(value: string, locale: string): string {
   }
 }
 
+function statusLabel(status: CompanyListItem["status"], labels: CompanyListLabels): string {
+  switch (status) {
+    case "active":
+      return labels.filterActive;
+    case "inactive":
+      return labels.filterInactive;
+    case "archived":
+      return labels.filterArchived;
+    case "suspended":
+      return labels.filterSuspended;
+    default:
+      return status;
+  }
+}
+
 export function CompanyListRow({
   item,
   locale,
@@ -128,7 +143,11 @@ export function CompanyListRow({
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2 lg:hidden">
-            {item.isArchived ? <CompanyArchiveBadge /> : <CompanyStatusBadge status={item.status} />}
+            {item.isArchived ? (
+              <CompanyArchiveBadge label={labels.filterArchived} />
+            ) : (
+              <CompanyStatusBadge status={item.status} label={statusLabel(item.status, labels)} />
+            )}
           </div>
         </div>
 
@@ -140,7 +159,11 @@ export function CompanyListRow({
           {frameworkLabel(item.reportingFramework, labels)}
         </p>
         <div className="hidden lg:col-start-6 lg:block">
-          {item.isArchived ? <CompanyArchiveBadge /> : <CompanyStatusBadge status={item.status} />}
+          {item.isArchived ? (
+            <CompanyArchiveBadge label={labels.filterArchived} />
+          ) : (
+            <CompanyStatusBadge status={item.status} label={statusLabel(item.status, labels)} />
+          )}
         </div>
         <p className="hidden text-sm text-muted-foreground lg:col-start-7 lg:block">
           <span className="sr-only">{labels.updated}: </span>

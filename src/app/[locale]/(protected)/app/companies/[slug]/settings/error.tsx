@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { CompanySettingsError } from "@/components/company/settings";
+import { WorkspaceErrorRetryAction } from "@/components/workspace";
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
 
 type CompanySettingsRouteErrorProps = {
   error: Error & { digest?: string };
@@ -13,17 +14,18 @@ export default function CompanySettingsRouteError({
   error,
   reset,
 }: CompanySettingsRouteErrorProps) {
+  const dictionary = useClientDictionary();
+  const labels = dictionary.companies.settings;
+
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
     <CompanySettingsError
-      action={
-        <Button type="button" variant="secondary" onClick={reset}>
-          Retry
-        </Button>
-      }
+      title={labels.errorTitle}
+      description={labels.errorDescription}
+      action={<WorkspaceErrorRetryAction onRetry={reset} />}
     />
   );
 }

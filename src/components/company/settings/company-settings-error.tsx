@@ -8,8 +8,8 @@ type CompanySettingsErrorProps = {
 };
 
 export function CompanySettingsError({
-  title = "Unable to load settings",
-  description = "Something went wrong while loading company settings.",
+  title,
+  description,
   action,
 }: CompanySettingsErrorProps) {
   return <CompanyErrorState title={title} description={description} action={action} />;

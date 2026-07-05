@@ -7,7 +7,7 @@ type CompanyArchiveBadgeProps = {
  * Distinct archived indicator for company identity surfaces.
  */
 export function CompanyArchiveBadge({
-  label = "Archived",
+  label,
   className = "",
 }: CompanyArchiveBadgeProps) {
   return (

@@ -67,7 +67,7 @@ export default async function CompanyWorkspaceRouteLayout({
       locale={locale}
       company={company}
       preferredCompanySlug={preferredCompanySlug}
-      heroLabels={buildWorkspaceHeroLabels(labels, dictionary.companies)}
+      heroLabels={buildWorkspaceHeroLabels(labels, dictionary.companies, dictionary.common)}
       navItems={buildCompanyWorkspaceNavItems(locale, company.slug, labels)}
       navAriaLabel={labels.navAriaLabel}
       companiesLabels={dictionary.companies}

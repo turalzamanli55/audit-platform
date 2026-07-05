@@ -9,6 +9,7 @@ export type CompanyBreadcrumbItem = {
 type CompanyBreadcrumbProps = {
   items: CompanyBreadcrumbItem[];
   className?: string;
+  backToLabel?: string;
 };
 
 function BreadcrumbSeparator() {
@@ -23,7 +24,7 @@ function BreadcrumbSeparator() {
  * Hierarchical wayfinding for company module depth.
  * On narrow viewports: back link + current page only.
  */
-export function CompanyBreadcrumb({ items, className = "" }: CompanyBreadcrumbProps) {
+export function CompanyBreadcrumb({ items, className = "", backToLabel }: CompanyBreadcrumbProps) {
   if (items.length === 0) {
     return null;
   }
@@ -42,7 +43,7 @@ export function CompanyBreadcrumb({ items, className = "" }: CompanyBreadcrumbPr
             className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ChevronLeftIcon />
-            <span className="sr-only">Back to </span>
+            {backToLabel ? <span className="sr-only">{backToLabel} </span> : null}
             <span className="truncate">{ancestors[ancestors.length - 1]?.label}</span>
           </Link>
         ) : null}

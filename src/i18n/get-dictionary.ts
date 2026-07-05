@@ -849,6 +849,9 @@ export type Dictionary = {
       loading: string;
       errorTitle: string;
       errorDescription: string;
+      archivedBannerTitle: string;
+      archivedBannerDescription: string;
+      summaryAriaLabel: string;
       summaryFramework: string;
       summaryCurrency: string;
       summaryPresentationCurrency: string;

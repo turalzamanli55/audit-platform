@@ -9,8 +9,8 @@ type CompanyRestoreBannerProps = {
 };
 
 export function CompanyRestoreBanner({
-  title = "This company is archived",
-  description = "The profile is read-only. Restore the company to make changes again.",
+  title,
+  description,
   action,
   className = "",
 }: CompanyRestoreBannerProps) {
