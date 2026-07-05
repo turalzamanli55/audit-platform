@@ -17,7 +17,13 @@ import { FieldworkWorkingPaperRow } from "@/components/fieldwork/working-papers/
 import type { FieldworkActivityView } from "@/lib/fieldwork/load-fieldwork-activity";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import { useFieldworkWorkspace } from "@/lib/fieldwork/use-fieldwork-workspace";
-import { formatFieldworkActivityAction } from "@/lib/fieldwork/fieldwork-workspace-display";
+import {
+  formatFieldworkActivityAction,
+  formatFieldworkCount,
+  formatFieldworkDocumentType,
+  formatFieldworkFindingSeverity,
+  formatFieldworkGroupProcedureSummary,
+} from "@/lib/fieldwork/fieldwork-workspace-display";
 import { formatDateTime } from "@/lib/engagement/format-engagement-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { FieldworkNoteType } from "@/types/fieldwork";
@@ -76,7 +82,8 @@ export function FieldworkProgramExperience(props: SectionProps) {
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-lg font-semibold text-foreground">{fieldwork.program.title}</h3>
             <span className="text-sm text-muted-foreground">
-              {fieldworkLabels.programStatuses[fieldwork.program.programStatus]} · v
+              {fieldworkLabels.programStatuses[fieldwork.program.programStatus]}{" "}
+              {fieldworkLabels.common.separator} {fieldworkLabels.program.versionPrefix}
               {fieldwork.program.programVersion}
             </span>
           </div>
@@ -84,7 +91,11 @@ export function FieldworkProgramExperience(props: SectionProps) {
             <p className="text-sm text-muted-foreground">{fieldwork.program.description}</p>
           ) : null}
           <p className="text-sm text-muted-foreground">
-            {fieldwork.program.groups.length} procedure groups · {fieldwork.procedures.length} procedures
+            {formatFieldworkGroupProcedureSummary(
+              fieldworkLabels.program.groupProcedureSummary,
+              fieldwork.program.groups.length,
+              fieldwork.procedures.length,
+            )}
           </p>
         </WorkspacePanel>
       )}
@@ -112,7 +123,10 @@ export function FieldworkProcedureGroupsExperience(props: SectionProps) {
                 <p className="text-sm text-muted-foreground">{group.description}</p>
               ) : null}
               <p className="text-xs text-muted-foreground">
-                {group.procedures.length} procedures
+                {formatFieldworkCount(
+                  props.fieldworkLabels.procedureGroups.procedureCount,
+                  group.procedures.length,
+                )}
               </p>
             </WorkspaceListItem>
           ))}
@@ -257,9 +271,12 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
       {fieldwork.workingPapers.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
-        <WorkspaceList as="div" className="mb-6">
+        <WorkspaceList>
           {fieldwork.workingPapers.map((paper) => (
-            <div key={paper.id}>
+            <WorkspaceListItem
+              key={paper.id}
+              className="rounded-lg p-0 transition-shadow hover:bg-transparent"
+            >
               <FieldworkWorkingPaperRow
                 packageId={fieldwork.id}
                 paper={paper}
@@ -312,7 +329,7 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
                   </div>
                 </div>
               ) : null}
-            </div>
+            </WorkspaceListItem>
           ))}
         </WorkspaceList>
       )}
@@ -348,7 +365,8 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
           <WorkspaceDataList className="mt-3 space-y-1 text-sm text-muted-foreground">
             {fieldwork.tickmarkLibrary.map((entry) => (
               <div key={entry.id}>
-                <span className="font-medium text-foreground">{entry.symbol}</span> — {entry.meaning}
+                <span className="font-medium text-foreground">{entry.symbol}</span>{" "}
+                {props.fieldworkLabels.common.tickmarkMeaningSeparator} {entry.meaning}
               </div>
             ))}
           </WorkspaceDataList>
@@ -449,7 +467,9 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
             <WorkspaceListItem key={item.id} className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="font-medium text-foreground">{item.name}</p>
-                <p className="text-xs text-muted-foreground">{item.documentType}</p>
+                <p className="text-xs text-muted-foreground">
+                  {formatFieldworkDocumentType(item.documentType, evidenceLabels.documentTypes)}
+                </p>
                 {item.storagePath ? (
                   <p className="text-xs text-primary">{evidenceLabels.uploadedBadge}</p>
                 ) : null}
@@ -537,7 +557,13 @@ export function FieldworkFindingsExperience(props: SectionProps) {
             <WorkspaceListItem key={finding.id}>
               <p className="font-medium text-foreground">{finding.title}</p>
               <p className="text-xs text-muted-foreground">
-                {finding.severity} · {props.fieldworkLabels.findingStatuses[finding.findingStatus]}
+                {formatFieldworkFindingSeverity(
+                  finding.severity,
+                  props.fieldworkLabels.findingSeverities,
+                  props.fieldworkLabels.workspace.commandCenter.unspecified,
+                )}{" "}
+                {props.fieldworkLabels.common.separator}{" "}
+                {props.fieldworkLabels.findingStatuses[finding.findingStatus]}
               </p>
             </WorkspaceListItem>
           ))}
@@ -667,8 +693,8 @@ export function FieldworkReviewNotesExperience(props: SectionProps & { locale: s
                 ...props,
                 labels: {
                   ...props.labels,
-                  title: props.fieldworkLabels.workflow.clearAction,
-                  description: props.fieldworkLabels.workflow.clearanceNotesPlaceholder,
+                  title: props.fieldworkLabels.reviewNotes.clearanceTitle,
+                  description: props.fieldworkLabels.reviewNotes.clearanceDescription,
                   emptyTitle: props.labels.emptyTitle,
                   emptyDescription: props.labels.emptyDescription,
                 },
@@ -724,8 +750,8 @@ export function FieldworkHistoryExperience(
       )}
       {fieldwork ? (
         <p className="text-sm text-muted-foreground">
-          {props.fieldworkLabels.history.versionLabel}: {fieldwork.programVersion} ·{" "}
-          {fieldwork.progressPct}%
+          {props.fieldworkLabels.history.versionLabel}: {fieldwork.programVersion}{" "}
+          {props.fieldworkLabels.common.separator} {fieldwork.progressPct}%
         </p>
       ) : null}
     </WorkspaceSectionShell>
@@ -822,7 +848,8 @@ export function FieldworkSettingsExperience(
             <WorkspaceDataList className="space-y-1 text-sm text-muted-foreground">
               {fieldwork.tickmarkLibrary.map((entry) => (
                 <div key={entry.id}>
-                  <span className="font-medium text-foreground">{entry.symbol}</span> — {entry.meaning}
+                  <span className="font-medium text-foreground">{entry.symbol}</span>{" "}
+                {props.fieldworkLabels.common.tickmarkMeaningSeparator} {entry.meaning}
                 </div>
               ))}
             </WorkspaceDataList>

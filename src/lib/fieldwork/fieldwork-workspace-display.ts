@@ -173,3 +173,43 @@ export function formatFieldworkActivityAction(
 
   return map[action] ?? action;
 }
+
+export function formatFieldworkCount(template: string, count: number): string {
+  return template.replace("{count}", String(count));
+}
+
+export function formatFieldworkGroupProcedureSummary(
+  template: string,
+  groupCount: number,
+  procedureCount: number,
+): string {
+  return template
+    .replace("{groupCount}", String(groupCount))
+    .replace("{procedureCount}", String(procedureCount));
+}
+
+export function formatFieldworkFindingSeverity(
+  severity: string | null | undefined,
+  labels: Dictionary["fieldwork"]["findingSeverities"],
+  fallback: string,
+): string {
+  const key = severity?.trim();
+  if (!key) return fallback;
+  return labels[key as keyof typeof labels] ?? key;
+}
+
+export function formatFieldworkDocumentType(
+  documentType: string | null | undefined,
+  labels: Dictionary["fieldwork"]["evidence"]["documentTypes"],
+): string {
+  const key = documentType?.trim();
+  if (!key) return labels.other;
+  return labels[key as keyof typeof labels] ?? key;
+}
+
+export function formatFieldworkNoteType(
+  noteType: string,
+  labels: Dictionary["fieldwork"]["noteTypes"],
+): string {
+  return labels[noteType as keyof typeof labels] ?? noteType;
+}

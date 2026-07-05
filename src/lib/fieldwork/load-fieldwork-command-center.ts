@@ -5,6 +5,9 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { COMPLETE_PROCEDURE_STATUSES } from "@/constants/fieldwork";
 import {
   formatFieldworkActivityAction,
+  formatFieldworkDocumentType,
+  formatFieldworkFindingSeverity,
+  formatFieldworkNoteType,
 } from "@/lib/fieldwork/fieldwork-workspace-display";
 import type { FieldworkActivityView } from "@/lib/fieldwork/load-fieldwork-activity";
 import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
@@ -361,7 +364,11 @@ export function loadFieldworkCommandCenter(input: {
 
   const severityMap = new Map<string, number>();
   for (const finding of fieldwork.findings) {
-    const key = finding.severity?.trim() || labels.unspecified;
+    const key = formatFieldworkFindingSeverity(
+      finding.severity,
+      fieldworkLabels.findingSeverities,
+      labels.unspecified,
+    );
     severityMap.set(key, (severityMap.get(key) ?? 0) + 1);
   }
   const severityDistribution = [...severityMap.entries()].map(([severity, count]) => ({
@@ -396,7 +403,7 @@ export function loadFieldworkCommandCenter(input: {
     id: item.id,
     name: item.name,
     status: fieldworkLabels.evidenceStatuses[item.evidenceStatus] ?? item.evidenceStatus,
-    documentType: item.documentType,
+    documentType: formatFieldworkDocumentType(item.documentType, fieldworkLabels.evidence.documentTypes),
     time: formatRelativeTime(locale, item.createdAt),
     href: `${base}/evidence`,
   }));
@@ -404,7 +411,11 @@ export function loadFieldworkCommandCenter(input: {
   const mapFinding = (finding: FieldworkWorkspaceView["findings"][number]) => ({
     id: finding.id,
     title: finding.title,
-    severity: finding.severity,
+    severity: formatFieldworkFindingSeverity(
+      finding.severity,
+      fieldworkLabels.findingSeverities,
+      labels.unspecified,
+    ),
     status: fieldworkLabels.findingStatuses[finding.findingStatus] ?? finding.findingStatus,
     time: formatRelativeTime(locale, finding.createdAt),
     href: `${base}/findings`,
@@ -413,7 +424,7 @@ export function loadFieldworkCommandCenter(input: {
   const mapNote = (note: FieldworkWorkspaceView["notes"][number], href: string) => ({
     id: note.id,
     body: note.body.trim().slice(0, 140),
-    type: note.noteType,
+    type: formatFieldworkNoteType(note.noteType, fieldworkLabels.noteTypes),
     time: formatRelativeTime(locale, note.createdAt),
     href,
   });

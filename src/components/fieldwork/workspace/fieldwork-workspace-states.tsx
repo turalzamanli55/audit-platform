@@ -3,12 +3,12 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { WorkspaceEmptyPanel, WorkspaceError } from "@/components/workspace";
 
 export function FieldworkWorkspaceError({
-  title = "Unable to load fieldwork workspace",
-  description = "Something went wrong while loading audit fieldwork.",
+  title,
+  description,
   action,
 }: {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   action?: ReactNode;
 }) {
   return <WorkspaceError title={title} description={description} action={action} />;

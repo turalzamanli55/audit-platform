@@ -91,17 +91,20 @@ export function FieldworkProcedureRow({
   const showComplete = canUpdate && !isArchived && status === "review_cleared";
 
   return (
-    <li className="space-y-3 px-5 py-4">
+    <div className="space-y-3 px-5 py-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="font-medium text-foreground">{procedure.title}</p>
           <p className="text-xs text-muted-foreground">
-            {fieldworkLabels.procedureTypes[procedure.procedureType]} ·{" "}
+            {fieldworkLabels.procedureTypes[procedure.procedureType]}{" "}
+            {fieldworkLabels.common.separator}{" "}
             {fieldworkLabels.procedureStatuses[procedure.procedureStatus]}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             {fieldworkLabels.procedures.assignedTo}: {memberName(procedure.assignedAuditorId)}
-            {procedure.dueDate ? ` · ${fieldworkLabels.procedures.dueDate}: ${procedure.dueDate}` : null}
+            {procedure.dueDate
+              ? ` ${fieldworkLabels.common.separator} ${fieldworkLabels.procedures.dueDate}: ${procedure.dueDate}`
+              : null}
           </p>
         </div>
         <span className="text-sm font-medium">{procedure.completionPct}%</span>
@@ -293,6 +296,6 @@ export function FieldworkProcedureRow({
           ) : null}
         </div>
       ) : null}
-    </li>
+    </div>
   );
 }

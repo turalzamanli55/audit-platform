@@ -13,6 +13,12 @@ import { useFieldworkWorkspace } from "@/lib/fieldwork/use-fieldwork-workspace";
 import type { FieldworkCommandCenterData } from "@/types/fieldwork-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { workspaceTokens } from "@/components/workspace";
+import { cn } from "@/lib/ui/cn";
+import {
+  formatFieldworkDocumentType,
+  formatFieldworkFindingSeverity,
+  formatFieldworkNoteType,
+} from "@/lib/fieldwork/fieldwork-workspace-display";
 import { IconArrowRight } from "@/components/ui/icons";
 
 type FieldworkCommandCenterProps = {
@@ -39,10 +45,10 @@ export function FieldworkCommandCenter({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-5 sm:p-6">
+      <section className={workspaceTokens.commandHero}>
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className={workspaceTokens.heroEyebrow}>
               {cc.heroTitle}
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -66,9 +72,9 @@ export function FieldworkCommandCenter({
                 <span>{labels.summaryProgress}</span>
                 <span className="font-medium tabular-nums text-foreground">{progressPct}%</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-muted">
+              <div className={workspaceTokens.progressTrack}>
                 <div
-                  className="h-full rounded-full bg-primary transition-all"
+                  className={workspaceTokens.progressFill}
                   style={{ width: `${progressPct}%` }}
                   role="progressbar"
                   aria-valuenow={progressPct}
@@ -88,7 +94,7 @@ export function FieldworkCommandCenter({
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl border border-border/50 px-3 py-2 text-xs font-medium transition-colors hover:bg-card sm:text-sm"
+                className={cn(workspaceTokens.actionLink, "px-3 py-2 text-xs sm:text-sm")}
               >
                 {link.label}
               </Link>
@@ -218,7 +224,7 @@ export function FieldworkCommandCenter({
                     <CommandListRow
                       href={finding.href}
                       title={finding.title}
-                      subtitle={`${finding.severity} · ${finding.status}`}
+                      subtitle={`${formatFieldworkFindingSeverity(finding.severity, fieldworkLabels.findingSeverities, cc.unspecified)} ${fieldworkLabels.common.separator} ${finding.status}`}
                       meta={finding.time}
                     />
                   </li>
@@ -236,7 +242,11 @@ export function FieldworkCommandCenter({
                   <li key={bucket.severity}>
                     <CommandListRow
                       href={`${base}/findings`}
-                      title={bucket.severity}
+                      title={formatFieldworkFindingSeverity(
+                        bucket.severity,
+                        fieldworkLabels.findingSeverities,
+                        cc.unspecified,
+                      )}
                       meta={String(bucket.count)}
                     />
                   </li>
@@ -297,12 +307,12 @@ export function FieldworkCommandCenter({
                     <CommandListRow
                       href={paper.href}
                       title={paper.title}
-                      subtitle={`${paper.procedureTitle} · ${paper.status}`}
+                      subtitle={`${paper.procedureTitle} ${fieldworkLabels.common.separator} ${paper.status}`}
                       meta={paper.referenceCode ?? undefined}
                       badge={
                         paper.tickmarkCount > 0 ? (
                           <Badge variant="outline" className="text-[10px]">
-                            {paper.tickmarkCount} TM
+                            {paper.tickmarkCount} {cc.tickmarkAbbrev}
                           </Badge>
                         ) : undefined
                       }
@@ -342,7 +352,7 @@ export function FieldworkCommandCenter({
                     <CommandListRow
                       href={item.href}
                       title={item.name}
-                      subtitle={`${item.documentType} · ${item.status}`}
+                      subtitle={`${formatFieldworkDocumentType(item.documentType, fieldworkLabels.evidence.documentTypes)} ${fieldworkLabels.common.separator} ${item.status}`}
                       meta={item.time}
                     />
                   </li>
@@ -378,7 +388,7 @@ export function FieldworkCommandCenter({
               <ul className="divide-y divide-border/40">
                 {commandCenter.reviewNotes.map((note) => (
                   <li key={note.id}>
-                    <CommandListRow href={note.href} title={note.type} subtitle={note.body} meta={note.time} />
+                    <CommandListRow href={note.href} title={formatFieldworkNoteType(note.type, fieldworkLabels.noteTypes)} subtitle={note.body} meta={note.time} />
                   </li>
                 ))}
               </ul>
@@ -394,7 +404,7 @@ export function FieldworkCommandCenter({
                   <li key={comment.id}>
                     <CommandListRow
                       href={comment.href}
-                      title={comment.type}
+                      title={formatFieldworkNoteType(comment.type, fieldworkLabels.noteTypes)}
                       subtitle={comment.body}
                       meta={comment.time}
                     />

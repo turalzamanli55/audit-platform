@@ -2067,6 +2067,15 @@ export type Dictionary = {
     >;
     evidenceStatuses: Record<"pending" | "recorded" | "verified" | "archived", string>;
     findingStatuses: Record<"open" | "in_review" | "resolved" | "closed", string>;
+    findingSeverities: Record<
+      "informational" | "deficiency" | "significant_deficiency" | "material_weakness",
+      string
+    >;
+    noteTypes: Record<"auditor" | "review" | "internal" | "clearance", string>;
+    common: {
+      separator: string;
+      tickmarkMeaningSeparator: string;
+    };
     actions: {
       start: string;
       complete: string;
@@ -2130,6 +2139,7 @@ export type Dictionary = {
       summaryProgress: string;
       summaryProcedures: string;
       summaryPendingReview: string;
+      summaryPendingReviewBadge: string;
       summaryFindings: string;
       commandCenter: {
         heroTitle: string;
@@ -2243,6 +2253,7 @@ export type Dictionary = {
         emptyCommentsDescription: string;
         emptyActivity: string;
         emptyActivityDescription: string;
+        tickmarkAbbrev: string;
       };
       navGroups: {
         overview: string;
@@ -2277,8 +2288,21 @@ export type Dictionary = {
         { title: string; description: string }
       >;
     };
-    program: { title: string; description: string; emptyTitle: string; emptyDescription: string };
-    procedureGroups: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    program: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      versionPrefix: string;
+      groupProcedureSummary: string;
+    };
+    procedureGroups: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      procedureCount: string;
+    };
     procedures: {
       title: string;
       description: string;
@@ -2313,6 +2337,7 @@ export type Dictionary = {
       namePlaceholder: string;
       downloadAction: string;
       downloadError: string;
+      documentTypes: Record<"supporting_document" | "other", string>;
     };
     findings: {
       title: string;
@@ -2328,7 +2353,14 @@ export type Dictionary = {
       emptyDescription: string;
       bodyPlaceholder: string;
     };
-    reviewNotes: { title: string; description: string; emptyTitle: string; emptyDescription: string };
+    reviewNotes: {
+      title: string;
+      description: string;
+      emptyTitle: string;
+      emptyDescription: string;
+      clearanceTitle: string;
+      clearanceDescription: string;
+    };
     comments: { title: string; description: string; emptyTitle: string; emptyDescription: string };
     history: {
       title: string;

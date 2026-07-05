@@ -81,12 +81,13 @@ export function FieldworkWorkingPaperRow({
   const showClear = canReview && !isArchived && (status === "submitted" || status === "under_review");
 
   return (
-    <li className="space-y-3 px-5 py-4">
+    <div className="space-y-3 px-5 py-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="font-medium text-foreground">{paper.title}</p>
           <p className="text-xs text-muted-foreground">
-            {paper.procedureTitle} · {fieldworkLabels.workingPaperStatuses[paper.paperStatus]}
+            {paper.procedureTitle} {fieldworkLabels.common.separator}{" "}
+            {fieldworkLabels.workingPaperStatuses[paper.paperStatus]}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             {wpLabels.assignAuditor}: {memberName(paper.assignedAuditorId)}
@@ -107,7 +108,8 @@ export function FieldworkWorkingPaperRow({
         <ul className="space-y-1 text-xs text-muted-foreground">
           {paper.tickmarks.map((tickmark) => (
             <li key={tickmark.id}>
-              <span className="font-medium text-foreground">{tickmark.symbol}</span> — {tickmark.meaning}
+              <span className="font-medium text-foreground">{tickmark.symbol}</span>{" "}
+              {fieldworkLabels.common.tickmarkMeaningSeparator} {tickmark.meaning}
             </li>
           ))}
         </ul>
@@ -224,6 +226,6 @@ export function FieldworkWorkingPaperRow({
           ) : null}
         </div>
       ) : null}
-    </li>
+    </div>
   );
 }

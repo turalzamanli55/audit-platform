@@ -55,8 +55,8 @@ export function FieldworkReviewQueuePanel({
                     {procedure.title}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {fieldworkLabels.procedureStatuses[procedure.procedureStatus]} ·{" "}
-                    {labels.openProcedureAction}
+                    {fieldworkLabels.procedureStatuses[procedure.procedureStatus]}{" "}
+                    {fieldworkLabels.common.separator} {labels.openProcedureAction}
                   </p>
                 </Link>
               </WorkspaceListItem>

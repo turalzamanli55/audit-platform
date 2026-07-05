@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { FieldworkProceduresExperience } from "@/components/fieldwork";
+import { EngagementLoadingSkeleton } from "@/components/engagement";
 import { FIELDWORK_PERMISSIONS } from "@/constants/fieldwork";
 import { getCurrentUser } from "@/lib/auth/server";
 import { authorizePermissionCodes } from "@/lib/auth/permissions";
@@ -22,14 +24,16 @@ export default async function Page({ params }: PageProps) {
   const canReview = user ? authorizePermissionCodes(user.permissionCodes, FIELDWORK_PERMISSIONS.REVIEW) : false;
 
   return (
-    <FieldworkProceduresExperience
-      locale={locale}
-      labels={dictionary.fieldwork.procedures}
-      emptyLabels={dictionary.fieldwork.empty}
-      fieldworkLabels={dictionary.fieldwork}
-      canAssign={canAssign}
-      canUpdate={canUpdate}
-      canReview={canReview}
-    />
+    <Suspense fallback={<EngagementLoadingSkeleton />}>
+      <FieldworkProceduresExperience
+        locale={locale}
+        labels={dictionary.fieldwork.procedures}
+        emptyLabels={dictionary.fieldwork.empty}
+        fieldworkLabels={dictionary.fieldwork}
+        canAssign={canAssign}
+        canUpdate={canUpdate}
+        canReview={canReview}
+      />
+    </Suspense>
   );
 }

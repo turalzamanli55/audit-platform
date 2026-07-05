@@ -1586,6 +1586,22 @@
       "resolved": "Resolved",
       "closed": "Closed"
     },
+    "findingSeverities": {
+      "informational": "Informational",
+      "deficiency": "Deficiency",
+      "significant_deficiency": "Significant deficiency",
+      "material_weakness": "Material weakness"
+    },
+    "noteTypes": {
+      "auditor": "Auditor note",
+      "review": "Review note",
+      "internal": "Internal comment",
+      "clearance": "Clearance note"
+    },
+    "common": {
+      "separator": "·",
+      "tickmarkMeaningSeparator": "—"
+    },
     "actions": {
       "start": "Start procedure",
       "complete": "Mark complete",
@@ -1659,6 +1675,7 @@
       "summaryProgress": "Overall progress",
       "summaryProcedures": "Procedures complete",
       "summaryPendingReview": "Pending review",
+      "summaryPendingReviewBadge": "{count} pending review",
       "summaryFindings": "Open findings",
       "commandCenter": {
         "heroTitle": "Audit execution command center",
@@ -1771,7 +1788,8 @@
         "emptyComments": "No comments",
         "emptyCommentsDescription": "Internal comments are captured during fieldwork.",
         "emptyActivity": "No activity",
-        "emptyActivityDescription": "Fieldwork events will be recorded here."
+        "emptyActivityDescription": "Fieldwork events will be recorded here.",
+        "tickmarkAbbrev": "TM"
       },
       "navGroups": {
         "overview": "Dashboard",
@@ -1845,13 +1863,16 @@
       "title": "Audit program",
       "description": "Program metadata and execution status.",
       "emptyTitle": "No audit program",
-      "emptyDescription": "The audit program is created when fieldwork is initiated."
+      "emptyDescription": "The audit program is created when fieldwork is initiated.",
+      "versionPrefix": "v",
+      "groupProcedureSummary": "{groupCount} procedure groups · {procedureCount} procedures"
     },
     "procedureGroups": {
       "title": "Procedure groups",
       "description": "Audit areas grouping related procedures.",
       "emptyTitle": "No procedure groups",
-      "emptyDescription": "Procedure groups appear when fieldwork is initiated."
+      "emptyDescription": "Procedure groups appear when fieldwork is initiated.",
+      "procedureCount": "{count} procedures"
     },
     "workingPapers": {
       "title": "Working papers",
@@ -1876,7 +1897,11 @@
       "uploadedBadge": "File attached",
       "namePlaceholder": "Evidence reference name",
       "downloadAction": "Download",
-      "downloadError": "Unable to download evidence file"
+      "downloadError": "Unable to download evidence file",
+      "documentTypes": {
+        "supporting_document": "Supporting document",
+        "other": "Other"
+      }
     },
     "findings": {
       "title": "Findings",
@@ -1896,7 +1921,9 @@
       "title": "Review notes",
       "description": "Review-level comments and clearance notes.",
       "emptyTitle": "No review notes",
-      "emptyDescription": "Review notes will appear during review cycles."
+      "emptyDescription": "Review notes will appear during review cycles.",
+      "clearanceTitle": "Clearance notes",
+      "clearanceDescription": "Final clearance documentation captured during review."
     },
     "comments": {
       "title": "Internal comments",

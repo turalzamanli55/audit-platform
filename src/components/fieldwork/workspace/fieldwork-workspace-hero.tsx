@@ -6,6 +6,7 @@ import { WorkspaceBackLink, WorkspaceHero } from "@/components/workspace";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
+import { formatFieldworkCount } from "@/lib/fieldwork/fieldwork-workspace-display";
 
 type FieldworkWorkspaceHeroProps = {
   locale: string;
@@ -93,7 +94,7 @@ export function FieldworkWorkspaceHero({
             </Badge>
             {fieldwork.pendingReviewCount > 0 ? (
               <Badge variant="warning">
-                {fieldwork.pendingReviewCount} {labels.summaryPendingReview.toLowerCase()}
+                {formatFieldworkCount(labels.summaryPendingReviewBadge, fieldwork.pendingReviewCount)}
               </Badge>
             ) : null}
           </>
