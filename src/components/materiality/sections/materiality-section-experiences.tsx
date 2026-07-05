@@ -53,13 +53,14 @@ type SectionLabels = {
   description: string;
   emptyTitle: string;
   emptyDescription: string;
+  columns?: Record<string, string>;
 };
 
 type GateProps = {
   canCreate?: boolean;
   planningApproved?: boolean;
   emptyLabels: CreateLabels;
-  workspaceLabels: { planningGateDescription: string };
+  workspaceLabels: { planningGateDescription: string; archivedDescription: string };
 };
 
 type BaseProps = GateProps & {
@@ -93,8 +94,8 @@ function canMutate(materiality: MaterialityWorkspaceView, allowed: boolean) {
   );
 }
 
-function ArchivedNotice({ message }: { message?: string }) {
-  return <Alert variant="warning">{message ?? "This section is read-only while archived."}</Alert>;
+function ArchivedNotice({ message }: { message: string }) {
+  return <Alert variant="warning">{message}</Alert>;
 }
 
 function useMutationError() {
@@ -127,7 +128,9 @@ export function MaterialityOverallExperience(
       description={props.labels.description}
       headingId="materiality-overall"
     >
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
+      ) : null}
       <div className="space-y-4">
         <WorkspaceMetricCard label={props.fieldLabels.overallLabel} value={value} />
         {workspace.basisNotes ? (
@@ -173,7 +176,9 @@ export function MaterialityPerformanceExperience(
       description={props.labels.description}
       headingId="materiality-performance"
     >
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
+      ) : null}
       {workspace.performanceMateriality != null ? (
         <WorkspaceMetricCard label={props.fieldLabels.performanceLabel} value={value} hint={hint} />
       ) : (
@@ -200,7 +205,9 @@ export function MaterialitySpecificExperience(
       description={props.labels.description}
       headingId="materiality-specific"
     >
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
+      ) : null}
       {items.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -243,7 +250,9 @@ export function MaterialityBenchmarksExperience(
         description={props.labels.description}
         headingId="materiality-benchmarks"
       >
-        {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+        {workspace.isArchived ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
+      ) : null}
         {workspace.benchmarks.length === 0 ? (
           <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
         ) : (
@@ -308,7 +317,9 @@ export function MaterialityCalculationsExperience(
       description={props.labels.description}
       headingId="materiality-calculations"
     >
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
+      ) : null}
       {workspace.calculations.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -361,17 +372,17 @@ export function MaterialityVersionsExperience(props: BaseProps) {
         columns={[
           {
             id: "version",
-            header: "Version",
+            header: props.labels.columns?.version ?? props.labels.title,
             cell: (version) => `v${version.versionNumber}`,
           },
           {
             id: "summary",
-            header: "Summary",
+            header: props.labels.columns?.summary ?? props.labels.description,
             cell: (version) => version.changeSummary ?? "—",
           },
           {
             id: "created",
-            header: "Created",
+            header: props.labels.columns?.created ?? props.labels.title,
             cell: (version) => formatDateTime(version.createdAt, props.locale ?? "en"),
             hideOnMobile: true,
           },
@@ -425,7 +436,9 @@ export function MaterialityCommentsExperience(
       description={props.labels.description}
       headingId="materiality-comments"
     >
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
+      ) : null}
       {error ? <Alert variant="error">{error}</Alert> : null}
 
       {mutable ? (
@@ -490,24 +503,24 @@ export function MaterialityHistoryExperience(
         columns={[
           {
             id: "action",
-            header: "Action",
+            header: props.labels.columns?.action ?? props.labels.title,
             cell: (entry) =>
               formatMaterialityActivityAction(entry.action, props.historyLabels.actions),
           },
           {
             id: "summary",
-            header: "Summary",
+            header: props.labels.columns?.summary ?? props.labels.description,
             cell: (entry) => formatMaterialityActivitySummary(entry.summary),
           },
           {
             id: "created",
-            header: "Date",
+            header: props.labels.columns?.date ?? props.historyLabels.updatedLabel,
             cell: (entry) => formatDateTime(entry.createdAt, props.locale ?? "en"),
             hideOnMobile: true,
           },
           {
             id: "version",
-            header: props.historyLabels.versionLabel,
+            header: props.labels.columns?.version ?? props.historyLabels.versionLabel,
             cell: (entry) => (entry.versionNumber != null ? String(entry.versionNumber) : "—"),
             hideOnMobile: true,
           },

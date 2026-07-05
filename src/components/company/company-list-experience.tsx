@@ -158,6 +158,7 @@ export function CompanyListExperience({
       />
 
       <CompanyToolbar
+        ariaLabel={labels.toolbarAriaLabel}
         search={
           <CompanySearch
             key={query.q ?? "__all__"}
@@ -186,7 +187,7 @@ export function CompanyListExperience({
         actions={
           <div className="flex items-center gap-2">
             <label className="sr-only" htmlFor="company-sort">
-              Sort companies
+              {labels.sortAriaLabel}
             </label>
             <select
               id="company-sort"

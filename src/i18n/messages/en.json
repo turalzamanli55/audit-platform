@@ -148,6 +148,10 @@
     "notFoundTitle": "Page not found",
     "notFoundDescription": "The companies view you requested could not be found.",
     "loading": "Loading companies",
+    "toolbarAriaLabel": "Company toolbar",
+    "paginationAriaLabel": "Company list pagination",
+    "actionsAriaLabel": "Company actions",
+    "sortAriaLabel": "Sort companies",
     "results": "{count} companies",
     "page": "Page",
     "of": "of",
@@ -671,6 +675,10 @@
     "notFoundTitle": "Page not found",
     "notFoundDescription": "The engagement view you requested could not be found.",
     "loading": "Loading engagements",
+    "toolbarAriaLabel": "Engagement toolbar",
+    "paginationAriaLabel": "Engagement list pagination",
+    "actionsAriaLabel": "Engagement actions",
+    "sortAriaLabel": "Sort engagements",
     "results": "{count} engagements",
     "page": "Page",
     "of": "of",
@@ -2127,6 +2135,7 @@
       "summaryProgress": "Overall progress",
       "summarySignificant": "Significant risks",
       "summaryPendingReview": "Pending review",
+      "summaryPendingReviewBadge": "{count} pending review",
       "summaryOpenItems": "Open items",
       "commandCenter": {
         "heroTitle": "Enterprise risk command center",
@@ -2756,6 +2765,7 @@
       "summaryOverall": "Overall materiality",
       "summaryBenchmarks": "Benchmarks",
       "summaryPendingReview": "Pending review",
+      "summaryPendingReviewBadge": "{count} pending review",
       "commandCenter": {
         "heroTitle": "ISA 320 materiality command center",
         "executiveTitle": "Materiality thresholds",
@@ -2797,6 +2807,7 @@
         "selected": "Selected",
         "override": "Override",
         "benchmarkColumn": "Benchmark",
+        "rankColumn": "#",
         "amountColumn": "Amount",
         "percentageColumn": "Percentage",
         "calculatedColumn": "Calculated",
@@ -3001,7 +3012,12 @@
       "title": "Versions",
       "description": "Review version snapshots of the materiality package.",
       "emptyTitle": "No versions",
-      "emptyDescription": "Version snapshots are created when materiality is revised or approved."
+      "emptyDescription": "Version snapshots are created when materiality is revised or approved.",
+      "columns": {
+        "version": "Version",
+        "summary": "Summary",
+        "created": "Created"
+      }
     },
     "comments": {
       "title": "Comments",
@@ -3018,6 +3034,12 @@
       "emptyDescription": "Materiality activity will appear here as changes are recorded.",
       "versionLabel": "Package version",
       "updatedLabel": "Updated",
+      "columns": {
+        "action": "Action",
+        "summary": "Summary",
+        "date": "Date",
+        "version": "Version"
+      },
       "actions": {
         "materiality.created": "Materiality package created",
         "materiality.updated": "Materiality package updated",

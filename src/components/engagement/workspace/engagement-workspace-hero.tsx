@@ -95,7 +95,7 @@ export function EngagementWorkspaceHero({
       badges={
         <>
           {engagement.isArchived ? (
-            <EngagementArchiveBadge />
+            <EngagementArchiveBadge label={labels.statusArchived} />
           ) : (
             <EngagementStatusBadge
               status={engagement.status}

@@ -1,5 +1,8 @@
-import Link from "next/link";
+"use client";
+
 import type { ReactNode } from "react";
+import Link from "next/link";
+import { useCommonLabels } from "@/i18n/use-common-labels";
 
 export type CompanyBreadcrumbItem = {
   label: ReactNode;
@@ -25,6 +28,8 @@ function BreadcrumbSeparator() {
  * On narrow viewports: back link + current page only.
  */
 export function CompanyBreadcrumb({ items, className = "", backToLabel }: CompanyBreadcrumbProps) {
+  const { breadcrumbLabel } = useCommonLabels();
+
   if (items.length === 0) {
     return null;
   }
@@ -34,7 +39,7 @@ export function CompanyBreadcrumb({ items, className = "", backToLabel }: Compan
   const backHref = ancestors.length > 0 ? ancestors[ancestors.length - 1]?.href : undefined;
 
   return (
-    <nav aria-label="Breadcrumb" className={className}>
+    <nav aria-label={breadcrumbLabel} className={className}>
       {/* Mobile: compact back + current */}
       <div className="flex min-w-0 items-center gap-2 sm:hidden">
         {backHref ? (

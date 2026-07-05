@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { EngagementErrorState, EngagementPageShell } from "@/components/engagement";
+import { WorkspaceErrorRetryAction } from "@/components/workspace";
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
 
 type EngagementsErrorProps = {
   error: Error & { digest?: string };
@@ -10,6 +11,9 @@ type EngagementsErrorProps = {
 };
 
 export default function EngagementsError({ error, reset }: EngagementsErrorProps) {
+  const dictionary = useClientDictionary();
+  const labels = dictionary.engagements;
+
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -17,11 +21,9 @@ export default function EngagementsError({ error, reset }: EngagementsErrorProps
   return (
     <EngagementPageShell>
       <EngagementErrorState
-        action={
-          <Button type="button" variant="secondary" onClick={reset}>
-            Retry
-          </Button>
-        }
+        title={labels.errorTitle}
+        description={labels.errorDescription}
+        action={<WorkspaceErrorRetryAction onRetry={reset} />}
       />
     </EngagementPageShell>
   );

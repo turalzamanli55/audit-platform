@@ -1,6 +1,9 @@
+"use client";
+
 import type { ReactNode } from "react";
 
 type CompanyToolbarProps = {
+  ariaLabel: string;
   search?: ReactNode;
   filters?: ReactNode;
   actions?: ReactNode;
@@ -10,7 +13,13 @@ type CompanyToolbarProps = {
 /**
  * Adaptive toolbar — search, filters, and actions in one responsive row.
  */
-export function CompanyToolbar({ search, filters, actions, className = "" }: CompanyToolbarProps) {
+export function CompanyToolbar({
+  ariaLabel,
+  search,
+  filters,
+  actions,
+  className = "",
+}: CompanyToolbarProps) {
   if (!search && !filters && !actions) {
     return null;
   }
@@ -19,7 +28,7 @@ export function CompanyToolbar({ search, filters, actions, className = "" }: Com
     <div
       className={`flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between ${className}`}
       role="region"
-      aria-label="Company toolbar"
+      aria-label={ariaLabel}
     >
       <div className="flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:items-center">
         {search ? <div className="w-full sm:w-auto sm:min-w-[12rem] sm:flex-1">{search}</div> : null}

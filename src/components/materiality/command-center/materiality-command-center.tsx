@@ -207,10 +207,10 @@ export function MaterialityCommandCenter({
                 <table className="w-full min-w-[32rem] text-sm">
                   <thead>
                     <tr className="border-b border-border/50 text-left text-[10px] uppercase tracking-wide text-muted-foreground">
-                      <th className="px-3 py-2 font-medium">#</th>
+                      <th className="px-3 py-2 font-medium">{cc.rankColumn}</th>
                       <th className="px-3 py-2 font-medium">{cc.benchmarkColumn}</th>
                       <th className="px-3 py-2 font-medium">{cc.amountColumn}</th>
-                      <th className="px-3 py-2 font-medium">%</th>
+                      <th className="px-3 py-2 font-medium">{cc.percentageColumn}</th>
                       <th className="px-3 py-2 font-medium">{cc.calculatedColumn}</th>
                     </tr>
                   </thead>

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 type EngagementFilterBarProps = {
   children?: ReactNode;
-  label?: ReactNode;
+  label: string;
   className?: string;
 };
 
@@ -14,7 +14,7 @@ export function EngagementFilterBar({ children, label, className = "" }: Engagem
   return (
     <div
       role="group"
-      aria-label={typeof label === "string" ? label : "Engagement filters"}
+      aria-label={label}
       className={`flex min-w-0 flex-1 flex-wrap items-center gap-2 ${className}`}
     >
       {label ? (

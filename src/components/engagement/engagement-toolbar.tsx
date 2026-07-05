@@ -1,13 +1,22 @@
+"use client";
+
 import type { ReactNode } from "react";
 
 type EngagementToolbarProps = {
+  ariaLabel: string;
   search?: ReactNode;
   filters?: ReactNode;
   actions?: ReactNode;
   className?: string;
 };
 
-export function EngagementToolbar({ search, filters, actions, className = "" }: EngagementToolbarProps) {
+export function EngagementToolbar({
+  ariaLabel,
+  search,
+  filters,
+  actions,
+  className = "",
+}: EngagementToolbarProps) {
   if (!search && !filters && !actions) {
     return null;
   }
@@ -16,7 +25,7 @@ export function EngagementToolbar({ search, filters, actions, className = "" }: 
     <div
       className={`flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between ${className}`}
       role="region"
-      aria-label="Engagement toolbar"
+      aria-label={ariaLabel}
     >
       <div className="flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:items-center">
         {search ? <div className="w-full sm:w-auto sm:min-w-[12rem] sm:flex-1">{search}</div> : null}

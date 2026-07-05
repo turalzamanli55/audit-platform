@@ -12,6 +12,7 @@ type MaterialityHeroLabels = {
   summaryVersion: string;
   summaryOverall: string;
   summaryPendingReview?: string;
+  summaryPendingReviewBadge: string;
   backToEngagement: string;
   planningGateTitle: string;
   planningGateDescription: string;
@@ -110,8 +111,10 @@ export function MaterialityWorkspaceHero({
             </Badge>
             {materiality.pendingReviewCount > 0 ? (
               <Badge variant="warning">
-                {materiality.pendingReviewCount}{" "}
-                {labels.summaryPendingReview ?? "pending review"}
+                {labels.summaryPendingReviewBadge.replace(
+                  "{count}",
+                  String(materiality.pendingReviewCount),
+                )}
               </Badge>
             ) : null}
           </>

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 type CompanyErrorStateProps = {
-  title?: ReactNode;
-  description?: ReactNode;
+  title: ReactNode;
+  description: ReactNode;
   action?: ReactNode;
   className?: string;
 };
@@ -11,11 +11,16 @@ type CompanyErrorStateProps = {
  * Calm error surface for company module failures.
  */
 export function CompanyErrorState({
-  title = "Unable to load companies",
-  description = "Something went wrong while loading this section. Try again in a moment.",
+  title,
+  description,
   action,
   className = "",
-}: CompanyErrorStateProps) {
+}: {
+  title: ReactNode;
+  description: ReactNode;
+  action?: ReactNode;
+  className?: string;
+}) {
   return (
     <div
       role="alert"

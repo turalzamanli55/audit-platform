@@ -25,6 +25,21 @@ type EngagementListRowProps = {
   onFocus: () => void;
 };
 
+function statusLabel(status: EngagementListItem["status"], labels: EngagementListLabels): string {
+  switch (status) {
+    case "active":
+      return labels.filterActive;
+    case "inactive":
+      return labels.filterInactive;
+    case "archived":
+      return labels.filterArchived;
+    case "suspended":
+      return labels.filterSuspended;
+    default:
+      return status;
+  }
+}
+
 function formatUpdatedAt(value: string, locale: string): string {
   try {
     return new Intl.DateTimeFormat(locale, {
@@ -136,9 +151,12 @@ export function EngagementListRow({
           </div>
           <div className="ml-auto flex items-center gap-2 xl:hidden">
             {item.isArchived ? (
-              <EngagementArchiveBadge />
+              <EngagementArchiveBadge label={labels.filterArchived} />
             ) : (
-              <EngagementStatusBadge status={item.status} />
+              <EngagementStatusBadge
+                status={item.status}
+                label={statusLabel(item.status, labels)}
+              />
             )}
           </div>
         </div>
@@ -160,9 +178,12 @@ export function EngagementListRow({
         </p>
         <div className="hidden xl:col-start-7 xl:block">
           {item.isArchived ? (
-            <EngagementArchiveBadge />
+            <EngagementArchiveBadge label={labels.filterArchived} />
           ) : (
-            <EngagementStatusBadge status={item.status} />
+            <EngagementStatusBadge
+              status={item.status}
+              label={statusLabel(item.status, labels)}
+            />
           )}
         </div>
         <p className="hidden text-sm text-muted-foreground xl:col-start-8 xl:block">

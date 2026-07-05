@@ -1,9 +1,9 @@
 type EngagementArchiveBadgeProps = {
-  label?: string;
+  label: string;
   className?: string;
 };
 
-export function EngagementArchiveBadge({ label = "Archived", className = "" }: EngagementArchiveBadgeProps) {
+export function EngagementArchiveBadge({ label, className = "" }: EngagementArchiveBadgeProps) {
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-muted/60 px-2.5 py-0.5 text-xs font-medium text-muted-foreground ${className}`}

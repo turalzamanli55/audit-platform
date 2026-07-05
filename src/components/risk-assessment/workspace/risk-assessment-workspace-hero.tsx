@@ -11,6 +11,7 @@ type RiskAssessmentHeroLabels = {
   summaryVersion: string;
   summarySignificant: string;
   summaryPendingReview?: string;
+  summaryPendingReviewBadge: string;
   backToEngagement: string;
   planningGateTitle: string;
   planningGateDescription: string;
@@ -113,8 +114,10 @@ export function RiskAssessmentWorkspaceHero({
             </Badge>
             {riskAssessment.pendingReviewCount > 0 ? (
               <Badge variant="warning">
-                {riskAssessment.pendingReviewCount}{" "}
-                {labels.summaryPendingReview ?? "pending review"}
+                {labels.summaryPendingReviewBadge.replace(
+                  "{count}",
+                  String(riskAssessment.pendingReviewCount),
+                )}
               </Badge>
             ) : null}
           </>

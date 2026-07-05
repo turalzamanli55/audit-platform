@@ -143,6 +143,7 @@ type RiskAssessmentLabels = {
     summaryProgress: string;
     summarySignificant: string;
     summaryPendingReview: string;
+    summaryPendingReviewBadge: string;
     summaryOpenItems: string;
     commandCenter: {
       heroTitle: string;
@@ -346,6 +347,7 @@ type MaterialitySectionLabels = {
   emptyDescription: string;
   bodyPlaceholder?: string;
   addAction?: string;
+  columns?: Record<string, string>;
 };
 
 type MaterialityLabels = {
@@ -425,6 +427,7 @@ type MaterialityLabels = {
     summaryOverall: string;
     summaryBenchmarks: string;
     summaryPendingReview: string;
+    summaryPendingReviewBadge: string;
     commandCenter: {
       heroTitle: string;
       executiveTitle: string;
@@ -466,6 +469,7 @@ type MaterialityLabels = {
       selected: string;
       override: string;
       benchmarkColumn: string;
+      rankColumn: string;
       amountColumn: string;
       percentageColumn: string;
       calculatedColumn: string;
@@ -758,6 +762,10 @@ export type Dictionary = {
     notFoundTitle: string;
     notFoundDescription: string;
     loading: string;
+    toolbarAriaLabel: string;
+    paginationAriaLabel: string;
+    actionsAriaLabel: string;
+    sortAriaLabel: string;
     results: string;
     page: string;
     of: string;
@@ -1262,6 +1270,10 @@ export type Dictionary = {
     notFoundTitle: string;
     notFoundDescription: string;
     loading: string;
+    toolbarAriaLabel: string;
+    paginationAriaLabel: string;
+    actionsAriaLabel: string;
+    sortAriaLabel: string;
     results: string;
     page: string;
     of: string;

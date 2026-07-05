@@ -168,6 +168,7 @@ export function EngagementListExperience({
       />
 
       <EngagementToolbar
+        ariaLabel={labels.toolbarAriaLabel}
         search={
           <EngagementSearch
             key={query.q ?? "__all__"}
@@ -212,7 +213,7 @@ export function EngagementListExperience({
         actions={
           <div className="flex items-center gap-2">
             <label className="sr-only" htmlFor="engagement-sort">
-              Sort engagements
+              {labels.sortAriaLabel}
             </label>
             <select
               id="engagement-sort"

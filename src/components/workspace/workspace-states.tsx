@@ -1,7 +1,10 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { EmptyState, ErrorState } from "@/components/ui/empty-state";
 import { Skeleton, SkeletonCard } from "@/components/ui/skeleton";
+import { useCommonLabels } from "@/i18n/use-common-labels";
 import { cn } from "@/lib/ui/cn";
 
 export function WorkspaceError({
@@ -78,8 +81,10 @@ export function WorkspaceEmptyPanel({
 }
 
 export function WorkspaceLoading({ rows = 3 }: { rows?: number }) {
+  const { loading } = useCommonLabels();
+
   return (
-    <div className="space-y-4" aria-busy="true" aria-label="Loading">
+    <div className="space-y-4" aria-busy="true" aria-label={loading}>
       {Array.from({ length: rows }).map((_, i) => (
         <SkeletonCard key={i} />
       ))}

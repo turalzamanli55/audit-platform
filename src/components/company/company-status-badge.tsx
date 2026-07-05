@@ -1,18 +1,13 @@
+"use client";
+
 import type { Database } from "@/types/supabase";
 
 type RecordStatus = Database["public"]["Enums"]["record_status"];
 
 type CompanyStatusBadgeProps = {
   status: RecordStatus | string;
-  label?: string;
+  label: string;
   className?: string;
-};
-
-const STATUS_LABELS: Record<RecordStatus, string> = {
-  active: "Active",
-  inactive: "Inactive",
-  archived: "Archived",
-  suspended: "Suspended",
 };
 
 const STATUS_STYLES: Record<RecordStatus, string> = {
@@ -23,7 +18,7 @@ const STATUS_STYLES: Record<RecordStatus, string> = {
 };
 
 function resolveStatus(status: string): RecordStatus | null {
-  if (status in STATUS_LABELS) {
+  if (status in STATUS_STYLES) {
     return status as RecordStatus;
   }
   return null;
@@ -34,7 +29,6 @@ function resolveStatus(status: string): RecordStatus | null {
  */
 export function CompanyStatusBadge({ status, label, className = "" }: CompanyStatusBadgeProps) {
   const resolved = resolveStatus(status);
-  const displayLabel = label ?? (resolved ? STATUS_LABELS[resolved] : status);
   const styles = resolved ? STATUS_STYLES[resolved] : "border-border/60 bg-muted text-muted-foreground";
 
   return (
@@ -42,7 +36,7 @@ export function CompanyStatusBadge({ status, label, className = "" }: CompanySta
       className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium ${styles} ${className}`}
     >
       <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-80" />
-      <span>{displayLabel}</span>
+      <span>{label}</span>
     </span>
   );
 }

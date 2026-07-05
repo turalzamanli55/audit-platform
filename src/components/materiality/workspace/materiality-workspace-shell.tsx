@@ -22,6 +22,7 @@ type MaterialityWorkspaceShellProps = {
     summaryProgress: string;
     summaryVersion: string;
     summaryOverall: string;
+    summaryPendingReviewBadge: string;
     backToEngagement: string;
     planningGateTitle: string;
     planningGateDescription: string;

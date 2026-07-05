@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 type CompanyFilterBarProps = {
   children?: ReactNode;
-  label?: ReactNode;
+  label: string;
   className?: string;
 };
 
@@ -17,7 +17,7 @@ export function CompanyFilterBar({ children, label, className = "" }: CompanyFil
   return (
     <div
       role="group"
-      aria-label={typeof label === "string" ? label : "Company filters"}
+      aria-label={label}
       className={`flex min-w-0 flex-1 flex-wrap items-center gap-2 ${className}`}
     >
       {label ? (

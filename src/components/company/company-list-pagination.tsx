@@ -33,7 +33,7 @@ export function CompanyListPagination({
 
   return (
     <nav
-      aria-label="Company list pagination"
+      aria-label={labels.paginationAriaLabel}
       className="flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-6 sm:flex-row"
     >
       <p className="text-sm text-muted-foreground">

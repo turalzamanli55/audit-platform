@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { useCommonLabels } from "@/i18n/use-common-labels";
 
 export type EngagementBreadcrumbItem = {
   label: ReactNode;
@@ -20,6 +23,8 @@ function BreadcrumbSeparator() {
 }
 
 export function EngagementBreadcrumb({ items, className = "" }: EngagementBreadcrumbProps) {
+  const { breadcrumbLabel, backTo } = useCommonLabels();
+
   if (items.length === 0) {
     return null;
   }
@@ -29,7 +34,7 @@ export function EngagementBreadcrumb({ items, className = "" }: EngagementBreadc
   const backHref = ancestors.length > 0 ? ancestors[ancestors.length - 1]?.href : undefined;
 
   return (
-    <nav aria-label="Breadcrumb" className={className}>
+    <nav aria-label={breadcrumbLabel} className={className}>
       <div className="flex min-w-0 items-center gap-2 sm:hidden">
         {backHref ? (
           <Link
@@ -37,7 +42,7 @@ export function EngagementBreadcrumb({ items, className = "" }: EngagementBreadc
             className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ChevronLeftIcon />
-            <span className="sr-only">Back to </span>
+            <span className="sr-only">{backTo} </span>
             <span className="truncate">{ancestors[ancestors.length - 1]?.label}</span>
           </Link>
         ) : null}

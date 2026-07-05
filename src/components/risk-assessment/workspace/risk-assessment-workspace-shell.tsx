@@ -25,6 +25,7 @@ type RiskAssessmentWorkspaceShellProps = {
     summaryProgress: string;
     summaryVersion: string;
     summarySignificant: string;
+    summaryPendingReviewBadge: string;
     backToEngagement: string;
     planningGateTitle: string;
     planningGateDescription: string;

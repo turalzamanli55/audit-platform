@@ -1,4 +1,7 @@
+"use client";
+
 import { CompanyPageShell } from "@/components/company";
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
 
 function SkeletonBlock({ className = "" }: { className?: string }) {
   return (
@@ -10,17 +13,16 @@ function SkeletonBlock({ className = "" }: { className?: string }) {
 }
 
 type CompanyWorkspaceLoadingProps = {
-  ariaLabel?: string;
   className?: string;
 };
 
 /**
  * Layout-stable skeleton matching the company workspace structure.
  */
-export function CompanyWorkspaceLoading({
-  ariaLabel = "Loading company workspace",
-  className = "",
-}: CompanyWorkspaceLoadingProps) {
+export function CompanyWorkspaceLoading({ className = "" }: CompanyWorkspaceLoadingProps) {
+  const dictionary = useClientDictionary();
+  const ariaLabel = dictionary.companies.workspace.loading;
+
   return (
     <CompanyPageShell className={`max-w-[90rem] ${className}`}>
       <div

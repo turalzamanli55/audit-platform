@@ -1,3 +1,7 @@
+"use client";
+
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
+
 type EngagementLoadingSkeletonProps = {
   variant?: "list" | "detail" | "card";
   rows?: number;
@@ -68,15 +72,18 @@ export function EngagementLoadingSkeleton({
   rows = 4,
   className = "",
 }: EngagementLoadingSkeletonProps) {
+  const dictionary = useClientDictionary();
+  const loadingLabel = dictionary.engagements.loading;
+
   return (
     <div
       role="status"
       aria-live="polite"
       aria-busy="true"
-      aria-label="Loading engagements"
+      aria-label={loadingLabel}
       className={className}
     >
-      <span className="sr-only">Loading engagements</span>
+      <span className="sr-only">{loadingLabel}</span>
       {variant === "list" ? <ListSkeleton rows={rows} /> : null}
       {variant === "detail" ? <DetailSkeleton /> : null}
       {variant === "card" ? <CardSkeleton /> : null}

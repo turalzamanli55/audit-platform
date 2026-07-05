@@ -11,18 +11,18 @@ type CompanySearchProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & 
  */
 export function CompanySearch({
   label,
+  placeholder,
   error,
   className = "",
   id = "company-search",
-  placeholder = "Search companies…",
   onValueChange,
   onChange,
   ...props
-}: CompanySearchProps) {
+}: CompanySearchProps & { label: ReactNode; placeholder: string }) {
   return (
     <div role="search" className={`w-full min-w-0 sm:max-w-sm lg:max-w-md ${className}`}>
       <label htmlFor={id} className="sr-only">
-        {label ?? "Search companies"}
+        {label}
       </label>
       <div className="relative space-y-1.5">
         <span

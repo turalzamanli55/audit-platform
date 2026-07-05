@@ -8,18 +8,18 @@ type EngagementSearchProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type">
 
 export function EngagementSearch({
   label,
+  placeholder,
   error,
   className = "",
   id = "engagement-search",
-  placeholder = "Search engagements…",
   onValueChange,
   onChange,
   ...props
-}: EngagementSearchProps) {
+}: EngagementSearchProps & { label: ReactNode; placeholder: string }) {
   return (
     <div role="search" className={`w-full min-w-0 sm:max-w-sm lg:max-w-md ${className}`}>
       <label htmlFor={id} className="sr-only">
-        {label ?? "Search engagements"}
+        {label}
       </label>
       <div className="relative space-y-1.5">
         <span

@@ -1,18 +1,23 @@
 import type { ReactNode } from "react";
 
 type EngagementErrorStateProps = {
-  title?: ReactNode;
-  description?: ReactNode;
+  title: ReactNode;
+  description: ReactNode;
   action?: ReactNode;
   className?: string;
 };
 
 export function EngagementErrorState({
-  title = "Unable to load engagements",
-  description = "Something went wrong while loading this section. Try again in a moment.",
+  title,
+  description,
   action,
   className = "",
-}: EngagementErrorStateProps) {
+}: {
+  title: ReactNode;
+  description: ReactNode;
+  action?: ReactNode;
+  className?: string;
+}) {
   return (
     <div
       role="alert"

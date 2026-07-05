@@ -1,3 +1,7 @@
+"use client";
+
+import { useClientDictionary } from "@/i18n/use-client-dictionary";
+
 function SkeletonBlock({ className = "" }: { className?: string }) {
   return (
     <div
@@ -7,13 +11,10 @@ function SkeletonBlock({ className = "" }: { className?: string }) {
   );
 }
 
-type CompanySettingsLoadingProps = {
-  ariaLabel?: string;
-};
+export function CompanySettingsLoading() {
+  const dictionary = useClientDictionary();
+  const ariaLabel = dictionary.companies.settings.loading;
 
-export function CompanySettingsLoading({
-  ariaLabel = "Loading company settings",
-}: CompanySettingsLoadingProps) {
   return (
     <div
       role="status"
