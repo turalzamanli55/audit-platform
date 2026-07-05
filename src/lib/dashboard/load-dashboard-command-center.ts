@@ -15,6 +15,7 @@ import type { EngagementListItem } from "@/lib/engagement/engagement-list-item";
 import type { FieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
 import type { MaterialityDashboardMetrics } from "@/lib/materiality/load-materiality-dashboard-metrics";
 import type { RiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
+import type { ReviewDashboardMetrics } from "@/lib/review/load-review-dashboard-metrics";
 import type { DashboardPlanningMetrics } from "./load-dashboard-feed";
 import type { DashboardWorkspaceActivityItem } from "@/i18n/dashboard-workspace-types";
 
@@ -282,6 +283,7 @@ export async function loadDashboardCommandCenter(input: {
   fieldworkMetrics: FieldworkDashboardMetrics | null;
   riskMetrics: RiskAssessmentDashboardMetrics | null;
   materialityMetrics: MaterialityDashboardMetrics | null;
+  reviewMetrics?: ReviewDashboardMetrics | null;
   planningMetrics: DashboardPlanningMetrics | null;
   activity: DashboardWorkspaceActivityItem[];
   workspaceId: string | null;

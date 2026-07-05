@@ -13,6 +13,7 @@ import type { EngagementListItem } from "@/lib/engagement/engagement-list-item";
 import type { FieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-dashboard-metrics";
 import type { MaterialityDashboardMetrics } from "@/lib/materiality/load-materiality-dashboard-metrics";
 import type { RiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
+import type { ReviewDashboardMetrics } from "@/lib/review/load-review-dashboard-metrics";
 import { unwrapSupabaseList } from "@/utils/supabase-result";
 
 export type DashboardEngagementPreview = {
@@ -187,6 +188,7 @@ function buildTaskItems(
   fieldworkMetrics: FieldworkDashboardMetrics | null,
   riskMetrics: RiskAssessmentDashboardMetrics | null,
   materialityMetrics: MaterialityDashboardMetrics | null,
+  reviewMetrics: ReviewDashboardMetrics | null,
 ): DashboardWorkspaceTaskItem[] {
   const items: DashboardWorkspaceTaskItem[] = [];
   let index = 0;
@@ -286,6 +288,48 @@ function buildTaskItems(
       statusVariant: "default",
       priorityVariant: "warning",
       module: labels.moduleMateriality,
+      href: engagementsHref,
+    });
+  }
+
+  if (reviewMetrics && reviewMetrics.pendingReview > 0) {
+    items.push({
+      id: `review-pending-${index++}`,
+      title: labels.reviewPendingReviews.replace("{count}", String(reviewMetrics.pendingReview)),
+      status: labels.statusOpen,
+      priority: labels.priorityHigh,
+      due: labels.dueSoon,
+      statusVariant: "warning",
+      priorityVariant: "destructive",
+      module: labels.moduleReview,
+      href: engagementsHref,
+    });
+  }
+
+  if (reviewMetrics && reviewMetrics.draftPackages > 0) {
+    items.push({
+      id: `review-returned-${index++}`,
+      title: labels.reviewReturnedReviews.replace("{count}", String(reviewMetrics.draftPackages)),
+      status: labels.statusOpen,
+      priority: labels.priorityHigh,
+      due: labels.dueSoon,
+      statusVariant: "warning",
+      priorityVariant: "warning",
+      module: labels.moduleReview,
+      href: engagementsHref,
+    });
+  }
+
+  if (reviewMetrics && reviewMetrics.openFindings > 0) {
+    items.push({
+      id: `review-open-${index++}`,
+      title: labels.reviewOpenTasks.replace("{count}", String(reviewMetrics.openFindings)),
+      status: labels.statusOpen,
+      priority: labels.priorityMedium,
+      due: labels.dueSoon,
+      statusVariant: "default",
+      priorityVariant: "warning",
+      module: labels.moduleReview,
       href: engagementsHref,
     });
   }
@@ -422,8 +466,9 @@ export async function loadDashboardFeed(input: {
   fieldworkMetrics: FieldworkDashboardMetrics | null;
   riskMetrics: RiskAssessmentDashboardMetrics | null;
   materialityMetrics: MaterialityDashboardMetrics | null;
+  reviewMetrics: ReviewDashboardMetrics | null;
 }): Promise<DashboardFeed> {
-  const { locale, labels, companyCount, engagements, fieldworkMetrics, riskMetrics, materialityMetrics } =
+  const { locale, labels, companyCount, engagements, fieldworkMetrics, riskMetrics, materialityMetrics, reviewMetrics } =
     input;
 
   const user = await getCurrentUser();
@@ -447,7 +492,7 @@ export async function loadDashboardFeed(input: {
 
   return {
     activity,
-    tasks: buildTaskItems(locale, labels.tasks, fieldworkMetrics, riskMetrics, materialityMetrics),
+    tasks: buildTaskItems(locale, labels.tasks, fieldworkMetrics, riskMetrics, materialityMetrics, reviewMetrics),
     insights: buildInsightsMetrics(
       labels.insights,
       companyCount,

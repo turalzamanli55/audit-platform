@@ -12,9 +12,10 @@ import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace
 import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
+import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
 
 export type EngagementPhaseCard = {
-  id: "planning" | "materiality" | "risk-assessment" | "fieldwork";
+  id: "planning" | "materiality" | "risk-assessment" | "fieldwork" | "review";
   title: string;
   description: string;
   href: string;
@@ -133,6 +134,14 @@ export function buildEngagementPhaseCards(input: {
       fieldworkStatus: string;
       findingsCount: string;
     };
+    review: {
+      title: string;
+      description: string;
+      openReview: string;
+      reviewProgress: string;
+      reviewStatus: string;
+      pendingReviews: string;
+    };
     phaseEmpty: {
       planningTitle: string;
       planningDescription: string;
@@ -142,6 +151,8 @@ export function buildEngagementPhaseCards(input: {
       riskDescription: string;
       fieldworkTitle: string;
       fieldworkDescription: string;
+      reviewTitle: string;
+      reviewDescription: string;
       notStarted: string;
     };
   };
@@ -149,10 +160,12 @@ export function buildEngagementPhaseCards(input: {
   materialityLabels: { statuses: Record<string, string> };
   riskLabels: { statuses: Record<string, string> };
   fieldworkLabels: { statuses: Record<string, string> };
+  reviewLabels: { statuses: Record<string, string> };
   plan: PlanningWorkspaceView | null;
   materiality: MaterialityWorkspaceView | null;
   riskAssessment: RiskAssessmentWorkspaceView | null;
   fieldwork: FieldworkWorkspaceView | null;
+  review: ReviewWorkspaceView | null;
 }): EngagementPhaseCard[] {
   const base = `/${input.locale}/app/engagements/${input.slug}`;
   const { labels, planningLabels, materialityLabels, riskLabels, fieldworkLabels } = input;
@@ -276,6 +289,31 @@ export function buildEngagementPhaseCards(input: {
       isEmpty: !input.fieldwork,
       emptyTitle: labels.phaseEmpty.fieldworkTitle,
       emptyDescription: labels.phaseEmpty.fieldworkDescription,
+    },
+    {
+      id: "review",
+      title: labels.review.title,
+      description: labels.review.description,
+      href: `${base}/review`,
+      statusLabel: input.review
+        ? input.reviewLabels.statuses[input.review.packageStatus]
+        : notStarted,
+      statusVariant: input.review ? statusVariant(input.review.packageStatus) : "default",
+      progressPct: input.review?.progressPct ?? 0,
+      kpiPrimary: {
+        label: labels.review.reviewStatus,
+        value: input.review
+          ? input.reviewLabels.statuses[input.review.packageStatus]
+          : notStarted,
+      },
+      kpiSecondary: {
+        label: labels.review.pendingReviews,
+        value: input.review ? String(input.review.pendingCount) : "—",
+      },
+      ctaLabel: labels.review.openReview,
+      isEmpty: !input.review,
+      emptyTitle: labels.phaseEmpty.reviewTitle,
+      emptyDescription: labels.phaseEmpty.reviewDescription,
     },
   ];
 }

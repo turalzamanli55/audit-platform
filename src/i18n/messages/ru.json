@@ -796,6 +796,7 @@
       "navPlanning": "Планирование",
       "navRiskAssessment": "Оценка рисков",
       "navFieldwork": "Полевые работы",
+      "navReview": "Обзор",
       "navHistory": "Хронология",
       "navSettings": "Настройки",
       "loading": "Загрузка рабочего пространства проекта",
@@ -854,6 +855,21 @@
         "findingsCount": "Выявления",
         "evidenceCount": "Элементы доказательств",
         "openFieldwork": "Открыть полевые работы"
+      },
+      "review": {
+        "title": "Сводка по обзору",
+        "description": "Статус обзора задания, ожидающие подписи и открытые замечания.",
+        "lifecycleStage": "Этап жизненного цикла",
+        "financialYear": "Финансовый год",
+        "plannedSchedule": "Плановый график",
+        "teamSize": "Размер команды",
+        "reviewStatus": "Статус обзора",
+        "reviewProgress": "Прогресс обзора",
+        "packageVersion": "Версия пакета",
+        "pendingReviews": "Ожидающие обзоры",
+        "openFindings": "Открытые замечания",
+        "resolvedItems": "Решённые элементы",
+        "openReview": "Открыть обзор задания"
       },
       "client": {
         "title": "Информация о клиенте",

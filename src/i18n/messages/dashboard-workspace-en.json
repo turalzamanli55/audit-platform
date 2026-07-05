@@ -110,9 +110,13 @@
     "openRiskItems": "Complete {count} open risk items",
     "reviewMateriality": "Review {count} materiality packages",
     "draftMateriality": "Complete {count} draft materiality packages",
+    "reviewPendingReviews": "Clear {count} pending review items",
+    "reviewReturnedReviews": "Address {count} returned review items",
+    "reviewOpenTasks": "Complete {count} open review tasks",
     "moduleFieldwork": "Fieldwork",
     "moduleRisk": "Risk assessment",
-    "moduleMateriality": "Materiality"
+    "moduleMateriality": "Materiality",
+    "moduleReview": "Review"
   },
   "ai": {
     "title": "AI assistant",

@@ -3,6 +3,10 @@ import type { Locale } from "./types";
 import type { MarketingLabels } from "./marketing-types";
 import type { AuthExperienceLabels } from "./auth-experience-types";
 import type { DashboardWorkspaceLabels } from "./dashboard-workspace-types";
+import type {
+  ReviewCommandCenterLabels,
+  ReviewWorkspaceLabels,
+} from "@/lib/review/review-workspace-display";
 
 type RiskAssessmentSectionLabels = {
   title: string;
@@ -589,6 +593,122 @@ type MaterialityLabels = {
     updatedLabel: string;
     actions: Record<string, string>;
   };
+  settings: {
+    title: string;
+    description: string;
+    archiveAction: string;
+    archiveConfirmAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    archivedBanner: string;
+    readOnlyNotice: string;
+  };
+  states: {
+    loadingTitle: string;
+    loadingDescription: string;
+    archiveTitle: string;
+    archiveDescription: string;
+    readonlyTitle: string;
+    readonlyDescription: string;
+    permissionTitle: string;
+    permissionDescription: string;
+  };
+};
+
+type ReviewSectionLabels = {
+  title: string;
+  description: string;
+  emptyTitle: string;
+  emptyDescription: string;
+  bodyPlaceholder?: string;
+  addAction?: string;
+  columns?: Record<string, string>;
+};
+
+type ReviewLabels = {
+  notFoundTitle: string;
+  notFoundDescription: string;
+  forbiddenTitle: string;
+  forbiddenDescription: string;
+  noWorkspaceTitle: string;
+  noWorkspaceDescription: string;
+  statuses: Record<string, string>;
+  itemStatuses: Record<string, string>;
+  sourceModules: Record<string, string>;
+  commentTypes: Record<string, string>;
+  workflow: {
+    title: string;
+    description: string;
+    submitAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    cancelAction: string;
+    returnNotesLabel: string;
+    returnNotesPlaceholder: string;
+    readOnlyNotice: string;
+    submittedNotice: string;
+    approvedNotice: string;
+    returnedNotice: string;
+    errorGeneric: string;
+  };
+  empty: {
+    title: string;
+    description: string;
+    createAction: string;
+    creating: string;
+    forbiddenDescription: string;
+  };
+  workspace: ReviewWorkspaceLabels & {
+    title: string;
+    description: string;
+    statusTitle: string;
+    statusDescription: string;
+    progress: string;
+    workflowTitle: string;
+    workflowDescription: string;
+    queuePreviewTitle: string;
+    queuePreviewDescription: string;
+    heroEyebrow: string;
+    breadcrumbReview: string;
+    backToEngagement: string;
+    fieldworkGateTitle: string;
+    fieldworkGateDescription: string;
+    fieldworkSubstantiallyCompleteDescription: string;
+    navAriaLabel: string;
+    navOverview: string;
+    navReviewQueue: string;
+    navOpenFindings: string;
+    navPendingReviews: string;
+    navResolvedReviews: string;
+    navReviewerNotes: string;
+    navComments: string;
+    navHistory: string;
+    navVersions: string;
+    navSettings: string;
+    loading: string;
+    errorTitle: string;
+    errorDescription: string;
+    archivedTitle: string;
+    archivedDescription: string;
+    summaryStatus: string;
+    summaryOpenFindings: string;
+    summaryPendingReviewBadge: string;
+    commandCenter: ReviewCommandCenterLabels;
+  };
+  reviewQueue: ReviewSectionLabels;
+  openFindings: ReviewSectionLabels;
+  pendingReviews: ReviewSectionLabels;
+  resolvedReviews: ReviewSectionLabels;
+  reviewerNotes: ReviewSectionLabels;
+  comments: ReviewSectionLabels;
+  history: ReviewSectionLabels & {
+    versionLabel: string;
+    updatedLabel: string;
+    actions: Record<string, string>;
+  };
+  versions: ReviewSectionLabels;
   settings: {
     title: string;
     description: string;
@@ -1382,6 +1502,7 @@ export type Dictionary = {
       navMateriality: string;
       navRiskAssessment: string;
       navFieldwork: string;
+      navReview: string;
       navHistory: string;
       navSettings: string;
       loading: string;
@@ -1512,6 +1633,8 @@ export type Dictionary = {
         riskDescription: string;
         fieldworkTitle: string;
         fieldworkDescription: string;
+        reviewTitle: string;
+        reviewDescription: string;
       };
       planning: {
         title: string;
@@ -1568,6 +1691,21 @@ export type Dictionary = {
         findingsCount: string;
         evidenceCount: string;
         openFieldwork: string;
+      };
+      review: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+        reviewStatus: string;
+        reviewProgress: string;
+        packageVersion: string;
+        pendingReviews: string;
+        openFindings: string;
+        resolvedItems: string;
+        openReview: string;
       };
       client: {
         title: string;
@@ -2043,6 +2181,7 @@ export type Dictionary = {
   };
   riskAssessment: RiskAssessmentLabels;
   materiality: MaterialityLabels;
+  review: ReviewLabels;
   fieldwork: {
     notFoundTitle: string;
     notFoundDescription: string;

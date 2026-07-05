@@ -796,6 +796,7 @@
       "navPlanning": "Planlaşdırma",
       "navRiskAssessment": "Risk qiymətləndirilməsi",
       "navFieldwork": "Sahə işi",
+      "navReview": "Yoxlama",
       "navHistory": "Zaman xətti",
       "navSettings": "Parametrlər",
       "loading": "Müsadirə iş sahəsi yüklənir",
@@ -854,6 +855,21 @@
         "findingsCount": "Nəticələr",
         "evidenceCount": "Sübut elementləri",
         "openFieldwork": "Audit sahə işini aç"
+      },
+      "review": {
+        "title": "Yoxlama xülasəsi",
+        "description": "Müsadirə yoxlama statusu, gözləyən imzalar və açıq nəticələr.",
+        "lifecycleStage": "Həyat dövrü mərhələsi",
+        "financialYear": "Maliyyə ili",
+        "plannedSchedule": "Planlaşdırılmış cədvəl",
+        "teamSize": "Komanda ölçüsü",
+        "reviewStatus": "Yoxlama statusu",
+        "reviewProgress": "Yoxlama gedişatı",
+        "packageVersion": "Paket versiyası",
+        "pendingReviews": "Gözləyən yoxlamalar",
+        "openFindings": "Açıq nəticələr",
+        "resolvedItems": "Həll edilmiş elementlər",
+        "openReview": "Müsadirə yoxlamasını aç"
       },
       "client": {
         "title": "Müştəri məlumatı",

@@ -97,9 +97,13 @@ export type DashboardWorkspaceLabels = {
     openRiskItems: string;
     reviewMateriality: string;
     draftMateriality: string;
+    reviewPendingReviews: string;
+    reviewReturnedReviews: string;
+    reviewOpenTasks: string;
     moduleFieldwork: string;
     moduleRisk: string;
     moduleMateriality: string;
+    moduleReview: string;
     items: DashboardWorkspaceTaskItem[];
   };
   ai: {

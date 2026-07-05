@@ -3,6 +3,7 @@ import type { FieldworkPackage } from "@/repositories/fieldwork/fieldwork-reposi
 import type { AuditProcedure } from "@/repositories/fieldwork/fieldwork-repository";
 import { COMPLETE_PROCEDURE_STATUSES } from "@/constants/fieldwork";
 import { ValidationError } from "@/lib/errors";
+import { assertReviewApprovedForCompletion } from "@/lib/review/review-rules";
 
 const SUBMITTABLE_PROCEDURE_STATUSES = [
   "in_progress",
@@ -169,4 +170,10 @@ export function assertCanClearWorkingPaper(
   ) {
     throw new ValidationError("Only working papers pending review can be cleared.");
   }
+}
+
+export function assertFieldworkCompletionRequiresReview(
+  reviewPackage: { package_status: string } | null,
+): void {
+  assertReviewApprovedForCompletion(reviewPackage);
 }

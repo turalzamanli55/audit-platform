@@ -7,6 +7,7 @@ import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace
 import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
+import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
 import { loadEngagementActivity } from "@/lib/engagement/load-engagement-activity";
 import { loadCompanyWorkspacePage } from "@/lib/company/company-workspace-page";
 import { resolveUserProfiles } from "@/lib/user/resolve-user-profiles";
@@ -57,6 +58,7 @@ export async function loadEngagementCommandCenter(input: {
   materiality: MaterialityWorkspaceView | null;
   riskAssessment: RiskAssessmentWorkspaceView | null;
   fieldwork: FieldworkWorkspaceView | null;
+  review: ReviewWorkspaceView | null;
   labels: CommandCenterLabels;
   workspaceLabels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
@@ -64,6 +66,7 @@ export async function loadEngagementCommandCenter(input: {
   materialityLabels: Dictionary["materiality"];
   riskLabels: Dictionary["riskAssessment"];
   fieldworkLabels: Dictionary["fieldwork"];
+  reviewLabels: Dictionary["review"];
 }): Promise<EngagementCommandCenterData> {
   const {
     locale,
@@ -72,6 +75,7 @@ export async function loadEngagementCommandCenter(input: {
     materiality,
     riskAssessment,
     fieldwork,
+    review,
     labels,
     workspaceLabels,
     engagementsLabels,
@@ -79,6 +83,7 @@ export async function loadEngagementCommandCenter(input: {
     materialityLabels,
     riskLabels,
     fieldworkLabels,
+    reviewLabels,
   } = input;
 
   const base = `/${locale}/app/engagements/${engagement.slug}`;
@@ -98,36 +103,40 @@ export async function loadEngagementCommandCenter(input: {
       materiality: workspaceLabels.materiality,
       riskAssessment: workspaceLabels.riskAssessment,
       fieldwork: workspaceLabels.fieldwork,
+      review: workspaceLabels.review,
       phaseEmpty: workspaceLabels.phaseEmpty,
     },
     planningLabels,
     materialityLabels,
     riskLabels,
     fieldworkLabels,
+    reviewLabels,
     plan,
     materiality,
     riskAssessment,
     fieldwork,
+    review,
   });
 
   const planOwner = await resolveOwnerName(plan?.approvedBy ?? plan?.submittedBy);
 
   const pendingReviews =
-    (plan?.planningStatus === "pending_review" ? 1 : 0) +
-    (materiality?.pendingReviewCount ?? 0) +
-    (riskAssessment?.pendingReviewCount ?? 0) +
-    (fieldwork?.pendingReviewCount ?? 0);
+    review?.pendingCount ??
+    ((plan?.planningStatus === "pending_review" ? 1 : 0) +
+      (materiality?.pendingReviewCount ?? 0) +
+      (riskAssessment?.pendingReviewCount ?? 0) +
+      (fieldwork?.pendingReviewCount ?? 0));
 
-  const openFindings =
-    fieldwork?.findings.filter((f) => f.findingStatus === "open").length ?? 0;
+  const openFindings = review?.openFindingsCount ?? fieldwork?.findings.filter((f) => f.findingStatus === "open").length ?? 0;
 
   const moduleProgress = phaseCards.map((c) => c.progressPct);
-  const reviewProgress =
+  const reviewProgress = review?.progressPct ?? (
     pendingReviews === 0
       ? fieldwork && ["substantially_complete", "in_progress"].includes(fieldwork.packageStatus)
         ? 100
         : 50
-      : Math.max(0, 100 - pendingReviews * 25);
+      : Math.max(0, 100 - pendingReviews * 25)
+  );
 
   const completionProgress =
     engagement.lifecycleStatus === "closed"
@@ -183,16 +192,25 @@ export async function loadEngagementCommandCenter(input: {
     {
       id: "review",
       label: labels.phaseReview,
-      statusLabel: pendingReviews > 0 ? labels.statusReview : labels.statusClear,
-      statusVariant: pendingReviews > 0 ? "warning" : "success",
+      statusLabel: review
+        ? reviewLabels.statuses[review.packageStatus]
+        : pendingReviews > 0
+          ? labels.statusReview
+          : labels.statusClear,
+      statusVariant:
+        review?.packageStatus === "approved"
+          ? "success"
+          : pendingReviews > 0 || review?.packageStatus === "returned"
+            ? "warning"
+            : "default",
       progressPct: reviewProgress,
       owner: null,
-      lastUpdate: formatDate(locale, engagement.updatedAt) ?? "—",
-      lastUpdateRelative: formatRelativeTime(locale, engagement.updatedAt),
-      href: `${base}/fieldwork`,
+      lastUpdate: formatDate(locale, review?.updatedAt ?? engagement.updatedAt) ?? "—",
+      lastUpdateRelative: formatRelativeTime(locale, review?.updatedAt ?? engagement.updatedAt),
+      href: `${base}/review`,
       ctaLabel: labels.openReviewQueue,
-      isActive: pendingReviews > 0,
-      isEmpty: false,
+      isActive: Boolean(review && review.packageStatus !== "approved"),
+      isEmpty: !review,
     },
     {
       id: "completion",

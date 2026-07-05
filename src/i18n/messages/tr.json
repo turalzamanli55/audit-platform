@@ -796,6 +796,7 @@
       "navPlanning": "Planlama",
       "navRiskAssessment": "Risk değerlendirmesi",
       "navFieldwork": "Saha çalışması",
+      "navReview": "İnceleme",
       "navHistory": "Zaman çizelgesi",
       "navSettings": "Ayarlar",
       "loading": "Görev çalışma alanı yükleniyor",
@@ -854,6 +855,21 @@
         "findingsCount": "Bulgular",
         "evidenceCount": "Kanıt öğeleri",
         "openFieldwork": "Denetim saha çalışmasını aç"
+      },
+      "review": {
+        "title": "İnceleme özeti",
+        "description": "Denetim inceleme durumu, bekleyen onaylar ve açık bulgular.",
+        "lifecycleStage": "Yaşam döngüsü aşaması",
+        "financialYear": "Mali yıl",
+        "plannedSchedule": "Planlanan takvim",
+        "teamSize": "Ekip boyutu",
+        "reviewStatus": "İnceleme durumu",
+        "reviewProgress": "İnceleme ilerlemesi",
+        "packageVersion": "Paket sürümü",
+        "pendingReviews": "Bekleyen incelemeler",
+        "openFindings": "Açık bulgular",
+        "resolvedItems": "Çözümlenen öğeler",
+        "openReview": "Denetim incelemesini aç"
       },
       "client": {
         "title": "Müşteri bilgileri",

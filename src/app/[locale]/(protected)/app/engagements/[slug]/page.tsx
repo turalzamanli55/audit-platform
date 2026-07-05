@@ -9,6 +9,7 @@ import { loadEngagementCommandCenter } from "@/lib/engagement/load-engagement-co
 import { loadMaterialityWorkspacePage } from "@/lib/materiality/materiality-workspace-page";
 import { loadPlanningWorkspacePage } from "@/lib/planning/planning-workspace-page";
 import { loadFieldworkWorkspacePage } from "@/lib/fieldwork/fieldwork-workspace-page";
+import { loadReviewWorkspacePage } from "@/lib/review/review-workspace-page";
 import { loadRiskAssessmentWorkspacePage } from "@/lib/risk-assessment/risk-assessment-workspace-page";
 
 type EngagementWorkspaceOverviewPageProps = {
@@ -27,13 +28,14 @@ export default async function EngagementWorkspaceOverviewPage({
   const locale = localeParam as Locale;
   const dictionary = await getDictionary(locale);
   const user = await getCurrentUser();
-  const [engagement, planningResult, materialityResult, riskAssessmentResult, fieldworkResult] =
+  const [engagement, planningResult, materialityResult, riskAssessmentResult, fieldworkResult, reviewResult] =
     await Promise.all([
       requireEngagementWorkspace(slug),
       loadPlanningWorkspacePage(slug),
       loadMaterialityWorkspacePage(slug),
       loadRiskAssessmentWorkspacePage(slug),
       loadFieldworkWorkspacePage(slug),
+      loadReviewWorkspacePage(slug),
     ]);
 
   const canUpdate = user
@@ -44,6 +46,7 @@ export default async function EngagementWorkspaceOverviewPage({
   const materiality = materialityResult.ok ? materialityResult.materiality : null;
   const riskAssessment = riskAssessmentResult.ok ? riskAssessmentResult.riskAssessment : null;
   const fieldwork = fieldworkResult.ok ? fieldworkResult.fieldwork : null;
+  const review = reviewResult.ok ? reviewResult.review : null;
 
   const commandCenter = await loadEngagementCommandCenter({
     locale,
@@ -52,6 +55,7 @@ export default async function EngagementWorkspaceOverviewPage({
     materiality,
     riskAssessment,
     fieldwork,
+    review,
     labels: dictionary.engagements.workspace.commandCenter,
     workspaceLabels: dictionary.engagements.workspace,
     engagementsLabels: dictionary.engagements,
@@ -59,6 +63,7 @@ export default async function EngagementWorkspaceOverviewPage({
     materialityLabels: dictionary.materiality,
     riskLabels: dictionary.riskAssessment,
     fieldworkLabels: dictionary.fieldwork,
+    reviewLabels: dictionary.review,
   });
 
   return (
