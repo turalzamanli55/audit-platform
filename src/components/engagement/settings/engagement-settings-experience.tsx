@@ -14,9 +14,9 @@ import type { EngagementReportingFramework } from "@/types/engagement";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert, Input } from "@/components/ui";
+import { Input } from "@/components/ui";
 import { Button } from "@/components/ui/button";
-import { WorkspaceFormPanel, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 
 type EngagementSettingsExperienceProps = {
   canUpdate: boolean;
@@ -258,7 +258,7 @@ function EngagementSettingsForm({
           </WorkspacePanel>
         ) : null}
 
-        {error ? <Alert variant="error">{error}</Alert> : null}
+        {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
         <div className="space-y-8">
           <SettingsGroup title={labels.sections.general.title} description={labels.sections.general.description}>

@@ -3,16 +3,20 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Alert } from "@/components/ui";
 import {
   CommandCard,
   CommandEmpty,
   CommandKpiRow,
   CommandListRow,
 } from "@/components/dashboard/command-center/command-center-primitives";
+import {
+  WorkspaceNoticeBanner,
+  WorkspaceProgressBar,
+  WorkspaceStatusBadge,
+  workspaceTokens,
+} from "@/components/workspace";
 import { EngagementAuditPipeline } from "./engagement-audit-pipeline";
 import { updateEngagementAction } from "@/lib/actions/engagement/update-engagement";
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
@@ -80,10 +84,10 @@ export function EngagementCommandCenter({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-5 sm:p-6">
+      <section className={workspaceTokens.commandHero}>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className={workspaceTokens.heroEyebrow}>
               {cc.heroTitle}
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -92,41 +96,28 @@ export function EngagementCommandCenter({
               </span>
               <span className="text-sm text-muted-foreground">{cc.overallCompletion}</span>
             </div>
-            <div className="h-2 max-w-md overflow-hidden rounded-full bg-muted">
-              <div
-                className="h-full rounded-full bg-primary transition-all"
-                style={{ width: `${commandCenter.overallCompletionPct}%` }}
-                role="progressbar"
-                aria-valuenow={commandCenter.overallCompletionPct}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              />
-            </div>
+            <WorkspaceProgressBar
+              label={cc.overallCompletion}
+              value={commandCenter.overallCompletionPct}
+              className="max-w-md"
+            />
             {commandCenter.deadlineLabel ? (
-              <Badge
+              <WorkspaceStatusBadge
+                label={`${commandCenter.isOverdue ? cc.overdue : cc.deadline}: ${commandCenter.deadlineLabel}`}
                 variant={commandCenter.isOverdue ? "destructive" : "secondary"}
-                className="rounded-full"
-              >
-                {commandCenter.isOverdue ? cc.overdue : cc.deadline}: {commandCenter.deadlineLabel}
-              </Badge>
+              />
             ) : null}
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link
-              href={`${base}/planning`}
-              className="rounded-xl border border-border/50 px-3 py-2 text-xs font-medium hover:bg-card"
-            >
+            <Link href={`${base}/planning`} className={workspaceTokens.actionLink}>
               {labels.navPlanning}
             </Link>
-            <Link
-              href={`${base}/fieldwork`}
-              className="rounded-xl border border-border/50 px-3 py-2 text-xs font-medium hover:bg-card"
-            >
+            <Link href={`${base}/fieldwork`} className={workspaceTokens.actionLink}>
               {labels.navFieldwork}
             </Link>
             <Link
               href={`${base}/members`}
-              className="rounded-xl border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-medium text-primary hover:bg-primary/15"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary/15"
             >
               {labels.navMembers}
             </Link>
@@ -175,9 +166,10 @@ export function EngagementCommandCenter({
                       title={issue.label}
                       meta={String(issue.count)}
                       badge={
-                        <Badge variant={issue.variant} className="text-[10px]">
-                          {issue.count}
-                        </Badge>
+                        <WorkspaceStatusBadge
+                          label={String(issue.count)}
+                          variant={issue.variant}
+                        />
                       }
                     />
                   </li>
@@ -291,9 +283,10 @@ export function EngagementCommandCenter({
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">{cc.validationStatus}</span>
-                  <Badge variant={commandCenter.companyHealth.statusVariant}>
-                    {commandCenter.companyHealth.statusLabel}
-                  </Badge>
+                  <WorkspaceStatusBadge
+                    label={commandCenter.companyHealth.statusLabel}
+                    variant={commandCenter.companyHealth.statusVariant}
+                  />
                 </div>
                 <CommandListRow
                   title={cc.framework}
@@ -372,7 +365,7 @@ export function EngagementCommandCenter({
           <CommandCard title={labels.sections.overview.highlightsTitle}>
             {error ? (
               <div className="mb-4">
-                <Alert variant="error">{error}</Alert>
+                <WorkspaceNoticeBanner variant="error" description={error} role="alert" />
               </div>
             ) : null}
             {isEditing && canEdit ? (

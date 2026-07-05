@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { IconArrowRight } from "@/components/ui/icons";
 import type { EngagementPipelinePhase } from "@/types/engagement-command-center";
-import { workspaceTokens } from "@/components/workspace";
+import { WorkspaceStatusBadge, workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 
 type EngagementAuditPipelineProps = {
@@ -35,9 +34,7 @@ export function EngagementAuditPipeline({
                 <h3 className="text-xs font-semibold tracking-tight text-foreground sm:text-sm">
                   {phase.label}
                 </h3>
-                <Badge variant={phase.statusVariant} className="shrink-0 text-[10px]">
-                  {phase.statusLabel}
-                </Badge>
+                <WorkspaceStatusBadge label={phase.statusLabel} variant={phase.statusVariant} />
               </div>
 
               {phase.isEmpty ? (

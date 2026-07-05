@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import {
   WorkspaceEmpty,
   WorkspacePanel,
   WorkspaceProgressBar,
+  WorkspaceStatusBadge,
   workspaceTokens,
 } from "@/components/workspace";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
@@ -71,7 +71,7 @@ export function EngagementPhaseDashboard({
                 <h3 className="text-base font-semibold tracking-tight text-foreground">{card.title}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{card.description}</p>
               </div>
-              <Badge variant={card.statusVariant}>{card.statusLabel}</Badge>
+              <WorkspaceStatusBadge label={card.statusLabel} variant={card.statusVariant} />
             </div>
 
             {card.isEmpty ? (

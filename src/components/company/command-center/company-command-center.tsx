@@ -3,17 +3,19 @@
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Alert } from "@/components/ui";
 import {
   CommandCard,
   CommandEmpty,
   CommandKpiRow,
   CommandListRow,
 } from "@/components/dashboard/command-center/command-center-primitives";
-import { workspaceTokens } from "@/components/workspace";
+import {
+  WorkspaceNoticeBanner,
+  WorkspaceStatusBadge,
+  workspaceTokens,
+} from "@/components/workspace";
 import { ENGAGEMENTS_NEW_PATH } from "@/config/dashboard-navigation";
 import { updateCompanyAction } from "@/lib/actions/company/update-company";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
@@ -136,26 +138,28 @@ export function CompanyCommandCenter({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-5 sm:p-6">
+      <section className={workspaceTokens.commandHero}>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className={workspaceTokens.heroEyebrow}>
               {cc.heroTitle}
             </p>
-            <p className="text-sm text-muted-foreground">{cc.heroSubtitle}</p>
+            <p className={workspaceTokens.heroSubtitle}>{cc.heroSubtitle}</p>
             <div className="flex flex-wrap gap-2 pt-1">
-              <Badge variant="secondary" className="rounded-full">
-                {commandCenter.compliance.framework}
-              </Badge>
-              <Badge variant="secondary" className="rounded-full">
-                {commandCenter.financial.functionalCurrency}
-              </Badge>
-              <Badge
-                variant={commandCenter.compliance.statusVariant === "success" ? "secondary" : "warning"}
-                className="rounded-full"
-              >
-                {commandCenter.compliance.statusLabel}
-              </Badge>
+              <WorkspaceStatusBadge
+                label={commandCenter.compliance.framework}
+                variant="secondary"
+              />
+              <WorkspaceStatusBadge
+                label={commandCenter.financial.functionalCurrency}
+                variant="secondary"
+              />
+              <WorkspaceStatusBadge
+                label={commandCenter.compliance.statusLabel}
+                variant={
+                  commandCenter.compliance.statusVariant === "success" ? "success" : "warning"
+                }
+              />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:max-w-xl">
@@ -189,7 +193,7 @@ export function CompanyCommandCenter({
             >
               <div className="flex items-start justify-between gap-2">
                 <p className="text-sm font-semibold text-foreground">{module.label}</p>
-                <Badge variant={module.statusVariant}>{module.statusLabel}</Badge>
+                <WorkspaceStatusBadge label={module.statusLabel} variant={module.statusVariant} />
               </div>
               <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">
                 <div
@@ -224,9 +228,7 @@ export function CompanyCommandCenter({
                       subtitle={eng.lifecycleStatus.replace(/_/g, " ")}
                       badge={
                         eng.isOverdue ? (
-                          <Badge variant="destructive" className="text-[10px]">
-                            {cc.overdue}
-                          </Badge>
+                          <WorkspaceStatusBadge label={cc.overdue} variant="destructive" />
                         ) : undefined
                       }
                     />
@@ -276,7 +278,7 @@ export function CompanyCommandCenter({
           <CommandCard title={labels.sections.overview.highlightsTitle}>
             {error ? (
               <div className="mb-4">
-                <Alert variant="error">{error}</Alert>
+                <WorkspaceNoticeBanner variant="error" description={error} role="alert" />
               </div>
             ) : null}
             {isEditing && canEdit ? (
@@ -353,9 +355,10 @@ export function CompanyCommandCenter({
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-sm text-muted-foreground">{cc.complianceStatus}</span>
-                <Badge variant={commandCenter.compliance.statusVariant}>
-                  {commandCenter.compliance.statusLabel}
-                </Badge>
+                <WorkspaceStatusBadge
+                  label={commandCenter.compliance.statusLabel}
+                  variant={commandCenter.compliance.statusVariant}
+                />
               </div>
               <CommandListRow title={cc.jurisdiction} subtitle={commandCenter.compliance.jurisdiction} />
               <CommandListRow

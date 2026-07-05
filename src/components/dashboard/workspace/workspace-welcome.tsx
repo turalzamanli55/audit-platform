@@ -1,6 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { IconBuilding, IconBriefcase } from "@/components/ui/icons";
-import { workspaceTokens } from "@/components/workspace";
+import { WorkspaceStatusBadge, workspaceTokens } from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { cn } from "@/lib/ui/cn";
 
@@ -43,9 +42,7 @@ export function WorkspaceContextHeader({
           </div>
         ))}
       </div>
-      <Badge variant="secondary" className="self-start sm:self-auto">
-        {formattedDate}
-      </Badge>
+      <WorkspaceStatusBadge label={formattedDate} variant="secondary" />
     </div>
   );
 }

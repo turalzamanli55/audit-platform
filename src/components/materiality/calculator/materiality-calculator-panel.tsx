@@ -1,11 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Alert, Button, Input } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import { MaterialityWorkspaceSectionShell } from "@/components/materiality/workspace/materiality-workspace-section-shell";
 import {
   WorkspaceEmptyPanel,
   WorkspaceFormPanel,
+  WorkspaceNoticeBanner,
   WorkspacePanel,
 } from "@/components/workspace";
 import {
@@ -156,7 +157,11 @@ export function MaterialityCalculatorPanel({
         </WorkspacePanel>
 
         <WorkspaceFormPanel>
-          <Alert variant="info">{manualOverride ? labels.manualOverrideNotice : labels.autoCalcNotice}</Alert>
+          <WorkspaceNoticeBanner
+            variant="info"
+            description={manualOverride ? labels.manualOverrideNotice : labels.autoCalcNotice}
+            role="status"
+          />
 
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="space-y-2">

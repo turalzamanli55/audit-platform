@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Alert, Button, Input } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import {
   approveMaterialityPackageAction,
   returnMaterialityPackageAction,
@@ -10,7 +10,7 @@ import {
 } from "@/lib/actions/materiality";
 import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-workspace-view";
 import { MaterialityWorkspaceSectionShell } from "@/components/materiality/workspace/materiality-workspace-section-shell";
-import { WorkspaceFormPanel } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner } from "@/components/workspace";
 
 type MaterialityWorkflowLabels = {
   title: string;
@@ -109,17 +109,19 @@ export function MaterialityWorkflowPanel({
       headingId="materiality-workflow"
     >
       <WorkspaceFormPanel>
-        {error ? <Alert variant="error">{error}</Alert> : null}
+        {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
-        {isArchived ? <Alert variant="warning">{labels.readOnlyNotice}</Alert> : null}
+        {isArchived ? (
+          <WorkspaceNoticeBanner variant="warning" description={labels.readOnlyNotice} role="alert" />
+        ) : null}
         {materiality.packageStatus === "approved" ? (
-          <Alert variant="success">{labels.approvedNotice}</Alert>
+          <WorkspaceNoticeBanner variant="success" description={labels.approvedNotice} role="status" />
         ) : null}
         {materiality.packageStatus === "submitted" ? (
-          <Alert variant="info">{labels.submittedNotice}</Alert>
+          <WorkspaceNoticeBanner variant="info" description={labels.submittedNotice} role="status" />
         ) : null}
         {materiality.packageStatus === "returned" ? (
-          <Alert variant="warning">{labels.returnedNotice}</Alert>
+          <WorkspaceNoticeBanner variant="warning" description={labels.returnedNotice} role="status" />
         ) : null}
 
         {!isArchived ? (

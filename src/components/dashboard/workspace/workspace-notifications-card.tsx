@@ -1,10 +1,15 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { IconBell } from "@/components/ui/icons";
 import { useNotifications } from "@/providers";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
-import { WorkspaceEmpty, WorkspaceList, WorkspaceListItem, WorkspacePanel } from "@/components/workspace";
+import {
+  WorkspaceEmpty,
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspacePanel,
+  WorkspaceStatusBadge,
+} from "@/components/workspace";
 
 type WorkspaceNotificationsCardProps = {
   labels: DashboardWorkspaceLabels["notifications"];
@@ -26,7 +31,9 @@ export function WorkspaceNotificationsCard({ labels }: WorkspaceNotificationsCar
             <p className="text-sm text-muted-foreground">{labels.description}</p>
           </div>
         </div>
-        {unreadCount > 0 ? <Badge>{unreadCount}</Badge> : null}
+        {unreadCount > 0 ? (
+          <WorkspaceStatusBadge label={String(unreadCount)} variant="default" />
+        ) : null}
       </div>
 
       {preview.length === 0 ? (

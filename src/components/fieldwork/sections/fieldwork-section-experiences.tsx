@@ -27,7 +27,6 @@ import {
 import { formatDateTime } from "@/lib/engagement/format-engagement-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { FieldworkNoteType } from "@/types/fieldwork";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
 import { FieldworkCreateExperience } from "@/components/fieldwork/create/fieldwork-create-experience";
@@ -37,6 +36,7 @@ import {
   WorkspaceFormPanel,
   WorkspaceList,
   WorkspaceListItem,
+  WorkspaceNoticeBanner,
   WorkspacePanel,
   WorkspaceSectionShell,
 } from "@/components/workspace";
@@ -267,7 +267,7 @@ export function FieldworkWorkingPapersExperience(props: SectionProps) {
 
   return (
     <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-working-papers">
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {fieldwork.workingPapers.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -457,8 +457,8 @@ export function FieldworkEvidenceExperience(props: SectionProps) {
 
   return (
     <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-evidence">
-      {error ? <Alert variant="error">{error}</Alert> : null}
-      {downloadError ? <Alert variant="error">{downloadError}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
+      {downloadError ? <WorkspaceNoticeBanner variant="error" description={downloadError} role="alert" /> : null}
       {fieldwork.evidence.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -548,7 +548,7 @@ export function FieldworkFindingsExperience(props: SectionProps) {
 
   return (
     <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-findings">
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {fieldwork.findings.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -623,7 +623,7 @@ function FieldworkNotesSection({
 
   return (
     <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId={`fieldwork-notes-${noteType}`}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {filtered.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -839,7 +839,7 @@ export function FieldworkSettingsExperience(
 
   return (
     <WorkspaceSectionShell title={props.labels.title} description={props.labels.description} headingId="fieldwork-settings">
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {!fieldwork.isArchived ? (
         <WorkspacePanel className="mb-6 space-y-3">
           <h3 className="text-sm font-semibold text-foreground">{props.labels.tickmarkLibraryTitle}</h3>
@@ -866,9 +866,12 @@ export function FieldworkSettingsExperience(
       <WorkspacePanel>
         {fieldwork.isArchived ? (
           <>
-            <Alert variant="warning" title={lifecycle.archivedBannerTitle}>
-              {lifecycle.archivedBannerDescription}
-            </Alert>
+            <WorkspaceNoticeBanner
+              variant="warning"
+              title={lifecycle.archivedBannerTitle}
+              description={lifecycle.archivedBannerDescription}
+              role="status"
+            />
             {props.canArchive ? (
               <div className="mt-4 flex gap-3">
                 {mode === "restore" ? (

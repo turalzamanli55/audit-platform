@@ -22,7 +22,8 @@ import {
 import { EngagementBreadcrumb, EngagementPageShell } from "@/components/engagement";
 import { EngagementTeamStep } from "@/components/engagement/create/engagement-team-step";
 import type { WorkspaceMemberDirectoryItem } from "@/lib/engagement/load-workspace-member-directory";
-import { Alert, Input } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { WorkspaceNoticeBanner } from "@/components/workspace";
 import {
   WizardField,
   WizardNavigation,
@@ -195,8 +196,8 @@ export function EngagementCreateWizard({
           }}
         />
 
-        {submitError ? <Alert variant="error">{submitError}</Alert> : null}
-        {errors.submit ? <Alert variant="error">{errors.submit}</Alert> : null}
+        {submitError ? <WorkspaceNoticeBanner variant="error" description={submitError} role="alert" /> : null}
+        {errors.submit ? <WorkspaceNoticeBanner variant="error" description={errors.submit} role="alert" /> : null}
 
         <div className="relative" onKeyDown={handleWizardKeyDown}>
           <WizardStepPanel

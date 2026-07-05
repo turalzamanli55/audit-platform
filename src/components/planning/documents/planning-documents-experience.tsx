@@ -5,7 +5,6 @@ import { useState, useTransition } from "react";
 import { addPlanningDocumentAction } from "@/lib/actions/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
 import {
@@ -13,6 +12,7 @@ import {
   WorkspaceFormPanel,
   WorkspaceList,
   WorkspaceListEntry,
+  WorkspaceNoticeBanner,
   WorkspaceSectionShell,
 } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
@@ -80,7 +80,7 @@ export function PlanningDocumentsExperience({
       description={labels.description}
       headingId="planning-documents"
     >
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       {plan.documents.length === 0 ? (
         <WorkspaceEmptyPanel title={labels.emptyTitle} description={labels.emptyDescription} />

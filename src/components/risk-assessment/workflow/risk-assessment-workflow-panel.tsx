@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Alert, Button, Input } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import {
   acknowledgeSignificantRisksAction,
   approveRiskAssessmentAction,
@@ -11,7 +11,7 @@ import {
 } from "@/lib/actions/risk-assessment";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import { RiskAssessmentWorkspaceSectionShell } from "@/components/risk-assessment/workspace/risk-assessment-workspace-section-shell";
-import { WorkspaceFormPanel } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner } from "@/components/workspace";
 
 type RiskAssessmentWorkflowLabels = {
   title: string;
@@ -131,20 +131,22 @@ export function RiskAssessmentWorkflowPanel({
       headingId="risk-workflow"
     >
       <WorkspaceFormPanel>
-        {error ? <Alert variant="error">{error}</Alert> : null}
+        {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
-        {isArchived ? <Alert variant="warning">{labels.readOnlyNotice}</Alert> : null}
+        {isArchived ? (
+          <WorkspaceNoticeBanner variant="warning" description={labels.readOnlyNotice} role="alert" />
+        ) : null}
         {riskAssessment.assessmentStatus === "approved" ? (
-          <Alert variant="success">{labels.approvedNotice}</Alert>
+          <WorkspaceNoticeBanner variant="success" description={labels.approvedNotice} role="status" />
         ) : null}
         {riskAssessment.assessmentStatus === "submitted" ? (
-          <Alert variant="info">{labels.submittedNotice}</Alert>
+          <WorkspaceNoticeBanner variant="info" description={labels.submittedNotice} role="status" />
         ) : null}
         {needsAcknowledgment ? (
-          <Alert variant="warning">{labels.pendingAcknowledgmentNotice}</Alert>
+          <WorkspaceNoticeBanner variant="warning" description={labels.pendingAcknowledgmentNotice} role="status" />
         ) : null}
         {riskAssessment.significantRisksAcknowledgedAt ? (
-          <Alert variant="success">{labels.acknowledgedNotice}</Alert>
+          <WorkspaceNoticeBanner variant="success" description={labels.acknowledgedNotice} role="status" />
         ) : null}
 
         {!isArchived ? (

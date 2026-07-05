@@ -5,9 +5,8 @@ import { useState, useTransition } from "react";
 import { updatePlanningAction } from "@/lib/actions/planning/update-planning";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
-import { WorkspaceFormPanel, WorkspaceSectionShell } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningTextSectionExperienceProps = {
@@ -90,7 +89,7 @@ function PlanningTextSectionForm({
       {readOnly ? (
         <p className="text-sm text-muted-foreground">{labels.readOnlyNotice}</p>
       ) : null}
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       <WorkspaceFormPanel>
         <textarea
           id={sectionId}

@@ -6,9 +6,8 @@ import { updatePlanningAction } from "@/lib/actions/planning/update-planning";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { PlanningChecklistItem } from "@/types/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
-import { WorkspaceList, WorkspaceListItem, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
+import { WorkspaceList, WorkspaceListItem, WorkspaceNoticeBanner, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningChecklistExperienceProps = {
@@ -91,7 +90,7 @@ function PlanningChecklistForm({
       description={labels.description}
       headingId="planning-checklist"
     >
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       <WorkspacePanel padding="none">
         <div className="border-b border-border/40 px-5 py-4">
           <p className="text-sm text-muted-foreground">

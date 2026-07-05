@@ -6,10 +6,9 @@ import { archivePlanningAction } from "@/lib/actions/planning/archive-planning";
 import { restorePlanningAction } from "@/lib/actions/planning/restore-planning";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { WorkspaceFormPanel, WorkspaceSectionShell } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningSettingsExperienceProps = {
@@ -79,14 +78,17 @@ export function PlanningSettingsExperience({
       description={labels.description}
       headingId="planning-settings"
     >
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       <WorkspaceFormPanel>
         {plan.isArchived ? (
           <>
-            <Alert variant="warning" title={labels.lifecycle.archivedBannerTitle}>
-              {labels.lifecycle.archivedBannerDescription}
-            </Alert>
+            <WorkspaceNoticeBanner
+              variant="warning"
+              title={labels.lifecycle.archivedBannerTitle}
+              description={labels.lifecycle.archivedBannerDescription}
+              role="status"
+            />
             {canArchive ? (
               <>
                 <p className="text-sm text-muted-foreground">{labels.lifecycle.restorePrompt}</p>

@@ -24,7 +24,8 @@ import {
   CompanyBreadcrumb,
   CompanyPageShell,
 } from "@/components/company";
-import { Alert, Input } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { WorkspaceNoticeBanner } from "@/components/workspace";
 import {
   WizardField,
   WizardNavigation,
@@ -180,8 +181,8 @@ export function CompanyCreateWizard({ locale, labels, parentOptions }: CompanyCr
           }}
         />
 
-        {submitError ? <Alert variant="error">{submitError}</Alert> : null}
-        {errors.submit ? <Alert variant="error">{errors.submit}</Alert> : null}
+        {submitError ? <WorkspaceNoticeBanner variant="error" description={submitError} role="alert" /> : null}
+        {errors.submit ? <WorkspaceNoticeBanner variant="error" description={errors.submit} role="alert" /> : null}
 
         <div className="relative" onKeyDown={handleWizardKeyDown}>
           <WizardStepPanel

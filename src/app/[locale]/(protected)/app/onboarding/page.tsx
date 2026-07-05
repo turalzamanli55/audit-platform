@@ -1,7 +1,7 @@
 import { getDictionary, type Locale } from "@/i18n";
 import { getTenantBootstrap } from "@/lib/auth/server";
 import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { WorkspacePanel } from "@/components/workspace";
 
 type OnboardingPageProps = {
   params: Promise<{ locale: string }>;
@@ -20,11 +20,13 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-10">
-      <Card>
-        <CardHeader>
-          <CardTitle>{dictionary.onboarding.title}</CardTitle>
-          <CardDescription>{dictionary.onboarding.subtitle}</CardDescription>
-        </CardHeader>
+      <WorkspacePanel>
+        <div className="mb-6 space-y-1">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            {dictionary.onboarding.title}
+          </h1>
+          <p className="text-sm text-muted-foreground">{dictionary.onboarding.subtitle}</p>
+        </div>
         <OnboardingWizard
           locale={locale}
           initialStep={initialStep as 1 | 2 | 3}
@@ -42,7 +44,7 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
             completeDescription: dictionary.onboarding.completeDescription,
           }}
         />
-      </Card>
+      </WorkspacePanel>
     </div>
   );
 }

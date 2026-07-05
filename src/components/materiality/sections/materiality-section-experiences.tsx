@@ -9,13 +9,14 @@ import {
   archiveMaterialityPackageAction,
   restoreMaterialityPackageAction,
 } from "@/lib/actions/materiality";
-import { Alert, Button, Input } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import {
   WorkspaceEmptyPanel,
   WorkspaceFormPanel,
   WorkspaceList,
   WorkspaceListItem,
   WorkspaceMetricCard,
+  WorkspaceNoticeBanner,
   WorkspacePanel,
   WorkspaceTable,
 } from "@/components/workspace";
@@ -95,7 +96,7 @@ function canMutate(materiality: MaterialityWorkspaceView, allowed: boolean) {
 }
 
 function ArchivedNotice({ message }: { message: string }) {
-  return <Alert variant="warning">{message}</Alert>;
+  return <WorkspaceNoticeBanner variant="warning" description={message} role="status" />;
 }
 
 function useMutationError() {
@@ -439,7 +440,7 @@ export function MaterialityCommentsExperience(
       {workspace.isArchived ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel ?? props.workspaceLabels.archivedDescription} />
       ) : null}
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       {mutable ? (
         <WorkspacePanel variant="form" className="flex flex-col gap-3 sm:flex-row">
@@ -595,9 +596,13 @@ export function MaterialitySettingsExperience(
       description={props.labels.description}
       headingId="materiality-settings"
     >
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived ? (
-        <Alert variant="warning">{props.settingsLabels.archivedBanner}</Alert>
+        <WorkspaceNoticeBanner
+          variant="warning"
+          description={props.settingsLabels.archivedBanner}
+          role="status"
+        />
       ) : null}
       {!props.canArchive ? (
         <MaterialityWorkspaceReadonlyNotice message={props.settingsLabels.readOnlyNotice} />

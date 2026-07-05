@@ -7,7 +7,6 @@ import type { PlanningCommentView } from "@/lib/planning/load-planning-comments"
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { formatDateTime } from "@/lib/engagement/format-engagement-workspace";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
 import {
@@ -16,6 +15,7 @@ import {
   WorkspaceFormPanel,
   WorkspaceList,
   WorkspaceListItem,
+  WorkspaceNoticeBanner,
   WorkspaceSectionShell,
 } from "@/components/workspace";
 
@@ -71,7 +71,7 @@ export function PlanningCommentsSection({
 
   const content = (
     <>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       {comments.length === 0 ? (
         <WorkspaceEmpty description={labels.emptyDescription} title={labels.title} />

@@ -11,9 +11,9 @@ import {
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { FieldworkWorkingPaperView } from "@/types/fieldwork";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
+import { WorkspaceNoticeBanner } from "@/components/workspace";
 
 type FieldworkWorkingPaperRowProps = {
   packageId: string;
@@ -99,9 +99,12 @@ export function FieldworkWorkingPaperRow({
       </div>
 
       {paper.returnNotes && status === "returned" ? (
-        <Alert variant="warning" title={workflow.returnNotesTitle}>
-          {paper.returnNotes}
-        </Alert>
+        <WorkspaceNoticeBanner
+          variant="warning"
+          title={workflow.returnNotesTitle}
+          description={paper.returnNotes}
+          role="alert"
+        />
       ) : null}
 
       {paper.tickmarks.length > 0 ? (
@@ -115,7 +118,7 @@ export function FieldworkWorkingPaperRow({
         </ul>
       ) : null}
 
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       {!isArchived && canAssign ? (
         <select

@@ -6,10 +6,9 @@ import { updatePlanningAction } from "@/lib/actions/planning/update-planning";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { PlanningTimelineMilestone } from "@/types/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
+import { WorkspaceNoticeBanner, WorkspacePanel, WorkspaceSectionShell } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
 
 type PlanningTimelineExperienceProps = {
@@ -94,7 +93,7 @@ function PlanningTimelineForm({
       description={labels.description}
       headingId="planning-timeline"
     >
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       <WorkspacePanel padding="none">
         <div className="divide-y divide-border/40">
           {timeline.map((milestone) => (

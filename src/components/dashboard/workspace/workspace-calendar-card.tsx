@@ -1,7 +1,13 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { IconCalendar } from "@/components/ui/icons";
-import { WorkspaceEmpty, WorkspaceList, WorkspaceListItem, WorkspacePanel, workspaceTokens } from "@/components/workspace";
+import {
+  WorkspaceEmpty,
+  WorkspaceList,
+  WorkspaceListItem,
+  WorkspacePanel,
+  WorkspaceStatusBadge,
+  workspaceTokens,
+} from "@/components/workspace";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { CommandCard } from "../command-center/command-center-primitives";
 
@@ -26,12 +32,18 @@ export function WorkspaceCalendarCard({ labels, items, embedded = false }: Works
               {item.href ? (
                 <Link href={item.href} className={workspaceTokens.calendarRow}>
                   <span className="text-sm font-medium text-foreground">{item.title}</span>
-                  <Badge variant={item.tone === "warning" ? "warning" : "secondary"}>{item.date}</Badge>
+                  <WorkspaceStatusBadge
+                    label={item.date}
+                    variant={item.tone === "warning" ? "warning" : "secondary"}
+                  />
                 </Link>
               ) : (
                 <div className={workspaceTokens.calendarRow}>
                   <span className="text-sm font-medium text-foreground">{item.title}</span>
-                  <Badge variant={item.tone === "warning" ? "warning" : "secondary"}>{item.date}</Badge>
+                  <WorkspaceStatusBadge
+                    label={item.date}
+                    variant={item.tone === "warning" ? "warning" : "secondary"}
+                  />
                 </div>
               )}
             </WorkspaceListItem>

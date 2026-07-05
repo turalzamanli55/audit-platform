@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
-import { Badge } from "@/components/ui/badge";
 import { IconArrowRight, IconBell, IconBriefcase, IconZap } from "@/components/ui/icons";
 import { COMPANIES_PATH, COMPANIES_NEW_PATH, ENGAGEMENTS_PATH, ENGAGEMENTS_NEW_PATH } from "@/config/dashboard-navigation";
 import type { DashboardWorkspaceViewModel } from "@/lib/dashboard/load-dashboard-workspace";
@@ -11,7 +10,7 @@ import { buildWelcomeGreeting, buildWelcomeSummary } from "@/lib/dashboard/works
 import { useSettings } from "@/providers";
 import { useShell } from "@/components/shell/shell-provider";
 import { useTheme } from "@/providers";
-import { workspaceTokens } from "@/components/workspace";
+import { WorkspaceStatusBadge, workspaceTokens } from "@/components/workspace";
 import { cn } from "@/lib/ui/cn";
 import { WorkspaceContextHeader } from "../workspace/workspace-welcome";
 import { WorkspaceTasks } from "../workspace/workspace-tasks";
@@ -114,14 +113,10 @@ export function DashboardCommandCenter({ model }: DashboardCommandCenterProps) {
             <div className="flex flex-wrap gap-2 pt-1">
               {heroStats.length > 0 ? (
                 heroStats.map((stat) => (
-                  <Badge key={stat} variant="secondary" className="rounded-full px-3 py-1 text-xs">
-                    {stat}
-                  </Badge>
+                  <WorkspaceStatusBadge key={stat} label={stat!} variant="secondary" />
                 ))
               ) : (
-                <Badge variant="secondary" className="rounded-full px-3 py-1 text-xs text-success">
-                  {cc.heroClear}
-                </Badge>
+                <WorkspaceStatusBadge label={cc.heroClear} variant="success" />
               )}
             </div>
           </div>
@@ -281,12 +276,13 @@ export function DashboardCommandCenter({ model }: DashboardCommandCenterProps) {
                       title={eng.name}
                       subtitle={eng.companyName}
                       badge={
-                        <Badge variant="destructive" className="text-[10px]">
-                          {cc.daysOverdue.replace(
+                        <WorkspaceStatusBadge
+                          label={cc.daysOverdue.replace(
                             "{count}",
                             String(eng.daysOverdue ?? 1),
                           )}
-                        </Badge>
+                          variant="destructive"
+                        />
                       }
                     />
                   </li>

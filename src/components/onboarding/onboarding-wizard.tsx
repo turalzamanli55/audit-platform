@@ -4,7 +4,8 @@ import { useState, useTransition, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { createOrganizationAction } from "@/lib/actions/onboarding/create-organization";
 import { createWorkspaceAction } from "@/lib/actions/onboarding/create-workspace";
-import { Button, Input, Label, Alert } from "@/components/ui";
+import { Button, Input, Label } from "@/components/ui";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner } from "@/components/workspace";
 
 type OnboardingWizardProps = {
   locale: string;
@@ -83,7 +84,7 @@ export function OnboardingWizard({
   }
 
   return (
-    <div className="mx-auto w-full max-w-xl space-y-6">
+    <WorkspaceFormPanel className="mx-auto w-full max-w-xl space-y-6">
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <span className={step === 1 ? "font-semibold text-foreground" : ""}>1. {labels.stepOrganization}</span>
         <span>→</span>
@@ -92,7 +93,7 @@ export function OnboardingWizard({
         <span className={step === 3 ? "font-semibold text-foreground" : ""}>3. {labels.stepComplete}</span>
       </div>
 
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       {step === 1 ? (
         <form className="space-y-4" onSubmit={handleOrganizationSubmit}>
@@ -131,6 +132,6 @@ export function OnboardingWizard({
           <Button onClick={handleComplete}>{labels.finish}</Button>
         </div>
       ) : null}
-    </div>
+    </WorkspaceFormPanel>
   );
 }

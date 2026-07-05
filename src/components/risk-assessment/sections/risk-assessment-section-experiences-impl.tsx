@@ -13,13 +13,14 @@ import {
   updateRiskItemAction,
   upsertAssertionRatingAction,
 } from "@/lib/actions/risk-assessment";
-import { Alert, Button, Input } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import {
   WorkspaceEmptyPanel,
   WorkspaceFormPanel,
   WorkspaceList,
   WorkspaceListItem,
   WorkspaceMetricCard,
+  WorkspaceNoticeBanner,
   WorkspacePanel,
   WorkspaceTable,
 } from "@/components/workspace";
@@ -155,7 +156,7 @@ function canMutate(riskAssessment: RiskAssessmentWorkspaceView, allowed: boolean
 }
 
 function ArchivedNotice({ message }: { message: string }) {
-  return <Alert variant="warning">{message}</Alert>;
+  return <WorkspaceNoticeBanner variant="warning" description={message} role="status" />;
 }
 
 function useMutationError() {
@@ -241,7 +242,7 @@ export function RiskRegisterExperience(
 
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -401,7 +402,7 @@ export function RiskCategoriesExperience(props: BaseProps & { canUpdate?: boolea
   };
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -641,7 +642,7 @@ export function RiskMatrixExperience(
   };
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -765,7 +766,7 @@ export function RiskResponsesExperience(props: BaseProps & { canUpdate?: boolean
   };
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -858,7 +859,7 @@ export function RiskProceduresExperience(
   };
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -937,7 +938,7 @@ export function RiskOwnersExperience(props: BaseProps & { canUpdate?: boolean; o
   };
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -995,7 +996,7 @@ function NotesExperience(props: BaseProps & { canUpdate?: boolean; maps: LabelMa
   };
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived && props.archivedReadOnlyLabel ? (
         <ArchivedNotice message={props.archivedReadOnlyLabel} />
       ) : null}
@@ -1108,7 +1109,7 @@ export function RiskSettingsExperience(props: GateProps & { canArchive?: boolean
   });
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
       {workspace.isArchived ? <ArchivedNotice message={props.labels.archivedBanner} /> : null}
       <WorkspacePanel>
         {!props.canArchive ? (

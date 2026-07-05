@@ -6,7 +6,6 @@ import { updatePlanningAction } from "@/lib/actions/planning/update-planning";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
 import {
@@ -15,6 +14,7 @@ import {
   WorkspaceFormPanel,
   WorkspaceList,
   WorkspaceListEntry,
+  WorkspaceNoticeBanner,
   WorkspaceSectionShell,
 } from "@/components/workspace";
 import { PlanningCreateExperience } from "@/components/planning/create/planning-create-experience";
@@ -100,7 +100,7 @@ function PlanningTeamForm({
         description={labels.description}
         headingId="planning-team"
       >
-        {error ? <Alert variant="error">{error}</Alert> : null}
+        {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
         <div className="grid gap-6 lg:grid-cols-2">
           <WorkspaceCard title={labels.rosterTitle}>
             {engagement.members.length === 0 ? (

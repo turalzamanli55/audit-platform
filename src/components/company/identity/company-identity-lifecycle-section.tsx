@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Alert } from "@/components/ui";
 import { useCompanyIdentity } from "@/lib/company/use-company-identity";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { CompanySettingsGroup } from "@/components/company/settings";
-import { WorkspaceFormPanel, WorkspaceSectionShell } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner, WorkspaceSectionShell } from "@/components/workspace";
 import { CompanyLifecycleConfirmationPanel } from "./company-lifecycle-confirmation-panel";
 
 type CompanyIdentityLifecycleSectionProps = {
@@ -47,7 +46,9 @@ export function CompanyIdentityLifecycleSection({ labels }: CompanyIdentityLifec
       headingId="company-identity-lifecycle"
     >
       <div className="space-y-4">
-        {lifecycleError ? <Alert variant="error">{lifecycleError}</Alert> : null}
+        {lifecycleError ? (
+          <WorkspaceNoticeBanner variant="error" description={lifecycleError} role="alert" />
+        ) : null}
 
         {mode === "idle" ? (
           <CompanySettingsGroup title={section.actionsTitle}>

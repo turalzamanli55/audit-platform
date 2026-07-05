@@ -10,10 +10,9 @@ import {
 } from "@/lib/actions/planning";
 import { usePlanningWorkspace } from "@/lib/planning/use-planning-workspace";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { WorkspaceFormPanel } from "@/components/workspace";
+import { WorkspaceFormPanel, WorkspaceNoticeBanner } from "@/components/workspace";
 
 type PlanningWorkflowPanelProps = {
   canSubmit: boolean;
@@ -84,12 +83,15 @@ export function PlanningWorkflowPanel({
         </div>
 
         {plan.returnNotes && status === "returned" ? (
-          <Alert variant="warning" title={labels.returnNotesTitle}>
-            {plan.returnNotes}
-          </Alert>
+          <WorkspaceNoticeBanner
+            variant="warning"
+            title={labels.returnNotesTitle}
+            description={plan.returnNotes}
+            role="alert"
+          />
         ) : null}
 
-        {error ? <Alert variant="error">{error}</Alert> : null}
+        {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
         {mode === "return" || mode === "revise" ? (
           <div className="space-y-3">

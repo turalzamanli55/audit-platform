@@ -13,10 +13,9 @@ import {
 import { useEngagementWorkspace } from "@/lib/engagement/use-engagement-workspace";
 import type { FieldworkProcedureView } from "@/types/fieldwork";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { Alert } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui";
-import { WorkspacePanel } from "@/components/workspace";
+import { WorkspaceNoticeBanner, WorkspacePanel } from "@/components/workspace";
 
 type FieldworkProcedureRowProps = {
   packageId: string;
@@ -111,12 +110,15 @@ export function FieldworkProcedureRow({
       </div>
 
       {procedure.returnNotes && status === "returned" ? (
-        <Alert variant="warning" title={fieldworkLabels.workflow.returnNotesTitle}>
-          {procedure.returnNotes}
-        </Alert>
+        <WorkspaceNoticeBanner
+          variant="warning"
+          title={fieldworkLabels.workflow.returnNotesTitle}
+          description={procedure.returnNotes}
+          role="alert"
+        />
       ) : null}
 
-      {error ? <Alert variant="error">{error}</Alert> : null}
+      {error ? <WorkspaceNoticeBanner variant="error" description={error} role="alert" /> : null}
 
       {!isArchived && canAssign ? (
         <WorkspacePanel variant="muted" padding="sm" className="flex flex-wrap items-end gap-2">
