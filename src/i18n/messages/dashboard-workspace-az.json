@@ -100,7 +100,14 @@
     "reviewRisk": "{count} risk qiymətləndirməsini yoxla",
     "openRiskItems": "{count} açıq risk elementini tamamla",
     "reviewMateriality": "{count} mahiyyətllik paketini nəzərdən keçir",
-    "draftMateriality": "{count} qaralama mahiyyətllik paketini tamamla"
+    "draftMateriality": "{count} qaralama mahiyyətllik paketini tamamla",
+    "reviewReturnedReviews": "{count} geri qaytarılmış yoxlama paketini həll et",
+    "reviewMyReviews": "Sizə təyin edilmiş {count} yoxlama maddəsi",
+    "reviewRecentActivity": "{count} son yoxlama hadisəsi",
+    "reviewDraftPackages": "{count} qaralama yoxlama paketini tamamla",
+    "reviewPendingReviews": "Clear {count} pending review items",
+    "reviewOpenTasks": "Complete {count} open review tasks",
+    "moduleReview": "Review"
   },
   "ai": {
     "title": "AI köməkçi",
@@ -349,6 +356,21 @@
     "approvalMateriality": "Mahiyyətllik yoxlaması · {engagement}",
     "approvalRisk": "Risk qiymətləndirməsi yoxlaması · {engagement}",
     "daysOverdue": "{count} gün gecikib",
-    "lifecycle": "Status"
+    "lifecycle": "Status",
+    "reviewReturnedReviews": "{count} geri qaytarılmış yoxlama paketini həll et",
+    "reviewMyReviews": "Sizə təyin edilmiş {count} yoxlama maddəsi",
+    "reviewRecentActivity": "{count} son yoxlama hadisəsi",
+    "reviewDraftPackages": "{count} qaralama yoxlama paketini tamamla",
+    "kpiEngagementReviewPending": "Gözləyən yoxlamalar",
+    "kpiEngagementReviewReturned": "Geri qaytarılmış yoxlamalar",
+    "kpiMyReviews": "Mənim yoxlamalarım",
+    "kpiReviewActivity": "Yoxlama fəaliyyəti",
+    "hintEngagementReviewPending": "Engagement yoxlama təsdiqləri",
+    "hintEngagementReviewReturned": "Düzəliş üçün geri qaytarılıb",
+    "hintMyReviews": "Təyin edilmiş yoxlama maddələri",
+    "hintReviewActivity": "Son yoxlama hadisələri",
+    "moduleEngagementReview": "Engagement yoxlaması",
+    "attentionEngagementReview": "{count} engagement yoxlaması təsdiq gözləyir",
+    "attentionEngagementReturned": "{count} engagement yoxlaması geri qaytarılıb"
   }
 }

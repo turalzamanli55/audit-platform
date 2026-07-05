@@ -99,6 +99,9 @@ export type DashboardWorkspaceLabels = {
     draftMateriality: string;
     reviewPendingReviews: string;
     reviewReturnedReviews: string;
+    reviewMyReviews: string;
+    reviewRecentActivity: string;
+    reviewDraftPackages: string;
     reviewOpenTasks: string;
     moduleFieldwork: string;
     moduleRisk: string;
@@ -241,6 +244,10 @@ export type DashboardWorkspaceLabels = {
     kpiMaterialityReview: string;
     kpiRiskReview: string;
     kpiFieldworkReview: string;
+    kpiEngagementReviewPending: string;
+    kpiEngagementReviewReturned: string;
+    kpiMyReviews: string;
+    kpiReviewActivity: string;
     kpiAssignedToMe: string;
     kpiOpenFindings: string;
     kpiOpenRiskItems: string;
@@ -253,6 +260,10 @@ export type DashboardWorkspaceLabels = {
     hintMaterialityReview: string;
     hintRiskReview: string;
     hintFieldworkReview: string;
+    hintEngagementReviewPending: string;
+    hintEngagementReviewReturned: string;
+    hintMyReviews: string;
+    hintReviewActivity: string;
     hintAssigned: string;
     hintFindings: string;
     hintRiskItems: string;
@@ -261,11 +272,14 @@ export type DashboardWorkspaceLabels = {
     moduleMateriality: string;
     moduleRisk: string;
     moduleFieldwork: string;
+    moduleEngagementReview: string;
     moduleEngagements: string;
     attentionPlanning: string;
     attentionMateriality: string;
     attentionRisk: string;
     attentionFieldwork: string;
+    attentionEngagementReview: string;
+    attentionEngagementReturned: string;
     attentionOverdue: string;
     attentionFindings: string;
     approvalPlanning: string;

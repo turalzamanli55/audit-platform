@@ -84,7 +84,14 @@
     "reviewRisk": "{count} risk değerlendirmesini incele",
     "openRiskItems": "{count} açık risk öğesini tamamla",
     "reviewMateriality": "{count} önemlilik paketini incele",
-    "draftMateriality": "{count} taslak önemlilik paketini tamamla"
+    "draftMateriality": "{count} taslak önemlilik paketini tamamla",
+    "reviewReturnedReviews": "{count} iade edilen inceleme paketini ele al",
+    "reviewMyReviews": "Size atanan {count} inceleme öğesi",
+    "reviewRecentActivity": "{count} son inceleme etkinliği",
+    "reviewDraftPackages": "{count} taslak inceleme paketini tamamla",
+    "reviewPendingReviews": "Clear {count} pending review items",
+    "reviewOpenTasks": "Complete {count} open review tasks",
+    "moduleReview": "Review"
   },
   "ai": {
     "title": "AI asistan",
@@ -333,6 +340,21 @@
     "approvalMateriality": "Önemlilik incelemesi · {engagement}",
     "approvalRisk": "Risk değerlendirme incelemesi · {engagement}",
     "daysOverdue": "{count} gün gecikmiş",
-    "lifecycle": "Durum"
+    "lifecycle": "Durum",
+    "reviewReturnedReviews": "{count} iade edilen inceleme paketini ele al",
+    "reviewMyReviews": "Size atanan {count} inceleme öğesi",
+    "reviewRecentActivity": "{count} son inceleme etkinliği",
+    "reviewDraftPackages": "{count} taslak inceleme paketini tamamla",
+    "kpiEngagementReviewPending": "Bekleyen incelemeler",
+    "kpiEngagementReviewReturned": "İade edilen incelemeler",
+    "kpiMyReviews": "İncelemelerim",
+    "kpiReviewActivity": "İnceleme etkinliği",
+    "hintEngagementReviewPending": "Engagement inceleme onayları",
+    "hintEngagementReviewReturned": "Revizyon için iade edildi",
+    "hintMyReviews": "Atanan inceleme öğeleri",
+    "hintReviewActivity": "Son inceleme etkinlikleri",
+    "moduleEngagementReview": "Engagement incelemesi",
+    "attentionEngagementReview": "{count} engagement incelemesi onay bekliyor",
+    "attentionEngagementReturned": "{count} engagement incelemesi iade edildi"
   }
 }

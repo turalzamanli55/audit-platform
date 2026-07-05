@@ -14,26 +14,47 @@ export type ReviewItemView = {
   title: string;
   description: string | null;
   severity: string | null;
+  priority: string | null;
+  dueDate: string | null;
   href: string | null;
   assignedReviewerId: string | null;
   returnNotes: string | null;
   resolvedAt: string | null;
   sortOrder: number;
+  version: number;
   createdAt: string;
   updatedAt: string;
+};
+
+export type ReviewCommentAttachmentView = {
+  name: string;
+  type?: string;
+  size?: number;
+  url?: string;
 };
 
 export type ReviewCommentView = {
   id: string;
   commentType: ReviewCommentType;
   body: string;
+  parentCommentId: string | null;
+  reviewItemId: string | null;
+  mentions: string[];
+  attachments: ReviewCommentAttachmentView[];
+  resolvedAt: string | null;
+  createdBy: string | null;
+  version: number;
+  isArchived: boolean;
   createdAt: string;
+  updatedAt: string;
 };
 
 export type ReviewVersionView = {
   id: string;
   versionNumber: number;
   changeSummary: string | null;
+  snapshot: Record<string, unknown> | null;
+  isLatest: boolean;
   createdAt: string;
 };
 
@@ -101,6 +122,8 @@ export type ReviewActivityEntryView = {
   summary: string | null;
   createdAt: string;
   actorName: string | null;
+  actorId: string | null;
+  sourceModule: string | null;
   packageVersion: number | null;
 };
 

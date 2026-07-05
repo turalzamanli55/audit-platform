@@ -707,6 +707,55 @@ type ReviewLabels = {
     versionLabel: string;
     updatedLabel: string;
     actions: Record<string, string>;
+    filterActor: string;
+    filterModule: string;
+    filterAction: string;
+    filterDate: string;
+    all: string;
+  };
+  itemActions: {
+    unassigned: string;
+    assignReviewer: string;
+    dueDate: string;
+    priority: string;
+    severity: string;
+    status: string;
+    returnNotesTitle: string;
+    returnNotesPlaceholder: string;
+    assignAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    reopenAction: string;
+    cancelAction: string;
+    errorGeneric: string;
+    priorities: Record<string, string>;
+    severities: Record<string, string>;
+    itemStatuses: Record<string, string>;
+    sourceModules: Record<string, string>;
+  };
+  noteActions: {
+    bodyPlaceholder: string;
+    addAction: string;
+    editAction: string;
+    saveAction: string;
+    archiveAction: string;
+    restoreAction: string;
+    cancelAction: string;
+    resolvedBadge: string;
+    unresolvedBadge: string;
+    replyAction: string;
+    attachmentsLabel: string;
+  };
+  versionActions: {
+    latestBadge: string;
+    compareAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    diffTitle: string;
+    noDiff: string;
+    errorGeneric: string;
   };
   versions: ReviewSectionLabels;
   settings: {

@@ -37,6 +37,10 @@ export const REVIEW_COMMENT_TYPES = ["review", "reviewer", "internal"] as const;
 
 export const LOCKED_REVIEW_STATUSES = ["approved", "archived"] as const;
 
+export const REVIEW_ITEM_PRIORITIES = ["low", "medium", "high", "critical"] as const;
+
+export const REVIEW_ITEM_SEVERITIES = ["informational", "low", "medium", "high", "critical"] as const;
+
 export const REVIEW_ACTIVITY_ACTIONS = {
   CREATED: "review.created",
   UPDATED: "review.updated",
@@ -48,6 +52,15 @@ export const REVIEW_ACTIVITY_ACTIONS = {
   ITEM_SYNCED: "review.item.synced",
   ITEM_RESOLVED: "review.item.resolved",
   ITEM_RETURNED: "review.item.returned",
+  ITEM_REOPENED: "review.item.reopened",
+  ITEM_ASSIGNED: "review.item.assigned",
+  ITEM_UPDATED: "review.item.updated",
   COMMENT_ADDED: "review.comment.added",
+  COMMENT_UPDATED: "review.comment.updated",
+  COMMENT_ARCHIVED: "review.comment.archived",
+  COMMENT_RESTORED: "review.comment.restored",
+  COMMENT_RESOLVED: "review.comment.resolved",
+  COMMENT_REOPENED: "review.comment.reopened",
   VERSION_CREATED: "review.version.created",
+  VERSION_RESTORED: "review.version.restored",
 } as const;

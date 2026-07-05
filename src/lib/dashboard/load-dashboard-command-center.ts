@@ -296,6 +296,7 @@ export async function loadDashboardCommandCenter(input: {
     fieldworkMetrics,
     riskMetrics,
     materialityMetrics,
+    reviewMetrics,
     planningMetrics,
     workspaceId,
   } = input;
@@ -361,6 +362,30 @@ export async function loadDashboardCommandCenter(input: {
       label: cc.attentionFieldwork.replace("{count}", String(fieldworkPending)),
       href: `/${locale}/app/engagements`,
       module: cc.moduleFieldwork,
+      priority: "high",
+    });
+  }
+  if ((reviewMetrics?.pendingReview ?? 0) > 0) {
+    attention.push({
+      id: "engagement-review-pending",
+      label: cc.attentionEngagementReview.replace(
+        "{count}",
+        String(reviewMetrics?.pendingReview ?? 0),
+      ),
+      href: `/${locale}/app/engagements`,
+      module: cc.moduleEngagementReview,
+      priority: "high",
+    });
+  }
+  if ((reviewMetrics?.returnedReviews ?? 0) > 0) {
+    attention.push({
+      id: "engagement-review-returned",
+      label: cc.attentionEngagementReturned.replace(
+        "{count}",
+        String(reviewMetrics?.returnedReviews ?? 0),
+      ),
+      href: `/${locale}/app/engagements`,
+      module: cc.moduleEngagementReview,
       priority: "high",
     });
   }
@@ -481,6 +506,36 @@ export async function loadDashboardCommandCenter(input: {
         value: String(overdueEngagements.length),
         hint: cc.hintOverdue,
         variant: overdueEngagements.length > 0 ? "destructive" : "default",
+        href: `/${locale}/app/engagements`,
+      },
+      {
+        id: "review-pending",
+        label: cc.kpiEngagementReviewPending,
+        value: String(reviewMetrics?.pendingReview ?? 0),
+        hint: cc.hintEngagementReviewPending,
+        variant: (reviewMetrics?.pendingReview ?? 0) > 0 ? "warning" : "default",
+        href: `/${locale}/app/engagements`,
+      },
+      {
+        id: "review-returned",
+        label: cc.kpiEngagementReviewReturned,
+        value: String(reviewMetrics?.returnedReviews ?? 0),
+        hint: cc.hintEngagementReviewReturned,
+        variant: (reviewMetrics?.returnedReviews ?? 0) > 0 ? "warning" : "default",
+        href: `/${locale}/app/engagements`,
+      },
+      {
+        id: "review-my",
+        label: cc.kpiMyReviews,
+        value: String(reviewMetrics?.myReviews ?? 0),
+        hint: cc.hintMyReviews,
+        href: `/${locale}/app/engagements`,
+      },
+      {
+        id: "review-activity",
+        label: cc.kpiReviewActivity,
+        value: String(reviewMetrics?.recentActivityCount ?? 0),
+        hint: cc.hintReviewActivity,
         href: `/${locale}/app/engagements`,
       },
     ],

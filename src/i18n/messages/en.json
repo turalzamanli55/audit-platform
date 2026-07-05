@@ -3373,15 +3373,98 @@
         "review.item.synced": "Review item synced",
         "review.item.resolved": "Review item resolved",
         "review.item.returned": "Review item returned",
+        "review.item.reopened": "Review item reopened",
+        "review.item.assigned": "Reviewer assigned",
+        "review.item.updated": "Review item updated",
         "review.comment.added": "Comment added",
-        "review.version.created": "Version created"
+        "review.comment.updated": "Comment updated",
+        "review.comment.archived": "Comment archived",
+        "review.comment.restored": "Comment restored",
+        "review.comment.resolved": "Comment resolved",
+        "review.comment.reopened": "Comment reopened",
+        "review.version.created": "Version created",
+        "review.version.restored": "Version restored"
       }
     },
     "reviewQueue": {
       "title": "Review queue",
       "description": "Consolidated queue of items awaiting partner or manager sign-off.",
       "emptyTitle": "Review queue empty",
-      "emptyDescription": "No items are pending review across audit modules."
+      "emptyDescription": "No items are pending review across audit modules.",
+      "columns": {
+        "title": "Item",
+        "module": "Module",
+        "status": "Status",
+        "severity": "Severity",
+        "priority": "Priority",
+        "dueDate": "Due date",
+        "actions": "Actions"
+      }
+    },
+    "itemActions": {
+      "unassigned": "Unassigned",
+      "assignReviewer": "Assigned reviewer",
+      "dueDate": "Due date",
+      "priority": "Priority",
+      "severity": "Severity",
+      "status": "Status",
+      "returnNotesTitle": "Return notes",
+      "returnNotesPlaceholder": "Describe what must be revised",
+      "assignAction": "Assign",
+      "returnAction": "Return item",
+      "returnConfirmAction": "Confirm return",
+      "approveAction": "Approve item",
+      "reopenAction": "Reopen item",
+      "cancelAction": "Cancel",
+      "errorGeneric": "Unable to update review item.",
+      "priorities": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "critical": "Critical"
+      },
+      "severities": {
+        "informational": "Informational",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "critical": "Critical"
+      },
+      "itemStatuses": {
+        "pending": "Pending",
+        "under_review": "Under review",
+        "returned": "Returned",
+        "resolved": "Resolved"
+      },
+      "sourceModules": {
+        "planning": "Planning",
+        "materiality": "Materiality",
+        "risk_assessment": "Risk assessment",
+        "fieldwork": "Fieldwork"
+      }
+    },
+    "noteActions": {
+      "bodyPlaceholder": "Add a note or comment",
+      "addAction": "Add",
+      "editAction": "Edit",
+      "saveAction": "Save",
+      "archiveAction": "Archive",
+      "restoreAction": "Restore",
+      "cancelAction": "Cancel",
+      "resolvedBadge": "Resolved",
+      "unresolvedBadge": "Open",
+      "replyAction": "Reply",
+      "attachmentsLabel": "Attachments"
+    },
+    "versionActions": {
+      "latestBadge": "Latest",
+      "compareAction": "Compare",
+      "restoreAction": "Restore",
+      "restoreConfirmAction": "Confirm restore",
+      "cancelAction": "Cancel",
+      "diffTitle": "Version comparison",
+      "noDiff": "No differences between selected versions.",
+      "errorGeneric": "Unable to restore version."
     },
     "openFindings": {
       "title": "Open findings",
@@ -3422,6 +3505,11 @@
       "emptyDescription": "Review activity will appear here as changes are recorded.",
       "versionLabel": "Package version",
       "updatedLabel": "Updated",
+      "filterActor": "Actor",
+      "filterModule": "Module",
+      "filterAction": "Action",
+      "filterDate": "Date",
+      "all": "All",
       "columns": {
         "action": "Action",
         "summary": "Summary",
@@ -3439,8 +3527,17 @@
         "review.item.synced": "Review item synced",
         "review.item.resolved": "Review item resolved",
         "review.item.returned": "Review item returned",
+        "review.item.reopened": "Review item reopened",
+        "review.item.assigned": "Reviewer assigned",
+        "review.item.updated": "Review item updated",
         "review.comment.added": "Comment added",
-        "review.version.created": "Version created"
+        "review.comment.updated": "Comment updated",
+        "review.comment.archived": "Comment archived",
+        "review.comment.restored": "Comment restored",
+        "review.comment.resolved": "Comment resolved",
+        "review.comment.reopened": "Comment reopened",
+        "review.version.created": "Version created",
+        "review.version.restored": "Version restored"
       }
     },
     "versions": {
@@ -3451,7 +3548,8 @@
       "columns": {
         "version": "Version",
         "summary": "Summary",
-        "created": "Created"
+        "created": "Created",
+        "actions": "Actions"
       }
     },
     "settings": {

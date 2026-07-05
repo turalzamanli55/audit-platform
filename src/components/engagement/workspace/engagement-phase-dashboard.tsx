@@ -308,7 +308,9 @@ export function buildEngagementPhaseCards(input: {
       },
       kpiSecondary: {
         label: labels.review.pendingReviews,
-        value: input.review ? String(input.review.pendingCount) : "—",
+        value: input.review
+          ? `${input.review.pendingCount} / ${input.review.returnedCount}`
+          : "—",
       },
       ctaLabel: labels.review.openReview,
       isEmpty: !input.review,

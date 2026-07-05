@@ -1,6 +1,6 @@
 import type { Engagement } from "@/repositories/engagement/engagement-repository";
 import { computeReviewProgress } from "@/lib/review/review-rules";
-import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
+import type { ReviewWorkspaceView, ReviewCommentView } from "@/lib/review/review-workspace-view";
 import type {
   ReviewCommentType,
   ReviewItemStatus,
@@ -41,11 +41,14 @@ export type ReviewItemRecord = {
   title: string;
   description: string | null;
   severity: string | null;
+  priority: string | null;
+  due_date: string | null;
   href: string | null;
   assigned_reviewer_id: string | null;
   return_notes: string | null;
   resolved_at: string | null;
   sort_order: number;
+  version: number;
   created_at: string;
   updated_at: string;
 };
@@ -54,13 +57,24 @@ export type ReviewCommentRecord = {
   id: string;
   comment_type: ReviewCommentType;
   body: string;
+  parent_comment_id: string | null;
+  review_item_id: string | null;
+  mentions: unknown;
+  attachment_metadata: unknown;
+  resolved_at: string | null;
+  created_by: string | null;
+  deleted_at: string | null;
+  status: string;
+  version: number;
   created_at: string;
+  updated_at: string;
 };
 
 export type ReviewVersionRecord = {
   id: string;
   version_number: number;
   change_summary: string | null;
+  snapshot: unknown;
   created_at: string;
 };
 
@@ -81,11 +95,14 @@ export function toReviewWorkspaceView(
     title: item.title,
     description: item.description,
     severity: item.severity,
+    priority: item.priority,
+    dueDate: item.due_date,
     href: item.href,
     assignedReviewerId: item.assigned_reviewer_id,
     returnNotes: item.return_notes,
     resolvedAt: item.resolved_at,
     sortOrder: item.sort_order,
+    version: item.version,
     createdAt: item.created_at,
     updatedAt: item.updated_at,
   }));
@@ -94,13 +111,33 @@ export function toReviewWorkspaceView(
     id: comment.id,
     commentType: comment.comment_type,
     body: comment.body,
+    parentCommentId: comment.parent_comment_id,
+    reviewItemId: comment.review_item_id,
+    mentions: Array.isArray(comment.mentions) ? (comment.mentions as string[]) : [],
+    attachments: Array.isArray(comment.attachment_metadata)
+      ? (comment.attachment_metadata as ReviewCommentView["attachments"])
+      : [],
+    resolvedAt: comment.resolved_at,
+    createdBy: comment.created_by,
+    version: comment.version,
+    isArchived: Boolean(comment.deleted_at) || comment.status === "archived",
     createdAt: comment.created_at,
+    updatedAt: comment.updated_at,
   }));
+
+  const latestVersionNumber = versions.length
+    ? Math.max(...versions.map((version) => version.version_number))
+    : pkg.package_version;
 
   const versionViews = versions.map((version) => ({
     id: version.id,
     versionNumber: version.version_number,
     changeSummary: version.change_summary,
+    snapshot:
+      version.snapshot && typeof version.snapshot === "object"
+        ? (version.snapshot as Record<string, unknown>)
+        : null,
+    isLatest: version.version_number === latestVersionNumber,
     createdAt: version.created_at,
   }));
 

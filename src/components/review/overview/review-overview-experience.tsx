@@ -2,7 +2,6 @@ import type { ReviewCommandCenterData } from "@/types/review-command-center";
 import type { ReviewCommandCenterLabels } from "@/lib/review/review-workspace-display";
 import { ReviewCommandCenter as ReviewCommandCenterComponent } from "../command-center/review-command-center";
 import { ReviewCreateExperience } from "@/components/review/create/review-create-experience";
-import type { ComponentProps } from "react";
 
 type ReviewWorkflowLabels = {
   title: string;
@@ -56,8 +55,6 @@ type ReviewOverviewExperienceProps = {
     creating: string;
     forbiddenDescription: string;
   };
-  onCreate?: () => Promise<{ success: boolean }>;
-  workflowHandlers?: ComponentProps<typeof ReviewCommandCenterComponent>["workflowHandlers"];
 };
 
 export function ReviewOverviewExperience({
@@ -76,8 +73,6 @@ export function ReviewOverviewExperience({
   statusLabels,
   workflowLabels,
   emptyLabels,
-  onCreate,
-  workflowHandlers,
 }: ReviewOverviewExperienceProps) {
   if (!hasReview || !commandCenter) {
     return (
@@ -90,7 +85,6 @@ export function ReviewOverviewExperience({
           fieldworkGateDescription: labels.fieldworkGateDescription,
           fieldworkSubstantiallyCompleteDescription: labels.fieldworkSubstantiallyCompleteDescription,
         }}
-        onCreate={onCreate}
       />
     );
   }
@@ -107,7 +101,6 @@ export function ReviewOverviewExperience({
       commandCenterLabels={commandCenterLabels}
       statusLabels={statusLabels}
       workflowLabels={workflowLabels}
-      workflowHandlers={workflowHandlers}
     />
   );
 }

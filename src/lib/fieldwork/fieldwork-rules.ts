@@ -177,3 +177,5 @@ export function assertFieldworkCompletionRequiresReview(
 ): void {
   assertReviewApprovedForCompletion(reviewPackage);
 }
+
+export { assertEngagementCompletionGate } from "@/lib/completion/completion-rules";

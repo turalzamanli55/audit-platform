@@ -1,6 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { createReviewPackageAction } from "@/lib/actions/review";
 import { useReviewWorkspace } from "@/lib/review/use-review-workspace";
 import { ReviewWorkspaceEmpty } from "@/components/review/workspace/review-workspace-states";
 
@@ -21,7 +23,6 @@ type ReviewCreateExperienceProps = {
     fieldworkGateDescription: string;
     fieldworkSubstantiallyCompleteDescription: string;
   };
-  onCreate?: () => Promise<{ success: boolean }>;
 };
 
 export function ReviewCreateExperience({
@@ -30,18 +31,20 @@ export function ReviewCreateExperience({
   fieldworkSubstantiallyComplete,
   labels,
   gateLabels,
-  onCreate,
 }: ReviewCreateExperienceProps) {
-  const { fieldworkStarted: contextFieldworkStarted } = useReviewWorkspace();
+  const router = useRouter();
+  const { engagementId, fieldworkStarted: contextFieldworkStarted } = useReviewWorkspace();
   const [isPending, startTransition] = useTransition();
 
   const fieldworkReady = fieldworkStarted || contextFieldworkStarted;
   const gateReady = fieldworkSubstantiallyComplete;
 
   const handleCreate = () => {
-    if (!onCreate) return;
     startTransition(async () => {
-      await onCreate();
+      const result = await createReviewPackageAction({ engagementId });
+      if (result.success) {
+        router.refresh();
+      }
     });
   };
 
@@ -50,7 +53,7 @@ export function ReviewCreateExperience({
       title={labels.title}
       description={labels.description}
       actionLabel={labels.createAction}
-      onAction={onCreate ? handleCreate : undefined}
+      onAction={handleCreate}
       isPending={isPending}
       canCreate={canCreate && fieldworkReady && gateReady}
       gateDescription={

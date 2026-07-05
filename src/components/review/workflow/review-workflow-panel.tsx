@@ -1,10 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { Button, Input } from "@/components/ui";
+import { useRouter } from "next/navigation";
+import { useMemo, useState, useTransition } from "react";
+import {
+  approveReviewAction,
+  returnReviewAction,
+  submitReviewAction,
+} from "@/lib/actions/review";
 import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
 import { ReviewWorkspaceSectionShell } from "@/components/review/workspace/review-workspace-section-shell";
 import { WorkspaceFormPanel, WorkspaceNoticeBanner } from "@/components/workspace";
+import { Button, Input } from "@/components/ui";
 
 type ReviewWorkflowLabels = {
   title: string;
@@ -23,78 +29,77 @@ type ReviewWorkflowLabels = {
   errorGeneric: string;
 };
 
-type ReviewWorkflowHandlers = {
-  onSubmit?: () => Promise<{ success: boolean; error?: { message?: string } }>;
-  onReturn?: (notes: string | null) => Promise<{ success: boolean; error?: { message?: string } }>;
-  onApprove?: () => Promise<{ success: boolean; error?: { message?: string } }>;
-};
-
 type ReviewWorkflowPanelProps = {
   review: ReviewWorkspaceView;
   labels: ReviewWorkflowLabels;
-  handlers?: ReviewWorkflowHandlers;
   canSubmit?: boolean;
   canReview?: boolean;
   canApprove?: boolean;
-  isPending?: boolean;
-  onComplete?: () => void;
 };
 
 export function ReviewWorkflowPanel({
   review,
   labels,
-  handlers,
   canSubmit = true,
   canReview = true,
   canApprove = true,
-  isPending = false,
-  onComplete,
 }: ReviewWorkflowPanelProps) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [returnMode, setReturnMode] = useState(false);
   const [returnNotes, setReturnNotes] = useState("");
-  const [localPending, setLocalPending] = useState(false);
 
-  const pending = isPending || localPending;
   const isArchived = review.isArchived;
   const statusAllowsSubmit = ["draft", "returned"].includes(review.packageStatus);
   const statusAllowsReview = ["submitted", "under_review"].includes(review.packageStatus);
 
-  const run = async (action: () => Promise<{ success: boolean; error?: { message?: string } }>) => {
-    setLocalPending(true);
-    setError(null);
-    try {
-      const result = await action();
+  const submit = () => {
+    startTransition(async () => {
+      setError(null);
+      const result = await submitReviewAction({
+        packageId: review.id,
+        version: review.version,
+      });
       if (!result.success) {
         setError(result.error?.message ?? labels.errorGeneric);
         return;
       }
-      onComplete?.();
-    } finally {
-      setLocalPending(false);
-    }
-  };
-
-  const submit = () => {
-    if (!handlers?.onSubmit) return;
-    void run(handlers.onSubmit);
+      router.refresh();
+    });
   };
 
   const sendBack = () => {
-    if (!handlers?.onReturn) return;
-    void run(async () => {
-      const result = await handlers.onReturn!(returnNotes.trim() || null);
-      if (result.success) {
-        setReturnMode(false);
-        setReturnNotes("");
+    startTransition(async () => {
+      setError(null);
+      const result = await returnReviewAction({
+        packageId: review.id,
+        version: review.version,
+        notes: returnNotes.trim() || null,
+      });
+      if (!result.success) {
+        setError(result.error?.message ?? labels.errorGeneric);
+        return;
       }
-      return result;
+      setReturnMode(false);
+      setReturnNotes("");
+      router.refresh();
     });
   };
 
   const approve = () => {
-    if (!handlers?.onApprove) return;
-    void run(handlers.onApprove);
+    startTransition(async () => {
+      setError(null);
+      const result = await approveReviewAction({
+        packageId: review.id,
+        version: review.version,
+      });
+      if (!result.success) {
+        setError(result.error?.message ?? labels.errorGeneric);
+        return;
+      }
+      router.refresh();
+    });
   };
 
   return (
@@ -119,15 +124,15 @@ export function ReviewWorkflowPanel({
           <WorkspaceNoticeBanner variant="warning" description={labels.returnedNotice} role="status" />
         ) : null}
 
-        {!isArchived && handlers ? (
+        {!isArchived ? (
           <div className="flex flex-wrap items-center gap-2">
-            {canSubmit && handlers.onSubmit ? (
-              <Button type="button" onClick={submit} disabled={pending || !statusAllowsSubmit}>
+            {canSubmit ? (
+              <Button type="button" onClick={submit} disabled={isPending || !statusAllowsSubmit}>
                 {labels.submitAction}
               </Button>
             ) : null}
 
-            {canReview && handlers.onReturn ? (
+            {canReview ? (
               returnMode ? (
                 <>
                   <Input
@@ -137,14 +142,14 @@ export function ReviewWorkflowPanel({
                     aria-label={labels.returnNotesLabel}
                     className="max-w-md"
                   />
-                  <Button type="button" variant="secondary" onClick={sendBack} disabled={pending}>
+                  <Button type="button" variant="secondary" onClick={sendBack} disabled={isPending}>
                     {labels.returnConfirmAction}
                   </Button>
                   <Button
                     type="button"
                     variant="ghost"
                     onClick={() => setReturnMode(false)}
-                    disabled={pending}
+                    disabled={isPending}
                   >
                     {labels.cancelAction}
                   </Button>
@@ -154,15 +159,15 @@ export function ReviewWorkflowPanel({
                   type="button"
                   variant="secondary"
                   onClick={() => setReturnMode(true)}
-                  disabled={pending || !statusAllowsReview}
+                  disabled={isPending || !statusAllowsReview}
                 >
                   {labels.returnAction}
                 </Button>
               )
             ) : null}
 
-            {canApprove && handlers.onApprove ? (
-              <Button type="button" onClick={approve} disabled={pending || !statusAllowsReview}>
+            {canApprove ? (
+              <Button type="button" onClick={approve} disabled={isPending || !statusAllowsReview}>
                 {labels.approveAction}
               </Button>
             ) : null}
@@ -170,5 +175,19 @@ export function ReviewWorkflowPanel({
         ) : null}
       </WorkspaceFormPanel>
     </ReviewWorkspaceSectionShell>
+  );
+}
+
+export function useReviewWorkflowHandlers(review: ReviewWorkspaceView) {
+  return useMemo(
+    () => ({
+      onSubmit: () =>
+        submitReviewAction({ packageId: review.id, version: review.version }),
+      onReturn: (notes: string | null) =>
+        returnReviewAction({ packageId: review.id, version: review.version, notes }),
+      onApprove: () =>
+        approveReviewAction({ packageId: review.id, version: review.version }),
+    }),
+    [review.id, review.version],
   );
 }

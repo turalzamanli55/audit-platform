@@ -2328,6 +2328,7 @@ export type Database = {
       };
       review_comments: {
         Row: {
+          attachment_metadata: Json;
           body: string;
           comment_type: Database["public"]["Enums"]["review_comment_type"];
           created_at: string;
@@ -2336,7 +2337,12 @@ export type Database = {
           deleted_by: string | null;
           engagement_id: string;
           id: string;
+          mentions: Json;
           organization_id: string;
+          parent_comment_id: string | null;
+          resolved_at: string | null;
+          resolved_by: string | null;
+          review_item_id: string | null;
           review_package_id: string;
           status: Database["public"]["Enums"]["record_status"];
           updated_at: string;
@@ -2345,6 +2351,7 @@ export type Database = {
           workspace_id: string;
         };
         Insert: {
+          attachment_metadata?: Json;
           body: string;
           comment_type?: Database["public"]["Enums"]["review_comment_type"];
           created_at?: string;
@@ -2353,7 +2360,12 @@ export type Database = {
           deleted_by?: string | null;
           engagement_id: string;
           id?: string;
+          mentions?: Json;
           organization_id: string;
+          parent_comment_id?: string | null;
+          resolved_at?: string | null;
+          resolved_by?: string | null;
+          review_item_id?: string | null;
           review_package_id: string;
           status?: Database["public"]["Enums"]["record_status"];
           updated_at?: string;
@@ -2362,6 +2374,7 @@ export type Database = {
           workspace_id: string;
         };
         Update: {
+          attachment_metadata?: Json;
           body?: string;
           comment_type?: Database["public"]["Enums"]["review_comment_type"];
           created_at?: string;
@@ -2370,7 +2383,12 @@ export type Database = {
           deleted_by?: string | null;
           engagement_id?: string;
           id?: string;
+          mentions?: Json;
           organization_id?: string;
+          parent_comment_id?: string | null;
+          resolved_at?: string | null;
+          resolved_by?: string | null;
+          review_item_id?: string | null;
           review_package_id?: string;
           status?: Database["public"]["Enums"]["record_status"];
           updated_at?: string;
@@ -2388,11 +2406,13 @@ export type Database = {
           deleted_at: string | null;
           deleted_by: string | null;
           description: string | null;
+          due_date: string | null;
           engagement_id: string;
           href: string | null;
           id: string;
           item_status: Database["public"]["Enums"]["review_item_status"];
           organization_id: string;
+          priority: string | null;
           resolved_at: string | null;
           resolved_by: string | null;
           return_notes: string | null;
@@ -2416,11 +2436,13 @@ export type Database = {
           deleted_at?: string | null;
           deleted_by?: string | null;
           description?: string | null;
+          due_date?: string | null;
           engagement_id: string;
           href?: string | null;
           id?: string;
           item_status?: Database["public"]["Enums"]["review_item_status"];
           organization_id: string;
+          priority?: string | null;
           resolved_at?: string | null;
           resolved_by?: string | null;
           return_notes?: string | null;
@@ -2444,11 +2466,13 @@ export type Database = {
           deleted_at?: string | null;
           deleted_by?: string | null;
           description?: string | null;
+          due_date?: string | null;
           engagement_id?: string;
           href?: string | null;
           id?: string;
           item_status?: Database["public"]["Enums"]["review_item_status"];
           organization_id?: string;
+          priority?: string | null;
           resolved_at?: string | null;
           resolved_by?: string | null;
           return_notes?: string | null;

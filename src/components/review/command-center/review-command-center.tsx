@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentProps } from "react";
 import Link from "next/link";
 import {
@@ -61,7 +59,6 @@ type ReviewCommandCenterProps = {
   commandCenterLabels: ReviewCommandCenterLabels;
   statusLabels: Record<string, string>;
   workflowLabels: ReviewWorkflowLabels;
-  workflowHandlers?: ComponentProps<typeof ReviewWorkflowPanel>["handlers"];
 };
 
 export function ReviewCommandCenter({
@@ -74,7 +71,6 @@ export function ReviewCommandCenter({
   labels,
   commandCenterLabels: cc,
   workflowLabels,
-  workflowHandlers,
 }: ReviewCommandCenterProps) {
   const base = `/${locale}/app/engagements/${slug}/review`;
   const { review } = useReviewWorkspace();
@@ -154,7 +150,6 @@ export function ReviewCommandCenter({
           title: labels.workflowTitle,
           description: labels.workflowDescription,
         }}
-        handlers={workflowHandlers}
       />
 
       <CommandCard title={cc.workflowTitle} description={cc.workflowDescription}>

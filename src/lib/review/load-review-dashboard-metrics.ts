@@ -32,9 +32,12 @@ type SupabaseMetricClient = {
 
 export type ReviewDashboardMetrics = {
   pendingReview: number;
+  returnedReviews: number;
   draftPackages: number;
   approvedPackages: number;
   openFindings: number;
+  myReviews: number;
+  recentActivityCount: number;
 };
 
 function createRepositoryContext(
@@ -72,9 +75,12 @@ export async function loadReviewDashboardMetrics(): Promise<ReviewDashboardMetri
     const engagements = await engagementRepository.listByWorkspace(workspace.workspaceId);
 
     let pendingReview = 0;
+    let returnedReviews = 0;
     let draftPackages = 0;
     let approvedPackages = 0;
     let openFindings = 0;
+    let myReviews = 0;
+    let recentActivityCount = 0;
 
     for (const engagement of engagements) {
       const packageResult = await db
@@ -91,16 +97,59 @@ export async function loadReviewDashboardMetrics(): Promise<ReviewDashboardMetri
 
       if (["submitted", "under_review"].includes(pkg.package_status)) {
         pendingReview += 1;
-      } else if (pkg.package_status === "draft" || pkg.package_status === "returned") {
+      } else if (pkg.package_status === "returned") {
+        returnedReviews += 1;
+      } else if (pkg.package_status === "draft") {
         draftPackages += 1;
       } else if (pkg.package_status === "approved") {
         approvedPackages += 1;
       }
 
       openFindings += pkg.open_findings_count ?? 0;
+
+      const itemsResult = await (supabase as unknown as {
+        from: (table: string) => {
+          select: (columns: string) => {
+            eq: (col: string, val: string) => {
+              is: (col: string, val: null) => {
+                eq: (col2: string, val2: string) => Promise<{ data: unknown; error: unknown }>;
+              };
+            };
+          };
+        };
+      })
+        .from("review_items")
+        .select("id")
+        .eq("review_package_id", pkg.id)
+        .is("deleted_at", null)
+        .eq("assigned_reviewer_id", user.id);
+
+      const assignedItems = (itemsResult as { data: { id: string }[] | null }).data ?? [];
+      myReviews += assignedItems.length;
+
+      const activityResult = await (supabase as unknown as {
+        from: (table: string) => {
+          select: (columns: string, opts?: { count: string; head: boolean }) => {
+            eq: (col: string, val: string) => Promise<{ count: number | null; error: unknown }>;
+          };
+        };
+      })
+        .from("review_activity")
+        .select("id", { count: "exact", head: true })
+        .eq("review_package_id", pkg.id);
+
+      recentActivityCount += (activityResult as { count: number | null }).count ?? 0;
     }
 
-    return { pendingReview, draftPackages, approvedPackages, openFindings };
+    return {
+      pendingReview,
+      returnedReviews,
+      draftPackages,
+      approvedPackages,
+      openFindings,
+      myReviews,
+      recentActivityCount,
+    };
   } catch {
     return null;
   }

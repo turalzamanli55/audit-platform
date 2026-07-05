@@ -84,7 +84,14 @@
     "reviewRisk": "Проверить {count} оценок рисков",
     "openRiskItems": "Завершить {count} открытых рисков",
     "reviewMateriality": "Проверить {count} пакетов существенности",
-    "draftMateriality": "Завершить {count} черновиков существенности"
+    "draftMateriality": "Завершить {count} черновиков существенности",
+    "reviewReturnedReviews": "Обработать {count} возвращённых пакетов проверки",
+    "reviewMyReviews": "{count} элементов проверки, назначенных вам",
+    "reviewRecentActivity": "{count} недавних событий проверки",
+    "reviewDraftPackages": "Завершить {count} черновых пакетов проверки",
+    "reviewPendingReviews": "Clear {count} pending review items",
+    "reviewOpenTasks": "Complete {count} open review tasks",
+    "moduleReview": "Review"
   },
   "ai": {
     "title": "AI-ассистент",
@@ -333,6 +340,21 @@
     "approvalMateriality": "Проверка существенности · {engagement}",
     "approvalRisk": "Проверка оценки рисков · {engagement}",
     "daysOverdue": "просрочено на {count} дн.",
-    "lifecycle": "Статус"
+    "lifecycle": "Статус",
+    "reviewReturnedReviews": "Обработать {count} возвращённых пакетов проверки",
+    "reviewMyReviews": "{count} элементов проверки, назначенных вам",
+    "reviewRecentActivity": "{count} недавних событий проверки",
+    "reviewDraftPackages": "Завершить {count} черновых пакетов проверки",
+    "kpiEngagementReviewPending": "Ожидающие проверки",
+    "kpiEngagementReviewReturned": "Возвращённые проверки",
+    "kpiMyReviews": "Мои проверки",
+    "kpiReviewActivity": "Активность проверки",
+    "hintEngagementReviewPending": "Утверждения проверки engagement",
+    "hintEngagementReviewReturned": "Возвращено на доработку",
+    "hintMyReviews": "Назначенные элементы проверки",
+    "hintReviewActivity": "Недавние события проверки",
+    "moduleEngagementReview": "Проверка engagement",
+    "attentionEngagementReview": "{count} проверок engagement ожидают утверждения",
+    "attentionEngagementReturned": "{count} проверок engagement возвращены"
   }
 }

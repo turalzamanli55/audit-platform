@@ -5,8 +5,8 @@ import { AUDIT_RESOURCE_TYPE, REVIEW_PERMISSIONS } from "@/constants/review";
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createReviewAction as defineReviewAction } from "@/lib/actions/review/review-action";
 import {
-  validateAddReviewCommentInput,
   validateReviewItemMutationInput,
+  validateUpdateReviewItemInput,
 } from "@/lib/review/validation";
 import { createServerClient } from "@/lib/supabase/server";
 import { ReviewRepository } from "@/repositories/review/review-repository";
@@ -43,11 +43,11 @@ async function loadEditablePackage(
   return pkg;
 }
 
-export const commentReviewAction = defineReviewAction<
-  import("@/lib/review/validation").AddReviewCommentInput,
-  { commentId: string; version: number }
->({ module: "review.comment.add" }, REVIEW_PERMISSIONS.COMMENT, async (input, context) => {
-  const validated = validateAddReviewCommentInput(input);
+export const updateReviewItemAction = defineReviewAction<
+  import("@/lib/review/validation").UpdateReviewItemInput,
+  { itemId: string; packageVersion: number; itemVersion: number }
+>({ module: "review.item.update" }, REVIEW_PERMISSIONS.REVIEW, async (input, context) => {
+  const validated = validateUpdateReviewItemInput(input);
 
   const supabase = await createServerClient();
   const repositoryContext = createRepositoryContext(
@@ -60,41 +60,94 @@ export const commentReviewAction = defineReviewAction<
   await loadEditablePackage(
     validated.packageId,
     context.workspaceId,
-    validated.version,
+    validated.packageVersion,
     reviewRepository,
   );
 
-  const comment = await reviewRepository.addComment({
+  const item = await reviewRepository.updateItem({
     reviewPackageId: validated.packageId,
-    commentType: validated.commentType,
-    body: validated.body,
-    parentCommentId: validated.parentCommentId,
-    reviewItemId: validated.reviewItemId,
-    mentions: validated.mentions,
-    attachmentMetadata: validated.attachmentMetadata,
+    itemId: validated.itemId,
+    expectedItemVersion: validated.itemVersion,
+    assignedReviewerId: validated.assignedReviewerId,
+    priority: validated.priority,
+    severity: validated.severity,
+    dueDate: validated.dueDate,
+    itemStatus: validated.itemStatus as never,
   });
 
   const pkg = await reviewRepository.findById(validated.packageId);
 
   const requestHeaders = await headers();
   await emitAuditEvent({
-    action: AUDIT_ACTIONS.REVIEW_COMMENT_ADDED,
+    action: AUDIT_ACTIONS.REVIEW_ITEM_RESOLVED,
     resourceType: AUDIT_RESOURCE_TYPE,
     resourceId: validated.packageId,
     organizationId: context.organizationId,
     workspaceId: context.workspaceId,
     userId: context.userId,
     userAgent: requestHeaders.get("user-agent"),
-    metadata: { commentId: comment.id },
+    metadata: { itemId: item.id },
   });
 
-  return { commentId: comment.id, version: pkg?.version ?? validated.version };
+  return {
+    itemId: item.id,
+    packageVersion: pkg?.version ?? validated.packageVersion,
+    itemVersion: item.version,
+  };
 });
 
-export const resolveReviewItemAction = defineReviewAction<
+export const reopenReviewItemAction = defineReviewAction<
   import("@/lib/review/validation").ReviewItemMutationInput,
   { itemId: string; packageVersion: number; itemVersion: number }
->({ module: "review.item.resolve" }, REVIEW_PERMISSIONS.REVIEW, async (input, context) => {
+>({ module: "review.item.reopen" }, REVIEW_PERMISSIONS.REVIEW, async (input, context) => {
+  const validated = validateReviewItemMutationInput(input);
+
+  const supabase = await createServerClient();
+  const repositoryContext = createRepositoryContext(
+    context.userId,
+    context.organizationId,
+    context.workspaceId,
+  );
+  const reviewRepository = new ReviewRepository(supabase, repositoryContext);
+
+  await loadEditablePackage(
+    validated.packageId,
+    context.workspaceId,
+    validated.packageVersion,
+    reviewRepository,
+  );
+
+  const item = await reviewRepository.reopenItem(
+    validated.packageId,
+    validated.itemId,
+    validated.itemVersion,
+  );
+
+  const pkg = await reviewRepository.findById(validated.packageId);
+
+  const requestHeaders = await headers();
+  await emitAuditEvent({
+    action: AUDIT_ACTIONS.REVIEW_ITEM_RETURNED,
+    resourceType: AUDIT_RESOURCE_TYPE,
+    resourceId: validated.packageId,
+    organizationId: context.organizationId,
+    workspaceId: context.workspaceId,
+    userId: context.userId,
+    userAgent: requestHeaders.get("user-agent"),
+    metadata: { itemId: item.id },
+  });
+
+  return {
+    itemId: item.id,
+    packageVersion: pkg?.version ?? validated.packageVersion,
+    itemVersion: item.version,
+  };
+});
+
+export const approveReviewItemAction = defineReviewAction<
+  import("@/lib/review/validation").ReviewItemMutationInput,
+  { itemId: string; packageVersion: number; itemVersion: number }
+>({ module: "review.item.approve" }, REVIEW_PERMISSIONS.REVIEW, async (input, context) => {
   const validated = validateReviewItemMutationInput(input);
 
   const supabase = await createServerClient();
@@ -130,55 +183,6 @@ export const resolveReviewItemAction = defineReviewAction<
     userId: context.userId,
     userAgent: requestHeaders.get("user-agent"),
     metadata: { itemId: item.id },
-  });
-
-  return {
-    itemId: item.id,
-    packageVersion: pkg?.version ?? validated.packageVersion,
-    itemVersion: item.version,
-  };
-});
-
-export const returnReviewItemAction = defineReviewAction<
-  import("@/lib/review/validation").ReviewItemMutationInput,
-  { itemId: string; packageVersion: number; itemVersion: number }
->({ module: "review.item.return" }, REVIEW_PERMISSIONS.REVIEW, async (input, context) => {
-  const validated = validateReviewItemMutationInput(input);
-
-  const supabase = await createServerClient();
-  const repositoryContext = createRepositoryContext(
-    context.userId,
-    context.organizationId,
-    context.workspaceId,
-  );
-  const reviewRepository = new ReviewRepository(supabase, repositoryContext);
-
-  await loadEditablePackage(
-    validated.packageId,
-    context.workspaceId,
-    validated.packageVersion,
-    reviewRepository,
-  );
-
-  const item = await reviewRepository.returnItem(
-    validated.packageId,
-    validated.itemId,
-    validated.itemVersion,
-    validated.returnNotes,
-  );
-
-  const pkg = await reviewRepository.findById(validated.packageId);
-
-  const requestHeaders = await headers();
-  await emitAuditEvent({
-    action: AUDIT_ACTIONS.REVIEW_ITEM_RETURNED,
-    resourceType: AUDIT_RESOURCE_TYPE,
-    resourceId: validated.packageId,
-    organizationId: context.organizationId,
-    workspaceId: context.workspaceId,
-    userId: context.userId,
-    userAgent: requestHeaders.get("user-agent"),
-    metadata: { itemId: item.id, returnNotes: validated.returnNotes },
   });
 
   return {

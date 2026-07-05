@@ -17,14 +17,26 @@ export type ReviewActivityLoadResult =
 function toActivityEntry(row: Tables<"review_activity">): ReviewActivityView["entries"][number] {
   const metadata = (row.metadata ?? {}) as Record<string, unknown>;
   const packageVersion =
-    typeof metadata.package_version === "number" ? metadata.package_version : null;
+    typeof metadata.packageVersion === "number"
+      ? metadata.packageVersion
+      : typeof metadata.package_version === "number"
+        ? metadata.package_version
+        : null;
+  const sourceModule =
+    typeof metadata.sourceModule === "string"
+      ? metadata.sourceModule
+      : typeof metadata.source_module === "string"
+        ? metadata.source_module
+        : null;
 
   return {
     id: row.id,
     action: row.action,
     summary: row.summary,
     createdAt: row.created_at,
-    actorName: null,
+    actorName: row.created_by,
+    actorId: row.created_by,
+    sourceModule,
     packageVersion,
   };
 }

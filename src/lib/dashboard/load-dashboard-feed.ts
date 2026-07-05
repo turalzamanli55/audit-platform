@@ -306,14 +306,56 @@ function buildTaskItems(
     });
   }
 
-  if (reviewMetrics && reviewMetrics.draftPackages > 0) {
+  if (reviewMetrics && reviewMetrics.returnedReviews > 0) {
     items.push({
       id: `review-returned-${index++}`,
-      title: labels.reviewReturnedReviews.replace("{count}", String(reviewMetrics.draftPackages)),
+      title: labels.reviewReturnedReviews.replace("{count}", String(reviewMetrics.returnedReviews)),
       status: labels.statusOpen,
       priority: labels.priorityHigh,
       due: labels.dueSoon,
       statusVariant: "warning",
+      priorityVariant: "warning",
+      module: labels.moduleReview,
+      href: engagementsHref,
+    });
+  }
+
+  if (reviewMetrics && reviewMetrics.myReviews > 0) {
+    items.push({
+      id: `review-my-${index++}`,
+      title: labels.reviewMyReviews.replace("{count}", String(reviewMetrics.myReviews)),
+      status: labels.statusInProgress,
+      priority: labels.priorityMedium,
+      due: labels.dueSoon,
+      statusVariant: "default",
+      priorityVariant: "default",
+      module: labels.moduleReview,
+      href: engagementsHref,
+    });
+  }
+
+  if (reviewMetrics && reviewMetrics.recentActivityCount > 0) {
+    items.push({
+      id: `review-activity-${index++}`,
+      title: labels.reviewRecentActivity.replace("{count}", String(reviewMetrics.recentActivityCount)),
+      status: labels.statusDone,
+      priority: labels.priorityLow,
+      due: labels.dueSoon,
+      statusVariant: "default",
+      priorityVariant: "default",
+      module: labels.moduleReview,
+      href: engagementsHref,
+    });
+  }
+
+  if (reviewMetrics && reviewMetrics.draftPackages > 0) {
+    items.push({
+      id: `review-draft-${index++}`,
+      title: labels.reviewDraftPackages.replace("{count}", String(reviewMetrics.draftPackages)),
+      status: labels.statusInProgress,
+      priority: labels.priorityMedium,
+      due: labels.dueSoon,
+      statusVariant: "default",
       priorityVariant: "warning",
       module: labels.moduleReview,
       href: engagementsHref,

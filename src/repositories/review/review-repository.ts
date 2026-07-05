@@ -54,6 +54,30 @@ export type AddCommentInput = {
   reviewPackageId: string;
   commentType?: TablesInsert<"review_comments">["comment_type"];
   body: string;
+  parentCommentId?: string | null;
+  reviewItemId?: string | null;
+  mentions?: string[];
+  attachmentMetadata?: Array<{ name: string; type?: string; size?: number; url?: string }>;
+};
+
+export type UpdateCommentInput = {
+  commentId: string;
+  reviewPackageId: string;
+  expectedVersion: number;
+  body: string;
+  mentions?: string[];
+  attachmentMetadata?: Array<{ name: string; type?: string; size?: number; url?: string }>;
+};
+
+export type UpdateReviewItemInput = {
+  reviewPackageId: string;
+  itemId: string;
+  expectedItemVersion: number;
+  assignedReviewerId?: string | null;
+  priority?: string | null;
+  severity?: string | null;
+  dueDate?: string | null;
+  itemStatus?: TablesUpdate<"review_items">["item_status"];
 };
 
 export type LogReviewActivityInput = {
@@ -272,6 +296,8 @@ export class ReviewRepository extends AuthenticatedRepository {
     ).maybeSingle();
 
     const pkg = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewPackage", id);
+
+    await this.markItemsUnderReview(pkg.id);
 
     await this.logActivity({
       reviewPackageId: pkg.id,
@@ -606,6 +632,104 @@ export class ReviewRepository extends AuthenticatedRepository {
     return updated;
   }
 
+  async reopenItem(
+    reviewPackageId: string,
+    itemId: string,
+    expectedItemVersion: number,
+  ): Promise<ReviewItem> {
+    await this.requirePackageForMutation(reviewPackageId);
+    const item = await this.requireItem(reviewPackageId, itemId);
+    assertVersionMatch(item.version, expectedItemVersion, "ReviewItem");
+
+    if (item.item_status !== "resolved") {
+      throw new ValidationError("Only resolved review items can be reopened");
+    }
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_items")
+        .update({
+          item_status: "pending",
+          resolved_at: null,
+          resolved_by: null,
+        })
+        .eq("id", itemId)
+        .eq("version", expectedItemVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewItem", itemId);
+
+    await this.logActivity({
+      reviewPackageId,
+      engagementId: updated.engagement_id,
+      organizationId: updated.organization_id,
+      workspaceId: updated.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.ITEM_REOPENED,
+      summary: `Review item "${updated.title}" reopened`,
+      metadata: { itemId: updated.id },
+    });
+
+    await this.recomputeProgress(reviewPackageId);
+    return updated;
+  }
+
+  async updateItem(input: UpdateReviewItemInput): Promise<ReviewItem> {
+    await this.requirePackageForMutation(input.reviewPackageId);
+    const item = await this.requireItem(input.reviewPackageId, input.itemId);
+    assertVersionMatch(item.version, input.expectedItemVersion, "ReviewItem");
+
+    const updatePayload: TablesUpdate<"review_items"> = {};
+    if (input.assignedReviewerId !== undefined) {
+      updatePayload.assigned_reviewer_id = input.assignedReviewerId;
+    }
+    if (input.priority !== undefined) {
+      updatePayload.priority = input.priority;
+    }
+    if (input.severity !== undefined) {
+      updatePayload.severity = input.severity;
+    }
+    if (input.dueDate !== undefined) {
+      updatePayload.due_date = input.dueDate;
+    }
+    if (input.itemStatus !== undefined) {
+      updatePayload.item_status = input.itemStatus;
+      if (input.itemStatus === "under_review") {
+        updatePayload.resolved_at = null;
+        updatePayload.resolved_by = null;
+      }
+    }
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_items")
+        .update(updatePayload)
+        .eq("id", input.itemId)
+        .eq("version", input.expectedItemVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewItem", input.itemId);
+
+    const action =
+      input.assignedReviewerId !== undefined
+        ? REVIEW_ACTIVITY_ACTIONS.ITEM_ASSIGNED
+        : REVIEW_ACTIVITY_ACTIONS.ITEM_UPDATED;
+
+    await this.logActivity({
+      reviewPackageId: input.reviewPackageId,
+      engagementId: updated.engagement_id,
+      organizationId: updated.organization_id,
+      workspaceId: updated.workspace_id,
+      action,
+      summary: `Review item "${updated.title}" updated`,
+      metadata: { itemId: updated.id },
+    });
+
+    await this.recomputeProgress(input.reviewPackageId);
+    return updated;
+  }
+
   async addComment(input: AddCommentInput): Promise<ReviewComment> {
     const pkg = await this.requirePackageForMutation(input.reviewPackageId);
 
@@ -618,6 +742,11 @@ export class ReviewRepository extends AuthenticatedRepository {
         workspace_id: pkg.workspace_id,
         comment_type: input.commentType ?? "review",
         body: input.body.trim(),
+        parent_comment_id: input.parentCommentId ?? null,
+        review_item_id: input.reviewItemId ?? null,
+        mentions: (input.mentions ?? []) as Database["public"]["Tables"]["review_comments"]["Insert"]["mentions"],
+        attachment_metadata: (input.attachmentMetadata ??
+          []) as Database["public"]["Tables"]["review_comments"]["Insert"]["attachment_metadata"],
       })
       .select("*")
       .single();
@@ -664,6 +793,235 @@ export class ReviewRepository extends AuthenticatedRepository {
         .order("created_at", { ascending: false }),
     );
     return unwrapSupabaseList(result);
+  }
+
+  async listCommentsAnyState(reviewPackageId: string): Promise<ReviewComment[]> {
+    const result = await this.client
+      .from("review_comments")
+      .select("*")
+      .eq("review_package_id", reviewPackageId)
+      .order("created_at", { ascending: false });
+    return unwrapSupabaseList(result);
+  }
+
+  async updateComment(input: UpdateCommentInput): Promise<ReviewComment> {
+    const pkg = await this.requirePackageForMutation(input.reviewPackageId);
+    const comment = await this.requireComment(input.reviewPackageId, input.commentId);
+    assertVersionMatch(comment.version, input.expectedVersion, "ReviewComment");
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_comments")
+        .update({
+          body: input.body.trim(),
+          mentions: (input.mentions ??
+            comment.mentions) as Database["public"]["Tables"]["review_comments"]["Update"]["mentions"],
+          attachment_metadata: (input.attachmentMetadata ??
+            comment.attachment_metadata) as Database["public"]["Tables"]["review_comments"]["Update"]["attachment_metadata"],
+        })
+        .eq("id", input.commentId)
+        .eq("version", input.expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", input.commentId);
+
+    await this.logActivity({
+      reviewPackageId: pkg.id,
+      engagementId: pkg.engagement_id,
+      organizationId: pkg.organization_id,
+      workspaceId: pkg.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.COMMENT_UPDATED,
+      summary: "Review comment updated",
+      metadata: { commentId: updated.id },
+    });
+
+    return updated;
+  }
+
+  async archiveComment(reviewPackageId: string, commentId: string, expectedVersion: number): Promise<ReviewComment> {
+    const pkg = await this.requirePackageForMutation(reviewPackageId);
+    const comment = await this.requireComment(reviewPackageId, commentId);
+    assertVersionMatch(comment.version, expectedVersion, "ReviewComment");
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_comments")
+        .update({
+          deleted_at: new Date().toISOString(),
+          deleted_by: this.userId,
+          status: "archived",
+        })
+        .eq("id", commentId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", commentId);
+
+    await this.logActivity({
+      reviewPackageId: pkg.id,
+      engagementId: pkg.engagement_id,
+      organizationId: pkg.organization_id,
+      workspaceId: pkg.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.COMMENT_ARCHIVED,
+      summary: "Review comment archived",
+      metadata: { commentId: updated.id },
+    });
+
+    return updated;
+  }
+
+  async restoreComment(reviewPackageId: string, commentId: string, expectedVersion: number): Promise<ReviewComment> {
+    const comment = await this.requireCommentAnyState(reviewPackageId, commentId);
+    assertVersionMatch(comment.version, expectedVersion, "ReviewComment");
+
+    const result = await this.client
+      .from("review_comments")
+      .update({
+        deleted_at: null,
+        deleted_by: null,
+        status: "active",
+      })
+      .eq("id", commentId)
+      .eq("version", expectedVersion)
+      .select("*")
+      .maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", commentId);
+
+    await this.logActivity({
+      reviewPackageId,
+      engagementId: updated.engagement_id,
+      organizationId: updated.organization_id,
+      workspaceId: updated.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.COMMENT_RESTORED,
+      summary: "Review comment restored",
+      metadata: { commentId: updated.id },
+    });
+
+    return updated;
+  }
+
+  async resolveComment(reviewPackageId: string, commentId: string, expectedVersion: number): Promise<ReviewComment> {
+    const pkg = await this.requirePackageForMutation(reviewPackageId);
+    const comment = await this.requireComment(reviewPackageId, commentId);
+    assertVersionMatch(comment.version, expectedVersion, "ReviewComment");
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_comments")
+        .update({
+          resolved_at: new Date().toISOString(),
+          resolved_by: this.userId,
+        })
+        .eq("id", commentId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", commentId);
+
+    await this.logActivity({
+      reviewPackageId: pkg.id,
+      engagementId: pkg.engagement_id,
+      organizationId: pkg.organization_id,
+      workspaceId: pkg.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.COMMENT_RESOLVED,
+      summary: "Review comment resolved",
+      metadata: { commentId: updated.id },
+    });
+
+    return updated;
+  }
+
+  async unresolveComment(reviewPackageId: string, commentId: string, expectedVersion: number): Promise<ReviewComment> {
+    const pkg = await this.requirePackageForMutation(reviewPackageId);
+    const comment = await this.requireComment(reviewPackageId, commentId);
+    assertVersionMatch(comment.version, expectedVersion, "ReviewComment");
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_comments")
+        .update({
+          resolved_at: null,
+          resolved_by: null,
+        })
+        .eq("id", commentId)
+        .eq("version", expectedVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", commentId);
+
+    await this.logActivity({
+      reviewPackageId: pkg.id,
+      engagementId: pkg.engagement_id,
+      organizationId: pkg.organization_id,
+      workspaceId: pkg.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.COMMENT_REOPENED,
+      summary: "Review comment reopened",
+      metadata: { commentId: updated.id },
+    });
+
+    return updated;
+  }
+
+  async findVersionById(reviewPackageId: string, versionId: string): Promise<ReviewVersion | null> {
+    const result = await this.client
+      .from("review_versions")
+      .select("*")
+      .eq("review_package_id", reviewPackageId)
+      .eq("id", versionId)
+      .maybeSingle();
+    return unwrapSupabaseMaybeSingle(result);
+  }
+
+  async restoreVersion(
+    reviewPackageId: string,
+    versionId: string,
+    expectedPackageVersion: number,
+  ): Promise<ReviewPackage> {
+    const pkg = await this.findById(reviewPackageId);
+    if (!pkg) {
+      throw new NotFoundError("Review package not found", { id: reviewPackageId });
+    }
+    this.ensurePackageIsEditable(pkg);
+    assertVersionMatch(pkg.version, expectedPackageVersion, "ReviewPackage");
+
+    const version = await this.findVersionById(reviewPackageId, versionId);
+    if (!version) {
+      throw new NotFoundError("Review version not found", { id: versionId });
+    }
+
+    const snapshot = version.snapshot as {
+      package?: { summary_notes?: string | null };
+    };
+
+    const result = await applyActiveFilter(
+      this.client
+        .from("review_packages")
+        .update({
+          summary_notes: snapshot.package?.summary_notes ?? pkg.summary_notes,
+        })
+        .eq("id", reviewPackageId)
+        .eq("version", expectedPackageVersion)
+        .select("*"),
+    ).maybeSingle();
+
+    const updated = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewPackage", reviewPackageId);
+
+    await this.logActivity({
+      reviewPackageId,
+      engagementId: updated.engagement_id,
+      organizationId: updated.organization_id,
+      workspaceId: updated.workspace_id,
+      action: REVIEW_ACTIVITY_ACTIONS.VERSION_RESTORED,
+      summary: `Restored from version ${version.version_number}`,
+      metadata: { versionId: version.id, versionNumber: version.version_number },
+    });
+
+    return updated;
   }
 
   async listActivity(reviewPackageId: string, limit = 100): Promise<ReviewActivity[]> {
@@ -892,6 +1250,53 @@ export class ReviewRepository extends AuthenticatedRepository {
     }
 
     return item;
+  }
+
+  private async requireComment(reviewPackageId: string, commentId: string): Promise<ReviewComment> {
+    const result = await applyActiveFilter(
+      this.client.from("review_comments").select("*").eq("id", commentId),
+    ).maybeSingle();
+    const comment = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", commentId);
+
+    if (comment.review_package_id !== reviewPackageId) {
+      throw new ValidationError("Review comment does not belong to this review package");
+    }
+
+    return comment;
+  }
+
+  private async requireCommentAnyState(
+    reviewPackageId: string,
+    commentId: string,
+  ): Promise<ReviewComment> {
+    const result = await this.client
+      .from("review_comments")
+      .select("*")
+      .eq("id", commentId)
+      .maybeSingle();
+    const comment = requireRow(unwrapSupabaseMaybeSingle(result), "ReviewComment", commentId);
+
+    if (comment.review_package_id !== reviewPackageId) {
+      throw new ValidationError("Review comment does not belong to this review package");
+    }
+
+    return comment;
+  }
+
+  private async markItemsUnderReview(reviewPackageId: string): Promise<void> {
+    const items = await this.listItems(reviewPackageId);
+    const pendingItems = items.filter((item) => item.item_status === "pending");
+
+    for (const item of pendingItems) {
+      await applyActiveFilter(
+        this.client
+          .from("review_items")
+          .update({ item_status: "under_review" })
+          .eq("id", item.id),
+      );
+    }
+
+    await this.recomputeProgress(reviewPackageId);
   }
 
   private ensurePackageIsEditable(pkg: ReviewPackage): void {
