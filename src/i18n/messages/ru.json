@@ -2604,11 +2604,11 @@
   },
   "materiality": {
     "notFoundTitle": "Существенность не найдена",
-    "notFoundDescription": "The materiality workspace you requested could not be found for this engagement.",
+    "notFoundDescription": "Запрошенная рабочая область существенности не найдена для этого проекта.",
     "forbiddenTitle": "Требуется разрешение",
-    "forbiddenDescription": "You need materiality permission to access this workspace.",
+    "forbiddenDescription": "Для доступа к этой рабочей области требуется разрешение на существенность.",
     "noWorkspaceTitle": "Требуется рабочая область",
-    "noWorkspaceDescription": "Select a workspace before opening materiality.",
+    "noWorkspaceDescription": "Выберите рабочую область перед открытием существенности.",
     "statuses": {
       "draft": "Черновик",
       "submitted": "Отправлено",
@@ -2633,8 +2633,8 @@
       "trivial": "Порог тривиальности"
     },
     "commentTypes": {
-      "review": "Review comment",
-      "internal": "Internal comment"
+      "review": "Комментарий проверки",
+      "internal": "Внутренний комментарий"
     },
     "thresholds": {
       "overall": "Общая существенность",
@@ -2643,7 +2643,7 @@
       "notSet": "Не задано"
     },
     "workflow": {
-      "title": "Существенность workflow",
+      "title": "Рабочий процесс существенности",
       "description": "Подача, возврат и утверждение документации по существенности ISA 320.",
       "submitAction": "Отправить на проверку",
       "returnAction": "Вернуть на доработку",
@@ -2659,11 +2659,11 @@
       "errorGeneric": "Не удалось выполнить действие рабочего процесса существенности."
     },
     "empty": {
-      "title": "Существенность not initiated",
-      "description": "Create a materiality package to document overall, performance, and specific thresholds per ISA 320.",
-      "createAction": "Create materiality package",
-      "creating": "Creating materiality package...",
-      "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
+      "title": "Существенность не инициирована",
+      "description": "Создайте пакет существенности для документирования общих, рабочих и специфических порогов по ISA 320.",
+      "createAction": "Создать пакет существенности",
+      "creating": "Создание пакета существенности...",
+      "forbiddenDescription": "Для инициации этой рабочей области требуется разрешение на создание существенности."
     },
     "workspace": {
       "title": "Существенность — обзор",
@@ -2678,7 +2678,6 @@
       "benchmarksPreviewTitle": "Предпросмотр бенчмарков",
       "benchmarksPreviewDescription": "Суммы бенчмарков, проценты и рассчитанная существенность.",
       "heroEyebrow": "Существенность",
-      "breadcrumbСущественность": "Существенность",
       "backToEngagement": "Вернуться к проекту",
       "planningGateTitle": "Требуется утверждение планирования",
       "planningGateDescription": "Планирование аудита должно быть утверждено до начала работы с существенностью.",
@@ -2698,41 +2697,41 @@
       "summaryOverall": "Общая существенность",
       "summaryPendingReview": "Ожидает проверки",
       "commandCenter": {
-        "heroTitle": "ISA 320 [[МАТЕРИАЛЬНОСТЬ]] командный центр",
-        "executiveTitle": "[[МАТЕРИАЛЬНОСТЬ]] пороговые значения",
-        "summaryTitle": "[[МАТЕРИАЛЬНОСТЬ]] резюме",
+        "heroTitle": "Командный центр существенности ISA 320",
+        "executiveTitle": "Пороги существенности",
+        "summaryTitle": "Сводка существенности",
         "metricsTitle": "Метрики пакета",
-        "workflowTitle": "[[УТВЕРЖДЕНИЕ]] рабочий процесс",
-        "workflowDescription": "Черновой вариант интегрированного — выделен текущий этап.",
-        "approvalQueueTitle": "[[УТВЕРЖДЕНИЕ]] очередь",
-        "approvalQueueDescription": "Пакеты существенность ожидают утверждения партнером или менеджером.",
-        "calculationBreakdownTitle": "Разбивка расчета",
-        "calculationBreakdownDescription": "В целом, производительность и тривиальные вычисления идут гладко.",
-        "benchmarkComparisonTitle": "Сравнительное сравнение",
-        "benchmarkComparisonDescription": "Ранжированы контрольные суммы и рассчитана [[МАТЕРИАЛЬНОСТЬ]].",
-        "calculationHistoryTitle": "История расчетов",
-        "calculationHistoryDescription": "Записанные расчеты и ручные корректировки.",
-        "selectedBenchmarkTitle": "Выбранный тест",
-        "selectedBenchmarkDescription": "Основа для общего определения [[МАТЕРИАЛЬНОСТИ]].",
+        "workflowTitle": "Процесс утверждения",
+        "workflowDescription": "От черновика до интеграции — выделен текущий этап.",
+        "approvalQueueTitle": "Очередь утверждения",
+        "approvalQueueDescription": "Пакеты существенности, ожидающие подписи партнёра или менеджера.",
+        "calculationBreakdownTitle": "Разбивка расчёта",
+        "calculationBreakdownDescription": "Общая, рабочая и тривиальная цепочка расчётов.",
+        "benchmarkComparisonTitle": "Сравнение бенчмарков",
+        "benchmarkComparisonDescription": "Ранжированные суммы бенчмарков и рассчитанная существенность.",
+        "calculationHistoryTitle": "История расчётов",
+        "calculationHistoryDescription": "Записанные расчёты и ручные корректировки.",
+        "selectedBenchmarkTitle": "Выбранный бенчмарк",
+        "selectedBenchmarkDescription": "Основа для определения общей существенности.",
         "versionTimelineTitle": "Хронология версий",
-        "versionTimelineDescription": "Снимки версий пакетов и сводки изменений.",
-        "reviewNotesTitle": "[[ОБЗОР]] примечания",
-        "reviewNotesDescription": "Комментарии партнера и менеджера [[ОБЗОР]].",
+        "versionTimelineDescription": "Снимки версий пакета и сводки изменений.",
+        "reviewNotesTitle": "Примечания к проверке",
+        "reviewNotesDescription": "Комментарии партнёра и менеджера по проверке.",
         "commentsTitle": "Комментарии",
-        "commentsDescription": "[[ОБЗОР]] и внутреннее обсуждение [[МАТЕРИАЛЬНОСТИ]].",
+        "commentsDescription": "Проверка и внутреннее обсуждение существенности.",
         "recentChangesTitle": "Недавние изменения",
-        "recentChangesDescription": "Отправки, возвраты, [[УТВЕРЖДЕНИЯ]] и обновления версий.",
+        "recentChangesDescription": "Отправки, возвраты, утверждения и обновления версий.",
         "activityTitle": "Лента активности",
-        "activityDescription": "Последние события в рабочей области существенность.",
+        "activityDescription": "Последние события рабочей области существенности.",
         "stepDraft": "Черновик",
         "stepSubmitted": "Поданный",
-        "stepUnderReview": "В разделе [[ОБЗОР]]",
+        "stepUnderReview": "На проверке",
         "stepReturned": "Вернулся",
         "stepApproved": "Одобренный",
         "stepIntegrated": "Интегрированный",
         "packageVersion": "Версия",
         "lastUpdate": "Последнее обновление",
-        "openWorkflow": "[[ОБЗОР]] рабочий процесс",
+        "openWorkflow": "Процесс проверки",
         "viewHistory": "Посмотреть полную историю",
         "viewComments": "Посмотреть все комментарии",
         "selected": "Выбрано",
@@ -2746,58 +2745,58 @@
         "moreItems": "более",
         "specificItems": "предметы",
         "notSet": "Не установлено",
-        "kpiOverall": "Общая [[МАТЕРИАЛЬНОСТЬ]]",
-        "kpiPerformance": "Производительность [[МАТЕРИАЛЬНОСТЬ]]",
-        "kpiSpecific": "Конкретный [[МАТЕРИАЛЬНОСТЬ]]",
+        "kpiOverall": "Общая существенность",
+        "kpiPerformance": "Рабочая существенность",
+        "kpiSpecific": "Специфическая существенность",
         "kpiTrivial": "Явно тривиальный порог",
         "kpiBenchmark": "Выбранный тест",
         "kpiPercentage": "Выбранный процент",
         "kpiMethod": "Метод расчета",
-        "kpiStatus": "Статус [[УТВЕРЖДЕНИЕ]]",
+        "kpiStatus": "Статус утверждения",
         "kpiWorkflow": "Статус рабочего процесса",
         "kpiVersion": "Версия",
-        "kpiPendingReview": "Ожидается [[ОБЗОР]]",
+        "kpiPendingReview": "Ожидает проверки",
         "kpiOpenItems": "Открытые позиции",
         "kpiLastUpdate": "Последнее обновление",
-        "kpiReviewer": "Назначен [[ОБЗОР]]er",
+        "kpiReviewer": "Назначенный проверяющий",
         "hintOverall": "Общий порог ISA 320",
-        "hintPerformance": "Рабочая [[МАТЕРИАЛЬНОСТЬ]]",
+        "hintPerformance": "Рабочая существенность",
         "hintSpecific": "Пороговые значения на уровне аккаунта",
         "hintTrivial": "Явно мизерная сумма",
         "hintBenchmark": "Выбранная основа",
         "hintPercentage": "Применяемая ставка",
         "hintMethod": "Подход к определению",
-        "hintWorkflow": "[[УТВЕРЖДЕНИЕ]] состояние",
+        "hintWorkflow": "Статус утверждения",
         "hintVersion": "Версия пакета",
         "hintPendingReview": "Ожидание подписания",
         "hintOpenItems": "Неполная документация",
         "hintLastUpdate": "Самое последнее изменение",
-        "hintReviewer": "[[ОБЗОР]] задание",
+        "hintReviewer": "Назначение проверки",
         "reviewerNotAssigned": "Не назначено",
         "methodNotSet": "Не определено",
         "methodManualOverride": "Ручное переопределение",
         "methodBenchmarkPct": "Контрольный показатель × процент",
-        "changeApproved": "[[МАТЕРИАЛЬНОСТЬ]] одобрено",
+        "changeApproved": "Существенность утверждена",
         "changeApprovedDescription": "Пакет одобрен для использования в полевые работы.",
         "changeReturned": "Вернулся на доработку",
-        "changeReturnedDescription": "Посылка возвращена с примечаниями к [[ОБЗОР]].",
-        "changeSubmitted": "Отправлено для [[ОБЗОР]]",
-        "changeSubmittedDescription": "Пакет отправлен задание проверкаer.",
+        "changeReturnedDescription": "Посылка возвращена с примечаниями к Проверка.",
+        "changeSubmitted": "Отправлено на проверку",
+        "changeSubmittedDescription": "Пакет отправлен проверяющему по проекту.",
         "versionCreated": "Снимок версии создан.",
         "emptyBenchmarks": "Нет тестов",
-        "emptyBenchmarksDescription": "Добавьте тесты для сравнения баз существенность.",
+        "emptyBenchmarksDescription": "Добавьте бенчмарки для сравнения основ существенности.",
         "emptyCalculations": "Никаких расчетов",
         "emptyCalculationsDescription": "Запишите расчеты из раздела тестов.",
         "emptyVersions": "Нет версий",
         "emptyVersionsDescription": "Снимки версий появляются при изменении пакета.",
-        "emptyReviewNotes": "Нет [[ОБЗОР]] примечаний",
-        "emptyReviewNotesDescription": "Примечания [[ПРОСМОТР]] появляются во время рабочего процесса [[УТВЕРЖДЕНИЕ]].",
+        "emptyReviewNotes": "Нет примечаний к проверке",
+        "emptyReviewNotesDescription": "Примечания появляются в процессе утверждения.",
         "emptyComments": "Без комментариев",
-        "emptyCommentsDescription": "Комментарии записываются во время [[ОБЗОР]].",
+        "emptyCommentsDescription": "Комментарии записываются во время Проверка.",
         "emptyChanges": "Нет недавних изменений",
         "emptyChangesDescription": "Здесь будут отображаться события и версии рабочего процесса.",
         "emptyActivity": "Нет активности",
-        "emptyActivityDescription": "Здесь будут записываться события существенность."
+        "emptyActivityDescription": "События существенности будут записаны здесь."
       },
       "navGroups": {
         "overview": "Панель",
@@ -2808,60 +2807,60 @@
       },
       "sections": {
         "overview": {
-          "title": "Существенность dashboard",
-          "description": "Status, progress, and threshold readiness indicators."
+          "title": "Панель существенности",
+          "description": "Статус, прогресс и показатели готовности порогов."
         },
         "overall": {
           "title": "Общая существенность",
-          "description": "Общая существенность threshold and basis of determination."
+          "description": "Общий порог существенности и основа определения."
         },
         "performance": {
           "title": "Рабочая существенность",
-          "description": "Рабочая существенность threshold and percentage applied."
+          "description": "Рабочий порог существенности и применённый процент."
         },
         "specific": {
           "title": "Специфическая существенность",
-          "description": "Account or disclosure specific materiality thresholds."
+          "description": "Специфические пороги существенности по счетам и раскрытиям."
         },
         "benchmarks": {
           "title": "Бенчмарки",
-          "description": "Benchmark amounts, percentages, and selected basis."
+          "description": "Суммы бенчмарков, проценты и выбранная основа."
         },
         "calculations": {
           "title": "Расчёты",
-          "description": "Recorded materiality calculations and manual overrides."
+          "description": "Записанные расчёты существенности и ручные корректировки."
         },
         "versions": {
           "title": "Версии",
-          "description": "Version history snapshots of the materiality package."
+          "description": "Снимки истории версий пакета существенности."
         },
         "comments": {
           "title": "Комментарии",
-          "description": "Review and internal comments on materiality documentation."
+          "description": "Комментарии проверки и внутренние заметки по существенности."
         },
         "history": {
           "title": "История",
-          "description": "Timeline of materiality changes and approvals."
+          "description": "Хронология изменений и утверждений существенности."
         },
         "settings": {
           "title": "Настройки",
-          "description": "Archive and restore controls for this materiality package."
+          "description": "Управление архивированием и восстановлением пакета существенности."
         }
       },
       "historyActions": {
-        "materiality.created": "Существенность package created",
-        "materiality.updated": "Существенность package updated",
-        "materiality.archived": "Существенность package archived",
-        "materiality.restored": "Существенность package restored",
-        "materiality.submitted": "Существенность package submitted",
-        "materiality.returned": "Существенность package returned",
-        "materiality.approved": "Существенность package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
+        "materiality.created": "Пакет существенности создан",
+        "materiality.updated": "Пакет существенности обновлён",
+        "materiality.archived": "Пакет существенности архивирован",
+        "materiality.restored": "Пакет существенности восстановлен",
+        "materiality.submitted": "Пакет существенности отправлен",
+        "materiality.returned": "Пакет существенности возвращён",
+        "materiality.approved": "Пакет существенности утверждён",
+        "materiality.benchmark.added": "Бенчмарк добавлен",
+        "materiality.benchmark.updated": "Бенчмарк обновлён",
+        "materiality.calculation.recorded": "Расчёт записан",
+        "materiality.threshold.updated": "Порог обновлён",
+        "materiality.comment.added": "Комментарий добавлен",
+        "materiality.version.created": "Версия создана"
       },
       "breadcrumbMateriality": "Существенность",
       "navBenchmarks": "Бенчмарки",
@@ -2873,24 +2872,22 @@
       "summaryBenchmarks": "Бенчмарки"
     },
     "calculator": {
-      "title": "Существенность calculator",
-      "description": "Select a benchmark, apply a percentage, and calculate overall materiality.",
-      "benchmarkLabel": "Benchmark selection",
-      "benchmarkPlaceholder": "Select benchmark",
-      "amountLabel": "Benchmark amount",
-      "amountPlaceholder": "Enter benchmark amount",
-      "percentageLabel": "Percentage",
-      "percentagePlaceholder": "Enter percentage",
-      "calculatedLabel": "Calculated materiality",
-      "manualOverrideLabel": "Manual override",
-      "overrideReasonLabel": "Override reason",
-      "overrideReasonPlaceholder": "Explain why the calculated amount was overridden.",
-      "applyAction": "Apply calculation",
-      "selectBenchmarkAction": "Selected",
-      "autoCalcNotice": "Существенность is calculated automatically from benchmark amount and percentage.",
-      "manualOverrideNotice": "Manual override is enabled. Document the rationale before applying.",
-      "noБенчмаркиTitle": "No benchmarks configured",
-      "noБенчмаркиDescription": "Add benchmarks before using the materiality calculator.",
+      "title": "Калькулятор существенности",
+      "description": "Выберите бенчмарк, примените процент и рассчитайте общую существенность.",
+      "benchmarkLabel": "Выбор бенчмарка",
+      "benchmarkPlaceholder": "Выберите бенчмарк",
+      "amountLabel": "Сумма бенчмарка",
+      "amountPlaceholder": "Введите сумму бенчмарка",
+      "percentageLabel": "Процент",
+      "percentagePlaceholder": "Введите процент",
+      "calculatedLabel": "Рассчитанная существенность",
+      "manualOverrideLabel": "Ручная корректировка",
+      "overrideReasonLabel": "Причина корректировки",
+      "overrideReasonPlaceholder": "Объясните, почему рассчитанная сумма была изменена.",
+      "applyAction": "Применить расчёт",
+      "selectBenchmarkAction": "Выбрано",
+      "autoCalcNotice": "Существенность рассчитывается автоматически из суммы бенчмарка и процента.",
+      "manualOverrideNotice": "Ручная корректировка включена. Задокументируйте обоснование перед применением.",
       "benchmarkTypes": {
         "revenue": "Выручка",
         "profit_before_tax": "Прибыль до налогообложения",
@@ -2899,51 +2896,54 @@
         "equity": "Капитал",
         "expenses": "Расходы",
         "manual": "Ручной бенчмарк"
-      }
+      },
+      "noBenchmarksTitle": "Бенчмарки не настроены",
+      "noBenchmarksDescription": "Добавьте бенчмарки перед использованием калькулятора существенности.",
+      "savedAmountLabel": "Сохранено"
     },
     "overall": {
       "title": "Общая существенность",
-      "description": "Document the overall materiality threshold and basis of determination.",
-      "emptyTitle": "Общая существенность not set",
-      "emptyDescription": "Set overall materiality after selecting a benchmark and completing calculations."
+      "description": "Задокументируйте общий порог существенности и основу определения.",
+      "emptyTitle": "Общая существенность не задана",
+      "emptyDescription": "Задайте общую существенность после выбора бенчмарка и завершения расчётов."
     },
     "overallFields": {
       "overallLabel": "Общая существенность",
-      "basisNotesLabel": "Basis of determination",
+      "basisNotesLabel": "Основа определения",
       "notSetLabel": "Не задано"
     },
     "performance": {
       "title": "Рабочая существенность",
-      "description": "Document performance materiality as a percentage of overall materiality.",
-      "emptyTitle": "Рабочая существенность not set",
-      "emptyDescription": "Set performance materiality after overall materiality is determined."
+      "description": "Задокументируйте рабочую существенность как процент от общей существенности.",
+      "emptyTitle": "Рабочая существенность не задана",
+      "emptyDescription": "Задайте рабочую существенность после определения общей существенности."
     },
     "performanceFields": {
       "performanceLabel": "Рабочая существенность",
-      "percentageLabel": "Percentage of overall",
+      "percentageLabel": "Процент от общей",
       "notSetLabel": "Не задано"
     },
     "specific": {
       "title": "Специфическая существенность",
-      "description": "Document specific materiality for accounts, disclosures, or classes of transactions.",
-      "emptyTitle": "No specific materiality items",
-      "emptyDescription": "Add specific materiality thresholds where lower amounts apply."
+      "description": "Задокументируйте специфическую существенность по счетам, раскрытиям и классам операций.",
+      "emptyTitle": "Нет специфических позиций существенности",
+      "emptyDescription": "Добавьте специфические пороги существенности, где применяются меньшие суммы."
     },
     "specificFields": {
-      "amountLabel": "Amount",
-      "rationaleLabel": "Rationale"
+      "amountLabel": "Сумма",
+      "rationaleLabel": "Обоснование"
     },
     "benchmarks": {
       "title": "Бенчмарки",
-      "description": "Configure and compare benchmark amounts used to determine materiality.",
-      "emptyTitle": "No benchmarks",
-      "emptyDescription": "Add benchmarks to support overall materiality determination."
+      "description": "Настройте и сравните суммы бенчмарков для определения существенности.",
+      "emptyTitle": "Нет бенчмарков",
+      "emptyDescription": "Добавьте бенчмарки для определения общей существенности."
     },
     "calculations": {
       "title": "Расчёты",
-      "description": "Review recorded materiality calculations and manual overrides.",
-      "emptyTitle": "No calculations recorded",
-      "emptyDescription": "Расчёты appear here when benchmarks are applied."
+      "description": "Просмотрите записанные расчёты существенности и ручные корректировки.",
+      "emptyTitle": "Расчёты не записаны",
+      "emptyDescription": "Расчёты появятся здесь после применения бенчмарков."
     },
     "versions": {
       "title": "Версии",
@@ -2955,7 +2955,7 @@
       "title": "Комментарии",
       "description": "Фиксация комментариев проверки и внутренних заметок по существенности.",
       "emptyTitle": "Нет комментариев",
-      "emptyDescription": "Комментарии appear here once added.",
+      "emptyDescription": "Комментарии появятся здесь после добавления.",
       "bodyPlaceholder": "Добавить комментарий",
       "addAction": "Добавить комментарий"
     },
@@ -2963,17 +2963,17 @@
       "title": "История",
       "description": "Хронология активности по существенности (только для чтения).",
       "emptyTitle": "Нет активности по существенности",
-      "emptyDescription": "Существенность activity will appear here as changes are recorded.",
+      "emptyDescription": "Активность существенности появится здесь по мере записи изменений.",
       "versionLabel": "Версия пакета",
       "updatedLabel": "Обновлено",
       "actions": {
-        "materiality.created": "Существенность package created",
-        "materiality.updated": "Существенность package updated",
-        "materiality.archived": "Существенность package archived",
-        "materiality.restored": "Существенность package restored",
-        "materiality.submitted": "Существенность package submitted",
-        "materiality.returned": "Существенность package returned",
-        "materiality.approved": "Существенность package approved",
+        "materiality.created": "Пакет существенности создан",
+        "materiality.updated": "Пакет существенности обновлён",
+        "materiality.archived": "Пакет существенности архивирован",
+        "materiality.restored": "Пакет существенности восстановлен",
+        "materiality.submitted": "Пакет существенности отправлен",
+        "materiality.returned": "Пакет существенности возвращён",
+        "materiality.approved": "Пакет существенности утверждён",
         "materiality.benchmark.added": "Добавлен контрольный показатель",
         "materiality.benchmark.updated": "Контрольный показатель обновлён",
         "materiality.calculation.recorded": "Расчёт зафиксирован",
@@ -3001,7 +3001,7 @@
       "readonlyTitle": "Только чтение",
       "readonlyDescription": "Вы можете просматривать этот раздел, но не можете вносить изменения.",
       "permissionTitle": "Требуется разрешение",
-      "permissionDescription": "You do not have permission to perform this action."
+      "permissionDescription": "У вас нет разрешения на выполнение этого действия."
     }
   }
 }

@@ -2919,7 +2919,8 @@
         "equity": "Equity",
         "expenses": "Expenses",
         "manual": "Manual benchmark"
-      }
+      },
+      "savedAmountLabel": "Saved"
     },
     "overall": {
       "title": "Overall materiality",

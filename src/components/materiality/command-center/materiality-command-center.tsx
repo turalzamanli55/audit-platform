@@ -14,6 +14,7 @@ import { useMaterialityWorkspace } from "@/lib/materiality/use-materiality-works
 import type { MaterialityCommandCenterData } from "@/types/materiality-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { workspaceTokens } from "@/components/workspace";
+import { cn } from "@/lib/ui/cn";
 import { IconArrowRight } from "@/components/ui/icons";
 
 type MaterialityCommandCenterProps = {
@@ -46,10 +47,10 @@ export function MaterialityCommandCenter({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-5 sm:p-6">
+      <section className={workspaceTokens.commandHero}>
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className={workspaceTokens.heroEyebrow}>
               {cc.heroTitle}
             </p>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -87,9 +88,9 @@ export function MaterialityCommandCenter({
                 <span>{labels.progress}</span>
                 <span className="font-medium tabular-nums text-foreground">{progressPct}%</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-muted">
+              <div className={workspaceTokens.progressTrack}>
                 <div
-                  className="h-full rounded-full bg-primary transition-all"
+                  className={workspaceTokens.progressFill}
                   style={{ width: `${progressPct}%` }}
                   role="progressbar"
                   aria-valuenow={progressPct}
@@ -109,7 +110,7 @@ export function MaterialityCommandCenter({
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl border border-border/50 px-3 py-2 text-xs font-medium transition-colors hover:bg-card sm:text-sm"
+                className={cn(workspaceTokens.actionLink, "px-3 py-2 text-xs sm:text-sm")}
               >
                 {link.label}
               </Link>

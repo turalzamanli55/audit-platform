@@ -2604,11 +2604,11 @@
   },
   "materiality": {
     "notFoundTitle": "Mahiyyətllik tapılmadı",
-    "notFoundDescription": "The materiality workspace you requested could not be found for this engagement.",
+    "notFoundDescription": "Bu müsadirə üçün tələb olunan mahiyyətllik iş sahəsi tapılmadı.",
     "forbiddenTitle": "İcazə tələb olunur",
-    "forbiddenDescription": "You need materiality permission to access this workspace.",
+    "forbiddenDescription": "Bu iş sahəsinə daxil olmaq üçün mahiyyətllik icazəsi lazımdır.",
     "noWorkspaceTitle": "İş sahəsi tələb olunur",
-    "noWorkspaceDescription": "Select a workspace before opening materiality.",
+    "noWorkspaceDescription": "Mahiyyətlliyi açmazdan əvvəl iş sahəsi seçin.",
     "statuses": {
       "draft": "Qaralama",
       "submitted": "Təqdim edilib",
@@ -2633,8 +2633,8 @@
       "trivial": "Əhəmiyyətsiz hədd"
     },
     "commentTypes": {
-      "review": "Review comment",
-      "internal": "Internal comment"
+      "review": "Yoxlama şərhi",
+      "internal": "Daxili şərh"
     },
     "thresholds": {
       "overall": "Ümumi mahiyyətllik",
@@ -2643,7 +2643,7 @@
       "notSet": "Təyin edilməyib"
     },
     "workflow": {
-      "title": "Mahiyyətllik workflow",
+      "title": "Mahiyyətllik iş axını",
       "description": "ISA 320 mahiyyətlilik sənədlərini təqdim edin, geri qaytarın və təsdiqləyin.",
       "submitAction": "Nəzərdən keçirməyə təqdim et",
       "returnAction": "Düzəliş üçün geri qaytar",
@@ -2659,11 +2659,11 @@
       "errorGeneric": "Mahiyyətlilik iş axını əməliyyatını tamamlamaq mümkün olmadı."
     },
     "empty": {
-      "title": "Mahiyyətllik not initiated",
-      "description": "Create a materiality package to document overall, performance, and specific thresholds per ISA 320.",
-      "createAction": "Create materiality package",
-      "creating": "Creating materiality package...",
-      "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
+      "title": "Mahiyyətllik başlanmayıb",
+      "description": "ISA 320 üzrə ümumi, performans və xüsusi həddləri sənədləşdirmək üçün mahiyyətllik paketi yaradın.",
+      "createAction": "Mahiyyətllik paketi yarat",
+      "creating": "Mahiyyətllik paketi yaradılır...",
+      "forbiddenDescription": "Bu iş sahəsini başlatmaq üçün mahiyyətllik yaratma icazəsi lazımdır."
     },
     "workspace": {
       "title": "Mahiyyətllik icmalı",
@@ -2697,41 +2697,41 @@
       "summaryOverall": "Ümumi mahiyyətllik",
       "summaryPendingReview": "Yoxlama gözləyir",
       "commandCenter": {
-        "heroTitle": "ISA 320 mahiyyətlilik komanda mərkəzi",
-        "executiveTitle": "mahiyyətlilik həddi",
-        "summaryTitle": "mahiyyətlilik xülasə",
-        "metricsTitle": "Paket ölçüləri",
-        "workflowTitle": "[[TƏSDİQ]] iş axını",
-        "workflowDescription": "İnteqrasiya edilmiş qaralama — cari addım vurğulanıb.",
-        "approvalQueueTitle": "[[TƏSDİQ]] növbəsi",
-        "approvalQueueDescription": "mahiyyətlilik paketləri partnyor və ya menecerin qeydiyyatdan keçməsini gözləyən.",
+        "heroTitle": "ISA 320 mahiyyətllik komanda mərkəzi",
+        "executiveTitle": "Mahiyyətllik həddləri",
+        "summaryTitle": "Mahiyyətllik xülasəsi",
+        "metricsTitle": "Paket göstəriciləri",
+        "workflowTitle": "Təsdiq iş axını",
+        "workflowDescription": "Qaralamadan inteqrasiyaya — cari addım vurğulanır.",
+        "approvalQueueTitle": "Təsdiq növbəsi",
+        "approvalQueueDescription": "Partnyor və ya menecerin imzasını gözləyən mahiyyətllik paketləri.",
         "calculationBreakdownTitle": "Hesablama bölgüsü",
-        "calculationBreakdownDescription": "Ümumilikdə, performans və əhəmiyyətsiz hesablama axını.",
-        "benchmarkComparisonTitle": "Benchmark müqayisəsi",
-        "benchmarkComparisonDescription": "Reytinq göstəriciləri və hesablanmış [[MATERİALİYET]].",
+        "calculationBreakdownDescription": "Ümumi, performans və əhəmiyyətsiz hesablama axını.",
+        "benchmarkComparisonTitle": "Bənchmark müqayisəsi",
+        "benchmarkComparisonDescription": "Sıralanmış bənchmark məbləğləri və hesablanmış mahiyyətllik.",
         "calculationHistoryTitle": "Hesablama tarixi",
-        "calculationHistoryDescription": "Qeydə alınmış hesablamalar və əl ilə ləğvetmələr.",
-        "selectedBenchmarkTitle": "Seçilmiş meyar",
-        "selectedBenchmarkDescription": "Ümumi mahiyyətlilik təyini üçün əsas.",
+        "calculationHistoryDescription": "Qeydə alınmış hesablamalar və əl ilə düzəlişlər.",
+        "selectedBenchmarkTitle": "Seçilmiş bənchmark",
+        "selectedBenchmarkDescription": "Ümumi mahiyyətllik təyini üçün əsas.",
         "versionTimelineTitle": "Versiya qrafiki",
-        "versionTimelineDescription": "Paket versiyası snapshots və dəyişiklik xülasəsi.",
-        "reviewNotesTitle": "yoxlama qeydlər",
-        "reviewNotesDescription": "Tərəfdaş və menecer yoxlama şərhləri.",
+        "versionTimelineDescription": "Paket versiyası anlıq görüntüləri və dəyişiklik xülasələri.",
+        "reviewNotesTitle": "Yoxlama qeydləri",
+        "reviewNotesDescription": "Partnyor və menecer yoxlama şərhləri.",
         "commentsTitle": "Şərhlər",
-        "commentsDescription": "yoxlama və mahiyyətlilik üzrə daxili müzakirə.",
+        "commentsDescription": "Mahiyyətllik üzrə yoxlama və daxili müzakirə.",
         "recentChangesTitle": "Son dəyişikliklər",
-        "recentChangesDescription": "Təqdimatlar, geri qaytarmalar, [[TƏQDİL]]lər və versiya yeniləmələri.",
+        "recentChangesDescription": "Təqdimatlar, geri qaytarmalar, təsdiqlər və versiya yeniləmələri.",
         "activityTitle": "Fəaliyyət lenti",
-        "activityDescription": "Ən son mahiyyətlilik iş məkanı hadisələri.",
+        "activityDescription": "Ən son mahiyyətllik iş sahəsi hadisələri.",
         "stepDraft": "Qaralama",
         "stepSubmitted": "Təqdim edildi",
-        "stepUnderReview": "yoxlama altında",
+        "stepUnderReview": "Yoxlamada",
         "stepReturned": "Qayıtdı",
         "stepApproved": "Təsdiq edildi",
         "stepIntegrated": "İnteqrasiya edilmiş",
         "packageVersion": "Versiya",
         "lastUpdate": "Son yeniləmə",
-        "openWorkflow": "yoxlama iş axını",
+        "openWorkflow": "Yoxlama iş axını",
         "viewHistory": "Tam tarixçəyə baxın",
         "viewComments": "Bütün şərhlərə baxın",
         "selected": "Seçildi",
@@ -2745,58 +2745,58 @@
         "moreItems": "daha çox",
         "specificItems": "maddələr",
         "notSet": "Qurulmayıb",
-        "kpiOverall": "Ümumilikdə mahiyyətlilik",
-        "kpiPerformance": "Performans mahiyyətlilik",
-        "kpiSpecific": "Xüsusi mahiyyətlilik",
+        "kpiOverall": "Ümumi mahiyyətllik",
+        "kpiPerformance": "Performans mahiyyətlliyi",
+        "kpiSpecific": "Xüsusi mahiyyətllik",
         "kpiTrivial": "Açıqca mənasız hədd",
         "kpiBenchmark": "Seçilmiş meyar",
         "kpiPercentage": "Seçilmiş faiz",
         "kpiMethod": "Hesablama üsulu",
-        "kpiStatus": "[[TƏSDİQ]] statusu",
+        "kpiStatus": "Təsdiq statusu",
         "kpiWorkflow": "İş axını vəziyyəti",
         "kpiVersion": "Versiya",
-        "kpiPendingReview": "Gözlənir yoxlama",
+        "kpiPendingReview": "Yoxlama gözləyir",
         "kpiOpenItems": "Açıq maddələr",
         "kpiLastUpdate": "Son yeniləmə",
-        "kpiReviewer": "yoxlamaer təyin edildi",
+        "kpiReviewer": "Təyin olunmuş yoxlayıcı",
         "hintOverall": "ISA 320 ümumi həddi",
-        "hintPerformance": "İşləyir mahiyyətlilik",
+        "hintPerformance": "İş mahiyyətlliyi",
         "hintSpecific": "Hesab səviyyəli həddlər",
         "hintTrivial": "Açıqca əhəmiyyətsiz məbləğ",
         "hintBenchmark": "Seçilmiş əsas",
         "hintPercentage": "Tətbiq olunan dərəcə",
         "hintMethod": "Qərarlı yanaşma",
-        "hintWorkflow": "[[TƏSQİQ]] vəziyyəti",
+        "hintWorkflow": "Təsdiq vəziyyəti",
         "hintVersion": "Paket versiyası",
         "hintPendingReview": "İmzalanmanı gözləyir",
         "hintOpenItems": "Natamam sənədlər",
         "hintLastUpdate": "Ən son dəyişiklik",
-        "hintReviewer": "yoxlama tapşırığı",
+        "hintReviewer": "Yoxlama tapşırığı",
         "reviewerNotAssigned": "Təyin olunmayıb",
         "methodNotSet": "Müəyyən deyil",
         "methodManualOverride": "Əllə əvəzləmə",
         "methodBenchmarkPct": "Benchmark × faiz",
-        "changeApproved": "mahiyyətlilik təsdiq edildi",
+        "changeApproved": "Mahiyyətllik təsdiqləndi",
         "changeApprovedDescription": "Paket sahə işi istifadəsi üçün təsdiqləndi.",
         "changeReturned": "Təftiş üçün geri qaytarıldı",
         "changeReturnedDescription": "Paket yoxlama qeydləri ilə qaytarıldı.",
-        "changeSubmitted": "yoxlama üçün təqdim edildi",
-        "changeSubmittedDescription": "Paket müsadirə yoxlamaə təqdim edildi.",
+        "changeSubmitted": "Yoxlamaya təqdim edildi",
+        "changeSubmittedDescription": "Paket müsadirə yoxlayıcısına təqdim edildi.",
         "versionCreated": "Versiya snapshot yaradıldı",
         "emptyBenchmarks": "Benchmark yoxdur",
-        "emptyBenchmarksDescription": "mahiyyətlilik əsaslarını müqayisə etmək üçün meyarlar əlavə edin.",
+        "emptyBenchmarksDescription": "Mahiyyətllik əsaslarını müqayisə etmək üçün bənchmarklar əlavə edin.",
         "emptyCalculations": "Hesablamalar yoxdur",
         "emptyCalculationsDescription": "Benchmarks bölməsindən hesablamaları qeyd edin.",
         "emptyVersions": "Versiya yoxdur",
         "emptyVersionsDescription": "Paketə yenidən baxıldıqda versiya anlıq görüntüləri görünür.",
-        "emptyReviewNotes": "yoxlama qeyd yoxdur",
-        "emptyReviewNotesDescription": "yoxlama qeydlər [[TƏSQİQ]] iş prosesi zamanı görünür.",
+        "emptyReviewNotes": "Yoxlama qeydi yoxdur",
+        "emptyReviewNotesDescription": "Yoxlama qeydləri təsdiq iş axını zamanı görünür.",
         "emptyComments": "Şərh yoxdur",
         "emptyCommentsDescription": "Şərhlər yoxlama zamanı qeydə alınır.",
         "emptyChanges": "Son dəyişikliklər yoxdur",
         "emptyChangesDescription": "İş axını hadisələri və versiyaları burada görünəcək.",
         "emptyActivity": "Fəaliyyət yoxdur",
-        "emptyActivityDescription": "mahiyyətlilik hadisələr burada qeydə alınacaq."
+        "emptyActivityDescription": "Mahiyyətllik hadisələri burada qeydə alınacaq."
       },
       "navGroups": {
         "overview": "İdarə paneli",
@@ -2807,60 +2807,60 @@
       },
       "sections": {
         "overview": {
-          "title": "Mahiyyətllik dashboard",
-          "description": "Status, progress, and threshold readiness indicators."
+          "title": "Mahiyyətllik idarə paneli",
+          "description": "Status, gedişat və hədd hazırlığı göstəriciləri."
         },
         "overall": {
           "title": "Ümumi mahiyyətllik",
-          "description": "Ümumi mahiyyətllik threshold and basis of determination."
+          "description": "Ümumi mahiyyətllik həddi və təyinetmə əsası."
         },
         "performance": {
           "title": "Performans mahiyyətlliyi",
-          "description": "Performans mahiyyətlliyi threshold and percentage applied."
+          "description": "Performans mahiyyətlliyi həddi və tətbiq olunan faiz."
         },
         "specific": {
           "title": "Xüsusi mahiyyətllik",
-          "description": "Account or disclosure specific materiality thresholds."
+          "description": "Hesab və ya açıqlama üzrə xüsusi mahiyyətllik həddləri."
         },
         "benchmarks": {
           "title": "Bənchmarklar",
-          "description": "Benchmark amounts, percentages, and selected basis."
+          "description": "Bənchmark məbləğləri, faizlər və seçilmiş əsas."
         },
         "calculations": {
           "title": "Hesablamalar",
-          "description": "Recorded materiality calculations and manual overrides."
+          "description": "Qeydə alınmış mahiyyətllik hesablamaları və əl ilə düzəlişlər."
         },
         "versions": {
           "title": "Versiyalar",
-          "description": "Version history snapshots of the materiality package."
+          "description": "Mahiyyətllik paketinin versiya tarixçəsi anlıq görüntüləri."
         },
         "comments": {
           "title": "Şərhlər",
-          "description": "Review and internal comments on materiality documentation."
+          "description": "Mahiyyətllik sənədləşməsi üzrə yoxlama və daxili şərhlər."
         },
         "history": {
           "title": "Tarixçə",
-          "description": "Timeline of materiality changes and approvals."
+          "description": "Mahiyyətllik dəyişiklikləri və təsdiqlərinin xronologiyası."
         },
         "settings": {
           "title": "Parametrlər",
-          "description": "Archive and restore controls for this materiality package."
+          "description": "Bu mahiyyətllik paketini arxivləşdirmə və bərpa idarəetməsi."
         }
       },
       "historyActions": {
-        "materiality.created": "Mahiyyətllik package created",
-        "materiality.updated": "Mahiyyətllik package updated",
-        "materiality.archived": "Mahiyyətllik package archived",
-        "materiality.restored": "Mahiyyətllik package restored",
-        "materiality.submitted": "Mahiyyətllik package submitted",
-        "materiality.returned": "Mahiyyətllik package returned",
-        "materiality.approved": "Mahiyyətllik package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
+        "materiality.created": "Mahiyyətllik paketi yaradıldı",
+        "materiality.updated": "Mahiyyətllik paketi yeniləndi",
+        "materiality.archived": "Mahiyyətllik paketi arxivləndi",
+        "materiality.restored": "Mahiyyətllik paketi bərpa edildi",
+        "materiality.submitted": "Mahiyyətllik paketi təqdim edildi",
+        "materiality.returned": "Mahiyyətllik paketi geri qaytarıldı",
+        "materiality.approved": "Mahiyyətllik paketi təsdiqləndi",
+        "materiality.benchmark.added": "Bənchmark əlavə edildi",
+        "materiality.benchmark.updated": "Bənchmark yeniləndi",
+        "materiality.calculation.recorded": "Hesablama qeydə alındı",
+        "materiality.threshold.updated": "Hədd yeniləndi",
+        "materiality.comment.added": "Şərh əlavə edildi",
+        "materiality.version.created": "Versiya yaradıldı"
       },
       "breadcrumbMateriality": "Mahiyyətllik",
       "navBenchmarks": "Bənchmarklar",
@@ -2872,24 +2872,22 @@
       "summaryBenchmarks": "Bənchmarklar"
     },
     "calculator": {
-      "title": "Mahiyyətllik calculator",
-      "description": "Select a benchmark, apply a percentage, and calculate overall materiality.",
-      "benchmarkLabel": "Benchmark selection",
-      "benchmarkPlaceholder": "Select benchmark",
-      "amountLabel": "Benchmark amount",
-      "amountPlaceholder": "Enter benchmark amount",
-      "percentageLabel": "Percentage",
-      "percentagePlaceholder": "Enter percentage",
-      "calculatedLabel": "Calculated materiality",
-      "manualOverrideLabel": "Manual override",
-      "overrideReasonLabel": "Override reason",
-      "overrideReasonPlaceholder": "Explain why the calculated amount was overridden.",
-      "applyAction": "Apply calculation",
-      "selectBenchmarkAction": "Selected",
-      "autoCalcNotice": "Mahiyyətllik is calculated automatically from benchmark amount and percentage.",
-      "manualOverrideNotice": "Manual override is enabled. Document the rationale before applying.",
-      "noBənchmarklarTitle": "No benchmarks configured",
-      "noBənchmarklarDescription": "Add benchmarks before using the materiality calculator.",
+      "title": "Mahiyyətllik kalkulyatoru",
+      "description": "Bənchmark seçin, faiz tətbiq edin və ümumi mahiyyətlliyi hesablayın.",
+      "benchmarkLabel": "Bənchmark seçimi",
+      "benchmarkPlaceholder": "Bənchmark seçin",
+      "amountLabel": "Bənchmark məbləği",
+      "amountPlaceholder": "Bənchmark məbləğini daxil edin",
+      "percentageLabel": "Faiz",
+      "percentagePlaceholder": "Faizi daxil edin",
+      "calculatedLabel": "Hesablanmış mahiyyətllik",
+      "manualOverrideLabel": "Əl ilə düzəliş",
+      "overrideReasonLabel": "Düzəliş səbəbi",
+      "overrideReasonPlaceholder": "Hesablanmış məbləğin niyə dəyişdirildiyini izah edin.",
+      "applyAction": "Hesablamanı tətbiq et",
+      "selectBenchmarkAction": "Seçildi",
+      "autoCalcNotice": "Mahiyyətllik bənchmark məbləği və faizindən avtomatik hesablanır.",
+      "manualOverrideNotice": "Əl ilə düzəliş aktivdir. Tətbiq etməzdən əvvəl əsaslandırmanı sənədləşdirin.",
       "benchmarkTypes": {
         "revenue": "Gəlir",
         "profit_before_tax": "Vergidən əvvəl mənfəət",
@@ -2898,51 +2896,54 @@
         "equity": "Kapital",
         "expenses": "Xərclər",
         "manual": "Manual bənchmark"
-      }
+      },
+      "noBenchmarksTitle": "Bənchmark konfiqurasiya edilməyib",
+      "noBenchmarksDescription": "Mahiyyətllik kalkulyatorundan istifadə etməzdən əvvəl bənchmarklar əlavə edin.",
+      "savedAmountLabel": "Saxlanılıb"
     },
     "overall": {
       "title": "Ümumi mahiyyətllik",
-      "description": "Document the overall materiality threshold and basis of determination.",
-      "emptyTitle": "Ümumi mahiyyətllik not set",
-      "emptyDescription": "Set overall materiality after selecting a benchmark and completing calculations."
+      "description": "Ümumi mahiyyətllik həddini və təyinetmə əsası sənədləşdirin.",
+      "emptyTitle": "Ümumi mahiyyətllik təyin edilməyib",
+      "emptyDescription": "Bənchmark seçdikdən və hesablamaları tamamladıqdan sonra ümumi mahiyyətlliyi təyin edin."
     },
     "overallFields": {
       "overallLabel": "Ümumi mahiyyətllik",
-      "basisNotesLabel": "Basis of determination",
+      "basisNotesLabel": "Təyinetmə əsası",
       "notSetLabel": "Təyin edilməyib"
     },
     "performance": {
       "title": "Performans mahiyyətlliyi",
-      "description": "Document performance materiality as a percentage of overall materiality.",
-      "emptyTitle": "Performans mahiyyətlliyi not set",
-      "emptyDescription": "Set performance materiality after overall materiality is determined."
+      "description": "Performans mahiyyətlliyini ümumi mahiyyətlliyin faizi kimi sənədləşdirin.",
+      "emptyTitle": "Performans mahiyyətlliyi təyin edilməyib",
+      "emptyDescription": "Ümumi mahiyyətllik müəyyən edildikdən sonra performans mahiyyətlliyini təyin edin."
     },
     "performanceFields": {
       "performanceLabel": "Performans mahiyyətlliyi",
-      "percentageLabel": "Percentage of overall",
+      "percentageLabel": "Ümumidən faiz",
       "notSetLabel": "Təyin edilməyib"
     },
     "specific": {
       "title": "Xüsusi mahiyyətllik",
-      "description": "Document specific materiality for accounts, disclosures, or classes of transactions.",
-      "emptyTitle": "No specific materiality items",
-      "emptyDescription": "Add specific materiality thresholds where lower amounts apply."
+      "description": "Hesablar, açıqlamalar və ya əməliyyat sinifləri üçün xüsusi mahiyyətlliyi sənədləşdirin.",
+      "emptyTitle": "Xüsusi mahiyyətllik maddəsi yoxdur",
+      "emptyDescription": "Aşağı məbləğlərin tətbiq olunduğu hallarda xüsusi mahiyyətllik həddləri əlavə edin."
     },
     "specificFields": {
-      "amountLabel": "Amount",
-      "rationaleLabel": "Rationale"
+      "amountLabel": "Məbləğ",
+      "rationaleLabel": "Əsaslandırma"
     },
     "benchmarks": {
       "title": "Bənchmarklar",
-      "description": "Configure and compare benchmark amounts used to determine materiality.",
-      "emptyTitle": "No benchmarks",
-      "emptyDescription": "Add benchmarks to support overall materiality determination."
+      "description": "Mahiyyətllik təyini üçün istifadə olunan bənchmark məbləğlərini konfiqurasiya edin və müqayisə edin.",
+      "emptyTitle": "Bənchmark yoxdur",
+      "emptyDescription": "Ümumi mahiyyətllik təyini üçün bənchmarklar əlavə edin."
     },
     "calculations": {
       "title": "Hesablamalar",
-      "description": "Review recorded materiality calculations and manual overrides.",
-      "emptyTitle": "No calculations recorded",
-      "emptyDescription": "Hesablamalar appear here when benchmarks are applied."
+      "description": "Qeydə alınmış mahiyyətllik hesablamalarını və əl ilə düzəlişləri nəzərdən keçirin.",
+      "emptyTitle": "Hesablama qeydə alınmayıb",
+      "emptyDescription": "Bənchmarklar tətbiq edildikdə hesablamalar burada görünür."
     },
     "versions": {
       "title": "Versiyalar",
@@ -2954,7 +2955,7 @@
       "title": "Şərhlər",
       "description": "Mahiyyətliliklə bağlı yoxlama və daxili şərhləri qeydə alın.",
       "emptyTitle": "Şərh yoxdur",
-      "emptyDescription": "Şərhlər appear here once added.",
+      "emptyDescription": "Şərhlər əlavə edildikdən sonra burada görünür.",
       "bodyPlaceholder": "Şərh əlavə et",
       "addAction": "Şərh əlavə et"
     },
@@ -2962,17 +2963,17 @@
       "title": "Tarixçə",
       "description": "Mahiyyətlilik fəaliyyətinin yalnız oxuma üçün xronologiyası.",
       "emptyTitle": "Mahiyyətlilik fəaliyyəti yoxdur",
-      "emptyDescription": "Mahiyyətllik activity will appear here as changes are recorded.",
+      "emptyDescription": "Dəyişikliklər qeydə alındıqca mahiyyətllik fəaliyyəti burada görünəcək.",
       "versionLabel": "Paket versiyası",
       "updatedLabel": "Yenilənib",
       "actions": {
-        "materiality.created": "Mahiyyətllik package created",
-        "materiality.updated": "Mahiyyətllik package updated",
-        "materiality.archived": "Mahiyyətllik package archived",
-        "materiality.restored": "Mahiyyətllik package restored",
-        "materiality.submitted": "Mahiyyətllik package submitted",
-        "materiality.returned": "Mahiyyətllik package returned",
-        "materiality.approved": "Mahiyyətllik package approved",
+        "materiality.created": "Mahiyyətllik paketi yaradıldı",
+        "materiality.updated": "Mahiyyətllik paketi yeniləndi",
+        "materiality.archived": "Mahiyyətllik paketi arxivləndi",
+        "materiality.restored": "Mahiyyətllik paketi bərpa edildi",
+        "materiality.submitted": "Mahiyyətllik paketi təqdim edildi",
+        "materiality.returned": "Mahiyyətllik paketi geri qaytarıldı",
+        "materiality.approved": "Mahiyyətllik paketi təsdiqləndi",
         "materiality.benchmark.added": "Müqayisə göstəricisi əlavə edildi",
         "materiality.benchmark.updated": "Müqayisə göstəricisi yeniləndi",
         "materiality.calculation.recorded": "Hesablama qeydə alındı",
@@ -3000,7 +3001,7 @@
       "readonlyTitle": "Yalnız oxumaq",
       "readonlyDescription": "Bu bölməyə baxa bilərsiniz, lakin dəyişiklik edə bilməzsiniz.",
       "permissionTitle": "İcazə tələb olunur",
-      "permissionDescription": "You do not have permission to perform this action."
+      "permissionDescription": "Bu əməliyyatı yerinə yetirmək üçün icazəniz yoxdur."
     }
   }
 }

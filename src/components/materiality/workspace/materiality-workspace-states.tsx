@@ -3,12 +3,12 @@ import { EngagementLoadingSkeleton } from "@/components/engagement";
 import { WorkspaceEmptyPanel, WorkspaceError, WorkspacePanel } from "@/components/workspace";
 
 export function MaterialityWorkspaceError({
-  title = "Unable to load materiality workspace",
-  description = "Something went wrong while loading materiality.",
+  title,
+  description,
   action,
 }: {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   action?: ReactNode;
 }) {
   return <WorkspaceError title={title} description={description} action={action} />;
@@ -23,7 +23,7 @@ export function MaterialityWorkspaceEmpty({
   canCreate = false,
   gateDescription,
   forbiddenDescription,
-  creatingLabel = "Creating...",
+  creatingLabel,
 }: {
   title: string;
   description: string;
@@ -33,7 +33,7 @@ export function MaterialityWorkspaceEmpty({
   canCreate?: boolean;
   gateDescription?: string;
   forbiddenDescription?: string;
-  creatingLabel?: string;
+  creatingLabel: string;
 }) {
   return (
     <WorkspaceEmptyPanel

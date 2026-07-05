@@ -536,6 +536,7 @@ type MaterialityLabels = {
     manualOverrideNotice: string;
     noBenchmarksTitle: string;
     noBenchmarksDescription: string;
+    savedAmountLabel: string;
     benchmarkTypes: Record<string, string>;
   };
   overall: MaterialitySectionLabels;

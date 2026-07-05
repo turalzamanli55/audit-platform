@@ -34,6 +34,7 @@ type MaterialityCalculatorLabels = {
   manualOverrideNotice: string;
   noBenchmarksTitle: string;
   noBenchmarksDescription: string;
+  savedAmountLabel: string;
   benchmarkTypes: Record<MaterialityBenchmarkType, string>;
 };
 
@@ -191,7 +192,8 @@ export function MaterialityCalculatorPanel({
             </p>
             {activeBenchmark?.calculatedMateriality != null ? (
               <p className="mt-1 text-xs text-muted-foreground">
-                Saved: {formatCurrency(activeBenchmark.calculatedMateriality, materiality.currencyCode)}
+                {labels.savedAmountLabel}:{" "}
+                {formatCurrency(activeBenchmark.calculatedMateriality, materiality.currencyCode)}
               </p>
             ) : null}
           </div>

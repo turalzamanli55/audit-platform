@@ -2604,11 +2604,11 @@
   },
   "materiality": {
     "notFoundTitle": "Önemlilik bulunamadı",
-    "notFoundDescription": "The materiality workspace you requested could not be found for this engagement.",
+    "notFoundDescription": "Bu görev için istenen önemlilik çalışma alanı bulunamadı.",
     "forbiddenTitle": "İzin gerekli",
-    "forbiddenDescription": "You need materiality permission to access this workspace.",
+    "forbiddenDescription": "Bu çalışma alanına erişmek için önemlilik izni gereklidir.",
     "noWorkspaceTitle": "Çalışma alanı gerekli",
-    "noWorkspaceDescription": "Select a workspace before opening materiality.",
+    "noWorkspaceDescription": "Önemliliği açmadan önce bir çalışma alanı seçin.",
     "statuses": {
       "draft": "Taslak",
       "submitted": "Gönderildi",
@@ -2633,8 +2633,8 @@
       "trivial": "Önemsizlik eşiği"
     },
     "commentTypes": {
-      "review": "Review comment",
-      "internal": "Internal comment"
+      "review": "İnceleme yorumu",
+      "internal": "Dahili yorum"
     },
     "thresholds": {
       "overall": "Genel önemlilik",
@@ -2643,7 +2643,7 @@
       "notSet": "Belirlenmedi"
     },
     "workflow": {
-      "title": "Önemlilik workflow",
+      "title": "Önemlilik iş akışı",
       "description": "ISA 320 önemlilik dokümantasyonunu gönderin, iade edin ve onaylayın.",
       "submitAction": "İncelemeye gönder",
       "returnAction": "Revizyon için iade et",
@@ -2659,11 +2659,11 @@
       "errorGeneric": "Önemlilik iş akışı eylemi tamamlanamadı."
     },
     "empty": {
-      "title": "Önemlilik not initiated",
-      "description": "Create a materiality package to document overall, performance, and specific thresholds per ISA 320.",
-      "createAction": "Create materiality package",
-      "creating": "Creating materiality package...",
-      "forbiddenDescription": "You need materiality creation permission to initiate this workspace."
+      "title": "Önemlilik başlatılmadı",
+      "description": "ISA 320 kapsamında genel, performans ve özel eşikleri belgelemek için önemlilik paketi oluşturun.",
+      "createAction": "Önemlilik paketi oluştur",
+      "creating": "Önemlilik paketi oluşturuluyor...",
+      "forbiddenDescription": "Bu çalışma alanını başlatmak için önemlilik oluşturma izni gereklidir."
     },
     "workspace": {
       "title": "Önemlilik özeti",
@@ -2678,7 +2678,6 @@
       "benchmarksPreviewTitle": "Kıyaslama önizlemesi",
       "benchmarksPreviewDescription": "Kıyaslama tutarları, yüzdeler ve hesaplanan önemlilik.",
       "heroEyebrow": "Önemlilik",
-      "breadcrumbÖnemlilik": "Önemlilik",
       "backToEngagement": "Göreve dön",
       "planningGateTitle": "Planlama onayı gerekli",
       "planningGateDescription": "Önemlilik başlamadan önce denetim planlaması onaylanmalıdır.",
@@ -2699,40 +2698,40 @@
       "summaryPendingReview": "İnceleme bekliyor",
       "commandCenter": {
         "heroTitle": "ISA 320 önemlilik komuta merkezi",
-        "executiveTitle": "önemlilik eşikleri",
-        "summaryTitle": "önemlilik özeti",
+        "executiveTitle": "Önemlilik eşikleri",
+        "summaryTitle": "Önemlilik özeti",
         "metricsTitle": "Paket metrikleri",
-        "workflowTitle": "[[ONAY]] iş akışı",
-        "workflowDescription": "Entegre edilmiş taslak — mevcut adım vurgulanmıştır.",
-        "approvalQueueTitle": "[[ONAY]] sırası",
-        "approvalQueueDescription": "İş ortağının veya yöneticinin onayını bekleyen önemlilik paket.",
+        "workflowTitle": "Onay iş akışı",
+        "workflowDescription": "Taslaktan entegrasyona — mevcut adım vurgulanır.",
+        "approvalQueueTitle": "Onay kuyruğu",
+        "approvalQueueDescription": "İş ortağı veya yönetici onayı bekleyen önemlilik paketleri.",
         "calculationBreakdownTitle": "Hesaplama dökümü",
-        "calculationBreakdownDescription": "Genel olarak performans ve önemsiz hesaplama akışı.",
-        "benchmarkComparisonTitle": "Karşılaştırma karşılaştırması",
-        "benchmarkComparisonDescription": "Sıralanmış karşılaştırma tutarları ve hesaplanan önemlilik.",
+        "calculationBreakdownDescription": "Genel, performans ve önemsiz hesaplama akışı.",
+        "benchmarkComparisonTitle": "Kıyaslama karşılaştırması",
+        "benchmarkComparisonDescription": "Sıralanmış kıyaslama tutarları ve hesaplanan önemlilik.",
         "calculationHistoryTitle": "Hesaplama geçmişi",
         "calculationHistoryDescription": "Kaydedilen hesaplamalar ve manuel geçersiz kılmalar.",
         "selectedBenchmarkTitle": "Seçilen kıyaslama",
         "selectedBenchmarkDescription": "Genel önemlilik belirlemesinin temeli.",
         "versionTimelineTitle": "Sürüm zaman çizelgesi",
         "versionTimelineDescription": "Paket sürümü anlık görüntüleri ve değişiklik özetleri.",
-        "reviewNotesTitle": "[[İNCELEME]] notlar",
-        "reviewNotesDescription": "Ortak ve yönetici [[İNCELEME]] yorumları.",
+        "reviewNotesTitle": "İnceleme notları",
+        "reviewNotesDescription": "Ortak ve yönetici inceleme yorumları.",
         "commentsTitle": "Yorumlar",
-        "commentsDescription": "[[İNCELEME]] ve önemlilik ile ilgili dahili tartışma.",
+        "commentsDescription": "Önemlilik üzerine inceleme ve dahili tartışma.",
         "recentChangesTitle": "Son değişiklikler",
-        "recentChangesDescription": "Gönderimler, geri dönüşler, [[ONAY]]'lar ve sürüm güncellemeleri.",
-        "activityTitle": "Etkinlik feed'i",
+        "recentChangesDescription": "Gönderimler, iadeler, onaylar ve sürüm güncellemeleri.",
+        "activityTitle": "Etkinlik akışı",
         "activityDescription": "En son önemlilik çalışma alanı olayları.",
         "stepDraft": "Taslak",
         "stepSubmitted": "Gönderildi",
-        "stepUnderReview": "[[İNCELEME]] altında",
+        "stepUnderReview": "İncelemede",
         "stepReturned": "İade edildi",
         "stepApproved": "Onaylı",
         "stepIntegrated": "Entegre",
         "packageVersion": "Sürüm",
         "lastUpdate": "Son güncelleme",
-        "openWorkflow": "[[İNCELEME]] iş akışı",
+        "openWorkflow": "İnceleme iş akışı",
         "viewHistory": "Tüm geçmişi görüntüle",
         "viewComments": "Tüm yorumları görüntüle",
         "selected": "Seçildi",
@@ -2746,58 +2745,58 @@
         "moreItems": "Daha",
         "specificItems": "öğeler",
         "notSet": "Ayarlanmadı",
-        "kpiOverall": "Genel olarak [[Malzeme]]",
-        "kpiPerformance": "Performans önemlilik",
-        "kpiSpecific": "Spesifik [[MALZEME]]",
+        "kpiOverall": "Genel önemlilik",
+        "kpiPerformance": "Performans önemliliği",
+        "kpiSpecific": "Özel önemlilik",
         "kpiTrivial": "Açıkça önemsiz eşik",
         "kpiBenchmark": "Seçilen kıyaslama",
         "kpiPercentage": "Seçilen yüzde",
         "kpiMethod": "Hesaplama yöntemi",
-        "kpiStatus": "[[ONAY]] durumu",
+        "kpiStatus": "Onay durumu",
         "kpiWorkflow": "İş akışı durumu",
         "kpiVersion": "Sürüm",
-        "kpiPendingReview": "Beklemede [[İNCELEME]]",
+        "kpiPendingReview": "İnceleme bekliyor",
         "kpiOpenItems": "Öğeleri aç",
         "kpiLastUpdate": "Son güncelleme",
-        "kpiReviewer": "Atanan incelemeer",
+        "kpiReviewer": "Atanan inceleyici",
         "hintOverall": "ISA 320 genel eşiği",
-        "hintPerformance": "Çalışıyor önemlilik",
+        "hintPerformance": "Çalışma önemliliği",
         "hintSpecific": "Hesap düzeyinde eşikler",
         "hintTrivial": "Açıkça önemsiz miktar",
         "hintBenchmark": "Seçilen temel",
         "hintPercentage": "Uygulanan oran",
         "hintMethod": "Kararlılık yaklaşımı",
-        "hintWorkflow": "[[ONAY]] durumu",
+        "hintWorkflow": "Onay durumu",
         "hintVersion": "Paket sürümü",
         "hintPendingReview": "İmza bekleniyor",
         "hintOpenItems": "Eksik belgeler",
         "hintLastUpdate": "En son değişiklik",
-        "hintReviewer": "[[İNCELEME]] ödev",
+        "hintReviewer": "İnceleme ataması",
         "reviewerNotAssigned": "Atanmadı",
         "methodNotSet": "Belirlenmedi",
         "methodManualOverride": "Manuel geçersiz kılma",
         "methodBenchmarkPct": "Karşılaştırma × yüzde",
-        "changeApproved": "önemlilik onaylandı",
+        "changeApproved": "Önemlilik onaylandı",
         "changeApprovedDescription": "Paket saha çalışması kullanımı için onaylanmıştır.",
         "changeReturned": "Revizyon için geri gönderildi",
-        "changeReturnedDescription": "Paket [[İNCELEME]] notlarıyla birlikte iade edildi.",
-        "changeSubmitted": "[[İNCELEME]] için gönderildi",
-        "changeSubmittedDescription": "Paket görev incelemeer'e gönderildi.",
+        "changeReturnedDescription": "Paket İnceleme notlarıyla birlikte iade edildi.",
+        "changeSubmitted": "İncelemeye gönderildi",
+        "changeSubmittedDescription": "Paket görev inceleyicisine gönderildi.",
         "versionCreated": "Sürüm anlık görüntüsü oluşturuldu",
         "emptyBenchmarks": "Karşılaştırma yok",
-        "emptyBenchmarksDescription": "önemlilik tabanlarını karşılaştırmak için kıyaslamalar ekleyin.",
+        "emptyBenchmarksDescription": "Önemlilik temellerini karşılaştırmak için kıyaslamalar ekleyin.",
         "emptyCalculations": "Hesaplama yok",
         "emptyCalculationsDescription": "Karşılaştırmalar bölümünden hesaplamaları kaydedin.",
         "emptyVersions": "Sürüm yok",
         "emptyVersionsDescription": "Paket revize edildiğinde sürüm anlık görüntüleri görünür.",
-        "emptyReviewNotes": "[[İNCELEME]] notu yok",
-        "emptyReviewNotesDescription": "inceleme notları, onay iş akışı sırasında görünüyor.",
+        "emptyReviewNotes": "İnceleme notu yok",
+        "emptyReviewNotesDescription": "İnceleme notları onay iş akışı sırasında görünür.",
         "emptyComments": "Yorum yok",
-        "emptyCommentsDescription": "Yorumlar [[İNCELEME]] sırasında kaydedilir.",
+        "emptyCommentsDescription": "Yorumlar İnceleme sırasında kaydedilir.",
         "emptyChanges": "Yakın zamanda değişiklik yok",
         "emptyChangesDescription": "İş akışı etkinlikleri ve versiyonları burada görünecektir.",
         "emptyActivity": "Etkinlik yok",
-        "emptyActivityDescription": "önemlilik olaylar buraya kaydedilecek."
+        "emptyActivityDescription": "Önemlilik olayları burada kaydedilecek."
       },
       "navGroups": {
         "overview": "Kontrol paneli",
@@ -2808,60 +2807,60 @@
       },
       "sections": {
         "overview": {
-          "title": "Önemlilik dashboard",
-          "description": "Status, progress, and threshold readiness indicators."
+          "title": "Önemlilik kontrol paneli",
+          "description": "Durum, ilerleme ve eşik hazırlık göstergeleri."
         },
         "overall": {
           "title": "Genel önemlilik",
-          "description": "Genel önemlilik threshold and basis of determination."
+          "description": "Genel önemlilik eşiği ve belirleme temeli."
         },
         "performance": {
           "title": "Performans önemliliği",
-          "description": "Performans önemliliği threshold and percentage applied."
+          "description": "Performans önemliliği eşiği ve uygulanan yüzde."
         },
         "specific": {
           "title": "Özel önemlilik",
-          "description": "Account or disclosure specific materiality thresholds."
+          "description": "Hesap veya açıklama bazında özel önemlilik eşikleri."
         },
         "benchmarks": {
           "title": "Kıyaslamalar",
-          "description": "Benchmark amounts, percentages, and selected basis."
+          "description": "Kıyaslama tutarları, yüzdeler ve seçilen temel."
         },
         "calculations": {
           "title": "Hesaplamalar",
-          "description": "Recorded materiality calculations and manual overrides."
+          "description": "Kaydedilen önemlilik hesaplamaları ve manuel geçersiz kılmalar."
         },
         "versions": {
           "title": "Sürümler",
-          "description": "Version history snapshots of the materiality package."
+          "description": "Önemlilik paketinin sürüm geçmişi anlık görüntüleri."
         },
         "comments": {
           "title": "Yorumlar",
-          "description": "Review and internal comments on materiality documentation."
+          "description": "Önemlilik dokümantasyonu üzerine inceleme ve dahili yorumlar."
         },
         "history": {
           "title": "Geçmiş",
-          "description": "Timeline of materiality changes and approvals."
+          "description": "Önemlilik değişiklikleri ve onaylarının zaman çizelgesi."
         },
         "settings": {
           "title": "Ayarlar",
-          "description": "Archive and restore controls for this materiality package."
+          "description": "Bu önemlilik paketini arşivleme ve geri yükleme kontrolleri."
         }
       },
       "historyActions": {
-        "materiality.created": "Önemlilik package created",
-        "materiality.updated": "Önemlilik package updated",
-        "materiality.archived": "Önemlilik package archived",
-        "materiality.restored": "Önemlilik package restored",
-        "materiality.submitted": "Önemlilik package submitted",
-        "materiality.returned": "Önemlilik package returned",
-        "materiality.approved": "Önemlilik package approved",
-        "materiality.benchmark.added": "Benchmark added",
-        "materiality.benchmark.updated": "Benchmark updated",
-        "materiality.calculation.recorded": "Calculation recorded",
-        "materiality.threshold.updated": "Threshold updated",
-        "materiality.comment.added": "Comment added",
-        "materiality.version.created": "Version created"
+        "materiality.created": "Önemlilik paketi oluşturuldu",
+        "materiality.updated": "Önemlilik paketi güncellendi",
+        "materiality.archived": "Önemlilik paketi arşivlendi",
+        "materiality.restored": "Önemlilik paketi geri yüklendi",
+        "materiality.submitted": "Önemlilik paketi gönderildi",
+        "materiality.returned": "Önemlilik paketi iade edildi",
+        "materiality.approved": "Önemlilik paketi onaylandı",
+        "materiality.benchmark.added": "Kıyaslama eklendi",
+        "materiality.benchmark.updated": "Kıyaslama güncellendi",
+        "materiality.calculation.recorded": "Hesaplama kaydedildi",
+        "materiality.threshold.updated": "Eşik güncellendi",
+        "materiality.comment.added": "Yorum eklendi",
+        "materiality.version.created": "Sürüm oluşturuldu"
       },
       "breadcrumbMateriality": "Önemlilik",
       "navBenchmarks": "Kıyaslamalar",
@@ -2873,24 +2872,22 @@
       "summaryBenchmarks": "Kıyaslamalar"
     },
     "calculator": {
-      "title": "Önemlilik calculator",
-      "description": "Select a benchmark, apply a percentage, and calculate overall materiality.",
-      "benchmarkLabel": "Benchmark selection",
-      "benchmarkPlaceholder": "Select benchmark",
-      "amountLabel": "Benchmark amount",
-      "amountPlaceholder": "Enter benchmark amount",
-      "percentageLabel": "Percentage",
-      "percentagePlaceholder": "Enter percentage",
-      "calculatedLabel": "Calculated materiality",
-      "manualOverrideLabel": "Manual override",
-      "overrideReasonLabel": "Override reason",
-      "overrideReasonPlaceholder": "Explain why the calculated amount was overridden.",
-      "applyAction": "Apply calculation",
-      "selectBenchmarkAction": "Selected",
-      "autoCalcNotice": "Önemlilik is calculated automatically from benchmark amount and percentage.",
-      "manualOverrideNotice": "Manual override is enabled. Document the rationale before applying.",
-      "noKıyaslamalarTitle": "No benchmarks configured",
-      "noKıyaslamalarDescription": "Add benchmarks before using the materiality calculator.",
+      "title": "Önemlilik hesaplayıcı",
+      "description": "Bir kıyaslama seçin, yüzde uygulayın ve genel önemliliği hesaplayın.",
+      "benchmarkLabel": "Kıyaslama seçimi",
+      "benchmarkPlaceholder": "Kıyaslama seçin",
+      "amountLabel": "Kıyaslama tutarı",
+      "amountPlaceholder": "Kıyaslama tutarını girin",
+      "percentageLabel": "Yüzde",
+      "percentagePlaceholder": "Yüzdeyi girin",
+      "calculatedLabel": "Hesaplanan önemlilik",
+      "manualOverrideLabel": "Manuel geçersiz kılma",
+      "overrideReasonLabel": "Geçersiz kılma nedeni",
+      "overrideReasonPlaceholder": "Hesaplanan tutarın neden değiştirildiğini açıklayın.",
+      "applyAction": "Hesaplamayı uygula",
+      "selectBenchmarkAction": "Seçildi",
+      "autoCalcNotice": "Önemlilik, kıyaslama tutarı ve yüzdesinden otomatik olarak hesaplanır.",
+      "manualOverrideNotice": "Manuel geçersiz kılma etkin. Uygulamadan önce gerekçeyi belgeleyin.",
       "benchmarkTypes": {
         "revenue": "Gelir",
         "profit_before_tax": "Vergi öncesi kâr",
@@ -2899,51 +2896,54 @@
         "equity": "Özkaynak",
         "expenses": "Giderler",
         "manual": "Manuel kıyaslama"
-      }
+      },
+      "noBenchmarksTitle": "Kıyaslama yapılandırılmadı",
+      "noBenchmarksDescription": "Önemlilik hesaplayıcısını kullanmadan önce kıyaslamalar ekleyin.",
+      "savedAmountLabel": "Kaydedildi"
     },
     "overall": {
       "title": "Genel önemlilik",
-      "description": "Document the overall materiality threshold and basis of determination.",
-      "emptyTitle": "Genel önemlilik not set",
-      "emptyDescription": "Set overall materiality after selecting a benchmark and completing calculations."
+      "description": "Genel önemlilik eşiğini ve belirleme temelini belgeleyin.",
+      "emptyTitle": "Genel önemlilik belirlenmedi",
+      "emptyDescription": "Bir kıyaslama seçip hesaplamaları tamamladıktan sonra genel önemliliği belirleyin."
     },
     "overallFields": {
       "overallLabel": "Genel önemlilik",
-      "basisNotesLabel": "Basis of determination",
+      "basisNotesLabel": "Belirleme temeli",
       "notSetLabel": "Belirlenmedi"
     },
     "performance": {
       "title": "Performans önemliliği",
-      "description": "Document performance materiality as a percentage of overall materiality.",
-      "emptyTitle": "Performans önemliliği not set",
-      "emptyDescription": "Set performance materiality after overall materiality is determined."
+      "description": "Performans önemliliğini genel önemliliğin yüzdesi olarak belgeleyin.",
+      "emptyTitle": "Performans önemliliği belirlenmedi",
+      "emptyDescription": "Genel önemlilik belirlendikten sonra performans önemliliğini ayarlayın."
     },
     "performanceFields": {
       "performanceLabel": "Performans önemliliği",
-      "percentageLabel": "Percentage of overall",
+      "percentageLabel": "Genelden yüzde",
       "notSetLabel": "Belirlenmedi"
     },
     "specific": {
       "title": "Özel önemlilik",
-      "description": "Document specific materiality for accounts, disclosures, or classes of transactions.",
-      "emptyTitle": "No specific materiality items",
-      "emptyDescription": "Add specific materiality thresholds where lower amounts apply."
+      "description": "Hesaplar, açıklamalar veya işlem sınıfları için özel önemliliği belgeleyin.",
+      "emptyTitle": "Özel önemlilik kalemi yok",
+      "emptyDescription": "Daha düşük tutarların geçerli olduğu durumlarda özel önemlilik eşikleri ekleyin."
     },
     "specificFields": {
-      "amountLabel": "Amount",
-      "rationaleLabel": "Rationale"
+      "amountLabel": "Tutar",
+      "rationaleLabel": "Gerekçe"
     },
     "benchmarks": {
       "title": "Kıyaslamalar",
-      "description": "Configure and compare benchmark amounts used to determine materiality.",
-      "emptyTitle": "No benchmarks",
-      "emptyDescription": "Add benchmarks to support overall materiality determination."
+      "description": "Önemlilik belirlemesi için kullanılan kıyaslama tutarlarını yapılandırın ve karşılaştırın.",
+      "emptyTitle": "Kıyaslama yok",
+      "emptyDescription": "Genel önemlilik belirlemesi için kıyaslamalar ekleyin."
     },
     "calculations": {
       "title": "Hesaplamalar",
-      "description": "Review recorded materiality calculations and manual overrides.",
-      "emptyTitle": "No calculations recorded",
-      "emptyDescription": "Hesaplamalar appear here when benchmarks are applied."
+      "description": "Kaydedilen önemlilik hesaplamalarını ve manuel geçersiz kılmaları inceleyin.",
+      "emptyTitle": "Hesaplama kaydedilmedi",
+      "emptyDescription": "Kıyaslamalar uygulandığında hesaplamalar burada görünür."
     },
     "versions": {
       "title": "Sürümler",
@@ -2955,7 +2955,7 @@
       "title": "Yorumlar",
       "description": "Önemlilikle ilgili inceleme ve dahili yorumları kaydedin.",
       "emptyTitle": "Yorum yok",
-      "emptyDescription": "Yorumlar appear here once added.",
+      "emptyDescription": "Yorumlar eklendikten sonra burada görünür.",
       "bodyPlaceholder": "Yorum ekle",
       "addAction": "Yorum ekle"
     },
@@ -2963,17 +2963,17 @@
       "title": "Geçmiş",
       "description": "Önemlilik faaliyetinin salt okunur zaman çizelgesi.",
       "emptyTitle": "Önemlilik faaliyeti yok",
-      "emptyDescription": "Önemlilik activity will appear here as changes are recorded.",
+      "emptyDescription": "Değişiklikler kaydedildikçe önemlilik etkinliği burada görünecek.",
       "versionLabel": "Paket sürümü",
       "updatedLabel": "Güncellendi",
       "actions": {
-        "materiality.created": "Önemlilik package created",
-        "materiality.updated": "Önemlilik package updated",
-        "materiality.archived": "Önemlilik package archived",
-        "materiality.restored": "Önemlilik package restored",
-        "materiality.submitted": "Önemlilik package submitted",
-        "materiality.returned": "Önemlilik package returned",
-        "materiality.approved": "Önemlilik package approved",
+        "materiality.created": "Önemlilik paketi oluşturuldu",
+        "materiality.updated": "Önemlilik paketi güncellendi",
+        "materiality.archived": "Önemlilik paketi arşivlendi",
+        "materiality.restored": "Önemlilik paketi geri yüklendi",
+        "materiality.submitted": "Önemlilik paketi gönderildi",
+        "materiality.returned": "Önemlilik paketi iade edildi",
+        "materiality.approved": "Önemlilik paketi onaylandı",
         "materiality.benchmark.added": "Kıyaslama eklendi",
         "materiality.benchmark.updated": "Kıyaslama güncellendi",
         "materiality.calculation.recorded": "Hesaplama kaydedildi",
@@ -3001,7 +3001,7 @@
       "readonlyTitle": "Salt okunur erişim",
       "readonlyDescription": "Bu bölümü görüntüleyebilirsiniz ancak değişiklik yapamazsınız.",
       "permissionTitle": "İzin gerekli",
-      "permissionDescription": "You do not have permission to perform this action."
+      "permissionDescription": "Bu işlemi gerçekleştirmek için izniniz yok."
     }
   }
 }
