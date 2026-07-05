@@ -13,6 +13,8 @@ import { RiskAssessmentWorkflowPanel } from "@/components/risk-assessment/workfl
 import { useRiskAssessmentWorkspace } from "@/lib/risk-assessment/use-risk-assessment-workspace";
 import type { RiskAssessmentCommandCenterData } from "@/types/risk-assessment-command-center";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { workspaceTokens } from "@/components/workspace";
+import { cn } from "@/lib/ui/cn";
 import { IconArrowRight } from "@/components/ui/icons";
 
 type RiskAssessmentCommandCenterProps = {
@@ -45,10 +47,10 @@ export function RiskAssessmentCommandCenter({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-border/40 bg-gradient-to-br from-card via-card to-muted/15 p-5 sm:p-6">
+      <section className={workspaceTokens.commandHero}>
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <p className={workspaceTokens.heroEyebrow}>
               {cc.heroTitle}
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -68,9 +70,9 @@ export function RiskAssessmentCommandCenter({
                 <span>{labels.progress}</span>
                 <span className="font-medium tabular-nums text-foreground">{progressPct}%</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-muted">
+              <div className={workspaceTokens.progressTrack}>
                 <div
-                  className="h-full rounded-full bg-primary transition-all"
+                  className={workspaceTokens.progressFill}
                   style={{ width: `${progressPct}%` }}
                   role="progressbar"
                   aria-valuenow={progressPct}
@@ -90,7 +92,7 @@ export function RiskAssessmentCommandCenter({
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl border border-border/50 px-3 py-2 text-xs font-medium transition-colors hover:bg-card sm:text-sm"
+                className={cn(workspaceTokens.actionLink, "px-3 py-2 text-xs sm:text-sm")}
               >
                 {link.label}
               </Link>

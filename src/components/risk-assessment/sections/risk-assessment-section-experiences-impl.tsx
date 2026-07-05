@@ -154,8 +154,8 @@ function canMutate(riskAssessment: RiskAssessmentWorkspaceView, allowed: boolean
   );
 }
 
-function ArchivedNotice({ message }: { message?: string }) {
-  return <Alert variant="warning">{message ?? "This section is read-only while archived."}</Alert>;
+function ArchivedNotice({ message }: { message: string }) {
+  return <Alert variant="warning">{message}</Alert>;
 }
 
 function useMutationError() {
@@ -242,7 +242,9 @@ export function RiskRegisterExperience(
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {items.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -400,7 +402,9 @@ export function RiskCategoriesExperience(props: BaseProps & { canUpdate?: boolea
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {workspace.categories.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -472,6 +476,7 @@ export function RiskHeatmapExperience(
       significantLabel: string;
       emptyDetail: string;
       filterSignificant: string;
+      summaryLabel: string;
     };
   },
 ) {
@@ -493,7 +498,7 @@ export function RiskHeatmapExperience(
               className={`rounded-xl border px-3 py-3 text-center transition hover:opacity-90 ${bucket.cssClass}`}
               onClick={() =>
                 setSelectedCell({
-                  accountName: props.heatmapLabels?.accountLabel ?? "Summary",
+                  accountName: props.heatmapLabels?.summaryLabel ?? props.heatmapLabels?.accountLabel ?? "",
                   assertion: "existence",
                   rating: bucket.rating,
                   isSignificant: bucket.rating === "significant",
@@ -637,7 +642,9 @@ export function RiskMatrixExperience(
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {grid.cells.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -759,7 +766,9 @@ export function RiskResponsesExperience(props: BaseProps & { canUpdate?: boolean
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {workspace.responses.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -850,7 +859,9 @@ export function RiskProceduresExperience(
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {workspace.procedureLinks.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -927,7 +938,9 @@ export function RiskOwnersExperience(props: BaseProps & { canUpdate?: boolean; o
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {workspace.registerItems.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -983,7 +996,9 @@ function NotesExperience(props: BaseProps & { canUpdate?: boolean; maps: LabelMa
   return (
     <RiskAssessmentWorkspaceSectionShell title={props.labels.title} description={props.labels.description}>
       {error ? <Alert variant="error">{error}</Alert> : null}
-      {workspace.isArchived ? <ArchivedNotice message={props.archivedReadOnlyLabel} /> : null}
+      {workspace.isArchived && props.archivedReadOnlyLabel ? (
+        <ArchivedNotice message={props.archivedReadOnlyLabel} />
+      ) : null}
       {notes.length === 0 ? (
         <WorkspaceEmptyPanel title={props.labels.emptyTitle} description={props.labels.emptyDescription} />
       ) : (
@@ -1019,7 +1034,7 @@ export function RiskCommentsExperience(props: BaseProps & { canUpdate?: boolean;
   return <NotesExperience {...props} noteType="internal" />;
 }
 
-export function RiskHistoryExperience(props: BaseProps & { activity: RiskAssessmentActivityView; historyLabels: { versionLabel: string; updatedLabel: string; actions: Record<string, string> } }) {
+export function RiskHistoryExperience(props: BaseProps & { activity: RiskAssessmentActivityView; historyLabels: { versionLabel: string; updatedLabel: string; actionColumn: string; dateColumn: string; summaryColumn: string; actions: Record<string, string> } }) {
   const workspace = useWorkspaceOrCreate(props);
   if (typeof workspace !== "object" || !("id" in workspace)) return workspace;
   return (
@@ -1028,18 +1043,18 @@ export function RiskHistoryExperience(props: BaseProps & { activity: RiskAssessm
         columns={[
           {
             id: "action",
-            header: "Action",
+            header: props.historyLabels.actionColumn,
             cell: (entry) => formatRiskAssessmentActivityAction(entry.action, props.historyLabels.actions),
           },
           {
             id: "date",
-            header: "Date",
+            header: props.historyLabels.dateColumn,
             cell: (entry) => (props.locale ? formatDateTime(entry.createdAt, props.locale) : entry.createdAt),
             hideOnMobile: true,
           },
           {
             id: "summary",
-            header: "Summary",
+            header: props.historyLabels.summaryColumn,
             cell: (entry) => formatRiskAssessmentActivitySummary(entry.summary),
           },
         ]}

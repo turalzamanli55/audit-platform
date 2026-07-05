@@ -2,12 +2,12 @@ import type { ReactNode } from "react";
 import { WorkspaceEmptyPanel, WorkspaceError } from "@/components/workspace";
 
 export function RiskAssessmentWorkspaceError({
-  title = "Unable to load risk assessment workspace",
-  description = "Something went wrong while loading the risk assessment.",
+  title,
+  description,
   action,
 }: {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   action?: ReactNode;
 }) {
   return <WorkspaceError title={title} description={description} action={action} />;
@@ -22,7 +22,7 @@ export function RiskAssessmentWorkspaceEmpty({
   canCreate = false,
   gateDescription,
   forbiddenDescription,
-  creatingLabel = "Creating...",
+  creatingLabel,
 }: {
   title: string;
   description: string;
@@ -32,7 +32,7 @@ export function RiskAssessmentWorkspaceEmpty({
   canCreate?: boolean;
   gateDescription?: string;
   forbiddenDescription?: string;
-  creatingLabel?: string;
+  creatingLabel: string;
 }) {
   return (
     <WorkspaceEmptyPanel

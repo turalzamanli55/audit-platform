@@ -47,12 +47,12 @@ export default async function Page({ params }: PageProps) {
         addAction: dictionary.riskAssessment.matrix.addAction,
       }}
       matrixLabels={{
-        accountLabel: dictionary.riskAssessment.matrix.accountLabel ?? "Account",
-        assertionLabel: dictionary.riskAssessment.matrix.assertionLabel ?? "Assertion",
-        ratingLabel: dictionary.riskAssessment.matrix.ratingLabel ?? "Rating",
-        significantLabel: dictionary.riskAssessment.matrix.significantLabel ?? "Significant",
-        emptyDetail: dictionary.riskAssessment.matrix.emptyDetail ?? "",
-        selectRating: dictionary.riskAssessment.matrix.selectRating ?? "",
+        accountLabel: dictionary.riskAssessment.matrix.accountLabel,
+        assertionLabel: dictionary.riskAssessment.matrix.assertionLabel,
+        ratingLabel: dictionary.riskAssessment.matrix.ratingLabel,
+        significantLabel: dictionary.riskAssessment.matrix.significantLabel,
+        emptyDetail: dictionary.riskAssessment.matrix.emptyDetail,
+        selectRating: dictionary.riskAssessment.matrix.selectRating,
       }}
     />
   );

@@ -38,6 +38,9 @@ export default async function Page({ params }: PageProps) {
       historyLabels={{
         versionLabel: dictionary.riskAssessment.history.versionLabel,
         updatedLabel: dictionary.riskAssessment.history.updatedLabel,
+        actionColumn: dictionary.riskAssessment.history.actionColumn,
+        dateColumn: dictionary.riskAssessment.history.dateColumn,
+        summaryColumn: dictionary.riskAssessment.history.summaryColumn,
         actions: dictionary.riskAssessment.history.actions,
       }}
     />

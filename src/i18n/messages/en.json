@@ -2527,7 +2527,8 @@
       "ratingLabel": "Rating",
       "significantLabel": "Significant risk",
       "emptyDetail": "Select a heatmap cell to view details.",
-      "filterSignificant": "Show significant and rated cells only"
+      "filterSignificant": "Show significant and rated cells only",
+      "summaryLabel": "Summary"
     },
     "matrix": {
       "title": "Assertion matrix",
@@ -2609,7 +2610,10 @@
         "risk_assessment.procedure.linked": "Procedure linked",
         "risk_assessment.note.added": "Note added",
         "risk_assessment.significant.acknowledged": "Significant risks acknowledged"
-      }
+      },
+      "actionColumn": "Action",
+      "dateColumn": "Date",
+      "summaryColumn": "Summary"
     },
     "settings": {
       "title": "Settings",

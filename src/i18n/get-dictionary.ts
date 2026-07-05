@@ -294,8 +294,25 @@ type RiskAssessmentLabels = {
   significantRisks: RiskAssessmentSectionLabels;
   categories: RiskAssessmentSectionLabels;
   scoring: RiskAssessmentSectionLabels;
-  heatmap: RiskAssessmentSectionLabels;
-  matrix: RiskAssessmentSectionLabels;
+  heatmap: RiskAssessmentSectionLabels & {
+    unratedLabel: string;
+    accountLabel: string;
+    assertionLabel: string;
+    ratingLabel: string;
+    significantLabel: string;
+    emptyDetail: string;
+    filterSignificant: string;
+    summaryLabel: string;
+  };
+  matrix: RiskAssessmentSectionLabels & {
+    accountPlaceholder: string;
+    accountLabel: string;
+    assertionLabel: string;
+    ratingLabel: string;
+    significantLabel: string;
+    emptyDetail: string;
+    selectRating: string;
+  };
   responses: RiskAssessmentSectionLabels;
   procedures: RiskAssessmentSectionLabels;
   owners: RiskAssessmentSectionLabels;
@@ -304,6 +321,9 @@ type RiskAssessmentLabels = {
   history: RiskAssessmentSectionLabels & {
     versionLabel: string;
     updatedLabel: string;
+    actionColumn: string;
+    dateColumn: string;
+    summaryColumn: string;
     actions: Record<string, string>;
   };
   settings: {
