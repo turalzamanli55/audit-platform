@@ -23,6 +23,8 @@ export type EngagementWorkspaceSection =
   | "materiality"
   | "risk-assessment"
   | "fieldwork"
+  | "review"
+  | "completion"
   | "history"
   | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
@@ -404,6 +406,8 @@ export function buildEngagementWorkspaceNavItems(
     { id: "materiality", label: labels.navMateriality, href: `${base}/materiality` },
     { id: "risk-assessment", label: labels.navRiskAssessment, href: `${base}/risk-assessment` },
     { id: "fieldwork", label: labels.navFieldwork, href: `${base}/fieldwork` },
+    { id: "review", label: labels.navReview, href: `${base}/review` },
+    { id: "completion", label: labels.navCompletion, href: `${base}/completion` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
   ];

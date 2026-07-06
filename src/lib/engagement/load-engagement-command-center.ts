@@ -8,6 +8,7 @@ import type { MaterialityWorkspaceView } from "@/lib/materiality/materiality-wor
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
 import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-assessment-workspace-view";
 import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
+import type { CompletionWorkspaceView } from "@/lib/completion/completion-workspace-view";
 import { loadEngagementActivity } from "@/lib/engagement/load-engagement-activity";
 import { loadCompanyWorkspacePage } from "@/lib/company/company-workspace-page";
 import { resolveUserProfiles } from "@/lib/user/resolve-user-profiles";
@@ -59,6 +60,7 @@ export async function loadEngagementCommandCenter(input: {
   riskAssessment: RiskAssessmentWorkspaceView | null;
   fieldwork: FieldworkWorkspaceView | null;
   review: ReviewWorkspaceView | null;
+  completion: CompletionWorkspaceView | null;
   labels: CommandCenterLabels;
   workspaceLabels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
@@ -67,6 +69,7 @@ export async function loadEngagementCommandCenter(input: {
   riskLabels: Dictionary["riskAssessment"];
   fieldworkLabels: Dictionary["fieldwork"];
   reviewLabels: Dictionary["review"];
+  completionLabels: Dictionary["completion"];
 }): Promise<EngagementCommandCenterData> {
   const {
     locale,
@@ -76,6 +79,7 @@ export async function loadEngagementCommandCenter(input: {
     riskAssessment,
     fieldwork,
     review,
+    completion,
     labels,
     workspaceLabels,
     engagementsLabels,
@@ -84,6 +88,7 @@ export async function loadEngagementCommandCenter(input: {
     riskLabels,
     fieldworkLabels,
     reviewLabels,
+    completionLabels,
   } = input;
 
   const base = `/${locale}/app/engagements/${engagement.slug}`;
@@ -138,14 +143,9 @@ export async function loadEngagementCommandCenter(input: {
       : Math.max(0, 100 - pendingReviews * 25)
   );
 
-  const completionProgress =
-    engagement.lifecycleStatus === "closed"
-      ? 100
-      : engagement.lifecycleStatus === "completed"
-        ? 95
-        : reviewProgress >= 100 && (fieldwork?.progressPct ?? 0) >= 80
-          ? 70
-          : 0;
+  const completionProgress = completion?.progressPct ?? (
+    review?.packageStatus === "approved" ? 25 : 0
+  );
 
   const overallCompletionPct = Math.round(
     [...moduleProgress, reviewProgress, completionProgress].reduce((a, b) => a + b, 0) /
@@ -215,19 +215,23 @@ export async function loadEngagementCommandCenter(input: {
     {
       id: "completion",
       label: labels.phaseCompletion,
-      statusLabel: engagementsLabels.lifecycleStatuses[engagement.lifecycleStatus],
+      statusLabel: completion
+        ? completionLabels.statuses[completion.packageStatus]
+        : labels.statusClear,
       statusVariant:
-        engagement.lifecycleStatus === "closed" || engagement.lifecycleStatus === "completed"
+        completion?.packageStatus === "approved"
           ? "success"
-          : "default",
+          : completion?.packageStatus === "returned"
+            ? "warning"
+            : "default",
       progressPct: completionProgress,
       owner: null,
-      lastUpdate: formatDate(locale, engagement.updatedAt) ?? "—",
-      lastUpdateRelative: formatRelativeTime(locale, engagement.updatedAt),
-      href: `${base}/settings`,
-      ctaLabel: labels.openSettings,
-      isActive: completionProgress > 0 && completionProgress < 100,
-      isEmpty: false,
+      lastUpdate: formatDate(locale, completion?.updatedAt ?? engagement.updatedAt) ?? "—",
+      lastUpdateRelative: formatRelativeTime(locale, completion?.updatedAt ?? engagement.updatedAt),
+      href: `${base}/completion`,
+      ctaLabel: labels.openCompletion,
+      isActive: Boolean(completion && completion.packageStatus !== "approved"),
+      isEmpty: !completion,
     },
   ];
 

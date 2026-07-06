@@ -11,6 +11,7 @@ import { loadFieldworkDashboardMetrics } from "@/lib/fieldwork/load-fieldwork-da
 import { loadMaterialityDashboardMetrics } from "@/lib/materiality/load-materiality-dashboard-metrics";
 import { loadRiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
 import { loadReviewDashboardMetrics } from "@/lib/review/load-review-dashboard-metrics";
+import { loadCompletionDashboardMetrics } from "@/lib/completion/load-completion-dashboard-metrics";
 import {
   loadDashboardFeed,
   type DashboardEngagementPreview,
@@ -78,6 +79,7 @@ export async function loadDashboardWorkspace(
     riskAssessmentMetrics,
     materialityMetrics,
     reviewMetrics,
+    completionMetrics,
   ] =
     await Promise.all([
     getCurrentUser(locale),
@@ -89,6 +91,7 @@ export async function loadDashboardWorkspace(
     loadRiskAssessmentDashboardMetrics(),
     loadMaterialityDashboardMetrics(),
     loadReviewDashboardMetrics(),
+    loadCompletionDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];

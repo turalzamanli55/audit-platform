@@ -41,3 +41,13 @@ export function assertEngagementCompletionGate(input: EngagementCompletionGateIn
 
   assertReviewApprovedForCompletion(input.review);
 }
+
+export function assertCompletionApprovedForReporting(
+  completion: Pick<Tables<"completion_packages">, "package_status"> | null,
+): void {
+  if (!completion || completion.package_status !== "approved") {
+    throw new ValidationError(
+      "Reporting cannot begin until engagement completion is approved.",
+    );
+  }
+}
