@@ -67,9 +67,17 @@ type Labels = {
   };
   columns: Record<string, string>;
   metrics: Record<string, string>;
+  filters?: {
+    allErp?: string;
+    allStatus?: string;
+    source?: string;
+    target?: string;
+    importDictionaryJson?: string;
+  };
   empty: string;
   errorGeneric: string;
   suggestionNotice: string;
+  adminRequired?: string;
 };
 
 function issueCounts(validationJson: unknown): { warnings: number; errors: number } {
@@ -270,7 +278,7 @@ export function UaieIntelligenceExperience(props: {
               placeholder={props.labels.actions.search}
             />
             <Select value={sessionErp} onChange={(e) => setSessionErp(e.target.value)}>
-              <option value="all">All ERP</option>
+              <option value="all">{props.labels.filters?.allErp ?? "All ERP"}</option>
               {Object.keys(props.labels.erps).map((erp) => (
                 <option key={erp} value={erp}>
                   {props.labels.erps[erp]}
@@ -278,7 +286,7 @@ export function UaieIntelligenceExperience(props: {
               ))}
             </Select>
             <Select value={sessionStatus} onChange={(e) => setSessionStatus(e.target.value)}>
-              <option value="all">All status</option>
+              <option value="all">{props.labels.filters?.allStatus ?? "All status"}</option>
               {Object.keys(props.labels.statuses).map((status) => (
                 <option key={status} value={status}>
                   {props.labels.statuses[status]}
@@ -603,7 +611,7 @@ export function UaieIntelligenceExperience(props: {
             <WorkspacePanel>
               <div className="grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
                 <div className="space-y-1">
-                  <Label>Source</Label>
+                  <Label>{props.labels.filters?.source ?? "Source"}</Label>
                   <Select
                     value={mergeTarget.split(">")[0] ?? ""}
                     onChange={(e) =>
@@ -619,7 +627,7 @@ export function UaieIntelligenceExperience(props: {
                   </Select>
                 </div>
                 <div className="space-y-1">
-                  <Label>Target</Label>
+                  <Label>{props.labels.filters?.target ?? "Target"}</Label>
                   <Select
                     value={mergeTarget.split(">")[1] ?? ""}
                     onChange={(e) =>
@@ -934,7 +942,7 @@ export function UaieIntelligenceExperience(props: {
           {!props.capabilities.canAdmin ? (
             <WorkspaceNoticeBanner
               variant="warning"
-              description="Administrator permission required."
+              description={props.labels.adminRequired ?? "Administrator permission required."}
             />
           ) : (
             <>
@@ -966,7 +974,7 @@ export function UaieIntelligenceExperience(props: {
               </WorkspacePanel>
               <WorkspacePanel>
                 <div className="space-y-3">
-                  <Label>Import dictionary JSON</Label>
+                  <Label>{props.labels.filters?.importDictionaryJson ?? "Import dictionary JSON"}</Label>
                   <Textarea
                     value={importJson}
                     onChange={(e) => setImportJson(e.target.value)}

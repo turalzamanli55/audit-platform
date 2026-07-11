@@ -1,6 +1,6 @@
 import type { EngagementLifecycleStatus } from "@/types/engagement";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import type { EngagementWorkspaceNavItem } from "@/components/engagement/workspace/engagement-workspace-sidebar";
+import type { WorkspaceNavItem } from "@/lib/workspace/workspace-nav";
 import type { EngagementWorkspaceView } from "@/lib/engagement/engagement-workspace-view";
 import type { FieldworkWorkspaceView } from "@/lib/fieldwork/fieldwork-workspace-view";
 import type { PlanningWorkspaceView } from "@/lib/planning/planning-workspace-view";
@@ -31,6 +31,8 @@ export type EngagementWorkspaceSection =
   | "financial-statements"
   | "history"
   | "settings";
+
+export type EngagementWorkspaceNavItem = WorkspaceNavItem<EngagementWorkspaceSection>;
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
 
 const LIFECYCLE_PROGRESS: Record<EngagementLifecycleStatus, number> = {

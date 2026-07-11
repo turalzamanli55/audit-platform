@@ -37,7 +37,7 @@ export function HeroSection({ locale, labels }: HeroSectionProps) {
                 {labels.secondaryCta}
               </PublicLinkButton>
             </div>
-            <div className="flex flex-wrap gap-2 pt-2" aria-label="Trust indicators">
+            <div className="flex flex-wrap gap-2 pt-2" aria-label={labels.trustAriaLabel}>
               {labels.trust.map((item) => (
                 <TrustBadge key={item} label={item} />
               ))}

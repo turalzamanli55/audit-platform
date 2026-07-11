@@ -13,7 +13,8 @@
     "theme": "Theme",
     "language": "Language",
     "themeLight": "Light",
-    "themeDark": "Dark"
+    "themeDark": "Dark",
+    "primaryNav": "Primary"
   },
   "hero": {
     "eyebrow": "Enterprise AI Audit Platform",
@@ -21,7 +22,12 @@
     "subtitle": "A premium workspace for IFRS reporting, working papers, and financial intelligence — designed for professionals who demand precision without complexity.",
     "primaryCta": "Start free",
     "secondaryCta": "Request demo",
-    "trust": ["IFRS-ready", "AI-first architecture", "Enterprise-grade security"]
+    "trust": [
+      "IFRS-ready",
+      "AI-first architecture",
+      "Enterprise-grade security"
+    ],
+    "trustAriaLabel": "Trust indicators"
   },
   "overview": {
     "title": "Everything audit teams need — in one calm workspace",
@@ -190,6 +196,11 @@
     "copyright": "All rights reserved.",
     "socialTwitter": "Twitter",
     "socialLinkedIn": "LinkedIn",
-    "socialGitHub": "GitHub"
+    "socialGitHub": "GitHub",
+    "product": "Product",
+    "overview": "Overview",
+    "features": "Features",
+    "legal": "Legal",
+    "supportColumn": "Support"
   }
 }

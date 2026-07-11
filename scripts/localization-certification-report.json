@@ -1,0 +1,636 @@
+{
+  "missingKeys": {
+    "az": [],
+    "ru": [],
+    "tr": []
+  },
+  "unusedKeys": {
+    "az": [
+      "dashboardWorkspace.commandCenter.reviewReturnedReviews",
+      "dashboardWorkspace.commandCenter.reviewMyReviews",
+      "dashboardWorkspace.commandCenter.reviewRecentActivity",
+      "dashboardWorkspace.commandCenter.reviewDraftPackages"
+    ],
+    "ru": [
+      "dashboardWorkspace.commandCenter.reviewReturnedReviews",
+      "dashboardWorkspace.commandCenter.reviewMyReviews",
+      "dashboardWorkspace.commandCenter.reviewRecentActivity",
+      "dashboardWorkspace.commandCenter.reviewDraftPackages"
+    ],
+    "tr": [
+      "dashboardWorkspace.commandCenter.reviewReturnedReviews",
+      "dashboardWorkspace.commandCenter.reviewMyReviews",
+      "dashboardWorkspace.commandCenter.reviewRecentActivity",
+      "dashboardWorkspace.commandCenter.reviewDraftPackages"
+    ]
+  },
+  "englishLeakage": {
+    "az": [],
+    "ru": [],
+    "tr": []
+  },
+  "duplicateKeys": [
+    {
+      "value": "Access restricted",
+      "keys": [
+        "common.accessRestricted",
+        "shell.accessRestricted",
+        "companies.forbiddenTitle",
+        "engagements.forbiddenTitle",
+        "engagements.members.forbiddenTitle"
+      ],
+      "count": 5
+    },
+    {
+      "value": "You do not have permission to perform this action.",
+      "keys": [
+        "common.permissionDeniedDescription",
+        "materiality.states.permissionDescription",
+        "review.states.permissionDescription",
+        "completion.states.permissionDescription",
+        "reporting.states.permissionDescription",
+        "opinion.states.permissionDescription",
+        "financialStatements.states.permissionDescription"
+      ],
+      "count": 7
+    },
+    {
+      "value": "Companies",
+      "keys": [
+        "shell.companySwitcher",
+        "companies.navCompanies",
+        "companies.title",
+        "companies.breadcrumbRoot",
+        "companies.create.breadcrumbCompanies",
+        "marketing.enterprise.items.companies.title",
+        "dashboardWorkspace.kpi.companies",
+        "dashboardWorkspace.pinned.allCompanies"
+      ],
+      "count": 10
+    },
+    {
+      "value": "Engagements",
+      "keys": [
+        "shell.engagementSwitcher",
+        "engagements.navEngagements",
+        "engagements.title",
+        "engagements.breadcrumbRoot",
+        "engagements.create.breadcrumbEngagements",
+        "dashboardWorkspace.kpi.engagements",
+        "dashboardWorkspace.commandCenter.kpiEngagements",
+        "dashboardWorkspace.commandCenter.moduleEngagements"
+      ],
+      "count": 8
+    },
+    {
+      "value": "Language",
+      "keys": [
+        "shell.language",
+        "uaie.session.language",
+        "uaie.intelligence.ui.columns.language",
+        "marketing.nav.language"
+      ],
+      "count": 4
+    },
+    {
+      "value": "Notifications",
+      "keys": [
+        "shell.notifications",
+        "dashboardWorkspace.notifications.title",
+        "dashboardWorkspace.commandCenter.notificationsTitle",
+        "dashboardWorkspace.personalization.widgetLabels.notifications"
+      ],
+      "count": 4
+    },
+    {
+      "value": "Workspace",
+      "keys": [
+        "shell.drawerContextTitle",
+        "onboarding.stepWorkspace",
+        "dashboard.workspace",
+        "dashboardWorkspace.context.workspace"
+      ],
+      "count": 4
+    },
+    {
+      "value": "Actions",
+      "keys": [
+        "shell.commandPalette.actions",
+        "review.reviewQueue.columns.actions",
+        "review.versions.columns.actions",
+        "completion.versions.columns.actions",
+        "completion.checklist.columns.actions",
+        "reporting.versions.columns.actions",
+        "opinion.versions.columns.actions",
+        "financialStatements.versions.columns.actions"
+      ],
+      "count": 9
+    },
+    {
+      "value": "Settings",
+      "keys": [
+        "shell.commandPalette.settings",
+        "companies.workspace.navSettings",
+        "companies.workspace.sections.settings.title",
+        "companies.settings.title",
+        "engagements.workspace.navSettings",
+        "engagements.workspace.sections.settings.title",
+        "engagements.settings.title",
+        "planning.workspace.navSettings"
+      ],
+      "count": 32
+    },
+    {
+      "value": "Create company",
+      "keys": [
+        "shell.commandPalette.createCompany",
+        "companies.createCompany",
+        "companies.create.createCompany",
+        "dashboardWorkspace.quickActions.createCompany"
+      ],
+      "count": 4
+    },
+    {
+      "value": "Create engagement",
+      "keys": [
+        "shell.commandPalette.createEngagement",
+        "companies.workspace.commandCenter.actionCreateEngagement",
+        "engagements.createEngagement",
+        "engagements.create.createEngagement",
+        "dashboardWorkspace.quickActions.createEngagement"
+      ],
+      "count": 5
+    },
+    {
+      "value": "Workspace required",
+      "keys": [
+        "shell.workspaceRequired",
+        "companies.noWorkspaceTitle",
+        "engagements.noWorkspaceTitle",
+        "planning.noWorkspaceTitle",
+        "fieldwork.noWorkspaceTitle",
+        "riskAssessment.noWorkspaceTitle",
+        "materiality.noWorkspaceTitle",
+        "review.noWorkspaceTitle"
+      ],
+      "count": 14
+    },
+    {
+      "value": "Dashboard",
+      "keys": [
+        "shell.dashboardHome",
+        "dashboard.title",
+        "dashboard.navDashboard",
+        "planning.workspace.navOverview",
+        "fieldwork.workspace.navOverview",
+        "fieldwork.workspace.navGroups.overview",
+        "riskAssessment.workspace.navOverview",
+        "riskAssessment.workspace.navGroups.overview"
+      ],
+      "count": 18
+    },
+    {
+      "value": "All",
+      "keys": [
+        "companies.filterAll",
+        "engagements.filterAll",
+        "review.history.all",
+        "completion.history.all",
+        "reporting.history.all",
+        "opinion.history.all",
+        "financialStatements.history.all"
+      ],
+      "count": 7
+    },
+    {
+      "value": "Active",
+      "keys": [
+        "companies.filterActive",
+        "companies.workspace.commandCenter.statusActive",
+        "companies.identity.archivedNo",
+        "engagements.filterActive",
+        "dashboardWorkspace.commandCenter.kpiActiveEngagements"
+      ],
+      "count": 5
+    },
+    {
+      "value": "Archived",
+      "keys": [
+        "companies.filterArchived",
+        "companies.identity.archivedYes",
+        "companies.history.summary.archived",
+        "engagements.filterArchived",
+        "engagements.history.summary.archived",
+        "planning.documents.statuses.archived",
+        "fieldwork.statuses.archived",
+        "fieldwork.workingPaperStatuses.archived"
+      ],
+      "count": 19
+    },
+    {
+      "value": "Framework",
+      "keys": [
+        "companies.columnFramework",
+        "companies.workspace.commandCenter.framework",
+        "engagements.columnFramework",
+        "engagements.workspace.commandCenter.framework",
+        "planning.workspace.navFramework",
+        "planning.workspace.commandCenter.kpiFramework"
+      ],
+      "count": 6
+    },
+    {
+      "value": "Status",
+      "keys": [
+        "companies.columnStatus",
+        "companies.workspace.commandCenter.complianceStatus",
+        "companies.identity.sections.status.title",
+        "engagements.columnStatus",
+        "planning.workspace.commandCenter.kpiStatus",
+        "planning.workspace.status.planningStatus",
+        "review.workspace.commandCenter.statusColumn",
+        "review.reviewQueue.columns.status"
+      ],
+      "count": 22
+    },
+    {
+      "value": "Updated",
+      "keys": [
+        "companies.columnUpdated",
+        "companies.updated",
+        "companies.history.summary.updated",
+        "engagements.columnUpdated",
+        "engagements.updated",
+        "engagements.workspace.commandCenter.lastUpdate",
+        "engagements.history.summary.updated",
+        "planning.history.version.updated"
+      ],
+      "count": 15
+    },
+    {
+      "value": "IFRS",
+      "keys": [
+        "companies.frameworkIfrs",
+        "companies.create.frameworks.IFRS",
+        "engagements.frameworkIfrs",
+        "engagements.create.frameworks.IFRS"
+      ],
+      "count": 4
+    },
+    {
+      "value": "Local GAAP",
+      "keys": [
+        "companies.frameworkLocalGaap",
+        "companies.create.frameworks.LOCAL_GAAP",
+        "engagements.frameworkLocalGaap",
+        "engagements.create.frameworks.LOCAL_GAAP"
+      ],
+      "count": 4
+    },
+    {
+      "value": "Other",
+      "keys": [
+        "companies.frameworkOther",
+        "companies.create.industries.other",
+        "companies.create.frameworks.OTHER",
+        "engagements.frameworkOther",
+        "engagements.create.engagementTypes.other",
+        "engagements.create.frameworks.OTHER",
+        "planning.documents.documentTypes.other",
+        "fieldwork.evidence.documentTypes.other"
+      ],
+      "count": 8
+    },
+    {
+      "value": "Quick actions",
+      "keys": [
+        "companies.quickActions",
+        "engagements.quickActions",
+        "completion.workspace.commandCenter.quickActionsTitle",
+        "dashboardWorkspace.quickActions.title",
+        "dashboardWorkspace.personalization.widgetLabels.quick-actions"
+      ],
+      "count": 5
+    },
+    {
+      "value": "Financial",
+      "keys": [
+        "companies.create.stepFinancial",
+        "companies.workspace.navFinancial",
+        "companies.workspace.sections.financial.title",
+        "companies.settings.navFinancial",
+        "companies.settings.sections.financial.title"
+      ],
+      "count": 5
+    },
+    {
+      "value": "Contacts",
+      "keys": [
+        "companies.create.stepContacts",
+        "companies.create.stepContactsTitle",
+        "companies.workspace.navContacts",
+        "companies.workspace.sections.contacts.title",
+        "companies.settings.navContacts",
+        "companies.settings.sections.contacts.title"
+      ],
+      "count": 6
+    },
+    {
+      "value": "Review",
+      "keys": [
+        "companies.create.stepReview",
+        "engagements.lifecycleStatuses.review",
+        "engagements.create.stepReview",
+        "engagements.create.engagementTypes.review",
+        "engagements.workspace.navReview",
+        "engagements.workspace.commandCenter.phaseReview",
+        "planning.comments.types.review",
+        "planning.timeline.milestones.review"
+      ],
+      "count": 10
+    },
+    {
+      "value": "Reporting framework",
+      "keys": [
+        "companies.create.reportingFramework",
+        "companies.workspace.summaryFramework",
+        "companies.settings.sections.reporting.groupTitle",
+        "engagements.create.reportingFramework",
+        "engagements.workspace.summaryFramework",
+        "engagements.workspace.planning.reportingFramework",
+        "planning.workspace.summaryFramework"
+      ],
+      "count": 7
+    },
+    {
+      "value": "Title",
+      "keys": [
+        "companies.create.contactTitle",
+        "review.workspace.commandCenter.titleColumn",
+        "completion.workspace.commandCenter.titleColumn",
+        "reporting.workspace.commandCenter.titleColumn",
+        "opinion.workspace.commandCenter.titleColumn",
+        "financialStatements.workspace.commandCenter.titleColumn"
+      ],
+      "count": 6
+    },
+    {
+      "value": "Cancel",
+      "keys": [
+        "companies.create.cancel",
+        "companies.overview.cancelEdit",
+        "companies.identity.sections.lifecycle.cancelAction",
+        "engagements.create.cancel",
+        "engagements.settings.lifecycle.cancelAction",
+        "engagements.overview.cancelEdit",
+        "planning.workflow.cancelAction",
+        "planning.settings.lifecycle.cancelAction"
+      ],
+      "count": 39
+    },
+    {
+      "value": "Permission required",
+      "keys": [
+        "companies.create.forbiddenTitle",
+        "engagements.create.forbiddenTitle",
+        "planning.forbiddenTitle",
+        "fieldwork.forbiddenTitle",
+        "riskAssessment.forbiddenTitle",
+        "materiality.forbiddenTitle",
+        "materiality.states.permissionTitle",
+        "review.forbiddenTitle"
+      ],
+      "count": 19
+    },
+    {
+      "value": "General",
+      "keys": [
+        "companies.create.industries.general",
+        "companies.settings.navGeneral",
+        "companies.settings.sections.general.title",
+        "engagements.create.stepGeneral",
+        "engagements.settings.sections.general.title",
+        "planning.comments.types.general"
+      ],
+      "count": 6
+    },
+    {
+      "value": "Overview",
+      "keys": [
+        "companies.detail.profileSection",
+        "companies.workspace.navOverview",
+        "companies.workspace.sections.overview.title",
+        "engagements.workspace.navOverview",
+        "engagements.workspace.sections.overview.title",
+        "financialStatements.workspace.navOverview",
+        "financialStatements.workspace.navGroups.overview",
+        "uaie.intelligence.workspace.navOverview"
+      ],
+      "count": 13
+    },
+    {
+      "value": "Compliance",
+      "keys": [
+        "companies.workspace.navCompliance",
+        "companies.workspace.sections.compliance.title",
+        "marketing.overview.items.compliance.title",
+        "marketing.security.items.compliance.title"
+      ],
+      "count": 4
+    },
+    {
+      "value": "History",
+      "keys": [
+        "companies.workspace.navHistory",
+        "companies.workspace.sections.history.title",
+        "engagements.workspace.sections.history.title",
+        "planning.workspace.navHistory",
+        "fieldwork.workspace.navHistory",
+        "riskAssessment.workspace.navHistory",
+        "riskAssessment.workspace.sections.history.title",
+        "riskAssessment.history.title"
+      ],
+      "count": 28
+    },
+    {
+      "value": "Created",
+      "keys": [
+        "companies.workspace.metadataCreated",
+        "companies.identity.createdLabel",
+        "companies.history.summary.created",
+        "companies.history.version.created",
+        "engagements.workspace.metadataCreated",
+        "engagements.history.summary.created",
+        "engagements.history.version.created",
+        "planning.history.version.created"
+      ],
+      "count": 16
+    },
+    {
+      "value": "Active engagements",
+      "keys": [
+        "companies.workspace.commandCenter.activeEngagementsTitle",
+        "companies.workspace.commandCenter.kpiActiveEngagements",
+        "companies.workspace.commandCenter.activeEngagementsLabel",
+        "dashboardWorkspace.insights.metricEngagements",
+        "dashboardWorkspace.commandCenter.activeEngagementsTitle"
+      ],
+      "count": 5
+    },
+    {
+      "value": "Recent activity",
+      "keys": [
+        "companies.workspace.commandCenter.recentActivityTitle",
+        "engagements.workspace.commandCenter.activityTitle",
+        "planning.workspace.commandCenter.activityTitle",
+        "fieldwork.workspace.commandCenter.activityTitle",
+        "completion.workspace.commandCenter.recentChangesTitle",
+        "completion.workspace.commandCenter.activityTitle",
+        "reporting.workspace.commandCenter.recentChangesTitle",
+        "reporting.workspace.commandCenter.activityTitle"
+      ],
+      "count": 12
+    },
+    {
+      "value": "Recent comments",
+      "keys": [
+        "companies.workspace.commandCenter.recentCommentsTitle",
+        "engagements.workspace.commandCenter.commentsTitle",
+        "completion.workspace.commandCenter.commentsTitle",
+        "reporting.workspace.commandCenter.commentsTitle",
+        "opinion.workspace.commandCenter.commentsTitle",
+        "financialStatements.workspace.commandCenter.commentsTitle",
+        "dashboardWorkspace.commandCenter.recentCommentsTitle"
+      ],
+      "count": 7
+    },
+    {
+      "value": "Pending reviews",
+      "keys": [
+        "companies.workspace.commandCenter.pendingReviewsTitle",
+        "companies.workspace.commandCenter.kpiPendingReviews",
+        "engagements.workspace.commandCenter.kpiPendingReviews",
+        "engagements.workspace.review.pendingReviews",
+        "fieldwork.workspace.commandCenter.kpiPendingReview",
+        "riskAssessment.workspace.commandCenter.kpiPendingReview",
+        "review.workspace.navPendingReviews",
+        "review.workspace.commandCenter.pendingReviewsTitle"
+      ],
+      "count": 14
+    },
+    {
+      "value": "Open findings",
+      "keys": [
+        "companies.workspace.commandCenter.kpiOpenFindings",
+        "engagements.workspace.commandCenter.kpiOpenFindings",
+        "engagements.workspace.commandCenter.issueFindings",
+        "engagements.workspace.review.openFindings",
+        "fieldwork.workspace.summaryFindings",
+        "fieldwork.workspace.commandCenter.findingsTitle",
+        "fieldwork.workspace.commandCenter.kpiOpenFindings",
+        "review.workspace.navOpenFindings"
+      ],
+      "count": 16
+    }
+  ],
+  "brokenNamespaces": [],
+  "hardcoded": [],
+  "walk": {
+    "az": [
+      {
+        "route": "/app/dashboard",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/companies",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/engagements",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/import-intelligence",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      }
+    ],
+    "ru": [
+      {
+        "route": "/app/dashboard",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/companies",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/engagements",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/import-intelligence",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      }
+    ],
+    "tr": [
+      {
+        "route": "/app/dashboard",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/companies",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/engagements",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      },
+      {
+        "route": "/app/import-intelligence",
+        "status": 307,
+        "leakageHits": 0,
+        "samples": []
+      }
+    ]
+  },
+  "stats": {
+    "totalEnglishKeys": 5746,
+    "missingCounts": {
+      "az": 0,
+      "ru": 0,
+      "tr": 0
+    },
+    "leakCounts": {
+      "az": 0,
+      "ru": 0,
+      "tr": 0
+    },
+    "hardcodedCount": 0,
+    "brokenNamespaceCount": 0,
+    "localizationCompletionPct": 100,
+    "overallPlatformCompletionPct": 100,
+    "zeroLeakage": true
+  }
+}

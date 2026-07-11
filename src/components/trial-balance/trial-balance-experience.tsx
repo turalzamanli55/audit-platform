@@ -41,6 +41,9 @@ type Labels = {
   columns: Record<string, string>;
   actions: Record<string, string>;
   workflow: Record<string, string>;
+  filters?: {
+    allTypes?: string;
+  };
 };
 
 export function TrialBalanceExperience(props: {
@@ -335,7 +338,7 @@ export function TrialBalanceExperience(props: {
               placeholder={props.labels.actions.search}
             />
             <Select value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)}>
-              <option value="all">All types</option>
+              <option value="all">{props.labels.filters?.allTypes ?? "All types"}</option>
               {Object.keys(props.labels.accountTypes).map((type) => (
                 <option key={type} value={type}>
                   {props.labels.accountTypes[type]}

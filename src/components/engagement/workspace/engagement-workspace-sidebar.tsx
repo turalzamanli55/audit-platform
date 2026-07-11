@@ -1,9 +1,9 @@
 "use client";
 
-import type { EngagementWorkspaceSection } from "@/lib/engagement/engagement-workspace-display";
-import { WorkspaceSidebar, type WorkspaceNavItem } from "@/components/workspace";
+import type { EngagementWorkspaceNavItem } from "@/lib/engagement/engagement-workspace-display";
+import { WorkspaceSidebar } from "@/components/workspace";
 
-export type EngagementWorkspaceNavItem = WorkspaceNavItem<EngagementWorkspaceSection>;
+export type { EngagementWorkspaceNavItem };
 
 type EngagementWorkspaceSidebarProps = {
   items: EngagementWorkspaceNavItem[];

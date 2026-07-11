@@ -1,10 +1,12 @@
 import type { PlanningStatus } from "@/types/planning";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { PlanningWorkspaceView, PlanningWorkspaceSection } from "@/lib/planning/planning-workspace-view";
-import type { PlanningWorkspaceNavGroup, PlanningWorkspaceNavItem } from "@/components/planning/workspace/planning-workspace-sidebar";
+import type { WorkspaceNavGroup, WorkspaceNavItem } from "@/lib/workspace/workspace-nav";
 import { PLANNING_ACTIVITY_ACTIONS } from "@/constants/planning";
 import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
 
+export type PlanningWorkspaceNavItem = WorkspaceNavItem<PlanningWorkspaceSection>;
+export type PlanningWorkspaceNavGroup = WorkspaceNavGroup<PlanningWorkspaceSection>;
 export type PlanningWorkspaceLabels = Dictionary["planning"]["workspace"];
 
 export function computePlanningProgress(

@@ -1,14 +1,12 @@
 "use client";
 
-import type { PlanningWorkspaceSection } from "@/lib/planning/planning-workspace-view";
-import {
-  WorkspaceSidebar,
-  type WorkspaceNavGroup,
-  type WorkspaceNavItem,
-} from "@/components/workspace";
+import type {
+  PlanningWorkspaceNavGroup,
+  PlanningWorkspaceNavItem,
+} from "@/lib/planning/planning-workspace-display";
+import { WorkspaceSidebar } from "@/components/workspace";
 
-export type PlanningWorkspaceNavItem = WorkspaceNavItem<PlanningWorkspaceSection>;
-export type PlanningWorkspaceNavGroup = WorkspaceNavGroup<PlanningWorkspaceSection>;
+export type { PlanningWorkspaceNavItem, PlanningWorkspaceNavGroup };
 
 type PlanningWorkspaceSidebarProps = {
   items: PlanningWorkspaceNavItem[];

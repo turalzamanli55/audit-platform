@@ -6161,7 +6161,15 @@
         },
         "empty": "No records yet",
         "errorGeneric": "Unable to complete the intelligence action.",
-        "suggestionNotice": "Suggestions appear when confidence is 75% or higher."
+        "suggestionNotice": "Suggestions appear when confidence is 75% or higher.",
+        "filters": {
+          "allErp": "All ERP",
+          "allStatus": "All status",
+          "source": "Source",
+          "target": "Target",
+          "importDictionaryJson": "Import dictionary JSON"
+        },
+        "adminRequired": "Administrator permission required."
       }
     }
   },
@@ -6331,6 +6339,9 @@
         "archive": "Archive",
         "return": "Return",
         "returnNotes": "Return notes"
+      },
+      "filters": {
+        "allTypes": "All types"
       }
     }
   }

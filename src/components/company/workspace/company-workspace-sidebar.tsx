@@ -1,9 +1,9 @@
 "use client";
 
-import type { CompanyWorkspaceSection } from "@/lib/company/company-workspace-view";
-import { WorkspaceSidebar, type WorkspaceNavItem } from "@/components/workspace";
+import type { CompanyWorkspaceNavItem } from "@/lib/company/company-workspace-display";
+import { WorkspaceSidebar } from "@/components/workspace";
 
-export type CompanyWorkspaceNavItem = WorkspaceNavItem<CompanyWorkspaceSection>;
+export type { CompanyWorkspaceNavItem };
 
 type CompanyWorkspaceSidebarProps = {
   items: CompanyWorkspaceNavItem[];

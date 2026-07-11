@@ -3,19 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/ui/cn";
+import {
+  type WorkspaceNavGroup,
+  type WorkspaceNavItem,
+} from "@/lib/workspace/workspace-nav";
 import { workspaceTokens } from "./workspace-tokens";
 
-export type WorkspaceNavItem<T extends string = string> = {
-  id: T;
-  label: string;
-  href: string;
-};
-
-export type WorkspaceNavGroup<T extends string = string> = {
-  id: string;
-  label: string;
-  items: WorkspaceNavItem<T>[];
-};
+export type { WorkspaceNavItem, WorkspaceNavGroup };
 
 type WorkspaceSidebarProps<T extends string = string> = {
   items: WorkspaceNavItem<T>[];

@@ -24,7 +24,11 @@
     "reports": "Отчёты",
     "aiSuggestions": "AI-подсказки",
     "placeholder": "Живые метрики появятся в будущих спринтах",
-    "liveHint": "Актуальная метрика рабочего пространства"
+    "liveHint": "Актуальная метрика рабочего пространства",
+    "hintCompanies": "Активны в пространстве",
+    "hintEngagements": "Открытые задания",
+    "hintOpenTasks": "Требует вашего внимания",
+    "comingSoon": "Скоро"
   },
   "quickActions": {
     "title": "Быстрые действия",
@@ -52,7 +56,69 @@
       "planning.approved": "Планирование утверждено",
       "fieldwork.procedure.submitted": "Процедура отправлена",
       "risk_assessment.submitted": "Оценка рисков отправлена",
-      "risk_assessment.approved": "Оценка рисков утверждена"
+      "risk_assessment.approved": "Оценка рисков утверждена",
+      "company.settings.updated": "Company settings updated",
+      "company.archived": "Company archived",
+      "company.restored": "Company restored",
+      "engagement.status.changed": "Engagement status changed",
+      "engagement.archived": "Engagement archived",
+      "engagement.restored": "Engagement restored",
+      "planning.created": "Planning created",
+      "planning.updated": "Planning updated",
+      "planning.archived": "Planning archived",
+      "planning.restored": "Planning restored",
+      "planning.returned": "Planning returned",
+      "planning.revised": "Planning revised",
+      "fieldwork.created": "Fieldwork created",
+      "fieldwork.archived": "Fieldwork archived",
+      "fieldwork.restored": "Fieldwork restored",
+      "fieldwork.procedure.updated": "Procedure updated",
+      "fieldwork.procedure.returned": "Procedure returned",
+      "fieldwork.procedure.cleared": "Procedure cleared",
+      "fieldwork.finding.added": "Finding added",
+      "risk_assessment.created": "Risk assessment created",
+      "risk_assessment.risk_item.added": "Risk item added",
+      "risk_assessment": {
+        "created": "Оценка рисков создана",
+        "risk_item": {
+          "added": "Элемент риска добавлен"
+        }
+      },
+      "company": {
+        "settings": {
+          "updated": "Настройки компании обновлены"
+        },
+        "archived": "Компания архивирована",
+        "restored": "Компания восстановлена"
+      },
+      "engagement": {
+        "status": {
+          "changed": "Статус задания изменён"
+        },
+        "archived": "Задание архивировано",
+        "restored": "Задание восстановлено"
+      },
+      "planning": {
+        "created": "Планирование создано",
+        "updated": "Планирование обновлено",
+        "archived": "Планирование архивировано",
+        "restored": "Планирование восстановлено",
+        "returned": "Планирование возвращено",
+        "revised": "Планирование пересмотрено"
+      },
+      "fieldwork": {
+        "created": "Полевые работы созданы",
+        "archived": "Полевые работы архивированы",
+        "restored": "Полевые работы восстановлены",
+        "procedure": {
+          "updated": "Процедура обновлена",
+          "returned": "Процедура возвращена",
+          "cleared": "Процедура закрыта"
+        },
+        "finding": {
+          "added": "Замечание добавлено"
+        }
+      }
     },
     "descriptions": {
       "generic": "Записано в журнале аудита рабочего пространства",
@@ -89,20 +155,20 @@
     "reviewMyReviews": "{count} элементов проверки, назначенных вам",
     "reviewRecentActivity": "{count} недавних событий проверки",
     "reviewDraftPackages": "Завершить {count} черновых пакетов проверки",
-    "reviewPendingReviews": "Clear {count} pending review items",
-    "reviewOpenTasks": "Complete {count} open review tasks",
-    "completionPendingTasks": "Clear {count} pending completion items",
-    "completionOutstandingTasks": "Resolve {count} outstanding completion items",
-    "completionPendingApprovals": "Clear {count} pending completion approvals",
-    "completionRecentActivity": "{count} recent completion events",
-    "completionReturnedPackages": "Address {count} returned completion packages",
-    "completionMyTasks": "{count} completion items assigned to you",
-    "completionDraftPackages": "Complete {count} draft completion packages",
-    "completionOpenTasks": "Complete {count} open completion tasks",
-    "moduleFieldwork": "Fieldwork",
-    "moduleRisk": "Risk assessment",
-    "moduleMateriality": "Materiality",
-    "moduleReview": "Review",
+    "reviewPendingReviews": "Устраните {count} элементов, ожидающих проверки",
+    "reviewOpenTasks": "Выполните {count} открытых задач проверки",
+    "completionPendingTasks": "Устраните {count} элементов, ожидающих завершения",
+    "completionOutstandingTasks": "Устраните {count} нерешенных вопросов завершения",
+    "completionPendingApprovals": "Обработайте {count} ожидающих утверждений завершения",
+    "completionRecentActivity": "{count} недавних событий завершения",
+    "completionReturnedPackages": "Обработайте {count} возвращенных пакетов завершения",
+    "completionMyTasks": "{count} элементов завершения назначено вам",
+    "completionDraftPackages": "Завершите {count} черновых пакетов завершения",
+    "completionOpenTasks": "Выполните {count} открытых задач завершения",
+    "moduleFieldwork": "Аудиторские процедуры",
+    "moduleRisk": "Оценка рисков",
+    "moduleMateriality": "Существенность",
+    "moduleReview": "Проверка",
     "moduleCompletion": "Завершение",
     "reportingPendingReports": "Закрыть {count} ожидающих разделов отчёта",
     "reportingOutstandingTasks": "Решить {count} нерешённых разделов отчёта",
@@ -122,16 +188,16 @@
     "opinionDraftPackages": "Завершить {count} черновых пакетов мнениености",
     "opinionOpenTasks": "Завершить {count} открытых задач мнениености",
     "moduleOpinion": "мнениеность",
-    "financialStatementsPending": "Pending financial statements reviews",
-    "financialStatementsRecent": "Recent financial statements activity",
-    "financialStatementsWidgetTitle": "Financial statements pipeline",
-    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
-    "financialStatementsPendingApprovals": "Financial statements pending approvals",
-    "financialStatementsReturnedPackages": "Returned financial statements packages",
-    "financialStatementsMyTasks": "My financial statements tasks",
-    "financialStatementsDraftPackages": "Financial statements drafts",
-    "financialStatementsOpenTasks": "Open financial statements tasks",
-    "moduleFinancialStatements": "Financial statements"
+    "financialStatementsPending": "Ожидающие проверки финансовой отчетности",
+    "financialStatementsRecent": "Недавние действия с финансовой отчетностью",
+    "financialStatementsWidgetTitle": "Этапы подготовки финансовой отчетности",
+    "financialStatementsOutstandingTasks": "Невыполненные задачи по финансовой отчетности",
+    "financialStatementsPendingApprovals": "Финансовая отчетность, ожидающая утверждения",
+    "financialStatementsReturnedPackages": "Возвращенные пакеты финансовой отчетности",
+    "financialStatementsMyTasks": "Мои задачи по финансовой отчетности",
+    "financialStatementsDraftPackages": "Черновики финансовой отчетности",
+    "financialStatementsOpenTasks": "Открытые задачи по финансовой отчетности",
+    "moduleFinancialStatements": "Финансовая отчетность"
   },
   "ai": {
     "title": "AI-ассистент",
@@ -179,7 +245,8 @@
     "trendActive": "Активно в пространстве",
     "trendClear": "Нет ожиданий",
     "trendAttention": "Требует внимания",
-    "trendApproved": "{count} утверждено"
+    "trendApproved": "{count} утверждено",
+    "emptySummary": "Метрики рабочего пространства появятся по мере добавления компаний и заданий."
   },
   "pinned": {
     "title": "Закреплённое",
@@ -189,7 +256,8 @@
     "emptyRecent": "Открытые компании появятся здесь",
     "emptyFavorites": "Закрепите компании для быстрого доступа",
     "emptyEngagements": "Проекты появятся здесь",
-    "engagements": []
+    "engagements": [],
+    "allCompanies": "Компании"
   },
   "continueWorking": {
     "title": "Продолжить работу",
@@ -453,15 +521,15 @@
     "moduleEngagementOpinion": "мнениеность engagement",
     "attentionEngagementOpinionReturned": "{count} мнениеов engagement возвращены",
     "attentionEngagementOpinion": "{count} мнениеов engagement ожидают утверждения",
-    "financialStatementsPending": "Pending financial statements reviews",
-    "financialStatementsRecent": "Recent financial statements activity",
-    "financialStatementsWidgetTitle": "Financial statements pipeline",
-    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
-    "financialStatementsPendingApprovals": "Financial statements pending approvals",
-    "financialStatementsReturnedPackages": "Returned financial statements packages",
-    "financialStatementsMyTasks": "My financial statements tasks",
-    "financialStatementsDraftPackages": "Financial statements drafts",
-    "financialStatementsOpenTasks": "Open financial statements tasks",
-    "moduleFinancialStatements": "Financial statements"
+    "financialStatementsPending": "Ожидающие проверки финансовой отчетности",
+    "financialStatementsRecent": "Недавние действия с финансовой отчетностью",
+    "financialStatementsWidgetTitle": "Этапы подготовки финансовой отчетности",
+    "financialStatementsOutstandingTasks": "Невыполненные задачи по финансовой отчетности",
+    "financialStatementsPendingApprovals": "Финансовая отчетность, ожидающая утверждения",
+    "financialStatementsReturnedPackages": "Возвращенные пакеты финансовой отчетности",
+    "financialStatementsMyTasks": "Мои задачи по финансовой отчетности",
+    "financialStatementsDraftPackages": "Черновики финансовой отчетности",
+    "financialStatementsOpenTasks": "Открытые задачи по финансовой отчетности",
+    "moduleFinancialStatements": "Финансовая отчетность"
   }
 }

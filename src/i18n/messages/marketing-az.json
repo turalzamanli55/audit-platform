@@ -13,7 +13,8 @@
     "theme": "Tema",
     "language": "Dil",
     "themeLight": "İşıqlı",
-    "themeDark": "Qaranlıq"
+    "themeDark": "Qaranlıq",
+    "primaryNav": "Əsas naviqasiya"
   },
   "hero": {
     "eyebrow": "Müəssisə AI Audit Platforması",
@@ -21,54 +22,131 @@
     "subtitle": "IFRS hesabatı, iş sənədləri və maliyyə intellekti üçün premium iş mühiti — dəqiqlik tələb edən peşəkarlar üçün.",
     "primaryCta": "Pulsuz başla",
     "secondaryCta": "Demo tələb et",
-    "trust": ["IFRS-uyğun", "AI-first arxitektura", "Müəssisə təhlükəsizliyi"]
+    "trust": [
+      "IFRS-uyğun",
+      "AI-first arxitektura",
+      "Müəssisə təhlükəsizliyi"
+    ],
+    "trustAriaLabel": "Etibar göstəriciləri"
   },
   "overview": {
     "title": "Audit komandalarının ehtiyacı olan hər şey — bir sakit mühitdə",
     "description": "Sınaq balansından imzaya qədər platforma hər engagementə struktur, izlənə bilənlik və ağıllı dəstək gətirir.",
     "items": {
-      "aiAudit": { "title": "AI Audit", "description": "İnsan mühakiməsini mərkəzdə saxlayaraq nəzəriyyəni sürətləndirən ağıllı axınlar." },
-      "workingPapers": { "title": "İş sənədləri", "description": "Sübut bağlantıları, nəzarət qeydləri və aydın imza izləri ilə strukturlaşdırılmış sənədləşmə." },
-      "financialStatements": { "title": "Maliyyə hesabatları", "description": "Versiya nəzarəti və audit-ə hazır ixraclarla IFRS uyğun hesabat." },
-      "trialBalance": { "title": "Sınaq balansı", "description": "Müəssisələr və dövrlər üzrə inamla idxal, xəritələmə və uzlaşdırma." },
-      "automation": { "title": "Avtomatlaşdırma", "description": "Komandanızın məlumat daxil etmə əvəzinə mühakiməyə fokuslanması üçün təkrarlanan tapşırıqları azaldın." },
-      "compliance": { "title": "Uyğunluq", "description": "Tənzimləyici tələblər və peşəkar standartlar üçün daxili nəzarətlər." }
+      "aiAudit": {
+        "title": "AI Audit",
+        "description": "İnsan mühakiməsini mərkəzdə saxlayaraq nəzəriyyəni sürətləndirən ağıllı axınlar."
+      },
+      "workingPapers": {
+        "title": "İş sənədləri",
+        "description": "Sübut bağlantıları, nəzarət qeydləri və aydın imza izləri ilə strukturlaşdırılmış sənədləşmə."
+      },
+      "financialStatements": {
+        "title": "Maliyyə hesabatları",
+        "description": "Versiya nəzarəti və audit-ə hazır ixraclarla IFRS uyğun hesabat."
+      },
+      "trialBalance": {
+        "title": "Sınaq balansı",
+        "description": "Müəssisələr və dövrlər üzrə inamla idxal, xəritələmə və uzlaşdırma."
+      },
+      "automation": {
+        "title": "Avtomatlaşdırma",
+        "description": "Komandanızın məlumat daxil etmə əvəzinə mühakiməyə fokuslanması üçün təkrarlanan tapşırıqları azaldın."
+      },
+      "compliance": {
+        "title": "Uyğunluq",
+        "description": "Tənzimləyici tələblər və peşəkar standartlar üçün daxili nəzarətlər."
+      }
     }
   },
   "features": {
     "title": "Peşəkarların real işinə uyğun dizayn",
     "description": "Minimal interfeys. Maksimum aydınlıq. Hər detal yerini qazanır.",
     "items": [
-      { "title": "Varsayılan olaraq sakit", "description": "Səkkiz saatlıq nəzərət sessiyaları üçün geniş boşluq və təmkinli vizual." },
-      { "title": "Ani orientasiya", "description": "Harada olduğunuzu və nəyə diqqət lazım olduğunu həmişə bilin." },
-      { "title": "Klaviatura öncəliyi", "description": "Sürətli hərəkət edən komandalar üçün güclü naviqasiya və qısayollar." },
-      { "title": "Çoxdilli", "description": "Azərbaycan, İngilis, Rus və Türk dilləri üçün yerli dəstək." },
-      { "title": "Real vaxt əməkdaşlığı", "description": "Təşkilatlar, iş mühitləri və engagementlər üzrə paylaşılan kontekst." },
-      { "title": "Audit-ə hazır ixrac", "description": "Tənzimləyicilər və müştərilər üçün tam izlənə bilənlik." }
+      {
+        "title": "Varsayılan olaraq sakit",
+        "description": "Səkkiz saatlıq nəzərət sessiyaları üçün geniş boşluq və təmkinli vizual."
+      },
+      {
+        "title": "Ani orientasiya",
+        "description": "Harada olduğunuzu və nəyə diqqət lazım olduğunu həmişə bilin."
+      },
+      {
+        "title": "Klaviatura öncəliyi",
+        "description": "Sürətli hərəkət edən komandalar üçün güclü naviqasiya və qısayollar."
+      },
+      {
+        "title": "Çoxdilli",
+        "description": "Azərbaycan, İngilis, Rus və Türk dilləri üçün yerli dəstək."
+      },
+      {
+        "title": "Real vaxt əməkdaşlığı",
+        "description": "Təşkilatlar, iş mühitləri və engagementlər üzrə paylaşılan kontekst."
+      },
+      {
+        "title": "Audit-ə hazır ixrac",
+        "description": "Tənzimləyicilər və müştərilər üçün tam izlənə bilənlik."
+      }
     ]
   },
   "enterprise": {
     "title": "Müəssisə miqyası üçün qurulub",
     "description": "Tənzimlənən peşələr üçün tələb olunan idarəetmə, icazələr və audit izi ilə çoxkirayəli arxitektura.",
     "items": {
-      "organizations": { "title": "Təşkilatlar", "description": "Aydın sahiblik sərhədləri ilə firmalar və müştəri strukturları." },
-      "workspaces": { "title": "İş mühitləri", "description": "Komandalar, müştərilər və ya engagementlər üçün izolyasiya olunmuş mühitlər." },
-      "companies": { "title": "Şirkətlər", "description": "Tam identitet idarəetməsi ilə hüquqi subyektlər." },
-      "multiTenant": { "title": "Çoxkirayəli", "description": "İş mühiti əhatəli məlumat girişi ilə ciddi kirayəçi izolasiyası." },
-      "permissions": { "title": "İcazələr", "description": "Bacarıq əsaslı giriş — heç vaxt rol adı qısayolları." },
-      "auditTrail": { "title": "Audit izi", "description": "Hər mühüm əməliyyat kontekst və məsuliyyət ilə qeydə alınır." },
-      "versioning": { "title": "Versiyalaşdırma", "description": "Müdafiə olunan dəyişiklik idarəetməsi üçün optimistic locking." }
+      "organizations": {
+        "title": "Təşkilatlar",
+        "description": "Aydın sahiblik sərhədləri ilə firmalar və müştəri strukturları."
+      },
+      "workspaces": {
+        "title": "İş mühitləri",
+        "description": "Komandalar, müştərilər və ya engagementlər üçün izolyasiya olunmuş mühitlər."
+      },
+      "companies": {
+        "title": "Şirkətlər",
+        "description": "Tam identitet idarəetməsi ilə hüquqi subyektlər."
+      },
+      "multiTenant": {
+        "title": "Çoxkirayəli",
+        "description": "İş mühiti əhatəli məlumat girişi ilə ciddi kirayəçi izolasiyası."
+      },
+      "permissions": {
+        "title": "İcazələr",
+        "description": "Bacarıq əsaslı giriş — heç vaxt rol adı qısayolları."
+      },
+      "auditTrail": {
+        "title": "Audit izi",
+        "description": "Hər mühüm əməliyyat kontekst və məsuliyyət ilə qeydə alınır."
+      },
+      "versioning": {
+        "title": "Versiyalaşdırma",
+        "description": "Müdafiə olunan dəyişiklik idarəetməsi üçün optimistic locking."
+      }
     }
   },
   "security": {
     "title": "Müdafiə edə biləcəyiniz təhlükəsizlik",
     "description": "Sıfır etimad prinsipləri, şifrələmə və sətir səviyyəli təhlükəsizlik — ilk gündən tənzimlənən mühitlər üçün.",
     "items": {
-      "encryption": { "title": "Şifrələmə", "description": "Ötürülmə və saxlanma zamanı sənaye standartı kriptoqrafiya." },
-      "rls": { "title": "Sətir səviyyəli təhlükəsizlik", "description": "Verilənlər bazasında məcburi izolasiya." },
-      "auditLogs": { "title": "Audit jurnalları", "description": "Uyğunluq və forensik nəzər üçün dəyişməz hadisə qeydləri." },
-      "zeroTrust": { "title": "Sıfır etimad", "description": "Hər sorğunu yoxlayın. Varsayılan olaraq heç nəyə etibar etməyin." },
-      "compliance": { "title": "Uyğunluq", "description": "Peşəkar və tənzimləyici gözləntilərlə uyğun arxitektura." }
+      "encryption": {
+        "title": "Şifrələmə",
+        "description": "Ötürülmə və saxlanma zamanı sənaye standartı kriptoqrafiya."
+      },
+      "rls": {
+        "title": "Sətir səviyyəli təhlükəsizlik",
+        "description": "Verilənlər bazasında məcburi izolasiya."
+      },
+      "auditLogs": {
+        "title": "Audit jurnalları",
+        "description": "Uyğunluq və forensik nəzər üçün dəyişməz hadisə qeydləri."
+      },
+      "zeroTrust": {
+        "title": "Sıfır etimad",
+        "description": "Hər sorğunu yoxlayın. Varsayılan olaraq heç nəyə etibar etməyin."
+      },
+      "compliance": {
+        "title": "Uyğunluq",
+        "description": "Peşəkar və tənzimləyici gözləntilərlə uyğun arxitektura."
+      }
     }
   },
   "ai": {
@@ -76,12 +154,30 @@
     "title": "Peşəkar mühakiməyə hörmət edən AI",
     "description": "Auditorlar üçün ağıllı köməkçi — ekspertizanın əvəzinə, onun sürətləndiricisi.",
     "items": {
-      "assistant": { "title": "AI Köməkçi", "description": "Engagementlər, iş sənədləri və maliyyə məlumatları üzrə kontekstə həssas kömək." },
-      "naturalLanguage": { "title": "Təbii dildə audit", "description": "Sadə dildə sual verin, strukturlaşdırılmış cavablar alın." },
-      "ifrs": { "title": "IFRS dəstəyi", "description": "Beynəlxalq standartlara uyğun rəhbərlik — həmişə insan imzası ilə." },
-      "risk": { "title": "Risk aşkarlanması", "description": "Anomaliyaları və peşəkar şübhə tələb edən sahələri üzə çıxarın." },
-      "analysis": { "title": "Maliyyə analizi", "description": "Sınaq balansı, hesabatlar və açıqlamalar üzrə ağıllı anlayışlar." },
-      "reports": { "title": "Hesabat yaradılması", "description": "Nəzərdən keçirib təsdiq etdiyiniz peşəkar layihələr." }
+      "assistant": {
+        "title": "AI Köməkçi",
+        "description": "Engagementlər, iş sənədləri və maliyyə məlumatları üzrə kontekstə həssas kömək."
+      },
+      "naturalLanguage": {
+        "title": "Təbii dildə audit",
+        "description": "Sadə dildə sual verin, strukturlaşdırılmış cavablar alın."
+      },
+      "ifrs": {
+        "title": "IFRS dəstəyi",
+        "description": "Beynəlxalq standartlara uyğun rəhbərlik — həmişə insan imzası ilə."
+      },
+      "risk": {
+        "title": "Risk aşkarlanması",
+        "description": "Anomaliyaları və peşəkar şübhə tələb edən sahələri üzə çıxarın."
+      },
+      "analysis": {
+        "title": "Maliyyə analizi",
+        "description": "Sınaq balansı, hesabatlar və açıqlamalar üzrə ağıllı anlayışlar."
+      },
+      "reports": {
+        "title": "Hesabat yaradılması",
+        "description": "Nəzərdən keçirib təsdiq etdiyiniz peşəkar layihələr."
+      }
     }
   },
   "cta": {
@@ -100,6 +196,11 @@
     "copyright": "Bütün hüquqlar qorunur.",
     "socialTwitter": "Twitter",
     "socialLinkedIn": "LinkedIn",
-    "socialGitHub": "GitHub"
+    "socialGitHub": "GitHub",
+    "product": "Məhsul",
+    "overview": "İcmal",
+    "features": "Xüsusiyyətlər",
+    "legal": "Hüquqi",
+    "supportColumn": "Dəstək"
   }
 }

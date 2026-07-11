@@ -6,8 +6,8 @@ export { EngagementWorkspaceCookieSync } from "./engagement-workspace-cookie-syn
 export { EngagementWorkspaceHero, type EngagementWorkspaceHeroLabels } from "./engagement-workspace-hero";
 export {
   EngagementWorkspaceSidebar,
-  type EngagementWorkspaceNavItem,
 } from "./engagement-workspace-sidebar";
+export type { EngagementWorkspaceNavItem } from "@/lib/engagement/engagement-workspace-display";
 export {
   EngagementWorkspaceSummaryCards,
   type EngagementWorkspaceSummaryCard,
@@ -17,9 +17,10 @@ export {
   type EngagementWorkspaceMetadataItem,
 } from "./engagement-workspace-metadata-panel";
 export { EngagementWorkspaceSectionShell } from "./engagement-workspace-section-shell";
+export { EngagementPhaseDashboard } from "./engagement-phase-dashboard";
 export {
-  EngagementPhaseDashboard,
   buildEngagementPhaseCards,
   buildEngagementAttentionItems,
-} from "./engagement-phase-dashboard";
+  type EngagementPhaseCard,
+} from "@/lib/engagement/engagement-phase-display";
 export { EngagementWorkspaceError } from "./engagement-workspace-error";

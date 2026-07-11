@@ -18,7 +18,7 @@ import { resolveUserProfiles } from "@/lib/user/resolve-user-profiles";
 import {
   buildEngagementAttentionItems,
   buildEngagementPhaseCards,
-} from "@/components/engagement/workspace/engagement-phase-dashboard";
+} from "@/lib/engagement/engagement-phase-display";
 import type {
   EngagementActivityRow,
   EngagementCommandCenterData,
@@ -151,7 +151,7 @@ export async function loadEngagementCommandCenter(input: {
 
   const openFindings =
     review?.openFindingsCount ??
-    fieldwork?.findings.filter((f) => f.findingStatus === "open").length ??
+    fieldwork?.findings?.filter((f) => f.findingStatus === "open").length ??
     0;
 
   const moduleProgress = phaseCards.map((c) => c.progressPct);

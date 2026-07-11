@@ -24,7 +24,11 @@
     "reports": "Raporlar",
     "aiSuggestions": "AI önerileri",
     "placeholder": "Canlı metrikler gelecek sprintlerde",
-    "liveHint": "Canlı çalışma alanı metriği"
+    "liveHint": "Canlı çalışma alanı metriği",
+    "hintCompanies": "Çalışma alanında aktif",
+    "hintEngagements": "Açık işler",
+    "hintOpenTasks": "Dikkatinizi gerektiriyor",
+    "comingSoon": "Yakında"
   },
   "quickActions": {
     "title": "Hızlı eylemler",
@@ -52,7 +56,69 @@
       "planning.approved": "Planlama onaylandı",
       "fieldwork.procedure.submitted": "Prosedür gönderildi",
       "risk_assessment.submitted": "Risk değerlendirmesi gönderildi",
-      "risk_assessment.approved": "Risk değerlendirmesi onaylandı"
+      "risk_assessment.approved": "Risk değerlendirmesi onaylandı",
+      "company.settings.updated": "Company settings updated",
+      "company.archived": "Company archived",
+      "company.restored": "Company restored",
+      "engagement.status.changed": "Engagement status changed",
+      "engagement.archived": "Engagement archived",
+      "engagement.restored": "Engagement restored",
+      "planning.created": "Planning created",
+      "planning.updated": "Planning updated",
+      "planning.archived": "Planning archived",
+      "planning.restored": "Planning restored",
+      "planning.returned": "Planning returned",
+      "planning.revised": "Planning revised",
+      "fieldwork.created": "Fieldwork created",
+      "fieldwork.archived": "Fieldwork archived",
+      "fieldwork.restored": "Fieldwork restored",
+      "fieldwork.procedure.updated": "Procedure updated",
+      "fieldwork.procedure.returned": "Procedure returned",
+      "fieldwork.procedure.cleared": "Procedure cleared",
+      "fieldwork.finding.added": "Finding added",
+      "risk_assessment.created": "Risk assessment created",
+      "risk_assessment.risk_item.added": "Risk item added",
+      "risk_assessment": {
+        "created": "Risk değerlendirmesi oluşturuldu",
+        "risk_item": {
+          "added": "Risk kalemi eklendi"
+        }
+      },
+      "company": {
+        "settings": {
+          "updated": "Şirket ayarları güncellendi"
+        },
+        "archived": "Şirket arşivlendi",
+        "restored": "Şirket geri yüklendi"
+      },
+      "engagement": {
+        "status": {
+          "changed": "İş durumu değişti"
+        },
+        "archived": "İş arşivlendi",
+        "restored": "İş geri yüklendi"
+      },
+      "planning": {
+        "created": "Planlama oluşturuldu",
+        "updated": "Planlama güncellendi",
+        "archived": "Planlama arşivlendi",
+        "restored": "Planlama geri yüklendi",
+        "returned": "Planlama iade edildi",
+        "revised": "Planlama revize edildi"
+      },
+      "fieldwork": {
+        "created": "Saha çalışması oluşturuldu",
+        "archived": "Saha çalışması arşivlendi",
+        "restored": "Saha çalışması geri yüklendi",
+        "procedure": {
+          "updated": "Prosedür güncellendi",
+          "returned": "Prosedür iade edildi",
+          "cleared": "Prosedür temizlendi"
+        },
+        "finding": {
+          "added": "Bulgu eklendi"
+        }
+      }
     },
     "descriptions": {
       "generic": "Çalışma alanı denetim izinde kaydedildi",
@@ -89,20 +155,20 @@
     "reviewMyReviews": "Size atanan {count} inceleme öğesi",
     "reviewRecentActivity": "{count} son inceleme etkinliği",
     "reviewDraftPackages": "{count} taslak inceleme paketini tamamla",
-    "reviewPendingReviews": "Clear {count} pending review items",
-    "reviewOpenTasks": "Complete {count} open review tasks",
-    "completionPendingTasks": "Clear {count} pending completion items",
-    "completionOutstandingTasks": "Resolve {count} outstanding completion items",
-    "completionPendingApprovals": "Clear {count} pending completion approvals",
-    "completionRecentActivity": "{count} recent completion events",
-    "completionReturnedPackages": "Address {count} returned completion packages",
-    "completionMyTasks": "{count} completion items assigned to you",
-    "completionDraftPackages": "Complete {count} draft completion packages",
-    "completionOpenTasks": "Complete {count} open completion tasks",
-    "moduleFieldwork": "Fieldwork",
-    "moduleRisk": "Risk assessment",
-    "moduleMateriality": "Materiality",
-    "moduleReview": "Review",
+    "reviewPendingReviews": "İnceleme bekleyen {count} öğeyi çözün",
+    "reviewOpenTasks": "{count} açık inceleme görevini tamamlayın",
+    "completionPendingTasks": "Tamamlanmayı bekleyen {count} öğeyi çözün",
+    "completionOutstandingTasks": "Bekleyen {count} tamamlama öğesini çözün",
+    "completionPendingApprovals": "Bekleyen {count} tamamlama onayını sonuçlandırın",
+    "completionRecentActivity": "{count} son tamamlama olayı",
+    "completionReturnedPackages": "İade edilen {count} tamamlama paketini ele alın",
+    "completionMyTasks": "Size atanmış {count} tamamlama öğesi",
+    "completionDraftPackages": "{count} taslak tamamlama paketini tamamlayın",
+    "completionOpenTasks": "{count} açık tamamlama görevini tamamlayın",
+    "moduleFieldwork": "Saha çalışması",
+    "moduleRisk": "Risk değerlendirmesi",
+    "moduleMateriality": "Önemlilik",
+    "moduleReview": "İnceleme",
     "moduleCompletion": "Tamamlama",
     "reportingPendingReports": "{count} bekleyen rapor bölümünü temizleyin",
     "reportingOutstandingTasks": "{count} açık rapor bölümünü çözün",
@@ -122,16 +188,16 @@
     "opinionDraftPackages": "{count} taslak görüşlama paketini tamamlayın",
     "opinionOpenTasks": "{count} açık görüşlama görevini tamamlayın",
     "moduleOpinion": "görüşlama",
-    "financialStatementsPending": "Pending financial statements reviews",
-    "financialStatementsRecent": "Recent financial statements activity",
-    "financialStatementsWidgetTitle": "Financial statements pipeline",
-    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
-    "financialStatementsPendingApprovals": "Financial statements pending approvals",
-    "financialStatementsReturnedPackages": "Returned financial statements packages",
-    "financialStatementsMyTasks": "My financial statements tasks",
-    "financialStatementsDraftPackages": "Financial statements drafts",
-    "financialStatementsOpenTasks": "Open financial statements tasks",
-    "moduleFinancialStatements": "Financial statements"
+    "financialStatementsPending": "Bekleyen mali tablo incelemeleri",
+    "financialStatementsRecent": "Son mali tablo etkinlikleri",
+    "financialStatementsWidgetTitle": "Mali tablo aşamaları",
+    "financialStatementsOutstandingTasks": "Bekleyen mali tablo görevleri",
+    "financialStatementsPendingApprovals": "Onay bekleyen mali tablolar",
+    "financialStatementsReturnedPackages": "İade edilen mali tablo paketleri",
+    "financialStatementsMyTasks": "Mali tablo görevlerim",
+    "financialStatementsDraftPackages": "Mali tablo taslakları",
+    "financialStatementsOpenTasks": "Açık mali tablo görevleri",
+    "moduleFinancialStatements": "Mali tablolar"
   },
   "ai": {
     "title": "AI asistan",
@@ -179,7 +245,8 @@
     "trendActive": "Çalışma alanında aktif",
     "trendClear": "Bekleyen yok",
     "trendAttention": "Dikkat gerekiyor",
-    "trendApproved": "{count} onaylandı"
+    "trendApproved": "{count} onaylandı",
+    "emptySummary": "Şirket ve işler ekledikçe çalışma alanı metrikleri görünecek."
   },
   "pinned": {
     "title": "Sabitlenen",
@@ -189,7 +256,8 @@
     "emptyRecent": "Açtığınız şirketler burada görünecek",
     "emptyFavorites": "Hızlı erişim için şirketleri sabitleyin",
     "emptyEngagements": "İşler burada görünecek",
-    "engagements": []
+    "engagements": [],
+    "allCompanies": "Şirketler"
   },
   "continueWorking": {
     "title": "Çalışmaya devam et",
@@ -369,7 +437,7 @@
     "hintOverdue": "Dönem sonu geçti",
     "modulePlanning": "Planlama",
     "moduleMateriality": "Önemlilik",
-    "moduleRisk": "Risk",
+    "moduleRisk": "Riskler",
     "moduleFieldwork": "Saha çalışması",
     "moduleEngagements": "Görevler",
     "attentionPlanning": "{count} planlama incelemesi bekliyor",
@@ -453,15 +521,15 @@
     "moduleEngagementOpinion": "Engagement görüşlaması",
     "attentionEngagementOpinionReturned": "{count} engagement görüşu iade edildi",
     "attentionEngagementOpinion": "{count} engagement görüşu onay bekliyor",
-    "financialStatementsPending": "Pending financial statements reviews",
-    "financialStatementsRecent": "Recent financial statements activity",
-    "financialStatementsWidgetTitle": "Financial statements pipeline",
-    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
-    "financialStatementsPendingApprovals": "Financial statements pending approvals",
-    "financialStatementsReturnedPackages": "Returned financial statements packages",
-    "financialStatementsMyTasks": "My financial statements tasks",
-    "financialStatementsDraftPackages": "Financial statements drafts",
-    "financialStatementsOpenTasks": "Open financial statements tasks",
-    "moduleFinancialStatements": "Financial statements"
+    "financialStatementsPending": "Bekleyen mali tablo incelemeleri",
+    "financialStatementsRecent": "Son mali tablo etkinlikleri",
+    "financialStatementsWidgetTitle": "Mali tablo aşamaları",
+    "financialStatementsOutstandingTasks": "Bekleyen mali tablo görevleri",
+    "financialStatementsPendingApprovals": "Onay bekleyen mali tablolar",
+    "financialStatementsReturnedPackages": "İade edilen mali tablo paketleri",
+    "financialStatementsMyTasks": "Mali tablo görevlerim",
+    "financialStatementsDraftPackages": "Mali tablo taslakları",
+    "financialStatementsOpenTasks": "Açık mali tablo görevleri",
+    "moduleFinancialStatements": "Mali tablolar"
   }
 }

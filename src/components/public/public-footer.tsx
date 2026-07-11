@@ -32,22 +32,22 @@ export function PublicFooter({ locale, labels }: PublicFooterProps) {
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             <div className="space-y-3">
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Product</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{labels.product}</p>
               <ul className="space-y-2 text-sm">
-                <li><a href="#overview" className="text-muted-foreground transition-colors hover:text-foreground">Overview</a></li>
-                <li><a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">Features</a></li>
+                <li><a href="#overview" className="text-muted-foreground transition-colors hover:text-foreground">{labels.overview}</a></li>
+                <li><a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">{labels.features}</a></li>
                 <li><a href="#ai" className="text-muted-foreground transition-colors hover:text-foreground">AI</a></li>
               </ul>
             </div>
             <div className="space-y-3">
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Legal</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{labels.legal}</p>
               <ul className="space-y-2 text-sm">
                 <li><Link href={`/${locale}/privacy`} className="text-muted-foreground transition-colors hover:text-foreground">{labels.privacy}</Link></li>
                 <li><Link href={`/${locale}/terms`} className="text-muted-foreground transition-colors hover:text-foreground">{labels.terms}</Link></li>
               </ul>
             </div>
             <div className="space-y-3">
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Support</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{labels.supportColumn}</p>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="text-muted-foreground transition-colors hover:text-foreground">{labels.documentation}</a></li>
                 <li><a href="mailto:support@audit.platform" className="text-muted-foreground transition-colors hover:text-foreground">{labels.support}</a></li>

@@ -3,11 +3,13 @@ import type {
   FieldworkWorkspaceSection,
   FieldworkWorkspaceView,
 } from "@/lib/fieldwork/fieldwork-workspace-view";
-import type { FieldworkWorkspaceNavGroup, FieldworkWorkspaceNavItem } from "@/components/fieldwork/workspace/fieldwork-workspace-sidebar";
+import type { WorkspaceNavGroup, WorkspaceNavItem } from "@/lib/workspace/workspace-nav";
 import { FIELDWORK_ACTIVITY_ACTIONS } from "@/constants/fieldwork";
 import { isProcedureComplete } from "@/lib/fieldwork/fieldwork-rules";
 import { formatOptionalText } from "@/lib/engagement/format-engagement-workspace";
 
+export type FieldworkWorkspaceNavItem = WorkspaceNavItem<FieldworkWorkspaceSection>;
+export type FieldworkWorkspaceNavGroup = WorkspaceNavGroup<FieldworkWorkspaceSection>;
 export type FieldworkWorkspaceLabels = Dictionary["fieldwork"]["workspace"];
 
 export function buildFieldworkWorkspaceNavItems(

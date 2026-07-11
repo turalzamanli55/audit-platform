@@ -33,9 +33,8 @@ export {
 } from "./workspace-hero";
 export {
   WorkspaceSidebar,
-  type WorkspaceNavItem,
-  type WorkspaceNavGroup,
 } from "./workspace-sidebar";
+export type { WorkspaceNavItem, WorkspaceNavGroup } from "@/lib/workspace/workspace-nav";
 export { WorkspaceChrome } from "./workspace-chrome";
 export {
   WorkspaceTable,

@@ -76,7 +76,7 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
           <span className="truncate text-base font-semibold tracking-tight">{siteConfig.name}</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label={labels.primaryNav}>
           {navItems.map((item) => (
             <a
               key={item.key}
@@ -141,7 +141,7 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
 
       {mobileOpen ? (
         <div className="border-t border-border/60 bg-background/95 px-4 py-5 backdrop-blur-xl md:hidden">
-          <nav className="space-y-1" aria-label="Primary">
+          <nav className="space-y-1" aria-label={labels.primaryNav}>
             {navItems.map((item) => (
               <a
                 key={item.key}

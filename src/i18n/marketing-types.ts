@@ -18,6 +18,7 @@ export type MarketingNavLabels = {
   language: string;
   themeLight: string;
   themeDark: string;
+  primaryNav: string;
 };
 
 export type MarketingLabels = {
@@ -29,6 +30,7 @@ export type MarketingLabels = {
     primaryCta: string;
     secondaryCta: string;
     trust: [string, string, string];
+    trustAriaLabel: string;
   };
   overview: {
     title: string;
@@ -101,5 +103,10 @@ export type MarketingLabels = {
     socialTwitter: string;
     socialLinkedIn: string;
     socialGitHub: string;
+    product: string;
+    overview: string;
+    features: string;
+    legal: string;
+    supportColumn: string;
   };
 };

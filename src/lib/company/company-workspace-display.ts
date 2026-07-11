@@ -1,7 +1,7 @@
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { CompanyWorkspaceView } from "@/lib/company/company-workspace-view";
 import type { CompanyWorkspaceSection } from "@/lib/company/company-workspace-view";
-import type { CompanyWorkspaceNavItem } from "@/components/company/workspace/company-workspace-sidebar";
+import type { WorkspaceNavItem } from "@/lib/workspace/workspace-nav";
 import {
   formatDate,
   formatEntityTypeLabel,
@@ -11,6 +11,7 @@ import {
   formatOptionalText,
 } from "@/lib/company/format-company-workspace";
 
+export type CompanyWorkspaceNavItem = WorkspaceNavItem<CompanyWorkspaceSection>;
 export type CompanyWorkspaceLabels = Dictionary["companies"]["workspace"];
 
 export function buildCompanyWorkspaceNavItems(

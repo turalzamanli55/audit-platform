@@ -1,14 +1,12 @@
 "use client";
 
-import type { FieldworkWorkspaceSection } from "@/lib/fieldwork/fieldwork-workspace-view";
-import {
-  WorkspaceSidebar,
-  type WorkspaceNavGroup,
-  type WorkspaceNavItem,
-} from "@/components/workspace";
+import type {
+  FieldworkWorkspaceNavGroup,
+  FieldworkWorkspaceNavItem,
+} from "@/lib/fieldwork/fieldwork-workspace-display";
+import { WorkspaceSidebar } from "@/components/workspace";
 
-export type FieldworkWorkspaceNavItem = WorkspaceNavItem<FieldworkWorkspaceSection>;
-export type FieldworkWorkspaceNavGroup = WorkspaceNavGroup<FieldworkWorkspaceSection>;
+export type { FieldworkWorkspaceNavItem, FieldworkWorkspaceNavGroup };
 
 type FieldworkWorkspaceSidebarProps = {
   items: FieldworkWorkspaceNavItem[];

@@ -1,0 +1,3922 @@
+{
+  "Version": {
+    "az": "Versiya",
+    "ru": "Версия",
+    "tr": "Sürüm"
+  },
+  "Resolved items": {
+    "az": "Həll edilmiş maddələr",
+    "ru": "Решенные элементы",
+    "tr": "Çözülmüş öğeler"
+  },
+  "Outstanding sections": {
+    "az": "Həll edilməmiş bölmələr",
+    "ru": "Незавершенные разделы",
+    "tr": "Bekleyen bölümler"
+  },
+  "Package version": {
+    "az": "Paket versiyası",
+    "ru": "Версия пакета",
+    "tr": "Paket sürümü"
+  },
+  "Management letter": {
+    "az": "Rəhbərlik məktubu",
+    "ru": "Письмо руководству",
+    "tr": "Yönetim mektubu"
+  },
+  "Returned": {
+    "az": "Geri qaytarılıb",
+    "ru": "Возвращено",
+    "tr": "İade edildi"
+  },
+  "Versions": {
+    "az": "Versiyalar",
+    "ru": "Версии",
+    "tr": "Sürümler"
+  },
+  "Returned items": {
+    "az": "Geri qaytarılmış maddələr",
+    "ru": "Возвращенные элементы",
+    "tr": "İade edilen öğeler"
+  },
+  "Severity": {
+    "az": "Ciddilik",
+    "ru": "Серьезность",
+    "tr": "Şiddet"
+  },
+  "Reviewer assigned": {
+    "az": "Rəyçi təyin edildi",
+    "ru": "Рецензент назначен",
+    "tr": "İnceleyen atandı"
+  },
+  "Comment added": {
+    "az": "Şərh əlavə edildi",
+    "ru": "Комментарий добавлен",
+    "tr": "Yorum eklendi"
+  },
+  "Comment updated": {
+    "az": "Şərh yeniləndi",
+    "ru": "Комментарий обновлен",
+    "tr": "Yorum güncellendi"
+  },
+  "Comment archived": {
+    "az": "Şərh arxivləşdirildi",
+    "ru": "Комментарий заархивирован",
+    "tr": "Yorum arşivlendi"
+  },
+  "Comment restored": {
+    "az": "Şərh bərpa edildi",
+    "ru": "Комментарий восстановлен",
+    "tr": "Yorum geri yüklendi"
+  },
+  "Comment resolved": {
+    "az": "Şərh həll olundu",
+    "ru": "Комментарий решен",
+    "tr": "Yorum çözüldü"
+  },
+  "Comment reopened": {
+    "az": "Şərh yenidən açıldı",
+    "ru": "Комментарий открыт повторно",
+    "tr": "Yorum yeniden açıldı"
+  },
+  "Version created": {
+    "az": "Versiya yaradılmışdır",
+    "ru": "Версия создана",
+    "tr": "Sürüm oluşturuldu"
+  },
+  "Version restored": {
+    "az": "Versiya bərpa edildi",
+    "ru": "Версия восстановлена",
+    "tr": "Sürüm geri yüklendi"
+  },
+  "Resolved": {
+    "az": "Həll olundu",
+    "ru": "Решено",
+    "tr": "Çözüldü"
+  },
+  "Outstanding items": {
+    "az": "Həll edilməmiş maddələr",
+    "ru": "Нерешенные вопросы",
+    "tr": "Bekleyen öğeler"
+  },
+  "Draft": {
+    "az": "Qaralama",
+    "ru": "Черновик",
+    "tr": "Taslak"
+  },
+  "Summary": {
+    "az": "Xülasə",
+    "ru": "Краткое содержание",
+    "tr": "Özet"
+  },
+  "Financial statements": {
+    "az": "Maliyyə hesabatları",
+    "ru": "Финансовая отчетность",
+    "tr": "Mali tablolar"
+  },
+  "Open section reviews": {
+    "az": "Açıq bölmə yoxlamaları",
+    "ru": "Открытые проверки разделов",
+    "tr": "Açık bölüm incelemeleri"
+  },
+  "Last update": {
+    "az": "Son yeniləmə",
+    "ru": "Последнее обновление",
+    "tr": "Son güncelleme"
+  },
+  "Assigned reviewer": {
+    "az": "Təyin edilmiş rəyçi",
+    "ru": "Назначенный рецензент",
+    "tr": "Atanan incelemeci"
+  },
+  "Returned for revision": {
+    "az": "Təftiş üçün geri qaytarıldı",
+    "ru": "Вернулся на доработку",
+    "tr": "Revizyon için geri gönderildi"
+  },
+  "Resolved items will appear after clearance.": {
+    "az": "Həll edilmiş maddələr bağlandıqdan sonra burada görünəcək.",
+    "ru": "Устраненные вопросы появятся после их закрытия.",
+    "tr": "Çözümlenen öğeler kapatıldıktan sonra burada görünecektir."
+  },
+  "No versions": {
+    "az": "Versiya yoxdur",
+    "ru": "Нет версий",
+    "tr": "Sürüm yok"
+  },
+  "Medium": {
+    "az": "Orta",
+    "ru": "Середина",
+    "tr": "Orta"
+  },
+  "Critical": {
+    "az": "Tənqidi",
+    "ru": "Критический",
+    "tr": "Kritik"
+  },
+  "No resolved items": {
+    "az": "Həll edilmiş element yoxdur",
+    "ru": "Нет решенных вопросов",
+    "tr": "Çözülmüş öğe yok"
+  },
+  "Action": {
+    "az": "Fəaliyyət",
+    "ru": "Действие",
+    "tr": "Aksiyon"
+  },
+  "Date": {
+    "az": "Tarix",
+    "ru": "Дата",
+    "tr": "Tarih"
+  },
+  "Actions": {
+    "az": "Fəaliyyətlər",
+    "ru": "Действия",
+    "tr": "Eylemler"
+  },
+  "No recent activity": {
+    "az": "Son fəaliyyət yoxdur",
+    "ru": "Нет недавней активности",
+    "tr": "Yakın zamanda etkinlik yok"
+  },
+  "Pending": {
+    "az": "Gözlənir",
+    "ru": "В ожидании",
+    "tr": "Askıda olması"
+  },
+  "Open findings": {
+    "az": "Tapıntıları açın",
+    "ru": "Открытые выводы",
+    "tr": "Bulguları aç"
+  },
+  "Governance": {
+    "az": "İdarəetmə",
+    "ru": "Управление",
+    "tr": "Yönetişim"
+  },
+  "Priority": {
+    "az": "Prioritet",
+    "ru": "Приоритет",
+    "tr": "Öncelik"
+  },
+  "Due date": {
+    "az": "Son tarix",
+    "ru": "Срок оплаты",
+    "tr": "Bitiş tarihi"
+  },
+  "Created": {
+    "az": "yaradılmışdır",
+    "ru": "Созданный",
+    "tr": "Oluşturuldu"
+  },
+  "Resolved sections": {
+    "az": "Həll olunmuş bölmələr",
+    "ru": "Решенные разделы",
+    "tr": "Çözülmüş bölümler"
+  },
+  "Pending reviews": {
+    "az": "Gözlənilən rəylər",
+    "ru": "Ожидающие проверки",
+    "tr": "Bekleyen incelemeler"
+  },
+  "Requiring resolution": {
+    "az": "Qətnamə tələb edir",
+    "ru": "Требуется разрешение",
+    "tr": "Çözünürlük gerektiren"
+  },
+  "Submitted items awaiting review will appear here.": {
+    "az": "Nəzərdən keçirilməsini gözləyən göndərilmiş elementlər burada görünəcək.",
+    "ru": "Здесь появятся отправленные элементы, ожидающие рассмотрения.",
+    "tr": "İncelenmeyi bekleyen gönderilen öğeler burada görünecektir."
+  },
+  "Module": {
+    "az": "Modul",
+    "ru": "Модуль",
+    "tr": "Modül"
+  },
+  "Recent activity": {
+    "az": "Son fəaliyyət",
+    "ru": "Недавняя активность",
+    "tr": "Son etkinlik"
+  },
+  "Sections empty": {
+    "az": "Bölmələr boşdur",
+    "ru": "Разделы пусты",
+    "tr": "Bölümler boş"
+  },
+  "Executive summary": {
+    "az": "İcra xülasəsi",
+    "ru": "Управляющее резюме",
+    "tr": "Yönetici Özeti"
+  },
+  "Opinion type": {
+    "az": "Rəy növü",
+    "ru": "Тип мнения",
+    "tr": "Görüş türü"
+  },
+  "Key audit matters": {
+    "az": "Əsas audit məsələləri",
+    "ru": "Ключевые вопросы аудита",
+    "tr": "Kilit denetim konuları"
+  },
+  "Emphasis of matter": {
+    "az": "Maddənin vurğulanması",
+    "ru": "Акцент на материи",
+    "tr": "Maddenin vurgulanması"
+  },
+  "Other information": {
+    "az": "Digər məlumatlar",
+    "ru": "Другая информация",
+    "tr": "Diğer bilgiler"
+  },
+  "Responsibilities": {
+    "az": "Məsuliyyətlər",
+    "ru": "Обязанности",
+    "tr": "Sorumluluklar"
+  },
+  "Signature": {
+    "az": "İmza",
+    "ru": "Подпись",
+    "tr": "İmza"
+  },
+  "Overview": {
+    "az": "Ümumi baxış",
+    "ru": "Обзор",
+    "tr": "Genel Bakış"
+  },
+  "Open review points": {
+    "az": "Baxış nöqtələrini açın",
+    "ru": "Открытые точки обзора",
+    "tr": "İnceleme noktalarını aç"
+  },
+  "Planning": {
+    "az": "Planlaşdırma",
+    "ru": "Планирование",
+    "tr": "Planlama"
+  },
+  "Materiality": {
+    "az": "Maddilik",
+    "ru": "Существенность",
+    "tr": "Önemlilik"
+  },
+  "Fieldwork": {
+    "az": "Sahə işi",
+    "ru": "Аудиторские процедуры",
+    "tr": "Saha çalışması"
+  },
+  "Internal comment": {
+    "az": "Daxili şərh",
+    "ru": "Внутренний комментарий",
+    "tr": "Dahili yorum"
+  },
+  "Review queue": {
+    "az": "Baxış növbəsi",
+    "ru": "Очередь проверки",
+    "tr": "Sırayı incele"
+  },
+  "Reviewer notes": {
+    "az": "Rəyçi qeydləri",
+    "ru": "Примечания рецензента",
+    "tr": "İncelemeci notları"
+  },
+  "Pending items": {
+    "az": "Gözləyən elementlər",
+    "ru": "Ожидающие элементы",
+    "tr": "Bekleyen öğeler"
+  },
+  "{count} pending review": {
+    "az": "{count} baxışı gözləyir",
+    "ru": "{count} ожидает рассмотрения",
+    "tr": "{count} incelenmeyi bekliyor"
+  },
+  "Draft through approved — current step highlighted.": {
+    "az": "Təsdiq edilmiş layihə — cari addım vurğulanıb.",
+    "ru": "Черновик одобрен — текущий этап выделен.",
+    "tr": "Onaylanan taslağa kadar — mevcut adım vurgulanmıştır."
+  },
+  "Items returned for revision with documented notes.": {
+    "az": "Sənədləşdirilmiş qeydlərlə yenidən baxılmaq üçün qaytarılan maddələr.",
+    "ru": "Элементы, возвращенные на доработку, с документированными примечаниями.",
+    "tr": "Belgelenen notlarla birlikte revizyon için iade edilen öğeler."
+  },
+  "Items cleared or closed with documented resolution.": {
+    "az": "Sənədləşdirilmiş həll əsasında aradan qaldırılmış və ya bağlanmış maddələr.",
+    "ru": "Вопросы, устраненные или закрытые с документированным решением.",
+    "tr": "Belgelenmiş çözümle giderilen veya kapatılan öğeler."
+  },
+  "Submissions, returns, approvals, and version updates.": {
+    "az": "Təqdimatlar, geri qaytarmalar, təsdiqlər və versiya yeniləmələri.",
+    "ru": "Отправки, возвраты, утверждения и обновления версий.",
+    "tr": "Gönderimler, iadeler, onaylar ve sürüm güncellemeleri."
+  },
+  "Package version snapshots and change summaries.": {
+    "az": "Paket versiyası snapshots və dəyişiklik xülasəsi.",
+    "ru": "Снимки версий пакетов и сводки изменений.",
+    "tr": "Paket sürümü anlık görüntüleri ve değişiklik özetleri."
+  },
+  "View full history": {
+    "az": "Tam tarixçəyə baxın",
+    "ru": "Посмотреть полную историю",
+    "tr": "Tüm geçmişi görüntüle"
+  },
+  "View all comments": {
+    "az": "Bütün şərhlərə baxın",
+    "ru": "Посмотреть все комментарии",
+    "tr": "Tüm yorumları görüntüle"
+  },
+  "Version snapshot created": {
+    "az": "Versiya snapshot yaradıldı",
+    "ru": "Снимок версии создан.",
+    "tr": "Sürüm anlık görüntüsü oluşturuldu"
+  },
+  "Title": {
+    "az": "Başlıq",
+    "ru": "Заголовок",
+    "tr": "Başlık"
+  },
+  "Not set": {
+    "az": "Qurulmayıb",
+    "ru": "Не установлено",
+    "tr": "Ayarlanmadı"
+  },
+  "Approval status": {
+    "az": "Təsdiq statusu",
+    "ru": "Статус одобрения",
+    "tr": "Onay durumu"
+  },
+  "Workflow status": {
+    "az": "İş axını vəziyyəti",
+    "ru": "Статус рабочего процесса",
+    "tr": "İş akışı durumu"
+  },
+  "Awaiting sign-off": {
+    "az": "İmzalanmanı gözləyir",
+    "ru": "Ожидание подписания",
+    "tr": "İmza bekleniyor"
+  },
+  "Cleared or closed": {
+    "az": "Təmizlənmiş və ya bağlanmışdır",
+    "ru": "Очищено или закрыто",
+    "tr": "Temizlendi veya kapatıldı"
+  },
+  "Approval state": {
+    "az": "Təsdiq vəziyyəti",
+    "ru": "Статус утверждения",
+    "tr": "Onay durumu"
+  },
+  "Incomplete documentation": {
+    "az": "Natamam sənədlər",
+    "ru": "Неполная документация",
+    "tr": "Eksik belgeler"
+  },
+  "Most recent change": {
+    "az": "Ən son dəyişiklik",
+    "ru": "Самое последнее изменение",
+    "tr": "En son değişiklik"
+  },
+  "Not assigned": {
+    "az": "Təyin olunmayıb",
+    "ru": "Не назначено",
+    "tr": "Atanmadı"
+  },
+  "Package returned with review notes.": {
+    "az": "Paket yoxlama qeydləri ilə geri qaytarılıb.",
+    "ru": "Пакет возвращен с замечаниями по результатам проверки.",
+    "tr": "Paket inceleme notlarıyla iade edildi."
+  },
+  "Submitted for review": {
+    "az": "Nəzərdən keçirilməsi üçün təqdim edilmişdir",
+    "ru": "Отправлено на рассмотрение",
+    "tr": "İnceleme için gönderildi"
+  },
+  "Package submitted to engagement reviewer.": {
+    "az": "Paket tapşırığı nəzərdən keçirən şəxsə təqdim edildi.",
+    "ru": "Пакет отправлен проверяющему по заданию.",
+    "tr": "Paket, sözleşme incelemecisine gönderildi."
+  },
+  "No returned items": {
+    "az": "Qaytarılan maddələr yoxdur",
+    "ru": "Нет возвращенных элементов",
+    "tr": "İade edilen öğe yok"
+  },
+  "Returned items will appear when review notes require revision.": {
+    "az": "Yoxlama qeydləri düzəliş tələb etdikdə geri qaytarılmış maddələr burada görünəcək.",
+    "ru": "Возвращенные элементы появятся, если замечания по проверке требуют доработки.",
+    "tr": "İnceleme notları revizyon gerektirdiğinde iade edilen öğeler burada görünecektir."
+  },
+  "Workflow events and versions will appear here.": {
+    "az": "İş axını hadisələri və versiyaları burada görünəcək.",
+    "ru": "Здесь будут отображаться события и версии рабочего процесса.",
+    "tr": "İş akışı etkinlikleri ve versiyonları burada görünecektir."
+  },
+  "Version snapshots appear when the package is revised.": {
+    "az": "Paketə yenidən baxıldıqda versiya anlıq görüntüləri görünür.",
+    "ru": "Снимки версий появляются при изменении пакета.",
+    "tr": "Paket revize edildiğinde sürüm anlık görüntüleri görünür."
+  },
+  "Administration": {
+    "az": "İdarəetmə",
+    "ru": "Администрация",
+    "tr": "Yönetim"
+  },
+  "Describe what must be revised": {
+    "az": "Nəyə yenidən baxılmalı olduğunu təsvir edin",
+    "ru": "Опишите, что необходимо пересмотреть",
+    "tr": "Neyin revize edilmesi gerektiğini açıklayın"
+  },
+  "Assign": {
+    "az": "Təyin et",
+    "ru": "Назначать",
+    "tr": "Atamak"
+  },
+  "Return item": {
+    "az": "Elementi qaytarın",
+    "ru": "Вернуть элемент",
+    "tr": "Öğeyi iade et"
+  },
+  "Approve item": {
+    "az": "Elementi təsdiqləyin",
+    "ru": "Утвердить элемент",
+    "tr": "Öğeyi onayla"
+  },
+  "Reopen item": {
+    "az": "Elementi yenidən açın",
+    "ru": "Открыть элемент повторно",
+    "tr": "Öğeyi yeniden aç"
+  },
+  "Informational": {
+    "az": "Məlumat",
+    "ru": "Информационный",
+    "tr": "Bilgilendirici"
+  },
+  "Add a note or comment": {
+    "az": "Qeyd və ya şərh əlavə edin",
+    "ru": "Добавить заметку или комментарий",
+    "tr": "Not veya yorum ekleyin"
+  },
+  "Edit": {
+    "az": "Redaktə et",
+    "ru": "Редактировать",
+    "tr": "Düzenlemek"
+  },
+  "Save": {
+    "az": "Saxla",
+    "ru": "Сохранять",
+    "tr": "Kaydetmek"
+  },
+  "Open": {
+    "az": "Açıq",
+    "ru": "Открыть",
+    "tr": "Açık"
+  },
+  "Reply": {
+    "az": "Cavab verin",
+    "ru": "Отвечать",
+    "tr": "Cevap vermek"
+  },
+  "Attachments": {
+    "az": "Qoşmalar",
+    "ru": "Вложения",
+    "tr": "Ekler"
+  },
+  "Compare": {
+    "az": "Müqayisə et",
+    "ru": "Сравнивать",
+    "tr": "Karşılaştırmak"
+  },
+  "Version comparison": {
+    "az": "Versiya müqayisəsi",
+    "ru": "Сравнение версий",
+    "tr": "Sürüm karşılaştırması"
+  },
+  "No differences between selected versions.": {
+    "az": "Seçilmiş versiyalar arasında fərq yoxdur.",
+    "ru": "Никаких различий между выбранными версиями.",
+    "tr": "Seçilen sürümler arasında fark yok."
+  },
+  "Unable to restore version.": {
+    "az": "Versiyanı bərpa etmək mümkün deyil.",
+    "ru": "Невозможно восстановить версию.",
+    "tr": "Sürüm geri yüklenemiyor."
+  },
+  "Read-only access": {
+    "az": "Yalnız oxumaq üçün giriş",
+    "ru": "Доступ только для чтения",
+    "tr": "Salt okunur erişim"
+  },
+  "You can view this section but cannot make changes.": {
+    "az": "Bu bölməyə baxa bilərsiniz, lakin dəyişiklik edə bilməzsiniz.",
+    "ru": "Вы можете просматривать этот раздел, но не можете вносить изменения.",
+    "tr": "Bu bölümü görüntüleyebilirsiniz ancak değişiklik yapamazsınız."
+  },
+  "You do not have permission to perform this action.": {
+    "az": "Bu əməliyyatı yerinə yetirmək üçün icazəniz yoxdur.",
+    "ru": "У вас нет разрешения на выполнение этого действия.",
+    "tr": "Bu eylemi gerçekleştirme izniniz yok."
+  },
+  "Management letter draft status and review comments.": {
+    "az": "Rəhbərlik məktubunun layihəsi statusu və rəyləri nəzərdən keçirin.",
+    "ru": "Статус проекта письма руководству и комментарии к обзору.",
+    "tr": "Yönetim mektubu taslak durumu ve inceleme yorumları."
+  },
+  "IFRS notes": {
+    "az": "IFRS qeydləri",
+    "ru": "Примечания по МСФО",
+    "tr": "UFRS notları"
+  },
+  "Audit findings": {
+    "az": "Audit nəticələri",
+    "ru": "Выводы аудита",
+    "tr": "Denetim bulguları"
+  },
+  "Recommendations": {
+    "az": "Tövsiyələr",
+    "ru": "Рекомендации",
+    "tr": "Öneriler"
+  },
+  "Appendices": {
+    "az": "Əlavələr",
+    "ru": "Приложения",
+    "tr": "Ekler"
+  },
+  "Basis for opinion": {
+    "az": "Rəy üçün əsas",
+    "ru": "Основание для мнения",
+    "tr": "Görüşün temeli"
+  },
+  "Balance sheet": {
+    "az": "Balans hesabatı",
+    "ru": "Баланс",
+    "tr": "Bilanço"
+  },
+  "Income statement": {
+    "az": "Gəlir hesabatı",
+    "ru": "Отчет о прибылях и убытках",
+    "tr": "Gelir tablosu"
+  },
+  "Cash flow statement": {
+    "az": "Pul vəsaitlərinin hərəkəti haqqında hesabat",
+    "ru": "Отчет о движении денежных средств",
+    "tr": "Nakit akış tablosu"
+  },
+  "Changes in equity": {
+    "az": "Kapitalda dəyişikliklər",
+    "ru": "Изменения в капитале",
+    "tr": "Özsermayedeki değişiklikler"
+  },
+  "Notes and links": {
+    "az": "Qeydlər və bağlantılar",
+    "ru": "Примечания и ссылки",
+    "tr": "Notlar ve bağlantılar"
+  },
+  "Cross-references": {
+    "az": "Çarpaz istinadlar",
+    "ru": "Перекрестные ссылки",
+    "tr": "Çapraz referanslar"
+  },
+  "Currency": {
+    "az": "Valyuta",
+    "ru": "Валюта",
+    "tr": "Para birimi"
+  },
+  "Lifecycle stage": {
+    "az": "Həyat dövrü mərhələsi",
+    "ru": "Этап жизненного цикла",
+    "tr": "Yaşam döngüsü aşaması"
+  },
+  "Financial year": {
+    "az": "Maliyyə ili",
+    "ru": "Финансовый год",
+    "tr": "Mali yıl"
+  },
+  "Planned schedule": {
+    "az": "Planlaşdırılmış cədvəl",
+    "ru": "Планируемый график",
+    "tr": "Planlanan program"
+  },
+  "Team size": {
+    "az": "Komanda ölçüsü",
+    "ru": "Размер команды",
+    "tr": "Takım büyüklüğü"
+  },
+  "Resolved reviews": {
+    "az": "Tamamlanmış yoxlamalar",
+    "ru": "Завершенные проверки",
+    "tr": "Tamamlanan incelemeler"
+  },
+  "Package summary": {
+    "az": "Paket xülasəsi",
+    "ru": "Краткое описание пакета",
+    "tr": "Paket özeti"
+  },
+  "Approval workflow": {
+    "az": "Təsdiqləmə iş prosesi",
+    "ru": "Рабочий процесс утверждения",
+    "tr": "Onay iş akışı"
+  },
+  "Items submitted and awaiting reviewer action.": {
+    "az": "Təqdim edilmiş və rəyçinin hərəkətini gözləyir.",
+    "ru": "Элементы отправлены и ожидают решения рецензента.",
+    "tr": "Gönderilen ve incelemecinin eylemini bekleyen öğeler."
+  },
+  "Items cleared or returned with documented resolution.": {
+    "az": "Sənədləşdirilmiş həll əsasında bağlanmış və ya geri qaytarılmış maddələr.",
+    "ru": "Вопросы, закрытые или возвращенные с документированным решением.",
+    "tr": "Belgelenmiş çözümle kapatılan veya iade edilen öğeler."
+  },
+  "Version timeline": {
+    "az": "Versiya qrafiki",
+    "ru": "Хронология версий",
+    "tr": "Sürüm zaman çizelgesi"
+  },
+  "Source module": {
+    "az": "Mənbə modulu",
+    "ru": "Исходный модуль",
+    "tr": "Kaynak modülü"
+  },
+  "Item": {
+    "az": "Maddə",
+    "ru": "Элемент",
+    "tr": "Öğe"
+  },
+  "Partner note": {
+    "az": "Tərəfdaş qeydi",
+    "ru": "Примечание партнера",
+    "tr": "İş ortağı notu"
+  },
+  "Completion checklist": {
+    "az": "Tamamlama yoxlama siyahısı",
+    "ru": "Контрольный список завершения",
+    "tr": "Tamamlama kontrol listesi"
+  },
+  "Recent comments": {
+    "az": "Son şərhlər",
+    "ru": "Последние комментарии",
+    "tr": "Son yorumlar"
+  },
+  "Package approved for final sign-off.": {
+    "az": "Paket yekun imza üçün təsdiqləndi.",
+    "ru": "Пакет утвержден для окончательного утверждения.",
+    "tr": "Son imza için paket onaylandı."
+  },
+  "No management letter notes": {
+    "az": "Rəhbərlik məktubu qeydləri yoxdur",
+    "ru": "Никаких примечаний к письму руководства",
+    "tr": "Yönetim mektubu notu yok"
+  },
+  "Management letter notes appear during approval workflow.": {
+    "az": "Rəhbərlik məktubu qeydləri təsdiq iş prosesi zamanı görünür.",
+    "ru": "Примечания к письмам руководства появляются во время рабочего процесса утверждения.",
+    "tr": "Yönetim mektubu notları onay iş akışı sırasında görünür."
+  },
+  "Management letter status": {
+    "az": "İdarə məktubu statusu",
+    "ru": "Статус письма руководству",
+    "tr": "Yönetim mektubu durumu"
+  },
+  "Management letter draft, review, and issuance status.": {
+    "az": "İdarə məktubunun layihəsi, nəzərdən keçirilməsi və buraxılış statusu.",
+    "ru": "Проект письма руководству, статус его рассмотрения и выпуска.",
+    "tr": "Yönetim mektubu taslağı, inceleme ve verilme durumu."
+  },
+  "Letter draft status": {
+    "az": "Məktub layihəsi statusu",
+    "ru": "Статус черновика письма",
+    "tr": "Mektup taslağı durumu"
+  },
+  "Management letter not started": {
+    "az": "İdarə məktubu başlamadı",
+    "ru": "Письмо руководству не началось",
+    "tr": "Yönetim mektubu başlatılmadı"
+  },
+  "Management letter status will appear when initiated.": {
+    "az": "İdarə məktubu statusu işə salındıqda görünəcək.",
+    "ru": "Статус письма руководству появится при его инициировании.",
+    "tr": "Başlatıldığında yönetim mektubu durumu görünecektir."
+  },
+  "Latest": {
+    "az": "Ən son",
+    "ru": "Последний",
+    "tr": "En sonuncu"
+  },
+  "Actor": {
+    "az": "Aktyor",
+    "ru": "Актер",
+    "tr": "Aktör"
+  },
+  "All": {
+    "az": "Hamısı",
+    "ru": "Все",
+    "tr": "Tüm"
+  },
+  "Account code": {
+    "az": "Hesab kodu",
+    "ru": "Код счета",
+    "tr": "Hesap kodu"
+  },
+  "Search": {
+    "az": "Axtar",
+    "ru": "Поиск",
+    "tr": "Aramak"
+  },
+  "Accounts": {
+    "az": "Hesablar",
+    "ru": "Счета",
+    "tr": "Hesaplar"
+  },
+  "Audit opinion": {
+    "az": "Audit rəyi",
+    "ru": "Аудиторское заключение",
+    "tr": "Denetim görüşü"
+  },
+  "Open audit opinion": {
+    "az": "Açıq audit rəyi",
+    "ru": "Открытое аудиторское заключение",
+    "tr": "Açık denetim görüşü"
+  },
+  "Statement status": {
+    "az": "Bəyanat statusu",
+    "ru": "Статус заявления",
+    "tr": "Ekstre durumu"
+  },
+  "Partner and manager review comments and clearance notes.": {
+    "az": "Tərəfdaş və menecer şərhləri və rəsmiləşdirmə qeydlərini nəzərdən keçirin.",
+    "ru": "Партнер и менеджер просматривают комментарии и заметки о разрешении.",
+    "tr": "Ortak ve yönetici yorumları ve izin notlarını inceler."
+  },
+  "Open matters requiring resolution before report issuance.": {
+    "az": "Hesabat verilməzdən əvvəl həllini tələb edən məsələləri açın.",
+    "ru": "Открытые вопросы, требующие решения до публикации отчета.",
+    "tr": "Raporun yayınlanmasından önce çözülmesi gereken açık konular."
+  },
+  "Checklist empty": {
+    "az": "Yoxlama siyahısı boş",
+    "ru": "Контрольный список пуст",
+    "tr": "Kontrol listesi boş"
+  },
+  "Final analytics": {
+    "az": "Yekun analitika",
+    "ru": "Итоговая аналитика",
+    "tr": "Nihai analiz"
+  },
+  "Representation letter": {
+    "az": "Nümayəndəlik məktubu",
+    "ru": "Представительское письмо",
+    "tr": "Temsil mektubu"
+  },
+  "Subsequent events": {
+    "az": "Sonrakı hadisələr",
+    "ru": "Последующие события",
+    "tr": "Sonraki olaylar"
+  },
+  "Completion package created": {
+    "az": "Tamamlama paketi yaradıldı",
+    "ru": "Пакет завершения создан.",
+    "tr": "Tamamlama paketi oluşturuldu"
+  },
+  "Completion package updated": {
+    "az": "Tamamlama paketi yeniləndi",
+    "ru": "Пакет завершения обновлен",
+    "tr": "Tamamlama paketi güncellendi"
+  },
+  "Completion package archived": {
+    "az": "Tamamlama paketi arxivləşdirildi",
+    "ru": "Комплект поставки заархивирован",
+    "tr": "Tamamlama paketi arşivlendi"
+  },
+  "Completion package restored": {
+    "az": "Tamamlama paketi bərpa edildi",
+    "ru": "Комплектация восстановлена",
+    "tr": "Tamamlama paketi geri yüklendi"
+  },
+  "Completion package submitted": {
+    "az": "Tamamlama paketi təqdim edildi",
+    "ru": "Пакет завершения отправлен",
+    "tr": "Tamamlama paketi gönderildi"
+  },
+  "Completion package returned": {
+    "az": "Tamamlama paketi qaytarıldı",
+    "ru": "Пакет завершения возвращен",
+    "tr": "Tamamlama paketi iade edildi"
+  },
+  "Completion package approved": {
+    "az": "Tamamlama paketi təsdiq edildi",
+    "ru": "Пакет завершения утвержден",
+    "tr": "Tamamlama paketi onaylandı"
+  },
+  "Completion item synced": {
+    "az": "Tamamlama elementi sinxronlaşdırıldı",
+    "ru": "Завершенный элемент синхронизирован.",
+    "tr": "Tamamlama öğesi senkronize edildi"
+  },
+  "Completion item resolved": {
+    "az": "Tamamlama elementi həll edildi",
+    "ru": "Элемент завершения решен",
+    "tr": "Tamamlama öğesi çözüldü"
+  },
+  "Completion item returned": {
+    "az": "Tamamlama elementi qaytarıldı",
+    "ru": "Элемент завершения возвращен",
+    "tr": "Tamamlama öğesi geri döndü"
+  },
+  "Completion item reopened": {
+    "az": "Tamamlama elementi yenidən açıldı",
+    "ru": "Завершенный элемент снова открыт",
+    "tr": "Tamamlama öğesi yeniden açıldı"
+  },
+  "Completion item updated": {
+    "az": "Tamamlama elementi yeniləndi",
+    "ru": "Элемент завершения обновлен.",
+    "tr": "Tamamlama öğesi güncellendi"
+  },
+  "Sections preview": {
+    "az": "Bölmələrə baxış",
+    "ru": "Предварительный просмотр разделов",
+    "tr": "Bölüm önizlemesi"
+  },
+  "No outstanding sections": {
+    "az": "Həll edilməmiş bölmə yoxdur",
+    "ru": "Незавершенных разделов нет",
+    "tr": "Bekleyen bölüm yok"
+  },
+  "Outstanding sections will appear when documented.": {
+    "az": "Həll edilməmiş bölmələr sənədləşdirildikdə burada görünəcək.",
+    "ru": "Незавершенные разделы появятся после документирования.",
+    "tr": "Bekleyen bölümler belgelendiğinde burada görünecektir."
+  },
+  "No open section reviews": {
+    "az": "Açıq bölmə rəyləri yoxdur",
+    "ru": "Нет отзывов в открытом разделе",
+    "tr": "Açık bölüm incelemesi yok"
+  },
+  "Identify and document key audit matters for communication in the auditor's report.": {
+    "az": "Auditor hesabatında bildiriləcək əsas audit məsələlərini müəyyənləşdirin və sənədləşdirin.",
+    "ru": "Определить и задокументировать ключевые вопросы аудита для их отражения в аудиторском заключении.",
+    "tr": "Denetçi raporunda bildirilecek kilit denetim konularını belirleyin ve belgeleyin."
+  },
+  "Document emphasis-of-matter paragraphs required in the auditor's report.": {
+    "az": "Auditor hesabatında tələb olunan mövzunun vurğulanması paraqraflarını sənədləşdirin.",
+    "ru": "Задокументируйте важные разделы, необходимые в аудиторском заключении.",
+    "tr": "Denetçi raporunda gerekli olan vurgulanan hususlar paragraflarını belgelendirin."
+  },
+  "Review and document other information included with the audited financial statements.": {
+    "az": "Audit olunmuş maliyyə hesabatlarına daxil edilmiş digər məlumatları nəzərdən keçirin və sənədləşdirin.",
+    "ru": "Просмотреть и задокументировать прочую информацию, включенную в проаудированную финансовую отчетность.",
+    "tr": "Denetlenen mali tablolardaki diğer bilgileri gözden geçirin ve belgeleyin."
+  },
+  "Document management and auditor responsibilities in the auditor's report.": {
+    "az": "Auditor hesabatında sənədlərin idarə edilməsi və auditorun məsuliyyətləri.",
+    "ru": "Управление документацией и обязанности аудитора в аудиторском заключении.",
+    "tr": "Denetçi raporunda belge yönetimi ve denetçi sorumlulukları."
+  },
+  "Partner signature, date, and address for the auditor's report.": {
+    "az": "Tərəfdaşın imzası, auditor hesabatının tarixi və ünvanı.",
+    "ru": "Подпись партнера, дата и адрес аудиторского заключения.",
+    "tr": "Denetçi raporunun ortağının imzası, tarihi ve adresi."
+  },
+  "Uploaded": {
+    "az": "Yükləndi",
+    "ru": "Загружено",
+    "tr": "Yüklendi"
+  },
+  "Mapped": {
+    "az": "Xəritələnmiş",
+    "ru": "Нанесено на карту",
+    "tr": "Haritalandı"
+  },
+  "Validated": {
+    "az": "Təsdiqlənmişdir",
+    "ru": "проверено",
+    "tr": "Doğrulandı"
+  },
+  "Confidence": {
+    "az": "Güvən",
+    "ru": "Уверенность",
+    "tr": "Kendinden emin"
+  },
+  "Rows": {
+    "az": "Sıralar",
+    "ru": "Строки",
+    "tr": "Satırlar"
+  },
+  "Debit": {
+    "az": "Debet",
+    "ru": "Дебет",
+    "tr": "Borç"
+  },
+  "Credit": {
+    "az": "Kredit",
+    "ru": "Кредит",
+    "tr": "Kredi"
+  },
+  "Balance": {
+    "az": "Balans",
+    "ru": "Баланс",
+    "tr": "Denge"
+  },
+  "Ignore": {
+    "az": "Məhəl qoyma",
+    "ru": "игнорировать",
+    "tr": "Görmezden gelmek"
+  },
+  "Adjustments": {
+    "az": "Düzəlişlər",
+    "ru": "Корректировки",
+    "tr": "Ayarlamalar"
+  },
+  "Open financial statements": {
+    "az": "Açıq maliyyə hesabatları",
+    "ru": "Открытая финансовая отчетность",
+    "tr": "Açık mali tablolar"
+  },
+  "Opinion status": {
+    "az": "Rəy statusu",
+    "ru": "Статус мнения",
+    "tr": "Görüş durumu"
+  },
+  "Opinion progress": {
+    "az": "Rəy tərəqqi",
+    "ru": "Прогресс мнений",
+    "tr": "Görüş ilerlemesi"
+  },
+  "EBITDA": {
+    "az": "EBITDA",
+    "ru": "EBITDA",
+    "tr": "EBITDA"
+  },
+  "Review workflow": {
+    "az": "İş prosesini nəzərdən keçirin",
+    "ru": "Обзор рабочего процесса",
+    "tr": "İş akışını gözden geçirin"
+  },
+  "Fieldwork required": {
+    "az": "Sahə işi tələb olunur",
+    "ru": "Требуется полевая работа",
+    "tr": "Saha çalışması gerekli"
+  },
+  "Review archived": {
+    "az": "Rəy arxivləşdirildi",
+    "ru": "Обзор заархивирован",
+    "tr": "İnceleme arşivlendi"
+  },
+  "Cross-module items awaiting partner or manager sign-off.": {
+    "az": "Partnyor və ya menecerin imzalanmasını gözləyən modullar arası elementlər.",
+    "ru": "Межмодульные элементы, ожидающие утверждения партнером или менеджером.",
+    "tr": "İş ortağının veya yöneticinin onayını bekleyen modüller arası öğeler."
+  },
+  "Misstatements and deficiencies requiring resolution.": {
+    "az": "Həll edilməsini tələb edən səhvlər və çatışmazlıqlar.",
+    "ru": "Искажения и недостатки, требующие устранения.",
+    "tr": "Çözülmesi gereken yanlış beyanlar ve eksiklikler."
+  },
+  "Recent changes": {
+    "az": "Son dəyişikliklər",
+    "ru": "Недавние изменения",
+    "tr": "Son değişiklikler"
+  },
+  "Owner": {
+    "az": "Sahibi",
+    "ru": "Владелец",
+    "tr": "Mal sahibi"
+  },
+  "Review queue empty": {
+    "az": "Nəzərdən keçirmə növbəsi boşdur",
+    "ru": "Очередь проверки пуста",
+    "tr": "İnceleme kuyruğu boş"
+  },
+  "No open findings": {
+    "az": "Açıq tapıntı yoxdur",
+    "ru": "Нет открытых выводов",
+    "tr": "Açık bulgu yok"
+  },
+  "No pending reviews": {
+    "az": "Gözlənilən rəy yoxdur",
+    "ru": "Нет ожидающих отзывов",
+    "tr": "Bekleyen inceleme yok"
+  },
+  "No resolved reviews": {
+    "az": "Həll edilmiş rəy yoxdur",
+    "ru": "Нет решенных отзывов",
+    "tr": "Çözümlenmiş inceleme yok"
+  },
+  "No reviewer notes": {
+    "az": "Rəyçi qeydləri yoxdur",
+    "ru": "Нет примечаний рецензента",
+    "tr": "İnceleme notu yok"
+  },
+  "Reviewer notes appear during approval workflow.": {
+    "az": "Rəyçi qeydləri təsdiq iş prosesi zamanı görünür.",
+    "ru": "Примечания рецензента появляются во время рабочего процесса утверждения.",
+    "tr": "Gözden geçirenin notları onay iş akışı sırasında görünür."
+  },
+  "Status, progress, and sign-off readiness indicators.": {
+    "az": "Status, irəliləyiş və imzalanmaya hazırlığın göstəriciləri.",
+    "ru": "Индикаторы статуса, прогресса и готовности к подписанию.",
+    "tr": "Durum, ilerleme ve oturum kapatmaya hazırlık göstergeleri."
+  },
+  "Review package created": {
+    "az": "Baxış paketi yaradıldı",
+    "ru": "Пакет проверки создан.",
+    "tr": "İnceleme paketi oluşturuldu"
+  },
+  "Review package updated": {
+    "az": "Baxış paketi yeniləndi",
+    "ru": "Пакет отзывов обновлен.",
+    "tr": "İnceleme paketi güncellendi"
+  },
+  "Review package archived": {
+    "az": "Baxış paketi arxivləşdirildi",
+    "ru": "Пакет проверки заархивирован",
+    "tr": "İnceleme paketi arşivlendi"
+  },
+  "Review package restored": {
+    "az": "Baxış paketi bərpa edildi",
+    "ru": "Пакет отзывов восстановлен.",
+    "tr": "İnceleme paketi geri yüklendi"
+  },
+  "Review package submitted": {
+    "az": "Baxış paketi təqdim edildi",
+    "ru": "Пакет проверки отправлен",
+    "tr": "İnceleme paketi gönderildi"
+  },
+  "Review package returned": {
+    "az": "Baxış paketi qaytarıldı",
+    "ru": "Пакет отзыва возвращен",
+    "tr": "İnceleme paketi iade edildi"
+  },
+  "Review package approved": {
+    "az": "Baxış paketi təsdiq edildi",
+    "ru": "Пакет проверки одобрен",
+    "tr": "İnceleme paketi onaylandı"
+  },
+  "Review item synced": {
+    "az": "Yoxlama maddəsi sinxronlaşdırıldı",
+    "ru": "Элемент проверки синхронизирован",
+    "tr": "İnceleme öğesi senkronize edildi"
+  },
+  "Review item resolved": {
+    "az": "Yoxlama maddəsi həll edildi",
+    "ru": "Вопрос проверки устранен",
+    "tr": "İnceleme öğesi çözümlendi"
+  },
+  "Review item returned": {
+    "az": "Yoxlama maddəsi geri qaytarıldı",
+    "ru": "Элемент проверки возвращен",
+    "tr": "İnceleme öğesi iade edildi"
+  },
+  "Review item reopened": {
+    "az": "Yoxlama maddəsi yenidən açıldı",
+    "ru": "Элемент проверки открыт повторно",
+    "tr": "İnceleme öğesi yeniden açıldı"
+  },
+  "Review item updated": {
+    "az": "Yoxlama maddəsi yeniləndi",
+    "ru": "Элемент проверки обновлен",
+    "tr": "İnceleme öğesi güncellendi"
+  },
+  "Completion workflow": {
+    "az": "Tamamlama iş axını",
+    "ru": "Рабочий процесс завершения",
+    "tr": "Tamamlama iş akışı"
+  },
+  "Completion archived": {
+    "az": "Tamamlama arxivləşdirildi",
+    "ru": "Завершение в архиве",
+    "tr": "Tamamlanma arşivlendi"
+  },
+  "No checklist items are pending review.": {
+    "az": "Heç bir yoxlama siyahısı elementi nəzərdən keçirilmir.",
+    "ru": "Ни один пункт контрольного списка не ожидает рассмотрения.",
+    "tr": "İncelenmeyi bekleyen hiçbir kontrol listesi öğesi yok."
+  },
+  "No outstanding items": {
+    "az": "Həll edilməmiş maddə yoxdur",
+    "ru": "Нерешенных вопросов нет",
+    "tr": "Bekleyen öğe yok"
+  },
+  "Final analytical procedures will appear when documented.": {
+    "az": "Yekun analitik prosedurlar sənədləşdirildikdə görünəcək.",
+    "ru": "Окончательные аналитические процедуры появятся после их документирования.",
+    "tr": "Nihai analitik prosedürler belgelendiğinde ortaya çıkacaktır."
+  },
+  "Representation letter status will appear when initiated.": {
+    "az": "Nümayəndəlik məktubu statusu işə salındıqda görünəcək.",
+    "ru": "Статус представительского письма появится после его инициирования.",
+    "tr": "Temsil mektubu durumu başlatıldığında görünecektir."
+  },
+  "Going concern documentation will appear when assessed.": {
+    "az": "Fasiləsizliyə dair sənədlər qiymətləndirildikdə görünəcək.",
+    "ru": "Документация о непрерывности деятельности появится после оценки.",
+    "tr": "İşletmenin sürekliliği belgeleri, değerlendirme sırasında görünecektir."
+  },
+  "Draft, review, and finalize the management representation letter.": {
+    "az": "Rəhbərliyin təqdimat məktubunu tərtib edin, nəzərdən keçirin və yekunlaşdırın.",
+    "ru": "Составьте, просмотрите и доработайте письмо-представление руководству.",
+    "tr": "Yönetim temsil mektubunun taslağını hazırlayın, inceleyin ve sonuçlandırın."
+  },
+  "Identify and evaluate events occurring after the reporting period.": {
+    "az": "Hesabat dövründən sonra baş verən hadisələri müəyyənləşdirin və qiymətləndirin.",
+    "ru": "Выявить и оценить события, произошедшие после отчетного периода.",
+    "tr": "Raporlama döneminden sonra meydana gelen olayları tanımlayın ve değerlendirin."
+  },
+  "Going concern": {
+    "az": "Gedən narahatlıq",
+    "ru": "Действующее предприятие",
+    "tr": "Devam eden endişe"
+  },
+  "Assess going concern assumptions and related disclosures.": {
+    "az": "Fasiləsizliyə dair fərziyyələri və əlaqədar açıqlamaları qiymətləndirin.",
+    "ru": "Оцените допущения о непрерывности деятельности и связанную с ними информацию.",
+    "tr": "İşletmenin sürekliliği varsayımlarını ve ilgili açıklamaları değerlendirin."
+  },
+  "Track management representation letter status and sign-off.": {
+    "az": "Rəhbərliyin təmsil məktubunun statusunu və imzalanmasını izləyin.",
+    "ru": "Отслеживайте статус письма-представления руководству и его подписание.",
+    "tr": "Yönetim beyan mektubu durumunu ve imzayı takip edin."
+  },
+  "Perform and document final analytical procedures at completion.": {
+    "az": "Tamamlandıqda yekun analitik prosedurları yerinə yetirin və sənədləşdirin.",
+    "ru": "Выполните и задокументируйте окончательные аналитические процедуры по завершении.",
+    "tr": "Tamamlandığında nihai analitik prosedürleri gerçekleştirin ve belgeleyin."
+  },
+  "No management letter content": {
+    "az": "İdarə məktubu məzmunu yoxdur",
+    "ru": "Нет содержания письма руководству",
+    "tr": "Yönetim mektubu içeriği yok"
+  },
+  "Management letter drafts and notes will appear here.": {
+    "az": "İdarə məktubu layihələri və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться черновики писем и примечания руководству.",
+    "tr": "Yönetim mektubu taslakları ve notları burada görünecektir."
+  },
+  "Add management letter note": {
+    "az": "İdarə məktubu qeydini əlavə edin",
+    "ru": "Добавить примечание к письму руководству",
+    "tr": "Yönetim mektubu notu ekle"
+  },
+  "Draft, review, and finalize the management letter for this engagement.": {
+    "az": "Bu tapşırıq üçün rəhbərlik məktubunu hazırlayın, nəzərdən keçirin və yekunlaşdırın.",
+    "ru": "Составьте, просмотрите и доработайте письмо руководству по данному соглашению.",
+    "tr": "Bu sözleşmeye ilişkin yönetim mektubunun taslağını hazırlayın, inceleyin ve sonuçlandırın."
+  },
+  "Document recommendations arising from the audit for management action.": {
+    "az": "İdarəetmə fəaliyyəti üçün auditdən irəli gələn tövsiyələri sənədləşdirin.",
+    "ru": "Документируйте рекомендации, вытекающие из аудита, для действий руководства.",
+    "tr": "Yönetim eylemi denetiminden kaynaklanan önerileri belgeleyin."
+  },
+  "Attach supporting appendices and supplementary report documentation.": {
+    "az": "Dəstəkləyici əlavələri və əlavə hesabat sənədlərini əlavə edin.",
+    "ru": "Прикрепите подтверждающие приложения и дополнительную документацию к отчету.",
+    "tr": "Destekleyici ekler ve ek rapor belgelerini ekleyin."
+  },
+  "Select and document the type of audit opinion to be issued.": {
+    "az": "Veriləcək audit rəyinin növünü seçin və sənədləşdirin.",
+    "ru": "Выберите и задокументируйте тип аудиторского заключения, которое будет выдано.",
+    "tr": "Yayınlanacak denetim görüşünün türünü seçin ve belgeleyin."
+  },
+  "Document the basis for the audit opinion in accordance with ISA 700.": {
+    "az": "BMS 700-ə uyğun olaraq audit rəyinin əsasını sənədləşdirin.",
+    "ru": "Документально оформить основание аудиторского заключения в соответствии с ISA 700.",
+    "tr": "Denetim görüşünün temelini ISA 700 uyarınca belgelendirin."
+  },
+  "No emphasis of matter content": {
+    "az": "Maddənin məzmununa vurğu yoxdur",
+    "ru": "Нет акцента на содержании материи",
+    "tr": "Konu içeriğine vurgu yok"
+  },
+  "Emphasis-of-matter paragraphs will appear here.": {
+    "az": "Burada vurğulanan paraqraflar görünəcək.",
+    "ru": "Здесь будут появляться важные абзацы.",
+    "tr": "Vurgulanan konuların paragrafları burada görünecektir."
+  },
+  "Opinion type selection and rationale will appear here.": {
+    "az": "Rəy növü seçimi və əsaslandırma burada görünəcək.",
+    "ru": "Здесь появится выбор типа мнения и его обоснование.",
+    "tr": "Görüş türü seçimi ve gerekçesi burada görünecektir."
+  },
+  "No key audit matters": {
+    "az": "Əsas audit məsələsi yoxdur",
+    "ru": "Никаких ключевых вопросов аудита",
+    "tr": "Kilit denetim konusu yok"
+  },
+  "Key audit matters will appear here once documented.": {
+    "az": "Əsas audit məsələləri sənədləşdirildikdən sonra burada görünəcək.",
+    "ru": "Ключевые вопросы аудита появятся здесь после их документирования.",
+    "tr": "Kilit denetim konuları belgelendikten sonra burada görünecektir."
+  },
+  "No other information content": {
+    "az": "Başqa məlumat məzmunu yoxdur",
+    "ru": "Никакого другого информационного содержания",
+    "tr": "Başka bilgi içeriği yok"
+  },
+  "Other information review notes will appear here.": {
+    "az": "Digər məlumatların nəzərdən keçirilməsi qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться примечания к просмотру другой информации.",
+    "tr": "Diğer bilgi inceleme notları burada görünecektir."
+  },
+  "No responsibilities content": {
+    "az": "Heç bir məsuliyyət məzmunu yoxdur",
+    "ru": "Содержание без обязательств",
+    "tr": "Sorumluluk içeriği yok"
+  },
+  "Responsibility paragraphs will appear here.": {
+    "az": "Burada məsuliyyət bəndləri görünəcək.",
+    "ru": "Здесь появятся пункты об ответственности.",
+    "tr": "Sorumluluk paragrafları burada görünecektir."
+  },
+  "No signature details": {
+    "az": "İmza detalları yoxdur",
+    "ru": "Нет данных подписи",
+    "tr": "İmza ayrıntısı yok"
+  },
+  "Signature block details will appear here.": {
+    "az": "İmza bloku təfərrüatları burada görünəcək.",
+    "ru": "Здесь появятся сведения о блоке подписи.",
+    "tr": "İmza bloğu ayrıntıları burada görünecektir."
+  },
+  "Prepared": {
+    "az": "Hazırlandı",
+    "ru": "Готовый",
+    "tr": "Tedarikli"
+  },
+  "Published": {
+    "az": "Nəşr edilmişdir",
+    "ru": "Опубликовано",
+    "tr": "Yayınlandı"
+  },
+  "Financial statements overview": {
+    "az": "Maliyyə hesabatlarına ümumi baxış",
+    "ru": "Обзор финансовой отчетности",
+    "tr": "Mali tablolara genel bakış"
+  },
+  "Opinion must be approved before financial statements can begin.": {
+    "az": "Maliyyə hesabatlarına başlamazdan əvvəl rəy təsdiqlənməlidir.",
+    "ru": "Мнение должно быть одобрено до начала составления финансовой отчетности.",
+    "tr": "Mali tabloların başlayabilmesi için görüşün onaylanması gerekir."
+  },
+  "Missing accounts": {
+    "az": "Çatışmayan hesablar",
+    "ru": "Отсутствующие аккаунты",
+    "tr": "Eksik hesaplar"
+  },
+  "Prepare and review the statement of financial position.": {
+    "az": "Maliyyə vəziyyəti haqqında hesabatı hazırlayın və nəzərdən keçirin.",
+    "ru": "Подготовьте и просмотрите отчет о финансовом положении.",
+    "tr": "Mali durum tablosunu hazırlayın ve inceleyin."
+  },
+  "Prepare and review the statement of profit or loss.": {
+    "az": "Mənfəət və ya zərər hesabatını hazırlayın və nəzərdən keçirin.",
+    "ru": "Подготовьте и просмотрите отчет о прибылях и убытках.",
+    "tr": "Kar veya zarar tablosunu hazırlayın ve inceleyin."
+  },
+  "Prepare and review the statement of cash flows.": {
+    "az": "Pul vəsaitlərinin hərəkəti haqqında hesabatı hazırlayın və nəzərdən keçirin.",
+    "ru": "Подготовьте и проверьте отчет о движении денежных средств.",
+    "tr": "Nakit akış tablosunun hazırlanması ve gözden geçirilmesi."
+  },
+  "Prepare and review the statement of changes in equity.": {
+    "az": "Kapitalda dəyişikliklər haqqında hesabatı hazırlayın və nəzərdən keçirin.",
+    "ru": "Подготовьте и просмотрите отчет об изменениях в собственном капитале.",
+    "tr": "Özsermaye değişim tablosunu hazırlayın ve inceleyin."
+  },
+  "Prepare notes and supporting statement links.": {
+    "az": "Qeydləri və dəstəkləyici bəyanat bağlantılarını hazırlayın.",
+    "ru": "Подготовьте примечания и ссылки на подтверждающие заявления.",
+    "tr": "Notları ve destekleyici bildirim bağlantılarını hazırlayın."
+  },
+  "Review cross-references across the financial statements.": {
+    "az": "Maliyyə hesabatlarında çarpaz istinadları nəzərdən keçirin.",
+    "ru": "Просмотрите перекрестные ссылки в финансовой отчетности.",
+    "tr": "Mali tablolardaki çapraz referansları inceleyin."
+  },
+  "Scanning": {
+    "az": "Skan olunur",
+    "ru": "Сканирование",
+    "tr": "Tarama"
+  },
+  "Mapping required": {
+    "az": "Xəritəçəkmə tələb olunur",
+    "ru": "Требуется сопоставление",
+    "tr": "Haritalama gerekli"
+  },
+  "Validating": {
+    "az": "Doğrulanır",
+    "ru": "Проверка",
+    "tr": "Doğrulanıyor"
+  },
+  "Staged": {
+    "az": "Səhnələşdirilmiş",
+    "ru": "Постановочный",
+    "tr": "Aşamalı"
+  },
+  "Failed": {
+    "az": "Uğursuz oldu",
+    "ru": "Неуспешный",
+    "tr": "Arızalı"
+  },
+  "Cancelled": {
+    "az": "Ləğv edildi",
+    "ru": "Отменено",
+    "tr": "İptal edildi"
+  },
+  "Superseded": {
+    "az": "Əvəz olundu",
+    "ru": "Заменено",
+    "tr": "Değiştirildi"
+  },
+  "Sage": {
+    "az": "Adaçayı",
+    "ru": "Мудрец",
+    "tr": "Adaçayı"
+  },
+  "Zoho Books": {
+    "az": "Zoho Books",
+    "ru": "Zoho Books",
+    "tr": "Zoho Books"
+  },
+  "Manual Excel": {
+    "az": "Əl ilə Excel",
+    "ru": "Ручной Excel",
+    "tr": "Manuel Excel"
+  },
+  "Unknown ERP": {
+    "az": "Naməlum ERP",
+    "ru": "Неизвестный ERP",
+    "tr": "Bilinmeyen ERP"
+  },
+  "Language": {
+    "az": "Dil",
+    "ru": "Язык",
+    "tr": "Dil"
+  },
+  "Canonical field": {
+    "az": "Kanonik sahə",
+    "ru": "Каноническое поле",
+    "tr": "Kanonik alan"
+  },
+  "Message": {
+    "az": "Mesaj",
+    "ru": "Сообщение",
+    "tr": "Mesaj"
+  },
+  "Department": {
+    "az": "şöbəsi",
+    "ru": "Отделение",
+    "tr": "Departman"
+  },
+  "Cost center": {
+    "az": "Xərc mərkəzi",
+    "ru": "МВЗ",
+    "tr": "Maliyet merkezi"
+  },
+  "Average confidence": {
+    "az": "Orta inam",
+    "ru": "Средняя достоверность",
+    "tr": "Ortalama güven"
+  },
+  "Average processing time": {
+    "az": "Orta emal müddəti",
+    "ru": "Среднее время обработки",
+    "tr": "Ortalama işlem süresi"
+  },
+  "Unknown headers": {
+    "az": "Naməlum başlıqlar",
+    "ru": "Неизвестные заголовки",
+    "tr": "Bilinmeyen başlıklar"
+  },
+  "Learning dictionary": {
+    "az": "Öyrənmə lüğəti",
+    "ru": "Учебный словарь",
+    "tr": "Sözlük öğrenme"
+  },
+  "Mapping library": {
+    "az": "Xəritəçəkmə kitabxanası",
+    "ru": "Библиотека картографирования",
+    "tr": "Haritalama kütüphanesi"
+  },
+  "Import health": {
+    "az": "Sağlamlığı idxal edin",
+    "ru": "Импортировать здоровье",
+    "tr": "Sağlığı içe aktar"
+  },
+  "Unknown words": {
+    "az": "Naməlum sözlər",
+    "ru": "Неизвестные слова",
+    "tr": "Bilinmeyen kelimeler"
+  },
+  "AI suggestions": {
+    "az": "AI təklifləri",
+    "ru": "Предложения ИИ",
+    "tr": "Yapay zeka önerileri"
+  },
+  "Learning timeline": {
+    "az": "Öyrənmə qrafiki",
+    "ru": "График обучения",
+    "tr": "Öğrenme zaman çizelgesi"
+  },
+  "Import history": {
+    "az": "İdxal tarixçəsi",
+    "ru": "История импорта",
+    "tr": "İçe aktarma geçmişi"
+  },
+  "Admin tools": {
+    "az": "Admin alətləri",
+    "ru": "Инструменты администратора",
+    "tr": "Yönetici araçları"
+  },
+  "Templates": {
+    "az": "Şablonlar",
+    "ru": "Шаблоны",
+    "tr": "Şablonlar"
+  },
+  "Admin": {
+    "az": "Administrator",
+    "ru": "Администратор",
+    "tr": "Yönetici"
+  },
+  "Warnings": {
+    "az": "Xəbərdarlıqlar",
+    "ru": "Предупреждения",
+    "tr": "Uyarılar"
+  },
+  "Type": {
+    "az": "Növ",
+    "ru": "Тип",
+    "tr": "Tip"
+  },
+  "Reclassifications": {
+    "az": "Yenidən təsnifatlar",
+    "ru": "Реклассификации",
+    "tr": "Yeniden sınıflandırmalar"
+  },
+  "Periods": {
+    "az": "Dövrlər",
+    "ru": "Периоды",
+    "tr": "Dönemler"
+  },
+  "Comparatives": {
+    "az": "Müqayisəlilər",
+    "ru": "Сравнительные сравнения",
+    "tr": "Karşılaştırmalar"
+  },
+  "Audit Platform": {
+    "az": "Audit Platforması",
+    "ru": "Аудиторская платформа",
+    "tr": "Denetim Platformu"
+  },
+  "Engagements": {
+    "az": "Nişanlar",
+    "ru": "Помолвки",
+    "tr": "Nişanlar"
+  },
+  "Region": {
+    "az": "Bölgə",
+    "ru": "Регион",
+    "tr": "Bölge"
+  },
+  "Audit opinion not started": {
+    "az": "Audit rəyi başlamadı",
+    "ru": "Аудиторское заключение не начато",
+    "tr": "Denetim görüşü başlatılmadı"
+  },
+  "Open the audit opinion workspace after reporting is approved.": {
+    "az": "Hesabat təsdiq edildikdən sonra audit rəyi iş yerini açın.",
+    "ru": "Откройте рабочую область аудиторского заключения после утверждения отчета.",
+    "tr": "Raporlama onaylandıktan sonra denetim görüşü çalışma alanını açın."
+  },
+  "Financial statements can begin after the opinion is approved.": {
+    "az": "Maliyyə hesabatları rəy təsdiq edildikdən sonra başlaya bilər.",
+    "ru": "Финансовая отчетность может начинаться после утверждения заключения.",
+    "tr": "Görüş onaylandıktan sonra mali tablolara başlanabilir."
+  },
+  "Audit opinion summary": {
+    "az": "Audit rəyinin xülasəsi",
+    "ru": "Краткое изложение аудиторского заключения",
+    "tr": "Denetim görüşü özeti"
+  },
+  "Engagement audit opinion status, outstanding sections, and sign-off readiness.": {
+    "az": "Tapşırıq üzrə audit rəyinin statusu, həll edilməmiş bölmələr və imzalanmaya hazırlıq.",
+    "ru": "Статус заключения аудита соглашения, невыполненные разделы и готовность к подписанию.",
+    "tr": "Görev denetimi görüş durumu, bekleyen bölümler ve imzaya hazır olma durumu."
+  },
+  "Financial statements summary": {
+    "az": "Maliyyə hesabatlarının xülasəsi",
+    "ru": "Сводная информация о финансовой отчетности",
+    "tr": "Mali tabloların özeti"
+  },
+  "Financial statements status, outstanding sections, and publication readiness.": {
+    "az": "Maliyyə hesabatlarının vəziyyəti, həll edilməmiş bölmələr və dərcə hazırlıq.",
+    "ru": "Состояние финансовой отчетности, невыполненные разделы и готовность публикации.",
+    "tr": "Mali tabloların durumu, bekleyen bölümler ve yayına hazır olma durumu."
+  },
+  "Statement progress": {
+    "az": "Bəyanatın gedişi",
+    "ru": "Ход выполнения заявления",
+    "tr": "Ekstre ilerlemesi"
+  },
+  "Review comment": {
+    "az": "Şərhi nəzərdən keçirin",
+    "ru": "Посмотреть комментарий",
+    "tr": "Yorumu incele"
+  },
+  "Reviewer note": {
+    "az": "Rəyçi qeydi",
+    "ru": "Примечание рецензента",
+    "tr": "İncelemeci notu"
+  },
+  "Submit, return, and approve engagement review documentation.": {
+    "az": "Tapşırıqların nəzərdən keçirilməsi sənədlərini təqdim edin, qaytarın və təsdiq edin.",
+    "ru": "Отправьте, верните и утвердите документацию по обзору задания.",
+    "tr": "Görev inceleme belgelerini gönderin, iade edin ve onaylayın."
+  },
+  "This review package is archived and read-only.": {
+    "az": "Bu baxış paketi arxivdir və yalnız oxunur.",
+    "ru": "Этот пакет обзоров заархивирован и доступен только для чтения.",
+    "tr": "Bu inceleme paketi arşivlenmiştir ve salt okunurdur."
+  },
+  "This review package is submitted and pending sign-off.": {
+    "az": "Bu baxış paketi təqdim olunub və imzalanmanı gözləyir.",
+    "ru": "Этот пакет проверки отправлен и ожидает утверждения.",
+    "tr": "Bu inceleme paketi gönderildi ve onaylanmayı bekliyor."
+  },
+  "This review package is approved.": {
+    "az": "Bu baxış paketi təsdiqlənib.",
+    "ru": "Этот пакет проверки одобрен.",
+    "tr": "Bu inceleme paketi onaylandı."
+  },
+  "This review package was returned for revision.": {
+    "az": "Bu baxış paketi yenidən baxılmaq üçün geri qaytarıldı.",
+    "ru": "Этот пакет обзора был возвращен на доработку.",
+    "tr": "Bu inceleme paketi revizyon için iade edildi."
+  },
+  "Unable to complete the review workflow action.": {
+    "az": "Baxış iş axını əməliyyatını tamamlamaq mümkün deyil.",
+    "ru": "Не удалось завершить действие рабочего процесса проверки.",
+    "tr": "İş akışı inceleme eylemi tamamlanamadı."
+  },
+  "Review not initiated": {
+    "az": "Baxış başlamadı",
+    "ru": "Проверка не начата",
+    "tr": "İnceleme başlatılmadı"
+  },
+  "Create a review package to consolidate sign-offs, findings, and reviewer notes across audit phases.": {
+    "az": "Yoxlamaları, tapıntıları və rəyçi qeydlərini audit mərhələlərində birləşdirmək üçün nəzərdən keçirmə paketi yaradın.",
+    "ru": "Создайте пакет проверки для консолидации подписаний, выводов и заметок рецензента на всех этапах аудита.",
+    "tr": "Denetim aşamaları boyunca imzaları, bulguları ve inceleme notlarını birleştirmek için bir inceleme paketi oluşturun."
+  },
+  "Creating review package...": {
+    "az": "Baxış paketi yaradılır...",
+    "ru": "Создание пакета проверки...",
+    "tr": "İnceleme paketi oluşturuluyor..."
+  },
+  "You need review creation permission to initiate this workspace.": {
+    "az": "Bu iş sahəsini başlatmaq üçün nəzərdən keçirmə yaratmaq icazəniz lazımdır.",
+    "ru": "Чтобы запустить эту рабочую область, вам необходимо разрешение на создание обзора.",
+    "tr": "Bu çalışma alanını başlatmak için inceleme oluşturma iznine ihtiyacınız var."
+  },
+  "Review overview": {
+    "az": "Baxış icmalı",
+    "ru": "Обзор обзора",
+    "tr": "İncelemeye genel bakış"
+  },
+  "Overview of engagement review status, pending items, and sign-off readiness.": {
+    "az": "Audit tapşırığının yoxlama statusu, gözləyən maddələr və təsdiqə hazırlıq üzrə icmal.",
+    "ru": "Обзор статуса проверки аудиторского задания, ожидающих вопросов и готовности к утверждению.",
+    "tr": "Denetim görevi inceleme durumu, bekleyen öğeler ve onaya hazırlık özeti."
+  },
+  "Current completion and readiness indicators for this review package.": {
+    "az": "Bu baxış paketi üçün hazırkı tamamlama və hazırlıq göstəriciləri.",
+    "ru": "Текущие показатели завершения и готовности этого пакета обзора.",
+    "tr": "Bu inceleme paketi için mevcut tamamlanma ve hazırlık göstergeleri."
+  },
+  "Submission and approval workflow for the review package.": {
+    "az": "Baxış paketi üçün təqdimetmə və təsdiqləmə iş prosesi.",
+    "ru": "Рабочий процесс отправки и утверждения пакета проверки.",
+    "tr": "İnceleme paketi için gönderim ve onay iş akışı."
+  },
+  "Review queue preview": {
+    "az": "Növbəyə baxışı nəzərdən keçirin",
+    "ru": "Предварительный просмотр очереди просмотра",
+    "tr": "Sıra önizlemesini inceleyin"
+  },
+  "Items awaiting partner or manager sign-off across audit modules.": {
+    "az": "Audit modulları arasında tərəfdaş və ya menecerin imzalanmasını gözləyən elementlər.",
+    "ru": "Элементы, ожидающие утверждения партнером или менеджером во всех модулях аудита.",
+    "tr": "Denetim modüllerinde iş ortağının veya yöneticinin imzasını bekleyen öğeler."
+  },
+  "Engagement review": {
+    "az": "Audit tapşırığının yoxlanılması",
+    "ru": "Проверка аудиторского задания",
+    "tr": "Denetim görevi incelemesi"
+  },
+  "Review": {
+    "az": "Baxış",
+    "ru": "Проверка",
+    "tr": "İnceleme"
+  },
+  "Audit fieldwork must be initiated before engagement review can begin.": {
+    "az": "Tapşırıqın nəzərdən keçirilməsinə başlamazdan əvvəl audit sahəsində iş başlanmalıdır.",
+    "ru": "Аудит на местах должен быть начат до того, как можно будет приступить к рассмотрению задания.",
+    "tr": "Görev incelemesinin başlayabilmesi için denetim saha çalışmasının başlatılması gerekir."
+  },
+  "Fieldwork must be substantially complete before engagement review can begin.": {
+    "az": "Tapşırıqların nəzərdən keçirilməsinə başlamazdan əvvəl sahə işi əsaslı şəkildə tamamlanmalıdır.",
+    "ru": "Прежде чем можно будет приступить к рассмотрению задания, работа на местах должна быть в основном завершена.",
+    "tr": "Görev incelemesinin başlayabilmesi için saha çalışmasının büyük ölçüde tamamlanması gerekir."
+  },
+  "Review workspace sections": {
+    "az": "İş sahəsinin bölmələrini nəzərdən keçirin",
+    "ru": "Просмотрите разделы рабочей области",
+    "tr": "Çalışma alanı bölümlerini inceleyin"
+  },
+  "Loading review workspace": {
+    "az": "Baxış iş sahəsi yüklənir",
+    "ru": "Загрузка рабочей области проверки",
+    "tr": "İnceleme çalışma alanı yükleniyor"
+  },
+  "Unable to load review workspace": {
+    "az": "Baxış iş yerini yükləmək mümkün deyil",
+    "ru": "Невозможно загрузить рабочую область проверки.",
+    "tr": "İnceleme çalışma alanı yüklenemiyor"
+  },
+  "Something went wrong while loading this review workspace.": {
+    "az": "Bu nəzərdən keçirmə iş sahəsini yükləyərkən xəta baş verdi.",
+    "ru": "Что-то пошло не так при загрузке рабочей области проверки.",
+    "tr": "Bu inceleme çalışma alanı yüklenirken bir şeyler ters gitti."
+  },
+  "This review package is read-only. Restore it to continue updates.": {
+    "az": "Bu baxış paketi yalnız oxumaq üçündür. Yeniləmələri davam etdirmək üçün onu bərpa edin.",
+    "ru": "Этот пакет обзоров доступен только для чтения. Восстановите его, чтобы продолжить обновления.",
+    "tr": "Bu inceleme paketi salt okunurdur. Güncellemelere devam etmek için geri yükleyin."
+  },
+  "Review status": {
+    "az": "Statusu nəzərdən keçirin",
+    "ru": "Статус проверки",
+    "tr": "Durumu incele"
+  },
+  "Engagement review command center": {
+    "az": "Nişanların nəzərdən keçirilməsi komanda mərkəzi",
+    "ru": "Командный центр обзора взаимодействия",
+    "tr": "Görev inceleme komuta merkezi"
+  },
+  "Review summary": {
+    "az": "Baxış xülasəsi",
+    "ru": "Сводка обзора",
+    "tr": "İnceleme özeti"
+  },
+  "Review metrics": {
+    "az": "Metrikləri nəzərdən keçirin",
+    "ru": "Обзор показателей",
+    "tr": "Metrikleri inceleyin"
+  },
+  "Review and internal discussion on engagement review.": {
+    "az": "Tapşırıqların nəzərdən keçirilməsinə dair baxış və daxili müzakirə.",
+    "ru": "Обзор и внутреннее обсуждение обзора взаимодействия.",
+    "tr": "Görev incelemesine ilişkin inceleme ve dahili tartışma."
+  },
+  "Activity feed": {
+    "az": "Fəaliyyət lenti",
+    "ru": "Лента активности",
+    "tr": "Etkinlik feed'i"
+  },
+  "Latest review workspace events.": {
+    "az": "Ən son baxış iş sahəsi hadisələri.",
+    "ru": "Последние события обзора рабочей области.",
+    "tr": "En son inceleme çalışma alanı etkinlikleri."
+  },
+  "Module breakdown": {
+    "az": "Modulun dağılması",
+    "ru": "Разбивка модуля",
+    "tr": "Modül dökümü"
+  },
+  "Review items grouped by source audit module.": {
+    "az": "Mənbə audit moduluna görə qruplaşdırılmış elementləri nəzərdən keçirin.",
+    "ru": "Просмотрите элементы, сгруппированные по модулю аудита источника.",
+    "tr": "Kaynak denetim modülüne göre gruplandırılmış öğeleri inceleyin."
+  },
+  "Review progress": {
+    "az": "Tərəqqi nəzərdən keçirin",
+    "ru": "Обзор прогресса",
+    "tr": "İlerlemeyi gözden geçirin"
+  },
+  "Overall completion": {
+    "az": "Ümumi tamamlama",
+    "ru": "Полное завершение",
+    "tr": "Genel tamamlama"
+  },
+  "Review assignment": {
+    "az": "Tapşırığı nəzərdən keçirin",
+    "ru": "Проверка задания",
+    "tr": "Ödevi inceleyin"
+  },
+  "Review approved": {
+    "az": "Baxış təsdiq edildi",
+    "ru": "Отзыв одобрен",
+    "tr": "İnceleme onaylandı"
+  },
+  "Package approved for completion.": {
+    "az": "Paket tamamlanmaq üçün təsdiqləndi.",
+    "ru": "Пакет одобрен к завершению.",
+    "tr": "Paketin tamamlanması onaylandı."
+  },
+  "No items are pending review.": {
+    "az": "Heç bir element nəzərdən keçirilmir.",
+    "ru": "Нет элементов, ожидающих рассмотрения.",
+    "tr": "İncelenmeyi bekleyen öğe yok."
+  },
+  "Open findings will appear when documented.": {
+    "az": "Açıq tapıntılar sənədləşdirildikdə görünəcək.",
+    "ru": "Открытые результаты появятся после их документирования.",
+    "tr": "Açık bulgular belgelendiğinde ortaya çıkacaktır."
+  },
+  "Comments are recorded during review.": {
+    "az": "Baxış zamanı şərhlər qeyd olunur.",
+    "ru": "Комментарии записываются во время рассмотрения.",
+    "tr": "Yorumlar inceleme sırasında kaydedilir."
+  },
+  "No recent changes": {
+    "az": "Son dəyişikliklər yoxdur",
+    "ru": "Нет недавних изменений",
+    "tr": "Yakın zamanda değişiklik yok"
+  },
+  "No activity": {
+    "az": "Fəaliyyət yoxdur",
+    "ru": "Нет активности",
+    "tr": "Etkinlik yok"
+  },
+  "Review events will be recorded here.": {
+    "az": "Baxış hadisələri burada qeyd olunacaq.",
+    "ru": "Здесь будут записываться события обзора.",
+    "tr": "İnceleme etkinlikleri buraya kaydedilecektir."
+  },
+  "Findings": {
+    "az": "Tapıntılar",
+    "ru": "Выводы",
+    "tr": "Bulgular"
+  },
+  "Review dashboard": {
+    "az": "İdarə panelini nəzərdən keçirin",
+    "ru": "Обзор панели мониторинга",
+    "tr": "Gösterge tablosunu inceleyin"
+  },
+  "Misstatements and deficiencies requiring resolution before completion.": {
+    "az": "Tamamlanmadan əvvəl həll edilməsini tələb edən səhvlər və çatışmazlıqlar.",
+    "ru": "Искажения и недостатки, требующие устранения до завершения.",
+    "tr": "Tamamlanmadan önce çözülmesi gereken yanlış beyanlar ve eksiklikler."
+  },
+  "Review and internal comments on engagement review documentation.": {
+    "az": "Tapşırıqların nəzərdən keçirilməsi sənədlərinə baxış və daxili şərhlər.",
+    "ru": "Обзор и внутренние комментарии к документации по проверке выполнения задания.",
+    "tr": "Görev inceleme belgelerinin gözden geçirilmesi ve dahili yorumlar."
+  },
+  "Timeline of review changes and approvals.": {
+    "az": "Baxış dəyişiklikləri və təsdiqləmə qrafiki.",
+    "ru": "График рассмотрения изменений и утверждений.",
+    "tr": "İnceleme değişikliklerinin ve onaylarının zaman çizelgesi."
+  },
+  "Version history snapshots of the review package.": {
+    "az": "Baxış paketinin versiya tarixçəsi.",
+    "ru": "Снимки истории версий пакета обзора.",
+    "tr": "İnceleme paketinin sürüm geçmişi anlık görüntüleri."
+  },
+  "Archive and restore controls for this review package.": {
+    "az": "Bu baxış paketi üçün nəzarətləri arxivləşdirin və bərpa edin.",
+    "ru": "Элементы управления архивированием и восстановлением для этого пакета проверки.",
+    "tr": "Bu inceleme paketine ilişkin kontrolleri arşivleyin ve geri yükleyin."
+  },
+  "Consolidated queue of items awaiting partner or manager sign-off.": {
+    "az": "Tərəfdaşın və ya menecerin imzalanmasını gözləyən elementlərin birləşdirilmiş növbəsi.",
+    "ru": "Консолидированная очередь элементов, ожидающих подтверждения партнера или менеджера.",
+    "tr": "İş ortağının veya yöneticinin imzasını bekleyen birleştirilmiş öğe kuyruğu."
+  },
+  "No items are pending review across audit modules.": {
+    "az": "Audit modulları arasında nəzərdən keçirilməsi gözlənilən heç bir element yoxdur.",
+    "ru": "Ни один элемент не ожидает рассмотрения в модулях аудита.",
+    "tr": "Denetim modüllerinde incelenmeyi bekleyen hiçbir öğe yok."
+  },
+  "Unable to update review item.": {
+    "az": "Nəzərdən keçirmə elementini yeniləmək mümkün deyil.",
+    "ru": "Не удалось обновить элемент отзыва.",
+    "tr": "İnceleme öğesi güncellenemiyor."
+  },
+  "Track misstatements and deficiencies requiring resolution.": {
+    "az": "Həll edilməsini tələb edən təhrifləri və çatışmazlıqları izləyin.",
+    "ru": "Отслеживайте искажения и недостатки, требующие устранения.",
+    "tr": "Yanlış beyanları ve çözüm gerektiren eksiklikleri takip edin."
+  },
+  "Open findings will appear when documented during fieldwork or review.": {
+    "az": "Sahə işi və ya baxış zamanı sənədləşdirildikdə açıq tapıntılar görünəcək.",
+    "ru": "Открытые результаты появятся, если они будут задокументированы во время полевых исследований или обзора.",
+    "tr": "Açık bulgular, saha çalışması veya inceleme sırasında belgelendiğinde ortaya çıkacaktır."
+  },
+  "Resolved items will appear after clearance or documented return.": {
+    "az": "Həll edilmiş maddələr bağlandıqdan və ya sənədləşdirilmiş şəkildə geri qaytarıldıqdan sonra görünəcək.",
+    "ru": "Устраненные вопросы появятся после закрытия или документированного возврата.",
+    "tr": "Çözümlenen öğeler kapatıldıktan veya belgeli olarak iade edildikten sonra görünecektir."
+  },
+  "Partner and manager review comments and clearance tracking.": {
+    "az": "Tərəfdaş və menecer şərhlərini nəzərdən keçirin və rəsmiləşdirmənin izlənməsi.",
+    "ru": "Партнер и менеджер просматривают комментарии и отслеживают оформление.",
+    "tr": "Ortak ve yönetici yorumları ve izin takibini inceler."
+  },
+  "Capture review and internal comments related to engagement review.": {
+    "az": "Tapşırıqların nəzərdən keçirilməsi ilə bağlı icmalı və daxili şərhləri əldə edin.",
+    "ru": "Собирайте обзоры и внутренние комментарии, связанные с обзором взаимодействия.",
+    "tr": "Görev incelemesine ilişkin incelemeyi ve dahili yorumları yakalayın."
+  },
+  "Read-only timeline of review activity.": {
+    "az": "Baxış fəaliyyətinin yalnız oxunan qrafiki.",
+    "ru": "Хронология действий по проверке доступна только для чтения.",
+    "tr": "İnceleme etkinliğinin salt okunur zaman çizelgesi."
+  },
+  "No review activity": {
+    "az": "Nəzərdən keçirmə fəaliyyəti yoxdur",
+    "ru": "Нет активности отзывов",
+    "tr": "İnceleme etkinliği yok"
+  },
+  "Review activity will appear here as changes are recorded.": {
+    "az": "Dəyişikliklər qeydə alındıqca nəzərdən keçirmə fəaliyyəti burada görünəcək.",
+    "ru": "Действия по проверке будут появляться здесь по мере регистрации изменений.",
+    "tr": "Değişiklikler kaydedildikçe inceleme etkinliği burada görünecektir."
+  },
+  "Review version snapshots of the review package.": {
+    "az": "Baxış paketinin versiya anlıq görüntülərini nəzərdən keçirin.",
+    "ru": "Просмотрите снимки версии пакета проверки.",
+    "tr": "İnceleme paketinin sürüm anlık görüntülerini inceleyin."
+  },
+  "Version snapshots are created when review is revised or approved.": {
+    "az": "Versiya snapshotları nəzərdən keçirildikdə və ya təsdiq edildikdə yaradılır.",
+    "ru": "Снимки версий создаются при пересмотре или утверждении обзора.",
+    "tr": "Sürüm anlık görüntüleri, inceleme revize edildiğinde veya onaylandığında oluşturulur."
+  },
+  "Archive or restore this review package.": {
+    "az": "Bu baxış paketini arxivləşdirin və ya bərpa edin.",
+    "ru": "Архивируйте или восстановите этот пакет обзора.",
+    "tr": "Bu inceleme paketini arşivleyin veya geri yükleyin."
+  },
+  "Archive review package": {
+    "az": "Arxiv baxış paketi",
+    "ru": "Пакет проверки архива",
+    "tr": "Arşiv inceleme paketi"
+  },
+  "Restore review package": {
+    "az": "Baxış paketini bərpa edin",
+    "ru": "Восстановить пакет отзывов",
+    "tr": "İnceleme paketini geri yükle"
+  },
+  "This review package is archived.": {
+    "az": "Bu baxış paketi arxivdədir.",
+    "ru": "Этот пакет обзора находится в архиве.",
+    "tr": "Bu inceleme paketi arşivlendi."
+  },
+  "You have view-only access to review settings.": {
+    "az": "Nəzərdən keçirmə parametrlərinə yalnız baxmaq üçün girişiniz var.",
+    "ru": "У вас есть доступ только для просмотра к настройкам проверки.",
+    "tr": "İnceleme ayarlarına salt görüntüleme erişiminiz var."
+  },
+  "Loading review": {
+    "az": "Rəy yüklənir",
+    "ru": "Загрузка обзора",
+    "tr": "İnceleme yükleniyor"
+  },
+  "Please wait while the review workspace loads.": {
+    "az": "Nəzərdən keçirmə iş sahəsi yüklənənə qədər gözləyin.",
+    "ru": "Подождите, пока загрузится рабочая область проверки.",
+    "tr": "İnceleme çalışma alanı yüklenirken lütfen bekleyin."
+  },
+  "This review package is archived and cannot be edited.": {
+    "az": "Bu baxış paketi arxivdədir və redaktə edilə bilməz.",
+    "ru": "Этот пакет отзывов заархивирован и не подлежит редактированию.",
+    "tr": "Bu inceleme paketi arşivlendi ve düzenlenemez."
+  },
+  "Completion comment": {
+    "az": "Tamamlama şərhi",
+    "ru": "Комментарий о завершении",
+    "tr": "Tamamlama yorumu"
+  },
+  "Submit, return, and approve engagement completion documentation.": {
+    "az": "Tapşırıqın tamamlanması sənədlərini təqdim edin, qaytarın və təsdiq edin.",
+    "ru": "Отправьте, верните и утвердите документацию по выполнению задания.",
+    "tr": "Görev tamamlama belgelerini gönderin, iade edin ve onaylayın."
+  },
+  "This completion package is archived and read-only.": {
+    "az": "Bu tamamlama paketi arxivləşdirilir və yalnız oxunur.",
+    "ru": "Этот пакет завершения заархивирован и доступен только для чтения.",
+    "tr": "Bu tamamlama paketi arşivlenir ve salt okunurdur."
+  },
+  "This completion package is submitted and pending sign-off.": {
+    "az": "Bu tamamlama paketi təqdim olunub və imzalanmanı gözləyir.",
+    "ru": "Этот пакет завершения отправлен и ожидает утверждения.",
+    "tr": "Bu tamamlama paketi gönderildi ve imzalanmayı bekliyor."
+  },
+  "This completion package is approved.": {
+    "az": "Bu tamamlama paketi təsdiq edilmişdir.",
+    "ru": "Этот пакет завершения одобрен.",
+    "tr": "Bu tamamlama paketi onaylandı."
+  },
+  "This completion package was returned for revision.": {
+    "az": "Bu tamamlama paketi yenidən baxılmaq üçün geri qaytarıldı.",
+    "ru": "Этот комплект завершения был возвращен на доработку.",
+    "tr": "Bu tamamlama paketi revizyon için iade edildi."
+  },
+  "Unable to complete the completion workflow action.": {
+    "az": "Tamamlama iş axını əməliyyatını tamamlamaq mümkün deyil.",
+    "ru": "Невозможно завершить действие рабочего процесса завершения.",
+    "tr": "Tamamlama iş akışı eylemi tamamlanamıyor."
+  },
+  "Completion not initiated": {
+    "az": "Tamamlama başlamadı",
+    "ru": "Завершение не начато",
+    "tr": "Tamamlama başlatılmadı"
+  },
+  "Create a completion package to consolidate checklist items, outstanding matters, and sign-off documentation before report issuance.": {
+    "az": "Hesabatın verilməsindən əvvəl yoxlama siyahısı maddələrini, həll edilməmiş məsələləri və imzalanma sənədlərini birləşdirmək üçün tamamlama paketi yaradın.",
+    "ru": "Создайте пакет завершения, чтобы объединить элементы контрольного списка, нерешенные вопросы и подтверждающую документацию перед выпуском отчета.",
+    "tr": "Raporun yayınlanmasından önce kontrol listesi öğelerini, çözülmemiş konuları ve onay belgelerini birleştirmek için bir tamamlama paketi oluşturun."
+  },
+  "Creating completion package...": {
+    "az": "Tamamlama paketi yaradılır...",
+    "ru": "Создание пакета завершения...",
+    "tr": "Tamamlama paketi oluşturuluyor..."
+  },
+  "You need completion creation permission to initiate this workspace.": {
+    "az": "Bu iş sahəsini işə salmaq üçün tamamlama yaratma icazəniz lazımdır.",
+    "ru": "Чтобы запустить эту рабочую область, вам необходимо разрешение на создание завершения.",
+    "tr": "Bu çalışma alanını başlatmak için tamamlama oluşturma iznine ihtiyacınız var."
+  },
+  "Completion overview": {
+    "az": "Tamamlamaya ümumi baxış",
+    "ru": "Обзор завершения",
+    "tr": "Tamamlamaya genel bakış"
+  },
+  "Overview of engagement completion status, outstanding items, and sign-off readiness.": {
+    "az": "Tapşırıqın tamamlanma statusu, həll edilməmiş maddələr və imzalanmaya hazırlığın icmalı.",
+    "ru": "Обзор статуса выполнения задания, невыполненных задач и готовности к подписанию.",
+    "tr": "Görevin tamamlanma durumuna, bekleyen öğelere ve oturum kapatma hazırlığına genel bakış."
+  },
+  "Current completion and readiness indicators for this completion package.": {
+    "az": "Bu tamamlama paketi üçün hazırkı tamamlama və hazırlıq göstəriciləri.",
+    "ru": "Текущие показатели завершения и готовности данного пакета завершения.",
+    "tr": "Bu tamamlama paketi için mevcut tamamlanma ve hazırlık göstergeleri."
+  },
+  "Submission and approval workflow for the completion package.": {
+    "az": "Tamamlama paketi üçün təqdimetmə və təsdiqləmə iş prosesi.",
+    "ru": "Рабочий процесс подачи и утверждения пакета завершения.",
+    "tr": "Tamamlama paketi için gönderim ve onay iş akışı."
+  },
+  "Checklist preview": {
+    "az": "Yoxlama siyahısına baxış",
+    "ru": "Предварительный просмотр контрольного списка",
+    "tr": "Kontrol listesi önizlemesi"
+  },
+  "Completion checklist items awaiting partner or manager sign-off.": {
+    "az": "Tərəfdaşın və ya menecerin imzalanmasını gözləyən tamamlama yoxlama siyahısı elementləri.",
+    "ru": "Пункты контрольного списка завершения, ожидающие утверждения партнером или менеджером.",
+    "tr": "İş ortağının veya yöneticinin imzasını bekleyen tamamlanma kontrol listesi öğeleri."
+  },
+  "Audit fieldwork must be initiated before engagement completion can begin.": {
+    "az": "Tapşırıqın tamamlanmasına başlamazdan əvvəl audit sahəsində iş başlanmalıdır.",
+    "ru": "Аудит на местах должен быть начат до начала выполнения задания.",
+    "tr": "Görevin tamamlanmasından önce denetim saha çalışması başlatılmalıdır."
+  },
+  "Fieldwork must be substantially complete before engagement completion can begin.": {
+    "az": "Tapşırığın tamamlanmasına başlamazdan əvvəl sahə işləri əsaslı şəkildə tamamlanmalıdır.",
+    "ru": "Прежде чем можно будет приступить к выполнению задания, работа на местах должна быть в основном завершена.",
+    "tr": "Görevin tamamlanmasından önce saha çalışmasının büyük ölçüde tamamlanması gerekir."
+  },
+  "Completion workspace sections": {
+    "az": "İş sahəsinin tamamlanması bölmələri",
+    "ru": "Разделы рабочего пространства завершения",
+    "tr": "Tamamlama çalışma alanı bölümleri"
+  },
+  "Loading completion workspace": {
+    "az": "Tamamlanmış iş sahəsi yüklənir",
+    "ru": "Загрузка рабочей области завершения",
+    "tr": "Tamamlama çalışma alanı yükleniyor"
+  },
+  "Unable to load completion workspace": {
+    "az": "Tamamlanmış iş yerini yükləmək mümkün deyil",
+    "ru": "Невозможно загрузить рабочую область завершения",
+    "tr": "Tamamlama çalışma alanı yüklenemiyor"
+  },
+  "Something went wrong while loading this completion workspace.": {
+    "az": "Bu tamamlama iş sahəsini yükləyərkən xəta baş verdi.",
+    "ru": "Что-то пошло не так при загрузке рабочей области завершения.",
+    "tr": "Bu tamamlama çalışma alanı yüklenirken bir şeyler ters gitti."
+  },
+  "This completion package is read-only. Restore it to continue updates.": {
+    "az": "Bu tamamlama paketi yalnız oxumaq üçündür. Yeniləmələri davam etdirmək üçün onu bərpa edin.",
+    "ru": "Этот пакет завершения доступен только для чтения. Восстановите его, чтобы продолжить обновления.",
+    "tr": "Bu tamamlama paketi salt okunurdur. Güncellemelere devam etmek için geri yükleyin."
+  },
+  "Completion status": {
+    "az": "Tamamlanma vəziyyəti",
+    "ru": "Статус завершения",
+    "tr": "Tamamlanma durumu"
+  },
+  "Completion summary": {
+    "az": "Tamamlama xülasəsi",
+    "ru": "Итоги завершения",
+    "tr": "Tamamlanma özeti"
+  },
+  "Completion metrics": {
+    "az": "Tamamlama göstəriciləri",
+    "ru": "Показатели завершения",
+    "tr": "Tamamlama metrikleri"
+  },
+  "Checklist items awaiting partner or manager sign-off.": {
+    "az": "Tərəfdaş və ya menecerin imzalanmasını gözləyən yoxlama siyahısı elementləri.",
+    "ru": "Пункты контрольного списка, ожидающие утверждения партнером или менеджером.",
+    "tr": "İş ortağının veya yöneticinin onayını bekleyen kontrol listesi öğeleri."
+  },
+  "Completion and internal discussion on engagement completion.": {
+    "az": "Tapşırıqın tamamlanması ilə bağlı tamamlama və daxili müzakirə.",
+    "ru": "Завершение и внутреннее обсуждение завершения задания.",
+    "tr": "Tamamlama ve görevin tamamlanmasına ilişkin dahili tartışma."
+  },
+  "Latest completion workspace events.": {
+    "az": "Ən son tamamlama iş sahəsi hadisələri.",
+    "ru": "Последние события рабочей области завершения.",
+    "tr": "En son tamamlanan çalışma alanı etkinlikleri."
+  },
+  "Deliverable breakdown": {
+    "az": "Çatdırılan parçalanma",
+    "ru": "Разбивка результатов",
+    "tr": "Teslim edilebilir döküm"
+  },
+  "Completion items grouped by deliverable type.": {
+    "az": "Çatdırılma növünə görə qruplaşdırılmış tamamlama maddələri.",
+    "ru": "Элементы завершения сгруппированы по типу результата.",
+    "tr": "Teslimat türüne göre gruplandırılmış tamamlama öğeleri."
+  },
+  "Completion progress": {
+    "az": "Tamamlanma tərəqqisi",
+    "ru": "Ход завершения",
+    "tr": "Tamamlanma ilerlemesi"
+  },
+  "Overall completion progress": {
+    "az": "Ümumi tamamlama tərəqqisi",
+    "ru": "Общий прогресс завершения",
+    "tr": "Genel tamamlama ilerlemesi"
+  },
+  "Completion assignment": {
+    "az": "Tamamlama tapşırığı",
+    "ru": "Завершение задания",
+    "tr": "Tamamlama ödevi"
+  },
+  "Completion approved": {
+    "az": "Tamamlama təsdiq edildi",
+    "ru": "Завершение одобрено",
+    "tr": "Tamamlanma onaylandı"
+  },
+  "Outstanding items will appear when documented.": {
+    "az": "Həll edilməmiş maddələr sənədləşdirildikdə burada görünəcək.",
+    "ru": "Нерешенные вопросы появятся после документирования.",
+    "tr": "Bekleyen öğeler belgelendiğinde burada görünecektir."
+  },
+  "No open review points": {
+    "az": "Açıq baxış nöqtələri yoxdur",
+    "ru": "Нет открытых точек обзора",
+    "tr": "Açık inceleme noktası yok"
+  },
+  "Comments are recorded during completion.": {
+    "az": "Şərhlər tamamlama zamanı qeyd olunur.",
+    "ru": "Комментарии записываются по мере завершения.",
+    "tr": "Yorumlar tamamlanma sırasında kaydedilir."
+  },
+  "Completion events will be recorded here.": {
+    "az": "Tamamlanma hadisələri burada qeyd olunacaq.",
+    "ru": "Здесь будут записываться события завершения.",
+    "tr": "Tamamlama etkinlikleri buraya kaydedilecektir."
+  },
+  "Final analytics status": {
+    "az": "Yekun analitik status",
+    "ru": "Окончательный статус аналитики",
+    "tr": "Nihai analiz durumu"
+  },
+  "Final analytical procedures completion and review status.": {
+    "az": "Yekun analitik prosedurların tamamlanması və nəzərdən keçirilməsi vəziyyəti.",
+    "ru": "Завершение окончательных аналитических процедур и статус рассмотрения.",
+    "tr": "Nihai analitik prosedürlerin tamamlanma ve inceleme durumu."
+  },
+  "Representation letter status": {
+    "az": "Nümayəndəlik məktubu statusu",
+    "ru": "Статус представительского письма",
+    "tr": "Temsil mektubu durumu"
+  },
+  "Management representation letter preparation and sign-off.": {
+    "az": "Rəhbərliyin təqdimat məktubunun hazırlanması və imzalanması.",
+    "ru": "Подготовка и подписание письма-представления руководству.",
+    "tr": "Yönetim temsil mektubunun hazırlanması ve imzalanması."
+  },
+  "Subsequent events status": {
+    "az": "Sonrakı hadisələrin vəziyyəti",
+    "ru": "Статус последующих событий",
+    "tr": "Sonraki olayların durumu"
+  },
+  "Subsequent events review and documentation status.": {
+    "az": "Sonrakı hadisələrin nəzərdən keçirilməsi və sənədləşmə vəziyyəti.",
+    "ru": "Обзор последующих событий и состояние документации.",
+    "tr": "Sonraki olayların gözden geçirilmesi ve dokümantasyon durumu."
+  },
+  "Quick actions": {
+    "az": "Sürətli hərəkətlər",
+    "ru": "Быстрые действия",
+    "tr": "Hızlı eylemler"
+  },
+  "Jump to common completion deliverables and governance tasks.": {
+    "az": "Ümumi tamamlama nəticələrinə və idarəetmə tapşırıqlarına keçin.",
+    "ru": "Перейдите к общим результатам завершения и задачам управления.",
+    "tr": "Ortak tamamlama teslimatlarına ve yönetişim görevlerine geçin."
+  },
+  "Analytical procedures status": {
+    "az": "Analitik prosedurların vəziyyəti",
+    "ru": "Статус аналитических процедур",
+    "tr": "Analitik prosedür durumu"
+  },
+  "Letter sign-off status": {
+    "az": "Məktubun imzalanması statusu",
+    "ru": "Статус подписания письма",
+    "tr": "Mektup imzalama durumu"
+  },
+  "Events review status": {
+    "az": "Hadisələrin vəziyyətini nəzərdən keçirin",
+    "ru": "Статус проверки событий",
+    "tr": "Etkinliklerin inceleme durumu"
+  },
+  "Final analytics not started": {
+    "az": "Yekun analitika başlamadı",
+    "ru": "Итоговая аналитика не запущена",
+    "tr": "Nihai analiz başlatılmadı"
+  },
+  "Representation letter not started": {
+    "az": "Nümayəndəlik məktubu başlamadı",
+    "ru": "Письмо-представление не начато",
+    "tr": "Temsil mektubu başlatılmadı"
+  },
+  "Subsequent events not started": {
+    "az": "Sonrakı hadisələr başlamadı",
+    "ru": "Последующие мероприятия не начались",
+    "tr": "Sonraki etkinlikler başlatılmadı"
+  },
+  "Subsequent events review will appear when documented.": {
+    "az": "Sonrakı hadisələrin nəzərdən keçirilməsi sənədləşdirildikdə görünəcək.",
+    "ru": "Обзор последующих событий появится, когда он будет задокументирован.",
+    "tr": "Sonraki olayların incelemesi belgelendiğinde görünecektir."
+  },
+  "Going concern status": {
+    "az": "Davamlı narahatlıq vəziyyəti",
+    "ru": "Статус непрерывности деятельности",
+    "tr": "Devam eden endişe durumu"
+  },
+  "Going concern assessment and disclosure status.": {
+    "az": "Davamlı narahatlığın qiymətləndirilməsi və açıqlama statusu.",
+    "ru": "Оценка непрерывности деятельности и статус раскрытия информации.",
+    "tr": "İşletmenin sürekliliği değerlendirmesi ve açıklama durumu."
+  },
+  "Going concern not started": {
+    "az": "Davamlı narahatlıq başlamadı",
+    "ru": "Непрерывная деятельность предприятия не началась",
+    "tr": "Devam eden endişe başlamadı"
+  },
+  "Completion deliverables": {
+    "az": "Tamamlama təhvilləri",
+    "ru": "Результаты завершения",
+    "tr": "Tamamlama teslimatları"
+  },
+  "Completion dashboard": {
+    "az": "Tamamlama tablosu",
+    "ru": "Панель завершения",
+    "tr": "Tamamlama kontrol paneli"
+  },
+  "Cross-module checklist items awaiting partner or manager sign-off.": {
+    "az": "Partnyor və ya menecerin imzalanmasını gözləyən modullar arası yoxlama siyahısı elementləri.",
+    "ru": "Элементы межмодульного контрольного списка, ожидающие утверждения партнером или менеджером.",
+    "tr": "İş ortağının veya yöneticinin onayını bekleyen modüller arası kontrol listesi öğeleri."
+  },
+  "Completion and internal comments on engagement completion documentation.": {
+    "az": "Tapşırıqın tamamlanması sənədlərinə dair tamamlama və daxili şərhlər.",
+    "ru": "Завершение и внутренние комментарии к документации по выполнению задания.",
+    "tr": "Sözleşmenin tamamlanmasına ilişkin dokümantasyonun tamamlanması ve dahili yorumlar."
+  },
+  "Timeline of completion changes and approvals.": {
+    "az": "Tamamlama dəyişiklikləri və təsdiqləmə qrafiki.",
+    "ru": "График внесения изменений и согласований.",
+    "tr": "Tamamlama değişikliklerinin ve onaylarının zaman çizelgesi."
+  },
+  "Version history snapshots of the completion package.": {
+    "az": "Tamamlama paketinin versiya tarixçəsi.",
+    "ru": "Снимки истории версий пакета завершения.",
+    "tr": "Tamamlama paketinin sürüm geçmişi anlık görüntüleri."
+  },
+  "Archive and restore controls for this completion package.": {
+    "az": "Bu tamamlama paketi üçün nəzarətləri arxivləşdirin və bərpa edin.",
+    "ru": "Элементы управления архивированием и восстановлением для этого пакета завершения.",
+    "tr": "Bu tamamlama paketine ilişkin kontrolleri arşivleyin ve geri yükleyin."
+  },
+  "Resolved checklist items": {
+    "az": "Həll edilmiş yoxlama siyahısı maddələri",
+    "ru": "Решенные элементы контрольного списка",
+    "tr": "Çözümlenen kontrol listesi öğeleri"
+  },
+  "Unable to update completion item.": {
+    "az": "Tamamlama elementini yeniləmək mümkün deyil.",
+    "ru": "Невозможно обновить элемент завершения.",
+    "tr": "Tamamlama öğesi güncellenemiyor."
+  },
+  "Capture completion and internal comments related to engagement completion.": {
+    "az": "Tapşırıqın tamamlanması ilə bağlı tamamlama və daxili şərhləri çəkin.",
+    "ru": "Фиксируйте завершение и внутренние комментарии, связанные с выполнением задания.",
+    "tr": "Tamamlama ve görevin tamamlanmasıyla ilgili dahili yorumları kaydedin."
+  },
+  "Read-only timeline of completion activity.": {
+    "az": "Tamamlama fəaliyyətinin yalnız oxumaq üçün qrafiki.",
+    "ru": "График завершения действий, доступный только для чтения.",
+    "tr": "Tamamlama etkinliğinin salt okunur zaman çizelgesi."
+  },
+  "No completion activity": {
+    "az": "Tamamlama fəaliyyəti yoxdur",
+    "ru": "Нет завершения деятельности",
+    "tr": "Tamamlama etkinliği yok"
+  },
+  "Completion activity will appear here as changes are recorded.": {
+    "az": "Dəyişikliklər qeydə alındıqca tamamlama fəaliyyəti burada görünəcək.",
+    "ru": "Завершенные действия будут отображаться здесь по мере регистрации изменений.",
+    "tr": "Değişiklikler kaydedildikçe tamamlama etkinliği burada görünecektir."
+  },
+  "Completion version snapshots of the completion package.": {
+    "az": "Tamamlama paketinin tamamlama versiyasının anlıq görüntüləri.",
+    "ru": "Снимки завершенной версии пакета завершения.",
+    "tr": "Tamamlama paketinin tamamlanma sürümü anlık görüntüleri."
+  },
+  "Version snapshots are created when completion is revised or approved.": {
+    "az": "Versiya snapshotları tamamlamaya yenidən baxıldıqda və ya təsdiq edildikdə yaradılır.",
+    "ru": "Снимки версий создаются при проверке или утверждении завершения.",
+    "tr": "Sürüm anlık görüntüleri, tamamlama revize edildiğinde veya onaylandığında oluşturulur."
+  },
+  "Archive or restore this completion package.": {
+    "az": "Bu tamamlama paketini arxivləşdirin və ya bərpa edin.",
+    "ru": "Заархивируйте или восстановите этот пакет завершения.",
+    "tr": "Bu tamamlama paketini arşivleyin veya geri yükleyin."
+  },
+  "Archive completion package": {
+    "az": "Arxiv tamamlama paketi",
+    "ru": "Пакет завершения архива",
+    "tr": "Arşiv tamamlama paketi"
+  },
+  "Restore completion package": {
+    "az": "Tamamlama paketini bərpa edin",
+    "ru": "Пакет завершения восстановления",
+    "tr": "Tamamlama paketini geri yükle"
+  },
+  "This completion package is archived.": {
+    "az": "Bu tamamlama paketi arxivdədir.",
+    "ru": "Этот пакет завершения заархивирован.",
+    "tr": "Bu tamamlama paketi arşivlendi."
+  },
+  "You have view-only access to completion settings.": {
+    "az": "Tamamlama parametrlərinə yalnız baxmaq üçün girişiniz var.",
+    "ru": "У вас есть доступ только для просмотра к настройкам завершения.",
+    "tr": "Tamamlama ayarlarına salt görüntüleme erişiminiz var."
+  },
+  "Loading completion": {
+    "az": "Yükləmə tamamlandı",
+    "ru": "Загрузка завершена",
+    "tr": "Yükleme tamamlandı"
+  },
+  "Please wait while the completion workspace loads.": {
+    "az": "Tamamlanan iş sahəsi yüklənənə qədər gözləyin.",
+    "ru": "Пожалуйста, подождите, пока загрузится рабочая область завершения.",
+    "tr": "Tamamlama çalışma alanı yüklenirken lütfen bekleyin."
+  },
+  "This completion package is archived and cannot be edited.": {
+    "az": "Bu tamamlama paketi arxivdədir və redaktə edilə bilməz.",
+    "ru": "Этот пакет завершения находится в архиве и не подлежит редактированию.",
+    "tr": "Bu tamamlama paketi arşivlendi ve düzenlenemez."
+  },
+  "Consolidated checklist of items awaiting partner or manager sign-off.": {
+    "az": "Tərəfdaş və ya menecerin imzalanmasını gözləyən maddələrin birləşdirilmiş yoxlama siyahısı.",
+    "ru": "Сводный контрольный список пунктов, ожидающих утверждения партнером или менеджером.",
+    "tr": "İş ortağının veya yöneticinin imzasını bekleyen öğelerin birleştirilmiş kontrol listesi."
+  },
+  "No checklist items are pending review across audit modules.": {
+    "az": "Yoxlama siyahısı elementləri audit modulları arasında nəzərdən keçirilməsini gözləmir.",
+    "ru": "Ни один пункт контрольного списка не ожидает рассмотрения в модулях аудита.",
+    "tr": "Denetim modüllerinde incelenmeyi bekleyen hiçbir kontrol listesi öğesi yok."
+  },
+  "Track open matters requiring resolution before report issuance.": {
+    "az": "Hesabatın verilməsindən əvvəl həllini tələb edən açıq məsələləri izləyin.",
+    "ru": "Отслеживайте открытые вопросы, требующие разрешения, до выпуска отчета.",
+    "tr": "Rapor yayınlanmadan önce çözümlenmesi gereken açık konuları takip edin."
+  },
+  "Outstanding items will appear when documented during fieldwork or completion.": {
+    "az": "Həll edilməmiş maddələr sahə işi və ya tamamlama zamanı sənədləşdirildikdə görünəcək.",
+    "ru": "Невыполненные элементы появятся, если они будут задокументированы во время полевых работ или завершения.",
+    "tr": "Saha çalışması veya tamamlama sırasında belgelendiğinde bekleyen öğeler ortaya çıkacaktır."
+  },
+  "No subsequent events documented": {
+    "az": "Sonrakı hadisələr sənədləşdirilməyib",
+    "ru": "Последующие события не задокументированы",
+    "tr": "Sonraki olaylar belgelenmedi"
+  },
+  "Subsequent events will appear when identified and evaluated.": {
+    "az": "Sonrakı hadisələr müəyyən edildikdə və qiymətləndirildikdə ortaya çıxacaq.",
+    "ru": "Последующие события появятся, когда они будут идентифицированы и оценены.",
+    "tr": "Sonraki olaylar belirlenip değerlendirildiğinde ortaya çıkacaktır."
+  },
+  "No going concern assessment": {
+    "az": "Davamlı narahatlıq qiymətləndirməsi yoxdur",
+    "ru": "Отсутствие оценки непрерывности деятельности",
+    "tr": "İşletmenin sürekliliği yok değerlendirmesi"
+  },
+  "No representation letter": {
+    "az": "Təmsil məktubu yoxdur",
+    "ru": "Нет представительского письма",
+    "tr": "Temsil mektubu yok"
+  },
+  "No final analytics": {
+    "az": "Yekun analitika yoxdur",
+    "ru": "Никакой итоговой аналитики",
+    "tr": "Nihai analiz yok"
+  },
+  "Open matters requiring resolution before audit opinion issuance.": {
+    "az": "Audit rəyinin verilməsindən əvvəl həllini tələb edən məsələləri açın.",
+    "ru": "Открытые вопросы, требующие разрешения до выдачи аудиторского заключения.",
+    "tr": "Denetim görüşünün yayınlanmasından önce çözümlenmesi gereken açık konular."
+  },
+  "Status, progress, and audit opinion readiness indicators.": {
+    "az": "Vəziyyət, tərəqqi və audit rəyinə hazırlıq göstəriciləri.",
+    "ru": "Индикаторы статуса, прогресса и готовности аудиторского заключения.",
+    "tr": "Durum, ilerleme ve denetim görüşüne hazırlık göstergeleri."
+  },
+  "No executive summary content": {
+    "az": "İcra xülasə məzmunu yoxdur",
+    "ru": "Нет содержания резюме",
+    "tr": "Yönetici özeti içeriği yok"
+  },
+  "Executive summary drafts and notes will appear here.": {
+    "az": "İcraçı xülasə qaralamalar və qeydlər burada görünəcək.",
+    "ru": "Здесь будут появляться черновики резюме и примечания.",
+    "tr": "Yönetici özeti taslakları ve notları burada görünecektir."
+  },
+  "Add executive summary note": {
+    "az": "İcra xülasə qeydi əlavə edin",
+    "ru": "Добавить сводную заметку",
+    "tr": "Yönetici özeti notu ekle"
+  },
+  "No financial statements content": {
+    "az": "Maliyyə hesabatlarının məzmunu yoxdur",
+    "ru": "Нет содержания финансовой отчетности",
+    "tr": "Mali tablo içeriği yok"
+  },
+  "Financial statements drafts and notes will appear here.": {
+    "az": "Maliyyə hesabatlarının layihələri və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться черновики и примечания к финансовой отчетности.",
+    "tr": "Mali tablo taslakları ve notları burada görünecektir."
+  },
+  "No ifrs notes content": {
+    "az": "ifrs qeydlərinin məzmunu yoxdur",
+    "ru": "Нет содержания примечаний по МФО",
+    "tr": "Ifrs notlarının içeriği yok"
+  },
+  "IFRS notes drafts and notes will appear here.": {
+    "az": "BMHS qeydləri layihələri və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться проекты и примечания к примечаниям по МСФО.",
+    "tr": "IFRS not taslakları ve notları burada görünecektir."
+  },
+  "No audit findings content": {
+    "az": "Audit nəticələrinin məzmunu yoxdur",
+    "ru": "Нет содержания результатов аудита",
+    "tr": "Denetim bulguları içeriği yok"
+  },
+  "Audit findings drafts and notes will appear here.": {
+    "az": "Audit nəticələrinin layihələri və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться черновики и примечания по результатам аудита.",
+    "tr": "Denetim bulguları taslakları ve notları burada görünecektir."
+  },
+  "No recommendations content": {
+    "az": "Tövsiyə məzmunu yoxdur",
+    "ru": "Нет рекомендаций",
+    "tr": "Öneri içeriği yok"
+  },
+  "Recommendations drafts and notes will appear here.": {
+    "az": "Tövsiyələrin qaralamaları və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться проекты рекомендаций и примечания.",
+    "tr": "Öneri taslakları ve notları burada görünecektir."
+  },
+  "No appendices content": {
+    "az": "Əlavə məzmun yoxdur",
+    "ru": "Нет приложений",
+    "tr": "Ek içeriği yok"
+  },
+  "Appendices drafts and notes will appear here.": {
+    "az": "Əlavələrin qaralamaları və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться черновики приложений и примечания.",
+    "tr": "Ekler, taslaklar ve notlar burada yer alacaktır."
+  },
+  "Opinion comment": {
+    "az": "Rəy şərhi",
+    "ru": "Мнение комментарий",
+    "tr": "Görüş yorumu"
+  },
+  "Audit opinion workspace sections": {
+    "az": "Audit rəyi iş sahəsi bölmələri",
+    "ru": "Разделы рабочей области аудиторского заключения",
+    "tr": "Denetim görüşü çalışma alanı bölümleri"
+  },
+  "Open matters requiring resolution before opinion sign-off.": {
+    "az": "Rəyin imzalanmasından əvvəl həll edilməsi tələb olunan məsələləri açın.",
+    "ru": "Открытые вопросы, требующие решения до утверждения заключения.",
+    "tr": "Görüş imzalanmadan önce çözümlenmesi gereken konuları açın."
+  },
+  "Status, progress, and opinion sign-off readiness indicators.": {
+    "az": "Status, tərəqqi və rəyin imzalanmasına hazırlıq göstəriciləri.",
+    "ru": "Индикаторы статуса, прогресса и готовности заключения заключения.",
+    "tr": "Durum, ilerleme ve görüş imzalamaya hazırlık göstergeleri."
+  },
+  "No opinion type selected": {
+    "az": "Heç bir rəy növü seçilməyib",
+    "ru": "Тип мнения не выбран",
+    "tr": "Görüş türü seçilmedi"
+  },
+  "No basis for opinion content": {
+    "az": "Rəy məzmunu üçün əsas yoxdur",
+    "ru": "Нет оснований для содержания мнений",
+    "tr": "Görüş içeriğinin temeli yok"
+  },
+  "Basis for opinion drafts and notes will appear here.": {
+    "az": "Rəy layihələri və qeydlər üçün əsas burada görünəcək.",
+    "ru": "Здесь будет появляться основа для проектов заключений и примечаний.",
+    "tr": "Görüş taslaklarının ve notların temeli burada görünecektir."
+  },
+  "Financial statement comment": {
+    "az": "Maliyyə hesabatı şərhi",
+    "ru": "Комментарий к финансовой отчетности",
+    "tr": "Mali tablo yorumu"
+  },
+  "Manage financial statements preparation, review, and publication.": {
+    "az": "Maliyyə hesabatlarının hazırlanması, nəzərdən keçirilməsi və dərc edilməsini idarə edin.",
+    "ru": "Управление подготовкой, проверкой и публикацией финансовой отчетности.",
+    "tr": "Mali tabloların hazırlanmasını, incelenmesini ve yayınlanmasını yönetin."
+  },
+  "Opinion approval required": {
+    "az": "Rəyin təsdiqi tələb olunur",
+    "ru": "Требуется одобрение мнения",
+    "tr": "Görüş onayı gerekli"
+  },
+  "Financial statements workspace sections": {
+    "az": "Maliyyə hesabatlarının iş sahəsi bölmələri",
+    "ru": "Разделы рабочей области финансовой отчетности",
+    "tr": "Mali tablolar çalışma alanı bölümleri"
+  },
+  "Mapping coverage": {
+    "az": "Xəritəçəkmə əhatə dairəsi",
+    "ru": "Картографическое покрытие",
+    "tr": "Haritalama kapsamı"
+  },
+  "Open matters requiring resolution before financial statements sign-off.": {
+    "az": "Maliyyə hesabatlarının imzalanmasından əvvəl həll edilməsi tələb olunan məsələləri açın.",
+    "ru": "Открытые вопросы, требующие решения до утверждения финансовой отчетности.",
+    "tr": "Mali tablolar imzalanmadan önce çözülmesi gereken açık konular."
+  },
+  "Activity": {
+    "az": "Fəaliyyət",
+    "ru": "Активность",
+    "tr": "Etkinlik"
+  },
+  "Balance check": {
+    "az": "Balans yoxlaması",
+    "ru": "Проверка баланса",
+    "tr": "Bakiye kontrolü"
+  },
+  "Statements": {
+    "az": "Bəyanatlar",
+    "ru": "Заявления",
+    "tr": "İfadeler"
+  },
+  "Status, progress, and statement publication readiness.": {
+    "az": "Vəziyyət, irəliləyiş və bəyanatın dərcə hazırlığı.",
+    "ru": "Статус, прогресс и готовность публикации заявления.",
+    "tr": "Durum, ilerleme ve bildirimin yayına hazır olma durumu."
+  },
+  "Financial statement and internal comments.": {
+    "az": "Maliyyə hesabatı və daxili şərhlər.",
+    "ru": "Финансовый отчет и внутренние комментарии.",
+    "tr": "Mali tablo ve iç yorumlar."
+  },
+  "Timeline of financial statement changes and approvals.": {
+    "az": "Maliyyə hesabatlarına dəyişikliklər və təsdiqləmə qrafiki.",
+    "ru": "График внесения изменений и утверждений в финансовую отчетность.",
+    "tr": "Mali tablo değişikliklerinin ve onaylarının zaman çizelgesi."
+  },
+  "Version history snapshots of the financial statements package.": {
+    "az": "Maliyyə hesabatları paketinin versiya tarixçəsi.",
+    "ru": "Снимки истории версий пакета финансовой отчетности.",
+    "tr": "Mali tablolar paketinin sürüm geçmişi anlık görüntüleri."
+  },
+  "Archive and restore controls for this financial statements package.": {
+    "az": "Bu maliyyə hesabatları paketi üçün nəzarətləri arxivləşdirin və bərpa edin.",
+    "ru": "Элементы управления архивированием и восстановлением для этого пакета финансовой отчетности.",
+    "tr": "Bu mali tablolar paketine ilişkin kontrolleri arşivleyin ve geri yükleyin."
+  },
+  "No financial statements type selected": {
+    "az": "Heç bir maliyyə hesabatı növü seçilməmişdir",
+    "ru": "Тип финансовой отчетности не выбран",
+    "tr": "Mali tablo türü seçilmedi"
+  },
+  "Basis for financial statements": {
+    "az": "Maliyyə hesabatları üçün əsaslar",
+    "ru": "Основа финансовой отчетности",
+    "tr": "Mali tabloların temeli"
+  },
+  "No basis for financial statements content": {
+    "az": "Maliyyə hesabatlarının məzmunu üçün əsas yoxdur",
+    "ru": "Отсутствие оснований для содержания финансовой отчетности",
+    "tr": "Mali tablo içeriğinin temeli yok"
+  },
+  "Basis for financial statements drafts and notes will appear here.": {
+    "az": "Maliyyə hesabatları üçün əsas layihələr və qeydlər burada görünəcək.",
+    "ru": "Здесь появится основа для проектов финансовой отчетности и примечаний.",
+    "tr": "Mali tablolara ilişkin taslaklar ve notlar burada yer alacaktır."
+  },
+  "No balance sheet content": {
+    "az": "Balans hesabatının məzmunu yoxdur",
+    "ru": "Нет содержания баланса",
+    "tr": "Bilanço içeriği yok"
+  },
+  "Balance sheet drafts and notes will appear here.": {
+    "az": "Balans layihələri və qeydlər burada görünəcək.",
+    "ru": "Здесь будут появляться проекты баланса и примечания.",
+    "tr": "Bilanço taslakları ve notlar burada görünecektir."
+  },
+  "No income statement content": {
+    "az": "Gəlir hesabatının məzmunu yoxdur",
+    "ru": "Нет содержания отчета о прибылях и убытках",
+    "tr": "Gelir tablosu içeriği yok"
+  },
+  "Income statement drafts and notes will appear here.": {
+    "az": "Gəlir hesabatı layihələri və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться проекты отчета о прибылях и убытках и примечания.",
+    "tr": "Gelir tablosu taslakları ve notları burada görünecektir."
+  },
+  "No cash flow statement content": {
+    "az": "Pul vəsaitlərinin hərəkəti hesabatının məzmunu yoxdur",
+    "ru": "Нет содержания отчета о движении денежных средств",
+    "tr": "Nakit akış tablosu içeriği yok"
+  },
+  "Cash flow statement drafts and notes will appear here.": {
+    "az": "Pul vəsaitlərinin hərəkəti haqqında hesabatın qaralamaları və qeydləri burada görünəcək.",
+    "ru": "Здесь будут появляться черновики и примечания отчета о движении денежных средств.",
+    "tr": "Nakit akışı tablosu taslakları ve notları burada görünecektir."
+  },
+  "No changes in equity content": {
+    "az": "Kapital məzmununda dəyişiklik yoxdur",
+    "ru": "Никаких изменений в составе капитала",
+    "tr": "Özsermaye içeriğinde değişiklik yok"
+  },
+  "Changes in equity drafts and notes will appear here.": {
+    "az": "Kapital layihələri və qeydlərindəki dəyişikliklər burada görünəcək.",
+    "ru": "Здесь будут отображаться изменения в проектах акций и примечаниях.",
+    "tr": "Hisse senedi taslaklarındaki ve notlardaki değişiklikler burada görünecektir."
+  },
+  "No notes and links content": {
+    "az": "Qeyd və keçid məzmunu yoxdur",
+    "ru": "Нет примечаний и ссылок",
+    "tr": "Not ve bağlantı içeriği yok"
+  },
+  "Notes and links drafts and notes will appear here.": {
+    "az": "Qeydlər və keçidlər qaralama və qeydlər burada görünəcək.",
+    "ru": "Здесь будут появляться заметки и ссылки, черновики и заметки.",
+    "tr": "Notlar ve bağlantılar, taslaklar ve notlar burada görünecektir."
+  },
+  "No cross-references content": {
+    "az": "Çarpaz istinad məzmunu yoxdur",
+    "ru": "Нет перекрестных ссылок на контент",
+    "tr": "Çapraz referans içeriği yok"
+  },
+  "Cross-references drafts and notes will appear here.": {
+    "az": "Çarpaz istinad qaralamaları və qeydlər burada görünəcək.",
+    "ru": "Здесь будут появляться черновики и примечания с перекрестными ссылками.",
+    "tr": "Çapraz referans taslakları ve notları burada görünecektir."
+  },
+  "The accounting import session could not be found for this company.": {
+    "az": "Bu şirkət üçün mühasibat idxal sessiyasını tapmaq mümkün olmadı.",
+    "ru": "Не удалось найти сеанс импорта бухгалтерского учета для этой компании.",
+    "tr": "Bu şirket için muhasebe içe aktarma oturumu bulunamadı."
+  },
+  "Select a workspace before opening accounting import.": {
+    "az": "Mühasibat idxalını açmadan əvvəl iş yerini seçin.",
+    "ru": "Прежде чем открыть импорт бухгалтерского учета, выберите рабочую область.",
+    "tr": "Muhasebe içe aktarımını açmadan önce bir çalışma alanı seçin."
+  },
+  "Something went wrong while loading the Universal Accounting Import Engine.": {
+    "az": "Universal Mühasibat İdxal Mühərrikini yükləyərkən xəta baş verdi.",
+    "ru": "Что-то пошло не так при загрузке механизма импорта Universal Accounting.",
+    "tr": "Universal Accounting Import Engine yüklenirken bir şeyler ters gitti."
+  },
+  "Upload a trial balance or general ledger export to begin normalization.": {
+    "az": "Normallaşmaya başlamaq üçün sınaq balansını və ya ümumi kitab ixracını yükləyin.",
+    "ru": "Загрузите пробный баланс или экспорт главной книги, чтобы начать нормализацию.",
+    "tr": "Normalleştirmeye başlamak için bir deneme bakiyesi veya genel muhasebe aktarımı yükleyin."
+  },
+  "You need import create permission to upload workbooks.": {
+    "az": "İş kitablarını yükləmək üçün idxal yaratmaq icazəniz lazımdır.",
+    "ru": "Для загрузки книг вам необходимо разрешение на импорт и создание.",
+    "tr": "Çalışma kitaplarını karşıya yüklemek için içe aktarma oluşturma iznine ihtiyacınız var."
+  },
+  "File": {
+    "az": "Fayl",
+    "ru": "Файл",
+    "tr": "Dosya"
+  },
+  "Unable to upload and scan the workbook.": {
+    "az": "İş kitabını yükləmək və skan etmək mümkün deyil.",
+    "ru": "Невозможно загрузить и отсканировать книгу.",
+    "tr": "Çalışma kitabı yüklenemiyor ve taranamıyor."
+  },
+  "Detection": {
+    "az": "Aşkarlama",
+    "ru": "Обнаружение",
+    "tr": "Algılama"
+  },
+  "Workbook scan, ERP fingerprint, language, currency, and sheet confidence.": {
+    "az": "İş kitabının skanı, ERP barmaq izi, dil, valyuta və vərəq etibarı.",
+    "ru": "Сканирование рабочей книги, отпечаток ERP, язык, валюта и достоверность листа.",
+    "tr": "Çalışma kitabı taraması, ERP parmak izi, dil, para birimi ve sayfa güvenliği."
+  },
+  "Detected sheets": {
+    "az": "Aşkar edilmiş vərəqlər",
+    "ru": "Обнаруженные листы",
+    "tr": "Algılanan sayfalar"
+  },
+  "Column mapping": {
+    "az": "Sütun xəritələşdirilməsi",
+    "ru": "Сопоставление столбцов",
+    "tr": "Sütun eşleme"
+  },
+  "Confirm or adjust canonical field mappings. Wizard opens when confidence is below 95%.": {
+    "az": "Kanonik sahə xəritələrini təsdiq edin və ya tənzimləyin. Güvən 95%-dən aşağı olduqda sehrbaz açılır.",
+    "ru": "Подтвердите или измените канонические сопоставления полей. Мастер открывается, когда достоверность ниже 95%.",
+    "tr": "Kurallı alan eşlemelerini onaylayın veya ayarlayın. Güven %95'in altına düştüğünde sihirbaz açılır."
+  },
+  "Validation issues": {
+    "az": "Doğrulama məsələləri",
+    "ru": "Проблемы с проверкой",
+    "tr": "Doğrulama sorunları"
+  },
+  "Normalized dataset": {
+    "az": "Normallaşdırılmış verilənlər toplusu",
+    "ru": "Нормализованный набор данных",
+    "tr": "Normalleştirilmiş veri kümesi"
+  },
+  "Import summary": {
+    "az": "İdxal xülasəsi",
+    "ru": "Сводка импорта",
+    "tr": "Özeti içe aktar"
+  },
+  "Applying...": {
+    "az": "Tətbiq olunur...",
+    "ru": "Применение...",
+    "tr": "Başvuruluyor..."
+  },
+  "Staging...": {
+    "az": "Səhnələndirmə...",
+    "ru": "Постановка...",
+    "tr": "Sahneleniyor..."
+  },
+  "Cancel import": {
+    "az": "İdxalı ləğv edin",
+    "ru": "Отменить импорт",
+    "tr": "İçe aktarmayı iptal et"
+  },
+  "Overall confidence": {
+    "az": "Ümumi etimad",
+    "ru": "Общая уверенность",
+    "tr": "Genel güven"
+  },
+  "Detected ERP": {
+    "az": "Aşkarlanmış ERP",
+    "ru": "Обнаружено ERP",
+    "tr": "Algılanan ERP"
+  },
+  "Sheet": {
+    "az": "Vərəq",
+    "ru": "Лист",
+    "tr": "Çarşaf"
+  },
+  "Mapping confidence": {
+    "az": "Xəritəçəkmə inamı",
+    "ru": "Картирование уверенности",
+    "tr": "Güvenin haritalanması"
+  },
+  "Source column": {
+    "az": "Mənbə sütunu",
+    "ru": "Исходный столбец",
+    "tr": "Kaynak sütunu"
+  },
+  "Valid rows": {
+    "az": "Etibarlı sıralar",
+    "ru": "Допустимые строки",
+    "tr": "Geçerli satırlar"
+  },
+  "Debit total": {
+    "az": "Debet cəmi",
+    "ru": "Итого дебета",
+    "tr": "Borç toplamı"
+  },
+  "Credit total": {
+    "az": "Kredit cəmi",
+    "ru": "Общая сумма кредита",
+    "tr": "Kredi toplamı"
+  },
+  "Mapping confidence is below 95%. Confirm column mappings before staging.": {
+    "az": "Xəritəçəkmə inamı 95%-dən aşağıdır. Səhnələşdirmədən əvvəl sütun xəritələrini təsdiqləyin.",
+    "ru": "Достоверность картирования ниже 95%. Перед промежуточной подготовкой подтвердите сопоставления столбцов.",
+    "tr": "Haritalama güvenirliği %95'in altındadır. Aşamalandırmadan önce sütun eşlemelerini onaylayın."
+  },
+  "Normalized accounting dataset is staged and learning profile saved.": {
+    "az": "Normallaşdırılmış mühasibat məlumat toplusu mərhələli şəkildə hazırlanır və öyrənmə profili saxlanılır.",
+    "ru": "Нормализованный набор учетных данных подготовлен и профиль обучения сохранен.",
+    "tr": "Normalleştirilmiş muhasebe veri seti hazırlanır ve öğrenme profili kaydedilir."
+  },
+  "Unable to complete the import action.": {
+    "az": "Import əməliyyatını tamamlamaq mümkün deyil.",
+    "ru": "Не удалось завершить действие импорта.",
+    "tr": "İçe aktarma işlemi tamamlanamıyor."
+  },
+  "Recent imports": {
+    "az": "Son idxal",
+    "ru": "Недавний импорт",
+    "tr": "Son ithalatlar"
+  },
+  "Import success rate": {
+    "az": "Import müvəffəqiyyət dərəcəsi",
+    "ru": "Доля успешных импортов",
+    "tr": "Başarı oranını içe aktar"
+  },
+  "Failed imports": {
+    "az": "Uğursuz idxal",
+    "ru": "Неудачный импорт",
+    "tr": "Başarısız içe aktarma"
+  },
+  "Detected ERP types": {
+    "az": "Aşkar edilmiş ERP növləri",
+    "ru": "Обнаруженные типы ERP",
+    "tr": "Algılanan ERP türleri"
+  },
+  "Import Intelligence sections": {
+    "az": "Kəşfiyyat bölmələrini idxal edin",
+    "ru": "Импорт разделов разведки",
+    "tr": "Bilgi Alma bölümlerini içe aktar"
+  },
+  "Import sessions": {
+    "az": "İdxal sessiyaları",
+    "ru": "Импортировать сеансы",
+    "tr": "Oturumları içe aktar"
+  },
+  "ERP templates": {
+    "az": "ERP şablonları",
+    "ru": "ERP-шаблоны",
+    "tr": "ERP şablonları"
+  },
+  "Customer templates": {
+    "az": "Müştəri şablonları",
+    "ru": "Шаблоны клиентов",
+    "tr": "Müşteri şablonları"
+  },
+  "Fingerprints": {
+    "az": "Barmaq izləri",
+    "ru": "Отпечатки пальцев",
+    "tr": "Parmak izleri"
+  },
+  "Analytics": {
+    "az": "Analitika",
+    "ru": "Аналитика",
+    "tr": "Analitik"
+  },
+  "Learning": {
+    "az": "Öyrənmək",
+    "ru": "Обучение",
+    "tr": "Öğrenme"
+  },
+  "Self-learning accounting import intelligence across ERP fingerprints, dictionaries, and mappings.": {
+    "az": "ERP barmaq izləri, lüğətlər və xəritələr arasında öz-özünə öyrənən mühasibat zəkasını idxal edir.",
+    "ru": "Самообучающийся бухгалтерский учет импортирует аналитические данные из отпечатков пальцев ERP, словарей и сопоставлений.",
+    "tr": "Kendi kendine öğrenen muhasebe, ERP parmak izleri, sözlükleri ve eşlemeleri genelinde zekayı içe aktarır."
+  },
+  "Intelligence overview": {
+    "az": "Kəşfiyyata baxış",
+    "ru": "Обзор разведки",
+    "tr": "İstihbarata genel bakış"
+  },
+  "Live learning posture across imports, dictionaries, and ERP fingerprints.": {
+    "az": "İdxal, lüğətlər və ERP barmaq izləri arasında canlı öyrənmə vəziyyəti.",
+    "ru": "Возможность интерактивного обучения с помощью импорта, словарей и отпечатков ERP.",
+    "tr": "İçe aktarmalar, sözlükler ve ERP parmak izleri genelinde canlı öğrenme duruşu."
+  },
+  "Import sessions center": {
+    "az": "İdxal sessiyaları mərkəzi",
+    "ru": "Центр импорта сессий",
+    "tr": "Oturum merkezini içe aktar"
+  },
+  "Every import with ERP, confidence, duration, warnings, and status.": {
+    "az": "ERP, etibarlılıq, müddət, xəbərdarlıq və status ilə hər idxal.",
+    "ru": "Каждый импорт с ERP, достоверностью, продолжительностью, предупреждениями и статусом.",
+    "tr": "ERP, güven, süre, uyarılar ve durum ile her içe aktarma."
+  },
+  "Unknown header center": {
+    "az": "Naməlum başlıq mərkəzi",
+    "ru": "Неизвестный центр заголовка",
+    "tr": "Bilinmeyen başlık merkezi"
+  },
+  "Unrecognized headers awaiting approve, reject, merge, or ignore.": {
+    "az": "Təsdiq etməyi, rədd etməyi, birləşdirməyi və ya yox etməyi gözləyən tanınmayan başlıqlar.",
+    "ru": "Нераспознанные заголовки, ожидающие утверждения, отклонения, объединения или игнорирования.",
+    "tr": "Onaylanmayı, reddedilmeyi, birleştirilmeyi veya yoksaymayı bekleyen, tanınmayan başlıklar."
+  },
+  "Enterprise synonym dictionary learned from successful mappings.": {
+    "az": "Uğurlu xəritələmələrdən öyrənilmiş müəssisə sinonimi lüğəti.",
+    "ru": "Корпоративный словарь синонимов, полученный в результате успешных сопоставлений.",
+    "tr": "Başarılı eşlemelerden öğrenilen kurumsal eş anlamlılar sözlüğü."
+  },
+  "ERP template library": {
+    "az": "ERP şablon kitabxanası",
+    "ru": "Библиотека шаблонов ERP",
+    "tr": "ERP şablon kütüphanesi"
+  },
+  "Detected ERP templates with confidence, languages, and success rates.": {
+    "az": "Etibar, dillər və müvəffəqiyyət dərəcələri ilə aşkar edilmiş ERP şablonları.",
+    "ru": "Обнаруженные шаблоны ERP с уверенностью, языками и показателями успеха.",
+    "tr": "Güvenilirlik, diller ve başarı oranlarına sahip ERP şablonları algılandı."
+  },
+  "Customer template library": {
+    "az": "Müştəri şablon kitabxanası",
+    "ru": "Библиотека шаблонов клиентов",
+    "tr": "Müşteri şablon kitaplığı"
+  },
+  "Company-owned workbook layouts and reusable mapping fingerprints.": {
+    "az": "Şirkətə məxsus iş dəftəri tərtibatları və təkrar istifadə edilə bilən xəritəçəkmə barmaq izləri.",
+    "ru": "Макеты корпоративных книг и многоразовые картографические отпечатки.",
+    "tr": "Şirkete ait çalışma kitabı düzenleri ve yeniden kullanılabilir haritalama parmak izleri."
+  },
+  "Fingerprint center": {
+    "az": "Barmaq izi mərkəzi",
+    "ru": "Центр отпечатков пальцев",
+    "tr": "Parmak izi merkezi"
+  },
+  "Workbook, header, layout, and ERP fingerprints with learning scores.": {
+    "az": "Öyrənmə xalları ilə iş dəftəri, başlıq, tərtibat və ERP barmaq izləri.",
+    "ru": "Рабочая тетрадь, заголовок, макет и отпечатки ERP с оценками обучения.",
+    "tr": "Öğrenme puanlarıyla birlikte çalışma kitabı, başlık, düzen ve ERP parmak izleri."
+  },
+  "Approved source-to-canonical mappings retained for reuse.": {
+    "az": "Təsdiqlənmiş mənbədən kanonik xəritələr təkrar istifadə üçün saxlanılır.",
+    "ru": "Утвержденные сопоставления источника с каноническими сохраняются для повторного использования.",
+    "tr": "Onaylanmış kaynaktan kanonik eşlemeler yeniden kullanım için saklandı."
+  },
+  "Import analytics": {
+    "az": "Analitikləri idxal edin",
+    "ru": "Импортировать аналитику",
+    "tr": "Analizleri içe aktar"
+  },
+  "Premium widgets for volume, confidence, ERP mix, and learning growth.": {
+    "az": "Həcm, güvən, ERP qarışığı və öyrənmə artımı üçün premium vidjetlər.",
+    "ru": "Премиум-виджеты для объема, уверенности, сочетания ERP и роста обучения.",
+    "tr": "Hacim, güven, ERP karışımı ve öğrenmede büyüme için premium widget'lar."
+  },
+  "Workbook through validation health scores for recent imports.": {
+    "az": "Son idxallar üçün doğrulama sağlamlıq balları vasitəsilə iş kitabı.",
+    "ru": "Рабочая тетрадь с проверочными показателями работоспособности для недавнего импорта.",
+    "tr": "Son içe aktarmalar için doğrulama durumu puanlarını içeren çalışma kitabı."
+  },
+  "Most frequent unrecognized header tokens awaiting dictionary approval.": {
+    "az": "Lüğətin təsdiqini gözləyən ən tez-tez tanınmayan başlıq işarələri.",
+    "ru": "Наиболее частые нераспознанные токены заголовков, ожидающие одобрения словаря.",
+    "tr": "Sözlük onayını bekleyen en sık tanınmayan başlık belirteçleri."
+  },
+  "High-confidence suggestions ready for one-click approval.": {
+    "az": "Yüksək etibarlı təkliflər bir kliklə təsdiqlənməyə hazırdır.",
+    "ru": "Предложения с высокой степенью достоверности, готовые к утверждению в один клик.",
+    "tr": "Tek tıkla onaylanmaya hazır, yüksek güvenirliğe sahip öneriler."
+  },
+  "Chronological learning events across the workspace.": {
+    "az": "İş yerində xronoloji öyrənmə hadisələri.",
+    "ru": "Хронологические учебные события в рабочем пространстве.",
+    "tr": "Çalışma alanındaki kronolojik öğrenme etkinlikleri."
+  },
+  "Audit trail for intelligence approvals, merges, and admin actions.": {
+    "az": "Kəşfiyyat təsdiqləri, birləşmələr və admin hərəkətləri üçün yoxlama izi.",
+    "ru": "Журнал аудита аналитических утверждений, слияний и действий администратора.",
+    "tr": "İstihbarat onayları, birleştirmeler ve yönetici eylemleri için denetim takibi."
+  },
+  "Merge, disable, restore, export, and import dictionary entries.": {
+    "az": "Lüğət girişlərini birləşdirin, söndürün, bərpa edin, ixrac edin və idxal edin.",
+    "ru": "Объединяйте, отключайте, восстанавливайте, экспортируйте и импортируйте словарные статьи.",
+    "tr": "Sözlük girişlerini birleştirin, devre dışı bırakın, geri yükleyin, dışa aktarın ve içe aktarın."
+  },
+  "Global search": {
+    "az": "Qlobal axtarış",
+    "ru": "Глобальный поиск",
+    "tr": "Küresel arama"
+  },
+  "Search headers, mappings, fingerprints, and unknown words.": {
+    "az": "Başlıqları, xəritələri, barmaq izlərini və naməlum sözləri axtarın.",
+    "ru": "Ищите заголовки, сопоставления, отпечатки пальцев и неизвестные слова.",
+    "tr": "Başlıkları, eşlemeleri, parmak izlerini ve bilinmeyen kelimeleri arayın."
+  },
+  "Reject": {
+    "az": "Rədd edin",
+    "ru": "Отклонять",
+    "tr": "Reddetmek"
+  },
+  "Merge": {
+    "az": "Birləşdirin",
+    "ru": "Объединить",
+    "tr": "Birleştir"
+  },
+  "Disable": {
+    "az": "Deaktiv edin",
+    "ru": "Запрещать",
+    "tr": "Devre dışı bırakmak"
+  },
+  "Delete": {
+    "az": "Sil",
+    "ru": "Удалить",
+    "tr": "Silmek"
+  },
+  "Export dictionary": {
+    "az": "Eksport lüğəti",
+    "ru": "Экспортировать словарь",
+    "tr": "Sözlüğü dışa aktar"
+  },
+  "Import dictionary": {
+    "az": "İdxal lüğəti",
+    "ru": "Импортировать словарь",
+    "tr": "Sözlüğü içe aktar"
+  },
+  "Apply": {
+    "az": "Müraciət edin",
+    "ru": "Применять",
+    "tr": "Uygula"
+  },
+  "Import ID": {
+    "az": "İdxal ID",
+    "ru": "Импортировать идентификатор",
+    "tr": "İçe aktarma kimliği"
+  },
+  "Company": {
+    "az": "Şirkət",
+    "ru": "Компания",
+    "tr": "Şirket"
+  },
+  "User": {
+    "az": "İstifadəçi",
+    "ru": "Пользователь",
+    "tr": "Kullanıcı"
+  },
+  "Workbook": {
+    "az": "İş dəftəri",
+    "ru": "Рабочая тетрадь",
+    "tr": "Çalışma kitabı"
+  },
+  "Duration": {
+    "az": "Müddət",
+    "ru": "Продолжительность",
+    "tr": "Süre"
+  },
+  "Errors": {
+    "az": "Səhvlər",
+    "ru": "Ошибки",
+    "tr": "Hatalar"
+  },
+  "Finished": {
+    "az": "Bitdi",
+    "ru": "Законченный",
+    "tr": "Bitti"
+  },
+  "Raw value": {
+    "az": "Xam dəyər",
+    "ru": "Исходное значение",
+    "tr": "Ham değer"
+  },
+  "Normalized": {
+    "az": "Normallaşdırılmış",
+    "ru": "Нормализованный",
+    "tr": "Normalleştirilmiş"
+  },
+  "Suggested": {
+    "az": "Təklif olunur",
+    "ru": "Предложенный",
+    "tr": "Önerilen"
+  },
+  "Occurrences": {
+    "az": "Hadisələr",
+    "ru": "События",
+    "tr": "Olaylar"
+  },
+  "Last seen": {
+    "az": "Son görüldü",
+    "ru": "Последний раз видели",
+    "tr": "Son görülme"
+  },
+  "First seen": {
+    "az": "İlk görüldü",
+    "ru": "Впервые увидел",
+    "tr": "İlk görülme"
+  },
+  "Source": {
+    "az": "Mənbə",
+    "ru": "Источник",
+    "tr": "Kaynak"
+  },
+  "Count": {
+    "az": "saymaq",
+    "ru": "Считать",
+    "tr": "Saymak"
+  },
+  "Imports": {
+    "az": "İdxal",
+    "ru": "Импорт",
+    "tr": "İthalat"
+  },
+  "Template": {
+    "az": "Şablon",
+    "ru": "Шаблон",
+    "tr": "Şablon"
+  },
+  "Fingerprint": {
+    "az": "Barmaq izi",
+    "ru": "Отпечаток пальца",
+    "tr": "Parmak izi"
+  },
+  "Workbook hash": {
+    "az": "İş dəftəri hash",
+    "ru": "Хэш книги",
+    "tr": "Çalışma kitabı karması"
+  },
+  "Header hash": {
+    "az": "Başlıq hash",
+    "ru": "Хэш заголовка",
+    "tr": "Başlık karması"
+  },
+  "Layout hash": {
+    "az": "Tərtibat heşi",
+    "ru": "Хеш макета",
+    "tr": "Düzen karması"
+  },
+  "Learning score": {
+    "az": "Öyrənmə balı",
+    "ru": "Оценка обучения",
+    "tr": "Öğrenme puanı"
+  },
+  "Template version": {
+    "az": "Şablon versiyası",
+    "ru": "Версия шаблона",
+    "tr": "Şablon sürümü"
+  },
+  "Imports today": {
+    "az": "Bu gün idxal",
+    "ru": "Импорт сегодня",
+    "tr": "Bugün ithalat"
+  },
+  "Imports this month": {
+    "az": "Bu ay idxal",
+    "ru": "Импорт в этом месяце",
+    "tr": "Bu ayki ithalatlar"
+  },
+  "Success rate": {
+    "az": "Uğur dərəcəsi",
+    "ru": "Уровень успеха",
+    "tr": "Başarı oranı"
+  },
+  "Pending approvals": {
+    "az": "Gözlənilən təsdiqlər",
+    "ru": "Ожидающие одобрения",
+    "tr": "Onaylar bekleniyor"
+  },
+  "Dictionary size": {
+    "az": "Lüğət ölçüsü",
+    "ru": "Размер словаря",
+    "tr": "Sözlük boyutu"
+  },
+  "Top ERP systems": {
+    "az": "Ən yaxşı ERP sistemləri",
+    "ru": "Лучшие ERP-системы",
+    "tr": "En iyi ERP sistemleri"
+  },
+  "Learning growth": {
+    "az": "Öyrənmə böyüməsi",
+    "ru": "Рост обучения",
+    "tr": "Büyümeyi öğrenme"
+  },
+  "Workbook health": {
+    "az": "Iş dəftəri sağlamlıq",
+    "ru": "Здоровье рабочей тетради",
+    "tr": "Çalışma kitabı sağlığı"
+  },
+  "Header health": {
+    "az": "Başlıq sağlamlığı",
+    "ru": "Здоровье заголовка",
+    "tr": "Başlık sağlığı"
+  },
+  "Column health": {
+    "az": "Sütun sağlamlığı",
+    "ru": "Состояние столбца",
+    "tr": "Sütun sağlığı"
+  },
+  "Language health": {
+    "az": "Dil sağlamlığı",
+    "ru": "Здоровье языка",
+    "tr": "Dil sağlığı"
+  },
+  "Currency health": {
+    "az": "Valyuta sağlamlığı",
+    "ru": "Здоровье валюты",
+    "tr": "Para birimi sağlığı"
+  },
+  "Balance health": {
+    "az": "Sağlamlığı tarazlayın",
+    "ru": "Баланс здоровья",
+    "tr": "Sağlığı dengeleyin"
+  },
+  "Validation health": {
+    "az": "Doğrulama sağlamlığı",
+    "ru": "Проверка работоспособности",
+    "tr": "Doğrulama durumu"
+  },
+  "Overall health": {
+    "az": "Ümumi sağlamlıq",
+    "ru": "Общее состояние здоровья",
+    "tr": "Genel sağlık"
+  },
+  "No records yet": {
+    "az": "Hələ qeydlər yoxdur",
+    "ru": "Пока нет записей",
+    "tr": "Henüz kayıt yok"
+  },
+  "Unable to complete the intelligence action.": {
+    "az": "Kəşfiyyat əməliyyatını tamamlamaq mümkün deyil.",
+    "ru": "Не удалось завершить разведывательное действие.",
+    "tr": "İstihbarat eylemi tamamlanamadı."
+  },
+  "Suggestions appear when confidence is 75% or higher.": {
+    "az": "Etibar 75% və ya daha yüksək olduqda təkliflər görünür.",
+    "ru": "Предложения появляются, когда достоверность составляет 75 % или выше.",
+    "tr": "Güven %75 veya daha yüksek olduğunda öneriler görünür."
+  },
+  "You need trial balance permission to access this workspace.": {
+    "az": "Bu iş sahəsinə daxil olmaq üçün sınaq balansına icazə lazımdır.",
+    "ru": "Для доступа к этой рабочей области вам необходимо разрешение на пробный баланс.",
+    "tr": "Bu çalışma alanına erişmek için deneme bakiyesi iznine ihtiyacınız var."
+  },
+  "Select a workspace before opening the trial balance.": {
+    "az": "Sınaq balansını açmadan əvvəl iş yerini seçin.",
+    "ru": "Прежде чем открывать пробный баланс, выберите рабочую область.",
+    "tr": "Deneme bakiyesini açmadan önce bir çalışma alanı seçin."
+  },
+  "Unable to load trial balance": {
+    "az": "Sınaq balansını yükləmək mümkün deyil",
+    "ru": "Невозможно загрузить пробный баланс",
+    "tr": "Deneme bakiyesi yüklenemiyor"
+  },
+  "Something went wrong while loading the Enterprise Trial Balance Engine.": {
+    "az": "Enterprise Trial Balance Engine yüklənərkən xəta baş verdi.",
+    "ru": "Что-то пошло не так при загрузке Enterprise Trial Balance Engine.",
+    "tr": "Kurumsal Deneme Dengesi Motoru yüklenirken bir şeyler ters gitti."
+  },
+  "Trial balance sections": {
+    "az": "Sınaq balansı bölmələri",
+    "ru": "Разделы пробного баланса",
+    "tr": "Deneme bakiyesi bölümleri"
+  },
+  "Hierarchy": {
+    "az": "İyerarxiya",
+    "ru": "Иерархия",
+    "tr": "Hiyerarşi"
+  },
+  "Mappings": {
+    "az": "Xəritəçəkmələr",
+    "ru": "Сопоставления",
+    "tr": "Eşlemeler"
+  },
+  "Validation": {
+    "az": "Doğrulama",
+    "ru": "Валидация",
+    "tr": "Doğrulama"
+  },
+  "Currencies": {
+    "az": "Valyutalar",
+    "ru": "Валюты",
+    "tr": "Para birimleri"
+  },
+  "Controls": {
+    "az": "Nəzarətlər",
+    "ru": "Элементы управления",
+    "tr": "Kontroller"
+  },
+  "Trial Balance": {
+    "az": "Sınaq Balans",
+    "ru": "Пробный баланс",
+    "tr": "Mizan"
+  },
+  "Financial backbone built from UAIE normalized datasets — accounts, hierarchy, adjustments, and mappings.": {
+    "az": "UAIE normallaşdırılmış məlumat dəstlərindən qurulmuş maliyyə magistralı - hesablar, iyerarxiya, düzəlişlər və xəritələr.",
+    "ru": "Финансовая основа, построенная на основе нормализованных наборов данных UAIE — счетов, иерархии, корректировок и сопоставлений.",
+    "tr": "Hesaplar, hiyerarşi, ayarlamalar ve eşlemeler gibi BAIE'nin normalleştirilmiş veri kümelerinden oluşturulan finansal omurga."
+  },
+  "Trial balance overview": {
+    "az": "Sınaq balansına ümumi baxış",
+    "ru": "Обзор пробного баланса",
+    "tr": "Deneme bakiyesine genel bakış"
+  },
+  "Balances, warnings, workflow, and package health.": {
+    "az": "Balanslar, xəbərdarlıqlar, iş axını və paket sağlamlığı.",
+    "ru": "Балансы, предупреждения, рабочий процесс и состояние пакетов.",
+    "tr": "Bakiyeler, uyarılar, iş akışı ve paket durumu."
+  },
+  "Complete trial balance account register.": {
+    "az": "Sınaq balansı hesab reyestrini tamamlayın.",
+    "ru": "Заполните реестр пробного баланса.",
+    "tr": "Deneme bakiyesi hesap kaydını tamamlayın."
+  },
+  "Account hierarchy": {
+    "az": "Hesab iyerarxiyası",
+    "ru": "Иерархия аккаунтов",
+    "tr": "Hesap hiyerarşisi"
+  },
+  "Unlimited tree of assets, liabilities, equity, income, and expenses.": {
+    "az": "Aktivlərin, öhdəliklərin, kapitalın, gəlirlərin və xərclərin qeyri-məhdud ağacı.",
+    "ru": "Неограниченное дерево активов, обязательств, капитала, доходов и расходов.",
+    "tr": "Sınırsız varlık, yükümlülük, özsermaye, gelir ve gider ağacı."
+  },
+  "Journal entries and corrections that preserve imported source amounts.": {
+    "az": "İdxal edilən mənbə məbləğlərini qoruyan jurnal qeydləri və düzəlişlər.",
+    "ru": "Записи журнала и исправления, сохраняющие суммы импортированных источников.",
+    "tr": "İçe aktarılan kaynak miktarlarını koruyan günlük girişleri ve düzeltmeler."
+  },
+  "Reclassification entries without overwriting imported data.": {
+    "az": "İdxal edilmiş məlumatların üzərinə yazmadan yenidən təsnifləşdirmə qeydləri.",
+    "ru": "Записи реклассификации без перезаписи импортированных данных.",
+    "tr": "İçe aktarılan verilerin üzerine yazmaya gerek kalmadan yeniden sınıflandırma girişleri."
+  },
+  "Account mappings": {
+    "az": "Hesab xəritələri",
+    "ru": "Сопоставления учетных записей",
+    "tr": "Hesap eşlemeleri"
+  },
+  "IFRS, IAS, local GAAP, company, and future AI mappings.": {
+    "az": "IFRS, IAS, yerli GAAP, şirkət və gələcək AI xəritələri.",
+    "ru": "МСФО, IAS, местные GAAP, компании и будущие сопоставления ИИ.",
+    "tr": "IFRS, IAS, yerel GAAP, şirket ve gelecekteki yapay zeka eşlemeleri."
+  },
+  "Balance validation": {
+    "az": "Balansın yoxlanılması",
+    "ru": "Проверка баланса",
+    "tr": "Bakiye doğrulama"
+  },
+  "Out-of-balance, orphan, duplicate, and classification checks.": {
+    "az": "Balansdan kənar, yetim, dublikat və təsnifat çekləri.",
+    "ru": "Проверки несбалансированности, потерянных данных, дубликатов и классификации.",
+    "tr": "Dengesizlik, yetim, kopya ve sınıflandırma kontrolleri."
+  },
+  "Multi-currency": {
+    "az": "Multivalyuta",
+    "ru": "Мультивалютность",
+    "tr": "Çoklu para birimi"
+  },
+  "Functional, presentation, original currency, and FX posture.": {
+    "az": "Funksional, təqdimat, orijinal valyuta və FX duruşu.",
+    "ru": "Функциональность, презентация, исходная валюта и валютная позиция.",
+    "tr": "İşlevsel, sunum, orijinal para birimi ve döviz duruşu."
+  },
+  "Opening, current, closing, and comparative periods.": {
+    "az": "Açılış, cari, yekun və müqayisəli dövrlər.",
+    "ru": "Начальный, текущий, заключительный и сравнительный периоды.",
+    "tr": "Açılış, cari, kapanış ve karşılaştırmalı dönemler."
+  },
+  "Prior-year and comparative period views.": {
+    "az": "Əvvəlki il və müqayisəli dövr baxışları.",
+    "ru": "Взгляды за предыдущий год и сравнительный период.",
+    "tr": "Önceki yıl ve karşılaştırmalı dönem görünümleri."
+  },
+  "Audit trail of imports, adjustments, reviews, and approvals.": {
+    "az": "İdxalın, düzəlişlərin, nəzərdən keçirmələrin və təsdiqlərin audit izi.",
+    "ru": "Аудит импорта, корректировок, проверок и утверждений.",
+    "tr": "İthalat, ayarlamalar, incelemeler ve onayların denetim takibi."
+  },
+  "Version snapshots with change summaries and rollback points.": {
+    "az": "Dəyişiklik xülasələri və geri qaytarma nöqtələri ilə versiya anlıq görüntüləri.",
+    "ru": "Снимки версий со сводкой изменений и точками отката.",
+    "tr": "Değişiklik özetlerini ve geri alma noktalarını içeren sürüm anlık görüntüleri."
+  },
+  "Package settings and fiscal roll-forward.": {
+    "az": "Paket parametrləri və fiskal irəliləmə.",
+    "ru": "Настройки пакета и финансовый перенос.",
+    "tr": "Paket ayarları ve mali ileri sarma."
+  },
+  "Search accounts by code, name, category, lead schedule, and FS mapping.": {
+    "az": "Kod, ad, kateqoriya, aparıcı cədvəl və FS xəritəsi ilə hesabları axtarın.",
+    "ru": "Поиск учетных записей по коду, имени, категории, расписанию потенциальных клиентов и сопоставлению FS.",
+    "tr": "Hesapları koda, ada, kategoriye, potansiyel müşteri planına ve FS eşlemesine göre arayın."
+  },
+  "Locked": {
+    "az": "Bağlanıb",
+    "ru": "Заблокировано",
+    "tr": "Kilitli"
+  },
+  "Asset": {
+    "az": "Aktiv",
+    "ru": "Объект",
+    "tr": "Varlık"
+  },
+  "Liability": {
+    "az": "Məsuliyyət",
+    "ru": "Обязанность",
+    "tr": "Yükümlülük"
+  },
+  "Equity": {
+    "az": "Kapital",
+    "ru": "Капитал",
+    "tr": "özsermaye"
+  },
+  "Revenue": {
+    "az": "Gəlir",
+    "ru": "Доход",
+    "tr": "Hasılat"
+  },
+  "Expense": {
+    "az": "Xərc",
+    "ru": "Расход",
+    "tr": "Gider"
+  },
+  "Other income": {
+    "az": "Digər gəlirlər",
+    "ru": "Прочие доходы",
+    "tr": "Diğer gelir"
+  },
+  "Other expense": {
+    "az": "Digər xərclər",
+    "ru": "Прочие расходы",
+    "tr": "Diğer gider"
+  },
+  "OCI": {
+    "az": "OCI",
+    "ru": "OCI",
+    "tr": "OCI"
+  },
+  "Unknown": {
+    "az": "Naməlum",
+    "ru": "Неизвестный",
+    "tr": "Bilinmiyor"
+  },
+  "Trial balance not initiated": {
+    "az": "Sınaq balansı işə salınmayıb",
+    "ru": "Пробный баланс не запущен",
+    "tr": "Deneme bakiyesi başlatılmadı"
+  },
+  "Build a trial balance from a staged UAIE import. Financial statements and reporting must read from this dataset.": {
+    "az": "Mərhələli UAIE idxalından sınaq balansı yaradın. Maliyyə hesabatları və hesabatlar bu verilənlər bazasından oxunmalıdır.",
+    "ru": "Создайте пробный баланс на основе поэтапного импорта UAIE. Финансовые отчеты и отчетность должны считываться из этого набора данных.",
+    "tr": "Aşamalı bir BAIE içe aktarımından deneme bakiyesi oluşturun. Mali tablolar ve raporlama bu veri kümesinden okunmalıdır."
+  },
+  "Build from UAIE import": {
+    "az": "UAIE idxalından qurun",
+    "ru": "Сборка на основе импорта UAIE",
+    "tr": "BAIE içe aktarmasından derleme"
+  },
+  "Building trial balance…": {
+    "az": "Sınaq balansı qurulur...",
+    "ru": "Построение пробного баланса…",
+    "tr": "Deneme bakiyesi oluşturuluyor…"
+  },
+  "Staged import session": {
+    "az": "Mərhələli idxal sessiyası",
+    "ru": "Поэтапный сеанс импорта",
+    "tr": "Aşamalı içe aktarma oturumu"
+  },
+  "Unable to complete the trial balance action.": {
+    "az": "Sınaq balansı əməliyyatını tamamlamaq mümkün deyil.",
+    "ru": "Не удалось выполнить действие по пробному балансу.",
+    "tr": "Deneme bakiyesi işlemi tamamlanamadı."
+  },
+  "Out of balance": {
+    "az": "Balansdan",
+    "ru": "Разбалансирован",
+    "tr": "Dengesiz"
+  },
+  "Unmapped": {
+    "az": "Xəritəsiz",
+    "ru": "Несопоставленный",
+    "tr": "Eşlenmemiş"
+  },
+  "Fiscal year": {
+    "az": "Maliyyə ili",
+    "ru": "Финансовый год",
+    "tr": "Mali yıl"
+  },
+  "Functional currency": {
+    "az": "Funksional valyuta",
+    "ru": "Функциональная валюта",
+    "tr": "İşlevsel para birimi"
+  },
+  "Presentation currency": {
+    "az": "Təqdimat valyutası",
+    "ru": "Валюта представления",
+    "tr": "Sunum para birimi"
+  },
+  "FX-impacted accounts": {
+    "az": "FX təsirli hesablar",
+    "ru": "Счета, подверженные валютному влиянию",
+    "tr": "Dövizden etkilenen hesaplar"
+  },
+  "Closing balance": {
+    "az": "Balansın bağlanması",
+    "ru": "Итоговый баланс",
+    "tr": "Kapanış bakiyesi"
+  },
+  "Lead schedule": {
+    "az": "Aparıcı cədvəli",
+    "ru": "График лидов",
+    "tr": "Potansiyel müşteri programı"
+  },
+  "FS mapping": {
+    "az": "FS xəritəsi",
+    "ru": "Сопоставление ФС",
+    "tr": "FS haritalaması"
+  },
+  "Description": {
+    "az": "Təsvir",
+    "ru": "Описание",
+    "tr": "Tanım"
+  },
+  "Amount": {
+    "az": "Məbləğ",
+    "ru": "Количество",
+    "tr": "Miktar"
+  },
+  "Period": {
+    "az": "Dövr",
+    "ru": "Период",
+    "tr": "Dönem"
+  },
+  "Comparative": {
+    "az": "Müqayisəli",
+    "ru": "Сравнительный",
+    "tr": "Karşılaştırmalı"
+  },
+  "Search accounts": {
+    "az": "Hesabları axtarın",
+    "ru": "Поиск аккаунтов",
+    "tr": "Hesapları arayın"
+  },
+  "Add adjustment": {
+    "az": "Tənzimləmə əlavə edin",
+    "ru": "Добавить корректировку",
+    "tr": "Düzenleme ekle"
+  },
+  "Roll forward to next year": {
+    "az": "Gələn ilə irəliləyin",
+    "ru": "Перенесемся на следующий год",
+    "tr": "Gelecek yıla ilerleyin"
+  },
+  "Validate": {
+    "az": "Doğrulayın",
+    "ru": "Подтвердить",
+    "tr": "Doğrula"
+  },
+  "Start review": {
+    "az": "Baxışa başlayın",
+    "ru": "Начать проверку",
+    "tr": "İncelemeyi başlat"
+  },
+  "Lock": {
+    "az": "Kilidləyin",
+    "ru": "Замок",
+    "tr": "Kilit"
+  },
+  "Open completion": {
+    "az": "Tamamlama bölməsini açın",
+    "ru": "Открыть раздел завершения",
+    "tr": "Tamamlama bölümünü aç"
+  },
+  "Engagement pipeline": {
+    "az": "Audit tapşırığının mərhələləri",
+    "ru": "Этапы аудиторского задания",
+    "tr": "Denetim sözleşmesi aşamaları"
+  },
+  "Planning, materiality, risk assessment, and fieldwork readiness for this engagement.": {
+    "az": "Bu audit tapşırığı üzrə planlaşdırma, maddilik, risklərin qiymətləndirilməsi və sahə işlərinə hazırlıq.",
+    "ru": "Готовность к планированию, определению существенности, оценке рисков и выполнению аудиторских процедур по этому заданию.",
+    "tr": "Bu denetim sözleşmesi için planlama, önemlilik, risk değerlendirmesi ve saha çalışması hazırlığı."
+  },
+  "Requires attention": {
+    "az": "Diqqət tələb edir",
+    "ru": "Требует внимания",
+    "tr": "İlgilenilmesi gerekiyor"
+  },
+  "Review and resolve these items before advancing the engagement.": {
+    "az": "Audit tapşırığını növbəti mərhələyə keçirməzdən əvvəl bu elementləri nəzərdən keçirin və həll edin.",
+    "ru": "Проверьте и устраните эти вопросы перед переводом аудиторского задания на следующий этап.",
+    "tr": "Denetim sözleşmesini ilerletmeden önce bu öğeleri inceleyin ve çözün."
+  },
+  "Planning pending review": {
+    "az": "Planlaşdırma baxış gözləyir",
+    "ru": "Планирование ожидает проверки",
+    "tr": "Planlama inceleme bekliyor"
+  },
+  "Materiality pending review": {
+    "az": "Maddilik baxış gözləyir",
+    "ru": "Существенность ожидает проверки",
+    "tr": "Önemlilik inceleme bekliyor"
+  },
+  "Risk assessment pending review": {
+    "az": "Risklərin qiymətləndirilməsi baxış gözləyir",
+    "ru": "Оценка рисков ожидает проверки",
+    "tr": "Risk değerlendirmesi inceleme bekliyor"
+  },
+  "{count} fieldwork procedures pending review": {
+    "az": "{count} sahə işi proseduru baxış gözləyir",
+    "ru": "{count} аудиторских процедур ожидают проверки",
+    "tr": "{count} saha çalışması prosedürü inceleme bekliyor"
+  },
+  "Planning not started": {
+    "az": "Planlaşdırmaya başlanılmayıb",
+    "ru": "Планирование не начато",
+    "tr": "Planlama başlatılmadı"
+  },
+  "Create an audit plan to document strategy, scope, and team readiness.": {
+    "az": "Strategiyanı, əhatə dairəsini və komandanın hazırlığını sənədləşdirmək üçün audit planı yaradın.",
+    "ru": "Создайте план аудита, чтобы документально зафиксировать стратегию, объем работ и готовность команды.",
+    "tr": "Stratejiyi, kapsamı ve ekibin hazırlığını belgelemek için bir denetim planı oluşturun."
+  },
+  "Materiality not started": {
+    "az": "Maddiliyin müəyyənləşdirilməsinə başlanılmayıb",
+    "ru": "Определение существенности не начато",
+    "tr": "Önemlilik çalışması başlatılmadı"
+  },
+  "Document ISA 320 thresholds after planning is approved.": {
+    "az": "Planlaşdırma təsdiqləndikdən sonra ISA 320 hədlərini sənədləşdirin.",
+    "ru": "После утверждения планирования документально зафиксируйте пороговые значения по ISA 320.",
+    "tr": "Planlama onaylandıktan sonra ISA 320 eşiklerini belgeleyin."
+  },
+  "Risk assessment not started": {
+    "az": "Risklərin qiymətləndirilməsinə başlanılmayıb",
+    "ru": "Оценка рисков не начата",
+    "tr": "Risk değerlendirmesi başlatılmadı"
+  },
+  "Identify and assess risks after materiality is approved.": {
+    "az": "Maddilik təsdiqləndikdən sonra riskləri müəyyənləşdirin və qiymətləndirin.",
+    "ru": "После утверждения существенности выявите и оцените риски.",
+    "tr": "Önemlilik onaylandıktan sonra riskleri belirleyin ve değerlendirin."
+  },
+  "Fieldwork not started": {
+    "az": "Sahə işlərinə başlanılmayıb",
+    "ru": "Аудиторские процедуры не начаты",
+    "tr": "Saha çalışması başlatılmadı"
+  },
+  "Execute audit procedures after risk assessment is approved.": {
+    "az": "Risklərin qiymətləndirilməsi təsdiqləndikdən sonra audit prosedurlarını yerinə yetirin.",
+    "ru": "После утверждения оценки рисков выполните аудиторские процедуры.",
+    "tr": "Risk değerlendirmesi onaylandıktan sonra denetim prosedürlerini uygulayın."
+  },
+  "Review not started": {
+    "az": "Baxışa başlanılmayıb",
+    "ru": "Проверка не начата",
+    "tr": "İnceleme başlatılmadı"
+  },
+  "Open the engagement review workspace after fieldwork is substantially complete.": {
+    "az": "Sahə işləri əsasən başa çatdıqdan sonra audit tapşırığının baxış iş sahəsini açın.",
+    "ru": "Откройте рабочее пространство проверки аудиторского задания после завершения основной части аудиторских процедур.",
+    "tr": "Saha çalışması büyük ölçüde tamamlandıktan sonra denetim sözleşmesinin inceleme çalışma alanını açın."
+  },
+  "Completion not started": {
+    "az": "Tamamlamaya başlanılmayıb",
+    "ru": "Завершение не начато",
+    "tr": "Tamamlama başlatılmadı"
+  },
+  "Open the engagement completion workspace after fieldwork is substantially complete.": {
+    "az": "Sahə işləri əsasən başa çatdıqdan sonra audit tapşırığının tamamlama iş sahəsini açın.",
+    "ru": "Откройте рабочее пространство завершения аудиторского задания после выполнения основной части аудиторских процедур.",
+    "tr": "Saha çalışması büyük ölçüde tamamlandıktan sonra denetim sözleşmesinin tamamlama çalışma alanını açın."
+  },
+  "Twitter": {
+    "az": "Twitter",
+    "ru": "Twitter",
+    "tr": "Twitter"
+  },
+  "LinkedIn": {
+    "az": "LinkedIn",
+    "ru": "LinkedIn",
+    "tr": "LinkedIn"
+  },
+  "GitHub": {
+    "az": "GitHub",
+    "ru": "GitHub",
+    "tr": "GitHub"
+  },
+  "Clear {count} pending review items": {
+    "az": "Baxış gözləyən {count} elementi həll edin",
+    "ru": "Устраните {count} элементов, ожидающих проверки",
+    "tr": "İnceleme bekleyen {count} öğeyi çözün"
+  },
+  "Complete {count} open review tasks": {
+    "az": "{count} açıq baxış tapşırığını tamamlayın",
+    "ru": "Выполните {count} открытых задач проверки",
+    "tr": "{count} açık inceleme görevini tamamlayın"
+  },
+  "Clear {count} pending completion items": {
+    "az": "Tamamlanması gözlənilən {count} elementi həll edin",
+    "ru": "Устраните {count} элементов, ожидающих завершения",
+    "tr": "Tamamlanmayı bekleyen {count} öğeyi çözün"
+  },
+  "Resolve {count} outstanding completion items": {
+    "az": "Tamamlama üzrə {count} həll edilməmiş elementi həll edin",
+    "ru": "Устраните {count} нерешенных вопросов завершения",
+    "tr": "Bekleyen {count} tamamlama öğesini çözün"
+  },
+  "Clear {count} pending completion approvals": {
+    "az": "Gözləyən {count} tamamlama təsdiqini yekunlaşdırın",
+    "ru": "Обработайте {count} ожидающих утверждений завершения",
+    "tr": "Bekleyen {count} tamamlama onayını sonuçlandırın"
+  },
+  "{count} recent completion events": {
+    "az": "{count} son tamamlama hadisəsi",
+    "ru": "{count} недавних событий завершения",
+    "tr": "{count} son tamamlama olayı"
+  },
+  "Address {count} returned completion packages": {
+    "az": "Geri qaytarılmış {count} tamamlama paketini işləyin",
+    "ru": "Обработайте {count} возвращенных пакетов завершения",
+    "tr": "İade edilen {count} tamamlama paketini ele alın"
+  },
+  "{count} completion items assigned to you": {
+    "az": "Sizə təyin edilmiş {count} tamamlama elementi",
+    "ru": "{count} элементов завершения назначено вам",
+    "tr": "Size atanmış {count} tamamlama öğesi"
+  },
+  "Complete {count} draft completion packages": {
+    "az": "{count} qaralama tamamlama paketini tamamlayın",
+    "ru": "Завершите {count} черновых пакетов завершения",
+    "tr": "{count} taslak tamamlama paketini tamamlayın"
+  },
+  "Complete {count} open completion tasks": {
+    "az": "{count} açıq tamamlama tapşırığını tamamlayın",
+    "ru": "Выполните {count} открытых задач завершения",
+    "tr": "{count} açık tamamlama görevini tamamlayın"
+  },
+  "Risk assessment": {
+    "az": "Risklərin qiymətləndirilməsi",
+    "ru": "Оценка рисков",
+    "tr": "Risk değerlendirmesi"
+  },
+  "Pending financial statements reviews": {
+    "az": "Gözləyən maliyyə hesabatları baxışları",
+    "ru": "Ожидающие проверки финансовой отчетности",
+    "tr": "Bekleyen mali tablo incelemeleri"
+  },
+  "Recent financial statements activity": {
+    "az": "Maliyyə hesabatları üzrə son fəaliyyət",
+    "ru": "Недавние действия с финансовой отчетностью",
+    "tr": "Son mali tablo etkinlikleri"
+  },
+  "Financial statements pipeline": {
+    "az": "Maliyyə hesabatlarının mərhələləri",
+    "ru": "Этапы подготовки финансовой отчетности",
+    "tr": "Mali tablo aşamaları"
+  },
+  "Financial statements outstanding tasks": {
+    "az": "Maliyyə hesabatları üzrə həll edilməmiş tapşırıqlar",
+    "ru": "Невыполненные задачи по финансовой отчетности",
+    "tr": "Bekleyen mali tablo görevleri"
+  },
+  "Financial statements pending approvals": {
+    "az": "Təsdiq gözləyən maliyyə hesabatları",
+    "ru": "Финансовая отчетность, ожидающая утверждения",
+    "tr": "Onay bekleyen mali tablolar"
+  },
+  "Returned financial statements packages": {
+    "az": "Geri qaytarılmış maliyyə hesabatları paketləri",
+    "ru": "Возвращенные пакеты финансовой отчетности",
+    "tr": "İade edilen mali tablo paketleri"
+  },
+  "My financial statements tasks": {
+    "az": "Mənim maliyyə hesabatları tapşırıqlarım",
+    "ru": "Мои задачи по финансовой отчетности",
+    "tr": "Mali tablo görevlerim"
+  },
+  "Financial statements drafts": {
+    "az": "Maliyyə hesabatlarının qaralamaları",
+    "ru": "Черновики финансовой отчетности",
+    "tr": "Mali tablo taslakları"
+  },
+  "Open financial statements tasks": {
+    "az": "Açıq maliyyə hesabatları tapşırıqları",
+    "ru": "Открытые задачи по финансовой отчетности",
+    "tr": "Açık mali tablo görevleri"
+  },
+  "{engagement} · {company}": {
+    "az": "{engagement} · {company}",
+    "ru": "{engagement} · {company}",
+    "tr": "{engagement} · {company}"
+  },
+  "{workspace} · {organization}": {
+    "az": "{workspace} · {organization}",
+    "ru": "{workspace} · {organization}",
+    "tr": "{workspace} · {organization}"
+  },
+  "Risk": {
+    "az": "Risk",
+    "ru": "Риск",
+    "tr": "Risk"
+  },
+  "Status": {
+    "az": "Status",
+    "ru": "Статус",
+    "tr": "Durum"
+  },
+  "Email": {
+    "az": "E-poçt",
+    "ru": "Эл. почта",
+    "tr": "E-posta"
+  },
+  "Enterprise": {
+    "az": "Korporativ",
+    "ru": "Корпоративный",
+    "tr": "Kurumsal"
+  },
+  "Row-level security": {
+    "az": "Sətir səviyyəsində təhlükəsizlik",
+    "ru": "Безопасность на уровне строк",
+    "tr": "Satır düzeyinde güvenlik"
+  },
+  "Zero trust": {
+    "az": "Sıfır etibar",
+    "ru": "Нулевое доверие",
+    "tr": "Sıfır güven"
+  },
+  "Planning archived": {
+    "az": "Planlaşdırma arxivləndi",
+    "ru": "Планирование архивировано",
+    "tr": "Planlama arşivlendi"
+  },
+  "Planning restored": {
+    "az": "Planlaşdırma bərpa edildi",
+    "ru": "Планирование восстановлено",
+    "tr": "Planlama geri yüklendi"
+  },
+  "Planning returned": {
+    "az": "Planlaşdırma qaytarıldı",
+    "ru": "Планирование возвращено",
+    "tr": "Planlama iade edildi"
+  },
+  "Planning revised": {
+    "az": "Planlaşdırma yenidən işləndi",
+    "ru": "Планирование пересмотрено",
+    "tr": "Planlama revize edildi"
+  },
+  "Fieldwork archived": {
+    "az": "Sahə işi arxivləndi",
+    "ru": "Полевые работы архивированы",
+    "tr": "Saha çalışması arşivlendi"
+  },
+  "Fieldwork restored": {
+    "az": "Sahə işi bərpa edildi",
+    "ru": "Полевые работы восстановлены",
+    "tr": "Saha çalışması geri yüklendi"
+  },
+  "Procedure updated": {
+    "az": "Prosedur yeniləndi",
+    "ru": "Процедура обновлена",
+    "tr": "Prosedür güncellendi"
+  },
+  "Procedure returned": {
+    "az": "Prosedur qaytarıldı",
+    "ru": "Процедура возвращена",
+    "tr": "Prosedür iade edildi"
+  },
+  "Procedure cleared": {
+    "az": "Prosedur təmizləndi",
+    "ru": "Процедура закрыта",
+    "tr": "Prosedür temizlendi"
+  },
+  "Workspace metrics will appear as you add companies and engagements.": {
+    "az": "Şirkət və müsadirələr əlavə etdikcə iş sahəsi göstəriciləri görünəcək.",
+    "ru": "Метрики рабочего пространства появятся по мере добавления компаний и заданий.",
+    "tr": "Şirket ve işler ekledikçe çalışma alanı metrikleri görünecek."
+  },
+  "Companies": {
+    "az": "Şirkətlər",
+    "ru": "Компании",
+    "tr": "Şirketler"
+  },
+  "Active in workspace": {
+    "az": "İş sahəsində aktiv",
+    "ru": "Активны в пространстве",
+    "tr": "Çalışma alanında aktif"
+  },
+  "Open engagements": {
+    "az": "Açıq müsadirələr",
+    "ru": "Открытые задания",
+    "tr": "Açık işler"
+  },
+  "Requires your attention": {
+    "az": "Diqqətiniz tələb olunur",
+    "ru": "Требует вашего внимания",
+    "tr": "Dikkatinizi gerektiriyor"
+  },
+  "Coming soon": {
+    "az": "Tezliklə",
+    "ru": "Скоро",
+    "tr": "Yakında"
+  },
+  "Company settings updated": {
+    "az": "Şirkət parametrləri yeniləndi",
+    "ru": "Настройки компании обновлены",
+    "tr": "Şirket ayarları güncellendi"
+  },
+  "Company archived": {
+    "az": "Şirkət arxivləndi",
+    "ru": "Компания архивирована",
+    "tr": "Şirket arşivlendi"
+  },
+  "Company restored": {
+    "az": "Şirkət bərpa edildi",
+    "ru": "Компания восстановлена",
+    "tr": "Şirket geri yüklendi"
+  },
+  "Engagement status changed": {
+    "az": "Müsadirə statusu dəyişdi",
+    "ru": "Статус задания изменён",
+    "tr": "İş durumu değişti"
+  },
+  "Engagement archived": {
+    "az": "Müsadirə arxivləndi",
+    "ru": "Задание архивировано",
+    "tr": "İş arşivlendi"
+  },
+  "Engagement restored": {
+    "az": "Müsadirə bərpa edildi",
+    "ru": "Задание восстановлено",
+    "tr": "İş geri yüklendi"
+  },
+  "Planning created": {
+    "az": "Planlaşdırma yaradıldı",
+    "ru": "Планирование создано",
+    "tr": "Planlama oluşturuldu"
+  },
+  "Planning updated": {
+    "az": "Planlaşdırma yeniləndi",
+    "ru": "Планирование обновлено",
+    "tr": "Planlama güncellendi"
+  },
+  "Fieldwork created": {
+    "az": "Sahə işi yaradıldı",
+    "ru": "Полевые работы созданы",
+    "tr": "Saha çalışması oluşturuldu"
+  },
+  "Finding added": {
+    "az": "Nəticə əlavə edildi",
+    "ru": "Замечание добавлено",
+    "tr": "Bulgu eklendi"
+  }
+}
