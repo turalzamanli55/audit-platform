@@ -5,7 +5,12 @@ export const UAIE_PERMISSIONS = {
   VALIDATE: "uaie.validate",
   ARCHIVE: "uaie.archive",
   LEARN: "uaie.learn",
+  REVIEW: "uaie.review",
+  APPROVE: "uaie.approve",
+  ADMIN: "uaie.admin",
 } as const;
+
+export const UAIE_INTELLIGENCE_SUGGESTION_THRESHOLD = 75;
 
 export const AUDIT_RESOURCE_TYPE = "uaie";
 
@@ -76,6 +81,35 @@ export const UAIE_ACTIVITY_ACTIONS = {
   ARCHIVED: "uaie.archived",
   PROFILE_SAVED: "uaie.profile.saved",
   REPROCESSED: "uaie.reprocessed",
+  DICTIONARY_APPROVED: "uaie.dictionary.approved",
+  DICTIONARY_REJECTED: "uaie.dictionary.rejected",
+  DICTIONARY_MERGED: "uaie.dictionary.merged",
+  DICTIONARY_DISABLED: "uaie.dictionary.disabled",
+  DICTIONARY_RESTORED: "uaie.dictionary.restored",
+  UNKNOWN_APPROVED: "uaie.unknown.approved",
+  UNKNOWN_REJECTED: "uaie.unknown.rejected",
+  UNKNOWN_IGNORED: "uaie.unknown.ignored",
+  TEMPLATE_PROMOTED: "uaie.template.promoted",
+  TEMPLATE_ROLLED_BACK: "uaie.template.rolled_back",
 } as const;
+
+export const UAIE_INTELLIGENCE_SECTIONS = [
+  "overview",
+  "sessions",
+  "unknown-headers",
+  "dictionary",
+  "erp-templates",
+  "customer-templates",
+  "fingerprints",
+  "mappings",
+  "analytics",
+  "health",
+  "unknown-words",
+  "suggestions",
+  "timeline",
+  "history",
+  "admin",
+  "search",
+] as const;
 
 export const UAIE_STORAGE_BUCKET = "uaie-imports";

@@ -14,5 +14,10 @@ export { responsiveStrategy } from "./responsive";
 export {
   defaultDashboardNavItems,
   coerceDashboardNavItems,
+  COMPANIES_PATH,
+  COMPANIES_NEW_PATH,
+  ENGAGEMENTS_PATH,
+  ENGAGEMENTS_NEW_PATH,
+  IMPORT_INTELLIGENCE_PATH,
   type DashboardNavItem,
 } from "./dashboard-navigation";

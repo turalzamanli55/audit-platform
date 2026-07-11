@@ -5,6 +5,8 @@ export const COMPANIES_NEW_PATH = "/app/companies/new";
 export const ENGAGEMENTS_PATH = "/app/engagements";
 export const ENGAGEMENTS_NEW_PATH = "/app/engagements/new";
 
+export const IMPORT_INTELLIGENCE_PATH = "/app/import-intelligence";
+
 export type DashboardNavItem = {
   href: string;
   label: string;
@@ -18,6 +20,7 @@ export const defaultDashboardNavItems: DashboardNavItem[] = [
   { href: DASHBOARD_PATH, label: "Dashboard" },
   { href: COMPANIES_PATH, label: "Companies" },
   { href: ENGAGEMENTS_PATH, label: "Engagements" },
+  { href: IMPORT_INTELLIGENCE_PATH, label: "Import Intelligence" },
 ];
 
 export function coerceDashboardNavItems(items: unknown): DashboardNavItem[] {

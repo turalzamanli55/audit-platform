@@ -6,6 +6,7 @@ import {
   coerceDashboardNavItems,
   COMPANIES_PATH,
   ENGAGEMENTS_PATH,
+  IMPORT_INTELLIGENCE_PATH,
   defaultDashboardNavItems,
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
@@ -94,7 +95,9 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
           ? dictionary.companies.navCompanies
           : item.href === ENGAGEMENTS_PATH
             ? dictionary.engagements.navEngagements
-            : dictionary.dashboard.navDashboard,
+            : item.href === IMPORT_INTELLIGENCE_PATH
+              ? dictionary.dashboard.navImportIntelligence
+              : dictionary.dashboard.navDashboard,
     })),
   );
 

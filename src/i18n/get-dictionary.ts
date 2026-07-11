@@ -1340,6 +1340,62 @@ export type UaieLabels = {
     averageProcessing: string;
     erpTypes: string;
   };
+  intelligence: {
+    workspace: {
+      navAriaLabel: string;
+      navOverview: string;
+      navSessions: string;
+      navUnknownHeaders: string;
+      navDictionary: string;
+      navErpTemplates: string;
+      navCustomerTemplates: string;
+      navFingerprints: string;
+      navMappings: string;
+      navAnalytics: string;
+      navHealth: string;
+      navUnknownWords: string;
+      navSuggestions: string;
+      navTimeline: string;
+      navHistory: string;
+      navAdmin: string;
+      navSearch: string;
+      navGroups: {
+        overview: string;
+        learning: string;
+        templates: string;
+        governance: string;
+        admin: string;
+      };
+      heroEyebrow: string;
+      title: string;
+      description: string;
+      backToDashboard: string;
+    };
+    ui: {
+      sections: Record<string, { title: string; description: string }>;
+      fields: Record<string, string>;
+      statuses: Record<string, string>;
+      erps: Record<string, string>;
+      actions: {
+        approve: string;
+        reject: string;
+        ignore: string;
+        merge: string;
+        disable: string;
+        delete: string;
+        restore: string;
+        export: string;
+        import: string;
+        search: string;
+        apply: string;
+      };
+      columns: Record<string, string>;
+      metrics: Record<string, string>;
+      empty: string;
+      errorGeneric: string;
+      suggestionNotice: string;
+    };
+  };
 };
 
 type ReviewLabels = {
@@ -1616,6 +1672,7 @@ export type Dictionary = {
     themeDark: string;
     theme: string;
     navDashboard: string;
+    navImportIntelligence: string;
     navMainAria: string;
     userCardTitle: string;
     roles: string;

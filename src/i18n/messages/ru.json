@@ -127,7 +127,8 @@
     "statsActivity": "Активность",
     "statsPlaceholder": "Бизнес-метрики в следующих спринтах",
     "welcomeTitle": "Добро пожаловать",
-    "welcomeDescription": "Проверки прав и контекст арендатора активны. Бизнес-модули в Sprint 3."
+    "welcomeDescription": "Проверки прав и контекст арендатора активны. Бизнес-модули в Sprint 3.",
+    "navImportIntelligence": "Интеллект импорта"
   },
   "companies": {
     "navCompanies": "Компании",
@@ -5920,6 +5921,223 @@
       "averageConfidence": "Average confidence",
       "averageProcessing": "Average processing time",
       "erpTypes": "Detected ERP types"
+    },
+    "intelligence": {
+      "workspace": {
+        "navAriaLabel": "Import Intelligence sections",
+        "navOverview": "Overview",
+        "navSessions": "Import sessions",
+        "navUnknownHeaders": "Unknown headers",
+        "navDictionary": "Learning dictionary",
+        "navErpTemplates": "ERP templates",
+        "navCustomerTemplates": "Customer templates",
+        "navFingerprints": "Fingerprints",
+        "navMappings": "Mapping library",
+        "navAnalytics": "Analytics",
+        "navHealth": "Import health",
+        "navUnknownWords": "Unknown words",
+        "navSuggestions": "AI suggestions",
+        "navTimeline": "Learning timeline",
+        "navHistory": "Import history",
+        "navAdmin": "Admin tools",
+        "navSearch": "Search",
+        "navGroups": {
+          "overview": "Overview",
+          "learning": "Learning",
+          "templates": "Templates",
+          "governance": "Governance",
+          "admin": "Admin"
+        },
+        "heroEyebrow": "Центр интеллекта импорта",
+        "title": "Центр интеллекта импорта",
+        "description": "Self-learning accounting import intelligence across ERP fingerprints, dictionaries, and mappings.",
+        "backToDashboard": "К панели"
+      },
+      "ui": {
+        "sections": {
+          "overview": {
+            "title": "Intelligence overview",
+            "description": "Live learning posture across imports, dictionaries, and ERP fingerprints."
+          },
+          "sessions": {
+            "title": "Import sessions center",
+            "description": "Every import with ERP, confidence, duration, warnings, and status."
+          },
+          "unknown-headers": {
+            "title": "Unknown header center",
+            "description": "Unrecognized headers awaiting approve, reject, merge, or ignore."
+          },
+          "dictionary": {
+            "title": "Learning dictionary",
+            "description": "Enterprise synonym dictionary learned from successful mappings."
+          },
+          "erp-templates": {
+            "title": "ERP template library",
+            "description": "Detected ERP templates with confidence, languages, and success rates."
+          },
+          "customer-templates": {
+            "title": "Customer template library",
+            "description": "Company-owned workbook layouts and reusable mapping fingerprints."
+          },
+          "fingerprints": {
+            "title": "Fingerprint center",
+            "description": "Workbook, header, layout, and ERP fingerprints with learning scores."
+          },
+          "mappings": {
+            "title": "Mapping library",
+            "description": "Approved source-to-canonical mappings retained for reuse."
+          },
+          "analytics": {
+            "title": "Import analytics",
+            "description": "Premium widgets for volume, confidence, ERP mix, and learning growth."
+          },
+          "health": {
+            "title": "Import health",
+            "description": "Workbook through validation health scores for recent imports."
+          },
+          "unknown-words": {
+            "title": "Unknown words",
+            "description": "Most frequent unrecognized header tokens awaiting dictionary approval."
+          },
+          "suggestions": {
+            "title": "AI suggestions",
+            "description": "High-confidence suggestions ready for one-click approval."
+          },
+          "timeline": {
+            "title": "Learning timeline",
+            "description": "Chronological learning events across the workspace."
+          },
+          "history": {
+            "title": "Import history",
+            "description": "Audit trail for intelligence approvals, merges, and admin actions."
+          },
+          "admin": {
+            "title": "Admin tools",
+            "description": "Merge, disable, restore, export, and import dictionary entries."
+          },
+          "search": {
+            "title": "Global search",
+            "description": "Search headers, mappings, fingerprints, and unknown words."
+          }
+        },
+        "fields": {
+          "account_code": "Account code",
+          "account_name": "Account name",
+          "debit": "Debit",
+          "credit": "Credit",
+          "balance": "Balance",
+          "currency": "Currency",
+          "department": "Department",
+          "cost_center": "Cost center",
+          "ignore": "Ignore"
+        },
+        "statuses": {
+          "uploaded": "Uploaded",
+          "scanning": "Scanning",
+          "mapping_required": "Mapping required",
+          "mapped": "Mapped",
+          "validating": "Validating",
+          "validated": "Validated",
+          "staged": "Staged",
+          "failed": "Failed",
+          "cancelled": "Cancelled",
+          "superseded": "Superseded",
+          "archived": "Archived"
+        },
+        "erps": {
+          "sap": "SAP",
+          "sap_business_one": "SAP Business One",
+          "oracle": "Oracle",
+          "oracle_netsuite": "Oracle NetSuite",
+          "microsoft_dynamics": "Microsoft Dynamics",
+          "dynamics_365": "Dynamics 365",
+          "1c": "1C",
+          "logo": "Logo",
+          "netsis": "Netsis",
+          "mikro": "Mikro",
+          "quickbooks": "QuickBooks",
+          "xero": "Xero",
+          "sage": "Sage",
+          "zoho_books": "Zoho Books",
+          "odoo": "Odoo",
+          "manual_excel": "Manual Excel",
+          "unknown": "Unknown ERP"
+        },
+        "actions": {
+          "approve": "Approve",
+          "reject": "Reject",
+          "ignore": "Ignore",
+          "merge": "Merge",
+          "disable": "Disable",
+          "delete": "Delete",
+          "restore": "Restore",
+          "export": "Export dictionary",
+          "import": "Import dictionary",
+          "search": "Search",
+          "apply": "Apply"
+        },
+        "columns": {
+          "importId": "Import ID",
+          "company": "Company",
+          "user": "User",
+          "erp": "ERP",
+          "workbook": "Workbook",
+          "language": "Language",
+          "currency": "Currency",
+          "confidence": "Confidence",
+          "duration": "Duration",
+          "rows": "Rows",
+          "warnings": "Warnings",
+          "errors": "Errors",
+          "status": "Status",
+          "created": "Created",
+          "finished": "Finished",
+          "raw": "Raw value",
+          "normalized": "Normalized",
+          "canonical": "Canonical field",
+          "suggested": "Suggested",
+          "occurrences": "Occurrences",
+          "lastSeen": "Last seen",
+          "firstSeen": "First seen",
+          "source": "Source",
+          "actions": "Actions",
+          "count": "Count",
+          "summary": "Summary",
+          "imports": "Imports",
+          "templates": "Templates",
+          "template": "Template",
+          "fingerprint": "Fingerprint",
+          "workbookHash": "Workbook hash",
+          "headerHash": "Header hash",
+          "layoutHash": "Layout hash",
+          "learningScore": "Learning score",
+          "templateVersion": "Template version",
+          "type": "Type"
+        },
+        "metrics": {
+          "importsToday": "Imports today",
+          "importsMonth": "Imports this month",
+          "successRate": "Success rate",
+          "averageConfidence": "Average confidence",
+          "averageProcessing": "Average processing time",
+          "unknownHeaders": "Unknown headers",
+          "pendingApprovals": "Pending approvals",
+          "dictionarySize": "Dictionary size",
+          "topErps": "Top ERP systems",
+          "learningGrowth": "Learning growth",
+          "workbookHealth": "Workbook health",
+          "headerHealth": "Header health",
+          "columnHealth": "Column health",
+          "languageHealth": "Language health",
+          "currencyHealth": "Currency health",
+          "balanceHealth": "Balance health",
+          "validationHealth": "Validation health",
+          "overallHealth": "Overall health"
+        },
+        "empty": "No records yet",
+        "errorGeneric": "Unable to complete the intelligence action.",
+        "suggestionNotice": "Suggestions appear when confidence is 75% or higher."
+      }
     }
   }
 }

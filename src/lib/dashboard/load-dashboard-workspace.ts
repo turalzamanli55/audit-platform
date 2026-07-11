@@ -176,7 +176,8 @@ export async function loadDashboardWorkspace(
     (financialStatementsMetrics?.pendingFinancialStatements ?? 0) +
     (financialStatementsMetrics?.draftPackages ?? 0) +
     (uaieMetrics?.failedImports ?? 0) +
-    (uaieMetrics?.mappingRequired ?? 0);
+    (uaieMetrics?.mappingRequired ?? 0) +
+    (uaieMetrics?.pendingApprovals ?? 0);
 
   return {
     locale,

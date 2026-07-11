@@ -5,9 +5,14 @@ import { AUDIT_RESOURCE_TYPE, UAIE_ACTIVITY_ACTIONS, UAIE_PERMISSIONS } from "@/
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { createUaieAction } from "@/lib/actions/uaie/uaie-action";
 import { previewRows } from "@/lib/uaie/fingerprint";
+import {
+  applyLearnedDictionaryMappings,
+  recordIntelligenceFromPipeline,
+} from "@/lib/uaie/intelligence/record-intelligence";
 import { runUaiePipeline } from "@/lib/uaie/pipeline";
 import { createServerClient } from "@/lib/supabase/server";
 import { CompanyRepository } from "@/repositories/company/company-repository";
+import { UaieIntelligenceRepository } from "@/repositories/uaie/uaie-intelligence-repository";
 import { UaieRepository } from "@/repositories/uaie/uaie-repository";
 import type { RepositoryContext } from "@/types/context";
 import type { UaieCanonicalField } from "@/types/uaie";
@@ -103,6 +108,34 @@ export const uploadAndScanUaieAction = createUaieAction<
     }
   }
 
+  const intelligenceRepository = new UaieIntelligenceRepository(supabase, repositoryContext);
+  const dictionaryMappings = await applyLearnedDictionaryMappings({
+    intelligence: intelligenceRepository,
+    workspaceId: context.workspaceId,
+    pipeline: effectivePipeline,
+  });
+  if (dictionaryMappings.length > 0) {
+    const merged = new Map<number, (typeof dictionaryMappings)[number]["canonicalField"]>();
+    for (const mapping of effectivePipeline.mappings) {
+      if (mapping.canonicalField !== "ignore" && mapping.confidence >= 95) {
+        merged.set(mapping.sourceColumnIndex, mapping.canonicalField);
+      }
+    }
+    for (const mapping of dictionaryMappings) {
+      merged.set(mapping.sourceColumnIndex, mapping.canonicalField);
+    }
+    effectivePipeline = await runUaiePipeline({
+      filename: input.filename,
+      mimeType: input.mimeType,
+      bytes,
+      manualMappings: [...merged.entries()].map(([sourceColumnIndex, canonicalField]) => ({
+        sourceColumnIndex,
+        canonicalField,
+      })),
+      preferredSheetName: effectivePipeline.selectedSheetName,
+    });
+  }
+
   const hasBlocking = effectivePipeline.issues.some((issue) => issue.severity === "blocking");
   const importStatus = hasBlocking
     ? "failed"
@@ -165,6 +198,15 @@ export const uploadAndScanUaieAction = createUaieAction<
     completed_at: importStatus === "validated" ? new Date().toISOString() : null,
   });
 
+  const { health } = await recordIntelligenceFromPipeline({
+    intelligence: intelligenceRepository,
+    session,
+    pipeline: effectivePipeline,
+    actorUserId: context.userId,
+  });
+  await uaieRepository.updateSession(session.id, {
+    health_json: health as unknown as Json,
+  } as never);
   await uaieRepository.replaceSheetScans(
     session,
     effectivePipeline.sheetScores.map((score, index) => ({

@@ -207,6 +207,20 @@ export const confirmUaieStageAction = createUaieAction<
     metadata: { profileId: profile.id },
   });
 
+  const { UaieIntelligenceRepository } = await import(
+    "@/repositories/uaie/uaie-intelligence-repository"
+  );
+  const intelligence = new UaieIntelligenceRepository(supabase, repositoryContext);
+  await intelligence.logLearningEvent({
+    organization_id: context.organizationId,
+    workspace_id: context.workspaceId,
+    company_id: updated.company_id,
+    import_session_id: updated.id,
+    event_type: "import_staged",
+    summary: `Staged normalized dataset for ${updated.source_filename}`,
+    metadata_json: { profileId: profile.id } as import("@/types/supabase").Json,
+  });
+
   const requestHeaders = await headers();
   await emitAuditEvent({
     action: AUDIT_ACTIONS.UAIE_STAGED,

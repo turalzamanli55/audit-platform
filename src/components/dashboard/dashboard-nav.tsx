@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { IconBriefcase, IconLayoutDashboard, IconUsers } from "@/components/ui/icons";
+import { IconBriefcase, IconLayoutDashboard, IconUsers, IconZap } from "@/components/ui/icons";
 import { ShellNavItem } from "@/components/shell/shell-nav";
 import { useShell } from "@/components/shell/shell-provider";
 import { coerceDashboardNavItems, type DashboardNavItem } from "@/config/dashboard-navigation";
@@ -23,6 +23,9 @@ function navIcon(href: string) {
   }
   if (href.includes("engagements")) {
     return <IconUsers width={18} height={18} />;
+  }
+  if (href.includes("import-intelligence")) {
+    return <IconZap width={18} height={18} />;
   }
   return <IconLayoutDashboard width={18} height={18} />;
 }

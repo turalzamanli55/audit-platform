@@ -1678,6 +1678,7 @@ export type Database = {
           detection_json: Json;
           validation_json: Json;
           summary_json: Json;
+          health_json: Json;
           processing_ms: number | null;
           error_message: string | null;
           version_number: number;
@@ -1723,6 +1724,7 @@ export type Database = {
           detection_json?: Json;
           validation_json?: Json;
           summary_json?: Json;
+          health_json?: Json;
           processing_ms?: number | null;
           error_message?: string | null;
           version_number?: number;
@@ -1963,6 +1965,234 @@ export type Database = {
         Update: { [key: string]: unknown };
         Relationships: [];
       };
+
+      uaie_dictionary_entries: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string | null;
+          raw_value: string;
+          normalized_value: string;
+          canonical_field: Database["public"]["Enums"]["uaie_canonical_field"];
+          language_code: string | null;
+          source: string;
+          confidence: number;
+          occurrences: number;
+          detected_erp: Database["public"]["Enums"]["uaie_erp_system"] | null;
+          entry_status: Database["public"]["Enums"]["uaie_dictionary_status"];
+          merged_into_id: string | null;
+          approved_by: string | null;
+          approved_at: string | null;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id?: string | null;
+          raw_value: string;
+          normalized_value: string;
+          canonical_field: Database["public"]["Enums"]["uaie_canonical_field"];
+          language_code?: string | null;
+          source?: string;
+          confidence?: number;
+          occurrences?: number;
+          detected_erp?: Database["public"]["Enums"]["uaie_erp_system"] | null;
+          entry_status?: Database["public"]["Enums"]["uaie_dictionary_status"];
+          merged_into_id?: string | null;
+          approved_by?: string | null;
+          approved_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_unknown_headers: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string | null;
+          raw_value: string;
+          normalized_value: string;
+          suggested_field: Database["public"]["Enums"]["uaie_canonical_field"] | null;
+          confidence: number;
+          occurrences: number;
+          detected_erp: Database["public"]["Enums"]["uaie_erp_system"] | null;
+          language_code: string | null;
+          unknown_status: Database["public"]["Enums"]["uaie_unknown_status"];
+          dictionary_entry_id: string | null;
+          first_seen_at: string;
+          last_seen_at: string;
+          last_session_id: string | null;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id?: string | null;
+          raw_value: string;
+          normalized_value: string;
+          suggested_field?: Database["public"]["Enums"]["uaie_canonical_field"] | null;
+          confidence?: number;
+          occurrences?: number;
+          detected_erp?: Database["public"]["Enums"]["uaie_erp_system"] | null;
+          language_code?: string | null;
+          unknown_status?: Database["public"]["Enums"]["uaie_unknown_status"];
+          dictionary_entry_id?: string | null;
+          first_seen_at?: string;
+          last_seen_at?: string;
+          last_session_id?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_fingerprints: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string | null;
+          import_session_id: string | null;
+          workbook_hash: string | null;
+          header_hash: string | null;
+          layout_hash: string | null;
+          erp_hash: string | null;
+          detected_erp: Database["public"]["Enums"]["uaie_erp_system"];
+          confidence: number;
+          template_version: number;
+          learning_score: number;
+          similarity_json: Json;
+          metadata_json: Json;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id?: string | null;
+          import_session_id?: string | null;
+          workbook_hash?: string | null;
+          header_hash?: string | null;
+          layout_hash?: string | null;
+          erp_hash?: string | null;
+          detected_erp?: Database["public"]["Enums"]["uaie_erp_system"];
+          confidence?: number;
+          template_version?: number;
+          learning_score?: number;
+          similarity_json?: Json;
+          metadata_json?: Json;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_learning_events: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string | null;
+          import_session_id: string | null;
+          event_type: Database["public"]["Enums"]["uaie_learning_event_type"];
+          summary: string;
+          metadata_json: Json;
+          actor_user_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id?: string | null;
+          import_session_id?: string | null;
+          event_type: Database["public"]["Enums"]["uaie_learning_event_type"];
+          summary: string;
+          metadata_json?: Json;
+          actor_user_id?: string | null;
+          created_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_intelligence_audit: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string | null;
+          action_code: string;
+          resource_type: string;
+          resource_id: string | null;
+          summary: string;
+          before_json: Json | null;
+          after_json: Json | null;
+          actor_user_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id?: string | null;
+          action_code: string;
+          resource_type: string;
+          resource_id?: string | null;
+          summary: string;
+          before_json?: Json | null;
+          after_json?: Json | null;
+          actor_user_id?: string | null;
+          created_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+
       companies: {
         Row: {
           created_at: string;
@@ -5146,6 +5376,26 @@ export type Database = {
         | "manual_excel"
         | "unknown";
       uaie_issue_severity: "info" | "warning" | "error" | "blocking";
+
+      uaie_dictionary_status: "pending" | "approved" | "rejected" | "merged" | "disabled" | "deleted";
+      uaie_unknown_status: "open" | "suggested" | "approved" | "rejected" | "ignored" | "merged";
+      uaie_learning_event_type:
+        | "mapping_approved"
+        | "mapping_rejected"
+        | "header_learned"
+        | "unknown_approved"
+        | "unknown_rejected"
+        | "unknown_ignored"
+        | "dictionary_merged"
+        | "dictionary_disabled"
+        | "dictionary_restored"
+        | "fingerprint_recorded"
+        | "template_promoted"
+        | "template_rolled_back"
+        | "erp_detected"
+        | "import_staged"
+        | "admin_export"
+        | "admin_import";
       uaie_canonical_field:
         | "account_code"
         | "account_name"
