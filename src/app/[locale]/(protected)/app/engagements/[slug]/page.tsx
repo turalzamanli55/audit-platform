@@ -12,6 +12,7 @@ import { loadFieldworkWorkspacePage } from "@/lib/fieldwork/fieldwork-workspace-
 import { loadReviewWorkspacePage } from "@/lib/review/review-workspace-page";
 import { loadCompletionWorkspacePage } from "@/lib/completion/completion-workspace-page";
 import { loadReportingWorkspacePage } from "@/lib/reporting/reporting-workspace-page";
+import { loadOpinionWorkspacePage } from "@/lib/opinion/opinion-workspace-page";
 import { loadRiskAssessmentWorkspacePage } from "@/lib/risk-assessment/risk-assessment-workspace-page";
 
 type EngagementWorkspaceOverviewPageProps = {
@@ -39,6 +40,7 @@ export default async function EngagementWorkspaceOverviewPage({
     reviewResult,
     completionResult,
     reportingResult,
+    opinionResult,
   ] = await Promise.all([
     requireEngagementWorkspace(slug),
     loadPlanningWorkspacePage(slug),
@@ -48,6 +50,7 @@ export default async function EngagementWorkspaceOverviewPage({
     loadReviewWorkspacePage(slug),
     loadCompletionWorkspacePage(slug),
     loadReportingWorkspacePage(slug),
+    loadOpinionWorkspacePage(slug),
   ]);
 
   const canUpdate = user
@@ -61,6 +64,7 @@ export default async function EngagementWorkspaceOverviewPage({
   const review = reviewResult.ok ? reviewResult.review : null;
   const completion = completionResult.ok ? completionResult.completion : null;
   const reporting = reportingResult.ok ? reportingResult.reporting : null;
+  const opinion = opinionResult.ok ? opinionResult.opinion : null;
 
   const commandCenter = await loadEngagementCommandCenter({
     locale,
@@ -72,6 +76,7 @@ export default async function EngagementWorkspaceOverviewPage({
     review,
     completion,
     reporting,
+    opinion,
     labels: dictionary.engagements.workspace.commandCenter,
     workspaceLabels: dictionary.engagements.workspace,
     engagementsLabels: dictionary.engagements,
@@ -82,6 +87,7 @@ export default async function EngagementWorkspaceOverviewPage({
     reviewLabels: dictionary.review,
     completionLabels: dictionary.completion,
     reportingLabels: dictionary.reporting,
+    opinionLabels: dictionary.opinion,
   });
 
   return (

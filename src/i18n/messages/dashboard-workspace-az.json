@@ -128,7 +128,16 @@
     "reportingMyTasks": "Sizə təyin edilmiş {count} hesabat bölməsi",
     "reportingDraftPackages": "{count} qaralama hesabat paketini tamamlayın",
     "reportingOpenTasks": "{count} açıq hesabat tapşırığını tamamlayın",
-    "moduleReporting": "Hesabat"
+    "moduleReporting": "Hesabat",
+    "opinionPendingOpinions": "{count} gözləyən audit rəy bölməsini təmizləyin",
+    "opinionOutstandingTasks": "{count} açıq audit rəy bölməsini həll edin",
+    "opinionPendingApprovals": "{count} gözləyən audit rəy təsdiqini təmizləyin",
+    "opinionRecentOpinions": "{count} son audit rəy hadisəsi",
+    "opinionReturnedPackages": "{count} geri qaytarılmış audit rəy paketini həll edin",
+    "opinionMyTasks": "Sizə təyin edilmiş {count} audit rəy bölməsi",
+    "opinionDraftPackages": "{count} qaralama audit rəy paketini tamamlayın",
+    "opinionOpenTasks": "{count} açıq audit rəy tapşırığını tamamlayın",
+    "moduleOpinion": "audit rəy"
   },
   "ai": {
     "title": "AI köməkçi",
@@ -427,6 +436,28 @@
     "reportingMyTasks": "Sizə təyin edilmiş {count} hesabat bölməsi",
     "reportingDraftPackages": "{count} qaralama hesabat paketini tamamlayın",
     "reportingOpenTasks": "{count} açıq hesabat tapşırığını tamamlayın",
-    "moduleReporting": "Hesabat"
+    "moduleReporting": "Hesabat",
+    "opinionPendingOpinions": "{count} gözləyən audit rəy bölməsini təmizləyin",
+    "opinionOutstandingTasks": "{count} açıq audit rəy bölməsini həll edin",
+    "opinionPendingApprovals": "{count} gözləyən audit rəy təsdiqini təmizləyin",
+    "opinionRecentOpinions": "{count} son audit rəy hadisəsi",
+    "opinionReturnedPackages": "{count} geri qaytarılmış audit rəy paketini həll edin",
+    "opinionMyTasks": "Sizə təyin edilmiş {count} audit rəy bölməsi",
+    "opinionDraftPackages": "{count} qaralama audit rəy paketini tamamlayın",
+    "opinionOpenTasks": "{count} açıq audit rəy tapşırığını tamamlayın",
+    "moduleOpinion": "audit rəy",
+    "opinionWidgetTitle": "audit rəy boru xətti",
+    "opinionWidgetDescription": "Audit audit rəy bölmələri, açıq bölmələr və audit rəyi hazırlığı",
+    "kpiEngagementOpinionPending": "Gözləyən audit rəylar",
+    "kpiEngagementOpinionReturned": "Geri qaytarılmış audit rəylar",
+    "kpiMyOpinion": "Mənim audit rəy maddələrim",
+    "kpiOpinionActivity": "audit rəy fəaliyyəti",
+    "hintEngagementOpinionPending": "Müsadirə audit rəy təsdiqləri",
+    "hintEngagementOpinionReturned": "Düzəliş üçün geri qaytarılıb",
+    "hintMyOpinion": "Təyin edilmiş audit rəy bölmələri",
+    "hintOpinionActivity": "Son audit rəy hadisələri",
+    "moduleEngagementOpinion": "Müsadirə audit rəyı",
+    "attentionEngagementOpinionReturned": "{count} müsadirə audit rəyı geri qaytarılıb",
+    "attentionEngagementOpinion": "{count} müsadirə audit rəyı təsdiq gözləyir"
   }
 }

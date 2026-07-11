@@ -10,6 +10,7 @@ import type { RiskAssessmentWorkspaceView } from "@/lib/risk-assessment/risk-ass
 import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
 import type { CompletionWorkspaceView } from "@/lib/completion/completion-workspace-view";
 import type { ReportingWorkspaceView } from "@/lib/reporting/reporting-workspace-view";
+import type { OpinionWorkspaceView } from "@/lib/opinion/opinion-workspace-view";
 import { loadEngagementActivity } from "@/lib/engagement/load-engagement-activity";
 import { loadCompanyWorkspacePage } from "@/lib/company/company-workspace-page";
 import { resolveUserProfiles } from "@/lib/user/resolve-user-profiles";
@@ -42,9 +43,11 @@ function formatRelativeTime(locale: Locale, createdAt: string): string {
 
 function formatDate(locale: Locale, iso: string | null): string | null {
   if (!iso) return null;
-  return new Intl.DateTimeFormat(locale, { month: "short", day: "numeric", year: "numeric" }).format(
-    new Date(iso),
-  );
+  return new Intl.DateTimeFormat(locale, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(iso));
 }
 
 async function resolveOwnerName(userId: string | null | undefined): Promise<string | null> {
@@ -63,6 +66,7 @@ export async function loadEngagementCommandCenter(input: {
   review: ReviewWorkspaceView | null;
   completion: CompletionWorkspaceView | null;
   reporting: ReportingWorkspaceView | null;
+  opinion: OpinionWorkspaceView | null;
   labels: CommandCenterLabels;
   workspaceLabels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
@@ -73,6 +77,7 @@ export async function loadEngagementCommandCenter(input: {
   reviewLabels: Dictionary["review"];
   completionLabels: Dictionary["completion"];
   reportingLabels: Dictionary["reporting"];
+  opinionLabels: Dictionary["opinion"];
 }): Promise<EngagementCommandCenterData> {
   const {
     locale,
@@ -84,6 +89,7 @@ export async function loadEngagementCommandCenter(input: {
     review,
     completion,
     reporting,
+    opinion,
     labels,
     workspaceLabels,
     engagementsLabels,
@@ -94,6 +100,7 @@ export async function loadEngagementCommandCenter(input: {
     reviewLabels,
     completionLabels,
     reportingLabels,
+    opinionLabels,
   } = input;
 
   const base = `/${locale}/app/engagements/${engagement.slug}`;
@@ -132,35 +139,41 @@ export async function loadEngagementCommandCenter(input: {
 
   const pendingReviews =
     review?.pendingCount ??
-    ((plan?.planningStatus === "pending_review" ? 1 : 0) +
+    (plan?.planningStatus === "pending_review" ? 1 : 0) +
       (materiality?.pendingReviewCount ?? 0) +
       (riskAssessment?.pendingReviewCount ?? 0) +
-      (fieldwork?.pendingReviewCount ?? 0));
+      (fieldwork?.pendingReviewCount ?? 0);
 
-  const openFindings = review?.openFindingsCount ?? fieldwork?.findings.filter((f) => f.findingStatus === "open").length ?? 0;
+  const openFindings =
+    review?.openFindingsCount ??
+    fieldwork?.findings.filter((f) => f.findingStatus === "open").length ??
+    0;
 
   const moduleProgress = phaseCards.map((c) => c.progressPct);
-  const reviewProgress = review?.progressPct ?? (
-    pendingReviews === 0
+  const reviewProgress =
+    review?.progressPct ??
+    (pendingReviews === 0
       ? fieldwork && ["substantially_complete", "in_progress"].includes(fieldwork.packageStatus)
         ? 100
         : 50
-      : Math.max(0, 100 - pendingReviews * 25)
-  );
+      : Math.max(0, 100 - pendingReviews * 25));
 
-  const completionProgress = completion?.progressPct ?? (
-    review?.packageStatus === "approved" ? 25 : 0
-  );
-  const reportingProgress = reporting?.progressPct ?? (
-    completion?.packageStatus === "approved" ? 25 : 0
-  );
+  const completionProgress =
+    completion?.progressPct ?? (review?.packageStatus === "approved" ? 25 : 0);
+  const reportingProgress =
+    reporting?.progressPct ?? (completion?.packageStatus === "approved" ? 25 : 0);
+  const opinionProgress =
+    opinion?.progressPct ?? (reporting?.packageStatus === "approved" ? 25 : 0);
 
   const overallCompletionPct = Math.round(
-    [...moduleProgress, reviewProgress, completionProgress, reportingProgress].reduce(
-      (a, b) => a + b,
-      0,
-    ) /
-      (moduleProgress.length + 3),
+    [
+      ...moduleProgress,
+      reviewProgress,
+      completionProgress,
+      reportingProgress,
+      opinionProgress,
+    ].reduce((a, b) => a + b, 0) /
+      (moduleProgress.length + 4),
   );
 
   const pipeline: EngagementPipelinePhase[] = [
@@ -173,12 +186,12 @@ export async function loadEngagementCommandCenter(input: {
       owner: card.id === "planning" ? planOwner : null,
       lastUpdate:
         card.id === "planning"
-          ? formatDate(locale, plan?.updatedAt ?? null) ?? "—"
+          ? (formatDate(locale, plan?.updatedAt ?? null) ?? "—")
           : card.id === "materiality"
-            ? formatDate(locale, materiality?.updatedAt ?? null) ?? "—"
+            ? (formatDate(locale, materiality?.updatedAt ?? null) ?? "—")
             : card.id === "risk-assessment"
-              ? formatDate(locale, riskAssessment?.updatedAt ?? null) ?? "—"
-              : formatDate(locale, fieldwork?.updatedAt ?? null) ?? "—",
+              ? (formatDate(locale, riskAssessment?.updatedAt ?? null) ?? "—")
+              : (formatDate(locale, fieldwork?.updatedAt ?? null) ?? "—"),
       lastUpdateRelative:
         card.id === "planning"
           ? plan
@@ -264,6 +277,25 @@ export async function loadEngagementCommandCenter(input: {
       ctaLabel: labels.openReporting,
       isActive: Boolean(reporting && reporting.packageStatus !== "approved"),
       isEmpty: !reporting,
+    },
+    {
+      id: "opinion",
+      label: labels.phaseOpinion,
+      statusLabel: opinion ? opinionLabels.statuses[opinion.packageStatus] : labels.statusClear,
+      statusVariant:
+        opinion?.packageStatus === "approved"
+          ? "success"
+          : opinion?.packageStatus === "returned"
+            ? "warning"
+            : "default",
+      progressPct: opinionProgress,
+      owner: null,
+      lastUpdate: formatDate(locale, opinion?.updatedAt ?? engagement.updatedAt) ?? "—",
+      lastUpdateRelative: formatRelativeTime(locale, opinion?.updatedAt ?? engagement.updatedAt),
+      href: `${base}/opinion`,
+      ctaLabel: labels.openOpinion,
+      isActive: Boolean(opinion && opinion.packageStatus !== "approved"),
+      isEmpty: !opinion,
     },
   ];
 

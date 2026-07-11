@@ -26,6 +26,7 @@ export type EngagementWorkspaceSection =
   | "review"
   | "completion"
   | "reporting"
+  | "opinion"
   | "history"
   | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
@@ -410,6 +411,7 @@ export function buildEngagementWorkspaceNavItems(
     { id: "review", label: labels.navReview, href: `${base}/review` },
     { id: "completion", label: labels.navCompletion, href: `${base}/completion` },
     { id: "reporting", label: labels.navReporting, href: `${base}/reporting` },
+    { id: "opinion", label: labels.navOpinion, href: `${base}/opinion` },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
   ];

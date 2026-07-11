@@ -112,7 +112,16 @@
     "reportingMyTasks": "{count} разделов отчёта, назначенных вам",
     "reportingDraftPackages": "Завершить {count} черновых пакетов отчётности",
     "reportingOpenTasks": "Завершить {count} открытых задач отчётности",
-    "moduleReporting": "Отчётность"
+    "moduleReporting": "Отчётность",
+    "opinionPendingOpinions": "Закрыть {count} ожидающих разделов мнениеа",
+    "opinionOutstandingTasks": "Решить {count} нерешённых разделов мнениеа",
+    "opinionPendingApprovals": "Закрыть {count} ожидающих утверждений мнениености",
+    "opinionRecentOpinions": "{count} недавних событий мнениености",
+    "opinionReturnedPackages": "Обработать {count} возвращённых пакетов мнениености",
+    "opinionMyTasks": "{count} разделов мнениеа, назначенных вам",
+    "opinionDraftPackages": "Завершить {count} черновых пакетов мнениености",
+    "opinionOpenTasks": "Завершить {count} открытых задач мнениености",
+    "moduleOpinion": "мнениеность"
   },
   "ai": {
     "title": "AI-ассистент",
@@ -411,6 +420,28 @@
     "reportingMyTasks": "{count} разделов отчёта, назначенных вам",
     "reportingDraftPackages": "Завершить {count} черновых пакетов отчётности",
     "reportingOpenTasks": "Завершить {count} открытых задач отчётности",
-    "moduleReporting": "Отчётность"
+    "moduleReporting": "Отчётность",
+    "opinionPendingOpinions": "Закрыть {count} ожидающих разделов мнениеа",
+    "opinionOutstandingTasks": "Решить {count} нерешённых разделов мнениеа",
+    "opinionPendingApprovals": "Закрыть {count} ожидающих утверждений мнениености",
+    "opinionRecentOpinions": "{count} недавних событий мнениености",
+    "opinionReturnedPackages": "Обработать {count} возвращённых пакетов мнениености",
+    "opinionMyTasks": "{count} разделов мнениеа, назначенных вам",
+    "opinionDraftPackages": "Завершить {count} черновых пакетов мнениености",
+    "opinionOpenTasks": "Завершить {count} открытых задач мнениености",
+    "moduleOpinion": "мнениеность",
+    "opinionWidgetTitle": "Очередь мнениености",
+    "opinionWidgetDescription": "Разделы аудиторского мнениеа, нерешённые разделы и готовность к заключению",
+    "kpiEngagementOpinionPending": "Ожидающие мнениеы",
+    "kpiEngagementOpinionReturned": "Возвращённые мнениеы",
+    "kpiMyOpinion": "Мои элементы мнениености",
+    "kpiOpinionActivity": "Активность мнениености",
+    "hintEngagementOpinionPending": "Утверждения мнениености engagement",
+    "hintEngagementOpinionReturned": "Возвращено на доработку",
+    "hintMyOpinion": "Назначенные разделы мнениеа",
+    "hintOpinionActivity": "Недавние события мнениености",
+    "moduleEngagementOpinion": "мнениеность engagement",
+    "attentionEngagementOpinionReturned": "{count} мнениеов engagement возвращены",
+    "attentionEngagementOpinion": "{count} мнениеов engagement ожидают утверждения"
   }
 }

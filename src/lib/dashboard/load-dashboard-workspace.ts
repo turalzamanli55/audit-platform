@@ -13,6 +13,7 @@ import { loadRiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-r
 import { loadReviewDashboardMetrics } from "@/lib/review/load-review-dashboard-metrics";
 import { loadCompletionDashboardMetrics } from "@/lib/completion/load-completion-dashboard-metrics";
 import { loadReportingDashboardMetrics } from "@/lib/reporting/load-reporting-dashboard-metrics";
+import { loadOpinionDashboardMetrics } from "@/lib/opinion/load-opinion-dashboard-metrics";
 import {
   loadDashboardFeed,
   type DashboardEngagementPreview,
@@ -82,8 +83,8 @@ export async function loadDashboardWorkspace(
     reviewMetrics,
     completionMetrics,
     reportingMetrics,
-  ] =
-    await Promise.all([
+    opinionMetrics,
+  ] = await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
     loadCompanyList(),
@@ -95,6 +96,7 @@ export async function loadDashboardWorkspace(
     loadReviewDashboardMetrics(),
     loadCompletionDashboardMetrics(),
     loadReportingDashboardMetrics(),
+    loadOpinionDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -102,14 +104,13 @@ export async function loadDashboardWorkspace(
   const currentOrg = organizations.find((o) => o.id === bootstrap?.currentOrganizationId);
   const currentWorkspace = workspaces.find((w) => w.id === bootstrap?.currentWorkspaceId);
 
-  const companies =
-    companyResult.ok
-      ? companyResult.items.map((item) => ({
-          id: item.id,
-          name: item.name,
-          slug: item.slug,
-        }))
-      : [];
+  const companies = companyResult.ok
+    ? companyResult.items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        slug: item.slug,
+      }))
+    : [];
 
   const now = new Date();
   const formattedDate = new Intl.DateTimeFormat(locale, {
@@ -163,7 +164,9 @@ export async function loadDashboardWorkspace(
     (completionMetrics?.pendingReview ?? 0) +
     (completionMetrics?.draftPackages ?? 0) +
     (reportingMetrics?.pendingReports ?? 0) +
-    (reportingMetrics?.draftPackages ?? 0);
+    (reportingMetrics?.draftPackages ?? 0) +
+    (opinionMetrics?.pendingOpinions ?? 0) +
+    (opinionMetrics?.draftPackages ?? 0);
 
   return {
     locale,
@@ -190,9 +193,16 @@ export async function loadDashboardWorkspace(
             ? String(feed.tasks.length)
             : "0",
       reports:
-        (reportingMetrics?.pendingReports ?? 0) + (reportingMetrics?.draftPackages ?? 0) > 0
+        (reportingMetrics?.pendingReports ?? 0) +
+          (reportingMetrics?.draftPackages ?? 0) +
+          (opinionMetrics?.pendingOpinions ?? 0) +
+          (opinionMetrics?.draftPackages ?? 0) >
+        0
           ? String(
-              (reportingMetrics?.pendingReports ?? 0) + (reportingMetrics?.draftPackages ?? 0),
+              (reportingMetrics?.pendingReports ?? 0) +
+                (reportingMetrics?.draftPackages ?? 0) +
+                (opinionMetrics?.pendingOpinions ?? 0) +
+                (opinionMetrics?.draftPackages ?? 0),
             )
           : "—",
       aiSuggestions: "—",

@@ -112,7 +112,16 @@
     "reportingMyTasks": "Size atanan {count} rapor bölümü",
     "reportingDraftPackages": "{count} taslak raporlama paketini tamamlayın",
     "reportingOpenTasks": "{count} açık raporlama görevini tamamlayın",
-    "moduleReporting": "Raporlama"
+    "moduleReporting": "Raporlama",
+    "opinionPendingOpinions": "{count} bekleyen görüş bölümünü temizleyin",
+    "opinionOutstandingTasks": "{count} açık görüş bölümünü çözün",
+    "opinionPendingApprovals": "{count} bekleyen görüşlama onayını temizleyin",
+    "opinionRecentOpinions": "{count} son görüşlama olayı",
+    "opinionReturnedPackages": "{count} iade edilen görüşlama paketini ele alın",
+    "opinionMyTasks": "Size atanan {count} görüş bölümü",
+    "opinionDraftPackages": "{count} taslak görüşlama paketini tamamlayın",
+    "opinionOpenTasks": "{count} açık görüşlama görevini tamamlayın",
+    "moduleOpinion": "görüşlama"
   },
   "ai": {
     "title": "AI asistan",
@@ -411,6 +420,28 @@
     "reportingMyTasks": "Size atanan {count} rapor bölümü",
     "reportingDraftPackages": "{count} taslak raporlama paketini tamamlayın",
     "reportingOpenTasks": "{count} açık raporlama görevini tamamlayın",
-    "moduleReporting": "Raporlama"
+    "moduleReporting": "Raporlama",
+    "opinionPendingOpinions": "{count} bekleyen görüş bölümünü temizleyin",
+    "opinionOutstandingTasks": "{count} açık görüş bölümünü çözün",
+    "opinionPendingApprovals": "{count} bekleyen görüşlama onayını temizleyin",
+    "opinionRecentOpinions": "{count} son görüşlama olayı",
+    "opinionReturnedPackages": "{count} iade edilen görüşlama paketini ele alın",
+    "opinionMyTasks": "Size atanan {count} görüş bölümü",
+    "opinionDraftPackages": "{count} taslak görüşlama paketini tamamlayın",
+    "opinionOpenTasks": "{count} açık görüşlama görevini tamamlayın",
+    "moduleOpinion": "görüşlama",
+    "opinionWidgetTitle": "görüşlama hattı",
+    "opinionWidgetDescription": "Denetim görüşu bölümleri, açık bölümler ve denetim görüşü hazırlığı",
+    "kpiEngagementOpinionPending": "Bekleyen görüşlar",
+    "kpiEngagementOpinionReturned": "İade edilen görüşlar",
+    "kpiMyOpinion": "görüşlama öğelerim",
+    "kpiOpinionActivity": "görüşlama etkinliği",
+    "hintEngagementOpinionPending": "Engagement görüşlama onayları",
+    "hintEngagementOpinionReturned": "Düzeltme için iade edildi",
+    "hintMyOpinion": "Atanan görüş bölümleri",
+    "hintOpinionActivity": "Son görüşlama olayları",
+    "moduleEngagementOpinion": "Engagement görüşlaması",
+    "attentionEngagementOpinionReturned": "{count} engagement görüşu iade edildi",
+    "attentionEngagementOpinion": "{count} engagement görüşu onay bekliyor"
   }
 }

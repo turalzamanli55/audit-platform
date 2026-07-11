@@ -15,6 +15,10 @@ import type {
   ReportingCommandCenterLabels,
   ReportingWorkspaceLabels,
 } from "@/lib/reporting/reporting-workspace-display";
+import type {
+  OpinionCommandCenterLabels,
+  OpinionWorkspaceLabels,
+} from "@/lib/opinion/opinion-workspace-display";
 
 type RiskAssessmentSectionLabels = {
   title: string;
@@ -1030,6 +1034,183 @@ export type ReportingLabels = {
   };
 };
 
+type OpinionSectionLabels = {
+  title: string;
+  description: string;
+  emptyTitle: string;
+  emptyDescription: string;
+  bodyPlaceholder?: string;
+  addAction?: string;
+  columns?: Record<string, string>;
+};
+
+export type OpinionLabels = {
+  notFoundTitle: string;
+  notFoundDescription: string;
+  forbiddenTitle: string;
+  forbiddenDescription: string;
+  noWorkspaceTitle: string;
+  noWorkspaceDescription: string;
+  statuses: Record<string, string>;
+  sectionStatuses: Record<string, string>;
+  sectionTypes: Record<string, string>;
+  opinionTypes: Record<string, string>;
+  commentTypes: Record<string, string>;
+  workflow: {
+    title: string;
+    description: string;
+    submitAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    cancelAction: string;
+    returnNotesLabel: string;
+    returnNotesPlaceholder: string;
+    readOnlyNotice: string;
+    submittedNotice: string;
+    approvedNotice: string;
+    returnedNotice: string;
+    errorGeneric: string;
+  };
+  empty: {
+    title: string;
+    description: string;
+    createAction: string;
+    creating: string;
+    forbiddenDescription: string;
+  };
+  workspace: OpinionWorkspaceLabels & {
+    title: string;
+    description: string;
+    statusTitle: string;
+    statusDescription: string;
+    progress: string;
+    workflowTitle: string;
+    workflowDescription: string;
+    queuePreviewTitle: string;
+    queuePreviewDescription: string;
+    heroEyebrow: string;
+    breadcrumbReview: string;
+    backToEngagement: string;
+    fieldworkGateTitle: string;
+    fieldworkGateDescription: string;
+    fieldworkSubstantiallyCompleteDescription: string;
+    navAriaLabel: string;
+    navOverview: string;
+    navOpinionType: string;
+    navBasisForOpinion: string;
+    navKeyAuditMatters: string;
+    navEmphasisOfMatter: string;
+    navOtherInformation: string;
+    navResponsibilities: string;
+    navSignature: string;
+    navComments: string;
+    navHistory: string;
+    navVersions: string;
+    navSettings: string;
+    loading: string;
+    errorTitle: string;
+    errorDescription: string;
+    archivedTitle: string;
+    archivedDescription: string;
+    summaryStatus: string;
+    summaryVersion: string;
+    summaryProgress: string;
+    summaryPending: string;
+    summaryReturned: string;
+    summaryResolved: string;
+    summaryOutstandingItems: string;
+    summaryPendingReview: string;
+    summaryPendingReviewBadge: string;
+    commandCenter: OpinionCommandCenterLabels;
+  };
+  opinionType: OpinionSectionLabels;
+  basisForOpinion: OpinionSectionLabels;
+  keyAuditMatters: OpinionSectionLabels;
+  emphasisOfMatter: OpinionSectionLabels;
+  otherInformation: OpinionSectionLabels;
+  responsibilities: OpinionSectionLabels;
+  signature: OpinionSectionLabels;
+  comments: OpinionSectionLabels;
+  history: OpinionSectionLabels & {
+    versionLabel: string;
+    updatedLabel: string;
+    actions: Record<string, string>;
+    filterActor: string;
+    filterModule: string;
+    filterAction: string;
+    filterDate: string;
+    all: string;
+  };
+  itemActions: {
+    unassigned: string;
+    assignReviewer: string;
+    dueDate: string;
+    priority: string;
+    severity: string;
+    status: string;
+    returnNotesTitle: string;
+    returnNotesPlaceholder: string;
+    assignAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    reopenAction: string;
+    cancelAction: string;
+    errorGeneric: string;
+    priorities: Record<string, string>;
+    severities: Record<string, string>;
+    sectionStatuses: Record<string, string>;
+    sectionTypes: Record<string, string>;
+  };
+  noteActions: {
+    bodyPlaceholder: string;
+    addAction: string;
+    editAction: string;
+    saveAction: string;
+    archiveAction: string;
+    restoreAction: string;
+    cancelAction: string;
+    resolvedBadge: string;
+    unresolvedBadge: string;
+    replyAction: string;
+    attachmentsLabel: string;
+  };
+  versionActions: {
+    latestBadge: string;
+    compareAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    diffTitle: string;
+    noDiff: string;
+    errorGeneric: string;
+  };
+  versions: OpinionSectionLabels;
+  settings: {
+    title: string;
+    description: string;
+    archiveAction: string;
+    archiveConfirmAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    archivedBanner: string;
+    readOnlyNotice: string;
+  };
+  historyActions: Record<string, string>;
+  states: {
+    loadingTitle: string;
+    loadingDescription: string;
+    archiveTitle: string;
+    archiveDescription: string;
+    readonlyTitle: string;
+    readonlyDescription: string;
+    permissionTitle: string;
+    permissionDescription: string;
+  };
+};
+
 type ReviewLabels = {
   notFoundTitle: string;
   notFoundDescription: string;
@@ -1958,6 +2139,7 @@ export type Dictionary = {
       navReview: string;
       navCompletion: string;
       navReporting: string;
+      navOpinion: string;
       navHistory: string;
       navSettings: string;
       loading: string;
@@ -2004,11 +2186,13 @@ export type Dictionary = {
         phaseReview: string;
         phaseCompletion: string;
         phaseReporting: string;
+        phaseOpinion: string;
         statusReview: string;
         statusClear: string;
         openReviewQueue: string;
         openCompletion: string;
         openReporting: string;
+        openOpinion: string;
         openSettings: string;
         owner: string;
         lastUpdate: string;
@@ -2097,6 +2281,8 @@ export type Dictionary = {
         completionDescription: string;
         reportingTitle: string;
         reportingDescription: string;
+        opinionTitle: string;
+        opinionDescription: string;
       };
       planning: {
         title: string;
@@ -2198,6 +2384,21 @@ export type Dictionary = {
         openSectionReviews: string;
         resolvedSections: string;
         openReporting: string;
+      };
+      opinion: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+        opinionStatus: string;
+        opinionProgress: string;
+        packageVersion: string;
+        outstandingSections: string;
+        openSectionReviews: string;
+        resolvedSections: string;
+        openOpinion: string;
       };
       client: {
         title: string;
@@ -2676,6 +2877,7 @@ export type Dictionary = {
   review: ReviewLabels;
   completion: CompletionLabels;
   reporting: ReportingLabels;
+  opinion: OpinionLabels;
   fieldwork: {
     notFoundTitle: string;
     notFoundDescription: string;
