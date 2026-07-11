@@ -1107,7 +1107,8 @@
         "financialStatementsStatus": "Statement status",
         "financialStatementsProgress": "Statement progress",
         "openFinancialStatements": "Open financial statements"
-      }
+      },
+      "navTrialBalance": "Пробный баланс"
     },
     "settings": {
       "title": "Настройки",
@@ -6137,6 +6138,175 @@
         "empty": "No records yet",
         "errorGeneric": "Unable to complete the intelligence action.",
         "suggestionNotice": "Suggestions appear when confidence is 75% or higher."
+      }
+    }
+  },
+  "trialBalance": {
+    "forbiddenTitle": "Permission required",
+    "forbiddenDescription": "You need trial balance permission to access this workspace.",
+    "noWorkspaceTitle": "Workspace required",
+    "noWorkspaceDescription": "Select a workspace before opening the trial balance.",
+    "errorTitle": "Unable to load trial balance",
+    "errorDescription": "Something went wrong while loading the Enterprise Trial Balance Engine.",
+    "workspace": {
+      "navAriaLabel": "Trial balance sections",
+      "navOverview": "Overview",
+      "navAccounts": "Accounts",
+      "navHierarchy": "Hierarchy",
+      "navAdjustments": "Adjustments",
+      "navReclassifications": "Reclassifications",
+      "navMappings": "Mappings",
+      "navValidation": "Validation",
+      "navCurrencies": "Currencies",
+      "navPeriods": "Periods",
+      "navComparatives": "Comparatives",
+      "navHistory": "History",
+      "navVersions": "Versions",
+      "navSettings": "Settings",
+      "navSearch": "Search",
+      "navGroups": {
+        "overview": "Overview",
+        "accounts": "Accounts",
+        "controls": "Controls",
+        "governance": "Governance",
+        "admin": "Admin"
+      },
+      "heroEyebrow": "Trial Balance",
+      "title": "Корпоративный пробный баланс",
+      "description": "Financial backbone built from UAIE normalized datasets — accounts, hierarchy, adjustments, and mappings.",
+      "backToEngagement": "К заданию"
+    },
+    "ui": {
+      "sections": {
+        "overview": {
+          "title": "Trial balance overview",
+          "description": "Balances, warnings, workflow, and package health."
+        },
+        "accounts": {
+          "title": "Accounts",
+          "description": "Complete trial balance account register."
+        },
+        "hierarchy": {
+          "title": "Account hierarchy",
+          "description": "Unlimited tree of assets, liabilities, equity, income, and expenses."
+        },
+        "adjustments": {
+          "title": "Adjustments",
+          "description": "Journal entries and corrections that preserve imported source amounts."
+        },
+        "reclassifications": {
+          "title": "Reclassifications",
+          "description": "Reclassification entries without overwriting imported data."
+        },
+        "mappings": {
+          "title": "Account mappings",
+          "description": "IFRS, IAS, local GAAP, company, and future AI mappings."
+        },
+        "validation": {
+          "title": "Balance validation",
+          "description": "Out-of-balance, orphan, duplicate, and classification checks."
+        },
+        "currencies": {
+          "title": "Multi-currency",
+          "description": "Functional, presentation, original currency, and FX posture."
+        },
+        "periods": {
+          "title": "Periods",
+          "description": "Opening, current, closing, and comparative periods."
+        },
+        "comparatives": {
+          "title": "Comparatives",
+          "description": "Prior-year and comparative period views."
+        },
+        "history": {
+          "title": "History",
+          "description": "Audit trail of imports, adjustments, reviews, and approvals."
+        },
+        "versions": {
+          "title": "Versions",
+          "description": "Version snapshots with change summaries and rollback points."
+        },
+        "settings": {
+          "title": "Settings",
+          "description": "Package settings and fiscal roll-forward."
+        },
+        "search": {
+          "title": "Search",
+          "description": "Search accounts by code, name, category, lead schedule, and FS mapping."
+        }
+      },
+      "statuses": {
+        "draft": "Draft",
+        "validated": "Validated",
+        "submitted": "Submitted",
+        "under_review": "Under review",
+        "returned": "Returned",
+        "approved": "Approved",
+        "locked": "Locked",
+        "archived": "Archived"
+      },
+      "accountTypes": {
+        "asset": "Asset",
+        "liability": "Liability",
+        "equity": "Equity",
+        "revenue": "Revenue",
+        "expense": "Expense",
+        "other_income": "Other income",
+        "other_expense": "Other expense",
+        "oci": "OCI",
+        "unknown": "Unknown"
+      },
+      "emptyTitle": "Trial balance not initiated",
+      "emptyDescription": "Build a trial balance from a staged UAIE import. Financial statements and reporting must read from this dataset.",
+      "createAction": "Build from UAIE import",
+      "creating": "Building trial balance…",
+      "selectImport": "Staged import session",
+      "errorGeneric": "Unable to complete the trial balance action.",
+      "metrics": {
+        "accounts": "Accounts",
+        "warnings": "Warnings",
+        "outOfBalance": "Out of balance",
+        "adjustments": "Adjustments",
+        "mapped": "Mapped",
+        "unmapped": "Unmapped",
+        "currency": "Currency",
+        "fiscalYear": "Fiscal year",
+        "functional": "Functional currency",
+        "presentation": "Presentation currency",
+        "fxAccounts": "FX-impacted accounts"
+      },
+      "columns": {
+        "code": "Account code",
+        "name": "Account name",
+        "type": "Type",
+        "closing": "Closing balance",
+        "lead": "Lead schedule",
+        "fs": "FS mapping",
+        "confidence": "Confidence",
+        "severity": "Severity",
+        "message": "Message",
+        "description": "Description",
+        "amount": "Amount",
+        "status": "Status",
+        "period": "Period",
+        "comparative": "Comparative",
+        "created": "Created"
+      },
+      "actions": {
+        "search": "Search accounts",
+        "addAdjustment": "Add adjustment",
+        "rollForward": "Roll forward to next year"
+      },
+      "workflow": {
+        "title": "Workflow",
+        "validate": "Validate",
+        "submit": "Submit",
+        "review": "Start review",
+        "approve": "Approve",
+        "lock": "Lock",
+        "archive": "Archive",
+        "return": "Return",
+        "returnNotes": "Return notes"
       }
     }
   }

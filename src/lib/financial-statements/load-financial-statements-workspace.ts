@@ -11,6 +11,7 @@ import {
 } from "@/lib/financial-statements/financial-statements-workspace-mapper";
 import type { FinancialStatementsWorkspaceLoadResult } from "@/lib/financial-statements/financial-statements-workspace-view";
 import { assertOpinionApprovedForFinancialStatements } from "@/lib/opinion/opinion-rules";
+import { assertTrialBalanceApprovedForFinancialStatements } from "@/lib/trial-balance/trial-balance-rules";
 import { getCurrentUser, getWorkspaceContext } from "@/lib/auth/server";
 import { requirePermissionCodes } from "@/lib/auth/authorize";
 import { AuthenticationError, AuthorizationError, DatabaseError } from "@/lib/errors";
@@ -18,6 +19,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { CompanyRepository } from "@/repositories/company/company-repository";
 import { EngagementRepository } from "@/repositories/engagement/engagement-repository";
 import { OpinionRepository } from "@/repositories/opinion/opinion-repository";
+import { TrialBalanceRepository } from "@/repositories/trial-balance/trial-balance-repository";
 import type { RepositoryContext } from "@/types/context";
 
 type SupabaseSelectResult = Promise<{ data: unknown; error: unknown }>;
@@ -91,6 +93,7 @@ export async function loadFinancialStatementsWorkspace(
     const context = createRepositoryContext(user.id, user.organizationId, workspace.workspaceId);
     const engagementRepository = new EngagementRepository(supabase, context);
     const completionRepository = new OpinionRepository(supabase, context);
+    const trialBalanceRepository = new TrialBalanceRepository(supabase, context);
     const companyRepository = new CompanyRepository(supabase, context);
 
     const engagement = await engagementRepository.findBySlugInWorkspace(
@@ -100,11 +103,15 @@ export async function loadFinancialStatementsWorkspace(
 
     if (!engagement) return { ok: false, reason: "not_found" };
 
-    const completion = await completionRepository.findByEngagementId(engagement.id);
+    const [completion, trialBalance] = await Promise.all([
+      completionRepository.findByEngagementId(engagement.id),
+      trialBalanceRepository.findByEngagementId(engagement.id),
+    ]);
 
     let prerequisitesMet = false;
     try {
       assertOpinionApprovedForFinancialStatements(completion);
+      assertTrialBalanceApprovedForFinancialStatements(trialBalance);
       prerequisitesMet = true;
     } catch {
       prerequisitesMet = false;

@@ -136,4 +136,13 @@ export const AUDIT_ACTIONS = {
   UAIE_CANCELLED: "uaie.cancelled",
   UAIE_ARCHIVED: "uaie.archived",
   UAIE_PROFILE_SAVED: "uaie.profile.saved",
+  TRIAL_BALANCE_CREATED: "trialBalance.created",
+  TRIAL_BALANCE_UPDATED: "trialBalance.updated",
+  TRIAL_BALANCE_VALIDATED: "trialBalance.validated",
+  TRIAL_BALANCE_SUBMITTED: "trialBalance.submitted",
+  TRIAL_BALANCE_RETURNED: "trialBalance.returned",
+  TRIAL_BALANCE_APPROVED: "trialBalance.approved",
+  TRIAL_BALANCE_LOCKED: "trialBalance.locked",
+  TRIAL_BALANCE_ARCHIVED: "trialBalance.archived",
+  TRIAL_BALANCE_ADJUSTED: "trialBalance.adjusted",
 } as const;

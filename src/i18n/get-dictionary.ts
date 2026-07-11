@@ -1261,6 +1261,58 @@ export type FinancialStatementsLabels = Omit<
   crossReferences: FinancialStatementsSectionLabels;
 };
 
+export type TrialBalanceLabels = {
+  forbiddenTitle: string;
+  forbiddenDescription: string;
+  noWorkspaceTitle: string;
+  noWorkspaceDescription: string;
+  errorTitle: string;
+  errorDescription: string;
+  workspace: {
+    navAriaLabel: string;
+    navOverview: string;
+    navAccounts: string;
+    navHierarchy: string;
+    navAdjustments: string;
+    navReclassifications: string;
+    navMappings: string;
+    navValidation: string;
+    navCurrencies: string;
+    navPeriods: string;
+    navComparatives: string;
+    navHistory: string;
+    navVersions: string;
+    navSettings: string;
+    navSearch: string;
+    navGroups: {
+      overview: string;
+      accounts: string;
+      controls: string;
+      governance: string;
+      admin: string;
+    };
+    heroEyebrow: string;
+    title: string;
+    description: string;
+    backToEngagement: string;
+  };
+  ui: {
+    sections: Record<string, { title: string; description: string }>;
+    statuses: Record<string, string>;
+    accountTypes: Record<string, string>;
+    emptyTitle: string;
+    emptyDescription: string;
+    createAction: string;
+    creating: string;
+    selectImport: string;
+    errorGeneric: string;
+    metrics: Record<string, string>;
+    columns: Record<string, string>;
+    actions: Record<string, string>;
+    workflow: Record<string, string>;
+  };
+};
+
 export type UaieLabels = {
   notFoundTitle: string;
   notFoundDescription: string;
@@ -2333,6 +2385,7 @@ export type Dictionary = {
       navCompletion: string;
       navReporting: string;
       navOpinion: string;
+      navTrialBalance: string;
       navFinancialStatements: string;
       navHistory: string;
       navSettings: string;
@@ -3090,6 +3143,7 @@ export type Dictionary = {
   reporting: ReportingLabels;
   opinion: OpinionLabels;
   financialStatements: FinancialStatementsLabels;
+  trialBalance: TrialBalanceLabels;
   uaie: UaieLabels;
   fieldwork: {
     notFoundTitle: string;

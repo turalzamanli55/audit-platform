@@ -15,6 +15,7 @@ import { loadCompletionDashboardMetrics } from "@/lib/completion/load-completion
 import { loadReportingDashboardMetrics } from "@/lib/reporting/load-reporting-dashboard-metrics";
 import { loadOpinionDashboardMetrics } from "@/lib/opinion/load-opinion-dashboard-metrics";
 import { loadFinancialStatementsDashboardMetrics } from "@/lib/financial-statements/load-financial-statements-dashboard-metrics";
+import { loadTrialBalanceDashboardMetrics } from "@/lib/trial-balance/load-trial-balance-dashboard-metrics";
 import { loadUaieDashboardMetrics } from "@/lib/uaie/load-uaie-dashboard-metrics";
 import {
   loadDashboardFeed,
@@ -87,6 +88,7 @@ export async function loadDashboardWorkspace(
     reportingMetrics,
     opinionMetrics,
     financialStatementsMetrics,
+    trialBalanceMetrics,
     uaieMetrics,
   ] = await Promise.all([
     getCurrentUser(locale),
@@ -102,6 +104,7 @@ export async function loadDashboardWorkspace(
     loadReportingDashboardMetrics(),
     loadOpinionDashboardMetrics(),
     loadFinancialStatementsDashboardMetrics(),
+    loadTrialBalanceDashboardMetrics(),
     loadUaieDashboardMetrics(),
   ]);
 
@@ -175,6 +178,9 @@ export async function loadDashboardWorkspace(
     (opinionMetrics?.draftPackages ?? 0) +
     (financialStatementsMetrics?.pendingFinancialStatements ?? 0) +
     (financialStatementsMetrics?.draftPackages ?? 0) +
+    (trialBalanceMetrics?.pendingReview ?? 0) +
+    (trialBalanceMetrics?.outOfBalance ?? 0) +
+    (trialBalanceMetrics?.draftPackages ?? 0) +
     (uaieMetrics?.failedImports ?? 0) +
     (uaieMetrics?.mappingRequired ?? 0) +
     (uaieMetrics?.pendingApprovals ?? 0);

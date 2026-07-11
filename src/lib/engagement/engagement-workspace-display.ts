@@ -27,6 +27,7 @@ export type EngagementWorkspaceSection =
   | "completion"
   | "reporting"
   | "opinion"
+  | "trial-balance"
   | "financial-statements"
   | "history"
   | "settings";
@@ -413,6 +414,7 @@ export function buildEngagementWorkspaceNavItems(
     { id: "completion", label: labels.navCompletion, href: `${base}/completion` },
     { id: "reporting", label: labels.navReporting, href: `${base}/reporting` },
     { id: "opinion", label: labels.navOpinion, href: `${base}/opinion` },
+    { id: "trial-balance", label: labels.navTrialBalance, href: `${base}/trial-balance` },
     {
       id: "financial-statements",
       label: labels.navFinancialStatements,

@@ -1647,6 +1647,398 @@ export type Database = {
         Relationships: [];
       };
 
+
+      trial_balance_packages: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          import_session_id: string | null;
+          fiscal_year: number;
+          period_label: string;
+          period_type: Database["public"]["Enums"]["trial_balance_period_type"];
+          functional_currency: string;
+          presentation_currency: string | null;
+          package_status: Database["public"]["Enums"]["trial_balance_package_status"];
+          package_version: number;
+          is_balanced: boolean;
+          out_of_balance_amount: number;
+          account_count: number;
+          warning_count: number;
+          error_count: number;
+          adjustment_count: number;
+          mapped_count: number;
+          unmapped_count: number;
+          summary_json: Json;
+          validation_json: Json;
+          rolled_forward_from_id: string | null;
+          submitted_at: string | null;
+          submitted_by: string | null;
+          returned_at: string | null;
+          returned_by: string | null;
+          return_notes: string | null;
+          approved_at: string | null;
+          approved_by: string | null;
+          locked_at: string | null;
+          locked_by: string | null;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          import_session_id?: string | null;
+          fiscal_year: number;
+          period_label?: string;
+          period_type?: Database["public"]["Enums"]["trial_balance_period_type"];
+          functional_currency?: string;
+          presentation_currency?: string | null;
+          package_status?: Database["public"]["Enums"]["trial_balance_package_status"];
+          package_version?: number;
+          is_balanced?: boolean;
+          out_of_balance_amount?: number;
+          account_count?: number;
+          warning_count?: number;
+          error_count?: number;
+          adjustment_count?: number;
+          mapped_count?: number;
+          unmapped_count?: number;
+          summary_json?: Json;
+          validation_json?: Json;
+          rolled_forward_from_id?: string | null;
+          submitted_at?: string | null;
+          submitted_by?: string | null;
+          returned_at?: string | null;
+          returned_by?: string | null;
+          return_notes?: string | null;
+          approved_at?: string | null;
+          approved_by?: string | null;
+          locked_at?: string | null;
+          locked_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      trial_balance_lines: {
+        Row: {
+          id: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          parent_line_id: string | null;
+          account_code: string;
+          account_name: string;
+          account_level: number;
+          account_type: Database["public"]["Enums"]["trial_balance_account_type"];
+          category: string | null;
+          subcategory: string | null;
+          classification_confidence: number;
+          opening_debit: number;
+          opening_credit: number;
+          movement_debit: number;
+          movement_credit: number;
+          closing_debit: number;
+          closing_credit: number;
+          closing_balance: number;
+          adjusted_closing_balance: number;
+          original_currency: string | null;
+          exchange_rate: number;
+          functional_amount: number;
+          presentation_amount: number | null;
+          fx_gain_loss: number;
+          lead_schedule: Database["public"]["Enums"]["trial_balance_lead_schedule"];
+          fs_statement: Database["public"]["Enums"]["trial_balance_fs_statement"];
+          is_material: boolean;
+          is_mapped: boolean;
+          is_adjusted: boolean;
+          is_orphan: boolean;
+          source_row_number: number | null;
+          sort_order: number;
+          metadata_json: Json;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          parent_line_id?: string | null;
+          account_code: string;
+          account_name: string;
+          account_level?: number;
+          account_type?: Database["public"]["Enums"]["trial_balance_account_type"];
+          category?: string | null;
+          subcategory?: string | null;
+          classification_confidence?: number;
+          opening_debit?: number;
+          opening_credit?: number;
+          movement_debit?: number;
+          movement_credit?: number;
+          closing_debit?: number;
+          closing_credit?: number;
+          closing_balance?: number;
+          adjusted_closing_balance?: number;
+          original_currency?: string | null;
+          exchange_rate?: number;
+          functional_amount?: number;
+          presentation_amount?: number | null;
+          fx_gain_loss?: number;
+          lead_schedule?: Database["public"]["Enums"]["trial_balance_lead_schedule"];
+          fs_statement?: Database["public"]["Enums"]["trial_balance_fs_statement"];
+          is_material?: boolean;
+          is_mapped?: boolean;
+          is_adjusted?: boolean;
+          is_orphan?: boolean;
+          source_row_number?: number | null;
+          sort_order?: number;
+          metadata_json?: Json;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      trial_balance_adjustments: {
+        Row: {
+          id: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          adjustment_type: Database["public"]["Enums"]["trial_balance_adjustment_type"];
+          adjustment_status: Database["public"]["Enums"]["trial_balance_adjustment_status"];
+          reference_code: string | null;
+          description: string;
+          reason: string | null;
+          debit_line_id: string | null;
+          credit_line_id: string | null;
+          amount: number;
+          currency_code: string | null;
+          preserves_source: boolean;
+          approved_at: string | null;
+          approved_by: string | null;
+          rejected_at: string | null;
+          rejected_by: string | null;
+          rejection_notes: string | null;
+          posted_at: string | null;
+          posted_by: string | null;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          adjustment_type?: Database["public"]["Enums"]["trial_balance_adjustment_type"];
+          adjustment_status?: Database["public"]["Enums"]["trial_balance_adjustment_status"];
+          reference_code?: string | null;
+          description: string;
+          reason?: string | null;
+          debit_line_id?: string | null;
+          credit_line_id?: string | null;
+          amount?: number;
+          currency_code?: string | null;
+          preserves_source?: boolean;
+          approved_at?: string | null;
+          approved_by?: string | null;
+          rejected_at?: string | null;
+          rejected_by?: string | null;
+          rejection_notes?: string | null;
+          posted_at?: string | null;
+          posted_by?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      trial_balance_mappings: {
+        Row: {
+          id: string;
+          package_id: string;
+          line_id: string;
+          organization_id: string;
+          workspace_id: string;
+          framework: Database["public"]["Enums"]["trial_balance_mapping_framework"];
+          mapping_code: string | null;
+          mapping_label: string | null;
+          confidence: number;
+          is_manual: boolean;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          package_id: string;
+          line_id: string;
+          organization_id: string;
+          workspace_id: string;
+          framework?: Database["public"]["Enums"]["trial_balance_mapping_framework"];
+          mapping_code?: string | null;
+          mapping_label?: string | null;
+          confidence?: number;
+          is_manual?: boolean;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      trial_balance_periods: {
+        Row: {
+          id: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          period_type: Database["public"]["Enums"]["trial_balance_period_type"];
+          period_label: string;
+          fiscal_year: number;
+          start_date: string | null;
+          end_date: string | null;
+          is_comparative: boolean;
+          sort_order: number;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          period_type: Database["public"]["Enums"]["trial_balance_period_type"];
+          period_label: string;
+          fiscal_year: number;
+          start_date?: string | null;
+          end_date?: string | null;
+          is_comparative?: boolean;
+          sort_order?: number;
+          created_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      trial_balance_versions: {
+        Row: {
+          id: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          version_number: number;
+          change_summary: string;
+          snapshot_json: Json;
+          diff_json: Json;
+          created_at: string;
+          created_by: string | null;
+        };
+        Insert: {
+          id?: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          version_number: number;
+          change_summary: string;
+          snapshot_json?: Json;
+          diff_json?: Json;
+          created_at?: string;
+          created_by?: string | null;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      trial_balance_activity: {
+        Row: {
+          id: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          action: string;
+          summary: string | null;
+          metadata: Json;
+          created_at: string;
+          created_by: string | null;
+        };
+        Insert: {
+          id?: string;
+          package_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string;
+          action: string;
+          summary?: string | null;
+          metadata?: Json;
+          created_at?: string;
+          created_by?: string | null;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+
       uaie_import_sessions: {
         Row: {
           id: string;
@@ -5339,6 +5731,72 @@ export type Database = {
         | "approved"
         | "published"
         | "archived";
+
+      trial_balance_package_status:
+        | "draft"
+        | "validated"
+        | "submitted"
+        | "under_review"
+        | "returned"
+        | "approved"
+        | "locked"
+        | "archived";
+      trial_balance_account_type:
+        | "asset"
+        | "liability"
+        | "equity"
+        | "revenue"
+        | "expense"
+        | "other_income"
+        | "other_expense"
+        | "oci"
+        | "unknown";
+      trial_balance_period_type:
+        | "opening"
+        | "current"
+        | "closing"
+        | "monthly"
+        | "quarterly"
+        | "yearly"
+        | "comparative"
+        | "prior_year";
+      trial_balance_adjustment_type:
+        | "adjustment"
+        | "journal_entry"
+        | "reclassification"
+        | "correction"
+        | "audit_entry"
+        | "proposed"
+        | "approved_entry"
+        | "rejected_entry";
+      trial_balance_adjustment_status:
+        | "draft"
+        | "proposed"
+        | "approved"
+        | "rejected"
+        | "posted"
+        | "reversed";
+      trial_balance_mapping_framework: "ifrs" | "ias" | "local_gaap" | "company" | "ai_future";
+      trial_balance_lead_schedule:
+        | "cash"
+        | "receivables"
+        | "inventory"
+        | "ppe"
+        | "payables"
+        | "loans"
+        | "revenue"
+        | "expenses"
+        | "equity"
+        | "other"
+        | "unmapped";
+      trial_balance_fs_statement:
+        | "statement_of_financial_position"
+        | "statement_of_profit_or_loss"
+        | "oci"
+        | "cash_flow"
+        | "equity"
+        | "notes"
+        | "unmapped";
       uaie_import_status:
         | "uploaded"
         | "scanning"
