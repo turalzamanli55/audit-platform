@@ -13,6 +13,7 @@ import { loadReviewWorkspacePage } from "@/lib/review/review-workspace-page";
 import { loadCompletionWorkspacePage } from "@/lib/completion/completion-workspace-page";
 import { loadReportingWorkspacePage } from "@/lib/reporting/reporting-workspace-page";
 import { loadOpinionWorkspacePage } from "@/lib/opinion/opinion-workspace-page";
+import { loadFinancialStatementsWorkspacePage } from "@/lib/financial-statements/financial-statements-workspace-page";
 import { loadRiskAssessmentWorkspacePage } from "@/lib/risk-assessment/risk-assessment-workspace-page";
 
 type EngagementWorkspaceOverviewPageProps = {
@@ -41,6 +42,7 @@ export default async function EngagementWorkspaceOverviewPage({
     completionResult,
     reportingResult,
     opinionResult,
+    financialStatementsResult,
   ] = await Promise.all([
     requireEngagementWorkspace(slug),
     loadPlanningWorkspacePage(slug),
@@ -51,6 +53,7 @@ export default async function EngagementWorkspaceOverviewPage({
     loadCompletionWorkspacePage(slug),
     loadReportingWorkspacePage(slug),
     loadOpinionWorkspacePage(slug),
+    loadFinancialStatementsWorkspacePage(slug),
   ]);
 
   const canUpdate = user
@@ -65,6 +68,9 @@ export default async function EngagementWorkspaceOverviewPage({
   const completion = completionResult.ok ? completionResult.completion : null;
   const reporting = reportingResult.ok ? reportingResult.reporting : null;
   const opinion = opinionResult.ok ? opinionResult.opinion : null;
+  const financialStatements = financialStatementsResult.ok
+    ? financialStatementsResult.financialStatements
+    : null;
 
   const commandCenter = await loadEngagementCommandCenter({
     locale,
@@ -77,6 +83,7 @@ export default async function EngagementWorkspaceOverviewPage({
     completion,
     reporting,
     opinion,
+    financialStatements,
     labels: dictionary.engagements.workspace.commandCenter,
     workspaceLabels: dictionary.engagements.workspace,
     engagementsLabels: dictionary.engagements,
@@ -88,6 +95,7 @@ export default async function EngagementWorkspaceOverviewPage({
     completionLabels: dictionary.completion,
     reportingLabels: dictionary.reporting,
     opinionLabels: dictionary.opinion,
+    financialStatementsLabels: dictionary.financialStatements,
   });
 
   return (

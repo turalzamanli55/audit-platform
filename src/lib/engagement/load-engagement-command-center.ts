@@ -11,6 +11,7 @@ import type { ReviewWorkspaceView } from "@/lib/review/review-workspace-view";
 import type { CompletionWorkspaceView } from "@/lib/completion/completion-workspace-view";
 import type { ReportingWorkspaceView } from "@/lib/reporting/reporting-workspace-view";
 import type { OpinionWorkspaceView } from "@/lib/opinion/opinion-workspace-view";
+import type { FinancialStatementsWorkspaceView } from "@/lib/financial-statements/financial-statements-workspace-view";
 import { loadEngagementActivity } from "@/lib/engagement/load-engagement-activity";
 import { loadCompanyWorkspacePage } from "@/lib/company/company-workspace-page";
 import { resolveUserProfiles } from "@/lib/user/resolve-user-profiles";
@@ -67,6 +68,7 @@ export async function loadEngagementCommandCenter(input: {
   completion: CompletionWorkspaceView | null;
   reporting: ReportingWorkspaceView | null;
   opinion: OpinionWorkspaceView | null;
+  financialStatements: FinancialStatementsWorkspaceView | null;
   labels: CommandCenterLabels;
   workspaceLabels: Dictionary["engagements"]["workspace"];
   engagementsLabels: Dictionary["engagements"];
@@ -78,6 +80,7 @@ export async function loadEngagementCommandCenter(input: {
   completionLabels: Dictionary["completion"];
   reportingLabels: Dictionary["reporting"];
   opinionLabels: Dictionary["opinion"];
+  financialStatementsLabels: Dictionary["financialStatements"];
 }): Promise<EngagementCommandCenterData> {
   const {
     locale,
@@ -90,6 +93,7 @@ export async function loadEngagementCommandCenter(input: {
     completion,
     reporting,
     opinion,
+    financialStatements,
     labels,
     workspaceLabels,
     engagementsLabels,
@@ -101,6 +105,7 @@ export async function loadEngagementCommandCenter(input: {
     completionLabels,
     reportingLabels,
     opinionLabels,
+    financialStatementsLabels,
   } = input;
 
   const base = `/${locale}/app/engagements/${engagement.slug}`;
@@ -164,6 +169,8 @@ export async function loadEngagementCommandCenter(input: {
     reporting?.progressPct ?? (completion?.packageStatus === "approved" ? 25 : 0);
   const opinionProgress =
     opinion?.progressPct ?? (reporting?.packageStatus === "approved" ? 25 : 0);
+  const financialStatementsProgress =
+    financialStatements?.progressPct ?? (opinion?.packageStatus === "approved" ? 25 : 0);
 
   const overallCompletionPct = Math.round(
     [
@@ -172,8 +179,9 @@ export async function loadEngagementCommandCenter(input: {
       completionProgress,
       reportingProgress,
       opinionProgress,
+      financialStatementsProgress,
     ].reduce((a, b) => a + b, 0) /
-      (moduleProgress.length + 4),
+      (moduleProgress.length + 5),
   );
 
   const pipeline: EngagementPipelinePhase[] = [
@@ -296,6 +304,35 @@ export async function loadEngagementCommandCenter(input: {
       ctaLabel: labels.openOpinion,
       isActive: Boolean(opinion && opinion.packageStatus !== "approved"),
       isEmpty: !opinion,
+    },
+    {
+      id: "financial-statements",
+      label: labels.phaseFinancialStatements,
+      statusLabel: financialStatements
+        ? financialStatementsLabels.statuses[financialStatements.packageStatus]
+        : labels.statusClear,
+      statusVariant:
+        financialStatements?.packageStatus === "approved" ||
+        financialStatements?.packageStatus === "published"
+          ? "success"
+          : financialStatements?.packageStatus === "returned"
+            ? "warning"
+            : "default",
+      progressPct: financialStatementsProgress,
+      owner: null,
+      lastUpdate:
+        formatDate(locale, financialStatements?.updatedAt ?? engagement.updatedAt) ?? "—",
+      lastUpdateRelative: formatRelativeTime(
+        locale,
+        financialStatements?.updatedAt ?? engagement.updatedAt,
+      ),
+      href: `${base}/financial-statements`,
+      ctaLabel: labels.openFinancialStatements,
+      isActive: Boolean(
+        financialStatements &&
+          !["approved", "published"].includes(financialStatements.packageStatus),
+      ),
+      isEmpty: !financialStatements,
     },
   ];
 

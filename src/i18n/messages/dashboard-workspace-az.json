@@ -137,7 +137,17 @@
     "opinionMyTasks": "Sizə təyin edilmiş {count} audit rəy bölməsi",
     "opinionDraftPackages": "{count} qaralama audit rəy paketini tamamlayın",
     "opinionOpenTasks": "{count} açıq audit rəy tapşırığını tamamlayın",
-    "moduleOpinion": "audit rəy"
+    "moduleOpinion": "audit rəy",
+    "financialStatementsPending": "Pending financial statements reviews",
+    "financialStatementsRecent": "Recent financial statements activity",
+    "financialStatementsWidgetTitle": "Financial statements pipeline",
+    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
+    "financialStatementsPendingApprovals": "Financial statements pending approvals",
+    "financialStatementsReturnedPackages": "Returned financial statements packages",
+    "financialStatementsMyTasks": "My financial statements tasks",
+    "financialStatementsDraftPackages": "Financial statements drafts",
+    "financialStatementsOpenTasks": "Open financial statements tasks",
+    "moduleFinancialStatements": "Financial statements"
   },
   "ai": {
     "title": "AI köməkçi",
@@ -458,6 +468,16 @@
     "hintOpinionActivity": "Son audit rəy hadisələri",
     "moduleEngagementOpinion": "Müsadirə audit rəyı",
     "attentionEngagementOpinionReturned": "{count} müsadirə audit rəyı geri qaytarılıb",
-    "attentionEngagementOpinion": "{count} müsadirə audit rəyı təsdiq gözləyir"
+    "attentionEngagementOpinion": "{count} müsadirə audit rəyı təsdiq gözləyir",
+    "financialStatementsPending": "Pending financial statements reviews",
+    "financialStatementsRecent": "Recent financial statements activity",
+    "financialStatementsWidgetTitle": "Financial statements pipeline",
+    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
+    "financialStatementsPendingApprovals": "Financial statements pending approvals",
+    "financialStatementsReturnedPackages": "Returned financial statements packages",
+    "financialStatementsMyTasks": "My financial statements tasks",
+    "financialStatementsDraftPackages": "Financial statements drafts",
+    "financialStatementsOpenTasks": "Open financial statements tasks",
+    "moduleFinancialStatements": "Financial statements"
   }
 }

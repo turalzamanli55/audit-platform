@@ -41,6 +41,16 @@ export function assertOpinionApprovedForExport(
   }
 }
 
+export function assertOpinionApprovedForFinancialStatements(
+  opinionPackage: Pick<OpinionWorkflowTarget, "package_status"> | null,
+): void {
+  if (!opinionPackage || !isOpinionApproved(opinionPackage)) {
+    throw new ValidationError(
+      "Financial statements cannot begin until the audit opinion is approved.",
+    );
+  }
+}
+
 export function assertPackageEditable(reportingPackage: OpinionWorkflowTarget): void {
   if (
     LOCKED_OPINION_STATUSES.includes(

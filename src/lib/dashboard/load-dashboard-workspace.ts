@@ -14,6 +14,7 @@ import { loadReviewDashboardMetrics } from "@/lib/review/load-review-dashboard-m
 import { loadCompletionDashboardMetrics } from "@/lib/completion/load-completion-dashboard-metrics";
 import { loadReportingDashboardMetrics } from "@/lib/reporting/load-reporting-dashboard-metrics";
 import { loadOpinionDashboardMetrics } from "@/lib/opinion/load-opinion-dashboard-metrics";
+import { loadFinancialStatementsDashboardMetrics } from "@/lib/financial-statements/load-financial-statements-dashboard-metrics";
 import {
   loadDashboardFeed,
   type DashboardEngagementPreview,
@@ -84,6 +85,7 @@ export async function loadDashboardWorkspace(
     completionMetrics,
     reportingMetrics,
     opinionMetrics,
+    financialStatementsMetrics,
   ] = await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
@@ -97,6 +99,7 @@ export async function loadDashboardWorkspace(
     loadCompletionDashboardMetrics(),
     loadReportingDashboardMetrics(),
     loadOpinionDashboardMetrics(),
+    loadFinancialStatementsDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -166,7 +169,9 @@ export async function loadDashboardWorkspace(
     (reportingMetrics?.pendingReports ?? 0) +
     (reportingMetrics?.draftPackages ?? 0) +
     (opinionMetrics?.pendingOpinions ?? 0) +
-    (opinionMetrics?.draftPackages ?? 0);
+    (opinionMetrics?.draftPackages ?? 0) +
+    (financialStatementsMetrics?.pendingFinancialStatements ?? 0) +
+    (financialStatementsMetrics?.draftPackages ?? 0);
 
   return {
     locale,
@@ -196,13 +201,17 @@ export async function loadDashboardWorkspace(
         (reportingMetrics?.pendingReports ?? 0) +
           (reportingMetrics?.draftPackages ?? 0) +
           (opinionMetrics?.pendingOpinions ?? 0) +
-          (opinionMetrics?.draftPackages ?? 0) >
+          (opinionMetrics?.draftPackages ?? 0) +
+          (financialStatementsMetrics?.pendingFinancialStatements ?? 0) +
+          (financialStatementsMetrics?.draftPackages ?? 0) >
         0
           ? String(
               (reportingMetrics?.pendingReports ?? 0) +
                 (reportingMetrics?.draftPackages ?? 0) +
                 (opinionMetrics?.pendingOpinions ?? 0) +
-                (opinionMetrics?.draftPackages ?? 0),
+                (opinionMetrics?.draftPackages ?? 0) +
+                (financialStatementsMetrics?.pendingFinancialStatements ?? 0) +
+                (financialStatementsMetrics?.draftPackages ?? 0),
             )
           : "—",
       aiSuggestions: "—",

@@ -19,6 +19,10 @@ import type {
   OpinionCommandCenterLabels,
   OpinionWorkspaceLabels,
 } from "@/lib/opinion/opinion-workspace-display";
+import type {
+  FinancialStatementsCommandCenterLabels,
+  FinancialStatementsWorkspaceLabels,
+} from "@/lib/financial-statements/financial-statements-workspace-display";
 
 type RiskAssessmentSectionLabels = {
   title: string;
@@ -1211,6 +1215,52 @@ export type OpinionLabels = {
   };
 };
 
+type FinancialStatementsSectionLabels = OpinionSectionLabels;
+
+export type FinancialStatementsLabels = Omit<
+  OpinionLabels,
+  | "opinionTypes"
+  | "workspace"
+  | "opinionType"
+  | "basisForOpinion"
+  | "keyAuditMatters"
+  | "emphasisOfMatter"
+  | "otherInformation"
+  | "responsibilities"
+  | "signature"
+> & {
+  workspace: FinancialStatementsWorkspaceLabels & {
+    title: string;
+    description: string;
+    statusTitle: string;
+    statusDescription: string;
+    progress: string;
+    workflowTitle: string;
+    workflowDescription: string;
+    queuePreviewTitle: string;
+    queuePreviewDescription: string;
+    heroEyebrow: string;
+    breadcrumbFinancialStatements: string;
+    backToEngagement: string;
+    fieldworkGateTitle: string;
+    fieldworkGateDescription: string;
+    fieldworkSubstantiallyCompleteDescription: string;
+    loading: string;
+    errorTitle: string;
+    errorDescription: string;
+    archivedTitle: string;
+    archivedDescription: string;
+    summaryPendingReviewBadge: string;
+    commandCenter: FinancialStatementsCommandCenterLabels;
+  };
+  balanceSheet: FinancialStatementsSectionLabels;
+  incomeStatement: FinancialStatementsSectionLabels;
+  cashFlowStatement: FinancialStatementsSectionLabels;
+  changesInEquity: FinancialStatementsSectionLabels;
+  notesLinks: FinancialStatementsSectionLabels;
+  crossReferences: FinancialStatementsSectionLabels;
+};
+
 type ReviewLabels = {
   notFoundTitle: string;
   notFoundDescription: string;
@@ -2140,6 +2190,7 @@ export type Dictionary = {
       navCompletion: string;
       navReporting: string;
       navOpinion: string;
+      navFinancialStatements: string;
       navHistory: string;
       navSettings: string;
       loading: string;
@@ -2187,12 +2238,14 @@ export type Dictionary = {
         phaseCompletion: string;
         phaseReporting: string;
         phaseOpinion: string;
+        phaseFinancialStatements: string;
         statusReview: string;
         statusClear: string;
         openReviewQueue: string;
         openCompletion: string;
         openReporting: string;
         openOpinion: string;
+        openFinancialStatements: string;
         openSettings: string;
         owner: string;
         lastUpdate: string;
@@ -2399,6 +2452,21 @@ export type Dictionary = {
         openSectionReviews: string;
         resolvedSections: string;
         openOpinion: string;
+      };
+      financialStatements: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+        financialStatementsStatus: string;
+        financialStatementsProgress: string;
+        packageVersion: string;
+        outstandingSections: string;
+        openSectionReviews: string;
+        resolvedSections: string;
+        openFinancialStatements: string;
       };
       client: {
         title: string;
@@ -2878,6 +2946,7 @@ export type Dictionary = {
   completion: CompletionLabels;
   reporting: ReportingLabels;
   opinion: OpinionLabels;
+  financialStatements: FinancialStatementsLabels;
   fieldwork: {
     notFoundTitle: string;
     notFoundDescription: string;

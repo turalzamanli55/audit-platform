@@ -27,6 +27,7 @@ export type EngagementWorkspaceSection =
   | "completion"
   | "reporting"
   | "opinion"
+  | "financial-statements"
   | "history"
   | "settings";
 export type EngagementWorkspaceLabels = Dictionary["engagements"]["workspace"];
@@ -412,6 +413,11 @@ export function buildEngagementWorkspaceNavItems(
     { id: "completion", label: labels.navCompletion, href: `${base}/completion` },
     { id: "reporting", label: labels.navReporting, href: `${base}/reporting` },
     { id: "opinion", label: labels.navOpinion, href: `${base}/opinion` },
+    {
+      id: "financial-statements",
+      label: labels.navFinancialStatements,
+      href: `${base}/financial-statements`,
+    },
     { id: "history", label: labels.navHistory, href: `${base}/history` },
     { id: "settings", label: labels.navSettings, href: `${base}/settings` },
   ];

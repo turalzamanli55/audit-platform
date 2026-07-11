@@ -146,7 +146,17 @@
     "opinionMyTasks": "{count} opinion sections assigned to you",
     "opinionDraftPackages": "Complete {count} draft audit opinion packages",
     "opinionOpenTasks": "Complete {count} open audit opinion tasks",
-    "moduleOpinion": "Reporting"
+    "moduleOpinion": "Reporting",
+    "financialStatementsPending": "Pending financial statements reviews",
+    "financialStatementsRecent": "Recent financial statements activity",
+    "financialStatementsWidgetTitle": "Financial statements pipeline",
+    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
+    "financialStatementsPendingApprovals": "Financial statements pending approvals",
+    "financialStatementsReturnedPackages": "Returned financial statements packages",
+    "financialStatementsMyTasks": "My financial statements tasks",
+    "financialStatementsDraftPackages": "Financial statements drafts",
+    "financialStatementsOpenTasks": "Open financial statements tasks",
+    "moduleFinancialStatements": "Financial statements"
   },
   "ai": {
     "title": "AI assistant",
@@ -408,7 +418,17 @@
     "hintOpinionActivity": "Recent audit opinion events",
     "moduleEngagementOpinion": "Audit opinion",
     "attentionEngagementOpinionReturned": "{count} audit opinions returned",
-    "attentionEngagementOpinion": "{count} audit opinions pending sign-off"
+    "attentionEngagementOpinion": "{count} audit opinions pending sign-off",
+    "financialStatementsPending": "Pending financial statements reviews",
+    "financialStatementsRecent": "Recent financial statements activity",
+    "financialStatementsWidgetTitle": "Financial statements pipeline",
+    "financialStatementsOutstandingTasks": "Financial statements outstanding tasks",
+    "financialStatementsPendingApprovals": "Financial statements pending approvals",
+    "financialStatementsReturnedPackages": "Returned financial statements packages",
+    "financialStatementsMyTasks": "My financial statements tasks",
+    "financialStatementsDraftPackages": "Financial statements drafts",
+    "financialStatementsOpenTasks": "Open financial statements tasks",
+    "moduleFinancialStatements": "Financial statements"
   },
   "loading": "Loading workspace…",
   "personalization": {

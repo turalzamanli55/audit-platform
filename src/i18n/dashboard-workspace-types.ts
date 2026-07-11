@@ -127,6 +127,14 @@ export type DashboardWorkspaceLabels = {
     opinionMyTasks: string;
     opinionDraftPackages: string;
     opinionOpenTasks: string;
+    financialStatementsPending: string;
+    financialStatementsRecent: string;
+    financialStatementsOutstandingTasks: string;
+    financialStatementsPendingApprovals: string;
+    financialStatementsReturnedPackages: string;
+    financialStatementsMyTasks: string;
+    financialStatementsDraftPackages: string;
+    financialStatementsOpenTasks: string;
     moduleFieldwork: string;
     moduleRisk: string;
     moduleMateriality: string;
@@ -134,6 +142,7 @@ export type DashboardWorkspaceLabels = {
     moduleCompletion: string;
     moduleReporting: string;
     moduleOpinion: string;
+    moduleFinancialStatements: string;
     items: DashboardWorkspaceTaskItem[];
   };
   ai: {
@@ -223,6 +232,7 @@ export type DashboardWorkspaceLabels = {
     reportingWidgetDescription: string;
     opinionWidgetTitle: string;
     opinionWidgetDescription: string;
+    financialStatementsWidgetTitle: string;
     reviewTitle: string;
     operationalTitle: string;
     moduleHealthTitle: string;
