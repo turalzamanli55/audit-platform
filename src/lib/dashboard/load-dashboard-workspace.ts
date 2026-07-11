@@ -15,6 +15,7 @@ import { loadCompletionDashboardMetrics } from "@/lib/completion/load-completion
 import { loadReportingDashboardMetrics } from "@/lib/reporting/load-reporting-dashboard-metrics";
 import { loadOpinionDashboardMetrics } from "@/lib/opinion/load-opinion-dashboard-metrics";
 import { loadFinancialStatementsDashboardMetrics } from "@/lib/financial-statements/load-financial-statements-dashboard-metrics";
+import { loadUaieDashboardMetrics } from "@/lib/uaie/load-uaie-dashboard-metrics";
 import {
   loadDashboardFeed,
   type DashboardEngagementPreview,
@@ -86,6 +87,7 @@ export async function loadDashboardWorkspace(
     reportingMetrics,
     opinionMetrics,
     financialStatementsMetrics,
+    uaieMetrics,
   ] = await Promise.all([
     getCurrentUser(locale),
     getTenantBootstrap(),
@@ -100,6 +102,7 @@ export async function loadDashboardWorkspace(
     loadReportingDashboardMetrics(),
     loadOpinionDashboardMetrics(),
     loadFinancialStatementsDashboardMetrics(),
+    loadUaieDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -171,7 +174,9 @@ export async function loadDashboardWorkspace(
     (opinionMetrics?.pendingOpinions ?? 0) +
     (opinionMetrics?.draftPackages ?? 0) +
     (financialStatementsMetrics?.pendingFinancialStatements ?? 0) +
-    (financialStatementsMetrics?.draftPackages ?? 0);
+    (financialStatementsMetrics?.draftPackages ?? 0) +
+    (uaieMetrics?.failedImports ?? 0) +
+    (uaieMetrics?.mappingRequired ?? 0);
 
   return {
     locale,

@@ -363,6 +363,10 @@
           "validationDescription": "Şirkət parametrləri üçün sxem təsdiqləmə metadatası.",
           "schemaVersion": "Sxem versiyası",
           "validatedAt": "Son təsdiqləmə"
+        },
+        "import": {
+          "title": "İmport",
+          "description": "ERP sınaq balansları və hesabatlar üçün universal mühasibat importu."
         }
       },
       "commandCenter": {
@@ -455,7 +459,8 @@
         "activityArchived": "Şirkət arxivlənib",
         "activityRestored": "Şirkət bərpa edilib",
         "activityGeneric": "Şirkət audit izində qeydə alınıb"
-      }
+      },
+      "navImport": "İmport"
     },
     "settings": {
       "title": "Parametrlər",
@@ -5795,6 +5800,126 @@
       "emptyDescription": "Cross-references drafts and notes will appear here.",
       "bodyPlaceholder": "Add note",
       "addAction": "Add note"
+    }
+  },
+  "uaie": {
+    "notFoundTitle": "İmport sessiyası tapılmadı",
+    "notFoundDescription": "The accounting import session could not be found for this company.",
+    "forbiddenTitle": "İcazə tələb olunur",
+    "forbiddenDescription": "Mühasibat import icazəsi tələb olunur.",
+    "noWorkspaceTitle": "İş sahəsi tələb olunur",
+    "noWorkspaceDescription": "Select a workspace before opening accounting import.",
+    "errorTitle": "İmport iş sahəsi yüklənmədi",
+    "errorDescription": "Something went wrong while loading the Universal Accounting Import Engine.",
+    "statuses": {
+      "uploaded": "Uploaded",
+      "scanning": "Scanning",
+      "mapping_required": "Mapping required",
+      "mapped": "Mapped",
+      "validating": "Validating",
+      "validated": "Validated",
+      "staged": "Staged",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "superseded": "Superseded",
+      "archived": "Archived"
+    },
+    "erps": {
+      "sap": "SAP",
+      "sap_business_one": "SAP Business One",
+      "oracle": "Oracle",
+      "oracle_netsuite": "Oracle NetSuite",
+      "microsoft_dynamics": "Microsoft Dynamics",
+      "dynamics_365": "Dynamics 365",
+      "1c": "1C",
+      "logo": "Logo",
+      "netsis": "Netsis",
+      "mikro": "Mikro",
+      "quickbooks": "QuickBooks",
+      "xero": "Xero",
+      "sage": "Sage",
+      "zoho_books": "Zoho Books",
+      "odoo": "Odoo",
+      "manual_excel": "Manual Excel",
+      "unknown": "Unknown ERP"
+    },
+    "upload": {
+      "title": "Universal Mühasibat İmportu",
+      "description": "ERP ixraclarını olduğu kimi yükləyin. Sistem vərəqləri, başlıqları, dili və valyutanı avtomatik aşkarlayır.",
+      "dropHint": "Excel və ya CSV fayllarını buraya sürüşdürün və ya seçin.",
+      "browseAction": "Fayl seç",
+      "uploading": "Kitab skan edilir...",
+      "recentTitle": "Son importlar",
+      "emptyTitle": "Hələ import yoxdur",
+      "emptyDescription": "Upload a trial balance or general ledger export to begin normalization.",
+      "noPermissionDescription": "You need import create permission to upload workbooks.",
+      "columns": {
+        "file": "File",
+        "status": "Status",
+        "erp": "ERP",
+        "confidence": "Confidence",
+        "rows": "Rows",
+        "created": "Uploaded"
+      },
+      "errorGeneric": "Unable to upload and scan the workbook."
+    },
+    "session": {
+      "backAction": "İmportlara qayıt",
+      "detectionTitle": "Detection",
+      "detectionDescription": "Workbook scan, ERP fingerprint, language, currency, and sheet confidence.",
+      "sheetsTitle": "Detected sheets",
+      "mappingTitle": "Column mapping",
+      "mappingDescription": "Confirm or adjust canonical field mappings. Wizard opens when confidence is below 95%.",
+      "validationTitle": "Validation issues",
+      "datasetTitle": "Normalized dataset",
+      "summaryTitle": "Import summary",
+      "applyMapping": "Xəritələməni tətbiq et",
+      "applying": "Applying...",
+      "stageAction": "Normallaşdırılmış məlumatı saxla",
+      "staging": "Staging...",
+      "cancelAction": "Cancel import",
+      "archiveAction": "Archive",
+      "confidence": "Overall confidence",
+      "erp": "Detected ERP",
+      "language": "Language",
+      "currency": "Currency",
+      "sheet": "Sheet",
+      "mapping": "Mapping confidence",
+      "sourceColumn": "Source column",
+      "canonicalField": "Canonical field",
+      "severity": "Severity",
+      "message": "Message",
+      "accountCode": "Account code",
+      "accountName": "Account name",
+      "debit": "Debit",
+      "credit": "Credit",
+      "balance": "Balance",
+      "rowCount": "Rows",
+      "validRows": "Valid rows",
+      "debitTotal": "Debit total",
+      "creditTotal": "Credit total",
+      "wizardRequired": "Mapping confidence is below 95%. Confirm column mappings before staging.",
+      "stagedNotice": "Normalized accounting dataset is staged and learning profile saved.",
+      "errorGeneric": "Unable to complete the import action.",
+      "fields": {
+        "account_code": "Account code",
+        "account_name": "Account name",
+        "debit": "Debit",
+        "credit": "Credit",
+        "balance": "Balance",
+        "currency": "Currency",
+        "department": "Department",
+        "cost_center": "Cost center",
+        "ignore": "Ignore"
+      }
+    },
+    "dashboard": {
+      "recentImports": "Recent imports",
+      "successRate": "Import success rate",
+      "failedImports": "Failed imports",
+      "averageConfidence": "Average confidence",
+      "averageProcessing": "Average processing time",
+      "erpTypes": "Detected ERP types"
     }
   }
 }

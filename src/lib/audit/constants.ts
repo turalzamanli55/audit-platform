@@ -127,4 +127,13 @@ export const AUDIT_ACTIONS = {
   FINANCIAL_STATEMENTS_ITEM_RESOLVED: "financialStatements.section.resolved",
   FINANCIAL_STATEMENTS_ITEM_RETURNED: "financialStatements.section.returned",
   FINANCIAL_STATEMENTS_COMMENT_ADDED: "financialStatements.comment.added",
+  UAIE_UPLOADED: "uaie.uploaded",
+  UAIE_SCANNED: "uaie.scanned",
+  UAIE_MAPPED: "uaie.mapped",
+  UAIE_VALIDATED: "uaie.validated",
+  UAIE_STAGED: "uaie.staged",
+  UAIE_FAILED: "uaie.failed",
+  UAIE_CANCELLED: "uaie.cancelled",
+  UAIE_ARCHIVED: "uaie.archived",
+  UAIE_PROFILE_SAVED: "uaie.profile.saved",
 } as const;

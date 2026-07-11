@@ -1261,6 +1261,87 @@ export type FinancialStatementsLabels = Omit<
   crossReferences: FinancialStatementsSectionLabels;
 };
 
+export type UaieLabels = {
+  notFoundTitle: string;
+  notFoundDescription: string;
+  forbiddenTitle: string;
+  forbiddenDescription: string;
+  noWorkspaceTitle: string;
+  noWorkspaceDescription: string;
+  errorTitle: string;
+  errorDescription: string;
+  statuses: Record<string, string>;
+  erps: Record<string, string>;
+  upload: {
+    title: string;
+    description: string;
+    dropHint: string;
+    browseAction: string;
+    uploading: string;
+    recentTitle: string;
+    emptyTitle: string;
+    emptyDescription: string;
+    noPermissionDescription: string;
+    columns: {
+      file: string;
+      status: string;
+      erp: string;
+      confidence: string;
+      rows: string;
+      created: string;
+    };
+    errorGeneric: string;
+  };
+  session: {
+    backAction: string;
+    detectionTitle: string;
+    detectionDescription: string;
+    sheetsTitle: string;
+    mappingTitle: string;
+    mappingDescription: string;
+    validationTitle: string;
+    datasetTitle: string;
+    summaryTitle: string;
+    applyMapping: string;
+    applying: string;
+    stageAction: string;
+    staging: string;
+    cancelAction: string;
+    archiveAction: string;
+    confidence: string;
+    erp: string;
+    language: string;
+    currency: string;
+    sheet: string;
+    mapping: string;
+    sourceColumn: string;
+    canonicalField: string;
+    severity: string;
+    message: string;
+    accountCode: string;
+    accountName: string;
+    debit: string;
+    credit: string;
+    balance: string;
+    rowCount: string;
+    validRows: string;
+    debitTotal: string;
+    creditTotal: string;
+    wizardRequired: string;
+    stagedNotice: string;
+    errorGeneric: string;
+    fields: Record<string, string>;
+  };
+  dashboard: {
+    recentImports: string;
+    successRate: string;
+    failedImports: string;
+    averageConfidence: string;
+    averageProcessing: string;
+    erpTypes: string;
+  };
+};
+
 type ReviewLabels = {
   notFoundTitle: string;
   notFoundDescription: string;
@@ -1689,6 +1770,7 @@ export type Dictionary = {
       navOverview: string;
       navIdentity: string;
       navFinancial: string;
+      navImport: string;
       navCompliance: string;
       navContacts: string;
       navHistory: string;
@@ -1818,6 +1900,10 @@ export type Dictionary = {
           description: string;
           cardTitle: string;
           cardDescription: string;
+        };
+        import: {
+          title: string;
+          description: string;
         };
         compliance: {
           title: string;
@@ -2947,6 +3033,7 @@ export type Dictionary = {
   reporting: ReportingLabels;
   opinion: OpinionLabels;
   financialStatements: FinancialStatementsLabels;
+  uaie: UaieLabels;
   fieldwork: {
     notFoundTitle: string;
     notFoundDescription: string;

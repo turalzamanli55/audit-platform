@@ -31,6 +31,7 @@ export const COMPANY_WORKSPACE_SECTIONS = [
   "overview",
   "identity",
   "financial",
+  "import",
   "compliance",
   "contacts",
   "history",

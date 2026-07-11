@@ -1646,6 +1646,323 @@ export type Database = {
         };
         Relationships: [];
       };
+
+      uaie_import_sessions: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id: string | null;
+          data_type: Database["public"]["Enums"]["uaie_data_type"];
+          import_status: Database["public"]["Enums"]["uaie_import_status"];
+          source_filename: string;
+          source_mime_type: string | null;
+          source_byte_size: number | null;
+          source_storage_path: string | null;
+          source_sha256: string | null;
+          detected_erp: Database["public"]["Enums"]["uaie_erp_system"];
+          erp_confidence: number;
+          detected_language: string | null;
+          language_confidence: number;
+          detected_currency: string | null;
+          currency_confidence: number;
+          selected_sheet_name: string | null;
+          sheet_confidence: number;
+          overall_confidence: number;
+          workbook_hash: string | null;
+          header_hash: string | null;
+          layout_fingerprint: string | null;
+          mapping_profile_id: string | null;
+          mapping_json: Json;
+          detection_json: Json;
+          validation_json: Json;
+          summary_json: Json;
+          processing_ms: number | null;
+          error_message: string | null;
+          version_number: number;
+          is_active: boolean;
+          started_at: string;
+          completed_at: string | null;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          engagement_id?: string | null;
+          data_type?: Database["public"]["Enums"]["uaie_data_type"];
+          import_status?: Database["public"]["Enums"]["uaie_import_status"];
+          source_filename: string;
+          source_mime_type?: string | null;
+          source_byte_size?: number | null;
+          source_storage_path?: string | null;
+          source_sha256?: string | null;
+          detected_erp?: Database["public"]["Enums"]["uaie_erp_system"];
+          erp_confidence?: number;
+          detected_language?: string | null;
+          language_confidence?: number;
+          detected_currency?: string | null;
+          currency_confidence?: number;
+          selected_sheet_name?: string | null;
+          sheet_confidence?: number;
+          overall_confidence?: number;
+          workbook_hash?: string | null;
+          header_hash?: string | null;
+          layout_fingerprint?: string | null;
+          mapping_profile_id?: string | null;
+          mapping_json?: Json;
+          detection_json?: Json;
+          validation_json?: Json;
+          summary_json?: Json;
+          processing_ms?: number | null;
+          error_message?: string | null;
+          version_number?: number;
+          is_active?: boolean;
+          started_at?: string;
+          completed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: {
+          [key: string]: unknown;
+        };
+        Relationships: [];
+      };
+      uaie_sheet_scans: {
+        Row: {
+          id: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          sheet_name: string;
+          sheet_index: number;
+          row_count: number;
+          column_count: number;
+          score: number;
+          is_selected: boolean;
+          preview_json: Json;
+          headers_json: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          sheet_name: string;
+          sheet_index?: number;
+          row_count?: number;
+          column_count?: number;
+          score?: number;
+          is_selected?: boolean;
+          preview_json?: Json;
+          headers_json?: Json;
+          created_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_column_mappings: {
+        Row: {
+          id: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          source_column_index: number;
+          source_header: string | null;
+          canonical_field: Database["public"]["Enums"]["uaie_canonical_field"];
+          confidence: number;
+          is_manual: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          source_column_index: number;
+          source_header?: string | null;
+          canonical_field?: Database["public"]["Enums"]["uaie_canonical_field"];
+          confidence?: number;
+          is_manual?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_mapping_profiles: {
+        Row: {
+          id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string | null;
+          profile_name: string;
+          detected_erp: Database["public"]["Enums"]["uaie_erp_system"];
+          workbook_hash: string | null;
+          header_hash: string | null;
+          layout_fingerprint: string | null;
+          mapping_json: Json;
+          success_count: number;
+          last_used_at: string | null;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+          deleted_at: string | null;
+          deleted_by: string | null;
+          version: number;
+          status: Database["public"]["Enums"]["record_status"];
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id?: string | null;
+          profile_name: string;
+          detected_erp?: Database["public"]["Enums"]["uaie_erp_system"];
+          workbook_hash?: string | null;
+          header_hash?: string | null;
+          layout_fingerprint?: string | null;
+          mapping_json?: Json;
+          success_count?: number;
+          last_used_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+          deleted_at?: string | null;
+          deleted_by?: string | null;
+          version?: number;
+          status?: Database["public"]["Enums"]["record_status"];
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_validation_issues: {
+        Row: {
+          id: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          issue_code: string;
+          severity: Database["public"]["Enums"]["uaie_issue_severity"];
+          message: string;
+          row_number: number | null;
+          column_index: number | null;
+          account_code: string | null;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          issue_code: string;
+          severity?: Database["public"]["Enums"]["uaie_issue_severity"];
+          message: string;
+          row_number?: number | null;
+          column_index?: number | null;
+          account_code?: string | null;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_normalized_rows: {
+        Row: {
+          id: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          row_number: number;
+          account_code: string | null;
+          account_name: string | null;
+          debit: number | null;
+          credit: number | null;
+          balance: number | null;
+          currency_code: string | null;
+          department: string | null;
+          cost_center: string | null;
+          source_ref: string | null;
+          is_valid: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          row_number: number;
+          account_code?: string | null;
+          account_name?: string | null;
+          debit?: number | null;
+          credit?: number | null;
+          balance?: number | null;
+          currency_code?: string | null;
+          department?: string | null;
+          cost_center?: string | null;
+          source_ref?: string | null;
+          is_valid?: boolean;
+          created_at?: string;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
+      uaie_import_activity: {
+        Row: {
+          id: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          action: string;
+          summary: string | null;
+          metadata: Json;
+          created_at: string;
+          created_by: string | null;
+        };
+        Insert: {
+          id?: string;
+          import_session_id: string;
+          organization_id: string;
+          workspace_id: string;
+          company_id: string;
+          action: string;
+          summary?: string | null;
+          metadata?: Json;
+          created_at?: string;
+          created_by?: string | null;
+        };
+        Update: { [key: string]: unknown };
+        Relationships: [];
+      };
       companies: {
         Row: {
           created_at: string;
@@ -4792,6 +5109,53 @@ export type Database = {
         | "approved"
         | "published"
         | "archived";
+      uaie_import_status:
+        | "uploaded"
+        | "scanning"
+        | "mapping_required"
+        | "mapped"
+        | "validating"
+        | "validated"
+        | "staged"
+        | "failed"
+        | "cancelled"
+        | "superseded"
+        | "archived";
+      uaie_data_type:
+        | "trial_balance"
+        | "general_ledger"
+        | "chart_of_accounts"
+        | "supporting_schedule"
+        | "unknown";
+      uaie_erp_system:
+        | "sap"
+        | "sap_business_one"
+        | "oracle"
+        | "oracle_netsuite"
+        | "microsoft_dynamics"
+        | "dynamics_365"
+        | "1c"
+        | "logo"
+        | "netsis"
+        | "mikro"
+        | "quickbooks"
+        | "xero"
+        | "sage"
+        | "zoho_books"
+        | "odoo"
+        | "manual_excel"
+        | "unknown";
+      uaie_issue_severity: "info" | "warning" | "error" | "blocking";
+      uaie_canonical_field:
+        | "account_code"
+        | "account_name"
+        | "debit"
+        | "credit"
+        | "balance"
+        | "currency"
+        | "department"
+        | "cost_center"
+        | "ignore";
       role_scope: "platform" | "organization" | "workspace";
     };
     CompositeTypes: Record<string, never>;
