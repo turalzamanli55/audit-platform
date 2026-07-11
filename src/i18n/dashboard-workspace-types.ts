@@ -111,11 +111,20 @@ export type DashboardWorkspaceLabels = {
     completionMyTasks: string;
     completionDraftPackages: string;
     completionOpenTasks: string;
+    reportingPendingReports: string;
+    reportingOutstandingTasks: string;
+    reportingPendingApprovals: string;
+    reportingRecentActivity: string;
+    reportingReturnedPackages: string;
+    reportingMyTasks: string;
+    reportingDraftPackages: string;
+    reportingOpenTasks: string;
     moduleFieldwork: string;
     moduleRisk: string;
     moduleMateriality: string;
     moduleReview: string;
     moduleCompletion: string;
+    moduleReporting: string;
     items: DashboardWorkspaceTaskItem[];
   };
   ai: {
@@ -201,6 +210,8 @@ export type DashboardWorkspaceLabels = {
     executiveTitle: string;
     completionWidgetTitle: string;
     completionWidgetDescription: string;
+    reportingWidgetTitle: string;
+    reportingWidgetDescription: string;
     reviewTitle: string;
     operationalTitle: string;
     moduleHealthTitle: string;
@@ -259,10 +270,14 @@ export type DashboardWorkspaceLabels = {
     kpiEngagementReviewReturned: string;
     kpiEngagementCompletionPending: string;
     kpiEngagementCompletionReturned: string;
+    kpiEngagementReportingPending: string;
+    kpiEngagementReportingReturned: string;
     kpiMyReviews: string;
     kpiMyCompletion: string;
+    kpiMyReporting: string;
     kpiReviewActivity: string;
     kpiCompletionActivity: string;
+    kpiReportingActivity: string;
     kpiAssignedToMe: string;
     kpiOpenFindings: string;
     kpiOpenRiskItems: string;
@@ -279,10 +294,14 @@ export type DashboardWorkspaceLabels = {
     hintEngagementReviewReturned: string;
     hintEngagementCompletionPending: string;
     hintEngagementCompletionReturned: string;
+    hintEngagementReportingPending: string;
+    hintEngagementReportingReturned: string;
     hintMyReviews: string;
     hintMyCompletion: string;
+    hintMyReporting: string;
     hintReviewActivity: string;
     hintCompletionActivity: string;
+    hintReportingActivity: string;
     hintAssigned: string;
     hintFindings: string;
     hintRiskItems: string;
@@ -293,6 +312,7 @@ export type DashboardWorkspaceLabels = {
     moduleFieldwork: string;
     moduleEngagementReview: string;
     moduleEngagementCompletion: string;
+    moduleEngagementReporting: string;
     moduleEngagements: string;
     attentionPlanning: string;
     attentionMateriality: string;
@@ -302,6 +322,8 @@ export type DashboardWorkspaceLabels = {
     attentionEngagementReturned: string;
     attentionEngagementCompletion: string;
     attentionEngagementCompletionReturned: string;
+    attentionEngagementReporting: string;
+    attentionEngagementReportingReturned: string;
     attentionOverdue: string;
     attentionFindings: string;
     approvalPlanning: string;

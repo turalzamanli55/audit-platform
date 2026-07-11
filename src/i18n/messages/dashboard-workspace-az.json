@@ -119,7 +119,16 @@
     "moduleRisk": "Risk assessment",
     "moduleMateriality": "Materiality",
     "moduleReview": "Review",
-    "moduleCompletion": "Tamamlanma"
+    "moduleCompletion": "Tamamlanma",
+    "reportingPendingReports": "{count} gözləyən hesabat bölməsini təmizləyin",
+    "reportingOutstandingTasks": "{count} açıq hesabat bölməsini həll edin",
+    "reportingPendingApprovals": "{count} gözləyən hesabat təsdiqini təmizləyin",
+    "reportingRecentActivity": "{count} son hesabat hadisəsi",
+    "reportingReturnedPackages": "{count} geri qaytarılmış hesabat paketini həll edin",
+    "reportingMyTasks": "Sizə təyin edilmiş {count} hesabat bölməsi",
+    "reportingDraftPackages": "{count} qaralama hesabat paketini tamamlayın",
+    "reportingOpenTasks": "{count} açıq hesabat tapşırığını tamamlayın",
+    "moduleReporting": "Hesabat"
   },
   "ai": {
     "title": "AI köməkçi",
@@ -396,6 +405,28 @@
     "attentionEngagementReview": "{count} engagement yoxlaması təsdiq gözləyir",
     "attentionEngagementReturned": "{count} engagement yoxlaması geri qaytarılıb",
     "attentionEngagementCompletion": "{count} engagement tamamlanması təsdiq gözləyir",
-    "attentionEngagementCompletionReturned": "{count} engagement tamamlanması geri qaytarılıb"
+    "attentionEngagementCompletionReturned": "{count} engagement tamamlanması geri qaytarılıb",
+    "reportingWidgetTitle": "Hesabat boru xətti",
+    "reportingWidgetDescription": "Audit hesabat bölmələri, açıq bölmələr və audit rəyi hazırlığı",
+    "kpiEngagementReportingPending": "Gözləyən hesabatlar",
+    "kpiEngagementReportingReturned": "Geri qaytarılmış hesabatlar",
+    "kpiMyReporting": "Mənim hesabat maddələrim",
+    "kpiReportingActivity": "Hesabat fəaliyyəti",
+    "hintEngagementReportingPending": "Müsadirə hesabat təsdiqləri",
+    "hintEngagementReportingReturned": "Düzəliş üçün geri qaytarılıb",
+    "hintMyReporting": "Təyin edilmiş hesabat bölmələri",
+    "hintReportingActivity": "Son hesabat hadisələri",
+    "moduleEngagementReporting": "Müsadirə hesabatı",
+    "attentionEngagementReporting": "{count} müsadirə hesabatı təsdiq gözləyir",
+    "attentionEngagementReportingReturned": "{count} müsadirə hesabatı geri qaytarılıb",
+    "reportingPendingReports": "{count} gözləyən hesabat bölməsini təmizləyin",
+    "reportingOutstandingTasks": "{count} açıq hesabat bölməsini həll edin",
+    "reportingPendingApprovals": "{count} gözləyən hesabat təsdiqini təmizləyin",
+    "reportingRecentActivity": "{count} son hesabat hadisəsi",
+    "reportingReturnedPackages": "{count} geri qaytarılmış hesabat paketini həll edin",
+    "reportingMyTasks": "Sizə təyin edilmiş {count} hesabat bölməsi",
+    "reportingDraftPackages": "{count} qaralama hesabat paketini tamamlayın",
+    "reportingOpenTasks": "{count} açıq hesabat tapşırığını tamamlayın",
+    "moduleReporting": "Hesabat"
   }
 }

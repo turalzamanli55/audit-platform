@@ -103,7 +103,16 @@
     "moduleRisk": "Risk assessment",
     "moduleMateriality": "Materiality",
     "moduleReview": "Review",
-    "moduleCompletion": "Tamamlama"
+    "moduleCompletion": "Tamamlama",
+    "reportingPendingReports": "{count} bekleyen rapor bölümünü temizleyin",
+    "reportingOutstandingTasks": "{count} açık rapor bölümünü çözün",
+    "reportingPendingApprovals": "{count} bekleyen raporlama onayını temizleyin",
+    "reportingRecentActivity": "{count} son raporlama olayı",
+    "reportingReturnedPackages": "{count} iade edilen raporlama paketini ele alın",
+    "reportingMyTasks": "Size atanan {count} rapor bölümü",
+    "reportingDraftPackages": "{count} taslak raporlama paketini tamamlayın",
+    "reportingOpenTasks": "{count} açık raporlama görevini tamamlayın",
+    "moduleReporting": "Raporlama"
   },
   "ai": {
     "title": "AI asistan",
@@ -380,6 +389,28 @@
     "attentionEngagementReview": "{count} engagement incelemesi onay bekliyor",
     "attentionEngagementReturned": "{count} engagement incelemesi iade edildi",
     "attentionEngagementCompletion": "{count} engagement tamamlaması onay bekliyor",
-    "attentionEngagementCompletionReturned": "{count} engagement tamamlaması iade edildi"
+    "attentionEngagementCompletionReturned": "{count} engagement tamamlaması iade edildi",
+    "reportingWidgetTitle": "Raporlama hattı",
+    "reportingWidgetDescription": "Denetim raporu bölümleri, açık bölümler ve denetim görüşü hazırlığı",
+    "kpiEngagementReportingPending": "Bekleyen raporlar",
+    "kpiEngagementReportingReturned": "İade edilen raporlar",
+    "kpiMyReporting": "Raporlama öğelerim",
+    "kpiReportingActivity": "Raporlama etkinliği",
+    "hintEngagementReportingPending": "Engagement raporlama onayları",
+    "hintEngagementReportingReturned": "Düzeltme için iade edildi",
+    "hintMyReporting": "Atanan rapor bölümleri",
+    "hintReportingActivity": "Son raporlama olayları",
+    "moduleEngagementReporting": "Engagement raporlaması",
+    "attentionEngagementReporting": "{count} engagement raporu onay bekliyor",
+    "attentionEngagementReportingReturned": "{count} engagement raporu iade edildi",
+    "reportingPendingReports": "{count} bekleyen rapor bölümünü temizleyin",
+    "reportingOutstandingTasks": "{count} açık rapor bölümünü çözün",
+    "reportingPendingApprovals": "{count} bekleyen raporlama onayını temizleyin",
+    "reportingRecentActivity": "{count} son raporlama olayı",
+    "reportingReturnedPackages": "{count} iade edilen raporlama paketini ele alın",
+    "reportingMyTasks": "Size atanan {count} rapor bölümü",
+    "reportingDraftPackages": "{count} taslak raporlama paketini tamamlayın",
+    "reportingOpenTasks": "{count} açık raporlama görevini tamamlayın",
+    "moduleReporting": "Raporlama"
   }
 }

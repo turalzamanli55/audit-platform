@@ -12,6 +12,7 @@ import { loadMaterialityDashboardMetrics } from "@/lib/materiality/load-material
 import { loadRiskAssessmentDashboardMetrics } from "@/lib/risk-assessment/load-risk-assessment-dashboard-metrics";
 import { loadReviewDashboardMetrics } from "@/lib/review/load-review-dashboard-metrics";
 import { loadCompletionDashboardMetrics } from "@/lib/completion/load-completion-dashboard-metrics";
+import { loadReportingDashboardMetrics } from "@/lib/reporting/load-reporting-dashboard-metrics";
 import {
   loadDashboardFeed,
   type DashboardEngagementPreview,
@@ -80,6 +81,7 @@ export async function loadDashboardWorkspace(
     materialityMetrics,
     reviewMetrics,
     completionMetrics,
+    reportingMetrics,
   ] =
     await Promise.all([
     getCurrentUser(locale),
@@ -92,6 +94,7 @@ export async function loadDashboardWorkspace(
     loadMaterialityDashboardMetrics(),
     loadReviewDashboardMetrics(),
     loadCompletionDashboardMetrics(),
+    loadReportingDashboardMetrics(),
   ]);
 
   const organizations = bootstrap?.organizations ?? [];
@@ -156,7 +159,11 @@ export async function loadDashboardWorkspace(
     (materialityMetrics?.draftPackages ?? 0) +
     (fieldworkMetrics?.openFindings ?? 0) +
     (reviewMetrics?.pendingReview ?? 0) +
-    (reviewMetrics?.draftPackages ?? 0);
+    (reviewMetrics?.draftPackages ?? 0) +
+    (completionMetrics?.pendingReview ?? 0) +
+    (completionMetrics?.draftPackages ?? 0) +
+    (reportingMetrics?.pendingReports ?? 0) +
+    (reportingMetrics?.draftPackages ?? 0);
 
   return {
     locale,
@@ -182,7 +189,12 @@ export async function loadDashboardWorkspace(
           : feed.tasks.length > 0
             ? String(feed.tasks.length)
             : "0",
-      reports: "—",
+      reports:
+        (reportingMetrics?.pendingReports ?? 0) + (reportingMetrics?.draftPackages ?? 0) > 0
+          ? String(
+              (reportingMetrics?.pendingReports ?? 0) + (reportingMetrics?.draftPackages ?? 0),
+            )
+          : "—",
       aiSuggestions: "—",
       live: {
         companies: true,

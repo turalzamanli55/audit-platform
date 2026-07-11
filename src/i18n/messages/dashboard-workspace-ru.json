@@ -103,7 +103,16 @@
     "moduleRisk": "Risk assessment",
     "moduleMateriality": "Materiality",
     "moduleReview": "Review",
-    "moduleCompletion": "Завершение"
+    "moduleCompletion": "Завершение",
+    "reportingPendingReports": "Закрыть {count} ожидающих разделов отчёта",
+    "reportingOutstandingTasks": "Решить {count} нерешённых разделов отчёта",
+    "reportingPendingApprovals": "Закрыть {count} ожидающих утверждений отчётности",
+    "reportingRecentActivity": "{count} недавних событий отчётности",
+    "reportingReturnedPackages": "Обработать {count} возвращённых пакетов отчётности",
+    "reportingMyTasks": "{count} разделов отчёта, назначенных вам",
+    "reportingDraftPackages": "Завершить {count} черновых пакетов отчётности",
+    "reportingOpenTasks": "Завершить {count} открытых задач отчётности",
+    "moduleReporting": "Отчётность"
   },
   "ai": {
     "title": "AI-ассистент",
@@ -380,6 +389,28 @@
     "attentionEngagementReview": "{count} проверок engagement ожидают утверждения",
     "attentionEngagementReturned": "{count} проверок engagement возвращены",
     "attentionEngagementCompletion": "{count} завершений engagement ожидают утверждения",
-    "attentionEngagementCompletionReturned": "{count} завершений engagement возвращены"
+    "attentionEngagementCompletionReturned": "{count} завершений engagement возвращены",
+    "reportingWidgetTitle": "Очередь отчётности",
+    "reportingWidgetDescription": "Разделы аудиторского отчёта, нерешённые разделы и готовность к заключению",
+    "kpiEngagementReportingPending": "Ожидающие отчёты",
+    "kpiEngagementReportingReturned": "Возвращённые отчёты",
+    "kpiMyReporting": "Мои элементы отчётности",
+    "kpiReportingActivity": "Активность отчётности",
+    "hintEngagementReportingPending": "Утверждения отчётности engagement",
+    "hintEngagementReportingReturned": "Возвращено на доработку",
+    "hintMyReporting": "Назначенные разделы отчёта",
+    "hintReportingActivity": "Недавние события отчётности",
+    "moduleEngagementReporting": "Отчётность engagement",
+    "attentionEngagementReporting": "{count} отчётов engagement ожидают утверждения",
+    "attentionEngagementReportingReturned": "{count} отчётов engagement возвращены",
+    "reportingPendingReports": "Закрыть {count} ожидающих разделов отчёта",
+    "reportingOutstandingTasks": "Решить {count} нерешённых разделов отчёта",
+    "reportingPendingApprovals": "Закрыть {count} ожидающих утверждений отчётности",
+    "reportingRecentActivity": "{count} недавних событий отчётности",
+    "reportingReturnedPackages": "Обработать {count} возвращённых пакетов отчётности",
+    "reportingMyTasks": "{count} разделов отчёта, назначенных вам",
+    "reportingDraftPackages": "Завершить {count} черновых пакетов отчётности",
+    "reportingOpenTasks": "Завершить {count} открытых задач отчётности",
+    "moduleReporting": "Отчётность"
   }
 }

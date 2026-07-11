@@ -11,6 +11,10 @@ import type {
   ReviewCommandCenterLabels,
   ReviewWorkspaceLabels,
 } from "@/lib/review/review-workspace-display";
+import type {
+  ReportingCommandCenterLabels,
+  ReportingWorkspaceLabels,
+} from "@/lib/reporting/reporting-workspace-display";
 
 type RiskAssessmentSectionLabels = {
   title: string;
@@ -822,6 +826,186 @@ export type CompletionLabels = {
     errorGeneric: string;
   };
   versions: CompletionSectionLabels;
+  settings: {
+    title: string;
+    description: string;
+    archiveAction: string;
+    archiveConfirmAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    archivedBanner: string;
+    readOnlyNotice: string;
+  };
+  historyActions: Record<string, string>;
+  states: {
+    loadingTitle: string;
+    loadingDescription: string;
+    archiveTitle: string;
+    archiveDescription: string;
+    readonlyTitle: string;
+    readonlyDescription: string;
+    permissionTitle: string;
+    permissionDescription: string;
+  };
+};
+
+type ReportingSectionLabels = {
+  title: string;
+  description: string;
+  emptyTitle: string;
+  emptyDescription: string;
+  bodyPlaceholder?: string;
+  addAction?: string;
+  columns?: Record<string, string>;
+};
+
+export type ReportingLabels = {
+  notFoundTitle: string;
+  notFoundDescription: string;
+  forbiddenTitle: string;
+  forbiddenDescription: string;
+  noWorkspaceTitle: string;
+  noWorkspaceDescription: string;
+  statuses: Record<string, string>;
+  sectionStatuses: Record<string, string>;
+  sectionTypes: Record<string, string>;
+  commentTypes: Record<string, string>;
+  workflow: {
+    title: string;
+    description: string;
+    submitAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    cancelAction: string;
+    returnNotesLabel: string;
+    returnNotesPlaceholder: string;
+    readOnlyNotice: string;
+    submittedNotice: string;
+    approvedNotice: string;
+    returnedNotice: string;
+    errorGeneric: string;
+  };
+  empty: {
+    title: string;
+    description: string;
+    createAction: string;
+    creating: string;
+    forbiddenDescription: string;
+  };
+  workspace: ReportingWorkspaceLabels & {
+    title: string;
+    description: string;
+    statusTitle: string;
+    statusDescription: string;
+    progress: string;
+    workflowTitle: string;
+    workflowDescription: string;
+    queuePreviewTitle: string;
+    queuePreviewDescription: string;
+    heroEyebrow: string;
+    breadcrumbReview: string;
+    backToEngagement: string;
+    fieldworkGateTitle: string;
+    fieldworkGateDescription: string;
+    fieldworkSubstantiallyCompleteDescription: string;
+    navAriaLabel: string;
+    navOverview: string;
+    navExecutiveSummary: string;
+    navFinancialStatements: string;
+    navIfrsNotes: string;
+    navManagementLetter: string;
+    navAuditFindings: string;
+    navRecommendations: string;
+    navAppendices: string;
+    navComments: string;
+    navHistory: string;
+    navVersions: string;
+    navSettings: string;
+    navChecklist: string;
+    navOutstandingItems: string;
+    navOutstandingItemsPending: string;
+    navChecklistResolved: string;
+    loading: string;
+    errorTitle: string;
+    errorDescription: string;
+    archivedTitle: string;
+    archivedDescription: string;
+    summaryStatus: string;
+    summaryVersion: string;
+    summaryProgress: string;
+    summaryPending: string;
+    summaryReturned: string;
+    summaryResolved: string;
+    summaryOutstandingItems: string;
+    summaryPendingReview: string;
+    summaryPendingReviewBadge: string;
+    commandCenter: ReportingCommandCenterLabels;
+  };
+  executiveSummary: ReportingSectionLabels;
+  financialStatements: ReportingSectionLabels;
+  ifrsNotes: ReportingSectionLabels;
+  managementLetter: ReportingSectionLabels;
+  auditFindings: ReportingSectionLabels;
+  recommendations: ReportingSectionLabels;
+  appendices: ReportingSectionLabels;
+  comments: ReportingSectionLabels;
+  history: ReportingSectionLabels & {
+    versionLabel: string;
+    updatedLabel: string;
+    actions: Record<string, string>;
+    filterActor: string;
+    filterModule: string;
+    filterAction: string;
+    filterDate: string;
+    all: string;
+  };
+  itemActions: {
+    unassigned: string;
+    assignReviewer: string;
+    dueDate: string;
+    priority: string;
+    severity: string;
+    status: string;
+    returnNotesTitle: string;
+    returnNotesPlaceholder: string;
+    assignAction: string;
+    returnAction: string;
+    returnConfirmAction: string;
+    approveAction: string;
+    reopenAction: string;
+    cancelAction: string;
+    errorGeneric: string;
+    priorities: Record<string, string>;
+    severities: Record<string, string>;
+    sectionStatuses: Record<string, string>;
+    sectionTypes: Record<string, string>;
+  };
+  noteActions: {
+    bodyPlaceholder: string;
+    addAction: string;
+    editAction: string;
+    saveAction: string;
+    archiveAction: string;
+    restoreAction: string;
+    cancelAction: string;
+    resolvedBadge: string;
+    unresolvedBadge: string;
+    replyAction: string;
+    attachmentsLabel: string;
+  };
+  versionActions: {
+    latestBadge: string;
+    compareAction: string;
+    restoreAction: string;
+    restoreConfirmAction: string;
+    cancelAction: string;
+    diffTitle: string;
+    noDiff: string;
+    errorGeneric: string;
+  };
+  versions: ReportingSectionLabels;
   settings: {
     title: string;
     description: string;
@@ -1773,6 +1957,7 @@ export type Dictionary = {
       navFieldwork: string;
       navReview: string;
       navCompletion: string;
+      navReporting: string;
       navHistory: string;
       navSettings: string;
       loading: string;
@@ -1818,10 +2003,12 @@ export type Dictionary = {
         companyHealthDescription: string;
         phaseReview: string;
         phaseCompletion: string;
+        phaseReporting: string;
         statusReview: string;
         statusClear: string;
         openReviewQueue: string;
         openCompletion: string;
+        openReporting: string;
         openSettings: string;
         owner: string;
         lastUpdate: string;
@@ -1908,6 +2095,8 @@ export type Dictionary = {
         reviewDescription: string;
         completionTitle: string;
         completionDescription: string;
+        reportingTitle: string;
+        reportingDescription: string;
       };
       planning: {
         title: string;
@@ -1994,6 +2183,21 @@ export type Dictionary = {
         openReviewPoints: string;
         resolvedItems: string;
         openCompletion: string;
+      };
+      reporting: {
+        title: string;
+        description: string;
+        lifecycleStage: string;
+        financialYear: string;
+        plannedSchedule: string;
+        teamSize: string;
+        reportingStatus: string;
+        reportingProgress: string;
+        packageVersion: string;
+        outstandingSections: string;
+        openSectionReviews: string;
+        resolvedSections: string;
+        openReporting: string;
       };
       client: {
         title: string;
@@ -2471,6 +2675,7 @@ export type Dictionary = {
   materiality: MaterialityLabels;
   review: ReviewLabels;
   completion: CompletionLabels;
+  reporting: ReportingLabels;
   fieldwork: {
     notFoundTitle: string;
     notFoundDescription: string;
