@@ -1,0 +1,33 @@
+export type {
+  EmeMemoryLevel,
+  EmeMemoryVisibility,
+  EmeMemorySource,
+  EmeMemoryStatus,
+  EmeSearchMode,
+  EmeMemoryError,
+  EmeMemoryScope,
+  EmeMemoryPolicy,
+  EmeMemoryRecord,
+  EmeMemoryCandidate,
+  EmeMemoryWriteInput,
+  EmeMemoryResolveRequest,
+  EmeMemoryRankInput,
+  EmeRankedMemory,
+  EmeMemorySearchQuery,
+  EmeMemoryContext,
+  EmeMemorySummary,
+  EmeUserPreferenceSnapshot,
+  EmeLearningSignal,
+  EmeMemoryTelemetrySnapshot,
+  EmeMemoryExportBundle,
+  EmeMemoryHumanAction,
+} from "@/lib/ai/memory-engine/types";
+
+export {
+  EME_VERSION,
+  EME_MEMORY_LEVELS,
+  EME_MEMORY_VISIBILITIES,
+  EME_MEMORY_SOURCES,
+  EME_MEMORY_STATUSES,
+  EME_SEARCH_MODES,
+} from "@/lib/ai/memory-engine/types";

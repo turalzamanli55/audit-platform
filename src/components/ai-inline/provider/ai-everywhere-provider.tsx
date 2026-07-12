@@ -34,6 +34,14 @@ import {
 } from "@/components/ai-inline/shared/labels";
 import type { AiWorkspaceMessage } from "@/components/ai/types";
 import { createAiId } from "@/lib/ai/utils/id";
+import type { AiHostExecutionPlan } from "@/lib/ai/host/types";
+import {
+  detectHostMutationOperation,
+  isHostMutationSuggestion,
+  resolveEntityTypeForModule,
+  resolveSuggestedServerActionId,
+} from "@/lib/ai/host/utils/mutation-suggest";
+import { createHostExecutionPlanAction } from "@/lib/actions/ai/host-execution-actions";
 
 export type AiEverywhereSelection = {
   objectType: string;
@@ -53,6 +61,10 @@ export type AiEverywhereHostValue = {
   selection: AiEverywhereSelection | null;
   lastPreview: AiCopilotTurnPreview | null;
   canUseAi: boolean;
+  executionPlan: AiHostExecutionPlan | null;
+  executionOpen: boolean;
+  setExecutionOpen: (open: boolean) => void;
+  setExecutionPlan: (plan: AiHostExecutionPlan | null) => void;
   openAsk: (selection?: AiEverywhereSelection | null) => void;
   openExplain: (selection?: AiEverywhereSelection | null) => void;
   openAnalyze: (selection?: AiEverywhereSelection | null) => void;
@@ -136,6 +148,8 @@ export function AiEverywhereProvider({
   const [messages, setMessages] = useState<AiWorkspaceMessage[]>([]);
   const [selection, setSelection] = useState<AiEverywhereSelection | null>(null);
   const [lastPreview, setLastPreview] = useState<AiCopilotTurnPreview | null>(null);
+  const [executionPlan, setExecutionPlan] = useState<AiHostExecutionPlan | null>(null);
+  const [executionOpen, setExecutionOpen] = useState(false);
 
   const moduleId = inferModuleIdFromPath(pathname);
 
@@ -218,6 +232,45 @@ export function AiEverywhereProvider({
       };
       setMessages((current) => [...current, userMessage, buildAssistantMessage(preview, utterance)]);
       setOpen(true);
+
+      // Mutations open Host Execution Drawer — never execute directly.
+      if (
+        isHostMutationSuggestion({
+          utterance,
+          plannerIntent: preview.planner.intent,
+        })
+      ) {
+        const operation = detectHostMutationOperation(utterance);
+        if (operation) {
+          const entityType =
+            selection?.objectType ?? resolveEntityTypeForModule(context.moduleId);
+          const serverActionId = resolveSuggestedServerActionId({
+            moduleId: context.moduleId,
+            operation,
+            entityType,
+          });
+          if (serverActionId) {
+            void createHostExecutionPlanAction({
+              context,
+              serverActionId,
+              toolId: `tool.action.${operation === "delete" ? "archive" : operation}`,
+              title: undefined,
+              description: `Suggested from AI Everywhere: ${utterance}`,
+              payload: {
+                entityType,
+                entityId: selection?.objectId ?? null,
+              },
+              entityType,
+              entityId: selection?.objectId ?? null,
+              entityLabel: selection?.objectLabel ?? null,
+            }).then((result) => {
+              if (!result.ok) return;
+              setExecutionPlan(result.plan);
+              setExecutionOpen(true);
+            });
+          }
+        }
+      }
     },
     [canUseAi, core, context, selection],
   );
@@ -263,6 +316,10 @@ export function AiEverywhereProvider({
     selection,
     lastPreview,
     canUseAi,
+    executionPlan,
+    executionOpen,
+    setExecutionOpen,
+    setExecutionPlan,
     openAsk: (next) => openWithKind("ask", next),
     openExplain: (next) => openWithKind("explain", next),
     openAnalyze: (next) => openWithKind("analyze", next),

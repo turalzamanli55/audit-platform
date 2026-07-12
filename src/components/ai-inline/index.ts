@@ -10,6 +10,7 @@ export {
   type AiEverywhereHostValue,
 } from "@/components/ai-inline/provider/ai-everywhere-provider";
 export { AiEverywhereDrawer } from "@/components/ai-inline/drawers/ai-everywhere-drawer";
+export { AiHostExecutionDrawer } from "@/components/ai-inline/drawers/ai-host-execution-drawer";
 export {
   AiInlineAskButton,
   AiInlineExplainButton,

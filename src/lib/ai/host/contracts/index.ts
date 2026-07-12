@@ -1,0 +1,31 @@
+export type {
+  AiHostRiskLevel,
+  AiHostApprovalState,
+  AiHostQueueState,
+  AiHostCompensationStrategy,
+  AiHostError,
+  AiHostAffectedEntity,
+  AiHostEstimatedChange,
+  AiHostUndoMetadata,
+  AiHostExecutionPlan,
+  AiHostActionDefinition,
+  AiHostInvokeInput,
+  AiHostInvokeResult,
+  AiHostActionInvoker,
+  AiHostActionBinding,
+  AiHostPlanRequest,
+  AiHostApprovalDecision,
+  AiHostExecuteRequest,
+  AiHostExecutionResult,
+  AiHostHistoryRecord,
+  AiHostTelemetrySnapshot,
+} from "@/lib/ai/host/types";
+
+export {
+  AI_HOST_VERSION,
+  AI_HOST_RISK_LEVELS,
+  AI_HOST_APPROVAL_STATES,
+  AI_HOST_QUEUE_STATES,
+  AI_HOST_COMPENSATION_STRATEGIES,
+  mapToolRiskToHost,
+} from "@/lib/ai/host/types";
