@@ -22,6 +22,7 @@ import {
   type AiModuleId,
   type LlmPlatform,
   type LlmProviderCapabilities,
+  type LlmHealthStatus,
 } from "@/lib/ai";
 import { createAiId } from "@/lib/ai/utils/id";
 import type {
@@ -36,6 +37,7 @@ import {
 } from "@/components/ai/suggestions/suggestion-panel";
 import { evaluateAiPermission } from "@/lib/ai/permissions/ai-permission-layer";
 import { EMPTY_LLM_CAPABILITIES } from "@/lib/ai/providers/provider";
+import { getLlmProviderStatusAction } from "@/lib/actions/ai/llm-provider-actions";
 
 const WELCOME_STORAGE_KEY = "ai-workspace-welcome-hidden";
 const HISTORY_STORAGE_KEY = "ai-workspace-history-session";
@@ -69,7 +71,10 @@ export type AiWorkspaceHostValue = {
   providerLabel: string;
   modelLabel: string;
   providerConfigured: boolean;
-  providerHealth: "healthy" | "offline" | "rate_limited" | "disabled" | "unknown";
+  providerHealth: LlmHealthStatus;
+  providerLatencyMs: number | null;
+  tokenUsageLabel: string;
+  estimatedCostLabel: string;
   capabilities: LlmProviderCapabilities;
   submitUtterance: (utterance: string) => void;
   createConversation: () => void;
@@ -272,6 +277,14 @@ export function AiWorkspaceHostProvider({
   const [focusSignal, setFocusSignal] = useState(0);
   const [mobileHistoryOpen, setMobileHistoryOpen] = useState(false);
   const [mobileContextOpen, setMobileContextOpen] = useState(false);
+  const [providerConfigured, setProviderConfigured] = useState(false);
+  const [providerHealth, setProviderHealth] = useState<LlmHealthStatus>("disabled");
+  const [providerLatencyMs, setProviderLatencyMs] = useState<number | null>(null);
+  const [providerLabelState, setProviderLabelState] = useState<string | null>(null);
+  const [modelLabelState, setModelLabelState] = useState<string | null>(null);
+  const [capabilitiesState, setCapabilitiesState] = useState<LlmProviderCapabilities | null>(null);
+  const [tokenUsageLabel, setTokenUsageLabel] = useState(labels.header.none);
+  const [estimatedCostLabel, setEstimatedCostLabel] = useState(labels.header.none);
 
   const organizationName =
     tenant.organizations.find((item) => item.id === tenant.currentOrganizationId)?.name ?? "";
@@ -291,6 +304,24 @@ export function AiWorkspaceHostProvider({
     setMessagesById(stored.messagesById);
     setActiveConversationId(stored.activeId);
     setShowWelcome(!readWelcomeHidden());
+
+    void getLlmProviderStatusAction()
+      .then((status) => {
+        setProviderConfigured(status.configured);
+        setProviderHealth(status.health);
+        setProviderLatencyMs(status.latencyMs);
+        setProviderLabelState(status.defaultProviderLabel);
+        setModelLabelState(status.modelLabel);
+        setCapabilitiesState(status.capabilities);
+        setTokenUsageLabel(
+          `${status.tokenUsage.inputTokens} in / ${status.tokenUsage.outputTokens} out`,
+        );
+        setEstimatedCostLabel(`$${status.estimatedCostUsd.toFixed(4)}`);
+      })
+      .catch(() => {
+        setProviderConfigured(false);
+        setProviderHealth("disabled");
+      });
   }, []);
 
   useEffect(() => {
@@ -435,8 +466,110 @@ export function AiWorkspaceHostProvider({
         ),
       );
       setShowWelcome(false);
+
+      if (!providerConfigured) return;
+
+      const streamMessageId = createAiId("msg");
+      const streamMessage: AiWorkspaceMessage = {
+        id: streamMessageId,
+        role: "assistant",
+        createdAt: new Date().toISOString(),
+        blocks: [{ type: "markdown", content: "" }],
+      };
+      setMessagesById((current) => ({
+        ...current,
+        [conversationId]: [...(current[conversationId] ?? []), streamMessage],
+      }));
+
+      void (async () => {
+        try {
+          const response = await fetch("/api/ai/stream", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ utterance }),
+          });
+          if (!response.ok || !response.body) {
+            setMessagesById((current) => ({
+              ...current,
+              [conversationId]: (current[conversationId] ?? []).map((message) =>
+                message.id === streamMessageId
+                  ? {
+                      ...message,
+                      blocks: [
+                        {
+                          type: "status",
+                          tone: "warning",
+                          title: labels.conversation.providerUnavailable,
+                        },
+                      ],
+                    }
+                  : message,
+              ),
+            }));
+            return;
+          }
+
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let buffer = "";
+          let assembled = "";
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() ?? "";
+            for (const line of lines) {
+              if (!line.trim()) continue;
+              try {
+                const event = JSON.parse(line) as {
+                  kind?: string;
+                  text?: string;
+                  message?: string;
+                };
+                if (event.kind === "text" && event.text) {
+                  assembled += event.text;
+                  const snapshot = assembled;
+                  setMessagesById((current) => ({
+                    ...current,
+                    [conversationId]: (current[conversationId] ?? []).map((message) =>
+                      message.id === streamMessageId
+                        ? {
+                            ...message,
+                            blocks: [{ type: "markdown", content: snapshot }],
+                          }
+                        : message,
+                    ),
+                  }));
+                }
+              } catch {
+                // ignore malformed stream lines
+              }
+            }
+          }
+        } catch {
+          setMessagesById((current) => ({
+            ...current,
+            [conversationId]: (current[conversationId] ?? []).map((message) =>
+              message.id === streamMessageId
+                ? {
+                    ...message,
+                    blocks: [
+                      {
+                        type: "status",
+                        tone: "error",
+                        title: labels.error.provider,
+                      },
+                    ],
+                  }
+                : message,
+            ),
+          }));
+        }
+      })();
     },
-    [core, context, ensureConversation, labels, knowledge],
+    [core, context, ensureConversation, labels, knowledge, providerConfigured],
   );
 
   const createConversation = useCallback(() => {
@@ -489,13 +622,21 @@ export function AiWorkspaceHostProvider({
     organizationName,
     workspaceName,
     userLabel,
-    providerLabel: defaultProvider
-      ? `${defaultProvider.label} (${labels.header.unconfigured})`
-      : labels.header.unconfigured,
-    modelLabel: routeDecision?.model.displayName ?? labels.header.unconfigured,
-    providerConfigured: false,
-    providerHealth: "disabled",
-    capabilities: defaultProvider?.getCapabilities() ?? EMPTY_LLM_CAPABILITIES,
+    providerLabel: providerLabelState
+      ? providerConfigured
+        ? providerLabelState
+        : `${providerLabelState} (${labels.header.unconfigured})`
+      : defaultProvider
+        ? `${defaultProvider.label} (${labels.header.unconfigured})`
+        : labels.header.unconfigured,
+    modelLabel: modelLabelState ?? routeDecision?.model.displayName ?? labels.header.unconfigured,
+    providerConfigured,
+    providerHealth,
+    providerLatencyMs,
+    tokenUsageLabel,
+    estimatedCostLabel,
+    capabilities:
+      capabilitiesState ?? defaultProvider?.getCapabilities() ?? EMPTY_LLM_CAPABILITIES,
     submitUtterance,
     createConversation,
     selectConversation: (id) => {

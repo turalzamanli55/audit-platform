@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { ProtectedRouteGuard, OnboardingGuard } from "@/components/auth";
 import { AppShellExperience } from "@/components/shell/app-shell-experience";
+import { AiEverywhereLayoutBridge } from "@/components/ai-inline/shared/ai-everywhere-layout-bridge";
+import { AI_EVERYWHERE_LABELS_EN } from "@/components/ai-inline/shared/labels";
 import {
   coerceDashboardNavItems,
   COMPANIES_PATH,
@@ -153,7 +155,9 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
             }}
             dashboardCommands={dictionary.dashboardWorkspace.personalization.commands}
           >
-            {children}
+            <AiEverywhereLayoutBridge labels={AI_EVERYWHERE_LABELS_EN}>
+              {children}
+            </AiEverywhereLayoutBridge>
           </AppShellExperience>
         </TenantProvider>
       </OnboardingGuard>

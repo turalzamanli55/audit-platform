@@ -1,6 +1,9 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { cn } from "@/lib/ui/cn";
 import { workspaceTokens } from "./workspace-tokens";
+import { AiSectionToolbar } from "@/components/ai-inline/actions/ai-section-toolbar";
 
 type WorkspaceSectionShellProps = {
   title: string;
@@ -9,6 +12,8 @@ type WorkspaceSectionShellProps = {
   headingId?: string;
   className?: string;
   action?: ReactNode;
+  /** When true, shows Ask / Explain / Analyze inline AI toolbar. */
+  aiToolbar?: boolean;
 };
 
 export function WorkspaceSectionShell({
@@ -18,6 +23,7 @@ export function WorkspaceSectionShell({
   headingId,
   className,
   action,
+  aiToolbar = true,
 }: WorkspaceSectionShellProps) {
   return (
     <section aria-labelledby={headingId} className={cn(workspaceTokens.sectionGap, className)}>
@@ -30,7 +36,10 @@ export function WorkspaceSectionShell({
             <p className={workspaceTokens.sectionDescription}>{description}</p>
           ) : null}
         </div>
-        {action}
+        <div className="flex flex-wrap items-center gap-2">
+          {aiToolbar ? <AiSectionToolbar /> : null}
+          {action}
+        </div>
       </div>
       <div>{children}</div>
     </section>

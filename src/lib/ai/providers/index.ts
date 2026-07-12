@@ -134,6 +134,39 @@ export {
   VllmProviderAdapter,
 } from "@/lib/ai/providers/adapters";
 
+export {
+  readLlmEnv,
+  getLlmEnvPresence,
+  maskSecret,
+  LLM_ENV_KEYS,
+  type LlmEnvSnapshot,
+  type LlmEnvPresence,
+} from "@/lib/ai/providers/env/llm-env";
+
+export {
+  LLM_VENDOR_MODEL_CATALOG,
+  toVendorModelApiId,
+} from "@/lib/ai/providers/catalog/vendor-models";
+
+export {
+  withLlmRetry,
+  defaultShouldRetry,
+  type LlmRetryOptions,
+} from "@/lib/ai/providers/integration/retry";
+
+export { mapProviderError, healthStatusFromError } from "@/lib/ai/providers/integration/error-map";
+
+export {
+  llmObservability,
+  LlmObservability,
+  type LlmObservationEvent,
+  type LlmObservabilitySnapshot,
+} from "@/lib/ai/providers/integration/observability";
+
+export type { LlmProviderStatusSnapshot } from "@/lib/ai/providers/integration/status";
+
+export { bindToolRuntimeToLlmPlatform } from "@/lib/ai/providers/integration/tool-runtime-bridge";
+
 /** Legacy foundation provider types — preserved for Copilot Core bridge. */
 export type {
   AiProvider,

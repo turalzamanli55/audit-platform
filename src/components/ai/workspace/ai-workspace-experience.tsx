@@ -176,6 +176,10 @@ export function AiWorkspaceExperience() {
             modelId={host.modelLabel}
             capabilities={host.capabilities}
             health={host.providerHealth}
+            latencyMs={host.providerLatencyMs}
+            tokenUsageLabel={host.tokenUsageLabel}
+            estimatedCostLabel={host.estimatedCostLabel}
+            providerConfigured={host.providerConfigured}
           />
         </div>
       </div>

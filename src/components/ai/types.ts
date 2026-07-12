@@ -186,7 +186,11 @@ export type AiWorkspaceLabels = {
     embeddings: string;
     structuredOutput: string;
     health: string;
+    latency: string;
+    tokenUsage: string;
+    estimatedCost: string;
     readOnly: string;
+    live: string;
   };
   loading: {
     workspace: string;

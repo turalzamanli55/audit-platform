@@ -188,15 +188,17 @@ export class AiOrchestratorExecutionBinder {
             output: { prompt },
           };
         }
-        case "invoke_llm": {
-          // Intentionally deferred — no OpenAI/Claude/Gemini invocation.
-          void deps.llmPlatform;
+                case "invoke_llm": {
+          const defaultProvider = deps.llmPlatform.defaultProvider();
+          const configured = defaultProvider.id !== "none";
           return {
             status: "succeeded",
             output: {
               llmInvocation: {
-                status: "deferred",
-                reason: "LLM Platform invocation is reserved for later wiring.",
+                status: configured ? "deferred" : "deferred",
+                reason: configured
+                  ? `Provider "${defaultProvider.id}" is configured on LLM Platform. Live calls use platform server endpoints (never UI / business modules).`
+                  : "LLM Platform default provider is not configured.",
                 providerInvoked: false,
               },
             },

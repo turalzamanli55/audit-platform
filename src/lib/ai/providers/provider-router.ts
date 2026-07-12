@@ -66,10 +66,18 @@ export class LlmModelRouter {
   ) {}
 
   route(request: LlmRouteRequest): LlmRouteDecision {
-    const candidates = this.models
+    let candidates = this.models
       .list({ status: "available" })
       .filter((model) => this.matchesRequirements(model, request))
       .filter((model) => this.isProviderEligible(model.providerId, request.allowedProviderIds));
+
+    if (candidates.length === 0) {
+      // Fall back to logical platform models when live providers are unhealthy/unconfigured.
+      candidates = this.models
+        .list({ status: "available" })
+        .filter((model) => model.providerId === "none")
+        .filter((model) => this.matchesRequirements(model, request));
+    }
 
     if (candidates.length === 0) {
       throw new LlmRoutingFailedError("No model matched routing requirements.", {
@@ -123,10 +131,13 @@ export class LlmModelRouter {
     allowed?: LlmProviderId[],
   ): boolean {
     if (allowed && !allowed.includes(providerId)) return false;
-    // Logical platform catalog models use providerId "none" and remain routable
-    // without requiring a live vendor connection.
-    if (providerId === "none") return true;
     if (!this.providers.has(providerId)) return false;
+    // Prefer live providers when any non-none provider is the default.
+    const defaultId = this.providers.getDefaultProviderId();
+    if (providerId === "none" && defaultId && defaultId !== "none") {
+      return false;
+    }
+    if (providerId === "none") return true;
     return this.health.isRoutable(providerId);
   }
 

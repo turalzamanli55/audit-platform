@@ -12,6 +12,7 @@ import {
   LLM_PLATFORM_MODEL_CATALOG,
   LlmModelRegistry,
 } from "@/lib/ai/providers/provider-models";
+import { LLM_VENDOR_MODEL_CATALOG } from "@/lib/ai/providers/catalog/vendor-models";
 import { LlmCostEngine } from "@/lib/ai/providers/provider-pricing";
 import { LlmProviderRegistry } from "@/lib/ai/providers/provider-registry";
 import { LlmModelRouter, type LlmRouteDecision, type LlmRouteRequest } from "@/lib/ai/providers/provider-router";
@@ -19,6 +20,7 @@ import { LlmStreamingEngine } from "@/lib/ai/providers/streaming";
 import { LlmStructuredOutputEngine } from "@/lib/ai/providers/structured-output";
 import { LlmToolCallingEngine } from "@/lib/ai/providers/tool-calling";
 import { LlmVisionLayer } from "@/lib/ai/providers/vision";
+import { llmObservability } from "@/lib/ai/providers/integration/observability";
 import type {
   LlmChatRequest,
   LlmChatResult,
@@ -26,6 +28,7 @@ import type {
   LlmCostEstimateInput,
   LlmProvider,
   LlmProviderId,
+  LlmStreamRequest,
 } from "@/lib/ai/providers/provider";
 
 export const LLM_PLATFORM_VERSION = "1.0.0" as const;
@@ -41,6 +44,8 @@ export type LlmPlatformBootstrap = {
 export type LlmPlatformOptions = {
   registerAllAdapters?: boolean;
   seedModels?: boolean;
+  /** When true, also seed vendor model catalog (ids only — adapters may still be disabled). */
+  seedVendorModels?: boolean;
 };
 
 export class LlmPlatform {
@@ -57,10 +62,16 @@ export class LlmPlatform {
   readonly embeddings: LlmEmbeddingLayer;
   readonly structuredOutput: LlmStructuredOutputEngine;
   readonly cost: LlmCostEngine;
+  readonly observability = llmObservability;
 
   constructor(options: LlmPlatformOptions = {}) {
     this.providers = new LlmProviderRegistry();
     this.models = new LlmModelRegistry(options.seedModels === false ? [] : LLM_PLATFORM_MODEL_CATALOG);
+    if (options.seedVendorModels) {
+      for (const model of LLM_VENDOR_MODEL_CATALOG) {
+        this.models.register(model);
+      }
+    }
     this.factory = new LlmProviderFactory();
     this.health = new LlmProviderHealthTracker();
     this.router = new LlmModelRouter(this.models, this.providers, this.health);
@@ -104,6 +115,12 @@ export class LlmPlatform {
     const provider = providerId ? this.providers.require(providerId) : this.defaultProvider();
     this.capabilities.assert(provider, "chat");
     return provider.chat(request);
+  }
+
+  stream(request: LlmStreamRequest, providerId?: LlmProviderId) {
+    const provider = providerId ? this.providers.require(providerId) : this.defaultProvider();
+    this.capabilities.assert(provider, "stream");
+    return this.streaming.stream(provider, request);
   }
 
   estimateCost(input: LlmCostEstimateInput, providerId?: LlmProviderId): LlmCostEstimate {

@@ -1,19 +1,22 @@
 "use client";
 
-import Link from "next/link";
 import { IconSparkles } from "@/components/ui/icons";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { WorkspacePanel } from "./workspace-section";
-import { useLanguage } from "@/providers";
-import { AI_WORKSPACE_PATH } from "@/config/dashboard-navigation";
+import { useAiEverywhereOptional } from "@/components/ai-inline";
 import { cn } from "@/lib/ui/cn";
 
 type WorkspaceAiCardProps = {
   labels: DashboardWorkspaceLabels["ai"];
 };
 
+/**
+ * Dashboard AI entry — opens Workspace AI Drawer in-place (AI Everywhere).
+ * Full AI Workspace remains available via navigation for deep sessions.
+ */
 export function WorkspaceAiCard({ labels }: WorkspaceAiCardProps) {
-  const { locale } = useLanguage();
+  const ai = useAiEverywhereOptional();
+
   return (
     <WorkspacePanel
       variant="elevated"
@@ -34,15 +37,18 @@ export function WorkspaceAiCard({ labels }: WorkspaceAiCardProps) {
           </div>
         </div>
 
-        <Link
-          href={`/${locale}${AI_WORKSPACE_PATH}`}
+        <button
+          type="button"
+          onClick={() => ai?.openAsk()}
+          disabled={!ai}
           className={cn(
             "inline-flex h-10 w-full items-center justify-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:w-auto",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            !ai && "opacity-60",
           )}
         >
           {labels.askButton}
-        </Link>
+        </button>
       </div>
     </WorkspacePanel>
   );

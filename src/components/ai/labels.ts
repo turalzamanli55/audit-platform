@@ -129,7 +129,11 @@ export const AI_WORKSPACE_LABELS_EN: AiWorkspaceLabels = {
     embeddings: "Embeddings",
     structuredOutput: "Structured output",
     health: "Health",
-    readOnly: "Read only — no provider connection.",
+    latency: "Latency",
+    tokenUsage: "Token usage",
+    estimatedCost: "Estimated cost",
+    readOnly: "No live provider credentials detected.",
+    live: "Connected through LLM Platform.",
   },
   loading: {
     workspace: "Loading AI Workspace…",

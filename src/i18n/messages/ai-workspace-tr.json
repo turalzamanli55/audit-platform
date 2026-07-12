@@ -118,7 +118,7 @@
     "empty": "No module knowledge loaded"
   },
   "provider": {
-    "title": "Sağlayıcı durumu",
+    "title": "Provider status",
     "configured": "Configured provider",
     "model": "Model",
     "capabilities": "Capabilities",
@@ -127,7 +127,11 @@
     "embeddings": "Embeddings",
     "structuredOutput": "Structured output",
     "health": "Health",
-    "readOnly": "Read only — no provider connection."
+    "latency": "Latency",
+    "tokenUsage": "Token usage",
+    "estimatedCost": "Estimated cost",
+    "readOnly": "No live provider credentials detected.",
+    "live": "Connected through LLM Platform."
   },
   "loading": {
     "workspace": "AI Çalışma Alanı yükleniyor…",

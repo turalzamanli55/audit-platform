@@ -5,6 +5,13 @@ import { WorkspaceInlineLoading } from "./workspace-states";
 import { cn } from "@/lib/ui/cn";
 import { WorkspaceEmpty } from "./workspace-primitives";
 import { WorkspaceErrorState } from "./workspace-states";
+import {
+  useAiEverywhereOptional,
+  type AiEverywhereSelection,
+} from "@/components/ai-inline/provider/ai-everywhere-provider";
+import { AiRowContextMenuContent } from "@/components/ai-inline/menus/ai-row-context-menu";
+import { useContextMenuOptional } from "@/components/ui/context-menu";
+import { AiInlineAskButton } from "@/components/ai-inline/buttons/ai-inline-actions";
 
 export type WorkspaceTableColumn<T> = {
   id: string;
@@ -14,6 +21,15 @@ export type WorkspaceTableColumn<T> = {
   hideOnMobile?: boolean;
   sortable?: boolean;
   sortValue?: (row: T) => string | number;
+};
+
+export type WorkspaceTableAiConfig<T> = {
+  /** Map a row to the AI selection object. */
+  getSelection: (row: T) => AiEverywhereSelection;
+  /** When true, appends an AI actions column. */
+  showActionsColumn?: boolean;
+  /** Column header for AI actions. */
+  actionsHeader?: string;
 };
 
 type WorkspaceTableProps<T> = {
@@ -27,6 +43,8 @@ type WorkspaceTableProps<T> = {
   error?: string | null;
   stickyHeader?: boolean;
   defaultSort?: { columnId: string; direction: "asc" | "desc" };
+  /** AI Everywhere — row context menu + optional actions column. No page refresh. */
+  ai?: WorkspaceTableAiConfig<T>;
 };
 
 export function WorkspaceTable<T>({
@@ -40,12 +58,26 @@ export function WorkspaceTable<T>({
   error = null,
   stickyHeader = true,
   defaultSort,
+  ai,
 }: WorkspaceTableProps<T>) {
   const [sort, setSort] = useState(defaultSort ?? null);
+  const aiHost = useAiEverywhereOptional();
+  const contextMenu = useContextMenuOptional();
+
+  const effectiveColumns = useMemo(() => {
+    if (!ai?.showActionsColumn || !aiHost) return columns;
+    const actionsColumn: WorkspaceTableColumn<T> = {
+      id: "__ai_actions",
+      header: ai.actionsHeader ?? "AI",
+      className: "w-[1%] whitespace-nowrap",
+      cell: (row) => <AiInlineAskButton selection={ai.getSelection(row)} variant="ghost" />,
+    };
+    return [...columns, actionsColumn];
+  }, [columns, ai, aiHost]);
 
   const sortedRows = useMemo(() => {
     if (!sort) return rows;
-    const column = columns.find((c) => c.id === sort.columnId);
+    const column = effectiveColumns.find((c) => c.id === sort.columnId);
     if (!column?.sortValue) return rows;
     const sorted = [...rows].sort((a, b) => {
       const av = column.sortValue!(a);
@@ -55,7 +87,7 @@ export function WorkspaceTable<T>({
       return 0;
     });
     return sorted;
-  }, [rows, sort, columns]);
+  }, [rows, sort, effectiveColumns]);
 
   const toggleSort = (columnId: string, sortable?: boolean, sortValue?: (row: T) => string | number) => {
     if (!sortable || !sortValue) return;
@@ -86,7 +118,7 @@ export function WorkspaceTable<T>({
       <table className="w-full min-w-[32rem] text-left text-sm">
         <thead className={cn(stickyHeader && "sticky top-0 z-10")}>
           <tr className="border-b border-border/40 bg-muted/30 backdrop-blur-sm">
-            {columns.map((col) => {
+            {effectiveColumns.map((col) => {
               const isActive = sort?.columnId === col.id;
               return (
                 <th
@@ -117,22 +149,38 @@ export function WorkspaceTable<T>({
           </tr>
         </thead>
         <tbody className="divide-y divide-border/30">
-          {sortedRows.map((row) => (
-            <tr key={keyFn(row)} className="transition-colors hover:bg-muted/15">
-              {columns.map((col) => (
-                <td
-                  key={col.id}
-                  className={cn(
-                    "px-4 py-3.5 text-foreground",
-                    col.hideOnMobile && "hidden sm:table-cell",
-                    col.className,
-                  )}
-                >
-                  {col.cell(row)}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {sortedRows.map((row) => {
+            const selection = ai?.getSelection(row);
+            return (
+              <tr
+                key={keyFn(row)}
+                className="transition-colors hover:bg-muted/15"
+                onContextMenu={
+                  ai && selection && contextMenu && aiHost
+                    ? (event) => {
+                        contextMenu.open(
+                          event,
+                          <AiRowContextMenuContent selection={selection} />,
+                        );
+                      }
+                    : undefined
+                }
+              >
+                {effectiveColumns.map((col) => (
+                  <td
+                    key={col.id}
+                    className={cn(
+                      "px-4 py-3.5 text-foreground",
+                      col.hideOnMobile && "hidden sm:table-cell",
+                      col.className,
+                    )}
+                  >
+                    {col.cell(row)}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

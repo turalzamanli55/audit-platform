@@ -10,23 +10,36 @@ export function AiProviderStatusPanel({
   modelId,
   capabilities,
   health,
+  latencyMs,
+  tokenUsageLabel,
+  estimatedCostLabel,
+  configured,
 }: {
   labels: AiWorkspaceLabels;
   providerLabel: string;
   modelId: string;
   capabilities: LlmProviderCapabilities;
   health: LlmHealthStatus;
+  latencyMs?: number | null;
+  tokenUsageLabel?: string;
+  estimatedCostLabel?: string;
+  configured?: boolean;
 }) {
   const healthTone =
     health === "healthy"
       ? "success"
-      : health === "rate_limited" || health === "unknown"
+      : health === "rate_limited" ||
+          health === "unknown" ||
+          health === "timeout" ||
+          health === "quota_exceeded"
         ? "warning"
         : "danger";
 
   return (
     <AiPanelSection title={labels.provider.title}>
-      <p className="mb-3 text-xs text-muted-foreground">{labels.provider.readOnly}</p>
+      <p className="mb-3 text-xs text-muted-foreground">
+        {configured ? labels.provider.live : labels.provider.readOnly}
+      </p>
       <dl className="space-y-2">
         <AiContextRow label={labels.provider.configured} value={providerLabel} />
         <AiContextRow label={labels.provider.model} value={modelId} />
@@ -45,6 +58,18 @@ export function AiProviderStatusPanel({
         <AiContextRow
           label={labels.provider.structuredOutput}
           value={capabilities.structuredOutput ? labels.context.yes : labels.context.no}
+        />
+        <AiContextRow
+          label={labels.provider.latency}
+          value={latencyMs != null ? `${Math.round(latencyMs)} ms` : labels.header.none}
+        />
+        <AiContextRow
+          label={labels.provider.tokenUsage}
+          value={tokenUsageLabel ?? labels.header.none}
+        />
+        <AiContextRow
+          label={labels.provider.estimatedCost}
+          value={estimatedCostLabel ?? labels.header.none}
         />
       </dl>
       <div className="mt-3">

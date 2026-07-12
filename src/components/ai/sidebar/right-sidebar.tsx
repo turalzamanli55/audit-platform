@@ -34,6 +34,10 @@ export function AiWorkspaceRightSidebar({
   modelId,
   capabilities,
   health,
+  latencyMs,
+  tokenUsageLabel,
+  estimatedCostLabel,
+  providerConfigured,
 }: {
   labels: AiWorkspaceLabels;
   context: AiRuntimeContext | null;
@@ -54,6 +58,10 @@ export function AiWorkspaceRightSidebar({
   modelId: string;
   capabilities: LlmProviderCapabilities;
   health: LlmHealthStatus;
+  latencyMs?: number | null;
+  tokenUsageLabel?: string;
+  estimatedCostLabel?: string;
+  providerConfigured?: boolean;
 }) {
   return (
     <aside className="min-h-0 flex-1 overflow-y-auto" aria-label={labels.context.title}>
@@ -82,6 +90,10 @@ export function AiWorkspaceRightSidebar({
         modelId={modelId}
         capabilities={capabilities}
         health={health}
+        latencyMs={latencyMs}
+        tokenUsageLabel={tokenUsageLabel}
+        estimatedCostLabel={estimatedCostLabel}
+        configured={providerConfigured}
       />
     </aside>
   );

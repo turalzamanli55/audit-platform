@@ -12,6 +12,18 @@ export type ServerEnv = PublicEnv & {
   SUPABASE_SERVICE_ROLE_KEY: string;
 };
 
+/** Optional LLM keys — never required for application boot. */
+export type LlmServerEnv = {
+  OPENAI_API_KEY?: string;
+  ANTHROPIC_API_KEY?: string;
+  GEMINI_API_KEY?: string;
+  OPENROUTER_API_KEY?: string;
+  AZURE_OPENAI_ENDPOINT?: string;
+  AZURE_OPENAI_KEY?: string;
+  AZURE_OPENAI_DEPLOYMENT?: string;
+  LLM_DEFAULT_PROVIDER?: string;
+};
+
 export type RuntimeEnv = {
   NODE_ENV: "development" | "production" | "test";
   VERCEL_ENV?: string;

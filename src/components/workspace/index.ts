@@ -41,6 +41,7 @@ export {
   WorkspaceDataList,
   WorkspaceStatusBadge,
   type WorkspaceTableColumn,
+  type WorkspaceTableAiConfig,
 } from "./workspace-table";
 export {
   WorkspacePanel,

@@ -72,6 +72,10 @@ export function useContextMenu() {
   return context;
 }
 
+export function useContextMenuOptional() {
+  return useContext(ContextMenuContext);
+}
+
 type ContextMenuItemProps = {
   children: ReactNode;
   onSelect?: () => void;

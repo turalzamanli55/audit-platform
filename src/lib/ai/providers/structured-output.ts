@@ -23,6 +23,8 @@ export type LlmStructuredRequest<T = unknown> = {
   validate?: (value: unknown) => value is T;
   /** Attempt one local repair pass on invalid JSON. */
   autoRepair?: boolean;
+  /** Re-invoke provider when JSON remains invalid. */
+  maxRetries?: number;
 };
 
 export type LlmStructuredResult<T = unknown> = {
@@ -44,46 +46,61 @@ export class LlmStructuredOutputEngine {
     this.capabilities.assert(provider, "structuredOutput");
     this.assertSchema(request.schema);
 
-    const result = await provider.structuredOutput({
-      modelId: request.modelId,
-      messages: request.messages,
-      schema: request.schema,
-      schemaName: request.schemaName,
-      abortSignal: request.abortSignal,
-    });
+    const maxRetries = Math.max(0, request.maxRetries ?? 1);
+    let lastError: unknown;
 
-    let object = result.object;
-    let repaired = result.repaired;
+    for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
+      try {
+        const result = await provider.structuredOutput({
+          modelId: request.modelId,
+          messages: request.messages,
+          schema: request.schema,
+          schemaName: request.schemaName,
+          abortSignal: request.abortSignal,
+        });
 
-    if (!this.isObjectLike(object) && request.autoRepair !== false) {
-      const repairedObject = this.tryRepair(result.rawText);
-      if (repairedObject !== undefined) {
-        object = repairedObject;
-        repaired = true;
+        let object = result.object;
+        let repaired = result.repaired;
+
+        if (!this.isObjectLike(object) && request.autoRepair !== false) {
+          const repairedObject = this.tryRepair(result.rawText);
+          if (repairedObject !== undefined) {
+            object = repairedObject;
+            repaired = true;
+          }
+        }
+
+        if (request.validate && !request.validate(object)) {
+          throw new LlmStructuredOutputInvalidError("Structured output failed typed validation.", {
+            modelId: request.modelId,
+            schemaName: request.schemaName,
+          });
+        }
+
+        if (!this.isObjectLike(object) && typeof object !== "boolean" && typeof object !== "number") {
+          throw new LlmStructuredOutputInvalidError("Structured output is not a valid JSON value.", {
+            modelId: request.modelId,
+          });
+        }
+
+        return {
+          providerId: result.providerId,
+          modelId: result.modelId,
+          object: object as T,
+          rawText: result.rawText,
+          repaired,
+          usage: result.usage,
+        };
+      } catch (error) {
+        lastError = error;
+        if (attempt >= maxRetries) break;
       }
     }
 
-    if (request.validate && !request.validate(object)) {
-      throw new LlmStructuredOutputInvalidError("Structured output failed typed validation.", {
-        modelId: request.modelId,
-        schemaName: request.schemaName,
-      });
-    }
-
-    if (!this.isObjectLike(object) && typeof object !== "boolean" && typeof object !== "number") {
-      throw new LlmStructuredOutputInvalidError("Structured output is not a valid JSON value.", {
-        modelId: request.modelId,
-      });
-    }
-
-    return {
-      providerId: result.providerId,
-      modelId: result.modelId,
-      object: object as T,
-      rawText: result.rawText,
-      repaired,
-      usage: result.usage,
-    };
+    if (lastError instanceof LlmStructuredOutputInvalidError) throw lastError;
+    throw new LlmStructuredOutputInvalidError("Structured output failed after retries.", {
+      modelId: request.modelId,
+    });
   }
 
   tryParseJson(rawText: string): unknown | undefined {

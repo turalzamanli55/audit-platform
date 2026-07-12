@@ -31,5 +31,6 @@ export * from "@/lib/ai/providers";
 export * from "@/lib/ai/skills";
 export * from "@/lib/ai/tools";
 export * from "@/lib/ai/orchestrator";
+export * from "@/lib/ai/context-resolvers";
 export * from "@/lib/ai/ui";
 export * from "@/lib/ai/registry";

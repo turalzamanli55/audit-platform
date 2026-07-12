@@ -177,6 +177,9 @@ export type LlmHealthStatus =
   | "healthy"
   | "offline"
   | "rate_limited"
+  | "auth_failed"
+  | "quota_exceeded"
+  | "timeout"
   | "disabled"
   | "unknown";
 
@@ -212,7 +215,7 @@ export type LlmProviderInitOptions = {
 
 /**
  * Canonical provider contract. Every adapter implements this surface.
- * Implementations must not call vendor networks until a future integration sprint.
+ * Live adapters may call vendor networks only when credentials are present (server-side).
  */
 export type LlmProvider = {
   readonly id: LlmProviderId;
