@@ -20,6 +20,12 @@ import {
   bootstrapKnowledgeGraphEngine,
 } from "@/lib/ai/knowledge-graph";
 import { AiToolRuntime, bootstrapAiToolRuntime } from "@/lib/ai/tools";
+import {
+  AiOrchestratorEngine,
+  bootstrapAiOrchestrator,
+  type AiOrchestratorRequest,
+  type AiOrchestratorResult,
+} from "@/lib/ai/orchestrator";
 import type { AiProvider } from "@/lib/ai/types/provider";
 import type { AiContextCollectionInput } from "@/lib/ai/types/context";
 import type { AiCopilotTurnPreview, AiCopilotTurnRequest } from "@/lib/ai/types/ui";
@@ -29,7 +35,6 @@ import type {
   AiSkillExecuteResult,
   AiSkillResolveRequest,
   AiSkillResolveResult,
-  AiSkillResult,
 } from "@/lib/ai/skills/contracts/types";
 import type {
   KgBuiltContext,
@@ -57,12 +62,13 @@ export type AiCopilotCoreDeps = {
   skillExecutor?: AiSkillExecutor;
   knowledgeGraph?: KnowledgeGraphEngine;
   toolRuntime?: AiToolRuntime;
+  orchestrator?: AiOrchestratorEngine;
   panelContract?: AiCopilotPanelContractImpl;
 };
 
 /**
- * AI Copilot Core — foundation + Skills + Knowledge Graph + Tool Runtime.
- * LLM never executes business logic; tools are requested and executed by Tool Runtime.
+ * AI Copilot Core — foundation + Skills + Knowledge Graph + Tool Runtime + Orchestrator.
+ * Orchestrator coordinates pipelines; LLM never executes business logic.
  */
 export class AiCopilotCore {
   readonly version = AI_FOUNDATION_VERSION;
@@ -79,6 +85,7 @@ export class AiCopilotCore {
   readonly skillExecutor: AiSkillExecutor;
   readonly knowledgeGraph: KnowledgeGraphEngine;
   readonly toolRuntime: AiToolRuntime;
+  readonly orchestrator: AiOrchestratorEngine;
   readonly panelContract: AiCopilotPanelContractImpl;
 
   constructor(deps: AiCopilotCoreDeps = {}) {
@@ -97,12 +104,24 @@ export class AiCopilotCore {
       deps.skillExecutor ?? new AiSkillExecutor(this.skillRegistry, this.knowledgeEngine);
     this.knowledgeGraph = deps.knowledgeGraph ?? bootstrapKnowledgeGraphEngine();
     this.toolRuntime = deps.toolRuntime ?? bootstrapAiToolRuntime();
+    this.orchestrator =
+      deps.orchestrator ??
+      bootstrapAiOrchestrator({
+        planner: this.planner,
+        promptBuilder: this.promptBuilder,
+        knowledgeEngine: this.knowledgeEngine,
+        skillResolver: this.skillResolver,
+        skillExecutor: this.skillExecutor,
+        knowledgeGraph: this.knowledgeGraph,
+        toolRuntime: this.toolRuntime,
+        llmPlatform: this.llmPlatform,
+      });
     this.panelContract = deps.panelContract ?? new AiCopilotPanelContractImpl();
   }
 
   /**
-   * Governed turn preview:
-   * context → plan → skill → knowledge → tool resolve → prompt.
+   * Governed turn preview via Orchestrator:
+   * context → plan → orchestrate (skills/knowledge/tools/prompt) → structured preview.
    * Does not call an LLM. Does not execute repositories/server actions.
    */
   previewTurn(
@@ -121,76 +140,40 @@ export class AiCopilotCore {
       availableActionIds: this.actionRegistry.listIds(),
     });
 
-    const skillResolution = this.skillResolver.resolve({
-      context,
+    const orchestration = this.orchestrator.run({
       utterance: request.utterance,
+      context,
       planner,
-      limit: 5,
-    });
-
-    let skillResult: AiSkillResult | null = null;
-    if (skillResolution.selected) {
-      const executed = this.skillExecutor.execute({
-        skillId: skillResolution.selected.skill.id,
-        context,
-        utterance: request.utterance,
-        planner,
-      });
-      if (executed.ok) {
-        skillResult = executed.result;
-      }
-    }
-
-    this.knowledgeGraph.resolve(context);
-    const knowledgeRetrieval = this.knowledgeGraph.retrieve({
-      query: request.utterance,
-      context,
-      limit: 12,
-    });
-    const knowledgeGraphContext = this.knowledgeGraph.buildContext({
-      query: request.utterance,
-      context,
-      limit: 12,
-    });
-
-    const toolResolution = this.toolRuntime.resolve({
-      context,
-      utterance: request.utterance,
-      planner,
-      skillId: skillResolution.selected?.skill.id ?? null,
-      limit: 5,
-    });
-
-    const relevantKnowledge = planner.targetModuleId
-      ? modules.filter(
-          (module) =>
-            module.id === planner.targetModuleId ||
-            module.relatedModules.includes(planner.targetModuleId as (typeof module.relatedModules)[number]),
-        )
-      : modules.filter((module) => module.id === context.moduleId).concat(modules.slice(0, 3));
-
-    const prompt = this.promptBuilder.build({
-      userUtterance: request.utterance,
-      context,
-      knowledge: relevantKnowledge.length > 0 ? relevantKnowledge : modules.slice(0, 5),
+      conversationId: session.conversationId,
+      sessionId: session.conversationId,
+      userId: context.userId,
       conversation: session.messages,
       memory: this.conversationManager.getMemory().list(),
-      planner,
-      skillContext: skillResult?.structuredContext ?? null,
-      knowledgeGraphContext,
     });
 
     return {
-      planner,
-      prompt,
+      planner: orchestration.plan.planner ?? planner,
+      prompt: orchestration.prompt ?? this.promptBuilder.build({
+        userUtterance: request.utterance,
+        context,
+        knowledge: modules.slice(0, 5),
+        conversation: session.messages,
+        memory: this.conversationManager.getMemory().list(),
+        planner,
+      }),
       providerAvailable: this.provider.getCapability().configured,
-      skillResolution,
-      skillResult,
-      knowledgeRetrieval,
-      knowledgeGraphContext,
-      toolResolution,
-      availableTools: this.toolRuntime.listLlmDefinitions(),
+      skillResolution: orchestration.skillResolution ?? undefined,
+      skillResult: orchestration.skillResult,
+      knowledgeRetrieval: orchestration.knowledgeRetrieval ?? undefined,
+      knowledgeGraphContext: orchestration.knowledgeGraphContext,
+      toolResolution: orchestration.toolResolution ?? undefined,
+      availableTools: orchestration.availableTools,
+      orchestration,
     };
+  }
+
+  orchestrate(request: AiOrchestratorRequest): AiOrchestratorResult {
+    return this.orchestrator.run(request);
   }
 
   resolveSkills(request: AiSkillResolveRequest): AiSkillResolveResult {

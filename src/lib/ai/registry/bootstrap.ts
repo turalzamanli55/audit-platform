@@ -11,6 +11,7 @@ import {
 } from "@/lib/ai/providers/llm-platform";
 import { bootstrapKnowledgeGraphEngine } from "@/lib/ai/knowledge-graph";
 import { bootstrapAiToolRuntime } from "@/lib/ai/tools";
+import { AI_ORCHESTRATOR_VERSION } from "@/lib/ai/orchestrator";
 
 export type AiFoundationBootstrap = {
   version: string;
@@ -21,12 +22,13 @@ export type AiFoundationBootstrap = {
   knowledgeNodeCount: number;
   knowledgeEdgeCount: number;
   knowledgeDocumentCount: number;
+  orchestratorVersion: string;
   core: AiCopilotCore;
   llm: LlmPlatformBootstrap;
 };
 
 /**
- * Bootstraps AI Foundation, Skills, Knowledge Graph, Tool Runtime, and LLM Platform.
+ * Bootstraps AI Foundation, Skills, Knowledge Graph, Tool Runtime, Orchestrator, and LLM Platform.
  */
 export function bootstrapAiFoundation(): AiFoundationBootstrap {
   const llm = bootstrapLlmPlatform();
@@ -53,6 +55,7 @@ export function bootstrapAiFoundation(): AiFoundationBootstrap {
     knowledgeNodeCount: stats.nodeCount,
     knowledgeEdgeCount: stats.edgeCount,
     knowledgeDocumentCount: stats.documentCount,
+    orchestratorVersion: AI_ORCHESTRATOR_VERSION,
     core,
     llm,
   };

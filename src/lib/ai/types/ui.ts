@@ -4,6 +4,7 @@ import type { AiPlannerDecision } from "@/lib/ai/types/planner";
 import type { AiSkillResolveResult, AiSkillResult } from "@/lib/ai/skills/contracts/types";
 import type { KgBuiltContext, KgRetrievalResult } from "@/lib/ai/knowledge-graph/types";
 import type { AiToolLlmDefinition, AiToolResolveResult } from "@/lib/ai/tools/types";
+import type { AiOrchestratorResult } from "@/lib/ai/orchestrator/types";
 
 /**
  * UI contracts — host applications implement visual surfaces separately.
@@ -42,4 +43,6 @@ export type AiCopilotTurnPreview = {
   toolResolution?: AiToolResolveResult;
   /** Tool definitions safe for LLM consumption — schemas only. */
   availableTools?: AiToolLlmDefinition[];
+  /** Full Orchestrator result for this turn — coordination only, never UI. */
+  orchestration?: AiOrchestratorResult;
 };

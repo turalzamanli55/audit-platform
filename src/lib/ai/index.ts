@@ -1,10 +1,9 @@
 /**
- * Enterprise AI Foundation + LLM Platform + Skills + Knowledge Graph + Tool Runtime
+ * Enterprise AI Foundation + LLM Platform + Skills + Knowledge Graph + Tool Runtime + Orchestrator
  *
  * Copilot Core → Context → Knowledge Engine → Actions → Conversation →
- * Planner → Skill Resolver → Knowledge Resolver → Knowledge Graph →
- * Retriever → Context Builder → Prompt Builder → LLM Platform →
- * Tool Runtime → Tool Registry → Tool Resolver → Tool Executor
+ * Planner → AI Orchestrator → Intent → Execution Plan → Steps →
+ * Skill / Knowledge / Tool pipelines → Prompt Builder → LLM Platform (deferred)
  */
 
 export {
@@ -31,5 +30,6 @@ export * from "@/lib/ai/permissions";
 export * from "@/lib/ai/providers";
 export * from "@/lib/ai/skills";
 export * from "@/lib/ai/tools";
+export * from "@/lib/ai/orchestrator";
 export * from "@/lib/ai/ui";
 export * from "@/lib/ai/registry";
