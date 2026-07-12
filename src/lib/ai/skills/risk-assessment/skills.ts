@@ -1,0 +1,106 @@
+import { RISK_ASSESSMENT_PERMISSIONS } from "@/constants/risk-assessment";
+import { defineAiSkill, workspaceReadPermission } from "@/lib/ai/skills/shared/define-skill";
+import type { AiSkillRegistration } from "@/lib/ai/skills/contracts/types";
+
+export const RISK_ASSESSMENT_AI_SKILLS: readonly AiSkillRegistration[] = [
+  defineAiSkill({
+    id: "risk-assessment.explain",
+    name: "Explain Risks",
+    moduleId: "risk-assessment",
+    description: "Explain risk assessment module and risk concepts.",
+    category: "explanation",
+    capabilities: ["explain"],
+    permission: workspaceReadPermission([RISK_ASSESSMENT_PERMISSIONS.READ], { requireEngagement: false }),
+    intentHints: ["explain risks", "explain risk assessment", "what is risk"],
+    plannerIntents: ["explain", "answer"],
+    priority: 70,
+    buildContext: ({ knowledge }) => ({
+      title: "Explain Risks",
+      description: knowledge?.purpose ?? "Risk assessment workspace.",
+      structuredContext: { focus: "risk_explanation" },
+    }),
+  }),
+  defineAiSkill({
+    id: "risk-assessment.summary",
+    name: "Risk Summary",
+    moduleId: "risk-assessment",
+    description: "Structured risk summary context.",
+    category: "analysis",
+    capabilities: ["summarize", "status"],
+    permission: workspaceReadPermission([RISK_ASSESSMENT_PERMISSIONS.READ], { requireEngagement: false }),
+    intentHints: ["risk summary", "summarize risks"],
+    plannerIntents: ["answer"],
+    priority: 65,
+    buildContext: ({ context }) => ({
+      title: "Risk Summary",
+      description: "Summary envelope for assessed risks.",
+      structuredContext: {
+        focus: "risk_summary",
+        engagementId: context.engagementId,
+        dimensions: ["inherent", "control", "combined"],
+      },
+    }),
+  }),
+  defineAiSkill({
+    id: "risk-assessment.heatmap",
+    name: "Heatmap Explanation",
+    moduleId: "risk-assessment",
+    description: "Explain risk heatmap structure.",
+    category: "explanation",
+    capabilities: ["explain"],
+    permission: workspaceReadPermission([RISK_ASSESSMENT_PERMISSIONS.READ], { requireEngagement: false }),
+    intentHints: ["heatmap explanation", "risk heatmap", "explain heatmap"],
+    plannerIntents: ["explain"],
+    priority: 60,
+    buildContext: () => ({
+      title: "Heatmap Explanation",
+      description: "Heatmap axes and cell semantics — no chart rendering.",
+      structuredContext: {
+        focus: "risk_heatmap",
+        axes: { x: "likelihood", y: "impact" },
+      },
+    }),
+  }),
+  defineAiSkill({
+    id: "risk-assessment.matrix",
+    name: "Matrix Explanation",
+    moduleId: "risk-assessment",
+    description: "Explain risk matrix structure.",
+    category: "explanation",
+    capabilities: ["explain"],
+    permission: workspaceReadPermission([RISK_ASSESSMENT_PERMISSIONS.READ], { requireEngagement: false }),
+    intentHints: ["matrix explanation", "risk matrix", "explain matrix"],
+    plannerIntents: ["explain"],
+    priority: 60,
+    buildContext: () => ({
+      title: "Matrix Explanation",
+      description: "Risk matrix taxonomy for assertion and significant risk mapping.",
+      structuredContext: {
+        focus: "risk_matrix",
+        matrixKinds: ["assertion", "significant_risk", "response"],
+      },
+    }),
+  }),
+  defineAiSkill({
+    id: "risk-assessment.high_risk_list",
+    name: "High Risk List",
+    moduleId: "risk-assessment",
+    description: "Structured high-risk list context.",
+    category: "audit",
+    capabilities: ["list", "analyze"],
+    permission: workspaceReadPermission([RISK_ASSESSMENT_PERMISSIONS.READ], { requireEngagement: false }),
+    intentHints: ["high risk list", "significant risks", "high risks"],
+    plannerIntents: ["search", "answer"],
+    priority: 78,
+    buildContext: ({ context }) => ({
+      title: "High Risk List",
+      severity: "warning",
+      description: "High-risk filter envelope — does not query risk stores here.",
+      structuredContext: {
+        focus: "high_risk_list",
+        engagementId: context.engagementId,
+        filter: { significant: true, severity: "high" },
+      },
+    }),
+  }),
+];

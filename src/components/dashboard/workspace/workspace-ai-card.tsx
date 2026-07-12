@@ -1,15 +1,19 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { IconSparkles } from "@/components/ui/icons";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import { WorkspacePanel } from "./workspace-section";
+import { useLanguage } from "@/providers";
+import { AI_WORKSPACE_PATH } from "@/config/dashboard-navigation";
+import { cn } from "@/lib/ui/cn";
 
 type WorkspaceAiCardProps = {
   labels: DashboardWorkspaceLabels["ai"];
 };
 
 export function WorkspaceAiCard({ labels }: WorkspaceAiCardProps) {
+  const { locale } = useLanguage();
   return (
     <WorkspacePanel
       variant="elevated"
@@ -30,49 +34,15 @@ export function WorkspaceAiCard({ labels }: WorkspaceAiCardProps) {
           </div>
         </div>
 
-        <div
-          aria-hidden
-          className="flex h-28 items-center justify-center rounded-2xl border border-dashed border-primary/20 bg-primary/5 text-sm text-muted-foreground"
+        <Link
+          href={`/${locale}${AI_WORKSPACE_PATH}`}
+          className={cn(
+            "inline-flex h-10 w-full items-center justify-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:w-auto",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          )}
         >
-          {labels.placeholder}
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div className="space-y-2">
-            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              {labels.recentTitle}
-            </p>
-            <ul className="space-y-2">
-              {labels.conversations.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-xl border border-border/40 bg-background/60 px-3 py-2.5 text-sm text-foreground"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-              {labels.suggestionsTitle}
-            </p>
-            <ul className="space-y-2">
-              {labels.suggestions.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-xl border border-border/40 bg-background/60 px-3 py-2.5 text-sm text-muted-foreground"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <Button type="button" className="w-full sm:w-auto" disabled aria-disabled="true">
           {labels.askButton}
-        </Button>
+        </Link>
       </div>
     </WorkspacePanel>
   );

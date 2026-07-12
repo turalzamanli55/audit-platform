@@ -128,7 +128,8 @@
     "statsPlaceholder": "Biznes metrikaları növbəti sprintlərdə əlavə olunacaq",
     "welcomeTitle": "İş mühitinizə xoş gəldiniz",
     "welcomeDescription": "İcazə yoxlamaları, kirayəçi konteksti və naviqasiya aktivdir. Biznes modulları Sprint 3-də əlavə olunacaq.",
-    "navImportIntelligence": "İmport İntellekti"
+    "navImportIntelligence": "İmport İntellekti",
+    "navAiWorkspace": "AI İş sahəsi"
   },
   "companies": {
     "navCompanies": "Şirkətlər",

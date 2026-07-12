@@ -128,7 +128,8 @@
     "statsPlaceholder": "İş metrikleri sonraki sprintlerde",
     "welcomeTitle": "Çalışma alanınıza hoş geldiniz",
     "welcomeDescription": "İzin kontrolleri ve kiracı bağlamı aktif. İş modülleri Sprint 3'te.",
-    "navImportIntelligence": "İçe Aktarma Zekası"
+    "navImportIntelligence": "İçe Aktarma Zekası",
+    "navAiWorkspace": "AI Çalışma Alanı"
   },
   "companies": {
     "navCompanies": "Şirketler",

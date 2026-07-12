@@ -59,7 +59,9 @@ export function DashboardCommandCenter({ model }: DashboardCommandCenterProps) {
       searchCompanies: () => router.push(`/${locale}${COMPANIES_PATH}`),
       searchEngagements: () => router.push(`/${locale}${ENGAGEMENTS_PATH}`),
       openCalendar: () => scrollToSection("command-center-deadlines"),
-      openAi: () => scrollToSection("command-center-my-work"),
+      openAi: () => {
+        router.push(`/${locale}/ai`);
+      },
     });
 
     return () => registerDashboardCommands(null);

@@ -128,7 +128,8 @@
     "statsPlaceholder": "Бизнес-метрики в следующих спринтах",
     "welcomeTitle": "Добро пожаловать",
     "welcomeDescription": "Проверки прав и контекст арендатора активны. Бизнес-модули в Sprint 3.",
-    "navImportIntelligence": "Интеллект импорта"
+    "navImportIntelligence": "Интеллект импорта",
+    "navAiWorkspace": "AI Workspace"
   },
   "companies": {
     "navCompanies": "Компании",

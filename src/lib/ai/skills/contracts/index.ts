@@ -1,0 +1,20 @@
+export type {
+  AiSkillCategory,
+  AiSkillCapability,
+  AiSkillVisibility,
+  AiSkillSeverity,
+  AiSkillJsonSchema,
+  AiSkillDefinition,
+  AiSkillRecommendedAction,
+  AiSkillReference,
+  AiSkillResult,
+  AiSkillExecutionInput,
+  AiSkillHandler,
+  AiSkillRegistration,
+  AiSkillResolveRequest,
+  AiSkillResolveMatch,
+  AiSkillResolveResult,
+  AiSkillExecuteRequest,
+  AiSkillExecuteResult,
+} from "@/lib/ai/skills/contracts/types";
+export { AI_SKILL_CATEGORIES, AI_SKILL_CAPABILITIES } from "@/lib/ai/skills/contracts/types";

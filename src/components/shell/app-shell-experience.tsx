@@ -23,7 +23,7 @@ import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
 import type { EngagementListLoadReason } from "@/lib/engagement/engagement-list-item";
 import type { DashboardWorkspaceLabels } from "@/i18n/dashboard-workspace-types";
 import type { DashboardNavItem } from "@/config/dashboard-navigation";
-import { COMPANIES_PATH, ENGAGEMENTS_PATH } from "@/config/dashboard-navigation";
+import { COMPANIES_PATH, ENGAGEMENTS_PATH, AI_WORKSPACE_PATH } from "@/config/dashboard-navigation";
 import { DASHBOARD_PATH } from "@/config/auth";
 import { useSettings, useTheme } from "@/providers";
 
@@ -240,7 +240,13 @@ export function AppShellExperience({
             router.push(`/${locale}${ENGAGEMENTS_PATH}`);
           },
           openCalendar: () => dashboardHandlers?.openCalendar?.(),
-          openAi: () => dashboardHandlers?.openAi?.(),
+          openAi: () => {
+            if (dashboardHandlers?.openAi) {
+              dashboardHandlers.openAi();
+              return;
+            }
+            router.push(`/${locale}${AI_WORKSPACE_PATH}`);
+          },
         },
       ),
     [

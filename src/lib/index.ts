@@ -29,3 +29,11 @@ export {
   type ActionResult,
 } from "@/lib/actions";
 export * from "@/lib/security";
+export {
+  bootstrapAiFoundation,
+  bootstrapLlmPlatform,
+  AiCopilotCore,
+  LlmPlatform,
+  AI_FOUNDATION_VERSION,
+  LLM_PLATFORM_VERSION,
+} from "@/lib/ai";

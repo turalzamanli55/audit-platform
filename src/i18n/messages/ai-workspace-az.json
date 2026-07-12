@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "title": "AI İş sahəsi",
+    "description": "Enterprise AI workspace grounded in platform context, knowledge, and governed actions."
+  },
+  "nav": {
+    "label": "AI İş sahəsi"
+  },
+  "header": {
+    "title": "AI İş sahəsi",
+    "conversation": "Söhbət",
+    "module": "Modul",
+    "company": "Şirkət",
+    "engagement": "Engagement",
+    "model": "Model",
+    "provider": "Provider",
+    "none": "None",
+    "unconfigured": "Konfiqurasiya olunmayıb"
+  },
+  "welcome": {
+    "title": "Sistemə xoş gəlmisiniz",
+    "subtitle": "This workspace helps you navigate audit work with governed context, knowledge, and actions — without replacing professional judgment.",
+    "understands": "AI understands",
+    "module": "Current module",
+    "company": "Current company",
+    "engagement": "Current engagement",
+    "workflow": "Workflow",
+    "permissions": "İcazələr",
+    "knowledge": "Bilik",
+    "actions": "Əməliyyatlar",
+    "start": "Söhbətə başla",
+    "examples": "Nümunələri göstər",
+    "documentation": "Sənədləri aç",
+    "hide": "Salamlamanı gizlət",
+    "neverAgain": "Bir daha göstərmə"
+  },
+  "history": {
+    "title": "Tarixçə",
+    "search": "Search conversations",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This Week",
+    "older": "Older",
+    "favorites": "Favorites",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "rename": "Rename",
+    "archive": "Archive",
+    "delete": "Delete",
+    "favorite": "Favorite",
+    "unfavorite": "Unfavorite",
+    "empty": "Hələ söhbət yoxdur",
+    "newConversation": "Yeni söhbət"
+  },
+  "conversation": {
+    "title": "Söhbət",
+    "emptyTitle": "Hələ söhbət yoxdur",
+    "emptyDescription": "Start with a prompt or choose a suggestion. Responses are planner-governed previews — no live model is connected.",
+    "foundationNotice": "Connected to AI Foundation and LLM Platform (read-only).",
+    "plannerIntent": "Planner intent",
+    "providerUnavailable": "Provider unavailable — showing governed preview only."
+  },
+  "composer": {
+    "placeholder": "Ask about this workspace, module, or workflow…",
+    "send": "Göndər",
+    "characters": "characters",
+    "context": "Context",
+    "module": "Modul",
+    "workspace": "İş sahəsi",
+    "shortcutSend": "Ctrl+Enter to send",
+    "enterSends": "Enter to send",
+    "ctrlEnterSends": "Ctrl+Enter to send"
+  },
+  "context": {
+    "title": "AI Context",
+    "route": "Route",
+    "module": "Modul",
+    "company": "Şirkət",
+    "engagement": "Engagement",
+    "user": "User",
+    "workspace": "İş sahəsi",
+    "organization": "Təşkilat",
+    "locale": "Locale",
+    "theme": "Theme",
+    "workflow": "Workflow",
+    "permissions": "İcazələr",
+    "filters": "Filters",
+    "selection": "Selection",
+    "unsaved": "Unsaved changes",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "suggestions": {
+    "title": "Tövsiyələr",
+    "empty": "No suggestions",
+    "intent": "Intent",
+    "apply": "Tövsiyəni istifadə et"
+  },
+  "actions": {
+    "title": "Əməliyyatlar",
+    "empty": "No actions",
+    "permission": "Permission",
+    "availability": "Availability",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "estimated": "Estimated result",
+    "preview": "Önizləmə",
+    "neverExecute": "Actions are never executed from this workspace."
+  },
+  "knowledge": {
+    "title": "Bilik",
+    "purpose": "Purpose",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "dependencies": "Dependencies",
+    "workflow": "Workflow",
+    "related": "Related modules",
+    "empty": "No module knowledge loaded"
+  },
+  "provider": {
+    "title": "Provayder statusu",
+    "configured": "Configured provider",
+    "model": "Model",
+    "capabilities": "Capabilities",
+    "streaming": "Streaming",
+    "vision": "Vision",
+    "embeddings": "Embeddings",
+    "structuredOutput": "Structured output",
+    "health": "Health",
+    "readOnly": "Read only — no provider connection."
+  },
+  "loading": {
+    "workspace": "AI İş sahəsi yüklənir…",
+    "conversation": "Loading conversation…",
+    "history": "Loading history…",
+    "context": "Loading context…",
+    "suggestions": "Loading suggestions…",
+    "knowledge": "Loading knowledge…"
+  },
+  "empty": {
+    "conversation": "No conversation",
+    "suggestions": "No suggestions",
+    "history": "No history",
+    "actions": "No actions",
+    "knowledge": "No knowledge"
+  },
+  "error": {
+    "provider": "Provider unavailable",
+    "permission": "Permission denied",
+    "workspace": "Workspace unavailable",
+    "conversation": "Conversation unavailable",
+    "context": "Context unavailable",
+    "retry": "Yenidən cəhd et"
+  },
+  "roles": {
+    "assistant": "Assistant",
+    "user": "You",
+    "system": "System",
+    "warning": "Warning",
+    "suggestion": "Suggestion",
+    "action": "Action",
+    "workflow": "Workflow",
+    "knowledge": "Bilik"
+  }
+}

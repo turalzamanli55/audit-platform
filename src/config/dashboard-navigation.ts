@@ -6,6 +6,7 @@ export const ENGAGEMENTS_PATH = "/app/engagements";
 export const ENGAGEMENTS_NEW_PATH = "/app/engagements/new";
 
 export const IMPORT_INTELLIGENCE_PATH = "/app/import-intelligence";
+export const AI_WORKSPACE_PATH = "/ai";
 
 export type DashboardNavItem = {
   href: string;
@@ -21,6 +22,7 @@ export const defaultDashboardNavItems: DashboardNavItem[] = [
   { href: COMPANIES_PATH, label: "Companies" },
   { href: ENGAGEMENTS_PATH, label: "Engagements" },
   { href: IMPORT_INTELLIGENCE_PATH, label: "Import Intelligence" },
+  { href: AI_WORKSPACE_PATH, label: "AI Workspace" },
 ];
 
 export function coerceDashboardNavItems(items: unknown): DashboardNavItem[] {

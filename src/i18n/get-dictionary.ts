@@ -3,6 +3,7 @@ import type { Locale } from "./types";
 import type { MarketingLabels } from "./marketing-types";
 import type { AuthExperienceLabels } from "./auth-experience-types";
 import type { DashboardWorkspaceLabels } from "./dashboard-workspace-types";
+import type { AiWorkspaceLabels } from "./ai-workspace-types";
 import type {
   CompletionCommandCenterLabels,
   CompletionWorkspaceLabels,
@@ -1725,6 +1726,7 @@ export type Dictionary = {
     theme: string;
     navDashboard: string;
     navImportIntelligence: string;
+    navAiWorkspace: string;
     navMainAria: string;
     userCardTitle: string;
     roles: string;
@@ -3542,10 +3544,11 @@ export type Dictionary = {
   marketing: MarketingLabels;
   authExperience: AuthExperienceLabels;
   dashboardWorkspace: DashboardWorkspaceLabels;
+  aiWorkspace: AiWorkspaceLabels;
 };
 
 async function loadDictionary(locale: Locale): Promise<Dictionary> {
-  const [base, marketing, authExperience, dashboardWorkspace] = await Promise.all([
+  const [base, marketing, authExperience, dashboardWorkspace, aiWorkspace] = await Promise.all([
     import(`./messages/${locale}.json`).then((m) => m.default),
     import(`./messages/marketing-${locale}.json`).then((m) => m.default as MarketingLabels),
     import(`./messages/auth-experience-${locale}.json`).then(
@@ -3554,8 +3557,9 @@ async function loadDictionary(locale: Locale): Promise<Dictionary> {
     import(`./messages/dashboard-workspace-${locale}.json`).then(
       (m) => m.default as DashboardWorkspaceLabels,
     ),
+    import(`./messages/ai-workspace-${locale}.json`).then((m) => m.default as AiWorkspaceLabels),
   ]);
-  return { ...base, marketing, authExperience, dashboardWorkspace } as Dictionary;
+  return { ...base, marketing, authExperience, dashboardWorkspace, aiWorkspace } as Dictionary;
 }
 
 const dictionaryMemoryCache = new Map<Locale, Dictionary>();

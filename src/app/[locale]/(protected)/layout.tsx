@@ -7,6 +7,7 @@ import {
   COMPANIES_PATH,
   ENGAGEMENTS_PATH,
   IMPORT_INTELLIGENCE_PATH,
+  AI_WORKSPACE_PATH,
   defaultDashboardNavItems,
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
@@ -97,7 +98,9 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
             ? dictionary.engagements.navEngagements
             : item.href === IMPORT_INTELLIGENCE_PATH
               ? dictionary.dashboard.navImportIntelligence
-              : dictionary.dashboard.navDashboard,
+              : item.href === AI_WORKSPACE_PATH
+                ? dictionary.dashboard.navAiWorkspace
+                : dictionary.dashboard.navDashboard,
     })),
   );
 

@@ -105,12 +105,12 @@ export function CommandPalette({ items, labels, locale }: CommandPaletteProps) {
     const handleShortcut = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        setCommandPaletteOpen(true);
+        router.push(`/${locale}/ai`);
       }
     };
     document.addEventListener("keydown", handleShortcut);
     return () => document.removeEventListener("keydown", handleShortcut);
-  }, [setCommandPaletteOpen]);
+  }, [router, locale]);
 
   useEffect(() => {
     if (!commandPaletteOpen) return;

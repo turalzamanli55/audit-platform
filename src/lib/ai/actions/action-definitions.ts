@@ -1,0 +1,133 @@
+import type { AiActionDefinition } from "@/lib/ai/types/actions";
+import { COMPANY_PERMISSIONS } from "@/constants/company";
+import { ENGAGEMENT_PERMISSIONS } from "@/constants/engagement";
+
+/**
+ * Platform action definitions only.
+ * Handlers produce instructions — never mutate business data here.
+ */
+export const AI_ACTION_DEFINITIONS: readonly AiActionDefinition[] = [
+  {
+    id: "platform.navigate",
+    kind: "navigate",
+    label: "Navigate",
+    description: "Navigate to a registered in-app href.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["href"],
+  },
+  {
+    id: "platform.open_module",
+    kind: "open_module",
+    label: "Open Module",
+    description: "Open a registered platform module workspace.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["moduleId", "href"],
+  },
+  {
+    id: "platform.open_company",
+    kind: "open_company",
+    label: "Open Company",
+    description: "Open a company workspace by id or slug.",
+    moduleIds: ["companies", "dashboard", "uaie"],
+    permission: {
+      requireWorkspace: true,
+      anyOf: [COMPANY_PERMISSIONS.READ],
+    },
+    payloadKeys: ["companyId", "slug", "href"],
+  },
+  {
+    id: "platform.open_engagement",
+    kind: "open_engagement",
+    label: "Open Engagement",
+    description: "Open an engagement workspace by id or slug.",
+    moduleIds: ["engagements", "dashboard"],
+    permission: {
+      requireWorkspace: true,
+      anyOf: [ENGAGEMENT_PERMISSIONS.READ],
+    },
+    payloadKeys: ["engagementId", "slug", "href"],
+  },
+  {
+    id: "platform.apply_filter",
+    kind: "apply_filter",
+    label: "Apply Filter",
+    description: "Apply UI filters on the current page.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["filters"],
+  },
+  {
+    id: "platform.open_modal",
+    kind: "open_modal",
+    label: "Open Modal",
+    description: "Open a registered modal surface.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["surfaceId", "props"],
+  },
+  {
+    id: "platform.open_drawer",
+    kind: "open_drawer",
+    label: "Open Drawer",
+    description: "Open a registered drawer surface.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["surfaceId", "props"],
+  },
+  {
+    id: "platform.start_workflow",
+    kind: "start_workflow",
+    label: "Start Workflow",
+    description: "Start a registered workflow on the current entity.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["workflowId"],
+  },
+  {
+    id: "platform.continue_workflow",
+    kind: "continue_workflow",
+    label: "Continue Workflow",
+    description: "Continue an in-progress registered workflow.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["workflowId"],
+  },
+  {
+    id: "platform.search",
+    kind: "search",
+    label: "Search",
+    description: "Run an in-app search within permitted scope.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["query", "scope"],
+  },
+  {
+    id: "platform.highlight_component",
+    kind: "highlight_component",
+    label: "Highlight Component",
+    description: "Highlight a UI component for guided assistance.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["componentId"],
+  },
+  {
+    id: "platform.show_documentation",
+    kind: "show_documentation",
+    label: "Show Documentation",
+    description: "Open documentation for a topic id.",
+    moduleIds: "*",
+    permission: {},
+    payloadKeys: ["topicId"],
+  },
+  {
+    id: "platform.restart_tour",
+    kind: "restart_tour",
+    label: "Restart Tour",
+    description: "Restart a product tour for the current module.",
+    moduleIds: "*",
+    permission: { requireWorkspace: true },
+    payloadKeys: ["tourId"],
+  },
+] as const;

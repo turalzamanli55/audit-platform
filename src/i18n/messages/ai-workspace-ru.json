@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "title": "AI Workspace",
+    "description": "Enterprise AI workspace grounded in platform context, knowledge, and governed actions."
+  },
+  "nav": {
+    "label": "AI Workspace"
+  },
+  "header": {
+    "title": "AI Workspace",
+    "conversation": "Разговор",
+    "module": "Модуль",
+    "company": "Компания",
+    "engagement": "Проект",
+    "model": "Model",
+    "provider": "Provider",
+    "none": "None",
+    "unconfigured": "Не настроено"
+  },
+  "welcome": {
+    "title": "Добро пожаловать в систему",
+    "subtitle": "This workspace helps you navigate audit work with governed context, knowledge, and actions — without replacing professional judgment.",
+    "understands": "AI understands",
+    "module": "Current module",
+    "company": "Current company",
+    "engagement": "Current engagement",
+    "workflow": "Workflow",
+    "permissions": "Права",
+    "knowledge": "Знания",
+    "actions": "Действия",
+    "start": "Начать разговор",
+    "examples": "Показать примеры",
+    "documentation": "Открыть документацию",
+    "hide": "Скрыть приветствие",
+    "neverAgain": "Больше не показывать"
+  },
+  "history": {
+    "title": "История",
+    "search": "Search conversations",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This Week",
+    "older": "Older",
+    "favorites": "Favorites",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "rename": "Rename",
+    "archive": "Archive",
+    "delete": "Delete",
+    "favorite": "Favorite",
+    "unfavorite": "Unfavorite",
+    "empty": "Пока нет разговоров",
+    "newConversation": "Новый разговор"
+  },
+  "conversation": {
+    "title": "Разговор",
+    "emptyTitle": "Пока нет разговора",
+    "emptyDescription": "Start with a prompt or choose a suggestion. Responses are planner-governed previews — no live model is connected.",
+    "foundationNotice": "Connected to AI Foundation and LLM Platform (read-only).",
+    "plannerIntent": "Planner intent",
+    "providerUnavailable": "Provider unavailable — showing governed preview only."
+  },
+  "composer": {
+    "placeholder": "Ask about this workspace, module, or workflow…",
+    "send": "Отправить",
+    "characters": "characters",
+    "context": "Context",
+    "module": "Модуль",
+    "workspace": "Рабочая область",
+    "shortcutSend": "Ctrl+Enter to send",
+    "enterSends": "Enter to send",
+    "ctrlEnterSends": "Ctrl+Enter to send"
+  },
+  "context": {
+    "title": "AI Context",
+    "route": "Route",
+    "module": "Модуль",
+    "company": "Компания",
+    "engagement": "Проект",
+    "user": "User",
+    "workspace": "Рабочая область",
+    "organization": "Организация",
+    "locale": "Locale",
+    "theme": "Theme",
+    "workflow": "Workflow",
+    "permissions": "Права",
+    "filters": "Filters",
+    "selection": "Selection",
+    "unsaved": "Unsaved changes",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "suggestions": {
+    "title": "Подсказки",
+    "empty": "No suggestions",
+    "intent": "Intent",
+    "apply": "Использовать подсказку"
+  },
+  "actions": {
+    "title": "Действия",
+    "empty": "No actions",
+    "permission": "Permission",
+    "availability": "Availability",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "estimated": "Estimated result",
+    "preview": "Просмотр",
+    "neverExecute": "Actions are never executed from this workspace."
+  },
+  "knowledge": {
+    "title": "Знания",
+    "purpose": "Purpose",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "dependencies": "Dependencies",
+    "workflow": "Workflow",
+    "related": "Related modules",
+    "empty": "No module knowledge loaded"
+  },
+  "provider": {
+    "title": "Статус провайдера",
+    "configured": "Configured provider",
+    "model": "Model",
+    "capabilities": "Capabilities",
+    "streaming": "Streaming",
+    "vision": "Vision",
+    "embeddings": "Embeddings",
+    "structuredOutput": "Structured output",
+    "health": "Health",
+    "readOnly": "Read only — no provider connection."
+  },
+  "loading": {
+    "workspace": "Загрузка AI Workspace…",
+    "conversation": "Loading conversation…",
+    "history": "Loading history…",
+    "context": "Loading context…",
+    "suggestions": "Loading suggestions…",
+    "knowledge": "Loading knowledge…"
+  },
+  "empty": {
+    "conversation": "No conversation",
+    "suggestions": "No suggestions",
+    "history": "No history",
+    "actions": "No actions",
+    "knowledge": "No knowledge"
+  },
+  "error": {
+    "provider": "Provider unavailable",
+    "permission": "Permission denied",
+    "workspace": "Workspace unavailable",
+    "conversation": "Conversation unavailable",
+    "context": "Context unavailable",
+    "retry": "Повторить"
+  },
+  "roles": {
+    "assistant": "Assistant",
+    "user": "You",
+    "system": "System",
+    "warning": "Warning",
+    "suggestion": "Suggestion",
+    "action": "Action",
+    "workflow": "Workflow",
+    "knowledge": "Знания"
+  }
+}

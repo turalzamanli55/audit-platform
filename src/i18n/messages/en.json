@@ -128,7 +128,8 @@
     "statsPlaceholder": "Business metrics arrive in future sprints",
     "welcomeTitle": "Welcome to your workspace",
     "welcomeDescription": "Permission checks, tenant context, and navigation are active. Business modules will be added in Sprint 3.",
-    "navImportIntelligence": "Import Intelligence"
+    "navImportIntelligence": "Import Intelligence",
+    "navAiWorkspace": "AI Workspace"
   },
   "companies": {
     "navCompanies": "Companies",
