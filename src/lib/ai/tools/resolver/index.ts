@@ -81,6 +81,22 @@ export class AiToolResolver {
         reasons.push("name_match");
       }
     }
+    if (request.workspaceContext?.moduleId && tool.moduleId === request.workspaceContext.moduleId) {
+      score += 8;
+      reasons.push("workspace_module");
+    }
+    if (
+      request.knowledgeReferences?.some(
+        (reference) => tool.id.includes(reference) || tool.moduleId === request.context.moduleId,
+      )
+    ) {
+      score += 6;
+      reasons.push("knowledge_reference");
+    }
+    if (request.memoryContext?.entries.some((entry) => entry.moduleId === tool.moduleId)) {
+      score += 4;
+      reasons.push("memory_context");
+    }
     if (request.context.workspaceId) {
       score += 2;
       reasons.push("workspace");

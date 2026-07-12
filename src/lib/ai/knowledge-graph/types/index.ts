@@ -130,6 +130,8 @@ export type KgRetrievalRequest = {
   moduleIds?: readonly AiModuleId[];
   nodeTypes?: readonly KgNodeType[];
   limit?: number;
+  plannerIntent?: string | null;
+  memoryKeywords?: readonly string[];
 };
 
 export type KgRetrievalResult = {

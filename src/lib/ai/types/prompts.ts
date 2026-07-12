@@ -4,6 +4,11 @@ import type { AiConversationMessage } from "@/lib/ai/types/conversation";
 import type { AiMemoryEntry } from "@/lib/ai/types/memory";
 import type { AiPlannerDecision } from "@/lib/ai/types/planner";
 import type { KgBuiltContext } from "@/lib/ai/knowledge-graph/types";
+import type { AiToolLlmDefinition } from "@/lib/ai/tools/types";
+import type { AiModuleContextResolution } from "@/lib/ai/context-resolvers/types";
+import type { EmeMemoryContext } from "@/lib/ai/memory-engine/types";
+import type { AiPipelineObservability, AiPipelineTrace } from "@/lib/ai/pipeline/types";
+import type { AiHostExecutionPlan } from "@/lib/ai/host/types";
 
 /**
  * Provider-agnostic prompt object.
@@ -28,6 +33,14 @@ export type AiPromptObject = {
   skillContext: Record<string, unknown> | null;
   /** Structured knowledge-graph retrieval context — never vendor prompt text. */
   knowledgeGraphContext: KgBuiltContext | null;
+  /** Tool definitions safe for LLM — schemas only. */
+  availableTools?: AiToolLlmDefinition[];
+  /** Selected tool ids considered for this turn. */
+  tools?: string[];
+  /** Workspace module resolution from Context Resolver. */
+  workspaceContext?: AiModuleContextResolution | null;
+  /** Ranked enterprise memory context snapshot. */
+  memoryContext?: EmeMemoryContext | null;
   userUtterance: string;
   assembledAt: string;
 };
@@ -41,4 +54,8 @@ export type AiPromptBuilderInput = {
   planner?: AiPlannerDecision | null;
   skillContext?: Record<string, unknown> | null;
   knowledgeGraphContext?: KgBuiltContext | null;
+  availableTools?: AiToolLlmDefinition[];
+  tools?: string[];
+  workspaceContext?: AiModuleContextResolution | null;
+  memoryContext?: EmeMemoryContext | null;
 };

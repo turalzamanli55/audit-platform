@@ -196,8 +196,9 @@ export function AiEverywhereProvider({
   const submitUtterance = useCallback(
     (utterance: string) => {
       if (!canUseAi) return;
-      const preview = core.previewTurn(
-        {
+      const pipeline = core.runPipeline({
+        utterance,
+        contextInput: {
           route: context.route,
           moduleId: context.moduleId,
           locale: context.locale,
@@ -221,8 +222,9 @@ export function AiEverywhereProvider({
           selectedObjectId: selection?.objectId ?? context.selectedObjectId,
           auditYear: context.auditYear,
         },
-        { utterance },
-      );
+        surface: "everywhere",
+      });
+      const preview = pipeline.preview;
       setLastPreview(preview);
       const userMessage: AiWorkspaceMessage = {
         id: createAiId("msg"),
@@ -233,8 +235,12 @@ export function AiEverywhereProvider({
       setMessages((current) => [...current, userMessage, buildAssistantMessage(preview, utterance)]);
       setOpen(true);
 
-      // Mutations open Host Execution Drawer — never execute directly.
-      if (
+      // Host Execution Drawer — use pipeline plan first, server action as fallback.
+      const hostPlan = pipeline.hostExecutionPlan;
+      if (hostPlan) {
+        setExecutionPlan(hostPlan);
+        setExecutionOpen(true);
+      } else if (
         isHostMutationSuggestion({
           utterance,
           plannerIntent: preview.planner.intent,
@@ -254,7 +260,6 @@ export function AiEverywhereProvider({
               context,
               serverActionId,
               toolId: `tool.action.${operation === "delete" ? "archive" : operation}`,
-              title: undefined,
               description: `Suggested from AI Everywhere: ${utterance}`,
               payload: {
                 entityType,

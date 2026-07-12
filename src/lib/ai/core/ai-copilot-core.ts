@@ -26,6 +26,19 @@ import {
   type AiOrchestratorRequest,
   type AiOrchestratorResult,
 } from "@/lib/ai/orchestrator";
+import {
+  AiIntegrationPipeline,
+  type AiPipelineRequest,
+  type AiPipelineResult,
+} from "@/lib/ai/pipeline";
+import {
+  bootstrapEnterpriseMemoryEngine,
+  type EnterpriseMemoryEngine,
+} from "@/lib/ai/memory-engine/engine";
+import {
+  bootstrapAiHostExecutionRuntime,
+  type AiHostExecutionRuntime,
+} from "@/lib/ai/host/runtime";
 import type { AiProvider } from "@/lib/ai/types/provider";
 import type { AiContextCollectionInput } from "@/lib/ai/types/context";
 import type { AiCopilotTurnPreview, AiCopilotTurnRequest } from "@/lib/ai/types/ui";
@@ -63,6 +76,9 @@ export type AiCopilotCoreDeps = {
   knowledgeGraph?: KnowledgeGraphEngine;
   toolRuntime?: AiToolRuntime;
   orchestrator?: AiOrchestratorEngine;
+  memoryEngine?: EnterpriseMemoryEngine;
+  hostRuntime?: AiHostExecutionRuntime;
+  integrationPipeline?: AiIntegrationPipeline;
   panelContract?: AiCopilotPanelContractImpl;
 };
 
@@ -86,6 +102,9 @@ export class AiCopilotCore {
   readonly knowledgeGraph: KnowledgeGraphEngine;
   readonly toolRuntime: AiToolRuntime;
   readonly orchestrator: AiOrchestratorEngine;
+  readonly memoryEngine: EnterpriseMemoryEngine;
+  readonly hostRuntime: AiHostExecutionRuntime;
+  readonly integrationPipeline: AiIntegrationPipeline;
   readonly panelContract: AiCopilotPanelContractImpl;
 
   constructor(deps: AiCopilotCoreDeps = {}) {
@@ -116,60 +135,38 @@ export class AiCopilotCore {
         toolRuntime: this.toolRuntime,
         llmPlatform: this.llmPlatform,
       });
+    this.memoryEngine = deps.memoryEngine ?? bootstrapEnterpriseMemoryEngine();
+    this.hostRuntime = deps.hostRuntime ?? bootstrapAiHostExecutionRuntime();
+    this.integrationPipeline =
+      deps.integrationPipeline ??
+      new AiIntegrationPipeline({
+        core: this,
+        memoryEngine: this.memoryEngine,
+        hostRuntime: this.hostRuntime,
+      });
     this.panelContract = deps.panelContract ?? new AiCopilotPanelContractImpl();
   }
 
   /**
-   * Governed turn preview via Orchestrator:
-   * context → plan → orchestrate (skills/knowledge/tools/prompt) → structured preview.
-   * Does not call an LLM. Does not execute repositories/server actions.
+   * Production integration pipeline — shared by AI Workspace and AI Everywhere.
+   */
+  runPipeline(request: AiPipelineRequest): AiPipelineResult {
+    return this.integrationPipeline.execute(request);
+  }
+
+  /**
+   * Governed turn preview via Integration Pipeline (backward-compatible wrapper).
    */
   previewTurn(
     contextInput: AiContextCollectionInput,
     request: AiCopilotTurnRequest,
   ): AiCopilotTurnPreview {
-    const context = this.contextEngine.collect(contextInput);
-    const session = this.conversationManager.ensureSession(context);
-    this.conversationManager.append({ role: "user", content: request.utterance });
-
-    const modules = this.knowledgeEngine.listModules();
-    const planner = this.planner.plan({
+    const result = this.runPipeline({
       utterance: request.utterance,
-      context,
-      availableModules: modules,
-      availableActionIds: this.actionRegistry.listIds(),
+      contextInput,
+      surface: "workspace",
     });
-
-    const orchestration = this.orchestrator.run({
-      utterance: request.utterance,
-      context,
-      planner,
-      conversationId: session.conversationId,
-      sessionId: session.conversationId,
-      userId: context.userId,
-      conversation: session.messages,
-      memory: this.conversationManager.getMemory().list(),
-    });
-
-    return {
-      planner: orchestration.plan.planner ?? planner,
-      prompt: orchestration.prompt ?? this.promptBuilder.build({
-        userUtterance: request.utterance,
-        context,
-        knowledge: modules.slice(0, 5),
-        conversation: session.messages,
-        memory: this.conversationManager.getMemory().list(),
-        planner,
-      }),
-      providerAvailable: this.provider.getCapability().configured,
-      skillResolution: orchestration.skillResolution ?? undefined,
-      skillResult: orchestration.skillResult,
-      knowledgeRetrieval: orchestration.knowledgeRetrieval ?? undefined,
-      knowledgeGraphContext: orchestration.knowledgeGraphContext,
-      toolResolution: orchestration.toolResolution ?? undefined,
-      availableTools: orchestration.availableTools,
-      orchestration,
-    };
+    return result.preview;
   }
 
   orchestrate(request: AiOrchestratorRequest): AiOrchestratorResult {

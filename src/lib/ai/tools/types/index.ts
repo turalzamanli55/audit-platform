@@ -7,6 +7,8 @@ import type { AiModuleId, AiPlannerIntent } from "@/lib/ai/constants";
 import type { AiActionPermissionRequirement } from "@/lib/ai/types/actions";
 import type { AiRuntimeContext } from "@/lib/ai/types/context";
 import type { AiPlannerDecision } from "@/lib/ai/types/planner";
+import type { AiModuleContextResolution } from "@/lib/ai/context-resolvers/types";
+import type { EmeMemoryContext } from "@/lib/ai/memory-engine/types";
 
 export const AI_TOOL_CATEGORIES = [
   "navigation",
@@ -137,6 +139,9 @@ export type AiToolResolveRequest = {
   category?: AiToolCategory;
   moduleIds?: AiModuleId[];
   limit?: number;
+  knowledgeReferences?: string[];
+  memoryContext?: EmeMemoryContext | null;
+  workspaceContext?: AiModuleContextResolution | null;
 };
 
 export type AiToolResolveMatch = {

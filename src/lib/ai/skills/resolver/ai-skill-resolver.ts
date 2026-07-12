@@ -89,6 +89,34 @@ export class AiSkillResolver {
       }
     }
 
+    if (request.workspaceContext?.moduleId === skill.moduleId) {
+      score += 8;
+      reasons.push("workspace_module");
+    }
+
+    if (request.memoryContext?.entries.some((entry) => entry.moduleId === skill.moduleId)) {
+      score += 6;
+      reasons.push("memory_module");
+    }
+
+    if (
+      request.memoryContext?.preferences.aiVerbosity &&
+      skill.category === "explanation"
+    ) {
+      score += 4;
+      reasons.push("memory_preference");
+    }
+
+    if (
+      request.knowledgeContext?.relatedModules.includes(skill.moduleId) ||
+      request.knowledgeContext?.citations.some((citation) =>
+        citation.title.toLowerCase().includes(skill.moduleId.replace(/-/g, " ")),
+      )
+    ) {
+      score += 5;
+      reasons.push("knowledge_context");
+    }
+
     score += Math.min(skill.priority / 10, 10);
 
     if (request.context.workspaceId) {

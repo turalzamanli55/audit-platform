@@ -183,6 +183,9 @@ export class AiOrchestratorEngine {
         planner,
         conversation: request.conversation ?? this.defaultConversation,
         memory: request.memory ?? this.defaultMemory,
+        memoryContext: request.memoryContext ?? request.integration?.memoryContext ?? null,
+        workspaceResolution:
+          request.workspaceResolution ?? request.integration?.workspaceResolution ?? null,
       });
       ctx.intent = intent;
       ctx.strategy = strategy.id;

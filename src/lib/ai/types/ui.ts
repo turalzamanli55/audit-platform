@@ -5,6 +5,8 @@ import type { AiSkillResolveResult, AiSkillResult } from "@/lib/ai/skills/contra
 import type { KgBuiltContext, KgRetrievalResult } from "@/lib/ai/knowledge-graph/types";
 import type { AiToolLlmDefinition, AiToolResolveResult } from "@/lib/ai/tools/types";
 import type { AiOrchestratorResult } from "@/lib/ai/orchestrator/types";
+import type { AiPipelineObservability, AiPipelineTrace } from "@/lib/ai/pipeline/types";
+import type { AiHostExecutionPlan } from "@/lib/ai/host/types";
 
 /**
  * UI contracts — host applications implement visual surfaces separately.
@@ -45,4 +47,12 @@ export type AiCopilotTurnPreview = {
   availableTools?: AiToolLlmDefinition[];
   /** Full Orchestrator result for this turn — coordination only, never UI. */
   orchestration?: AiOrchestratorResult;
+  /** Integration pipeline trace + observability — workspace and everywhere share this. */
+  pipeline?: {
+    trace: AiPipelineTrace;
+    observability: AiPipelineObservability;
+    hostExecutionPlan: AiHostExecutionPlan | null;
+    memoryHitCount: number;
+    workspaceModuleId: string | null;
+  };
 };

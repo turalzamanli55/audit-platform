@@ -19,9 +19,29 @@ const PROFESSIONAL_TONE = [
 
 /**
  * Enterprise prompt builder — provider-agnostic assembly only.
+ * Composes conversation + memory + knowledge + skills + tools + workspace context.
  */
 export class AiPromptBuilder {
   build(input: AiPromptBuilderInput): AiPromptObject {
+    const skillContext = {
+      ...(input.skillContext ?? {}),
+      ...(input.workspaceContext
+        ? {
+            workspaceModule: input.workspaceContext.moduleId,
+            workspaceDisplayName: input.workspaceContext.displayName,
+            capabilityCount: input.workspaceContext.capabilities.length,
+          }
+        : {}),
+      ...(input.memoryContext
+        ? {
+            memoryPreferences: input.memoryContext.preferences,
+            memoryEntryCount: input.memoryContext.entries.length,
+            memorySummaries: input.memoryContext.summaries.map((summary) => summary.summary),
+          }
+        : {}),
+      ...(input.tools?.length ? { selectedToolIds: input.tools } : {}),
+    };
+
     return {
       version: AI_FOUNDATION_VERSION,
       systemDirectives: [...SYSTEM_DIRECTIVES],
@@ -37,8 +57,12 @@ export class AiPromptBuilder {
         organizationId: input.context.organizationId,
       },
       planner: input.planner ?? null,
-      skillContext: input.skillContext ?? null,
+      skillContext: Object.keys(skillContext).length > 0 ? skillContext : null,
       knowledgeGraphContext: input.knowledgeGraphContext ?? null,
+      availableTools: input.availableTools,
+      tools: input.tools,
+      workspaceContext: input.workspaceContext ?? null,
+      memoryContext: input.memoryContext ?? null,
       userUtterance: input.userUtterance,
       assembledAt: new Date().toISOString(),
     };

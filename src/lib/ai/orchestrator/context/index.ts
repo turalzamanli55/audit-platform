@@ -3,6 +3,8 @@ import type { AiPlannerDecision } from "@/lib/ai/types/planner";
 import type { AiModuleKnowledge } from "@/lib/ai/types/knowledge";
 import type { AiConversationMessage } from "@/lib/ai/types/conversation";
 import type { AiMemoryEntry } from "@/lib/ai/types/memory";
+import type { AiModuleContextResolution } from "@/lib/ai/context-resolvers/types";
+import type { EmeMemoryContext } from "@/lib/ai/memory-engine/types";
 import type { AiSkillResolveResult, AiSkillResult } from "@/lib/ai/skills/contracts/types";
 import type { KgBuiltContext, KgRetrievalResult } from "@/lib/ai/knowledge-graph/types";
 import type { AiToolLlmDefinition, AiToolResolveResult } from "@/lib/ai/tools/types";
@@ -21,6 +23,8 @@ export type AiOrchestratorBuiltContext = {
   moduleKnowledge: AiModuleKnowledge[];
   conversation: AiConversationMessage[];
   memory: AiMemoryEntry[];
+  memoryContext: EmeMemoryContext | null;
+  workspaceResolution: AiModuleContextResolution | null;
   skillResolution: AiSkillResolveResult | null;
   skillResult: AiSkillResult | null;
   knowledgeRetrieval: KgRetrievalResult | null;
@@ -41,6 +45,8 @@ export class AiOrchestratorContextBuilder {
     planner?: AiPlannerDecision | null;
     conversation?: AiConversationMessage[];
     memory?: AiMemoryEntry[];
+    memoryContext?: EmeMemoryContext | null;
+    workspaceResolution?: AiModuleContextResolution | null;
     moduleKnowledge?: AiModuleKnowledge[];
   }): AiOrchestratorBuiltContext {
     return {
@@ -52,6 +58,8 @@ export class AiOrchestratorContextBuilder {
       moduleKnowledge: input.moduleKnowledge ?? [],
       conversation: input.conversation ?? [],
       memory: input.memory ?? [],
+      memoryContext: input.memoryContext ?? null,
+      workspaceResolution: input.workspaceResolution ?? null,
       skillResolution: null,
       skillResult: null,
       knowledgeRetrieval: null,

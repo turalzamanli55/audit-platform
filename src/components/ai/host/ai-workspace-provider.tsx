@@ -420,8 +420,9 @@ export function AiWorkspaceHostProvider({
     (utterance: string) => {
       if (!core || !context) return;
       const conversationId = ensureConversation();
-      const preview = core.previewTurn(
-        {
+      const pipeline = core.runPipeline({
+        utterance,
+        contextInput: {
           route: context.route,
           moduleId: context.moduleId,
           locale: context.locale,
@@ -445,8 +446,10 @@ export function AiWorkspaceHostProvider({
           selectedObjectId: context.selectedObjectId,
           auditYear: context.auditYear,
         },
-        { utterance },
-      );
+        conversationId,
+        surface: "workspace",
+      });
+      const preview = pipeline.preview;
 
       const nextMessages = buildPreviewMessages(labels, utterance, preview, knowledge);
       setMessagesById((current) => ({
@@ -486,7 +489,16 @@ export function AiWorkspaceHostProvider({
           const response = await fetch("/api/ai/stream", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ utterance }),
+            body: JSON.stringify({
+              utterance,
+              streamMetadata: pipeline.streamMetadata,
+              promptContext: {
+                userUtterance: preview.prompt.userUtterance,
+                memoryCount: preview.prompt.memory.length,
+                citationCount: preview.prompt.knowledgeGraphContext?.citations.length ?? 0,
+                toolCount: preview.prompt.availableTools?.length ?? 0,
+              },
+            }),
           });
           if (!response.ok || !response.body) {
             setMessagesById((current) => ({

@@ -10,6 +10,8 @@ import type { AiPlannerDecision } from "@/lib/ai/types/planner";
 import type { AiPromptObject } from "@/lib/ai/types/prompts";
 import type { AiConversationMessage } from "@/lib/ai/types/conversation";
 import type { AiMemoryEntry } from "@/lib/ai/types/memory";
+import type { AiModuleContextResolution } from "@/lib/ai/context-resolvers/types";
+import type { EmeMemoryContext } from "@/lib/ai/memory-engine/types";
 import type { AiSkillResolveResult, AiSkillResult } from "@/lib/ai/skills/contracts/types";
 import type { KgBuiltContext, KgRetrievalResult } from "@/lib/ai/knowledge-graph/types";
 import type { AiToolLlmDefinition, AiToolResolveResult } from "@/lib/ai/tools/types";
@@ -198,6 +200,16 @@ export type AiOrchestratorRequest = {
   userId?: string | null;
   conversation?: AiConversationMessage[];
   memory?: AiMemoryEntry[];
+  /** Ranked enterprise memory context from Memory Engine. */
+  memoryContext?: EmeMemoryContext | null;
+  /** Module workspace resolution from Context Resolver. */
+  workspaceResolution?: AiModuleContextResolution | null;
+  /** Integration envelope for downstream resolvers. */
+  integration?: {
+    memoryContext?: EmeMemoryContext | null;
+    workspaceResolution?: AiModuleContextResolution | null;
+    plannerIntent?: string | null;
+  };
   /** When true, stop after planning without executing resolve/build steps. */
   planOnly?: boolean;
   /** Max retries per retryable step. */

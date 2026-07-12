@@ -92,6 +92,9 @@ export class AiOrchestratorExecutionBinder {
             utterance: ctx.utterance,
             planner: ctx.planner ?? undefined,
             limit: strategy.maxSkillLimit,
+            memoryContext: ctx.memoryContext,
+            knowledgeContext: ctx.knowledgeGraphContext,
+            workspaceContext: ctx.workspaceResolution,
           });
           ctx.skillResolution = resolution;
           let skillResult = null;
@@ -118,15 +121,27 @@ export class AiOrchestratorExecutionBinder {
         }
         case "resolve_knowledge": {
           deps.knowledgeGraph.resolve(ctx.runtime);
+          const memoryKeywords =
+            ctx.memoryContext?.entries.flatMap((entry) => entry.keywords).slice(0, 12) ?? [];
           const retrieval = deps.knowledgeGraph.retrieve({
             query: step.knowledgeQuery ?? ctx.utterance,
             context: ctx.runtime,
             limit: strategy.maxKnowledgeLimit,
+            plannerIntent: ctx.planner?.intent ?? null,
+            memoryKeywords,
+            moduleIds: ctx.workspaceResolution?.moduleId
+              ? [ctx.workspaceResolution.moduleId]
+              : ctx.runtime.moduleId
+                ? [ctx.runtime.moduleId]
+                : undefined,
           });
           const built = deps.knowledgeGraph.buildContext({
             query: step.knowledgeQuery ?? ctx.utterance,
             context: ctx.runtime,
             limit: strategy.maxKnowledgeLimit,
+            plannerIntent: ctx.planner?.intent ?? null,
+            memoryKeywords,
+            moduleIds: ctx.runtime.moduleId ? [ctx.runtime.moduleId] : undefined,
           });
           ctx.knowledgeRetrieval = retrieval;
           ctx.knowledgeGraphContext = built;
@@ -145,6 +160,12 @@ export class AiOrchestratorExecutionBinder {
             planner: ctx.planner ?? undefined,
             skillId: ctx.skillResolution?.selected?.skill.id ?? null,
             limit: strategy.maxToolLimit,
+            knowledgeReferences:
+              ctx.knowledgeGraphContext?.citations.map((citation) => citation.nodeId) ??
+              ctx.knowledgeRetrieval?.hits.map((hit) => hit.node.id) ??
+              [],
+            memoryContext: ctx.memoryContext,
+            workspaceContext: ctx.workspaceResolution,
           });
           ctx.toolResolution = resolution;
           ctx.availableTools = deps.toolRuntime.listLlmDefinitions();
@@ -182,6 +203,10 @@ export class AiOrchestratorExecutionBinder {
             planner: ctx.planner,
             skillContext: ctx.skillResult?.structuredContext ?? null,
             knowledgeGraphContext: ctx.knowledgeGraphContext,
+            availableTools: ctx.availableTools,
+            workspaceContext: ctx.workspaceResolution,
+            memoryContext: ctx.memoryContext,
+            tools: ctx.toolResolution?.matches.map((match) => match.tool.id) ?? [],
           });
           return {
             status: "succeeded",

@@ -2,20 +2,30 @@ import { NextRequest } from "next/server";
 import { bootstrapIntegratedLlmPlatformReady } from "@/lib/ai/providers/integration/bootstrap-live";
 import { bootstrapAiToolRuntime } from "@/lib/ai/tools";
 import { isLlmPlatformError } from "@/lib/ai/providers/provider-errors";
+import type { AiPipelineStreamMetadata } from "@/lib/ai/pipeline/types";
 
 export const runtime = "nodejs";
 
+type StreamRequestBody = {
+  utterance?: string;
+  modelId?: string;
+  messages?: Array<{ role: "system" | "user" | "assistant"; content: string }>;
+  streamMetadata?: AiPipelineStreamMetadata;
+  promptContext?: {
+    userUtterance?: string;
+    memoryCount?: number;
+    citationCount?: number;
+    toolCount?: number;
+  };
+};
+
 /**
- * Server-only streaming endpoint for AI Workspace.
- * Clients never call providers directly — traffic flows through LLM Platform.
+ * Server-only streaming endpoint — preserves pipeline metadata in stream events.
  */
 export async function POST(request: NextRequest) {
+  const streamStarted = Date.now();
   try {
-    const body = (await request.json()) as {
-      utterance?: string;
-      modelId?: string;
-      messages?: Array<{ role: "system" | "user" | "assistant"; content: string }>;
-    };
+    const body = (await request.json()) as StreamRequestBody;
 
     const boot = await bootstrapIntegratedLlmPlatformReady({
       toolRuntime: bootstrapAiToolRuntime(),
@@ -52,6 +62,23 @@ export async function POST(request: NextRequest) {
 
     const stream = new ReadableStream({
       async start(controller) {
+        if (body.streamMetadata) {
+          controller.enqueue(
+            encoder.encode(
+              `${JSON.stringify({
+                kind: "metadata",
+                traceExecutionId: body.streamMetadata.traceExecutionId,
+                citations: body.streamMetadata.citations,
+                knowledgeReferences: body.streamMetadata.knowledgeReferences,
+                toolPlans: body.streamMetadata.toolPlans,
+                hostExecutionPlanId: body.streamMetadata.hostExecutionPlanId,
+                promptContext: body.promptContext ?? null,
+                provider: route.providerId,
+              })}\n`,
+            ),
+          );
+        }
+
         try {
           for await (const event of boot.platform.streaming.stream(provider, {
             modelId,
@@ -59,6 +86,15 @@ export async function POST(request: NextRequest) {
           })) {
             controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
           }
+          controller.enqueue(
+            encoder.encode(
+              `${JSON.stringify({
+                kind: "done",
+                streamingDurationMs: Date.now() - streamStarted,
+                provider: route.providerId,
+              })}\n`,
+            ),
+          );
           controller.close();
         } catch (error) {
           const payload = isLlmPlatformError(error)

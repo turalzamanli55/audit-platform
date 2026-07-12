@@ -8,6 +8,9 @@ import type { AiActionPermissionRequirement } from "@/lib/ai/types/actions";
 import type { AiRuntimeContext } from "@/lib/ai/types/context";
 import type { AiModuleKnowledge } from "@/lib/ai/types/knowledge";
 import type { AiPlannerDecision } from "@/lib/ai/types/planner";
+import type { AiModuleContextResolution } from "@/lib/ai/context-resolvers/types";
+import type { EmeMemoryContext } from "@/lib/ai/memory-engine/types";
+import type { KgBuiltContext } from "@/lib/ai/knowledge-graph/types";
 
 export const AI_SKILL_CATEGORIES = [
   "explanation",
@@ -140,6 +143,9 @@ export type AiSkillResolveRequest = {
   /** When set, restrict candidates to these module ids. */
   moduleIds?: AiModuleId[];
   limit?: number;
+  memoryContext?: EmeMemoryContext | null;
+  knowledgeContext?: KgBuiltContext | null;
+  workspaceContext?: AiModuleContextResolution | null;
 };
 
 export type AiSkillResolveMatch = {

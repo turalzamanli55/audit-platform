@@ -42,6 +42,14 @@ export class KgRetriever {
   }
 
   retrieve(request: KgRetrievalRequest): KgRetrievalResult {
+    const enrichedQuery = [
+      request.query,
+      request.plannerIntent ?? "",
+      ...(request.memoryKeywords ?? []),
+    ]
+      .filter(Boolean)
+      .join(" ");
+    const enrichedRequest = { ...request, query: enrichedQuery.trim() || request.query };
     const modes = request.modes?.length
       ? request.modes.filter((mode) => mode !== "semantic" || false)
       : DEFAULT_MODES;
@@ -55,7 +63,7 @@ export class KgRetriever {
 
     const hits = this.search.search(
       {
-        ...request,
+        ...enrichedRequest,
         moduleIds: moduleIds.length > 0 ? moduleIds : request.moduleIds,
       },
       effectiveModes.includes("graph") || effectiveModes.includes("keyword")
@@ -71,7 +79,7 @@ export class KgRetriever {
         : hit,
     );
 
-    const ranked = this.ranker.rank(boosted, request).slice(0, request.limit ?? 12);
+    const ranked = this.ranker.rank(boosted, enrichedRequest).slice(0, request.limit ?? 12);
     const citations = ranked.flatMap((hit) => hit.citations);
 
     return {
