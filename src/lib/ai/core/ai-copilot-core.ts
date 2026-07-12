@@ -15,6 +15,11 @@ import {
   AiSkillExecutor,
   createPopulatedAiSkillRegistry,
 } from "@/lib/ai/skills";
+import {
+  KnowledgeGraphEngine,
+  bootstrapKnowledgeGraphEngine,
+} from "@/lib/ai/knowledge-graph";
+import { AiToolRuntime, bootstrapAiToolRuntime } from "@/lib/ai/tools";
 import type { AiProvider } from "@/lib/ai/types/provider";
 import type { AiContextCollectionInput } from "@/lib/ai/types/context";
 import type { AiCopilotTurnPreview, AiCopilotTurnRequest } from "@/lib/ai/types/ui";
@@ -26,6 +31,17 @@ import type {
   AiSkillResolveResult,
   AiSkillResult,
 } from "@/lib/ai/skills/contracts/types";
+import type {
+  KgBuiltContext,
+  KgRetrievalRequest,
+  KgRetrievalResult,
+} from "@/lib/ai/knowledge-graph/types";
+import type {
+  AiToolExecuteRequest,
+  AiToolResolveRequest,
+  AiToolResolveResult,
+  AiToolResult,
+} from "@/lib/ai/tools/types";
 
 export type AiCopilotCoreDeps = {
   contextEngine?: AiContextEngine;
@@ -39,12 +55,14 @@ export type AiCopilotCoreDeps = {
   skillRegistry?: AiSkillRegistry;
   skillResolver?: AiSkillResolver;
   skillExecutor?: AiSkillExecutor;
+  knowledgeGraph?: KnowledgeGraphEngine;
+  toolRuntime?: AiToolRuntime;
   panelContract?: AiCopilotPanelContractImpl;
 };
 
 /**
- * AI Copilot Core — orchestrates the enterprise foundation + Skills Engine.
- * No LLM vendor calls. Skills return structured objects only.
+ * AI Copilot Core — foundation + Skills + Knowledge Graph + Tool Runtime.
+ * LLM never executes business logic; tools are requested and executed by Tool Runtime.
  */
 export class AiCopilotCore {
   readonly version = AI_FOUNDATION_VERSION;
@@ -59,6 +77,8 @@ export class AiCopilotCore {
   readonly skillRegistry: AiSkillRegistry;
   readonly skillResolver: AiSkillResolver;
   readonly skillExecutor: AiSkillExecutor;
+  readonly knowledgeGraph: KnowledgeGraphEngine;
+  readonly toolRuntime: AiToolRuntime;
   readonly panelContract: AiCopilotPanelContractImpl;
 
   constructor(deps: AiCopilotCoreDeps = {}) {
@@ -75,12 +95,15 @@ export class AiCopilotCore {
       deps.skillResolver ?? new AiSkillResolver(this.skillRegistry);
     this.skillExecutor =
       deps.skillExecutor ?? new AiSkillExecutor(this.skillRegistry, this.knowledgeEngine);
+    this.knowledgeGraph = deps.knowledgeGraph ?? bootstrapKnowledgeGraphEngine();
+    this.toolRuntime = deps.toolRuntime ?? bootstrapAiToolRuntime();
     this.panelContract = deps.panelContract ?? new AiCopilotPanelContractImpl();
   }
 
   /**
-   * Builds a governed turn preview: context → plan → skill resolve → prompt.
-   * Does not call an LLM. Does not execute actions.
+   * Governed turn preview:
+   * context → plan → skill → knowledge → tool resolve → prompt.
+   * Does not call an LLM. Does not execute repositories/server actions.
    */
   previewTurn(
     contextInput: AiContextCollectionInput,
@@ -118,6 +141,26 @@ export class AiCopilotCore {
       }
     }
 
+    this.knowledgeGraph.resolve(context);
+    const knowledgeRetrieval = this.knowledgeGraph.retrieve({
+      query: request.utterance,
+      context,
+      limit: 12,
+    });
+    const knowledgeGraphContext = this.knowledgeGraph.buildContext({
+      query: request.utterance,
+      context,
+      limit: 12,
+    });
+
+    const toolResolution = this.toolRuntime.resolve({
+      context,
+      utterance: request.utterance,
+      planner,
+      skillId: skillResolution.selected?.skill.id ?? null,
+      limit: 5,
+    });
+
     const relevantKnowledge = planner.targetModuleId
       ? modules.filter(
           (module) =>
@@ -134,6 +177,7 @@ export class AiCopilotCore {
       memory: this.conversationManager.getMemory().list(),
       planner,
       skillContext: skillResult?.structuredContext ?? null,
+      knowledgeGraphContext,
     });
 
     return {
@@ -142,6 +186,10 @@ export class AiCopilotCore {
       providerAvailable: this.provider.getCapability().configured,
       skillResolution,
       skillResult,
+      knowledgeRetrieval,
+      knowledgeGraphContext,
+      toolResolution,
+      availableTools: this.toolRuntime.listLlmDefinitions(),
     };
   }
 
@@ -151,6 +199,22 @@ export class AiCopilotCore {
 
   executeSkill(request: AiSkillExecuteRequest): AiSkillExecuteResult {
     return this.skillExecutor.execute(request);
+  }
+
+  resolveTools(request: AiToolResolveRequest): AiToolResolveResult {
+    return this.toolRuntime.resolve(request);
+  }
+
+  executeTool(request: AiToolExecuteRequest): AiToolResult {
+    return this.toolRuntime.execute(request);
+  }
+
+  retrieveKnowledge(request: KgRetrievalRequest): KgRetrievalResult {
+    return this.knowledgeGraph.retrieve(request);
+  }
+
+  buildKnowledgeContext(request: KgRetrievalRequest): KgBuiltContext {
+    return this.knowledgeGraph.buildContext(request);
   }
 
   dispatchAction(request: AiActionRequest): AiActionResult {

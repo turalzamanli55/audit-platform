@@ -38,6 +38,7 @@ export class AiPromptBuilder {
       },
       planner: input.planner ?? null,
       skillContext: input.skillContext ?? null,
+      knowledgeGraphContext: input.knowledgeGraphContext ?? null,
       userUtterance: input.userUtterance,
       assembledAt: new Date().toISOString(),
     };

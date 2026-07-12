@@ -2,6 +2,8 @@ import type { AiPromptObject } from "@/lib/ai/types/prompts";
 import type { AiActionInstruction } from "@/lib/ai/types/actions";
 import type { AiPlannerDecision } from "@/lib/ai/types/planner";
 import type { AiSkillResolveResult, AiSkillResult } from "@/lib/ai/skills/contracts/types";
+import type { KgBuiltContext, KgRetrievalResult } from "@/lib/ai/knowledge-graph/types";
+import type { AiToolLlmDefinition, AiToolResolveResult } from "@/lib/ai/tools/types";
 
 /**
  * UI contracts — host applications implement visual surfaces separately.
@@ -32,4 +34,12 @@ export type AiCopilotTurnPreview = {
   skillResolution?: AiSkillResolveResult;
   /** Structured skill output when a skill was selected — never UI. */
   skillResult?: AiSkillResult | null;
+  /** Knowledge graph retrieval for this turn — never UI. */
+  knowledgeRetrieval?: KgRetrievalResult;
+  /** Structured knowledge context built for the prompt — never UI. */
+  knowledgeGraphContext?: KgBuiltContext | null;
+  /** Tool Runtime resolution — LLM may only see availableTools definitions. */
+  toolResolution?: AiToolResolveResult;
+  /** Tool definitions safe for LLM consumption — schemas only. */
+  availableTools?: AiToolLlmDefinition[];
 };

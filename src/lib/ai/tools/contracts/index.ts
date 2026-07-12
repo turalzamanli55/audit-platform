@@ -1,0 +1,27 @@
+export type {
+  AiToolCategory,
+  AiToolAccessMode,
+  AiToolRiskLevel,
+  AiToolExecutionMode,
+  AiToolJsonSchema,
+  AiToolSideEffect,
+  AiToolDefinition,
+  AiToolLlmDefinition,
+  AiToolStatus,
+  AiToolResult,
+  AiToolHandlerInput,
+  AiToolHandler,
+  AiToolRegistration,
+  AiToolResolveRequest,
+  AiToolResolveMatch,
+  AiToolResolveResult,
+  AiToolExecuteRequest,
+  AiToolHistoryRecord,
+  AiToolTelemetrySnapshot,
+} from "@/lib/ai/tools/types";
+export {
+  AI_TOOL_CATEGORIES,
+  AI_TOOL_ACCESS_MODES,
+  AI_TOOL_RISK_LEVELS,
+  AI_TOOL_EXECUTION_MODES,
+} from "@/lib/ai/tools/types";
