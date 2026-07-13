@@ -1104,6 +1104,8 @@
         "resolvedSections": "Həll olunmuş bölmələr",
         "openOpinion": "Açıq audit rəyi"
       },
+      "navFsMapping": "MH Xəritələmə",
+      "navFsRendering": "MH Render",
       "navFinancialStatements": "Maliyyə hesabatları",
       "financialStatements": {
         "title": "Maliyyə hesabatlarının xülasəsi",

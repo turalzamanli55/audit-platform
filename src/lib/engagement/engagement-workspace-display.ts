@@ -28,6 +28,8 @@ export type EngagementWorkspaceSection =
   | "reporting"
   | "opinion"
   | "trial-balance"
+  | "fs-mapping"
+  | "fs-rendering"
   | "financial-statements"
   | "history"
   | "settings";
@@ -417,6 +419,16 @@ export function buildEngagementWorkspaceNavItems(
     { id: "reporting", label: labels.navReporting, href: `${base}/reporting` },
     { id: "opinion", label: labels.navOpinion, href: `${base}/opinion` },
     { id: "trial-balance", label: labels.navTrialBalance, href: `${base}/trial-balance` },
+    {
+      id: "fs-mapping",
+      label: labels.navFsMapping,
+      href: `${base}/fs-mapping`,
+    },
+    {
+      id: "fs-rendering",
+      label: labels.navFsRendering,
+      href: `${base}/fs-rendering`,
+    },
     {
       id: "financial-statements",
       label: labels.navFinancialStatements,

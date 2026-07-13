@@ -1104,6 +1104,8 @@
         "resolvedSections": "Решенные разделы",
         "openOpinion": "Открытое аудиторское заключение"
       },
+      "navFsMapping": "Карта отчётности",
+      "navFsRendering": "Рендер отчётности",
       "navFinancialStatements": "Финансовая отчетность",
       "financialStatements": {
         "title": "Сводная информация о финансовой отчетности",

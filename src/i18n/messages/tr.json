@@ -1104,6 +1104,8 @@
         "resolvedSections": "Çözülmüş bölümler",
         "openOpinion": "Açık denetim görüşü"
       },
+      "navFsMapping": "FS Eşleme",
+      "navFsRendering": "FS Görüntüleme",
       "navFinancialStatements": "Mali tablolar",
       "financialStatements": {
         "title": "Mali tabloların özeti",

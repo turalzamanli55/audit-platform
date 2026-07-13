@@ -1114,6 +1114,8 @@
         "resolvedSections": "Resolved sections",
         "openOpinion": "Open audit opinion"
       },
+      "navFsMapping": "FS Mapping",
+      "navFsRendering": "FS Rendering",
       "navFinancialStatements": "Financial statements",
       "financialStatements": {
         "title": "Financial statements summary",
