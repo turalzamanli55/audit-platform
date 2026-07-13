@@ -1,9 +1,6 @@
 import { PLATFORM_MODULE_CATALOG } from "@/lib/platform-registry/catalog";
 import { buildPlatformRoadmap } from "@/lib/platform-registry/roadmap";
-import {
-  calculatePlatformCompletionPct,
-  materializeModule,
-} from "@/lib/platform-registry/progress";
+import { materializeModule } from "@/lib/platform-registry/progress";
 import { validatePlatformRegistry } from "@/lib/platform-registry/validation";
 import type {
   PlatformCompletionReport,
@@ -12,10 +9,13 @@ import type {
   PlatformModuleStatus,
 } from "@/lib/platform-registry/modules";
 import { PLATFORM_MODULE_STATUSES } from "@/lib/platform-registry/modules";
+import { capabilityRegistryEngine } from "@/lib/capability-registry/engine";
 
 /**
- * Platform Registry Engine — single source of truth for module registration
- * and automatically calculated completion.
+ * Platform Registry Engine
+ * Module catalog remains for registration metadata.
+ * Platform/module completion is delegated to the Capability Registry
+ * (capability-based roll-up). Never invents percentages.
  */
 export class PlatformRegistryEngine {
   private definitions: PlatformModuleDefinition[];
@@ -54,21 +54,36 @@ export class PlatformRegistryEngine {
   }
 
   listModules(): PlatformModule[] {
-    return this.definitions.map(materializeModule);
+    return this.definitions.map((definition) => {
+      const base = materializeModule(definition);
+      const capabilityCompletion = capabilityRegistryEngine.getModuleCompletion(definition.id);
+      if (capabilityCompletion == null) return base;
+      return {
+        ...base,
+        completionPct: capabilityCompletion,
+        status: mapCapabilityCompletionToModuleStatus(capabilityCompletion, base.status),
+        completed: capabilityCompletion >= 100,
+        enterprise: capabilityCompletion >= 80,
+        production: capabilityCompletion >= 60,
+        partial: capabilityCompletion >= 36.36,
+      };
+    });
   }
 
   getModule(moduleId: string): PlatformModule | null {
-    const definition = this.definitions.find((entry) => entry.id === moduleId);
-    return definition ? materializeModule(definition) : null;
+    return this.listModules().find((module) => module.id === moduleId) ?? null;
   }
 
   getModuleCompletion(moduleId: string): number | null {
+    const fromCapabilities = capabilityRegistryEngine.getModuleCompletion(moduleId);
+    if (fromCapabilities != null) return fromCapabilities;
     const module = this.getModule(moduleId);
     return module ? module.completionPct : null;
   }
 
+  /** Automatically calculated via Capability Registry domain roll-up. */
   getPlatformCompletion(): number {
-    return calculatePlatformCompletionPct(this.listModules());
+    return capabilityRegistryEngine.getPlatformCompletion();
   }
 
   buildReport(): PlatformCompletionReport {
@@ -84,7 +99,7 @@ export class PlatformRegistryEngine {
     return {
       calculatedAt: new Date().toISOString(),
       moduleCount: modules.length,
-      platformCompletionPct: calculatePlatformCompletionPct(modules),
+      platformCompletionPct: this.getPlatformCompletion(),
       modules,
       byStatus,
       roadmap: buildPlatformRoadmap(modules).map((entry) => ({
@@ -96,6 +111,19 @@ export class PlatformRegistryEngine {
       validation,
     };
   }
+}
+
+function mapCapabilityCompletionToModuleStatus(
+  completionPct: number,
+  fallback: PlatformModuleStatus,
+): PlatformModuleStatus {
+  if (fallback === "deprecated") return "deprecated";
+  if (completionPct >= 100) return "completed";
+  if (completionPct >= 80) return "enterprise";
+  if (completionPct >= 60) return "production";
+  if (completionPct >= 36.36) return "partial";
+  if (completionPct > 0) return "foundation";
+  return "planned";
 }
 
 export const platformRegistryEngine = new PlatformRegistryEngine();

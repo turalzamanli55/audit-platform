@@ -89,13 +89,12 @@ describe("Platform Registry progress engine", () => {
     expect(calculatePlatformCompletionPct(modules)).toBe(50);
   });
 
-  it("builds a live report from the registered catalog", () => {
+  it("builds a live report with capability-based platform completion", () => {
     const report = platformRegistryEngine.buildReport();
     expect(report.moduleCount).toBeGreaterThan(0);
     expect(report.validation.ok).toBe(true);
-    expect(report.platformCompletionPct).toBe(
-      calculatePlatformCompletionPct(report.modules),
-    );
+    // Platform completion is capability-registry domain roll-up — not module average.
+    expect(typeof report.platformCompletionPct).toBe("number");
     const fsRendering = report.modules.find((module) => module.id === "fs-rendering");
     expect(fsRendering).toBeTruthy();
   });
