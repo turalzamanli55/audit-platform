@@ -1,8 +1,8 @@
 #!/usr/bin/env npx tsx
-import { devopsEngine } from "../src/lib/devops/engine/index.ts";
-import { formatDashboardSummary } from "../src/lib/devops/dashboard/index.ts";
-import { formatPipelineReport } from "../src/lib/devops/pipeline/index.ts";
-import { formatFullDevOpsReport } from "../src/lib/devops/reports/index.ts";
+import { devopsEngine } from "../src/lib/devops/engine/index";
+import { formatDashboardSummary } from "../src/lib/devops/dashboard/index";
+import { formatPipelineReport } from "../src/lib/devops/pipeline/index";
+import { formatFullDevOpsReport } from "../src/lib/devops/reports/index";
 
 const { ok, dashboard } = devopsEngine.validateRelease();
 console.log(formatDashboardSummary(dashboard));

@@ -17,8 +17,8 @@ export function extractRequirements(
   const requirements: ExtractedRequirement[] = [];
   const heading = findHeading(prd.headings, (title) => /requirement|acceptance|ac-/i.test(title));
   if (!heading) {
-    // Derive lightweight requirements from capability descriptions (documentation linkage only)
-    return capabilities.slice(0, 0);
+    // No MASTER_PRD requirements section — return empty (do not invent from capabilities)
+    return [];
   }
   const body = sectionBody(prd.document.content, heading);
   const lines = body.split(/\r?\n/).filter((line) => /^\s*[-*]\s+/.test(line) || /\|\s*[A-Z]{2,}-/.test(line));

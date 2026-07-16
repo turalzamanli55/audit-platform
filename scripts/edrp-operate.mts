@@ -6,10 +6,10 @@
  *   npx tsx scripts/edrp-operate.mts --skip-reset
  *   npx tsx scripts/edrp-operate.mts --no-build
  */
-import { devopsEngine } from "../src/lib/devops/engine/index.ts";
-import { formatOperationalReport } from "../src/lib/devops/operations/index.ts";
-import { formatDashboardSummary } from "../src/lib/devops/dashboard/index.ts";
-import { ensureCiCdBlueprints } from "../src/lib/devops/ci/generators.ts";
+import { devopsEngine } from "../src/lib/devops/engine/index";
+import { formatOperationalReport } from "../src/lib/devops/operations/index";
+import { formatDashboardSummary } from "../src/lib/devops/dashboard/index";
+import { ensureCiCdBlueprints } from "../src/lib/devops/ci/generators";
 
 const args = new Set(process.argv.slice(2));
 const skipReset = args.has("--skip-reset");
