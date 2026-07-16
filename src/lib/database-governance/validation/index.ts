@@ -126,12 +126,15 @@ export function dryRunMigrations(migrations: ParsedMigration[]): DryRunResult {
     }
 
     for (const fn of migration.requiredFunctions) {
+      if (migration.creates.tables.includes(fn)) continue;
       if (!schema.functions.has(fn) && !migration.creates.functions.includes(fn)) {
+        // Skip known relations already registered as tables
+        if (schema.tables.has(fn)) continue;
         errors.push({
-          code: "missing_function",
+          code: "missing_sql_function",
           severity: "error",
           migrationId: migration.id,
-          message: `Required function "${fn}" does not exist before this migration`,
+          message: `Referenced function public.${fn}() does not exist before this migration`,
         });
       }
     }
@@ -254,6 +257,7 @@ export function validateFoundationLayers(migrations: ParsedMigration[]): Migrati
     { key: "extensions_and_common", label: "Foundation extensions" },
     { key: "foundation_tables", label: "Foundation tables (org/workspace/company/RBAC)" },
     { key: "rls_policies", label: "Foundation RLS" },
+    { key: "enterprise_sql_foundation", label: "Enterprise SQL Foundation helpers" },
     { key: "company_foundation", label: "Companies" },
     { key: "engagement_foundation", label: "Engagements" },
     { key: "planning_foundation", label: "Audit planning" },

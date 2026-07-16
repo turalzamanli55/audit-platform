@@ -109,6 +109,19 @@ const KNOWN_PROVIDERS: Array<{
     layerHint: "IFRS notes",
   },
   {
+    migrationIncludes: "enterprise_sql_foundation",
+    provides: [
+      "user_can_access_workspace",
+      "has_permission",
+      "current_user_id",
+      "soft_delete",
+      "restore_deleted",
+      "policy_workspace_read",
+      "policy_workspace_write",
+    ],
+    layerHint: "SQL foundation helpers",
+  },
+  {
     migrationIncludes: "permissions_schema_compatibility",
     provides: ["permissions.module", "permissions.scope_default"],
     layerHint: "permissions compatibility",
@@ -234,6 +247,11 @@ export function buildMigrationDependencyGraph(
       needs: "fs_mapping_foundation",
       before: "trial_balance_foundation",
       reason: "FS mapping requires trial balance",
+    },
+    {
+      needs: "fs_mapping_foundation",
+      before: "enterprise_sql_foundation",
+      reason: "FS mapping RLS requires user_can_access_workspace",
     },
     {
       needs: "fs_mapping_foundation",

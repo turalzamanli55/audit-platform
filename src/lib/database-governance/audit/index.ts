@@ -8,6 +8,7 @@ import {
   uniqueSorted,
 } from "@/lib/database-governance/utils";
 import type { ParsedMigration } from "@/lib/database-governance/types";
+import { extractReferencedFunctions } from "@/lib/sql-foundation/audit";
 
 function matchAll(sql: string, pattern: RegExp): string[] {
   const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
@@ -149,22 +150,13 @@ export function loadMigrations(cwd = process.cwd()): ParsedMigration[] {
         ].includes(table),
     );
 
-    const requiredFunctions = matchAll(
-      cleaned,
-      /(?:public\.)?([a-zA-Z0-9_]+)\s*\(/gi,
-    ).filter((name) =>
-      [
-        "user_belongs_to_organization",
-        "user_belongs_to_workspace",
-        "user_can_access_engagement",
-        "user_can_access_audit_plan",
-        "user_can_access_fieldwork_package",
-        "user_can_access_risk_assessment",
-        "user_can_access_trial_balance_package",
-        "is_service_role",
-        "utc_now",
-      ].includes(name),
-    );
+    const requiredFunctions = uniqueSorted([
+      ...extractReferencedFunctions(sql),
+      ...matchAll(
+        cleaned,
+        /(?:public\.)?(user_belongs_to_organization|user_belongs_to_workspace|user_can_access_engagement|user_can_access_audit_plan|user_can_access_fieldwork_package|user_can_access_risk_assessment|user_can_access_trial_balance_package|user_can_access_workspace|has_permission|is_service_role|utc_now|auth_user_id)\s*\(/gi,
+      ),
+    ]);
 
     const requiredEnums = matchAll(
       cleaned,

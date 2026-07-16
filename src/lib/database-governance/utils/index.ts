@@ -38,7 +38,8 @@ export function classifyMigrationLayer(filename: string, sql: string): Migration
     lower.includes("extensions_and_common") ||
     lower.includes("foundation_tables") ||
     lower.includes("rls_policies") ||
-    lower.includes("initial_foundation")
+    lower.includes("initial_foundation") ||
+    lower.includes("enterprise_sql_foundation")
   ) {
     return "foundation";
   }
