@@ -5307,6 +5307,7 @@ export type Database = {
           deleted_by: string | null;
           description: string | null;
           id: string;
+          module: string | null;
           name: string;
           resource: string | null;
           scope: Database["public"]["Enums"]["permission_scope"];
@@ -5323,9 +5324,10 @@ export type Database = {
           deleted_by?: string | null;
           description?: string | null;
           id?: string;
+          module?: string | null;
           name: string;
           resource?: string | null;
-          scope: Database["public"]["Enums"]["permission_scope"];
+          scope?: Database["public"]["Enums"]["permission_scope"];
           status?: Database["public"]["Enums"]["record_status"];
           updated_at?: string;
           updated_by?: string | null;
@@ -5339,6 +5341,7 @@ export type Database = {
           deleted_by?: string | null;
           description?: string | null;
           id?: string;
+          module?: string | null;
           name?: string;
           resource?: string | null;
           scope?: Database["public"]["Enums"]["permission_scope"];
