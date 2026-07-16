@@ -19,9 +19,24 @@ export function calculateMigrationHealth(input: {
   const errors = input.findings.filter((finding) => finding.severity === "error");
   const warnings = input.findings.filter((finding) => finding.severity === "warning");
   const dryRunErrors = input.dryRun.steps.flatMap((step) => step.errors);
+  const cosmeticWarningCodes = new Set([
+    "empty_migration",
+    "trigger_naming_convention",
+    "index_naming_convention",
+    "generated_column_declared",
+    "default_uses_now_not_utc",
+    "missing_table_grant",
+    "storage_bucket_reference",
+    "shared_helper_redefinition",
+    "on_conflict_code_partial_index",
+    "permissions_insert_shape",
+  ]);
+  const significantWarnings = warnings.filter(
+    (finding) => !cosmeticWarningCodes.has(finding.code),
+  );
 
   const migrationRisk = clampPct(
-    (errors.length + dryRunErrors.length) * 12 + warnings.length * 3,
+    (errors.length + dryRunErrors.length) * 12 + significantWarnings.length * 3,
   );
   const dependencyRisk = clampPct(
     input.findings.filter((finding) => finding.code.includes("dependency")).length * 20,
@@ -63,6 +78,16 @@ export function calculateMigrationHealth(input: {
     (missingCoverageHits / Math.max(1, coverageChecks)) * 100,
   );
 
+  const dependencyHealth = clampPct(
+    100 -
+      input.findings.filter((finding) =>
+        ["circular_dependency", "ordering_violation", "missing_table", "missing_sql_function"].includes(
+          finding.code,
+        ) || finding.code.includes("dependency"),
+      ).length *
+        20,
+  );
+
   const healthScore = clampPct(
     100 -
       average([
@@ -76,6 +101,7 @@ export function calculateMigrationHealth(input: {
 
   return {
     healthScore,
+    dependencyHealth,
     migrationRisk,
     dependencyRisk,
     compatibilityRisk,

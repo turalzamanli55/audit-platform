@@ -25,6 +25,7 @@ export function formatHealthReport(health: MigrationHealthReport): string {
     "Migration Health Report",
     "",
     `Migration Health Score: ${health.healthScore}`,
+    `Dependency Health: ${health.dependencyHealth}`,
     `Migration Risk: ${health.migrationRisk}`,
     `Dependency Risk: ${health.dependencyRisk}`,
     `Compatibility Risk: ${health.compatibilityRisk}`,

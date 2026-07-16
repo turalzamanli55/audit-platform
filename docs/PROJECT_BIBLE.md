@@ -10764,3 +10764,392 @@ Parts 1–15 are **terminologically and philosophically consistent** on audit me
 ---
 
 *End of Part 15. Await further instruction for Part 16.*
+
+---
+
+# Part 16 — Enterprise Database Lifecycle
+
+## Document Control — Part 16
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.16.0 | 2026-07-16 | Chief Software Architect | Part 16 — Enterprise Database Lifecycle; permanent database governance charter |
+
+---
+
+## 83. Enterprise Database Lifecycle
+
+The platform has reached **enterprise scale**. The database lifecycle is no longer ad hoc — it is **deterministic, reproducible, and governed**. Every future development cycle **must** start from a clean database. Every migration **must** replay from `#1` through `#Last` without manual intervention. Every module **must** pass the Database Definition of Done before it is considered complete.
+
+This chapter is the **permanent Database Lifecycle Policy**. It supersedes informal migration notes. Operational detail lives in `src/lib/database-governance/` and is enforced by automated validation.
+
+### 83.1 Database Philosophy
+
+| Principle | Requirement |
+|-----------|-------------|
+| **Deterministic rebuild** | A fresh database plus sequential migrations produces identical schema, policies, and grants |
+| **Forward-only evolution** | Applied migrations are immutable; corrections are new migrations |
+| **No production assumptions** | Active development may rebuild the database completely |
+| **Single schema authority** | PostgreSQL schema defined only by `supabase/migrations/` |
+| **Application follows schema** | Repositories, types, and UI conform to schema — never the reverse |
+| **Tenant isolation** | Every tenant table enables RLS with explicit policies |
+| **Audit integrity** | Soft delete, versioning, and actor columns on enterprise tables |
+
+### 83.2 Migration Philosophy
+
+| Principle | Requirement |
+|-----------|-------------|
+| **Chronological order** | `YYYYMMDDHHMMSS_name.sql` — strict lexicographic replay |
+| **One concern per file** | Foundation, RLS, domain module, compatibility, backfill separated |
+| **Idempotent DDL** | `IF NOT EXISTS`, `CREATE OR REPLACE` where safe |
+| **Compatibility migrations** | `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` only — no destructive DDL |
+| **Seed separation** | Platform roles in `supabase/seed.sql`; structural data in migrations only when required |
+| **Dependency explicit** | Every migration declares implicit dependencies via object references; governance validates the graph |
+| **No manual hotfixes** | Remote SQL patches outside migrations are prohibited |
+
+### 83.3 Foundation Philosophy
+
+The platform schema is built in **layers**:
+
+```
+Extensions & Enums
+        ↓
+Foundation Tables (organizations → workspaces → companies → RBAC)
+        ↓
+Foundation RLS & Grants
+        ↓
+Enterprise SQL Foundation (ESFE)
+        ↓
+Domain Module Foundations (engagement, planning, fieldwork, …)
+        ↓
+Compatibility & Backfill Migrations
+```
+
+**Enterprise SQL Foundation** (`enterprise_sql_foundation`) is the **root dependency** for all shared SQL infrastructure. No feature migration may introduce shared helper functions. Domain-specific access functions (`user_can_access_engagement`, etc.) belong in their domain foundation migration. Shared helpers (`user_can_access_workspace`, `has_permission`, `soft_delete`, policy helpers, JSON utilities) belong **only** in ESFE or the legacy foundation chain (`extensions_and_common`, `foundation_tables`).
+
+### 83.4 Schema Governance
+
+Schema governance ensures the **declared schema matches reality** across all platform layers:
+
+```
+Database Schema (migrations)
+        ↓
+Supabase Types (src/types/supabase.ts)
+        ↓
+Repositories (src/repositories/)
+        ↓
+Project Bible (this document)
+        ↓
+Capability Registry (EPBSE-synchronized)
+        ↓
+Platform Registry
+        ↓
+Implementation (actions, UI, tests)
+```
+
+Any drift **must fail validation**. The `auditSchemaDrift()` function in `src/lib/database-governance/schema-drift/` enforces alignment. Types are regenerated after every remote reset (`npx supabase gen types typescript --project-id <ref>`).
+
+### 83.5 Migration Governance
+
+Every future migration is automatically validated for:
+
+| Category | Validation |
+|----------|------------|
+| Chronological order | Timestamp ordering and dependency edges |
+| Dependency graph | Tables, functions, enums, columns required before use |
+| SQL functions | Referenced functions exist before invocation |
+| Views | Valid names; dependencies satisfied |
+| Triggers | Naming conventions; attachment targets exist |
+| Policies | Created for RLS-enabled tables |
+| RLS | Every created tenant table enables RLS in the chain |
+| Permissions | INSERT column shapes match table schema |
+| Extensions | Declared before use |
+| Enums | Created before column references |
+| Sequences | Valid naming |
+| Indexes | FK and unique indexes on foundation tables |
+| Constraints | CHECK, UNIQUE, FK integrity |
+| Storage | Bucket references documented |
+| Generated columns | Declared and tracked |
+| Default expressions | Prefer `utc_now()` over `now()` |
+| Backward compatibility | Compatibility migrations use `IF NOT EXISTS` |
+| Forward compatibility | No `DROP TABLE` without `IF EXISTS` |
+| Schema drift | Cross-layer table alignment |
+| Foundation dependencies | No shared helpers outside ESFE chain |
+
+**Health thresholds:**
+
+| Metric | Threshold |
+|--------|-----------|
+| Migration Health | ≥ 95 |
+| Dependency Health | = 100 |
+
+Implementation: `DatabaseGovernanceEngine` in `src/lib/database-governance/engine/`.
+
+### 83.6 Reset Policy
+
+| Rule | Policy |
+|------|--------|
+| **When** | Active development: any time schema is non-deterministic. Staging: before release validation. Production: only with approved change window |
+| **Backup** | Verified backup or PITR before any remote reset |
+| **Procedure** | Follow Enterprise Database Reset Procedure (Section 85) |
+| **Post-reset** | Regenerate types, run seed, execute full validation pipeline |
+| **No partial reset** | Entire database is rebuilt — no selective table drops outside migrations |
+
+### 83.7 Release Policy
+
+| Gate | Requirement |
+|------|-------------|
+| **Pre-release** | Full Definition of Done passes on staging |
+| **Migration review** | Governance report `accepted: true` |
+| **Types synchronized** | Zero schema drift errors |
+| **Tests green** | `npm run test` passes |
+| **Build green** | `npm run build` passes |
+| **Documentation** | PROJECT_BIBLE, Capability Registry, Platform Registry synchronized via EPBSE |
+
+### 83.8 Environment Strategy
+
+| Environment | Purpose | Database Policy |
+|-------------|---------|-----------------|
+| **Development** | Local and linked remote experimentation | Full reset permitted; Docker `supabase db reset --local` or linked remote reset |
+| **Staging** | Release candidate validation | Reset before each release candidate; migrations only |
+| **Production** | Customer workloads | Forward-only migrations; reset only with DR procedure |
+
+**Promotion rules:** Development → Staging requires governance acceptance. Staging → Production requires release checklist (Section 88) and zero drift errors.
+
+**Rollback rules:** Production rollback is a **forward compensating migration**, never migration file edits. Application rollback is a separate deployment revert; schema remains forward-only.
+
+---
+
+## 84. Database Definition of Done
+
+A module **must not** be considered complete until **all** of the following succeed in order:
+
+```
+Fresh Database
+        ↓
+Migration #1
+        ↓
+Migration #Last
+        ↓
+Supabase Types
+        ↓
+Build
+        ↓
+Tests
+        ↓
+Database Governance
+        ↓
+Project Bible Synchronization
+        ↓
+Capability Registry Synchronization
+        ↓
+Platform Readiness Synchronization
+        ↓
+No Schema Drift
+        ↓
+Migration Health ≥ 95
+        ↓
+Dependency Health = 100
+```
+
+| Step | Automated Enforcement |
+|------|----------------------|
+| Fresh Database → Migration #Last | `dryRunMigrations()` in-memory simulation; `supabase db reset` on linked environments |
+| Supabase Types | `verifySupabaseTypesFile()` |
+| Build | `npm run build` (CI) |
+| Tests | `npm run test` (CI) |
+| Database Governance | `databaseGovernanceEngine.validateBeforeAccept()` |
+| Project Bible Sync | `projectSyncEngine.synchronize()` |
+| Capability Registry | `capabilityRegistryEngine.buildReport().validation.ok` |
+| Platform Readiness | EPBSE `platformCompletionPct` synchronized |
+| No Schema Drift | `auditSchemaDrift()` — zero errors |
+| Migration Health ≥ 95 | `calculateMigrationHealth().healthScore` |
+| Dependency Health = 100 | `calculateMigrationHealth().dependencyHealth` |
+
+---
+
+## 85. Enterprise Database Reset Procedure
+
+| Step | Action | Mode |
+|------|--------|------|
+| 1 | **Backup verification** — confirm PITR/backup restore path | Manual |
+| 2 | **Remote reset** — `supabase db reset --linked` | Manual |
+| 3 | **Migration replay** — `supabase db push` | Automated validation pre-check |
+| 4 | **Supabase types** — `npx supabase gen types typescript --project-id <ref> > src/types/supabase.ts` | Manual |
+| 5 | **Seed execution** — `supabase db seed` | Manual |
+| 6 | **Validation** — `npm run validate:database` | Automated |
+| 7 | **Build** — `npm run build` | Automated |
+| 8 | **Tests** — `npm run test` | Automated |
+| 9 | **Platform readiness** — EPBSE synchronize | Automated |
+| 10 | **Capability registry** — resync from documentation | Automated |
+| 11 | **Project sync** — EPBSE full synchronize | Automated |
+| 12 | **Migration governance** — full audit | Automated |
+| 13 | **SQL foundation** — coverage 100%, zero missing objects | Automated |
+| 14 | **Health verification** — Migration Health ≥ 95, Dependency Health = 100 | Automated |
+
+Authoritative step definitions: `ENTERPRISE_DATABASE_RESET_PROCEDURE` in `src/lib/database-governance/reset/`.
+
+---
+
+## 86. Schema Drift Policy
+
+The platform **must** detect drift across:
+
+```
+Database Schema
+        ↓
+Supabase Types
+        ↓
+Repositories
+        ↓
+Project Bible
+        ↓
+Capability Registry
+        ↓
+Platform Registry
+        ↓
+Implementation
+```
+
+| Drift Type | Severity |
+|------------|----------|
+| Repository references table not in migrations | Error |
+| Repository references table missing from types | Error |
+| Migration creates table used by repository but missing from types | Error |
+| Migration creates table not yet in types (no repository usage) | Warning — regenerate types |
+| Capability anchor table missing from schema | Error |
+| Platform module without schema anchor | Error |
+| PROJECT_BIBLE lifecycle chapter missing | Error |
+
+Any **error**-severity drift **must fail** continuous validation.
+
+---
+
+## 87. Continuous Validation Pipeline
+
+Every future module **must** execute:
+
+| Validation | Implementation |
+|------------|----------------|
+| Migration Validation | Dry-run #1→#Last |
+| Schema Validation | `auditSchemaDrift()` |
+| Governance Validation | `databaseGovernanceEngine.audit()` |
+| Capability Validation | `validateCapabilityRegistry()` |
+| Project Bible Sync | `projectSyncEngine.synchronize()` |
+| Localization Validation | Locale key parity (`en`, `az`, `ru`, `tr`) |
+| Type Validation | Supabase types file structure |
+| Build Validation | `npm run build` (CI gate) |
+| Test Validation | `npm run test` (CI gate) |
+| Platform Readiness Validation | EPBSE platform completion sync |
+
+Entry point: `runContinuousValidation()` in `src/lib/database-governance/continuous-validation/`.
+
+Command: `npm run validate:database`
+
+---
+
+## 88. Development Policy
+
+### 88.1 Development Environment
+
+- Local: `supabase start` + `supabase db reset --local` when Docker available
+- Linked remote: `supabase db reset --linked` for full rebuild validation
+- Always run `npm run validate:database` before opening a PR with migration changes
+
+### 88.2 Staging
+
+- Receives migrations via `supabase db push` only
+- Full reset before each release candidate
+- Definition of Done must pass with zero drift errors
+
+### 88.3 Production
+
+- Forward-only `supabase db push`
+- No reset without DR approval
+- Compensating migrations for rollback
+
+### 88.4 Promotion Rules
+
+| From | To | Gate |
+|------|-----|------|
+| Development | Staging | Governance accepted, dry-run OK |
+| Staging | Production | Full DoD, zero drift errors, build + tests green |
+
+### 88.5 Rollback Rules
+
+1. Identify failing migration or deployment
+2. Create compensating forward migration (schema) or revert deployment (application)
+3. Never edit applied migration files
+4. Document incident; update PROJECT_BIBLE if policy gap discovered
+
+### 88.6 Release Checklist
+
+- [ ] All migrations apply on fresh database
+- [ ] `databaseGovernanceEngine.validateBeforeAccept().ok === true`
+- [ ] Migration Health ≥ 95
+- [ ] Dependency Health = 100
+- [ ] Supabase types regenerated
+- [ ] `auditSchemaDrift()` zero errors
+- [ ] `npm run build` passes
+- [ ] `npm run test` passes
+- [ ] EPBSE synchronized
+- [ ] Capability registry validated
+
+### 88.7 Database Checklist (per migration PR)
+
+- [ ] Single timestamped file in `supabase/migrations/`
+- [ ] RLS enabled on new tenant tables
+- [ ] Policies and grants included
+- [ ] No shared helpers outside ESFE
+- [ ] Compatibility columns use `IF NOT EXISTS`
+- [ ] Governance dry-run passes
+- [ ] Types updated or regen scheduled
+
+---
+
+## 89. Acceptance Criteria
+
+The platform is considered **database-healthy** only if:
+
+```
+Fresh database
+        ↓
+Migration #1
+        ↓
+Migration #Last
+```
+
+executes successfully **without manual intervention**, and:
+
+| Criterion | Requirement |
+|-----------|-------------|
+| No missing objects | All referenced tables, functions, enums exist |
+| No missing helper functions | ESFE coverage 100% |
+| No schema drift | Zero error-severity drift findings |
+| No migration ordering issues | Chronological order and dependency graph valid |
+| Migration Health | ≥ 95 |
+| Dependency Health | = 100 |
+
+Automated report: `buildDatabaseLifecycleReport()` in `src/lib/database-governance/continuous-validation/`.
+
+---
+
+## 90. Governance Implementation Reference
+
+| Component | Path |
+|-----------|------|
+| Migration Governance Engine | `src/lib/database-governance/engine/` |
+| Object Governance Audits | `src/lib/database-governance/governance/` |
+| Schema Drift Detection | `src/lib/database-governance/schema-drift/` |
+| Definition of Done | `src/lib/database-governance/lifecycle/` |
+| Reset Procedure | `src/lib/database-governance/reset/` |
+| Continuous Validation | `src/lib/database-governance/continuous-validation/` |
+| SQL Foundation Engine | `src/lib/sql-foundation/` |
+| EPBSE (Project Sync) | `src/lib/project-sync/` |
+| Capability Registry | `src/lib/capability-registry/` |
+
+Legacy operational notes in `database/MIGRATION_STANDARDS.md` and `database/DATABASE_STANDARDS.md` remain reference material for naming conventions; **this chapter is authoritative for lifecycle policy**.
+
+---
+
+*End of Part 16.*

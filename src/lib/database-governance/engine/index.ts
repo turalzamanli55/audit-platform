@@ -13,6 +13,11 @@ import {
   buildDatabaseBaseline,
   calculateMigrationHealth,
 } from "@/lib/database-governance/health";
+import { auditMigrationGovernance } from "@/lib/database-governance/governance";
+import {
+  MIGRATION_HEALTH_THRESHOLD,
+  DEPENDENCY_HEALTH_TARGET,
+} from "@/lib/database-governance/lifecycle";
 import { sqlFoundationEngine } from "@/lib/sql-foundation";
 import type { MigrationFinding, MigrationGovernanceReport } from "@/lib/database-governance/types";
 
@@ -28,6 +33,7 @@ export class DatabaseGovernanceEngine {
     const circular = detectCircularDependencies(dependencies);
     const compatibility = auditCompatibility(migrations);
     const foundation = validateFoundationLayers(migrations);
+    const objectGovernance = auditMigrationGovernance(migrations);
     const dryRun = dryRunMigrations(migrations);
     const sqlFoundation = sqlFoundationEngine.audit(cwd);
 
@@ -56,6 +62,7 @@ export class DatabaseGovernanceEngine {
       ...circular,
       ...compatibility,
       ...foundation,
+      ...objectGovernance,
       ...sqlFoundationFindings,
     ];
 
@@ -71,6 +78,8 @@ export class DatabaseGovernanceEngine {
       dryRun.ok &&
       findings.every((finding) => finding.severity !== "error") &&
       health.compatibilityRisk === 0 &&
+      health.healthScore >= MIGRATION_HEALTH_THRESHOLD &&
+      health.dependencyHealth === DEPENDENCY_HEALTH_TARGET &&
       sqlFoundation.coverage.missingHelpers.length === 0 &&
       sqlFoundation.missingObjects.filter((entry) =>
         entry.referencedByMigrationId !== "sql-foundation-coverage",

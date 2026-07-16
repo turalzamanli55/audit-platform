@@ -9,6 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
+    "validate:database": "vitest run src/lib/database-governance/database-lifecycle.test.ts src/lib/database-governance/database-governance.test.ts src/lib/sql-foundation/sql-foundation.test.ts",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css}\""
   },

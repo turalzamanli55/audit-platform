@@ -1,5 +1,8 @@
 # Migration Standards
 
+> **Authoritative lifecycle policy:** PROJECT_BIBLE.md Part 16 — Enterprise Database Lifecycle.
+> This document covers naming conventions and operational commands only.
+
 ## Purpose
 
 Defines how database migrations are authored, ordered, validated, and deployed for the Audit Platform.

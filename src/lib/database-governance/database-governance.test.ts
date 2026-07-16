@@ -35,6 +35,8 @@ describe("Database Migration Governance Engine", () => {
     expect(report.dryRun.ok).toBe(true);
     expect(ok).toBe(true);
     expect(report.health.compatibilityRisk).toBe(0);
+    expect(report.health.dependencyHealth).toBe(100);
+    expect(report.health.healthScore).toBeGreaterThanOrEqual(95);
     expect(report.baseline.coveragePct).toBeGreaterThan(80);
   });
 
