@@ -1,6 +1,6 @@
 {
-  "id": "sync_1784244234827",
-  "timestamp": "2026-07-16T23:23:54.827Z",
+  "id": "sync_1784245398310",
+  "timestamp": "2026-07-16T23:43:18.310Z",
   "documentVersions": {
     "PROJECT_BIBLE": {
       "path": "C:\\Users\\Tural\\audit\\docs\\PROJECT_BIBLE.md",
@@ -2636,7 +2636,8 @@
           "src/lib/actions/financial-statements/index.ts",
           "src/lib/actions/financial-statements/update-financial-statements.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -2687,7 +2688,8 @@
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
-          "src/lib/database-governance/database-lifecycle.test.ts"
+          "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -2839,7 +2841,8 @@
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
           "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/update-financial-statements.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -2886,7 +2889,8 @@
         ],
         "tests": [
           "src/lib/database-governance/database-governance.test.ts",
-          "src/lib/database-governance/database-lifecycle.test.ts"
+          "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -3037,7 +3041,8 @@
           "src/lib/actions/financial-statements/index.ts",
           "src/lib/actions/financial-statements/update-financial-statements.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -3086,7 +3091,8 @@
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
-          "src/lib/database-governance/database-lifecycle.test.ts"
+          "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -3236,7 +3242,9 @@
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
           "src/lib/actions/financial-statements/index.ts",
           "src/lib/actions/financial-statements/update-financial-statements.ts",
-          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -3288,6 +3296,8 @@
           "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/company/company-identity-draft.test.ts",
           "src/lib/auth/multi-factor-authentication.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
         "permissions": [
@@ -4019,7 +4029,10 @@
         "repository": [
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
-          "src/repositories/engagement/engagement-repository.ts"
+          "src/repositories/engagement/engagement-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/tenant/switch-engagement.ts",
@@ -4031,7 +4044,17 @@
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
           "src/lib/actions/engagement/index.ts",
           "src/lib/actions/engagement/restore-engagement.ts",
-          "src/lib/actions/engagement/update-engagement.ts"
+          "src/lib/actions/engagement/update-engagement.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -4091,25 +4114,39 @@
           "src/lib/engagement/resolve-active-engagement.test.ts",
           "src/lib/engagement/validation.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts",
-          "src/lib/actions/engagement/engagement-actions.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "engagement.read",
           "engagement.create",
           "engagement.update",
-          "engagement.archive",
-          "engagement.delete",
-          "engagement.created",
-          "engagement.updated",
-          "engagement.status.changed",
-          "engagement.archived",
-          "engagement.restored",
-          "engagement.member.added",
-          "engagement.member.removed"
+          "engagement.archive"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "engagement",
           "platform-audit"
         ],
@@ -4144,21 +4181,25 @@
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/repositories/engagement/engagement-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/engagement",
           "src/lib/platform-audit"
         ],
         "security": [
-          "engagement.read",
-          "engagement.create",
-          "engagement.update",
-          "engagement.archive",
-          "engagement.delete",
-          "engagement.created",
-          "engagement.updated",
-          "engagement.status.changed",
-          "engagement.archived",
-          "engagement.restored"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -4211,7 +4252,10 @@
           "uaie_intelligence_audit"
         ],
         "repository": [
-          "src/repositories/planning/planning-repository.ts"
+          "src/repositories/planning/planning-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/planning/archive-planning.ts",
@@ -4221,7 +4265,19 @@
           "src/lib/actions/planning/planning-comment-actions.ts",
           "src/lib/actions/planning/planning-workflow-actions.ts",
           "src/lib/actions/planning/restore-planning.ts",
-          "src/lib/actions/planning/update-planning.ts"
+          "src/lib/actions/planning/update-planning.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -4262,7 +4318,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/framework/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/documents/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/checklist/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -4274,32 +4333,43 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "planning.read",
           "planning.create",
           "planning.update",
-          "planning.archive",
-          "planning.submit",
-          "planning.review",
-          "planning.approve",
-          "planning.comment",
-          "planning.created",
-          "planning.updated",
-          "planning.status.changed",
-          "planning.archived",
-          "planning.restored",
-          "planning.checklist.updated",
-          "planning.timeline.updated",
-          "planning.submitted",
-          "planning.returned",
-          "planning.approved",
-          "planning.revised",
-          "planning.comment.added"
+          "planning.archive"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "planning",
           "platform-audit"
         ],
@@ -4327,25 +4397,30 @@
           "src/lib/actions/planning/planning-workflow-actions.ts",
           "src/lib/actions/planning/restore-planning.ts",
           "src/lib/actions/planning/update-planning.ts",
-          "src/repositories/planning/planning-repository.ts"
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts"
         ],
         "rules": [
           "src/repositories/planning/planning-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/planning",
           "src/lib/platform-audit"
         ],
         "security": [
-          "planning.read",
-          "planning.create",
-          "planning.update",
-          "planning.archive",
-          "planning.submit",
-          "planning.review",
-          "planning.approve",
-          "planning.comment",
-          "planning.created",
-          "planning.updated"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -4371,7 +4446,7 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
+        "repository": true,
         "serverAction": true,
         "rules": true,
         "validation": true,
@@ -4395,7 +4470,26 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
         "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts",
           "src/lib/actions/ai/host-execution-actions.ts"
         ],
         "ui": [
@@ -4404,13 +4498,26 @@
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts",
           "src/components/ai-inline/drawers/ai-host-execution-drawer.tsx"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/program/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/program/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -4420,13 +4527,42 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "fieldwork.program.updated"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -4445,21 +4581,43 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
-          "src/lib/actions/ai/host-execution-actions.ts"
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
         "security": [
-          "fieldwork.program.updated"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -4510,12 +4668,29 @@
         ],
         "repository": [
           "src/repositories/fieldwork/working-paper-management-repository.ts",
-          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -4524,7 +4699,17 @@
           "src/components/fieldwork/working-papers/fieldwork-working-paper-row.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/dashboard/workspace/workspace-continue-working.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
@@ -4532,25 +4717,54 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/working-papers/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/fieldwork/working-paper-management.test.ts",
-          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "working_paper.version.read",
           "working_paper.version.create",
           "working_paper.sign_off",
-          "fieldwork.working_paper.added",
-          "fieldwork.working_paper.updated",
-          "fieldwork.working_paper.submitted",
-          "fieldwork.working_paper.returned",
-          "fieldwork.working_paper.cleared"
+          "fieldwork.working_paper.added"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -4572,24 +4786,35 @@
           "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
-          "src/repositories/fieldwork/working-paper-management-repository.ts",
-          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts"
         ],
         "rules": [
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
         "security": [
-          "working_paper.version.read",
-          "working_paper.version.create",
-          "working_paper.sign_off",
-          "fieldwork.working_paper.added",
-          "fieldwork.working_paper.updated",
-          "fieldwork.working_paper.submitted",
-          "fieldwork.working_paper.returned",
-          "fieldwork.working_paper.cleared"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -4645,12 +4870,29 @@
           "lead_sheet_lines"
         ],
         "repository": [
-          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts"
+          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/lead-sheets/index.ts",
           "src/lib/actions/lead-sheets/lead-sheet-action.ts",
-          "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts"
+          "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -4658,19 +4900,61 @@
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/balance-sheet/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/balance-sheet/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/platform-audit/platform-audit.test.ts",
-          "src/lib/lead-sheets/lead-sheet-composition.test.ts"
+          "src/lib/lead-sheets/lead-sheet-composition.test.ts",
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "lead_sheet.read",
           "lead_sheet.create",
           "lead_sheet.update",
@@ -4678,6 +4962,7 @@
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "lead-sheets",
           "platform-audit"
         ],
@@ -4700,19 +4985,35 @@
           "src/lib/actions/lead-sheets/index.ts",
           "src/lib/actions/lead-sheets/lead-sheet-action.ts",
           "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts",
-          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts"
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts"
         ],
         "rules": [
           "src/repositories/lead-sheets/lead-sheet-composition-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/lead-sheets",
           "src/lib/platform-audit"
         ],
         "security": [
-          "lead_sheet.read",
-          "lead_sheet.create",
-          "lead_sheet.update",
-          "lead_sheet.approve"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -4765,18 +5066,45 @@
         ],
         "repository": [
           "src/repositories/fieldwork/working-paper-management-repository.ts",
-          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
@@ -4784,7 +5112,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/evidence/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -4796,13 +5127,40 @@
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "fieldwork.evidence.added"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -4823,17 +5181,36 @@
         "validation": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
-          "src/repositories/fieldwork/working-paper-management-repository.ts",
-          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts"
         ],
         "rules": [
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
         "security": [
-          "fieldwork.evidence.added"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -4889,7 +5266,10 @@
           "uaie_intelligence_audit"
         ],
         "repository": [
-          "src/repositories/review/review-repository.ts"
+          "src/repositories/review/review-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/trial-balance/workflow-actions.ts",
@@ -4950,7 +5330,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/comments/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/review-notes/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/review-notes/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -4960,32 +5343,45 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "completion.review",
           "fieldwork.review",
           "financialStatements.review",
-          "ifrs_notes.review",
-          "ifrs_notes.reviewed",
-          "materiality.review",
-          "opinion.review",
-          "planning.review",
-          "reporting.review",
-          "review.read",
-          "review.create",
-          "review.update",
-          "review.archive",
-          "review.review",
-          "review.approve",
-          "review.comment",
-          "review.created",
-          "review.updated",
-          "review.archived",
-          "review.restored"
+          "ifrs_notes.review"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit",
           "review"
         ],
@@ -5018,21 +5414,25 @@
         ],
         "rules": [
           "src/repositories/review/review-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit",
           "src/lib/review"
         ],
         "security": [
-          "completion.review",
-          "fieldwork.review",
-          "financialStatements.review",
-          "ifrs_notes.review",
-          "ifrs_notes.reviewed",
-          "materiality.review",
-          "opinion.review",
-          "planning.review",
-          "reporting.review",
-          "review.read"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -5088,7 +5488,10 @@
           "uaie_intelligence_audit"
         ],
         "repository": [
-          "src/repositories/review/review-repository.ts"
+          "src/repositories/review/review-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/review/archive-review.ts",
@@ -5100,7 +5503,17 @@
           "src/lib/actions/review/review-mutation-actions.ts",
           "src/lib/actions/review/review-version-actions.ts",
           "src/lib/actions/review/review-workflow-actions.ts",
-          "src/lib/actions/review/update-review.ts"
+          "src/lib/actions/review/update-review.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -5139,7 +5552,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/comments/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/review-notes/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/review-notes/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -5149,32 +5565,45 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "completion.review",
           "fieldwork.review",
           "financialStatements.review",
-          "ifrs_notes.review",
-          "ifrs_notes.reviewed",
-          "materiality.review",
-          "opinion.review",
-          "planning.review",
-          "reporting.review",
-          "review.read",
-          "review.create",
-          "review.update",
-          "review.archive",
-          "review.review",
-          "review.approve",
-          "review.comment",
-          "review.created",
-          "review.updated",
-          "review.archived",
-          "review.restored"
+          "ifrs_notes.review"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit",
           "review"
         ],
@@ -5207,21 +5636,25 @@
         ],
         "rules": [
           "src/repositories/review/review-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit",
           "src/lib/review"
         ],
         "security": [
-          "completion.review",
-          "fieldwork.review",
-          "financialStatements.review",
-          "ifrs_notes.review",
-          "ifrs_notes.reviewed",
-          "materiality.review",
-          "opinion.review",
-          "planning.review",
-          "reporting.review",
-          "review.read"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -5279,7 +5712,10 @@
           "uaie_intelligence_audit"
         ],
         "repository": [
-          "src/repositories/opinion/opinion-repository.ts"
+          "src/repositories/opinion/opinion-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/opinion/archive-opinion.ts",
@@ -5291,7 +5727,17 @@
           "src/lib/actions/opinion/opinion-section-actions.ts",
           "src/lib/actions/opinion/opinion-version-actions.ts",
           "src/lib/actions/opinion/opinion-workflow-actions.ts",
-          "src/lib/actions/opinion/update-opinion.ts"
+          "src/lib/actions/opinion/update-opinion.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -5312,7 +5758,8 @@
           "src/components/opinion/create/opinion-create-experience.tsx",
           "src/components/opinion/command-center/opinion-command-center.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
@@ -5328,7 +5775,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/history/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/emphasis-of-matter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/comments/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/basis-for-opinion/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/basis-for-opinion/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -5338,32 +5788,45 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "opinion.read",
           "opinion.create",
           "opinion.update",
-          "opinion.archive",
-          "opinion.review",
-          "opinion.approve",
-          "opinion.comment",
-          "opinion.created",
-          "opinion.updated",
-          "opinion.archived",
-          "opinion.restored",
-          "opinion.submitted",
-          "opinion.returned",
-          "opinion.approved",
-          "opinion.section.synced",
-          "opinion.section.resolved",
-          "opinion.section.returned",
-          "opinion.section.reopened",
-          "opinion.section.assigned",
-          "opinion.section.updated"
+          "opinion.archive"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "opinion",
           "platform-audit"
         ],
@@ -5396,21 +5859,25 @@
         ],
         "rules": [
           "src/repositories/opinion/opinion-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/opinion",
           "src/lib/platform-audit"
         ],
         "security": [
-          "opinion.read",
-          "opinion.create",
-          "opinion.update",
-          "opinion.archive",
-          "opinion.review",
-          "opinion.approve",
-          "opinion.comment",
-          "opinion.created",
-          "opinion.updated",
-          "opinion.archived"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -5436,10 +5903,10 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
@@ -5460,17 +5927,51 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -5480,13 +5981,42 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "uaie.dictionary.disabled"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -5504,21 +6034,45 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
         "security": [
-          "uaie.dictionary.disabled"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 62.5,
-      "healthScore": 62.5,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_analytical-procedures",
@@ -5536,18 +6090,18 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
         "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -5560,20 +6114,54 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/fieldwork/procedures/fieldwork-procedure-row.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/procedures/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/procedures/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/procedures/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -5583,10 +6171,41 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
+        ],
+        "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -5604,19 +6223,45 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
-        "security": [],
+        "security": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_sampling-support",
@@ -5634,18 +6279,18 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
         "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -5658,17 +6303,51 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -5678,10 +6357,41 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
+        ],
+        "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -5699,19 +6409,45 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
-        "security": [],
+        "security": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_finding-and-recommendation-tracking",
@@ -5729,10 +6465,10 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
@@ -5754,12 +6490,43 @@
           "fieldwork_findings",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
@@ -5767,7 +6534,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/recommendations/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/findings/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/findings/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -5777,13 +6547,42 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "fieldwork.finding.added"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -5801,21 +6600,45 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
         "security": [
-          "fieldwork.finding.added"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 62.5,
-      "healthScore": 62.5,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_evidence-backed-document-search",
@@ -5834,14 +6657,14 @@
       "evidence": {
         "database": true,
         "repository": false,
-        "serverAction": false,
+        "serverAction": true,
         "rules": false,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -5852,6 +6675,9 @@
       "evidencePaths": {
         "database": [
           "fieldwork_evidence"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -5870,7 +6696,11 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/fs-mapping/search/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/evidence/page.tsx"
         ],
+        "tests": [
+          "src/lib/audit-engine/evidence-management.test.ts"
+        ],
         "permissions": [
+          "audit_engine.evidence.manage",
           "fieldwork.evidence.added",
           "planning.document.added",
           "planning.document.removed"
@@ -5890,9 +6720,12 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
+        ],
         "rules": [],
         "security": [
+          "audit_engine.evidence.manage",
           "fieldwork.evidence.added",
           "planning.document.added",
           "planning.document.removed"
@@ -5901,9 +6734,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
-      "status": "partial"
+      "completionPct": 68.75,
+      "healthScore": 68.75,
+      "status": "production"
     },
     {
       "id": "cap_ai-assisted-working-paper-drafts",
@@ -6542,18 +7375,18 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
         "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -6566,23 +7399,89 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
-          "src/lib/platform-audit/platform-audit.test.ts"
+          "src/lib/platform-audit/platform-audit.test.ts",
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
+        ],
+        "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit"
         ],
         "documentation": [
@@ -6600,19 +7499,45 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit"
         ],
-        "security": [],
+        "security": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_firm-knowledge-retrieval",
@@ -6810,7 +7735,8 @@
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
           "src/lib/actions/reporting/update-reporting.ts",
           "src/lib/actions/onboarding/create-organization.ts",
-          "src/lib/actions/onboarding/create-workspace.ts"
+          "src/lib/actions/onboarding/create-workspace.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -6849,15 +7775,18 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/appendices/page.tsx",
           "src/app/[locale]/(protected)/app/dashboard/page.tsx",
-          "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
+          "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/dashboard/dashboard-preferences-storage.test.ts",
-          "src/lib/dashboard/workspace-greeting.test.ts"
+          "src/lib/dashboard/workspace-greeting.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts"
         ],
         "permissions": [
+          "audit_engine.committee.dashboard",
           "reporting.read",
           "reporting.create",
           "reporting.update",
@@ -6876,8 +7805,7 @@
           "reporting.section.resolved",
           "reporting.section.returned",
           "reporting.section.reopened",
-          "reporting.section.assigned",
-          "reporting.section.updated"
+          "reporting.section.assigned"
         ],
         "integration": [
           "dashboard",
@@ -6918,6 +7846,7 @@
           "src/lib/reporting"
         ],
         "security": [
+          "audit_engine.committee.dashboard",
           "reporting.read",
           "reporting.create",
           "reporting.update",
@@ -6926,8 +7855,7 @@
           "reporting.approve",
           "reporting.comment",
           "reporting.created",
-          "reporting.updated",
-          "reporting.archived"
+          "reporting.updated"
         ],
         "performance": [],
         "monitoring": [],
@@ -6953,18 +7881,18 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
         "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -6977,17 +7905,51 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx"
+          "src/components/company/history/company-audit-summary.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -6999,10 +7961,39 @@
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts"
+        ],
+        "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "database-governance",
           "platform-audit"
         ],
@@ -7021,20 +8012,46 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/database-governance",
           "src/lib/platform-audit"
         ],
-        "security": [],
+        "security": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_management-representation-tracking",
@@ -7075,7 +8092,9 @@
         ],
         "serverAction": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx"
@@ -7089,7 +8108,9 @@
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
-          "src/lib/database-governance/database-lifecycle.test.ts"
+          "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts"
         ],
         "integration": [
           "database-governance"
@@ -7112,6 +8133,8 @@
         "validation": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
@@ -7297,9 +8320,9 @@
       "evidence": {
         "database": false,
         "repository": false,
-        "serverAction": false,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": false,
         "ui": true,
         "permissions": false,
@@ -7313,12 +8336,16 @@
         "telemetry": false
       },
       "evidencePaths": {
+        "serverAction": [
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx"
         ],
         "tests": [
           "src/lib/database-governance/database-governance.test.ts",
-          "src/lib/database-governance/database-lifecycle.test.ts"
+          "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts"
         ],
         "integration": [
           "database-governance"
@@ -7338,7 +8365,9 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
           "src/lib/database-governance"
         ],
@@ -7347,8 +8376,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 37.5,
-      "healthScore": 37.5,
+      "completionPct": 50,
+      "healthScore": 50,
       "status": "partial"
     },
     {
@@ -7461,7 +8490,8 @@
         ],
         "serverAction": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx"
@@ -7474,7 +8504,8 @@
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
-          "src/lib/database-governance/database-lifecycle.test.ts"
+          "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "integration": [
           "database-governance"
@@ -7497,6 +8528,7 @@
         "validation": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
@@ -7793,7 +8825,8 @@
           "src/lib/actions/ifrs-notes/index.ts",
           "src/lib/actions/ifrs-notes/workflow-actions.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -7841,7 +8874,8 @@
         "tests": [
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fieldwork/working-paper-management.test.ts",
-          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "fieldwork.note.added",
@@ -7977,7 +9011,8 @@
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
           "src/lib/actions/reporting/update-reporting.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -8015,7 +9050,8 @@
         ],
         "tests": [
           "src/lib/fieldwork/working-paper-management.test.ts",
-          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "reporting.read",
@@ -8141,7 +9177,10 @@
           "uaie_intelligence_audit"
         ],
         "repository": [
-          "src/repositories/reporting/reporting-repository.ts"
+          "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/reporting/archive-reporting.ts",
@@ -8153,7 +9192,17 @@
           "src/lib/actions/reporting/reporting-section-actions.ts",
           "src/lib/actions/reporting/reporting-version-actions.ts",
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
-          "src/lib/actions/reporting/update-reporting.ts"
+          "src/lib/actions/reporting/update-reporting.ts",
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -8192,7 +9241,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/appendices/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
+          "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -8202,32 +9254,45 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
         ],
         "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export",
           "reporting.read",
           "reporting.create",
           "reporting.update",
-          "reporting.archive",
-          "reporting.review",
-          "reporting.approve",
-          "reporting.comment",
-          "reporting.created",
-          "reporting.updated",
-          "reporting.archived",
-          "reporting.restored",
-          "reporting.submitted",
-          "reporting.returned",
-          "reporting.approved",
-          "reporting.section.synced",
-          "reporting.section.resolved",
-          "reporting.section.returned",
-          "reporting.section.reopened",
-          "reporting.section.assigned",
-          "reporting.section.updated"
+          "reporting.archive"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "platform-audit",
           "reporting"
         ],
@@ -8260,21 +9325,25 @@
         ],
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/platform-audit",
           "src/lib/reporting"
         ],
         "security": [
-          "reporting.read",
-          "reporting.create",
-          "reporting.update",
-          "reporting.archive",
-          "reporting.review",
-          "reporting.approve",
-          "reporting.comment",
-          "reporting.created",
-          "reporting.updated",
-          "reporting.archived"
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
         ],
         "performance": [],
         "monitoring": [],
@@ -8308,7 +9377,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -8333,7 +9402,9 @@
           "src/lib/actions/reporting/reporting-section-actions.ts",
           "src/lib/actions/reporting/reporting-version-actions.ts",
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
-          "src/lib/actions/reporting/update-reporting.ts"
+          "src/lib/actions/reporting/update-reporting.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -8368,6 +9439,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/appendices/page.tsx",
           "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
         ],
+        "tests": [
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
+        ],
         "permissions": [
           "reporting.read",
           "reporting.create",
@@ -8440,8 +9515,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -8569,6 +9644,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/cross-references/page.tsx"
         ],
         "permissions": [
+          "audit_engine.audit_log.export",
           "financialStatements.read",
           "financialStatements.create",
           "financialStatements.update",
@@ -8587,8 +9663,7 @@
           "financialStatements.approved",
           "financialStatements.published",
           "financialStatements.section.synced",
-          "financialStatements.section.resolved",
-          "financialStatements.section.returned"
+          "financialStatements.section.resolved"
         ],
         "integration": [
           "financial-statements",
@@ -8628,6 +9703,7 @@
           "src/lib/reporting"
         ],
         "security": [
+          "audit_engine.audit_log.export",
           "financialStatements.read",
           "financialStatements.create",
           "financialStatements.update",
@@ -8636,8 +9712,7 @@
           "financialStatements.approve",
           "financialStatements.comment",
           "financialStatements.export",
-          "financialStatements.created",
-          "financialStatements.updated"
+          "financialStatements.created"
         ],
         "performance": [],
         "monitoring": [],
@@ -8671,7 +9746,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -8688,7 +9763,8 @@
           "report_activity"
         ],
         "repository": [
-          "src/repositories/reporting/reporting-repository.ts"
+          "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/reporting/archive-reporting.ts",
@@ -8700,7 +9776,8 @@
           "src/lib/actions/reporting/reporting-section-actions.ts",
           "src/lib/actions/reporting/reporting-version-actions.ts",
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
-          "src/lib/actions/reporting/update-reporting.ts"
+          "src/lib/actions/reporting/update-reporting.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -8735,7 +9812,11 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/appendices/page.tsx",
           "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
         ],
+        "tests": [
+          "src/lib/audit-engine/audit-report-generation.test.ts"
+        ],
         "permissions": [
+          "audit_engine.report.generate",
           "reporting.read",
           "reporting.create",
           "reporting.update",
@@ -8754,8 +9835,7 @@
           "reporting.section.resolved",
           "reporting.section.returned",
           "reporting.section.reopened",
-          "reporting.section.assigned",
-          "reporting.section.updated"
+          "reporting.section.assigned"
         ],
         "integration": [
           "reporting"
@@ -8789,9 +9869,11 @@
         ],
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
           "src/lib/reporting"
         ],
         "security": [
+          "audit_engine.report.generate",
           "reporting.read",
           "reporting.create",
           "reporting.update",
@@ -8800,15 +9882,14 @@
           "reporting.approve",
           "reporting.comment",
           "reporting.created",
-          "reporting.updated",
-          "reporting.archived"
+          "reporting.updated"
         ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -9023,7 +10104,8 @@
           "src/lib/actions/organization-action.ts",
           "src/lib/actions/onboarding/create-organization.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -9035,7 +10117,8 @@
         ],
         "tests": [
           "src/lib/fieldwork/working-paper-management.test.ts",
-          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "request.jwt.claim.organization_id",
@@ -9061,6 +10144,7 @@
           "src/lib/actions/onboarding/create-organization.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/organization/organization-repository.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
@@ -9128,7 +10212,8 @@
           "src/lib/actions/workspace-action.ts",
           "src/lib/actions/onboarding/create-workspace.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/workspace/index.ts",
@@ -9160,7 +10245,8 @@
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/engagement/engagement-workspace-display.test.ts",
-          "src/lib/dashboard/workspace-greeting.test.ts"
+          "src/lib/dashboard/workspace-greeting.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "request.jwt.claim.workspace_id",
@@ -9189,6 +10275,7 @@
           "src/lib/actions/onboarding/create-workspace.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/workspace/workspace-repository.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
@@ -9253,7 +10340,8 @@
         ],
         "serverAction": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -9277,7 +10365,8 @@
         "tests": [
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
-          "src/lib/company/company-identity-draft.test.ts"
+          "src/lib/company/company-identity-draft.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.6 Administration"
@@ -9297,6 +10386,7 @@
         "validation": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
@@ -9438,7 +10528,8 @@
         "serverAction": [
           "src/lib/actions/permission-action.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -9451,7 +10542,8 @@
         ],
         "tests": [
           "src/lib/fieldwork/working-paper-management.test.ts",
-          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "request.jwt.claim.role"
@@ -9475,6 +10567,7 @@
           "src/lib/actions/permission-action.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/role/role-repository.ts",
           "src/repositories/permission/permission-repository.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
@@ -9513,18 +10606,18 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
-        "rules": false,
-        "validation": false,
+        "repository": true,
+        "serverAction": true,
+        "rules": true,
+        "validation": true,
         "workspace": false,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
-        "integration": false,
-        "security": false,
+        "integration": true,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -9533,8 +10626,20 @@
         "database": [
           "organizations"
         ],
+        "repository": [
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx"
+        ],
+        "tests": [
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts"
+        ],
+        "permissions": [
+          "audit_engine.isa.methodology"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.6 Administration"
@@ -9551,16 +10656,23 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
-        "rules": [],
-        "security": [],
+        "validation": [
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "rules": [
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "security": [
+          "audit_engine.isa.methodology"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 25,
-      "healthScore": 25,
-      "status": "foundation"
+      "completionPct": 75,
+      "healthScore": 75,
+      "status": "enterprise"
     },
     {
       "id": "cap_template-management",
@@ -9604,7 +10716,8 @@
         ],
         "serverAction": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx"
@@ -9617,7 +10730,8 @@
         ],
         "tests": [
           "src/lib/fieldwork/working-paper-management.test.ts",
-          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts"
         ],
         "permissions": [
           "uaie.template.promoted",
@@ -9641,6 +10755,7 @@
         "validation": [
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
@@ -9741,10 +10856,10 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
@@ -9752,7 +10867,7 @@
         "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -9765,19 +10880,53 @@
           "audit_procedures",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+          "src/lib/actions/audit-engine/index.ts",
+          "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+          "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+          "src/lib/actions/audit-engine/sampling-support-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/platform-audit/index.ts",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx",
-          "src/components/auth/login-form.tsx"
+          "src/components/auth/login-form.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+          "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx",
+          "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+          "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+          "src/components/audit-engine/index.ts"
         ],
         "workspace": [
           "src/app/[locale]/login/page.tsx",
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -9787,10 +10936,41 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
-          "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
+          "src/lib/audit-engine/analytical-procedures.test.ts",
+          "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
+          "src/lib/audit-engine/audit-opinion-formation.test.ts",
+          "src/lib/audit-engine/audit-planning.test.ts",
+          "src/lib/audit-engine/audit-program-execution.test.ts",
+          "src/lib/audit-engine/audit-report-generation.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
+          "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+          "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+          "src/lib/audit-engine/quality-review-support.test.ts",
+          "src/lib/audit-engine/review-workflow.test.ts",
+          "src/lib/audit-engine/sampling-support.test.ts"
+        ],
+        "permissions": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures",
+          "audit_engine.sampling",
+          "audit_engine.finding.track",
+          "audit_engine.committee.dashboard",
+          "audit_engine.report.generate",
+          "audit_engine.audit_log.read",
+          "audit_engine.audit_log.export"
         ],
         "integration": [
           "audit",
+          "audit-engine",
           "logger",
           "platform-audit"
         ],
@@ -9809,20 +10989,46 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+          "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+          "src/lib/actions/audit-engine/audit-engine-action.ts",
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+          "src/lib/actions/audit-engine/audit-planning-actions.ts",
+          "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+          "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
+          "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts"
+        ],
         "rules": [
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
+          "src/repositories/audit-engine/audit-report-generation-repository.ts",
+          "src/repositories/audit-engine/isa-aligned-methodology-repository.ts",
           "src/lib/audit",
+          "src/lib/audit-engine",
           "src/lib/logger",
           "src/lib/platform-audit"
         ],
-        "security": [],
+        "security": [
+          "audit_engine.planning.read",
+          "audit_engine.planning.execute",
+          "audit_engine.program.execute",
+          "audit_engine.evidence.manage",
+          "audit_engine.review.workflow",
+          "audit_engine.quality.review",
+          "audit_engine.opinion.formation",
+          "audit_engine.opinion.approve",
+          "audit_engine.isa.methodology",
+          "audit_engine.analytical.procedures"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 56.25,
-      "healthScore": 56.25,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_multi-tenant-isolation",
@@ -9931,7 +11137,7 @@
       "evidence": {
         "database": true,
         "repository": true,
-        "serverAction": false,
+        "serverAction": true,
         "rules": true,
         "validation": true,
         "workspace": true,
@@ -9952,20 +11158,29 @@
           "role_permissions"
         ],
         "repository": [
-          "src/repositories/role/role-repository.ts"
+          "src/repositories/role/role-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/public/public-locale-theme-controls.tsx",
           "src/components/public/sections/security-section.tsx",
-          "src/components/auth/role-guard.tsx"
+          "src/components/auth/role-guard.tsx",
+          "src/components/audit-engine/audit-log-access-panel.tsx",
+          "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+          "src/components/audit-engine/audit-log-access-workspace.tsx"
         ],
         "workspace": [
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx",
+          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx"
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/security/multi-tenant-isolation.test.ts",
+          "src/lib/audit-engine/audit-log-access.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -9991,10 +11206,13 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
-          "src/repositories/role/role-repository.ts"
+          "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+          "src/repositories/role/role-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts"
         ],
         "rules": [
           "src/repositories/role/role-repository.ts",
+          "src/repositories/audit-engine/audit-log-access-repository.ts",
           "src/lib/security",
           "src/lib/sql-foundation"
         ],
@@ -10005,8 +11223,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -10171,7 +11389,8 @@
         "serverAction": [
           "src/lib/actions/uaie/uaie-session-actions.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
-          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -10189,6 +11408,7 @@
           "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/fieldwork/working-paper-management.test.ts",
           "src/lib/engagement/engagement-lifecycle-management.test.ts",
+          "src/lib/audit-engine/evidence-management.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "integration": [
@@ -10214,6 +11434,7 @@
           "src/lib/actions/uaie/uaie-session-actions.ts",
           "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/lib/actions/audit-engine/evidence-management-actions.ts",
           "src/repositories/fieldwork/working-paper-management-repository.ts",
           "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
@@ -10758,6 +11979,7 @@
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
+          "audit_engine.audit_log.export",
           "financialStatements.export"
         ],
         "integration": [
@@ -10785,6 +12007,7 @@
           "src/lib/sql-foundation"
         ],
         "security": [
+          "audit_engine.audit_log.export",
           "financialStatements.export"
         ],
         "performance": [],
@@ -10880,7 +12103,7 @@
   ],
   "requirements": [],
   "evidenceIndex": {
-    "scannedAt": "2026-07-16T23:23:54.780Z",
+    "scannedAt": "2026-07-16T23:43:18.239Z",
     "tables": [
       "organizations",
       "workspaces",
@@ -11021,7 +12244,10 @@
       "src/repositories/company/company-repository.test.ts",
       "src/repositories/company/company-repository.ts",
       "src/repositories/base/base-repository.ts",
-      "src/repositories/base/repository-helpers.ts"
+      "src/repositories/base/repository-helpers.ts",
+      "src/repositories/audit-engine/audit-log-access-repository.ts",
+      "src/repositories/audit-engine/audit-report-generation-repository.ts",
+      "src/repositories/audit-engine/isa-aligned-methodology-repository.ts"
     ],
     "serverActions": [
       "src/lib/actions/admin-action.ts",
@@ -11165,6 +12391,20 @@
       "src/lib/actions/auth/sign-in.ts",
       "src/lib/actions/auth/sign-out.ts",
       "src/lib/actions/auth/sign-up.ts",
+      "src/lib/actions/audit-engine/analytical-procedures-actions.ts",
+      "src/lib/actions/audit-engine/audit-committee-dashboards-actions.ts",
+      "src/lib/actions/audit-engine/audit-engine-action.ts",
+      "src/lib/actions/audit-engine/audit-log-access-actions.ts",
+      "src/lib/actions/audit-engine/audit-opinion-formation-actions.ts",
+      "src/lib/actions/audit-engine/audit-planning-actions.ts",
+      "src/lib/actions/audit-engine/audit-program-execution-actions.ts",
+      "src/lib/actions/audit-engine/audit-report-generation-actions.ts",
+      "src/lib/actions/audit-engine/evidence-management-actions.ts",
+      "src/lib/actions/audit-engine/finding-and-recommendation-tracking-actions.ts",
+      "src/lib/actions/audit-engine/index.ts",
+      "src/lib/actions/audit-engine/isa-aligned-methodology-actions.ts",
+      "src/lib/actions/audit-engine/quality-review-support-actions.ts",
+      "src/lib/actions/audit-engine/sampling-support-actions.ts",
       "src/lib/actions/ai/host-execution-actions.ts",
       "src/lib/actions/ai/llm-provider-actions.ts"
     ],
@@ -11605,6 +12845,16 @@
       "src/components/auth/ui/auth-status-panel.tsx",
       "src/components/auth/ui/auth-success.tsx",
       "src/components/auth/ui/index.ts",
+      "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
+      "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
+      "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
+      "src/components/audit-engine/audit-log-access-panel.tsx",
+      "src/components/audit-engine/audit-log-access-workspace-provider.tsx",
+      "src/components/audit-engine/audit-log-access-workspace.tsx",
+      "src/components/audit-engine/audit-opinion-formation-panel.tsx",
+      "src/components/audit-engine/audit-opinion-formation-workspace-provider.tsx",
+      "src/components/audit-engine/audit-opinion-formation-workspace.tsx",
+      "src/components/audit-engine/index.ts",
       "src/components/ai-inline/index.ts",
       "src/components/ai-inline/shared/ai-everywhere-host.tsx",
       "src/components/ai-inline/shared/ai-everywhere-layout-bridge.tsx",
@@ -11859,6 +13109,9 @@
       "src/app/[locale]/(protected)/app/companies/[slug]/compliance/page.tsx",
       "src/app/[locale]/(protected)/app/companies/new/page.tsx",
       "src/app/[locale]/(protected)/app/capability-intelligence/page.tsx",
+      "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+      "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+      "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx",
       "src/app/[locale]/(protected)/ai/page.tsx"
     ],
     "routes": [
@@ -12069,9 +13322,28 @@
       "src/app/[locale]/(protected)/app/companies/[slug]/compliance/page.tsx",
       "src/app/[locale]/(protected)/app/companies/new/page.tsx",
       "src/app/[locale]/(protected)/app/capability-intelligence/page.tsx",
+      "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
+      "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
+      "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx",
       "src/app/[locale]/(protected)/ai/page.tsx"
     ],
     "permissions": [
+      "audit_engine.planning.read",
+      "audit_engine.planning.execute",
+      "audit_engine.program.execute",
+      "audit_engine.evidence.manage",
+      "audit_engine.review.workflow",
+      "audit_engine.quality.review",
+      "audit_engine.opinion.formation",
+      "audit_engine.opinion.approve",
+      "audit_engine.isa.methodology",
+      "audit_engine.analytical.procedures",
+      "audit_engine.sampling",
+      "audit_engine.finding.track",
+      "audit_engine.committee.dashboard",
+      "audit_engine.report.generate",
+      "audit_engine.audit_log.read",
+      "audit_engine.audit_log.export",
       "company.read",
       "company.configure",
       "company.administer",
@@ -12474,6 +13746,19 @@
       "src/lib/capability-intelligence/capability-intelligence.test.ts",
       "src/lib/auth/multi-factor-authentication.test.ts",
       "src/lib/auth/password-strength.test.ts",
+      "src/lib/audit-engine/analytical-procedures.test.ts",
+      "src/lib/audit-engine/audit-committee-dashboards.test.ts",
+      "src/lib/audit-engine/audit-log-access.test.ts",
+      "src/lib/audit-engine/audit-opinion-formation.test.ts",
+      "src/lib/audit-engine/audit-planning.test.ts",
+      "src/lib/audit-engine/audit-program-execution.test.ts",
+      "src/lib/audit-engine/audit-report-generation.test.ts",
+      "src/lib/audit-engine/evidence-management.test.ts",
+      "src/lib/audit-engine/finding-and-recommendation-tracking.test.ts",
+      "src/lib/audit-engine/isa-aligned-methodology.test.ts",
+      "src/lib/audit-engine/quality-review-support.test.ts",
+      "src/lib/audit-engine/review-workflow.test.ts",
+      "src/lib/audit-engine/sampling-support.test.ts",
       "src/lib/ai/ai-foundation.test.ts",
       "src/lib/ai/tools/ai-tools.test.ts",
       "src/lib/ai/skills/ai-skills.test.ts",
@@ -12571,6 +13856,7 @@
       "actions",
       "ai",
       "audit",
+      "audit-engine",
       "auth",
       "capability-intelligence",
       "capability-registry",
@@ -12635,14 +13921,14 @@
       }
     ]
   },
-  "platformCompletionPct": 66.18,
-  "architectureHealthPct": 75.49,
-  "implementationHealthPct": 76.47,
+  "platformCompletionPct": 70.5,
+  "architectureHealthPct": 83.33,
+  "implementationHealthPct": 82.35,
   "documentationCoveragePct": 100,
-  "testingCoveragePct": 85.29,
+  "testingCoveragePct": 91.18,
   "localizationCoveragePct": 100,
-  "securityCoveragePct": 72.06,
+  "securityCoveragePct": 80.88,
   "performanceCoveragePct": 0,
-  "integrationCoveragePct": 92.65,
-  "technicalDebtScore": 13.43
+  "integrationCoveragePct": 94.12,
+  "technicalDebtScore": 8.92
 }
