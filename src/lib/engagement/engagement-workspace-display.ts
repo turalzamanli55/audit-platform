@@ -30,6 +30,7 @@ export type EngagementWorkspaceSection =
   | "trial-balance"
   | "fs-mapping"
   | "fs-rendering"
+  | "ifrs-notes"
   | "financial-statements"
   | "history"
   | "settings";
@@ -428,6 +429,11 @@ export function buildEngagementWorkspaceNavItems(
       id: "fs-rendering",
       label: labels.navFsRendering,
       href: `${base}/fs-rendering`,
+    },
+    {
+      id: "ifrs-notes",
+      label: labels.navIfrsNotes,
+      href: `${base}/ifrs-notes`,
     },
     {
       id: "financial-statements",

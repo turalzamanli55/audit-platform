@@ -1106,6 +1106,7 @@
       },
       "navFsMapping": "FS Eşleme",
       "navFsRendering": "FS Görüntüleme",
+      "navIfrsNotes": "UFRS Notları",
       "navFinancialStatements": "Mali tablolar",
       "financialStatements": {
         "title": "Mali tabloların özeti",

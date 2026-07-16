@@ -1116,6 +1116,7 @@
       },
       "navFsMapping": "FS Mapping",
       "navFsRendering": "FS Rendering",
+      "navIfrsNotes": "IFRS Notes",
       "navFinancialStatements": "Financial statements",
       "financialStatements": {
         "title": "Financial statements summary",

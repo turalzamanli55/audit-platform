@@ -1,9 +1,8 @@
-import { capabilityRegistryEngine } from "@/lib/capability-registry/engine";
+import { projectSyncEngine } from "@/lib/project-sync/engine";
+import type { PlatformGovernanceDashboardModel } from "@/lib/project-sync/dashboard";
 
-export type PlatformReadinessDashboardModel = ReturnType<
-  typeof capabilityRegistryEngine.buildDashboardModel
->;
+export type PlatformReadinessDashboardModel = PlatformGovernanceDashboardModel;
 
 export function loadPlatformReadinessDashboard(): PlatformReadinessDashboardModel {
-  return capabilityRegistryEngine.buildDashboardModel();
+  return projectSyncEngine.getDashboard();
 }

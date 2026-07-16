@@ -2390,6 +2390,7 @@ export type Dictionary = {
       navTrialBalance: string;
       navFsMapping: string;
       navFsRendering: string;
+      navIfrsNotes: string;
       navFinancialStatements: string;
       navHistory: string;
       navSettings: string;

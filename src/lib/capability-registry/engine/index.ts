@@ -23,30 +23,87 @@ import type { DomainDefinition, DomainReadiness } from "@/lib/capability-registr
 import type { ModuleDefinition, ModuleReadiness } from "@/lib/capability-registry/modules";
 import type { FeatureDefinition, FeatureReadiness } from "@/lib/capability-registry/features";
 import type { CapabilityPlatformReport } from "@/lib/capability-registry/reporting";
+import { projectSyncEngine } from "@/lib/project-sync/engine";
+
+function loadSynchronizedCatalog(): {
+  domains: DomainDefinition[];
+  modules: ModuleDefinition[];
+  features: FeatureDefinition[];
+  definitions: CapabilityDefinition[];
+} {
+  try {
+    return projectSyncEngine.toCapabilityCatalog();
+  } catch {
+    // Fallback only if docs/scanner unavailable in constrained environments.
+    return {
+      domains: CAPABILITY_DOMAINS,
+      modules: CAPABILITY_MODULES,
+      features: CAPABILITY_FEATURES,
+      definitions: CAPABILITY_CATALOG,
+    };
+  }
+}
 
 /**
- * Enterprise Capability Registry Engine
- * Platform ← Domains ← Modules ← Features ← Capabilities ← Evidence
+ * Capability Registry Engine
+ * Catalog is synchronized FROM PROJECT_BIBLE via EPBSE.
+ * Registries are never an independent source of truth.
  */
 export class CapabilityRegistryEngine {
   private domains: DomainDefinition[];
   private modules: ModuleDefinition[];
   private features: FeatureDefinition[];
   private definitions: CapabilityDefinition[];
+  private preferProjectSyncCompletion: boolean;
 
   constructor(input?: {
     domains?: DomainDefinition[];
     modules?: ModuleDefinition[];
     features?: FeatureDefinition[];
     definitions?: CapabilityDefinition[];
+    useProjectSync?: boolean;
   }) {
-    this.domains = [...(input?.domains ?? CAPABILITY_DOMAINS)];
-    this.modules = [...(input?.modules ?? CAPABILITY_MODULES)];
-    this.features = [...(input?.features ?? CAPABILITY_FEATURES)];
-    this.definitions = [...(input?.definitions ?? CAPABILITY_CATALOG)];
+    this.preferProjectSyncCompletion = input?.useProjectSync !== false;
+    if (
+      input?.domains &&
+      input.modules &&
+      input.features &&
+      input.definitions
+    ) {
+      this.domains = [...input.domains];
+      this.modules = [...input.modules];
+      this.features = [...input.features];
+      this.definitions = [...input.definitions];
+      return;
+    }
+    if (input?.useProjectSync === false) {
+      this.preferProjectSyncCompletion = false;
+      this.domains = [...CAPABILITY_DOMAINS];
+      this.modules = [...CAPABILITY_MODULES];
+      this.features = [...CAPABILITY_FEATURES];
+      this.definitions = [...CAPABILITY_CATALOG];
+      return;
+    }
+    const synced = loadSynchronizedCatalog();
+    this.domains = synced.domains;
+    this.modules = synced.modules;
+    this.features = synced.features;
+    this.definitions = synced.definitions;
+  }
+
+  /** Re-sync catalog from PROJECT_BIBLE (documentation → registry only). */
+  resyncFromDocumentation(cwd = process.cwd()): void {
+    projectSyncEngine.synchronize({ cwd, persist: true });
+    const synced = projectSyncEngine.toCapabilityCatalog(cwd);
+    this.domains = synced.domains;
+    this.modules = synced.modules;
+    this.features = synced.features;
+    this.definitions = synced.definitions;
   }
 
   registerCapability(definition: CapabilityDefinition): void {
+    // Manual registration is rejected as source-of-truth; keep method for compatibility
+    // but mark via description that docs must win on next sync.
     const index = this.definitions.findIndex((entry) => entry.id === definition.id);
     if (index >= 0) {
       this.definitions[index] = definition;
@@ -166,13 +223,21 @@ export class CapabilityRegistryEngine {
       ?? null;
   }
 
-  /** Platform completion = average of domain completions. */
   getPlatformCompletion(): number {
+    if (this.preferProjectSyncCompletion) {
+      try {
+        return projectSyncEngine.getPlatformCompletion();
+      } catch {
+        // fall through to domain roll-up
+      }
+    }
     return averageCompletion(this.listDomainReadiness().map((domain) => domain.completionPct));
   }
 
   getCapabilityRegistryCompletion(): number {
-    return this.getModuleCompletion("capability-registry") ?? 0;
+    return this.getModuleCompletion("capability-registry") ??
+      this.getModuleCompletion("mod_foundation") ??
+      0;
   }
 
   buildReport(): CapabilityPlatformReport {
@@ -201,22 +266,26 @@ export class CapabilityRegistryEngine {
   }
 
   buildDashboardModel() {
-    const report = this.buildReport();
-    const lanes = groupRoadmapByLane(buildCapabilityRoadmap(report.capabilities));
-    return {
-      platformCompletionPct: report.platformCompletionPct,
-      domains: report.domains,
-      modules: report.modules,
-      features: report.features,
-      capabilities: report.capabilities,
-      evidence: report.evidence,
-      missingCapabilities: report.missingCapabilities,
-      blockedCapabilities: report.blockedCapabilities,
-      roadmapLanes: lanes,
-      validation: report.validation,
-      counts: report.counts,
-      calculatedAt: report.calculatedAt,
-    };
+    try {
+      return projectSyncEngine.getDashboard();
+    } catch {
+      const report = this.buildReport();
+      const lanes = groupRoadmapByLane(buildCapabilityRoadmap(report.capabilities));
+      return {
+        platformCompletionPct: report.platformCompletionPct,
+        domains: report.domains,
+        modules: report.modules,
+        features: report.features,
+        capabilities: report.capabilities,
+        evidence: report.evidence,
+        missingCapabilities: report.missingCapabilities,
+        blockedCapabilities: report.blockedCapabilities,
+        roadmapLanes: lanes,
+        validation: report.validation,
+        counts: report.counts,
+        calculatedAt: report.calculatedAt,
+      };
+    }
   }
 }
 

@@ -159,4 +159,11 @@ export const AUDIT_ACTIONS = {
   FS_RENDERING_PUBLISHED: "fs_rendering.published",
   FS_RENDERING_ARCHIVED: "fs_rendering.archived",
   FS_RENDERING_ROLLED_BACK: "fs_rendering.rolled_back",
+  IFRS_NOTES_CREATED: "ifrs_notes.created",
+  IFRS_NOTES_UPDATED: "ifrs_notes.updated",
+  IFRS_NOTES_VALIDATED: "ifrs_notes.validated",
+  IFRS_NOTES_APPROVED: "ifrs_notes.approved",
+  IFRS_NOTES_PUBLISHED: "ifrs_notes.published",
+  IFRS_NOTES_ARCHIVED: "ifrs_notes.archived",
+  IFRS_NOTES_ROLLED_BACK: "ifrs_notes.rolled_back",
 } as const;

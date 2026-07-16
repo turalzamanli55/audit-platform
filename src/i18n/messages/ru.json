@@ -1106,6 +1106,7 @@
       },
       "navFsMapping": "Карта отчётности",
       "navFsRendering": "Рендер отчётности",
+      "navIfrsNotes": "Примечания МСФО",
       "navFinancialStatements": "Финансовая отчетность",
       "financialStatements": {
         "title": "Сводная информация о финансовой отчетности",

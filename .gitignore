@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# EPBSE generated synchronization artifacts
+src/lib/project-sync/snapshots/data/sync_*.json
+src/lib/project-sync/snapshots/history/
