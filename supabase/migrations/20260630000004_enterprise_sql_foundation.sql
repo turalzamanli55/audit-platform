@@ -200,12 +200,12 @@ $$;
 -- JSON helpers
 -- ---------------------------------------------------------------------------
 
-CREATE OR REPLACE FUNCTION public.jsonb_merge(base jsonb, overlay jsonb)
+CREATE OR REPLACE FUNCTION public.jsonb_merge(base jsonb, patch jsonb)
 RETURNS jsonb
 LANGUAGE sql
 IMMUTABLE
 AS $$
-  SELECT COALESCE(base, '{}'::jsonb) || COALESCE(overlay, '{}'::jsonb);
+  SELECT COALESCE(base, '{}'::jsonb) || COALESCE(patch, '{}'::jsonb);
 $$;
 
 CREATE OR REPLACE FUNCTION public.jsonb_is_object(value jsonb)
