@@ -232,7 +232,7 @@ VALUES
   ('fs_rendering.approve', 'Approve FS Rendering', 'Approve presentations', 'fs_rendering', 'active'),
   ('fs_rendering.publish', 'Publish FS Rendering', 'Publish render versions', 'fs_rendering', 'active'),
   ('fs_rendering.archive', 'Archive FS Rendering', 'Archive presentations', 'fs_rendering', 'active')
-ON CONFLICT (code) DO NOTHING;
+ON CONFLICT DO NOTHING;
 
 -- ---------------------------------------------------------------------------
 -- RLS

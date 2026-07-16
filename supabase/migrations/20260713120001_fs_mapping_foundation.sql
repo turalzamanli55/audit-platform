@@ -344,7 +344,7 @@ VALUES
   ('fs_mapping.approve', 'Approve FS Mapping', 'Approve mapping sets', 'fs_mapping', 'active'),
   ('fs_mapping.publish', 'Publish FS Mapping', 'Publish mapping versions', 'fs_mapping', 'active'),
   ('fs_mapping.archive', 'Archive FS Mapping', 'Archive mapping sets', 'fs_mapping', 'active')
-ON CONFLICT (code) DO NOTHING;
+ON CONFLICT DO NOTHING;
 
 -- ---------------------------------------------------------------------------
 -- RLS

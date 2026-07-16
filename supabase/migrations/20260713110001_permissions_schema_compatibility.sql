@@ -1,4 +1,6 @@
 -- SCHEMA-COMPAT-001: Permissions / RBAC column compatibility repair
+-- MUST run BEFORE fs_mapping / fs_rendering / ifrs_notes permission inserts.
+-- Timestamp ordered ahead of 20260713120001 so clean rebuilds succeed.
 --
 -- Root cause:
 --   Foundation (20260630000002) defines public.permissions with

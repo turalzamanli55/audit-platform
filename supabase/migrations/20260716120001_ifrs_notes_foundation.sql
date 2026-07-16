@@ -365,7 +365,7 @@ VALUES
   ('ifrs_notes.approve', 'Approve IFRS Notes', 'Approve note packages', 'ifrs_notes', 'active'),
   ('ifrs_notes.publish', 'Publish IFRS Notes', 'Publish note versions', 'ifrs_notes', 'active'),
   ('ifrs_notes.archive', 'Archive IFRS Notes', 'Archive note packages', 'ifrs_notes', 'active')
-ON CONFLICT (code) DO NOTHING;
+ON CONFLICT DO NOTHING;
 
 -- ---------------------------------------------------------------------------
 -- RLS
