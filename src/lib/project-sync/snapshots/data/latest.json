@@ -1,11 +1,11 @@
 {
-  "id": "sync_1784209908732",
-  "timestamp": "2026-07-16T13:51:48.732Z",
+  "id": "sync_1784214922948",
+  "timestamp": "2026-07-16T15:15:22.948Z",
   "documentVersions": {
     "PROJECT_BIBLE": {
       "path": "C:\\Users\\Tural\\audit\\docs\\PROJECT_BIBLE.md",
-      "hash": "31e29c6dc88ad1f734f00d3bf6d8b0376e7dd0e6a4eabceed49fae267e81820e",
-      "bytes": 622208
+      "hash": "f19dd3ce250da35040a99df713a9411952bed9e280e9f0dc749ad7bedc0bc4b7",
+      "bytes": 638356
     },
     "MASTER_PRD": {
       "path": "C:\\Users\\Tural\\audit\\docs\\MASTER_PRD.md",
@@ -2089,6 +2089,8 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
         "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
         "permissions": [
@@ -2114,6 +2116,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -2145,6 +2148,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -2191,7 +2195,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -2278,6 +2282,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "financialStatements.read",
           "financialStatements.create",
@@ -2301,6 +2309,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -2332,6 +2341,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -2350,8 +2360,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -2378,7 +2388,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -2460,6 +2470,10 @@
           "src/app/[locale]/(protected)/app/companies/[slug]/settings/financial/page.tsx",
           "src/app/[locale]/(protected)/app/companies/[slug]/financial/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "financialStatements.read",
           "financialStatements.create",
@@ -2483,6 +2497,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -2514,6 +2529,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -2532,8 +2548,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -2659,7 +2675,9 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/settings/page.tsx"
         ],
         "tests": [
-          "src/lib/trial-balance/trial-balance-engine.test.ts"
+          "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -2684,6 +2702,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements",
           "trial-balance"
         ],
@@ -2717,6 +2736,7 @@
         "rules": [
           "src/repositories/trial-balance/trial-balance-repository.ts",
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements",
           "src/lib/trial-balance"
         ],
@@ -2764,7 +2784,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -2852,6 +2872,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "financialStatements.read",
           "financialStatements.create",
@@ -2875,6 +2899,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -2906,6 +2931,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -2924,8 +2950,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -2952,7 +2978,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -3040,6 +3066,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "financialStatements.read",
           "financialStatements.create",
@@ -3063,6 +3093,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -3094,6 +3125,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -3112,8 +3144,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -3229,6 +3261,8 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
         "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/company/company-identity-draft.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
@@ -3255,6 +3289,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -3286,6 +3321,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -3427,7 +3463,9 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/cross-references/page.tsx"
         ],
         "tests": [
-          "src/lib/fs-mapping/fs-mapping-engine.test.ts"
+          "src/lib/fs-mapping/fs-mapping-engine.test.ts",
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -3452,6 +3490,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements",
           "fs-mapping"
         ],
@@ -3485,6 +3524,7 @@
         "rules": [
           "src/repositories/fs-mapping/fs-mapping-repository.ts",
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements",
           "src/lib/fs-mapping"
         ],
@@ -3630,7 +3670,9 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/comments/page.tsx"
         ],
         "tests": [
-          "src/lib/ifrs-notes/ifrs-notes-engine.test.ts"
+          "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -3655,6 +3697,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements",
           "ifrs-notes"
         ],
@@ -3688,6 +3731,7 @@
         "rules": [
           "src/repositories/ifrs-notes/ifrs-notes-repository.ts",
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements",
           "src/lib/ifrs-notes"
         ],
@@ -3735,7 +3779,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -3822,6 +3866,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "financialStatements.read",
           "financialStatements.create",
@@ -3845,6 +3893,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements"
         ],
         "documentation": [
@@ -3876,6 +3925,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
         "security": [
@@ -3894,8 +3944,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -4008,6 +4058,7 @@
           "src/lib/engagement/engagement-workspace-display.test.ts",
           "src/lib/engagement/resolve-active-engagement.test.ts",
           "src/lib/engagement/validation.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/ai/memory-engine/ai-memory-engine.test.ts",
           "src/lib/actions/engagement/engagement-actions.test.ts"
         ],
@@ -6597,6 +6648,8 @@
           "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
         ],
         "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/dashboard/dashboard-preferences-storage.test.ts",
           "src/lib/dashboard/workspace-greeting.test.ts"
         ],
@@ -6624,6 +6677,7 @@
         ],
         "integration": [
           "dashboard",
+          "database-governance",
           "reporting"
         ],
         "documentation": [
@@ -6656,6 +6710,7 @@
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
           "src/lib/dashboard",
+          "src/lib/database-governance",
           "src/lib/reporting"
         ],
         "security": [
@@ -6734,10 +6789,13 @@
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -6756,7 +6814,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/database-governance"
         ],
         "security": [],
         "performance": [],
@@ -6785,13 +6844,13 @@
         "database": false,
         "repository": false,
         "serverAction": false,
-        "rules": false,
+        "rules": true,
         "validation": false,
         "workspace": true,
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": false,
@@ -6807,6 +6866,13 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/representation-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+        ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
+        "integration": [
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -6824,14 +6890,16 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [],
-        "rules": [],
+        "rules": [
+          "src/lib/database-governance"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 31.25,
-      "healthScore": 31.25,
+      "completionPct": 43.75,
+      "healthScore": 43.75,
       "status": "partial"
     },
     {
@@ -6852,13 +6920,13 @@
         "database": false,
         "repository": false,
         "serverAction": false,
-        "rules": false,
+        "rules": true,
         "validation": false,
         "workspace": true,
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": false,
@@ -6873,6 +6941,13 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx"
+        ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
+        "integration": [
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -6890,14 +6965,16 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [],
-        "rules": [],
+        "rules": [
+          "src/lib/database-governance"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 31.25,
-      "healthScore": 31.25,
+      "completionPct": 43.75,
+      "healthScore": 43.75,
       "status": "partial"
     },
     {
@@ -6918,13 +6995,13 @@
         "database": false,
         "repository": false,
         "serverAction": false,
-        "rules": false,
+        "rules": true,
         "validation": false,
         "workspace": true,
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": false,
@@ -6940,6 +7017,13 @@
         "workspace": [
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/framework/page.tsx"
+        ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
+        "integration": [
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -6957,14 +7041,16 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [],
-        "rules": [],
+        "rules": [
+          "src/lib/database-governance"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 31.25,
-      "healthScore": 31.25,
+      "completionPct": 43.75,
+      "healthScore": 43.75,
       "status": "partial"
     },
     {
@@ -6985,15 +7071,15 @@
         "database": false,
         "repository": false,
         "serverAction": false,
-        "rules": false,
+        "rules": true,
         "validation": false,
         "workspace": false,
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
-        "integration": false,
+        "integration": true,
         "security": false,
         "performance": false,
         "monitoring": false,
@@ -7002,6 +7088,13 @@
       "evidencePaths": {
         "ui": [
           "src/components/ui/modal.tsx"
+        ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
+        "integration": [
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -7019,15 +7112,17 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [],
-        "rules": [],
+        "rules": [
+          "src/lib/database-governance"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 18.75,
-      "healthScore": 18.75,
-      "status": "foundation"
+      "completionPct": 37.5,
+      "healthScore": 37.5,
+      "status": "partial"
     },
     {
       "id": "cap_governance-meeting-documentation",
@@ -7047,15 +7142,15 @@
         "database": false,
         "repository": false,
         "serverAction": false,
-        "rules": false,
+        "rules": true,
         "validation": false,
         "workspace": false,
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
-        "integration": false,
+        "integration": true,
         "security": false,
         "performance": false,
         "monitoring": false,
@@ -7064,6 +7159,13 @@
       "evidencePaths": {
         "ui": [
           "src/components/ui/modal.tsx"
+        ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
+        "integration": [
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -7081,15 +7183,17 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [],
-        "rules": [],
+        "rules": [
+          "src/lib/database-governance"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 18.75,
-      "healthScore": 18.75,
-      "status": "foundation"
+      "completionPct": 37.5,
+      "healthScore": 37.5,
+      "status": "partial"
     },
     {
       "id": "cap_independence-management",
@@ -7109,13 +7213,13 @@
         "database": false,
         "repository": false,
         "serverAction": false,
-        "rules": false,
+        "rules": true,
         "validation": false,
         "workspace": true,
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": false,
@@ -7130,6 +7234,13 @@
         "workspace": [
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+        ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
+        "integration": [
+          "database-governance"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -7147,14 +7258,16 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [],
-        "rules": [],
+        "rules": [
+          "src/lib/database-governance"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 31.25,
-      "healthScore": 31.25,
+      "completionPct": 43.75,
+      "healthScore": 43.75,
       "status": "partial"
     },
     {
@@ -8449,7 +8562,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -8509,6 +8622,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/appendices/page.tsx",
           "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "reporting.read",
           "reporting.create",
@@ -8532,6 +8649,7 @@
           "reporting.section.updated"
         ],
         "integration": [
+          "database-governance",
           "reporting"
         ],
         "documentation": [
@@ -8563,6 +8681,7 @@
         ],
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
+          "src/lib/database-governance",
           "src/lib/reporting"
         ],
         "security": [
@@ -8581,8 +8700,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -8607,12 +8726,12 @@
         "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
         "tests": false,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -8637,6 +8756,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
         ],
+        "permissions": [
+          "request.jwt.claim.organization_id",
+          "app.organization_id"
+        ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.6 Administration"
         ],
@@ -8660,14 +8783,17 @@
         "rules": [
           "src/repositories/organization/organization-repository.ts"
         ],
-        "security": [],
+        "security": [
+          "request.jwt.claim.organization_id",
+          "app.organization_id"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 62.5,
-      "healthScore": 62.5,
-      "status": "production"
+      "completionPct": 75,
+      "healthScore": 75,
+      "status": "enterprise"
     },
     {
       "id": "cap_workspace-management",
@@ -8691,12 +8817,12 @@
         "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
         "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -8743,6 +8869,10 @@
           "src/lib/engagement/engagement-workspace-display.test.ts",
           "src/lib/dashboard/workspace-greeting.test.ts"
         ],
+        "permissions": [
+          "request.jwt.claim.workspace_id",
+          "app.workspace_id"
+        ],
         "integration": [
           "workspace"
         ],
@@ -8770,14 +8900,17 @@
           "src/repositories/workspace/workspace-repository.ts",
           "src/lib/workspace"
         ],
-        "security": [],
+        "security": [
+          "request.jwt.claim.workspace_id",
+          "app.workspace_id"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 68.75,
-      "healthScore": 68.75,
-      "status": "production"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_entity-management",
@@ -9377,11 +9510,13 @@
           "src/components/public/sections/security-section.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -9404,7 +9539,8 @@
           "src/lib/actions/tenant/switch-tenant.ts"
         ],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [],
         "performance": [],
@@ -9465,13 +9601,15 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
           "request.jwt.claim.role"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -9493,7 +9631,8 @@
         ],
         "rules": [
           "src/repositories/role/role-repository.ts",
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [
           "request.jwt.claim.role"
@@ -9551,6 +9690,7 @@
           "src/components/company/company-restore-banner.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -9576,7 +9716,8 @@
           "risk_assessment.restored"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -9599,7 +9740,8 @@
           "src/lib/actions/company/restore-company.ts"
         ],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [
           "completion.restored",
@@ -9672,10 +9814,12 @@
           "src/app/[locale]/(protected)/app/companies/[slug]/import/[sessionId]/page.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -9696,7 +9840,8 @@
           "src/lib/actions/uaie/uaie-session-actions.ts"
         ],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [],
         "performance": [],
@@ -9745,11 +9890,13 @@
           "src/components/public/sections/security-section.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -9768,7 +9915,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [],
         "performance": [],
@@ -9827,6 +9975,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/signature/page.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts",
           "src/lib/ai/pipeline/ai-integration-pipeline.test.ts"
@@ -9842,7 +9991,8 @@
           "risk_assessment.significant.acknowledged"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -9865,7 +10015,8 @@
           "src/lib/actions/auth/sign-up.ts"
         ],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [
           "completion.item.assigned",
@@ -9909,7 +10060,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -9997,6 +10148,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
+        "tests": [
+          "src/lib/database-governance/database-governance.test.ts",
+          "src/lib/database-governance/database-lifecycle.test.ts"
+        ],
         "permissions": [
           "financialStatements.read",
           "financialStatements.create",
@@ -10020,6 +10175,7 @@
           "financialStatements.section.returned"
         ],
         "integration": [
+          "database-governance",
           "financial-statements",
           "security"
         ],
@@ -10052,6 +10208,7 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/lib/database-governance",
           "src/lib/financial-statements",
           "src/lib/security"
         ],
@@ -10071,8 +10228,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -10115,6 +10272,7 @@
           "src/components/planning/integration/planning-integration-placeholder.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -10122,7 +10280,8 @@
           "materiality.thresholds.updated"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -10141,7 +10300,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [
           "materiality.threshold.updated",
@@ -10196,13 +10356,15 @@
           "src/components/public/sections/security-section.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
           "financialStatements.export"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -10221,7 +10383,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [
           "financialStatements.export"
@@ -10278,10 +10441,12 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/subsequent-events/page.tsx"
         ],
         "tests": [
+          "src/lib/sql-foundation/sql-foundation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "integration": [
-          "security"
+          "security",
+          "sql-foundation"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.7 Security"
@@ -10300,7 +10465,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/security"
+          "src/lib/security",
+          "src/lib/sql-foundation"
         ],
         "security": [],
         "performance": [],
@@ -10314,7 +10480,7 @@
   ],
   "requirements": [],
   "evidenceIndex": {
-    "scannedAt": "2026-07-16T13:51:48.691Z",
+    "scannedAt": "2026-07-16T15:15:22.908Z",
     "tables": [
       "organizations",
       "workspaces",
@@ -11818,7 +11984,11 @@
       "uaie.unknown.ignored",
       "uaie.template.promoted",
       "uaie.template.rolled_back",
-      "request.jwt.claim.role"
+      "request.jwt.claim.role",
+      "request.jwt.claim.workspace_id",
+      "app.workspace_id",
+      "request.jwt.claim.organization_id",
+      "app.organization_id"
     ],
     "tests": [
       "src/repositories/company/company-repository.test.ts",
@@ -11827,6 +11997,7 @@
       "src/lib/uaie/uaie-engine.test.ts",
       "src/lib/uaie/intelligence/health.test.ts",
       "src/lib/trial-balance/trial-balance-engine.test.ts",
+      "src/lib/sql-foundation/sql-foundation.test.ts",
       "src/lib/risk-assessment/risk-assessment-rules.test.ts",
       "src/lib/project-sync/project-sync.test.ts",
       "src/lib/platform-registry/platform-registry.test.ts",
@@ -11840,6 +12011,9 @@
       "src/lib/engagement/engagement-workspace-display.test.ts",
       "src/lib/engagement/resolve-active-engagement.test.ts",
       "src/lib/engagement/validation.test.ts",
+      "src/lib/devops/devops.test.ts",
+      "src/lib/database-governance/database-governance.test.ts",
+      "src/lib/database-governance/database-lifecycle.test.ts",
       "src/lib/dashboard/dashboard-preferences-storage.test.ts",
       "src/lib/dashboard/workspace-greeting.test.ts",
       "src/lib/company/company-identity-draft.test.ts",
@@ -11870,6 +12044,7 @@
       "supabase/migrations/20260630000001_extensions_and_common.sql",
       "supabase/migrations/20260630000002_foundation_tables.sql",
       "supabase/migrations/20260630000003_rls_policies.sql",
+      "supabase/migrations/20260630000004_enterprise_sql_foundation.sql",
       "supabase/migrations/20260630100001_company_foundation.sql",
       "supabase/migrations/20260630120001_engagement_foundation.sql",
       "supabase/migrations/20260630130001_engagement_role_permissions_backfill.sql",
@@ -11908,6 +12083,7 @@
       "supabase/migrations/20260712170002_trial_balance_role_permissions_backfill.sql",
       "supabase/migrations/20260712180001_uaie_table_grants.sql",
       "supabase/migrations/20260712190001_module_table_grants_hardening.sql",
+      "supabase/migrations/20260713110001_permissions_schema_compatibility.sql",
       "supabase/migrations/20260713120001_fs_mapping_foundation.sql",
       "supabase/migrations/20260713120002_fs_mapping_role_permissions_backfill.sql",
       "supabase/migrations/20260713130001_fs_rendering_foundation.sql",
@@ -11946,6 +12122,8 @@
       "company",
       "completion",
       "dashboard",
+      "database-governance",
+      "devops",
       "engagement",
       "env",
       "errors",
@@ -11966,6 +12144,7 @@
       "review",
       "risk-assessment",
       "security",
+      "sql-foundation",
       "supabase",
       "trial-balance",
       "uaie",
@@ -11997,14 +12176,14 @@
       }
     ]
   },
-  "platformCompletionPct": 60.39,
-  "architectureHealthPct": 66.18,
+  "platformCompletionPct": 62.68,
+  "architectureHealthPct": 70.1,
   "implementationHealthPct": 71.47,
   "documentationCoveragePct": 100,
-  "testingCoveragePct": 52.94,
+  "testingCoveragePct": 72.06,
   "localizationCoveragePct": 100,
-  "securityCoveragePct": 67.65,
+  "securityCoveragePct": 70.59,
   "performanceCoveragePct": 0,
-  "integrationCoveragePct": 89.71,
-  "technicalDebtScore": 22.65
+  "integrationCoveragePct": 92.65,
+  "technicalDebtScore": 17.45
 }

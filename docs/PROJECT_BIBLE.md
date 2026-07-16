@@ -10774,6 +10774,7 @@ Parts 1–15 are **terminologically and philosophically consistent** on audit me
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 0.16.0 | 2026-07-16 | Chief Software Architect | Part 16 — Enterprise Database Lifecycle; permanent database governance charter |
+| 0.16.1 | 2026-07-16 | Chief Software Architect | §91 Enterprise DevOps & Release Platform (EDRP) orchestration layer |
 
 ---
 
@@ -11147,8 +11148,31 @@ Automated report: `buildDatabaseLifecycleReport()` in `src/lib/database-governan
 | SQL Foundation Engine | `src/lib/sql-foundation/` |
 | EPBSE (Project Sync) | `src/lib/project-sync/` |
 | Capability Registry | `src/lib/capability-registry/` |
+| Enterprise DevOps & Release Platform (EDRP) | `src/lib/devops/` |
 
 Legacy operational notes in `database/MIGRATION_STANDARDS.md` and `database/DATABASE_STANDARDS.md` remain reference material for naming conventions; **this chapter is authoritative for lifecycle policy**.
+
+---
+
+## 91. Enterprise DevOps & Release Platform (EDRP)
+
+EDRP is the permanent **release governance platform**. It does not replace Database Governance, SQL Foundation, EPBSE, Capability Registry, or Platform Registry — it **orchestrates** them into one deterministic pipeline (PROJECT_BIBLE §62).
+
+```
+Developer → Git → Validation Pipeline → Database Lifecycle
+        → Project Synchronization → Capability Registry
+        → Platform Readiness → Release Manager → Deployment → Monitoring
+```
+
+| Rule | Requirement |
+|------|-------------|
+| **No manual validation** | Every change passes the EDRP pipeline |
+| **No manual release** | Release candidates are generated from pipeline + checklist outcomes |
+| **No hidden failures** | Any required checklist failure blocks release |
+| **No duplicated governance** | EDRP calls existing engines; it does not reimplement them |
+
+**Module path:** `src/lib/devops/`  
+**Command:** `npm run validate:devops`
 
 ---
 

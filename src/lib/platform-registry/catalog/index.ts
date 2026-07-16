@@ -576,6 +576,30 @@ export const PLATFORM_MODULE_CATALOG: PlatformModuleDefinition[] = [
       integration: true,
     }),
   },
+  {
+    id: "devops",
+    name: "Enterprise DevOps & Release Platform",
+    domain: "platform",
+    dependencies: ["capability-registry", "platform-registry"],
+    children: [],
+    parent: null,
+    owner: "platform",
+    createdAt: "2026-07-16T00:00:00.000Z",
+    updatedAt: "2026-07-16T00:00:00.000Z",
+    evidence: emptyEvidence({
+      planning: true,
+      foundation: true,
+      production: false,
+      enterprise: true,
+      localization: false,
+      ui: false,
+      workflow: true,
+      tests: true,
+      permissions: false,
+      database: true,
+      integration: true,
+    }),
+  },
 ];
 
 export function getCatalogDefinition(id: string): PlatformModuleDefinition | undefined {
