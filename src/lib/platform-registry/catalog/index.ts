@@ -600,6 +600,30 @@ export const PLATFORM_MODULE_CATALOG: PlatformModuleDefinition[] = [
       integration: true,
     }),
   },
+  {
+    id: "platform-audit",
+    name: "Enterprise Platform Audit, Certification & Readiness",
+    domain: "platform",
+    dependencies: ["capability-registry", "platform-registry", "devops"],
+    children: [],
+    parent: null,
+    owner: "platform",
+    createdAt: "2026-07-17T00:00:00.000Z",
+    updatedAt: "2026-07-17T00:00:00.000Z",
+    evidence: emptyEvidence({
+      planning: true,
+      foundation: true,
+      production: true,
+      enterprise: true,
+      localization: false,
+      ui: true,
+      workflow: true,
+      tests: true,
+      permissions: false,
+      database: false,
+      integration: true,
+    }),
+  },
 ];
 
 export function getCatalogDefinition(id: string): PlatformModuleDefinition | undefined {

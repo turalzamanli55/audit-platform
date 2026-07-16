@@ -51,3 +51,27 @@ src/lib/devops/data/history/**
 !src/lib/devops/data/history/.gitkeep
 src/lib/devops/data/snapshots/**
 !src/lib/devops/data/snapshots/.gitkeep
+
+# EPAC runtime-generated audit artifacts
+src/lib/platform-audit/data/snapshots/**
+!src/lib/platform-audit/data/snapshots/.gitkeep
+src/lib/platform-audit/data/reports/**
+!src/lib/platform-audit/data/reports/.gitkeep
+
+# ECIE runtime-generated intelligence artifacts
+src/lib/capability-intelligence/data/snapshots/**
+!src/lib/capability-intelligence/data/snapshots/.gitkeep
+src/lib/capability-intelligence/data/reports/**
+!src/lib/capability-intelligence/data/reports/.gitkeep
+
+# EIIE runtime-generated implementation artifacts
+src/lib/implementation-intelligence/data/snapshots/**
+!src/lib/implementation-intelligence/data/snapshots/.gitkeep
+src/lib/implementation-intelligence/data/reports/**
+!src/lib/implementation-intelligence/data/reports/.gitkeep
+
+# EPIRE runtime-generated inventory artifacts
+src/lib/platform-inventory/data/snapshots/**
+!src/lib/platform-inventory/data/snapshots/.gitkeep
+src/lib/platform-inventory/data/reports/**
+!src/lib/platform-inventory/data/reports/.gitkeep

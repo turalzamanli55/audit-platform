@@ -10775,6 +10775,10 @@ Parts 1–15 are **terminologically and philosophically consistent** on audit me
 |---------|------|--------|---------|
 | 0.16.0 | 2026-07-16 | Chief Software Architect | Part 16 — Enterprise Database Lifecycle; permanent database governance charter |
 | 0.16.1 | 2026-07-16 | Chief Software Architect | §91 Enterprise DevOps & Release Platform (EDRP) orchestration layer |
+| 0.16.2 | 2026-07-17 | Chief Software Architect | §92 Enterprise Platform Audit, Certification & Readiness Engine (EPAC) |
+| 0.16.3 | 2026-07-17 | Chief Software Architect | §93 Enterprise Capability Intelligence Engine (ECIE) |
+| 0.16.4 | 2026-07-17 | Chief Software Architect | §94 Enterprise Implementation Intelligence Engine (EIIE) |
+| 0.16.5 | 2026-07-17 | Chief Software Architect | §95 Enterprise Platform Inventory & Readiness Engine (EPIRE) |
 
 ---
 
@@ -11149,6 +11153,10 @@ Automated report: `buildDatabaseLifecycleReport()` in `src/lib/database-governan
 | EPBSE (Project Sync) | `src/lib/project-sync/` |
 | Capability Registry | `src/lib/capability-registry/` |
 | Enterprise DevOps & Release Platform (EDRP) | `src/lib/devops/` |
+| Enterprise Platform Audit, Certification & Readiness (EPAC) | `src/lib/platform-audit/` |
+| Enterprise Capability Intelligence Engine (ECIE) | `src/lib/capability-intelligence/` |
+| Enterprise Implementation Intelligence Engine (EIIE) | `src/lib/implementation-intelligence/` |
+| Enterprise Platform Inventory & Readiness Engine (EPIRE) | `src/lib/platform-inventory/` |
 
 Legacy operational notes in `database/MIGRATION_STANDARDS.md` and `database/DATABASE_STANDARDS.md` remain reference material for naming conventions; **this chapter is authoritative for lifecycle policy**.
 
@@ -11180,6 +11188,96 @@ Developer → Git → Validation Pipeline → Database Lifecycle
 - `npm run validate:devops` — module tests + dashboard validation
 
 Artifacts and history persist under `src/lib/devops/data/`.
+
+---
+
+## 92. Enterprise Platform Audit, Certification & Readiness Engine (EPAC)
+
+EPAC is the permanent **platform certification engine**. PROJECT_BIBLE.md is the only source of truth. Completion is never estimated and never manually assigned — it is calculated only from implementation evidence.
+
+| Rule | Requirement |
+|------|-------------|
+| **Evidence only** | Database, Migration, Repository, Server Action, Route, Workspace, Component, Localization, Tests, Permissions, Workflow, Documentation |
+| **Missing evidence** | Capability Completion = 0% |
+| **Partial evidence** | Capability Completion = Partial (dimension ratio) |
+| **Complete evidence** | Capability Completion = Complete (100%) |
+| **No invented completion** | Placeholders, guesses, and subjective wording are forbidden |
+| **v2 Intelligent Evidence** | AST exports/imports, semantic aliases, confidence weights — not filename/token-only matching |
+
+**Audit phases:** Documentation → Architecture → Database → Backend → Frontend → Localization → AI → DevOps → Security → Testing → Module Readiness → Capability Audit → Production Readiness → Technical Debt → Roadmap
+
+**Evidence Engine:** `src/lib/platform-audit/evidence-engine/`  
+**Module path:** `src/lib/platform-audit/`  
+**Dashboard:** `/app/platform-audit`  
+**Commands:**
+- `npm run epac:audit` — run full evidence audit + persist reports
+- `npm run validate:platform-audit` — unit tests + full audit script
+
+Artifacts persist under `src/lib/platform-audit/data/` (runtime; not version-controlled).
+
+---
+
+## 93. Enterprise Capability Intelligence Engine (ECIE)
+
+ECIE treats PROJECT_BIBLE.md as the **executable specification**. It understands capability intent before scoring completion.
+
+| Rule | Requirement |
+|------|-------------|
+| **Required only** | Platform completion uses required verified capabilities only |
+| **No future penalty** | Future/experimental/planned capabilities do not reduce completion |
+| **No optional certification block** | Optional capabilities never block certification |
+| **Blocked ≠ incomplete** | Unmet dependencies mark capabilities blocked; they do not drag completion |
+| **Evidence relevance** | Each capability defines its own required evidence set |
+
+**Module path:** `src/lib/capability-intelligence/`  
+**Dashboard:** `/app/capability-intelligence`  
+**Commands:**
+- `npm run ecie:analyze` — full capability intelligence analysis
+- `npm run validate:capability-intelligence` — unit tests + analysis script
+
+Evidence satisfaction is resolved through EPAC Intelligent Evidence Engine (verified/strong only).
+
+---
+
+## 94. Enterprise Implementation Intelligence Engine (EIIE)
+
+EIIE is the final governance layer before Enterprise AI. PROJECT_BIBLE.md is the **executable implementation specification**. Completion is calculated only from verified **Implementation Contracts**.
+
+| Rule | Requirement |
+|------|-------------|
+| **Contract completeness** | A capability is certified ONLY when every required contract clause is verified |
+| **No partial certification** | Partial implementation is never certified |
+| **Traceability** | Every clause traces to PROJECT_BIBLE |
+| **Agent readiness** | Contracts are machine-readable (`eiie.implementation-contract.v1`) for multi-agent repair execution |
+
+**Module path:** `src/lib/implementation-intelligence/`  
+**Dashboard:** `/app/implementation-intelligence`  
+**Commands:**
+- `npm run eiie:analyze` — generate contracts, gaps, repair plan, AI readiness package
+- `npm run validate:implementation-intelligence` — unit tests + analysis script
+
+Artifacts persist under `src/lib/implementation-intelligence/data/`.
+
+---
+
+## 95. Enterprise Platform Inventory & Readiness Engine (EPIRE)
+
+EPIRE is the executive visibility layer of the platform. Executives, architects, and AI agents must see exactly what exists, what is partial, what is missing, what is production-ready, and what remains.
+
+| Rule | Requirement |
+|------|-------------|
+| **Single source of truth** | PROJECT_BIBLE.md only |
+| **No duplicated logic** | EPIRE consumes EPBSE, EPAC, ECIE, and EIIE — it does not reimplement audits or scoring |
+| **Verified completion** | Overall platform readiness is calculated only from verified implementation (EIIE contracts) |
+| **No estimated percentages** | No manual completion; no invented readiness |
+
+**Module path:** `src/lib/platform-inventory/`  
+**Dashboard:** `/app/platform-inventory`  
+**Commands:**
+- `npm run epire:analyze` — generate inventory, readiness, critical path, enterprise reports
+- `npm run validate:platform-inventory` — unit tests + analysis script
+
+Artifacts persist under `src/lib/platform-inventory/data/`.
 
 ---
 
