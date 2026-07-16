@@ -11,6 +11,8 @@
     "test:watch": "vitest",
     "validate:database": "vitest run src/lib/database-governance/database-lifecycle.test.ts src/lib/database-governance/database-governance.test.ts src/lib/sql-foundation/sql-foundation.test.ts",
     "validate:devops": "vitest run src/lib/devops/devops.test.ts && npx tsx scripts/validate-devops.mts",
+    "edrp:operate": "npx tsx scripts/edrp-operate.mts",
+    "edrp:ci-blueprints": "npx tsx scripts/generate-ci-blueprints.mts",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css}\""
   },

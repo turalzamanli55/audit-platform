@@ -1,0 +1,14 @@
+{
+  "id": "val_1784215526894_fc009984_validation",
+  "kind": "validation",
+  "ok": true,
+  "generatedAt": "2026-07-16T15:25:26.902Z",
+  "durationMs": 4267,
+  "summary": "Pipeline PASS",
+  "details": {
+    "platformHealth": 99.41,
+    "migrationHealth": 97.05,
+    "dependencyHealth": 100,
+    "releaseReadiness": 100
+  }
+}

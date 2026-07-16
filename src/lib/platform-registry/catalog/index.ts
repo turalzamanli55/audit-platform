@@ -589,10 +589,10 @@ export const PLATFORM_MODULE_CATALOG: PlatformModuleDefinition[] = [
     evidence: emptyEvidence({
       planning: true,
       foundation: true,
-      production: false,
+      production: true,
       enterprise: true,
       localization: false,
-      ui: false,
+      ui: true,
       workflow: true,
       tests: true,
       permissions: false,

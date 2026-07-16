@@ -1,0 +1,14 @@
+{
+  "id": "edrp_1784215568390_35e03b18_migration",
+  "kind": "migration",
+  "ok": true,
+  "generatedAt": "2026-07-16T15:26:08.390Z",
+  "durationMs": 9345,
+  "summary": "Lifecycle PASS",
+  "details": {
+    "migrationHealth": 97.05,
+    "dependencyHealth": 100,
+    "platformHealth": 99.41,
+    "releaseReadiness": 100
+  }
+}

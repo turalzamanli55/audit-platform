@@ -1,0 +1,15 @@
+{
+  "id": "edrp_1784215722083_96523d82_platform",
+  "kind": "platform",
+  "ok": true,
+  "generatedAt": "2026-07-16T15:28:42.084Z",
+  "durationMs": 0,
+  "summary": "Platform completion 62.68%",
+  "details": {
+    "platformCompletionPct": 62.68,
+    "platformHealth": 99.41,
+    "migrationHealth": 97.05,
+    "dependencyHealth": 100,
+    "releaseReadiness": 100
+  }
+}

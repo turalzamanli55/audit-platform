@@ -1,12 +1,3 @@
-/**
- * Enterprise DevOps & Release Platform (EDRP)
- *
- * Orchestrates existing platform governance systems into one releasable pipeline:
- * Database Governance · SQL Foundation · Schema Drift · EPBSE · Capability Registry · Platform Registry
- *
- * Does NOT recreate those systems — only integrates and gates releases on their outcomes.
- */
-
 export * from "@/lib/devops/types";
 export * from "@/lib/devops/validation";
 export * from "@/lib/devops/pipeline";
@@ -27,6 +18,11 @@ export * from "@/lib/devops/deployment";
 export * from "@/lib/devops/rollback";
 export * from "@/lib/devops/checklists";
 export * from "@/lib/devops/ci";
+export * from "@/lib/devops/ci/generators";
 export * from "@/lib/devops/cd";
 export * from "@/lib/devops/dashboard";
+export * from "@/lib/devops/history";
+export * from "@/lib/devops/lifecycle";
+export * from "@/lib/devops/operations";
+export * from "@/lib/devops/load-devops-dashboard";
 export * from "@/lib/devops/engine";

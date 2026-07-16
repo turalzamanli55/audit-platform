@@ -634,6 +634,10 @@ export const CAPABILITY_CATALOG: CapabilityDefinition[] = [
       integration: true,
       security: true,
       database: true,
+      repository: true,
+      ui: true,
+      workspace: true,
+      performance: true,
     }),
   }),
   cap({
@@ -653,6 +657,9 @@ export const CAPABILITY_CATALOG: CapabilityDefinition[] = [
       documentation: true,
       integration: true,
       security: true,
+      repository: true,
+      ui: true,
+      performance: true,
     }),
   }),
   cap({
@@ -670,6 +677,10 @@ export const CAPABILITY_CATALOG: CapabilityDefinition[] = [
       tests: true,
       documentation: true,
       integration: true,
+      ui: true,
+      workspace: true,
+      repository: true,
+      performance: true,
     }),
   }),
   cap({

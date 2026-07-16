@@ -1,11 +1,11 @@
 {
-  "id": "sync_1784214922948",
-  "timestamp": "2026-07-16T15:15:22.948Z",
+  "id": "sync_1784215705868",
+  "timestamp": "2026-07-16T15:28:25.868Z",
   "documentVersions": {
     "PROJECT_BIBLE": {
       "path": "C:\\Users\\Tural\\audit\\docs\\PROJECT_BIBLE.md",
-      "hash": "f19dd3ce250da35040a99df713a9411952bed9e280e9f0dc749ad7bedc0bc4b7",
-      "bytes": 638356
+      "hash": "61f95c4bedf7b380a12de4b70c781f6ec969c91b52a79547054877052346d50f",
+      "bytes": 638804
     },
     "MASTER_PRD": {
       "path": "C:\\Users\\Tural\\audit\\docs\\MASTER_PRD.md",
@@ -6626,9 +6626,9 @@
           "src/components/reporting/command-center/reporting-command-center.tsx",
           "src/components/onboarding/onboarding-wizard.tsx",
           "src/components/engagement/workspace/engagement-phase-dashboard.tsx",
+          "src/components/devops/devops-dashboard.tsx",
           "src/components/dashboard/dashboard-header.tsx",
-          "src/components/dashboard/dashboard-nav.tsx",
-          "src/components/dashboard/organization-switcher.tsx"
+          "src/components/dashboard/dashboard-nav.tsx"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/onboarding/page.tsx",
@@ -10480,7 +10480,7 @@
   ],
   "requirements": [],
   "evidenceIndex": {
-    "scannedAt": "2026-07-16T15:15:22.908Z",
+    "scannedAt": "2026-07-16T15:28:25.773Z",
     "tables": [
       "organizations",
       "workspaces",
@@ -11031,6 +11031,8 @@
       "src/components/engagement/create/engagement-team-step.tsx",
       "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
       "src/components/engagement/command-center/engagement-command-center.tsx",
+      "src/components/devops/devops-dashboard.tsx",
+      "src/components/devops/index.ts",
       "src/components/dashboard/dashboard-header.tsx",
       "src/components/dashboard/dashboard-nav.tsx",
       "src/components/dashboard/organization-switcher.tsx",
@@ -11411,6 +11413,7 @@
       "src/app/[locale]/(protected)/app/engagements/[slug]/completion/comments/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/[slug]/completion/checklist/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/new/page.tsx",
+      "src/app/[locale]/(protected)/app/devops/page.tsx",
       "src/app/[locale]/(protected)/app/dashboard/page.tsx",
       "src/app/[locale]/(protected)/app/companies/page.tsx",
       "src/app/[locale]/(protected)/app/companies/[slug]/page.tsx",
@@ -11616,6 +11619,7 @@
       "src/app/[locale]/(protected)/app/engagements/[slug]/completion/comments/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/[slug]/completion/checklist/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/new/page.tsx",
+      "src/app/[locale]/(protected)/app/devops/page.tsx",
       "src/app/[locale]/(protected)/app/dashboard/page.tsx",
       "src/app/[locale]/(protected)/app/companies/page.tsx",
       "src/app/[locale]/(protected)/app/companies/[slug]/page.tsx",

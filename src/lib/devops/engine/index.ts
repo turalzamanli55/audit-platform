@@ -1,3 +1,6 @@
+/**
+ * DevOps Engine — extend validateRelease with persistence + operational release.
+ */
 import { runEnterprisePipeline } from "@/lib/devops/pipeline";
 import { evaluateReleaseChecklist } from "@/lib/devops/checklists";
 import { buildVersionManifest } from "@/lib/devops/versioning";
@@ -8,27 +11,39 @@ import { buildMonitoringSnapshot } from "@/lib/devops/monitoring";
 import { buildDashboardModel } from "@/lib/devops/dashboard";
 import { canDeploy } from "@/lib/devops/deployment";
 import { buildCdPromotionPlan } from "@/lib/devops/cd";
+import {
+  ensureCiCdBlueprints,
+  ciCdBlueprintStatus,
+} from "@/lib/devops/ci/generators";
+import {
+  buildHealthMonitoringReport,
+  loadLatestSnapshot,
+  persistArtifactFiles,
+  persistHistoryEntry,
+  persistSnapshot,
+} from "@/lib/devops/history";
+import { runOperationalRelease } from "@/lib/devops/operations";
+import { sqlFoundationEngine } from "@/lib/sql-foundation";
 import type {
   DevOpsDashboardModel,
   PipelineRunOptions,
   PipelineRunReport,
 } from "@/lib/devops/types";
+import type {
+  HealthMonitoringReport,
+  OperationalReleaseReport,
+  OperationalRunOptions,
+  PersistedDevOpsSnapshot,
+} from "@/lib/devops/history/types";
 import { platformRegistryEngine } from "@/lib/platform-registry/engine";
+import { createHash } from "node:crypto";
 
-/**
- * Enterprise DevOps & Release Platform Engine
- * Single entrypoint that orchestrates existing governance systems.
- */
 export class DevOpsEngine {
   runPipeline(options: PipelineRunOptions = {}): PipelineRunReport {
     return runEnterprisePipeline(options);
   }
 
-  /**
-   * Full release validation — pipeline + checklist + artifacts + dashboard.
-   * Release MUST fail if checklist or pipeline fails.
-   */
-  validateRelease(options: PipelineRunOptions = {}): {
+  validateRelease(options: PipelineRunOptions & { persist?: boolean } = {}): {
     ok: boolean;
     dashboard: DevOpsDashboardModel;
   } {
@@ -61,14 +76,78 @@ export class DevOpsEngine {
       monitoring,
     });
 
-    return {
-      ok: pipeline.ok && checklist.ok && release.status === "validated",
-      dashboard,
-    };
+    const ok =
+      pipeline.ok && checklist.ok && release.status === "validated";
+
+    if (options.persist !== false) {
+      const runId = `val_${Date.now()}_${createHash("sha256")
+        .update(release.id)
+        .digest("hex")
+        .slice(0, 8)}`;
+      persistSnapshot(
+        {
+          id: runId,
+          generatedAt: new Date().toISOString(),
+          ok,
+          dashboard,
+          monitoring,
+          versions,
+          release,
+          pipeline,
+          health,
+          artifacts,
+        },
+        cwd,
+      );
+      persistArtifactFiles(artifacts, runId, cwd);
+      persistHistoryEntry(
+        {
+          id: `${runId}_validation`,
+          kind: "validation",
+          ok: pipeline.ok,
+          generatedAt: new Date().toISOString(),
+          durationMs: pipeline.durationMs,
+          summary: `Pipeline ${pipeline.ok ? "PASS" : "FAIL"}`,
+          details: {
+            platformHealth: health.platformHealth,
+            migrationHealth: health.migrationHealth,
+            dependencyHealth: health.dependencyHealth,
+            releaseReadiness: health.releaseReadiness,
+          },
+        },
+        cwd,
+      );
+    }
+
+    return { ok, dashboard };
+  }
+
+  /**
+   * Full operational release — single command acceptance path.
+   */
+  operate(options: OperationalRunOptions = {}): OperationalReleaseReport {
+    ensureCiCdBlueprints(options.cwd ?? process.cwd());
+    return runOperationalRelease(options);
   }
 
   getDashboard(options: PipelineRunOptions = {}): DevOpsDashboardModel {
-    return this.validateRelease(options).dashboard;
+    return this.validateRelease({ ...options, persist: false }).dashboard;
+  }
+
+  getLatestSnapshot(cwd = process.cwd()): PersistedDevOpsSnapshot | null {
+    return loadLatestSnapshot(cwd);
+  }
+
+  getHealthMonitoring(cwd = process.cwd()): HealthMonitoringReport {
+    return buildHealthMonitoringReport(cwd);
+  }
+
+  getSqlFoundationHealth(cwd = process.cwd()) {
+    return sqlFoundationEngine.audit(cwd);
+  }
+
+  getCiCdStatus(cwd = process.cwd()) {
+    return ciCdBlueprintStatus(cwd);
   }
 
   getPlatformCompletion(): number {
@@ -82,7 +161,7 @@ export class DevOpsEngine {
   }
 
   canPromote(environment: "development" | "staging" | "production") {
-    const { dashboard, ok } = this.validateRelease();
+    const { dashboard, ok } = this.validateRelease({ persist: false });
     const deploy = canDeploy({
       pipelineOk: ok,
       checklistOk: dashboard.checklist.ok,

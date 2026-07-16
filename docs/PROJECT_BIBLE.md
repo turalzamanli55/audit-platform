@@ -11172,7 +11172,14 @@ Developer → Git → Validation Pipeline → Database Lifecycle
 | **No duplicated governance** | EDRP calls existing engines; it does not reimplement them |
 
 **Module path:** `src/lib/devops/`  
-**Command:** `npm run validate:devops`
+**Dashboard:** `/app/devops`  
+**Commands:**
+- `npm run edrp:operate` — Reset → Replay → Types → Build → Tests → Validation → Release Candidate
+- `npm run edrp:operate -- --skip-reset` — CI-safe path when Docker/Supabase reset unavailable
+- `npm run edrp:ci-blueprints` — regenerate GitHub Actions / Azure / GitLab / self-hosted blueprints
+- `npm run validate:devops` — module tests + dashboard validation
+
+Artifacts and history persist under `src/lib/devops/data/`.
 
 ---
 

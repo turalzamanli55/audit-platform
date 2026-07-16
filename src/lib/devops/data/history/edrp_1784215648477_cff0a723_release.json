@@ -1,0 +1,15 @@
+{
+  "id": "edrp_1784215648477_cff0a723_release",
+  "kind": "release",
+  "ok": true,
+  "generatedAt": "2026-07-16T15:27:28.477Z",
+  "durationMs": 0,
+  "summary": "rc-0.1.0-fe5b89e0c93e — validated",
+  "details": {
+    "readinessScore": 100,
+    "platformHealth": 99.41,
+    "migrationHealth": 97.05,
+    "dependencyHealth": 100,
+    "releaseReadiness": 100
+  }
+}
