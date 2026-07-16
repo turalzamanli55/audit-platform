@@ -11,15 +11,6 @@ import type {
   FsMappingVersion,
 } from "@/types/fs-mapping";
 
-type DbClient = SupabaseClient<Database>;
-
-/** Untyped table access until supabase codegen includes FSME tables. */
-function table(client: DbClient, name: string) {
-  return (client as unknown as { from: (relation: string) => ReturnType<DbClient["from"]> }).from(
-    name,
-  );
-}
-
 function mapSet(row: Record<string, unknown>): FsMappingSet {
   return {
     id: String(row.id),
@@ -127,7 +118,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async findSetByEngagementId(engagementId: string): Promise<FsMappingSet | null> {
-    const result = await table(this.client, "financial_statement_mapping_sets")
+    const result = await this.client.from("financial_statement_mapping_sets")
       .select("*")
       .eq("engagement_id", engagementId)
       .is("deleted_at", null)
@@ -137,7 +128,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async requireSet(id: string): Promise<FsMappingSet> {
-    const result = await table(this.client, "financial_statement_mapping_sets")
+    const result = await this.client.from("financial_statement_mapping_sets")
       .select("*")
       .eq("id", id)
       .is("deleted_at", null)
@@ -158,7 +149,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
     standard: FsMappingSet["standard"];
     comparativeMode?: FsMappingSet["comparativeMode"];
   }): Promise<FsMappingSet> {
-    const result = await table(this.client, "financial_statement_mapping_sets")
+    const result = await this.client.from("financial_statement_mapping_sets")
       .insert({
         organization_id: input.organizationId,
         workspace_id: input.workspaceId,
@@ -179,7 +170,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async updateSet(id: string, patch: Record<string, unknown>): Promise<FsMappingSet> {
-    const result = await table(this.client, "financial_statement_mapping_sets")
+    const result = await this.client.from("financial_statement_mapping_sets")
       .update({ ...patch, updated_by: this.userId } as never)
       .eq("id", id)
       .is("deleted_at", null)
@@ -191,7 +182,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async listRules(mappingSetId: string): Promise<FsMappingRule[]> {
-    const result = await table(this.client, "financial_statement_mapping_rules")
+    const result = await this.client.from("financial_statement_mapping_rules")
       .select("*")
       .eq("mapping_set_id", mappingSetId)
       .is("deleted_at", null)
@@ -201,7 +192,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async replaceRules(mappingSetId: string, rules: Array<Omit<FsMappingRule, "id" | "createdAt" | "updatedAt" | "version">>): Promise<FsMappingRule[]> {
-    await table(this.client, "financial_statement_mapping_rules")
+    await this.client.from("financial_statement_mapping_rules")
       .update({ deleted_at: new Date().toISOString(), deleted_by: this.userId } as never)
       .eq("mapping_set_id", mappingSetId)
       .is("deleted_at", null);
@@ -230,7 +221,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
       created_by: this.userId,
       updated_by: this.userId,
     }));
-    const result = await table(this.client, "financial_statement_mapping_rules")
+    const result = await this.client.from("financial_statement_mapping_rules")
       .insert(rows as never)
       .select("*");
     if (result.error) throw result.error;
@@ -238,7 +229,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async listLines(mappingSetId: string): Promise<FsMappingLine[]> {
-    const result = await table(this.client, "financial_statement_mapping_lines")
+    const result = await this.client.from("financial_statement_mapping_lines")
       .select("*")
       .eq("mapping_set_id", mappingSetId)
       .is("deleted_at", null)
@@ -248,7 +239,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async replaceLines(mappingSetId: string, lines: FsMappingLine[]): Promise<FsMappingLine[]> {
-    await table(this.client, "financial_statement_mapping_lines")
+    await this.client.from("financial_statement_mapping_lines")
       .delete()
       .eq("mapping_set_id", mappingSetId);
 
@@ -286,7 +277,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
     const chunkSize = 300;
     for (let i = 0; i < rows.length; i += chunkSize) {
       const chunk = rows.slice(i, i + chunkSize);
-      const result = await table(this.client, "financial_statement_mapping_lines")
+      const result = await this.client.from("financial_statement_mapping_lines")
         .insert(chunk as never)
         .select("*");
       if (result.error) throw result.error;
@@ -296,7 +287,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async listVersions(mappingSetId: string): Promise<FsMappingVersion[]> {
-    const result = await table(this.client, "financial_statement_mapping_versions")
+    const result = await this.client.from("financial_statement_mapping_versions")
       .select("*")
       .eq("mapping_set_id", mappingSetId)
       .order("version_number", { ascending: false });
@@ -323,7 +314,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async insertVersion(version: Omit<FsMappingVersion, "id">): Promise<FsMappingVersion> {
-    const result = await table(this.client, "financial_statement_mapping_versions")
+    const result = await this.client.from("financial_statement_mapping_versions")
       .insert({
         mapping_set_id: version.mappingSetId,
         organization_id: version.organizationId,
@@ -351,7 +342,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async listHistory(mappingSetId: string, limit = 100): Promise<FsMappingHistoryRecord[]> {
-    const result = await table(this.client, "financial_statement_mapping_history")
+    const result = await this.client.from("financial_statement_mapping_history")
       .select("*")
       .eq("mapping_set_id", mappingSetId)
       .order("created_at", { ascending: false })
@@ -374,7 +365,7 @@ export class FsMappingRepository extends AuthenticatedRepository {
   }
 
   async insertHistory(record: Omit<FsMappingHistoryRecord, "id" | "createdAt">): Promise<void> {
-    const result = await table(this.client, "financial_statement_mapping_history").insert({
+    const result = await this.client.from("financial_statement_mapping_history").insert({
       mapping_set_id: record.mappingSetId,
       organization_id: record.organizationId,
       workspace_id: record.workspaceId,

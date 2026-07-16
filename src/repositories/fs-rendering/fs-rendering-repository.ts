@@ -12,14 +12,6 @@ import type {
 } from "@/types/fs-rendering";
 import { DEFAULT_FS_RENDER_FORMATTING } from "@/constants/fs-rendering";
 
-type DbClient = SupabaseClient<Database>;
-
-function table(client: DbClient, name: string) {
-  return (client as unknown as { from: (relation: string) => ReturnType<DbClient["from"]> }).from(
-    name,
-  );
-}
-
 function mapLayout(row: Record<string, unknown>): FsRenderLayout {
   return {
     id: String(row.id),
@@ -120,7 +112,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
   }
 
   async listLayouts(workspaceId: string): Promise<FsRenderLayout[]> {
-    const result = await table(this.client, "financial_statement_layouts")
+    const result = await this.client.from("financial_statement_layouts")
       .select("*")
       .eq("workspace_id", workspaceId)
       .is("deleted_at", null)
@@ -141,7 +133,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
     isSystem?: boolean;
     formattingJson?: FsRenderFormattingOptions;
   }): Promise<FsRenderLayout> {
-    const result = await table(this.client, "financial_statement_layouts")
+    const result = await this.client.from("financial_statement_layouts")
       .insert({
         organization_id: input.organizationId,
         workspace_id: input.workspaceId,
@@ -163,7 +155,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
   }
 
   async findPresentationByEngagementId(engagementId: string): Promise<FsRenderPresentation | null> {
-    const result = await table(this.client, "financial_statement_presentations")
+    const result = await this.client.from("financial_statement_presentations")
       .select("*")
       .eq("engagement_id", engagementId)
       .is("deleted_at", null)
@@ -173,7 +165,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
   }
 
   async requirePresentation(id: string): Promise<FsRenderPresentation> {
-    const result = await table(this.client, "financial_statement_presentations")
+    const result = await this.client.from("financial_statement_presentations")
       .select("*")
       .eq("id", id)
       .is("deleted_at", null)
@@ -197,7 +189,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
     comparativeMode?: FsRenderPresentation["comparativeMode"];
     currencyCode?: string;
   }): Promise<FsRenderPresentation> {
-    const result = await table(this.client, "financial_statement_presentations")
+    const result = await this.client.from("financial_statement_presentations")
       .insert({
         organization_id: input.organizationId,
         workspace_id: input.workspaceId,
@@ -222,7 +214,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
   }
 
   async updatePresentation(id: string, patch: Record<string, unknown>): Promise<FsRenderPresentation> {
-    const result = await table(this.client, "financial_statement_presentations")
+    const result = await this.client.from("financial_statement_presentations")
       .update({ ...patch, updated_by: this.userId } as never)
       .eq("id", id)
       .is("deleted_at", null)
@@ -234,7 +226,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
   }
 
   async listVersions(presentationId: string): Promise<FsRenderVersion[]> {
-    const result = await table(this.client, "financial_statement_render_versions")
+    const result = await this.client.from("financial_statement_render_versions")
       .select("*")
       .eq("presentation_id", presentationId)
       .order("version_number", { ascending: false });
@@ -243,7 +235,7 @@ export class FsRenderingRepository extends AuthenticatedRepository {
   }
 
   async insertVersion(version: Omit<FsRenderVersion, "id">): Promise<FsRenderVersion> {
-    const result = await table(this.client, "financial_statement_render_versions")
+    const result = await this.client.from("financial_statement_render_versions")
       .insert({
         presentation_id: version.presentationId,
         organization_id: version.organizationId,

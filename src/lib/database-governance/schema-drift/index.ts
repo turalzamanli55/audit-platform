@@ -32,9 +32,17 @@ function extractTablesFromSupabaseTypes(cwd: string): string[] {
   const path = join(cwd, "src", "types", "supabase.ts");
   const source = readFileSync(path, "utf8");
   const tables: string[] = [];
-  const tablesBlock = source.match(/Tables:\s*\{([\s\S]*?)\n\s{4}Views:/);
-  if (!tablesBlock?.[1]) return tables;
-  for (const match of tablesBlock[1].matchAll(/^\s{6}([a-zA-Z0-9_]+):\s*\{/gm)) {
+
+  // Prefer public.Tables — generated clients also declare graphql_public.Tables (empty).
+  const publicTablesBlock = source.match(
+    /\bpublic:\s*\{[\s\S]*?\bTables:\s*\{([\s\S]*?)\n\s{4}Views:/,
+  );
+  const tablesBlock =
+    publicTablesBlock?.[1] ??
+    source.match(/\bTables:\s*\{([\s\S]*?)\n\s{4}Views:/)?.[1];
+  if (!tablesBlock) return tables;
+
+  for (const match of tablesBlock.matchAll(/^\s{6}([a-zA-Z0-9_]+):\s*\{/gm)) {
     tables.push(match[1]!.toLowerCase());
   }
   return uniqueSorted(tables);
@@ -54,6 +62,17 @@ function extractTablesFromRepositories(cwd: string): string[] {
       if (!entry.name.endsWith(".ts")) continue;
       const source = readFileSync(absolute, "utf8");
       for (const match of source.matchAll(/\.from\(\s*["']([a-zA-Z0-9_]+)["']\s*\)/g)) {
+        tables.push(match[1]!.toLowerCase());
+      }
+      // Typed helpers: table(client, "relation") used when codegen lagged behind migrations
+      for (const match of source.matchAll(
+        /\btable\(\s*(?:this\.)?client\s*,\s*["']([a-zA-Z0-9_]+)["']\s*\)/g,
+      )) {
+        tables.push(match[1]!.toLowerCase());
+      }
+      for (const match of source.matchAll(
+        /Tables(?:Insert|Update)?<\s*["']([a-zA-Z0-9_]+)["']\s*>/g,
+      )) {
         tables.push(match[1]!.toLowerCase());
       }
     }

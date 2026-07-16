@@ -17,14 +17,6 @@ import type {
   IfrsNoteVersion,
 } from "@/types/ifrs-notes";
 
-type DbClient = SupabaseClient<Database>;
-
-function table(client: DbClient, name: string) {
-  return (client as unknown as { from: (relation: string) => ReturnType<DbClient["from"]> }).from(
-    name,
-  );
-}
-
 function mapPackage(row: Record<string, unknown>): IfrsNotePackage {
   return {
     id: String(row.id),
@@ -197,7 +189,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async findPackageByEngagementId(engagementId: string): Promise<IfrsNotePackage | null> {
-    const result = await table(this.client, "ifrs_note_packages")
+    const result = await this.client.from("ifrs_note_packages")
       .select("*")
       .eq("engagement_id", engagementId)
       .is("deleted_at", null)
@@ -207,7 +199,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async requirePackage(id: string): Promise<IfrsNotePackage> {
-    const result = await table(this.client, "ifrs_note_packages")
+    const result = await this.client.from("ifrs_note_packages")
       .select("*")
       .eq("id", id)
       .is("deleted_at", null)
@@ -227,7 +219,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
     description?: string | null;
     standard: IfrsNoteStandard;
   }): Promise<IfrsNotePackage> {
-    const result = await table(this.client, "ifrs_note_packages")
+    const result = await this.client.from("ifrs_note_packages")
       .insert({
         organization_id: input.organizationId,
         workspace_id: input.workspaceId,
@@ -247,7 +239,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async updatePackage(id: string, patch: Record<string, unknown>): Promise<IfrsNotePackage> {
-    const result = await table(this.client, "ifrs_note_packages")
+    const result = await this.client.from("ifrs_note_packages")
       .update({ ...patch, updated_by: this.userId } as never)
       .eq("id", id)
       .is("deleted_at", null)
@@ -259,7 +251,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async listSections(packageId: string): Promise<IfrsNoteSection[]> {
-    const result = await table(this.client, "ifrs_note_sections")
+    const result = await this.client.from("ifrs_note_sections")
       .select("*")
       .eq("package_id", packageId)
       .is("deleted_at", null)
@@ -269,7 +261,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async listItems(packageId: string): Promise<IfrsNoteItem[]> {
-    const result = await table(this.client, "ifrs_note_items")
+    const result = await this.client.from("ifrs_note_items")
       .select("*")
       .eq("package_id", packageId)
       .is("deleted_at", null)
@@ -279,7 +271,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async listCrossReferences(packageId: string): Promise<IfrsNoteCrossReference[]> {
-    const result = await table(this.client, "ifrs_note_cross_references")
+    const result = await this.client.from("ifrs_note_cross_references")
       .select("*")
       .eq("package_id", packageId)
       .is("deleted_at", null)
@@ -295,7 +287,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
       "ifrs_note_items",
       "ifrs_note_sections",
     ] as const) {
-      const result = await table(this.client, name)
+      const result = await this.client.from(name)
         .update({ deleted_at: now, deleted_by: this.userId } as never)
         .eq("package_id", packageId)
         .is("deleted_at", null);
@@ -335,7 +327,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
       updated_by: this.userId,
     }));
 
-    const sectionInsert = await table(this.client, "ifrs_note_sections")
+    const sectionInsert = await this.client.from("ifrs_note_sections")
       .insert(sectionRows as never)
       .select("*");
     if (sectionInsert.error) throw sectionInsert.error;
@@ -361,7 +353,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
       updated_by: this.userId,
     }));
 
-    const itemInsert = await table(this.client, "ifrs_note_items")
+    const itemInsert = await this.client.from("ifrs_note_items")
       .insert(itemRows as never)
       .select("*");
     if (itemInsert.error) throw itemInsert.error;
@@ -392,7 +384,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
 
     let crossReferences: IfrsNoteCrossReference[] = [];
     if (xrefRows.length > 0) {
-      const xrefInsert = await table(this.client, "ifrs_note_cross_references")
+      const xrefInsert = await this.client.from("ifrs_note_cross_references")
         .insert(xrefRows as never)
         .select("*");
       if (xrefInsert.error) throw xrefInsert.error;
@@ -405,7 +397,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async listVersions(packageId: string): Promise<IfrsNoteVersion[]> {
-    const result = await table(this.client, "ifrs_note_versions")
+    const result = await this.client.from("ifrs_note_versions")
       .select("*")
       .eq("package_id", packageId)
       .order("version_number", { ascending: false });
@@ -414,7 +406,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async insertVersion(version: Omit<IfrsNoteVersion, "id">): Promise<IfrsNoteVersion> {
-    const result = await table(this.client, "ifrs_note_versions")
+    const result = await this.client.from("ifrs_note_versions")
       .insert({
         package_id: version.packageId,
         organization_id: version.organizationId,
@@ -438,7 +430,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async listComments(packageId: string): Promise<IfrsNoteComment[]> {
-    const result = await table(this.client, "ifrs_note_comments")
+    const result = await this.client.from("ifrs_note_comments")
       .select("*")
       .eq("package_id", packageId)
       .is("deleted_at", null)
@@ -448,7 +440,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async listHistory(packageId: string): Promise<IfrsNoteHistoryRecord[]> {
-    const result = await table(this.client, "ifrs_note_history")
+    const result = await this.client.from("ifrs_note_history")
       .select("*")
       .eq("package_id", packageId)
       .order("created_at", { ascending: false })
@@ -458,7 +450,7 @@ export class IfrsNotesRepository extends AuthenticatedRepository {
   }
 
   async insertHistory(record: Omit<IfrsNoteHistoryRecord, "id">): Promise<IfrsNoteHistoryRecord> {
-    const result = await table(this.client, "ifrs_note_history")
+    const result = await this.client.from("ifrs_note_history")
       .insert({
         package_id: record.packageId,
         organization_id: record.organizationId,

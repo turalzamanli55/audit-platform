@@ -51,7 +51,7 @@ describe("company-identity-draft", () => {
   it("computes settings patch for classification changes", () => {
     const company = createWorkspace();
     const baseline = workspaceToIdentityDraft(company);
-    const changed = { ...baseline, industryClassification: "banking" };
+    const changed = { ...baseline, industryClassification: "banking" as const };
     const patch = computeIdentitySettingsPatch(changed, baseline);
     expect(patch).toEqual({ industry_classification: "banking" });
   });

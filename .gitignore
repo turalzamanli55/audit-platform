@@ -43,3 +43,11 @@ next-env.d.ts
 # EPBSE generated synchronization artifacts
 src/lib/project-sync/snapshots/data/sync_*.json
 src/lib/project-sync/snapshots/history/
+
+# EDRP runtime-generated artifacts (keep directory structure via .gitkeep)
+src/lib/devops/data/artifacts/**
+!src/lib/devops/data/artifacts/.gitkeep
+src/lib/devops/data/history/**
+!src/lib/devops/data/history/.gitkeep
+src/lib/devops/data/snapshots/**
+!src/lib/devops/data/snapshots/.gitkeep
