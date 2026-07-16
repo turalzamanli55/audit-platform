@@ -1,11 +1,11 @@
 {
-  "id": "sync_1784219585067",
-  "timestamp": "2026-07-16T16:33:05.067Z",
+  "id": "sync_1784244234827",
+  "timestamp": "2026-07-16T23:23:54.827Z",
   "documentVersions": {
     "PROJECT_BIBLE": {
       "path": "C:\\Users\\Tural\\audit\\docs\\PROJECT_BIBLE.md",
-      "hash": "61f95c4bedf7b380a12de4b70c781f6ec969c91b52a79547054877052346d50f",
-      "bytes": 638804
+      "hash": "7f156e85406cece4fc613a85a3ed49faf03232d6e705a8a5a6973ad5adb716ab",
+      "bytes": 644344
     },
     "MASTER_PRD": {
       "path": "C:\\Users\\Tural\\audit\\docs\\MASTER_PRD.md",
@@ -2034,6 +2034,7 @@
           "src/repositories/financial-statements/financial-statement-repository.ts"
         ],
         "serverAction": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
           "src/lib/actions/financial-statements/archive-financial-statements.ts",
           "src/lib/actions/financial-statements/create-financial-statements.ts",
           "src/lib/actions/financial-statements/financial-statements-action.ts",
@@ -2043,7 +2044,8 @@
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
           "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/update-financial-statements.ts",
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -2089,8 +2091,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
         "tests": [
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts",
+          "src/lib/auth/multi-factor-authentication.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
         "permissions": [
@@ -2135,6 +2139,7 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
           "src/lib/actions/financial-statements/archive-financial-statements.ts",
           "src/lib/actions/financial-statements/create-financial-statements.ts",
           "src/lib/actions/financial-statements/financial-statements-action.ts",
@@ -2143,8 +2148,7 @@
           "src/lib/actions/financial-statements/financial-statements-section-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
-          "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/index.ts"
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
@@ -2611,7 +2615,9 @@
         ],
         "repository": [
           "src/repositories/trial-balance/trial-balance-repository.ts",
-          "src/repositories/financial-statements/financial-statement-repository.ts"
+          "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/trial-balance/create-from-uaie.ts",
@@ -2628,7 +2634,9 @@
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
           "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/update-financial-statements.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -2676,6 +2684,8 @@
         ],
         "tests": [
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts"
         ],
@@ -2736,6 +2746,8 @@
         "rules": [
           "src/repositories/trial-balance/trial-balance-repository.ts",
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/database-governance",
           "src/lib/financial-statements",
           "src/lib/trial-balance"
@@ -3009,7 +3021,9 @@
           "financial_statement_render_versions"
         ],
         "repository": [
-          "src/repositories/financial-statements/financial-statement-repository.ts"
+          "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/financial-statements/archive-financial-statements.ts",
@@ -3021,7 +3035,9 @@
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
           "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/update-financial-statements.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -3067,6 +3083,8 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx"
         ],
         "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts"
         ],
@@ -3125,6 +3143,8 @@
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/database-governance",
           "src/lib/financial-statements"
         ],
@@ -3205,6 +3225,7 @@
           "src/repositories/financial-statements/financial-statement-repository.ts"
         ],
         "serverAction": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
           "src/lib/actions/financial-statements/archive-financial-statements.ts",
           "src/lib/actions/financial-statements/create-financial-statements.ts",
           "src/lib/actions/financial-statements/financial-statements-action.ts",
@@ -3214,7 +3235,8 @@
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
           "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/update-financial-statements.ts",
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -3261,9 +3283,11 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
         "tests": [
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts",
           "src/lib/company/company-identity-draft.test.ts",
+          "src/lib/auth/multi-factor-authentication.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
         "permissions": [
@@ -3308,6 +3332,7 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
           "src/lib/actions/financial-statements/archive-financial-statements.ts",
           "src/lib/actions/financial-statements/create-financial-statements.ts",
           "src/lib/actions/financial-statements/financial-statements-action.ts",
@@ -3316,8 +3341,7 @@
           "src/lib/actions/financial-statements/financial-statements-section-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
-          "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/index.ts"
         ],
         "rules": [
           "src/repositories/financial-statements/financial-statement-repository.ts",
@@ -3989,17 +4013,22 @@
           "audit_plans",
           "audit_programs",
           "audit_procedures",
-          "uaie_intelligence_audit"
+          "uaie_intelligence_audit",
+          "engagement_lifecycle_events"
         ],
         "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/repositories/engagement/engagement-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/tenant/switch-engagement.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/archive-engagement.ts",
           "src/lib/actions/engagement/create-engagement.ts",
           "src/lib/actions/engagement/engagement-action.ts",
           "src/lib/actions/engagement/engagement-actions.test.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
           "src/lib/actions/engagement/index.ts",
           "src/lib/actions/engagement/restore-engagement.ts",
           "src/lib/actions/engagement/update-engagement.ts"
@@ -4007,6 +4036,8 @@
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/shell/engagement-switcher.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/engagement-archive-badge.tsx",
           "src/components/engagement/engagement-breadcrumb.tsx",
           "src/components/engagement/engagement-empty-state.tsx",
@@ -4022,11 +4053,10 @@
           "src/components/engagement/engagement-restore-banner.tsx",
           "src/components/engagement/engagement-search.tsx",
           "src/components/engagement/engagement-status-badge.tsx",
-          "src/components/engagement/engagement-toolbar.tsx",
-          "src/components/engagement/index.ts",
-          "src/components/engagement/workspace/engagement-phase-dashboard.tsx"
+          "src/components/engagement/engagement-toolbar.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/page.tsx",
@@ -4045,16 +4075,18 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/accounts/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/settings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/significant-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/settings/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/significant-risks/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/engagement/engagement-workspace-display.test.ts",
           "src/lib/engagement/resolve-active-engagement.test.ts",
           "src/lib/engagement/validation.test.ts",
@@ -4078,7 +4110,8 @@
         ],
         "integration": [
           "audit",
-          "engagement"
+          "engagement",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -4097,19 +4130,23 @@
         ],
         "validation": [
           "src/lib/actions/tenant/switch-engagement.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
           "src/lib/actions/engagement/archive-engagement.ts",
           "src/lib/actions/engagement/create-engagement.ts",
           "src/lib/actions/engagement/engagement-action.ts",
           "src/lib/actions/engagement/engagement-actions.test.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
           "src/lib/actions/engagement/index.ts",
           "src/lib/actions/engagement/restore-engagement.ts",
-          "src/lib/actions/engagement/update-engagement.ts",
-          "src/repositories/engagement/engagement-repository.ts"
+          "src/lib/actions/engagement/update-engagement.ts"
         ],
         "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/repositories/engagement/engagement-repository.ts",
           "src/lib/audit",
-          "src/lib/engagement"
+          "src/lib/engagement",
+          "src/lib/platform-audit"
         ],
         "security": [
           "engagement.read",
@@ -4188,6 +4225,8 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/planning/index.ts",
           "src/components/planning/workspace/planning-workspace-hero.tsx",
           "src/components/planning/workspace/planning-workspace-section-shell.tsx",
@@ -4204,11 +4243,10 @@
           "src/components/planning/history/planning-history-experience.tsx",
           "src/components/planning/documents/planning-documents-experience.tsx",
           "src/components/planning/create/planning-create-experience.tsx",
-          "src/components/planning/comments/planning-comments-section.tsx",
-          "src/components/planning/command-center/planning-command-center.tsx",
-          "src/components/planning/command-center/planning-workflow-pipeline.tsx"
+          "src/components/planning/comments/planning-comments-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/timeline/page.tsx",
@@ -4229,6 +4267,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/planning/planning-rules.test.ts",
           "src/lib/planning/validation.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
@@ -4261,7 +4300,8 @@
         ],
         "integration": [
           "audit",
-          "planning"
+          "planning",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -4292,7 +4332,8 @@
         "rules": [
           "src/repositories/planning/planning-repository.ts",
           "src/lib/audit",
-          "src/lib/planning"
+          "src/lib/planning",
+          "src/lib/platform-audit"
         ],
         "security": [
           "planning.read",
@@ -4359,11 +4400,14 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx",
           "src/components/ai-inline/drawers/ai-host-execution-drawer.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/program/page.tsx"
@@ -4371,6 +4415,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -4381,7 +4426,8 @@
           "fieldwork.program.updated"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -4402,7 +4448,8 @@
           "src/lib/actions/ai/host-execution-actions.ts"
         ],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [
           "fieldwork.program.updated"
@@ -4434,7 +4481,7 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
+        "repository": true,
         "serverAction": true,
         "rules": true,
         "validation": true,
@@ -4442,7 +4489,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -4457,26 +4504,45 @@
           "audit_programs",
           "audit_procedures",
           "working_papers",
-          "uaie_intelligence_audit"
+          "uaie_intelligence_audit",
+          "working_paper_versions",
+          "working_paper_sign_offs"
+        ],
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
-          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts"
+          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/fieldwork/working-papers/fieldwork-working-paper-row.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/dashboard/workspace/workspace-continue-working.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/working-papers/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
         ],
+        "tests": [
+          "src/lib/platform-audit/platform-audit.test.ts",
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts"
+        ],
         "permissions": [
+          "working_paper.version.read",
+          "working_paper.version.create",
+          "working_paper.sign_off",
           "fieldwork.working_paper.added",
           "fieldwork.working_paper.updated",
           "fieldwork.working_paper.submitted",
@@ -4484,7 +4550,8 @@
           "fieldwork.working_paper.cleared"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -4502,12 +4569,22 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
-          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts"
+          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "rules": [
-          "src/lib/audit"
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [
+          "working_paper.version.read",
+          "working_paper.version.create",
+          "working_paper.sign_off",
           "fieldwork.working_paper.added",
           "fieldwork.working_paper.updated",
           "fieldwork.working_paper.submitted",
@@ -4518,9 +4595,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 68.75,
-      "healthScore": 68.75,
-      "status": "production"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_lead-sheet-composition",
@@ -4540,18 +4617,18 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
-        "permissions": false,
+        "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
-        "security": false,
+        "security": true,
         "performance": false,
         "monitoring": false,
         "telemetry": false
@@ -4563,21 +4640,46 @@
           "audit_programs",
           "audit_procedures",
           "uaie_sheet_scans",
-          "uaie_intelligence_audit"
+          "uaie_intelligence_audit",
+          "lead_sheets",
+          "lead_sheet_lines"
+        ],
+        "repository": [
+          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/lead-sheets/index.ts",
+          "src/lib/actions/lead-sheets/lead-sheet-action.ts",
+          "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/ui/sheet.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/balance-sheet/page.tsx"
         ],
+        "tests": [
+          "src/lib/platform-audit/platform-audit.test.ts",
+          "src/lib/lead-sheets/lead-sheet-composition.test.ts"
+        ],
+        "permissions": [
+          "lead_sheet.read",
+          "lead_sheet.create",
+          "lead_sheet.update",
+          "lead_sheet.approve"
+        ],
         "integration": [
-          "audit"
+          "audit",
+          "lead-sheets",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -4594,18 +4696,31 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
-        "rules": [
-          "src/lib/audit"
+        "validation": [
+          "src/lib/actions/lead-sheets/index.ts",
+          "src/lib/actions/lead-sheets/lead-sheet-action.ts",
+          "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts",
+          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts"
         ],
-        "security": [],
+        "rules": [
+          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts",
+          "src/lib/audit",
+          "src/lib/lead-sheets",
+          "src/lib/platform-audit"
+        ],
+        "security": [
+          "lead_sheet.read",
+          "lead_sheet.create",
+          "lead_sheet.update",
+          "lead_sheet.approve"
+        ],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 43.75,
-      "healthScore": 43.75,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_evidence-management",
@@ -4623,10 +4738,10 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
@@ -4648,12 +4763,23 @@
           "fieldwork_evidence",
           "uaie_intelligence_audit"
         ],
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
@@ -4663,17 +4789,21 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
         ],
         "permissions": [
           "fieldwork.evidence.added"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -4690,9 +4820,17 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
         "rules": [
-          "src/lib/audit"
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [
           "fieldwork.evidence.added"
@@ -4701,9 +4839,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 62.5,
-      "healthScore": 62.5,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_review-workflow",
@@ -4794,10 +4932,11 @@
           "src/components/review/create/review-create-experience.tsx",
           "src/components/review/command-center/review-command-center.tsx",
           "src/components/reporting/workflow/reporting-workflow-panel.tsx",
-          "src/components/planning/workflow/planning-workflow-panel.tsx",
-          "src/components/planning/command-center/planning-workflow-pipeline.tsx"
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/review-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/versions/page.tsx",
@@ -4816,6 +4955,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -4846,6 +4986,7 @@
         ],
         "integration": [
           "audit",
+          "platform-audit",
           "review"
         ],
         "documentation": [
@@ -4878,6 +5019,7 @@
         "rules": [
           "src/repositories/review/review-repository.ts",
           "src/lib/audit",
+          "src/lib/platform-audit",
           "src/lib/review"
         ],
         "security": [
@@ -4976,12 +5118,14 @@
           "src/components/review/items/review-item-row.tsx",
           "src/components/review/create/review-create-experience.tsx",
           "src/components/review/command-center/review-command-center.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/fieldwork/workflow/fieldwork-review-queue-panel.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
-          "src/components/company/history/company-audit-summary.tsx",
-          "src/components/ai-inline/preview/ai-inline-preview.tsx"
+          "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/review-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/versions/page.tsx",
@@ -5000,6 +5144,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -5030,6 +5175,7 @@
         ],
         "integration": [
           "audit",
+          "platform-audit",
           "review"
         ],
         "documentation": [
@@ -5062,6 +5208,7 @@
         "rules": [
           "src/repositories/review/review-repository.ts",
           "src/lib/audit",
+          "src/lib/platform-audit",
           "src/lib/review"
         ],
         "security": [
@@ -5148,6 +5295,8 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/opinion/index.ts",
           "src/components/opinion/workspace/opinion-workspace-chrome.tsx",
           "src/components/opinion/workspace/opinion-workspace-error.tsx",
@@ -5166,6 +5315,7 @@
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/versions/page.tsx",
@@ -5183,6 +5333,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -5213,7 +5364,8 @@
         ],
         "integration": [
           "audit",
-          "opinion"
+          "opinion",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -5245,7 +5397,8 @@
         "rules": [
           "src/repositories/opinion/opinion-repository.ts",
           "src/lib/audit",
-          "src/lib/opinion"
+          "src/lib/opinion",
+          "src/lib/platform-audit"
         ],
         "security": [
           "opinion.read",
@@ -5309,16 +5462,20 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -5329,7 +5486,8 @@
           "uaie.dictionary.disabled"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -5348,7 +5506,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [
           "uaie.dictionary.disabled"
@@ -5403,11 +5562,14 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/fieldwork/procedures/fieldwork-procedure-row.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/procedures/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
@@ -5416,6 +5578,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -5423,7 +5586,8 @@
           "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -5442,7 +5606,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [],
         "performance": [],
@@ -5495,16 +5660,20 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -5512,7 +5681,8 @@
           "src/lib/ai/memory-engine/ai-memory-engine.test.ts"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -5531,7 +5701,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [],
         "performance": [],
@@ -5585,10 +5756,13 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/open-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/recommendations/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
@@ -5598,6 +5772,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -5608,7 +5783,8 @@
           "fieldwork.finding.added"
         ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.2 Audit"
@@ -5627,7 +5803,8 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [
           "fieldwork.finding.added"
@@ -5746,15 +5923,15 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
+        "repository": true,
         "serverAction": true,
-        "rules": false,
+        "rules": true,
         "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -5764,10 +5941,16 @@
       },
       "evidencePaths": {
         "database": [
-          "working_papers"
+          "working_papers",
+          "working_paper_versions",
+          "working_paper_sign_offs"
+        ],
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts"
         ],
         "serverAction": [
-          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts"
+          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -5777,7 +5960,13 @@
         "workspace": [
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/working-papers/page.tsx"
         ],
+        "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts"
+        ],
         "permissions": [
+          "working_paper.version.read",
+          "working_paper.version.create",
+          "working_paper.sign_off",
           "fieldwork.working_paper.added",
           "fieldwork.working_paper.updated",
           "fieldwork.working_paper.submitted",
@@ -5800,10 +5989,17 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
-          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts"
+          "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts"
         ],
-        "rules": [],
+        "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts"
+        ],
         "security": [
+          "working_paper.version.read",
+          "working_paper.version.create",
+          "working_paper.sign_off",
           "fieldwork.working_paper.added",
           "fieldwork.working_paper.updated",
           "fieldwork.working_paper.submitted",
@@ -5814,9 +6010,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 62.5,
-      "healthScore": 62.5,
-      "status": "production"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_anomaly-detection",
@@ -6354,7 +6550,7 @@
         "ui": true,
         "permissions": false,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": false,
@@ -6372,15 +6568,22 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
         ],
+        "tests": [
+          "src/lib/platform-audit/platform-audit.test.ts"
+        ],
         "integration": [
-          "audit"
+          "audit",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.3 AI"
@@ -6399,15 +6602,16 @@
         ],
         "validation": [],
         "rules": [
-          "src/lib/audit"
+          "src/lib/audit",
+          "src/lib/platform-audit"
         ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 43.75,
-      "healthScore": 43.75,
+      "completionPct": 50,
+      "healthScore": 50,
       "status": "partial"
     },
     {
@@ -6624,11 +6828,11 @@
           "src/components/reporting/items/reporting-item-row.tsx",
           "src/components/reporting/create/reporting-create-experience.tsx",
           "src/components/reporting/command-center/reporting-command-center.tsx",
+          "src/components/platform-inventory/platform-inventory-dashboard.tsx",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/onboarding/onboarding-wizard.tsx",
-          "src/components/engagement/workspace/engagement-phase-dashboard.tsx",
-          "src/components/devops/devops-dashboard.tsx",
-          "src/components/dashboard/dashboard-header.tsx",
-          "src/components/dashboard/dashboard-nav.tsx"
+          "src/components/implementation-intelligence/implementation-intelligence-dashboard.tsx",
+          "src/components/engagement/workspace/engagement-phase-dashboard.tsx"
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/onboarding/page.tsx",
@@ -6775,16 +6979,20 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -6795,7 +7003,8 @@
         ],
         "integration": [
           "audit",
-          "database-governance"
+          "database-governance",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.4 Governance"
@@ -6815,7 +7024,8 @@
         "validation": [],
         "rules": [
           "src/lib/audit",
-          "src/lib/database-governance"
+          "src/lib/database-governance",
+          "src/lib/platform-audit"
         ],
         "security": [],
         "performance": [],
@@ -6842,10 +7052,10 @@
       "children": [],
       "evidence": {
         "database": false,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": false,
@@ -6859,6 +7069,14 @@
         "telemetry": false
       },
       "evidencePaths": {
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx"
         ],
@@ -6868,6 +7086,8 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
         ],
         "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts"
         ],
@@ -6889,8 +7109,15 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
         "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/database-governance"
         ],
         "security": [],
@@ -6898,8 +7125,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 43.75,
-      "healthScore": 43.75,
+      "completionPct": 62.5,
+      "healthScore": 62.5,
       "status": "partial"
     },
     {
@@ -7211,10 +7438,10 @@
       "children": [],
       "evidence": {
         "database": false,
-        "repository": false,
-        "serverAction": false,
+        "repository": true,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": false,
@@ -7228,6 +7455,14 @@
         "telemetry": false
       },
       "evidencePaths": {
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx"
         ],
@@ -7236,6 +7471,8 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
         ],
         "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts"
         ],
@@ -7257,8 +7494,15 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
         "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/database-governance"
         ],
         "security": [],
@@ -7266,8 +7510,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 43.75,
-      "healthScore": 43.75,
+      "completionPct": 62.5,
+      "healthScore": 62.5,
       "status": "partial"
     },
     {
@@ -7297,7 +7541,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -7327,6 +7571,7 @@
         ],
         "repository": [
           "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts",
           "src/repositories/financial-statements/financial-statement-repository.ts"
         ],
         "serverAction": [
@@ -7340,6 +7585,7 @@
           "src/lib/actions/reporting/reporting-version-actions.ts",
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
           "src/lib/actions/reporting/update-reporting.ts",
+          "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts",
           "src/lib/actions/financial-statements/archive-financial-statements.ts",
           "src/lib/actions/financial-statements/create-financial-statements.ts",
           "src/lib/actions/financial-statements/financial-statements-action.ts",
@@ -7348,8 +7594,7 @@
           "src/lib/actions/financial-statements/financial-statements-section-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-version-actions.ts",
           "src/lib/actions/financial-statements/financial-statements-workflow-actions.ts",
-          "src/lib/actions/financial-statements/index.ts",
-          "src/lib/actions/financial-statements/update-financial-statements.ts"
+          "src/lib/actions/financial-statements/index.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -7394,6 +7639,9 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/history/page.tsx"
+        ],
+        "tests": [
+          "src/lib/lead-sheets/lead-sheet-composition.test.ts"
         ],
         "permissions": [
           "financialStatements.read",
@@ -7450,6 +7698,7 @@
         ],
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/lead-sheets/lead-sheet-composition-repository.ts",
           "src/repositories/financial-statements/financial-statement-repository.ts",
           "src/lib/financial-statements",
           "src/lib/reporting"
@@ -7470,8 +7719,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -7524,7 +7773,9 @@
         ],
         "repository": [
           "src/repositories/reporting/reporting-repository.ts",
-          "src/repositories/ifrs-notes/ifrs-notes-repository.ts"
+          "src/repositories/ifrs-notes/ifrs-notes-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/reporting/archive-reporting.ts",
@@ -7540,7 +7791,9 @@
           "src/lib/actions/ifrs-notes/create-ifrs-note-package.ts",
           "src/lib/actions/ifrs-notes/ifrs-notes-action.ts",
           "src/lib/actions/ifrs-notes/index.ts",
-          "src/lib/actions/ifrs-notes/workflow-actions.ts"
+          "src/lib/actions/ifrs-notes/workflow-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -7586,7 +7839,9 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/search/page.tsx"
         ],
         "tests": [
-          "src/lib/ifrs-notes/ifrs-notes-engine.test.ts"
+          "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts"
         ],
         "permissions": [
           "fieldwork.note.added",
@@ -7644,6 +7899,8 @@
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
           "src/repositories/ifrs-notes/ifrs-notes-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/ifrs-notes",
           "src/lib/reporting"
         ],
@@ -7691,7 +7948,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -7704,7 +7961,9 @@
           "reporting_packages"
         ],
         "repository": [
-          "src/repositories/reporting/reporting-repository.ts"
+          "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/reporting/archive-reporting.ts",
@@ -7716,7 +7975,9 @@
           "src/lib/actions/reporting/reporting-section-actions.ts",
           "src/lib/actions/reporting/reporting-version-actions.ts",
           "src/lib/actions/reporting/reporting-workflow-actions.ts",
-          "src/lib/actions/reporting/update-reporting.ts"
+          "src/lib/actions/reporting/update-reporting.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -7751,6 +8012,10 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/appendices/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/companies/[slug]/settings/reporting/page.tsx"
+        ],
+        "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts"
         ],
         "permissions": [
           "reporting.read",
@@ -7806,6 +8071,8 @@
         ],
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/reporting"
         ],
         "security": [
@@ -7824,8 +8091,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -7904,11 +8171,14 @@
           "src/components/reporting/items/reporting-item-row.tsx",
           "src/components/reporting/create/reporting-create-experience.tsx",
           "src/components/reporting/command-center/reporting-command-center.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/settings/sections/company-settings-reporting-section.tsx",
           "src/components/company/history/company-audit-summary.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/settings/page.tsx",
@@ -7927,6 +8197,7 @@
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -7957,6 +8228,7 @@
         ],
         "integration": [
           "audit",
+          "platform-audit",
           "reporting"
         ],
         "documentation": [
@@ -7989,6 +8261,7 @@
         "rules": [
           "src/repositories/reporting/reporting-repository.ts",
           "src/lib/audit",
+          "src/lib/platform-audit",
           "src/lib/reporting"
         ],
         "security": [
@@ -8728,7 +9001,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -8742,11 +9015,15 @@
           "organization_settings"
         ],
         "repository": [
-          "src/repositories/organization/organization-repository.ts"
+          "src/repositories/organization/organization-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/organization-action.ts",
-          "src/lib/actions/onboarding/create-organization.ts"
+          "src/lib/actions/onboarding/create-organization.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -8755,6 +9032,10 @@
         "workspace": [
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+        ],
+        "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts"
         ],
         "permissions": [
           "request.jwt.claim.organization_id",
@@ -8778,10 +9059,16 @@
         "validation": [
           "src/lib/actions/organization-action.ts",
           "src/lib/actions/onboarding/create-organization.ts",
-          "src/repositories/organization/organization-repository.ts"
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/organization/organization-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "rules": [
-          "src/repositories/organization/organization-repository.ts"
+          "src/repositories/organization/organization-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "security": [
           "request.jwt.claim.organization_id",
@@ -8791,8 +9078,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -8833,11 +9120,15 @@
           "workspace_settings"
         ],
         "repository": [
-          "src/repositories/workspace/workspace-repository.ts"
+          "src/repositories/workspace/workspace-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
           "src/lib/actions/workspace-action.ts",
-          "src/lib/actions/onboarding/create-workspace.ts"
+          "src/lib/actions/onboarding/create-workspace.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/workspace/index.ts",
@@ -8866,6 +9157,8 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
         ],
         "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/engagement/engagement-workspace-display.test.ts",
           "src/lib/dashboard/workspace-greeting.test.ts"
         ],
@@ -8894,10 +9187,16 @@
         "validation": [
           "src/lib/actions/workspace-action.ts",
           "src/lib/actions/onboarding/create-workspace.ts",
-          "src/repositories/workspace/workspace-repository.ts"
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/workspace/workspace-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "rules": [
           "src/repositories/workspace/workspace-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/workspace"
         ],
         "security": [
@@ -8928,10 +9227,10 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
-        "rules": false,
-        "validation": false,
+        "repository": true,
+        "serverAction": true,
+        "rules": true,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": false,
@@ -8947,6 +9246,14 @@
       "evidencePaths": {
         "database": [
           "organizations"
+        ],
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -8968,6 +9275,8 @@
           "src/app/[locale]/(protected)/app/companies/[slug]/identity/page.tsx"
         ],
         "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/company/company-identity-draft.test.ts"
         ],
         "documentation": [
@@ -8985,16 +9294,24 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
-        "rules": [],
+        "validation": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
         "security": [],
         "performance": [],
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 43.75,
-      "healthScore": 43.75,
-      "status": "partial"
+      "completionPct": 68.75,
+      "healthScore": 68.75,
+      "status": "production"
     },
     {
       "id": "cap_user-provisioning",
@@ -9097,7 +9414,7 @@
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -9114,10 +9431,14 @@
         ],
         "repository": [
           "src/repositories/role/role-repository.ts",
-          "src/repositories/permission/permission-repository.ts"
+          "src/repositories/permission/permission-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "serverAction": [
-          "src/lib/actions/permission-action.ts"
+          "src/lib/actions/permission-action.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -9127,6 +9448,10 @@
         "workspace": [
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+        ],
+        "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts"
         ],
         "permissions": [
           "request.jwt.claim.role"
@@ -9148,12 +9473,18 @@
         ],
         "validation": [
           "src/lib/actions/permission-action.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
           "src/repositories/role/role-repository.ts",
-          "src/repositories/permission/permission-repository.ts"
+          "src/repositories/permission/permission-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "rules": [
           "src/repositories/role/role-repository.ts",
-          "src/repositories/permission/permission-repository.ts"
+          "src/repositories/permission/permission-repository.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "security": [
           "request.jwt.claim.role"
@@ -9162,8 +9493,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -9247,15 +9578,15 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
-        "serverAction": false,
-        "rules": false,
-        "validation": false,
+        "repository": true,
+        "serverAction": true,
+        "rules": true,
+        "validation": true,
         "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
-        "tests": false,
+        "tests": true,
         "documentation": true,
         "integration": true,
         "security": true,
@@ -9267,6 +9598,14 @@
         "database": [
           "organizations"
         ],
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "serverAction": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx"
         ],
@@ -9275,6 +9614,10 @@
           "src/app/[locale]/(protected)/app/import-intelligence/customer-templates/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx"
+        ],
+        "tests": [
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts"
         ],
         "permissions": [
           "uaie.template.promoted",
@@ -9295,8 +9638,16 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
-        "rules": [],
+        "validation": [
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
+        "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
         "security": [
           "uaie.template.promoted",
           "uaie.template.rolled_back"
@@ -9305,9 +9656,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
-      "status": "partial"
+      "completionPct": 81.25,
+      "healthScore": 81.25,
+      "status": "enterprise"
     },
     {
       "id": "cap_subscription-and-licensing",
@@ -9416,18 +9767,22 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx",
+          "src/components/platform-audit/index.ts",
+          "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx",
           "src/components/auth/login-form.tsx"
         ],
         "workspace": [
           "src/app/[locale]/login/page.tsx",
+          "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
           "src/lib/trial-balance/trial-balance-engine.test.ts",
+          "src/lib/platform-audit/platform-audit.test.ts",
           "src/lib/materiality/__tests__/materiality-engine.test.ts",
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
           "src/lib/fs-rendering/fs-rendering-engine.test.ts",
@@ -9436,7 +9791,8 @@
         ],
         "integration": [
           "audit",
-          "logger"
+          "logger",
+          "platform-audit"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.6 Administration"
@@ -9456,7 +9812,8 @@
         "validation": [],
         "rules": [
           "src/lib/audit",
-          "src/lib/logger"
+          "src/lib/logger",
+          "src/lib/platform-audit"
         ],
         "security": [],
         "performance": [],
@@ -9501,9 +9858,11 @@
       },
       "evidencePaths": {
         "serverAction": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
           "src/lib/actions/tenant/switch-company.ts",
           "src/lib/actions/tenant/switch-engagement.ts",
-          "src/lib/actions/tenant/switch-tenant.ts"
+          "src/lib/actions/tenant/switch-tenant.ts",
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -9511,6 +9870,8 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
+          "src/lib/auth/multi-factor-authentication.test.ts",
           "src/lib/ai/ai-foundation.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
@@ -9534,9 +9895,11 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
           "src/lib/actions/tenant/switch-company.ts",
           "src/lib/actions/tenant/switch-engagement.ts",
-          "src/lib/actions/tenant/switch-tenant.ts"
+          "src/lib/actions/tenant/switch-tenant.ts",
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
         ],
         "rules": [
           "src/lib/security",
@@ -9602,6 +9965,7 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -9691,6 +10055,7 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -9779,7 +10144,7 @@
       "children": [],
       "evidence": {
         "database": true,
-        "repository": false,
+        "repository": true,
         "serverAction": true,
         "rules": true,
         "validation": true,
@@ -9799,8 +10164,14 @@
         "database": [
           "uaie_import_sessions"
         ],
+        "repository": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
+        ],
         "serverAction": [
-          "src/lib/actions/uaie/uaie-session-actions.ts"
+          "src/lib/actions/uaie/uaie-session-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -9815,6 +10186,9 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
+          "src/lib/fieldwork/working-paper-management.test.ts",
+          "src/lib/engagement/engagement-lifecycle-management.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "integration": [
@@ -9837,9 +10211,15 @@
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
         "validation": [
-          "src/lib/actions/uaie/uaie-session-actions.ts"
+          "src/lib/actions/uaie/uaie-session-actions.ts",
+          "src/lib/actions/fieldwork/working-paper-management-actions.ts",
+          "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts"
         ],
         "rules": [
+          "src/repositories/fieldwork/working-paper-management-repository.ts",
+          "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
           "src/lib/security",
           "src/lib/sql-foundation"
         ],
@@ -9848,9 +10228,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 68.75,
-      "healthScore": 68.75,
-      "status": "production"
+      "completionPct": 75,
+      "healthScore": 75,
+      "status": "enterprise"
     },
     {
       "id": "cap_multi-factor-authentication",
@@ -9869,9 +10249,9 @@
       "evidence": {
         "database": false,
         "repository": false,
-        "serverAction": false,
+        "serverAction": true,
         "rules": true,
-        "validation": false,
+        "validation": true,
         "workspace": false,
         "ui": true,
         "permissions": true,
@@ -9885,12 +10265,18 @@
         "telemetry": false
       },
       "evidencePaths": {
+        "serverAction": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
+        ],
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/public/sections/security-section.tsx"
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
+          "src/lib/auth/multi-factor-authentication.test.ts",
           "src/lib/ai/ai-foundation.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts"
         ],
@@ -9913,7 +10299,10 @@
           "src/i18n/messages/az.json",
           "src/i18n/messages/dashboard-workspace-az.json"
         ],
-        "validation": [],
+        "validation": [
+          "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
+          "src/lib/actions/auth/multi-factor-authentication-actions.ts"
+        ],
         "rules": [
           "src/lib/security",
           "src/lib/sql-foundation"
@@ -9923,8 +10312,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 50,
-      "healthScore": 50,
+      "completionPct": 62.5,
+      "healthScore": 62.5,
       "status": "partial"
     },
     {
@@ -9942,7 +10331,7 @@
       "parent": null,
       "children": [],
       "evidence": {
-        "database": false,
+        "database": true,
         "repository": false,
         "serverAction": true,
         "rules": true,
@@ -9960,6 +10349,9 @@
         "telemetry": false
       },
       "evidencePaths": {
+        "database": [
+          "working_paper_sign_offs"
+        ],
         "serverAction": [
           "src/lib/actions/auth/sign-in.ts",
           "src/lib/actions/auth/sign-out.ts",
@@ -9976,6 +10368,7 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/ai/ai-foundation.test.ts",
           "src/lib/ai/providers/multi-provider.integration.test.ts",
           "src/lib/ai/pipeline/ai-integration-pipeline.test.ts"
@@ -9983,6 +10376,7 @@
         "permissions": [
           "completion.item.assigned",
           "fieldwork.assign",
+          "working_paper.sign_off",
           "fieldwork.procedure.assigned",
           "financialStatements.section.assigned",
           "opinion.section.assigned",
@@ -10021,6 +10415,7 @@
         "security": [
           "completion.item.assigned",
           "fieldwork.assign",
+          "working_paper.sign_off",
           "fieldwork.procedure.assigned",
           "financialStatements.section.assigned",
           "opinion.section.assigned",
@@ -10032,9 +10427,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 68.75,
-      "healthScore": 68.75,
-      "status": "partial"
+      "completionPct": 75,
+      "healthScore": 75,
+      "status": "enterprise"
     },
     {
       "id": "cap_data-residency-options",
@@ -10149,6 +10544,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
         ],
         "tests": [
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/database-governance/database-governance.test.ts",
           "src/lib/database-governance/database-lifecycle.test.ts"
         ],
@@ -10273,6 +10669,7 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -10357,6 +10754,7 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "permissions": [
@@ -10431,7 +10829,8 @@
       },
       "evidencePaths": {
         "database": [
-          "uaie_learning_events"
+          "uaie_learning_events",
+          "engagement_lifecycle_events"
         ],
         "ui": [
           "src/components/ui/modal.tsx",
@@ -10442,6 +10841,7 @@
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
+          "src/lib/security/multi-tenant-isolation.test.ts",
           "src/lib/ai/ai-foundation.test.ts"
         ],
         "integration": [
@@ -10480,7 +10880,7 @@
   ],
   "requirements": [],
   "evidenceIndex": {
-    "scannedAt": "2026-07-16T16:33:05.033Z",
+    "scannedAt": "2026-07-16T23:23:54.780Z",
     "tables": [
       "organizations",
       "workspaces",
@@ -10584,7 +10984,12 @@
       "ifrs_note_cross_references",
       "ifrs_note_versions",
       "ifrs_note_comments",
-      "ifrs_note_history"
+      "ifrs_note_history",
+      "engagement_lifecycle_events",
+      "working_paper_versions",
+      "working_paper_sign_offs",
+      "lead_sheets",
+      "lead_sheet_lines"
     ],
     "repositories": [
       "src/repositories/index.ts",
@@ -10603,11 +11008,14 @@
       "src/repositories/opinion/opinion-repository.ts",
       "src/repositories/membership/membership-repository.ts",
       "src/repositories/materiality/materiality-repository.ts",
+      "src/repositories/lead-sheets/lead-sheet-composition-repository.ts",
       "src/repositories/ifrs-notes/ifrs-notes-repository.ts",
       "src/repositories/fs-rendering/fs-rendering-repository.ts",
       "src/repositories/fs-mapping/fs-mapping-repository.ts",
       "src/repositories/financial-statements/financial-statement-repository.ts",
       "src/repositories/fieldwork/fieldwork-repository.ts",
+      "src/repositories/fieldwork/working-paper-management-repository.ts",
+      "src/repositories/engagement/engagement-lifecycle-management-repository.ts",
       "src/repositories/engagement/engagement-repository.ts",
       "src/repositories/completion/completion-repository.ts",
       "src/repositories/company/company-repository.test.ts",
@@ -10635,6 +11043,7 @@
       "src/lib/actions/trial-balance/mutation-actions.ts",
       "src/lib/actions/trial-balance/trial-balance-action.ts",
       "src/lib/actions/trial-balance/workflow-actions.ts",
+      "src/lib/actions/tenant/multi-tenant-isolation-actions.ts",
       "src/lib/actions/tenant/switch-company.ts",
       "src/lib/actions/tenant/switch-engagement.ts",
       "src/lib/actions/tenant/switch-tenant.ts",
@@ -10689,6 +11098,9 @@
       "src/lib/actions/materiality/materiality-action.ts",
       "src/lib/actions/materiality/materiality-mutation-actions.ts",
       "src/lib/actions/materiality/materiality-workflow-actions.ts",
+      "src/lib/actions/lead-sheets/index.ts",
+      "src/lib/actions/lead-sheets/lead-sheet-action.ts",
+      "src/lib/actions/lead-sheets/lead-sheet-composition-actions.ts",
       "src/lib/actions/ifrs-notes/create-ifrs-note-package.ts",
       "src/lib/actions/ifrs-notes/ifrs-notes-action.ts",
       "src/lib/actions/ifrs-notes/index.ts",
@@ -10719,10 +11131,12 @@
       "src/lib/actions/fieldwork/fieldwork-workflow-actions.ts",
       "src/lib/actions/fieldwork/fieldwork-working-paper-workflow-actions.ts",
       "src/lib/actions/fieldwork/index.ts",
+      "src/lib/actions/fieldwork/working-paper-management-actions.ts",
       "src/lib/actions/engagement/archive-engagement.ts",
       "src/lib/actions/engagement/create-engagement.ts",
       "src/lib/actions/engagement/engagement-action.ts",
       "src/lib/actions/engagement/engagement-actions.test.ts",
+      "src/lib/actions/engagement/engagement-lifecycle-management-actions.ts",
       "src/lib/actions/engagement/index.ts",
       "src/lib/actions/engagement/restore-engagement.ts",
       "src/lib/actions/engagement/update-engagement.ts",
@@ -10745,6 +11159,7 @@
       "src/lib/actions/company/update-company-settings.ts",
       "src/lib/actions/company/update-company.ts",
       "src/lib/actions/auth/forgot-password.ts",
+      "src/lib/actions/auth/multi-factor-authentication-actions.ts",
       "src/lib/actions/auth/resend-verification.ts",
       "src/lib/actions/auth/reset-password.ts",
       "src/lib/actions/auth/sign-in.ts",
@@ -10891,6 +11306,10 @@
       "src/components/public/sections/hero-section.tsx",
       "src/components/public/sections/platform-overview-section.tsx",
       "src/components/public/sections/security-section.tsx",
+      "src/components/platform-inventory/index.ts",
+      "src/components/platform-inventory/platform-inventory-dashboard.tsx",
+      "src/components/platform-audit/index.ts",
+      "src/components/platform-audit/platform-audit-dashboard.tsx",
       "src/components/planning/index.ts",
       "src/components/planning/workspace/planning-workspace-hero.tsx",
       "src/components/planning/workspace/planning-workspace-section-shell.tsx",
@@ -10953,6 +11372,8 @@
       "src/components/layout/shells/error-shell.tsx",
       "src/components/layout/shells/index.ts",
       "src/components/layout/shells/loading-shell.tsx",
+      "src/components/implementation-intelligence/implementation-intelligence-dashboard.tsx",
+      "src/components/implementation-intelligence/index.ts",
       "src/components/ifrs-notes/ifrs-notes-experiences.tsx",
       "src/components/ifrs-notes/ifrs-notes-workspace-shell.tsx",
       "src/components/ifrs-notes/index.ts",
@@ -11151,6 +11572,8 @@
       "src/components/company/command-center/company-command-center.tsx",
       "src/components/capability-registry/index.ts",
       "src/components/capability-registry/platform-readiness-dashboard.tsx",
+      "src/components/capability-intelligence/capability-intelligence-dashboard.tsx",
+      "src/components/capability-intelligence/index.ts",
       "src/components/auth/auth-layout.tsx",
       "src/components/auth/forgot-password-form.tsx",
       "src/components/auth/guest-route-guard.tsx",
@@ -11238,6 +11661,8 @@
       "src/app/[locale]/(public)/page.tsx",
       "src/app/[locale]/(protected)/app/page.tsx",
       "src/app/[locale]/(protected)/app/platform-readiness/page.tsx",
+      "src/app/[locale]/(protected)/app/platform-inventory/page.tsx",
+      "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
       "src/app/[locale]/(protected)/app/onboarding/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
@@ -11255,6 +11680,7 @@
       "src/app/[locale]/(protected)/app/import-intelligence/customer-templates/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
+      "src/app/[locale]/(protected)/app/implementation-intelligence/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/[slug]/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/page.tsx",
@@ -11432,6 +11858,7 @@
       "src/app/[locale]/(protected)/app/companies/[slug]/contacts/page.tsx",
       "src/app/[locale]/(protected)/app/companies/[slug]/compliance/page.tsx",
       "src/app/[locale]/(protected)/app/companies/new/page.tsx",
+      "src/app/[locale]/(protected)/app/capability-intelligence/page.tsx",
       "src/app/[locale]/(protected)/ai/page.tsx"
     ],
     "routes": [
@@ -11444,6 +11871,8 @@
       "src/app/[locale]/(public)/page.tsx",
       "src/app/[locale]/(protected)/app/page.tsx",
       "src/app/[locale]/(protected)/app/platform-readiness/page.tsx",
+      "src/app/[locale]/(protected)/app/platform-inventory/page.tsx",
+      "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
       "src/app/[locale]/(protected)/app/onboarding/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
@@ -11461,6 +11890,7 @@
       "src/app/[locale]/(protected)/app/import-intelligence/customer-templates/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
+      "src/app/[locale]/(protected)/app/implementation-intelligence/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/[slug]/page.tsx",
       "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/page.tsx",
@@ -11638,6 +12068,7 @@
       "src/app/[locale]/(protected)/app/companies/[slug]/contacts/page.tsx",
       "src/app/[locale]/(protected)/app/companies/[slug]/compliance/page.tsx",
       "src/app/[locale]/(protected)/app/companies/new/page.tsx",
+      "src/app/[locale]/(protected)/app/capability-intelligence/page.tsx",
       "src/app/[locale]/(protected)/ai/page.tsx"
     ],
     "permissions": [
@@ -11691,6 +12122,9 @@
       "fieldwork.assign",
       "fieldwork.review",
       "fieldwork.comment",
+      "working_paper.version.read",
+      "working_paper.version.create",
+      "working_paper.sign_off",
       "fieldwork.created",
       "fieldwork.updated",
       "fieldwork.archived",
@@ -11785,6 +12219,10 @@
       "ifrs_notes.published",
       "ifrs_notes.archived",
       "ifrs_notes.rolled_back",
+      "lead_sheet.read",
+      "lead_sheet.create",
+      "lead_sheet.update",
+      "lead_sheet.approve",
       "materiality.read",
       "materiality.create",
       "materiality.update",
@@ -12002,16 +12440,23 @@
       "src/lib/uaie/intelligence/health.test.ts",
       "src/lib/trial-balance/trial-balance-engine.test.ts",
       "src/lib/sql-foundation/sql-foundation.test.ts",
+      "src/lib/security/multi-tenant-isolation.test.ts",
       "src/lib/risk-assessment/risk-assessment-rules.test.ts",
       "src/lib/project-sync/project-sync.test.ts",
       "src/lib/platform-registry/platform-registry.test.ts",
+      "src/lib/platform-inventory/platform-inventory.test.ts",
+      "src/lib/platform-audit/platform-audit.test.ts",
       "src/lib/planning/planning-rules.test.ts",
       "src/lib/planning/validation.test.ts",
       "src/lib/materiality/__tests__/materiality-engine.test.ts",
+      "src/lib/lead-sheets/lead-sheet-composition.test.ts",
+      "src/lib/implementation-intelligence/implementation-intelligence.test.ts",
       "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
       "src/lib/fs-rendering/fs-rendering-engine.test.ts",
       "src/lib/fs-mapping/fs-mapping-engine.test.ts",
       "src/lib/fieldwork/fieldwork-rules.test.ts",
+      "src/lib/fieldwork/working-paper-management.test.ts",
+      "src/lib/engagement/engagement-lifecycle-management.test.ts",
       "src/lib/engagement/engagement-workspace-display.test.ts",
       "src/lib/engagement/resolve-active-engagement.test.ts",
       "src/lib/engagement/validation.test.ts",
@@ -12026,6 +12471,8 @@
       "src/lib/company/settings.test.ts",
       "src/lib/company/validation.test.ts",
       "src/lib/capability-registry/capability-registry.test.ts",
+      "src/lib/capability-intelligence/capability-intelligence.test.ts",
+      "src/lib/auth/multi-factor-authentication.test.ts",
       "src/lib/auth/password-strength.test.ts",
       "src/lib/ai/ai-foundation.test.ts",
       "src/lib/ai/tools/ai-tools.test.ts",
@@ -12093,7 +12540,10 @@
       "supabase/migrations/20260713130001_fs_rendering_foundation.sql",
       "supabase/migrations/20260713130002_fs_rendering_role_permissions_backfill.sql",
       "supabase/migrations/20260716120001_ifrs_notes_foundation.sql",
-      "supabase/migrations/20260716120002_ifrs_notes_role_permissions_backfill.sql"
+      "supabase/migrations/20260716120002_ifrs_notes_role_permissions_backfill.sql",
+      "supabase/migrations/20260717120001_audit_engine_engagement_lifecycle_management.sql",
+      "supabase/migrations/20260717130001_working_paper_management_governance.sql",
+      "supabase/migrations/20260717140001_lead_sheet_composition_foundation.sql"
     ],
     "locales": [
       "src/i18n/messages/ai-workspace-az.json",
@@ -12122,6 +12572,7 @@
       "ai",
       "audit",
       "auth",
+      "capability-intelligence",
       "capability-registry",
       "company",
       "completion",
@@ -12138,10 +12589,14 @@
       "health",
       "i18n",
       "ifrs-notes",
+      "implementation-intelligence",
+      "lead-sheets",
       "logger",
       "materiality",
       "opinion",
       "planning",
+      "platform-audit",
+      "platform-inventory",
       "platform-registry",
       "project-sync",
       "reporting",
@@ -12180,14 +12635,14 @@
       }
     ]
   },
-  "platformCompletionPct": 62.68,
-  "architectureHealthPct": 70.1,
-  "implementationHealthPct": 71.47,
+  "platformCompletionPct": 66.18,
+  "architectureHealthPct": 75.49,
+  "implementationHealthPct": 76.47,
   "documentationCoveragePct": 100,
-  "testingCoveragePct": 72.06,
+  "testingCoveragePct": 85.29,
   "localizationCoveragePct": 100,
-  "securityCoveragePct": 70.59,
+  "securityCoveragePct": 72.06,
   "performanceCoveragePct": 0,
   "integrationCoveragePct": 92.65,
-  "technicalDebtScore": 17.45
+  "technicalDebtScore": 13.43
 }

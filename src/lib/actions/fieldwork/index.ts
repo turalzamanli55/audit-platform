@@ -26,3 +26,8 @@ export {
   returnFieldworkWorkingPaperAction,
   clearFieldworkWorkingPaperAction,
 } from "./fieldwork-working-paper-workflow-actions";
+export {
+  snapshotWorkingPaperVersionAction,
+  signOffWorkingPaperAction,
+  listWorkingPaperVersionsAction,
+} from "./working-paper-management-actions";

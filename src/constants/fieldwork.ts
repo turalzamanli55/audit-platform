@@ -8,6 +8,12 @@ export const FIELDWORK_PERMISSIONS = {
   COMMENT: "fieldwork.comment",
 } as const;
 
+export const WORKING_PAPER_MANAGEMENT_PERMISSIONS = {
+  VERSION_READ: "working_paper.version.read",
+  VERSION_CREATE: "working_paper.version.create",
+  SIGN_OFF: "working_paper.sign_off",
+} as const;
+
 export const AUDIT_RESOURCE_TYPE = "fieldwork";
 
 export const FIELDWORK_PACKAGE_STATUSES = [

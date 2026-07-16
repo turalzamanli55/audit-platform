@@ -1184,6 +1184,94 @@ export type Database = {
           },
         ]
       }
+      engagement_lifecycle_events: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          engagement_id: string
+          from_status:
+            | Database["public"]["Enums"]["engagement_lifecycle_status"]
+            | null
+          id: string
+          metadata: Json
+          organization_id: string
+          reason: string | null
+          status: Database["public"]["Enums"]["record_status"]
+          to_status: Database["public"]["Enums"]["engagement_lifecycle_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          from_status?:
+            | Database["public"]["Enums"]["engagement_lifecycle_status"]
+            | null
+          id?: string
+          metadata?: Json
+          organization_id: string
+          reason?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          to_status: Database["public"]["Enums"]["engagement_lifecycle_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          from_status?:
+            | Database["public"]["Enums"]["engagement_lifecycle_status"]
+            | null
+          id?: string
+          metadata?: Json
+          organization_id?: string
+          reason?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          to_status?: Database["public"]["Enums"]["engagement_lifecycle_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "engagement_lifecycle_events_engagement_id_fkey"
+            columns: ["engagement_id"]
+            isOneToOne: false
+            referencedRelation: "engagements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "engagement_lifecycle_events_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "engagement_lifecycle_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       engagement_members: {
         Row: {
           created_at: string
@@ -4466,6 +4554,219 @@ export type Database = {
           },
           {
             foreignKeyName: "ifrs_note_versions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_sheet_lines: {
+        Row: {
+          account_code: string
+          account_name: string
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          difference: number
+          engagement_id: string
+          explanation: string | null
+          id: string
+          lead_sheet_id: string
+          organization_id: string
+          reported_amount: number
+          status: Database["public"]["Enums"]["record_status"]
+          tested_amount: number
+          trial_balance_line_id: string | null
+          updated_at: string
+          updated_by: string | null
+          version: number
+          working_paper_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          account_code: string
+          account_name: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          difference?: number
+          engagement_id: string
+          explanation?: string | null
+          id?: string
+          lead_sheet_id: string
+          organization_id: string
+          reported_amount?: number
+          status?: Database["public"]["Enums"]["record_status"]
+          tested_amount?: number
+          trial_balance_line_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          working_paper_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          account_code?: string
+          account_name?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          difference?: number
+          engagement_id?: string
+          explanation?: string | null
+          id?: string
+          lead_sheet_id?: string
+          organization_id?: string
+          reported_amount?: number
+          status?: Database["public"]["Enums"]["record_status"]
+          tested_amount?: number
+          trial_balance_line_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          working_paper_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_sheet_lines_engagement_id_fkey"
+            columns: ["engagement_id"]
+            isOneToOne: false
+            referencedRelation: "engagements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheet_lines_lead_sheet_id_fkey"
+            columns: ["lead_sheet_id"]
+            isOneToOne: false
+            referencedRelation: "lead_sheets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheet_lines_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheet_lines_trial_balance_line_id_fkey"
+            columns: ["trial_balance_line_id"]
+            isOneToOne: false
+            referencedRelation: "trial_balance_lines"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheet_lines_working_paper_id_fkey"
+            columns: ["working_paper_id"]
+            isOneToOne: false
+            referencedRelation: "working_papers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheet_lines_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_sheets: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          engagement_id: string
+          fs_area: string
+          id: string
+          name: string
+          organization_id: string
+          reconciliation_note: string | null
+          sheet_status: string
+          status: Database["public"]["Enums"]["record_status"]
+          total_reported: number
+          total_tested: number
+          trial_balance_package_id: string
+          unreconciled_difference: number
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          fs_area: string
+          id?: string
+          name: string
+          organization_id: string
+          reconciliation_note?: string | null
+          sheet_status?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          total_reported?: number
+          total_tested?: number
+          trial_balance_package_id: string
+          unreconciled_difference?: number
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          fs_area?: string
+          id?: string
+          name?: string
+          organization_id?: string
+          reconciliation_note?: string | null
+          sheet_status?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          total_reported?: number
+          total_tested?: number
+          trial_balance_package_id?: string
+          unreconciled_difference?: number
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_sheets_engagement_id_fkey"
+            columns: ["engagement_id"]
+            isOneToOne: false
+            referencedRelation: "engagements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheets_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheets_trial_balance_package_id_fkey"
+            columns: ["trial_balance_package_id"]
+            isOneToOne: false
+            referencedRelation: "trial_balance_packages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_sheets_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
@@ -9929,6 +10230,193 @@ export type Database = {
           },
           {
             foreignKeyName: "uaie_validation_issues_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      working_paper_sign_offs: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          engagement_id: string
+          id: string
+          note: string | null
+          organization_id: string
+          sign_off_role: string
+          signed_at: string
+          signed_by: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          version_number: number
+          working_paper_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          id?: string
+          note?: string | null
+          organization_id: string
+          sign_off_role: string
+          signed_at?: string
+          signed_by: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          version_number: number
+          working_paper_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          id?: string
+          note?: string | null
+          organization_id?: string
+          sign_off_role?: string
+          signed_at?: string
+          signed_by?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          version_number?: number
+          working_paper_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "working_paper_sign_offs_engagement_id_fkey"
+            columns: ["engagement_id"]
+            isOneToOne: false
+            referencedRelation: "engagements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "working_paper_sign_offs_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "working_paper_sign_offs_working_paper_id_fkey"
+            columns: ["working_paper_id"]
+            isOneToOne: false
+            referencedRelation: "working_papers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "working_paper_sign_offs_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      working_paper_versions: {
+        Row: {
+          change_summary: string | null
+          content_notes: string | null
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          engagement_id: string
+          id: string
+          organization_id: string
+          paper_status: Database["public"]["Enums"]["working_paper_status"]
+          status: Database["public"]["Enums"]["record_status"]
+          tickmarks: Json
+          title: string
+          updated_at: string
+          updated_by: string | null
+          version: number
+          version_number: number
+          working_paper_id: string
+          workspace_id: string
+        }
+        Insert: {
+          change_summary?: string | null
+          content_notes?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          id?: string
+          organization_id: string
+          paper_status: Database["public"]["Enums"]["working_paper_status"]
+          status?: Database["public"]["Enums"]["record_status"]
+          tickmarks?: Json
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          version_number: number
+          working_paper_id: string
+          workspace_id: string
+        }
+        Update: {
+          change_summary?: string | null
+          content_notes?: string | null
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          id?: string
+          organization_id?: string
+          paper_status?: Database["public"]["Enums"]["working_paper_status"]
+          status?: Database["public"]["Enums"]["record_status"]
+          tickmarks?: Json
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          version_number?: number
+          working_paper_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "working_paper_versions_engagement_id_fkey"
+            columns: ["engagement_id"]
+            isOneToOne: false
+            referencedRelation: "engagements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "working_paper_versions_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "working_paper_versions_working_paper_id_fkey"
+            columns: ["working_paper_id"]
+            isOneToOne: false
+            referencedRelation: "working_papers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "working_paper_versions_workspace_id_fkey"
             columns: ["workspace_id"]
             isOneToOne: false
             referencedRelation: "workspaces"
