@@ -89,7 +89,7 @@ export function VerifyEmailExperience({
       <AuthCard>
         <AuthHeader title={experience.verify.expiredTitle} subtitle={experience.verify.expiredDescription} />
         <AuthFooter>
-          <Link href={`/${locale}${AUTH_ROUTES.register}`} className="text-primary hover:underline">
+          <Link href={`/${locale}${AUTH_ROUTES.login}`} className="text-primary hover:underline">
             {labels.backToLogin}
           </Link>
         </AuthFooter>

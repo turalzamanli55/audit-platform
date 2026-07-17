@@ -5,7 +5,7 @@
 
 export const AUTH_ROUTES = {
   login: "/login",
-  register: "/register",
+  invite: "/invite",
   forgotPassword: "/forgot-password",
   resetPassword: "/reset-password",
   verifyEmail: "/verify-email",
@@ -17,11 +17,20 @@ export const PROTECTED_PREFIX = "/app";
 export const ONBOARDING_PATH = "/app/onboarding";
 export const DASHBOARD_PATH = "/app/dashboard";
 
-export const PUBLIC_PATHS = ["/", "/about", "/privacy", "/terms"] as const;
+export const PUBLIC_PATHS = [
+  "/",
+  "/about",
+  "/privacy",
+  "/terms",
+  "/pricing",
+  "/features",
+  "/documentation",
+  "/contact",
+] as const;
 
 export const GUEST_PATHS = [
   AUTH_ROUTES.login,
-  AUTH_ROUTES.register,
+  AUTH_ROUTES.invite,
   AUTH_ROUTES.forgotPassword,
   AUTH_ROUTES.resetPassword,
   AUTH_ROUTES.verifyEmail,

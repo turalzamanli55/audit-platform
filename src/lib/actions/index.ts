@@ -6,7 +6,6 @@ export { createOrganizationAction } from "./organization-action";
 export { createWorkspaceAction } from "./workspace-action";
 export { createPermissionAction } from "./permission-action";
 export { signInAction } from "./auth/sign-in";
-export { signUpAction } from "./auth/sign-up";
 export { signOutAction } from "./auth/sign-out";
 export { forgotPasswordAction } from "./auth/forgot-password";
 export { resetPasswordAction } from "./auth/reset-password";

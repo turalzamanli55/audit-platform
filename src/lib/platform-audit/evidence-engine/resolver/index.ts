@@ -283,7 +283,29 @@ export function resolveCapabilityEvidence(input: {
     }
   }
 
-  // Routes/tests/localization refined
+  // Migration/database/routes/tests/localization refined by capability alias
+  const capabilityMigrations = resolveMigrations({
+    moduleId: input.moduleId,
+    aliases,
+    cwd: input.cwd,
+  });
+  items.push(
+    ...capabilityMigrations.map((item) => ({
+      ...item,
+      capabilityIds: [input.capabilityId],
+    })),
+  );
+  items.push(
+    ...resolveDatabase({
+      moduleId: input.moduleId,
+      aliases,
+      cwd: input.cwd,
+      migrationItems: capabilityMigrations,
+    }).map((item) => ({
+      ...item,
+      capabilityIds: [input.capabilityId],
+    })),
+  );
   items.push(
     ...resolveRoutes({ moduleId: input.moduleId, aliases, cwd: input.cwd }).map((item) => ({
       ...item,

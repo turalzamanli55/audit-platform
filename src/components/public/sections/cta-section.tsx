@@ -18,13 +18,13 @@ export function CtaSection({ locale, labels }: CtaSectionProps) {
               {labels.subtitle}
             </p>
             <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
-              <PublicLinkButton href={`/${locale}/register`} size="lg">
-                {labels.register}
-              </PublicLinkButton>
-              <PublicLinkButton href={`/${locale}/login`} variant="outline" size="lg">
+              <PublicLinkButton href={`/${locale}/login`} size="lg">
                 {labels.login}
               </PublicLinkButton>
-              <PublicLinkButton href="mailto:hello@audit.platform" variant="ghost" size="lg">
+              <PublicLinkButton href={`/${locale}/pricing`} variant="outline" size="lg">
+                Pricing
+              </PublicLinkButton>
+              <PublicLinkButton href={`/${locale}/contact`} variant="ghost" size="lg">
                 {labels.requestDemo}
               </PublicLinkButton>
             </div>

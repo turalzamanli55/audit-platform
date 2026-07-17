@@ -25,11 +25,11 @@ export function HeroSection({ locale, labels }: HeroSectionProps) {
               {labels.subtitle}
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <PublicLinkButton href={`/${locale}/register`} size="lg" className="w-full sm:w-auto">
+              <PublicLinkButton href={`/${locale}/login`} size="lg" className="w-full sm:w-auto">
                 {labels.primaryCta}
               </PublicLinkButton>
               <PublicLinkButton
-                href="mailto:hello@audit.platform"
+                href={`/${locale}/pricing`}
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto"

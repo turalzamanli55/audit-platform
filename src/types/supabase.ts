@@ -39,6 +39,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      account_mapping_governance_entries: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          organization_id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+          account_code: string
+          engagement_id: string
+          fs_line_code: string
+          governance_status: string
+          mapping_set_id: string | null
+        }
+        Insert: {
+          account_code: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          fs_line_code: string
+          governance_status?: string
+          id?: string
+          mapping_set_id?: string | null
+          organization_id: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          account_code?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          fs_line_code?: string
+          governance_status?: string
+          id?: string
+          mapping_set_id?: string | null
+          organization_id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       audit_logs: {
         Row: {
           action: string
@@ -483,6 +540,66 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      control_deficiency_evaluations: {
+        Row: {
+          control_id: string
+          created_at: string
+          created_by: string | null
+          deficiency_title: string
+          deleted_at: string | null
+          deleted_by: string | null
+          engagement_id: string
+          evaluation_status: string
+          id: string
+          organization_id: string
+          remediation_required: boolean
+          severity: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+        }
+        Insert: {
+          control_id: string
+          created_at?: string
+          created_by?: string | null
+          deficiency_title: string
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          evaluation_status?: string
+          id?: string
+          organization_id: string
+          remediation_required?: boolean
+          severity: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          control_id?: string
+          created_at?: string
+          created_by?: string | null
+          deficiency_title?: string
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          evaluation_status?: string
+          id?: string
+          organization_id?: string
+          remediation_required?: boolean
+          severity?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: []
       }
       companies: {
         Row: {
@@ -1447,6 +1564,75 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      general_ledger_exploration_views: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          organization_id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+          account_code: string
+          account_name: string
+          closing_balance: number
+          engagement_id: string
+          movement_credit: number
+          movement_debit: number
+          opening_balance: number
+          source_import_session_id: string | null
+          trial_balance_package_id: string | null
+        }
+        Insert: {
+          account_code: string
+          account_name: string
+          closing_balance?: number
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          id?: string
+          movement_credit?: number
+          movement_debit?: number
+          opening_balance?: number
+          organization_id: string
+          source_import_session_id?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          trial_balance_package_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          account_code?: string
+          account_name?: string
+          closing_balance?: number
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          id?: string
+          movement_credit?: number
+          movement_debit?: number
+          opening_balance?: number
+          organization_id?: string
+          source_import_session_id?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          trial_balance_package_id?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: []
       }
       fieldwork_activity: {
         Row: {
@@ -3789,6 +3975,183 @@ export type Database = {
           },
         ]
       }
+      ifrs_classification_rules: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          organization_id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+          account_pattern: string
+          ifrs_class: string
+          is_active: boolean
+          priority: number
+          standard: string
+          statement_area: string
+        }
+        Insert: {
+          account_pattern: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          ifrs_class: string
+          is_active?: boolean
+          organization_id: string
+          priority?: number
+          standard?: string
+          statement_area?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          account_pattern?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          ifrs_class?: string
+          is_active?: boolean
+          organization_id?: string
+          priority?: number
+          standard?: string
+          statement_area?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      ifrs_disclosure_drafting_items: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          organization_id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+          disclosure_code: string
+          disclosure_title: string
+          draft_body: string | null
+          drafting_status: string
+          engagement_id: string
+          ifrs_note_package_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          disclosure_code: string
+          disclosure_title: string
+          draft_body?: string | null
+          drafting_status?: string
+          engagement_id: string
+          id?: string
+          ifrs_note_package_id?: string | null
+          organization_id: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          disclosure_code?: string
+          disclosure_title?: string
+          draft_body?: string | null
+          drafting_status?: string
+          engagement_id?: string
+          id?: string
+          ifrs_note_package_id?: string | null
+          organization_id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
+      ifrs_note_management_links: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          organization_id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          workspace_id: string
+          engagement_id: string
+          ifrs_note_package_id: string
+          link_role: string
+          mapping_set_id: string | null
+          presentation_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id: string
+          id?: string
+          ifrs_note_package_id: string
+          link_role?: string
+          mapping_set_id?: string | null
+          organization_id: string
+          presentation_id?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          engagement_id?: string
+          id?: string
+          ifrs_note_package_id?: string
+          link_role?: string
+          mapping_set_id?: string | null
+          organization_id?: string
+          presentation_id?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       ifrs_note_comments: {
         Row: {
           author_user_id: string | null
@@ -5960,6 +6323,702 @@ export type Database = {
           },
         ]
       }
+      subscription_and_licensing_plans: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          ends_at: string | null
+          module_entitlements: Json
+          organization_id: string
+          plan_code: string
+          seat_limit: number
+          seats_used: number
+          starts_at: string
+          subscription_status: string
+          tenant_type: string
+          trial_ends_at: string | null
+          usage_limits: Json
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          plan_code: string
+          seat_limit?: number
+          seats_used?: number
+          subscription_status?: string
+          tenant_type?: string
+          module_entitlements?: Json
+          usage_limits?: Json
+          starts_at?: string
+          ends_at?: string | null
+          trial_ends_at?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      user_provisioning_invitations: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          accepted_at: string | null
+          accepted_by: string | null
+          email: string
+          expires_at: string
+          invitation_status: string
+          invitation_token: string
+          invited_by: string | null
+          organization_id: string
+          role_slug: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          email: string
+          expires_at: string
+          invitation_token: string
+          organization_id: string
+          role_slug?: string
+          invitation_status?: string
+          workspace_id?: string | null
+          invited_by?: string | null
+          accepted_by?: string | null
+          accepted_at?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      organization_management_profiles: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          branding: Json
+          custom_domain: string | null
+          display_name: string
+          legal_name: string | null
+          organization_id: string
+          smtp_settings: Json
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          display_name: string
+          organization_id: string
+          legal_name?: string | null
+          branding?: Json
+          smtp_settings?: Json
+          custom_domain?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      entity_management_units: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          entity_code: string
+          entity_kind: string
+          entity_name: string
+          organization_id: string
+          parent_entity_id: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          entity_code: string
+          entity_name: string
+          organization_id: string
+          entity_kind?: string
+          parent_entity_id?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      methodology_configuration_profiles: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          configuration: Json
+          methodology_code: string
+          methodology_name: string
+          organization_id: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          methodology_code: string
+          methodology_name: string
+          organization_id: string
+          configuration?: Json
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      template_management_items: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          body: Json
+          organization_id: string
+          template_code: string
+          template_kind: string
+          template_name: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          template_code: string
+          template_name: string
+          organization_id: string
+          template_kind?: string
+          body?: Json
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      role_and_permission_management_bundles: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          bundle_code: string
+          organization_id: string
+          permission_codes: string[]
+          role_id: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          bundle_code: string
+          organization_id: string
+          role_id: string
+          permission_codes?: string[]
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      workspace_management_settings: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          feature_flags: Json
+          organization_id: string
+          settings: Json
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          workspace_id: string
+          settings?: Json
+          feature_flags?: Json
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      session_management_policies: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          absolute_timeout_hours: number
+          idle_timeout_minutes: number
+          max_concurrent_sessions: number
+          organization_id: string
+          remember_device_days: number
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          max_concurrent_sessions?: number
+          idle_timeout_minutes?: number
+          absolute_timeout_hours?: number
+          remember_device_days?: number
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      single_sign_on_integration_providers: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          client_id: string | null
+          is_enabled: boolean
+          issuer_url: string | null
+          metadata: Json
+          organization_id: string
+          protocol: string
+          provider_code: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          provider_code: string
+          protocol?: string
+          issuer_url?: string | null
+          client_id?: string | null
+          metadata?: Json
+          is_enabled?: boolean
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      security_event_monitoring_events: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          actor_user_id: string | null
+          details: Json
+          event_code: string
+          organization_id: string | null
+          severity: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          event_code: string
+          organization_id?: string | null
+          workspace_id?: string | null
+          actor_user_id?: string | null
+          severity?: string
+          details?: Json
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      legal_hold_and_retention_policies: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          legal_hold_enabled: boolean
+          organization_id: string
+          policy_code: string
+          retention_days: number
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          policy_code: string
+          retention_days?: number
+          legal_hold_enabled?: boolean
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      export_and_portability_requests: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          export_scope: string
+          organization_id: string
+          request_status: string
+          requested_by: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          export_scope?: string
+          request_status?: string
+          requested_by?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      encryption_in_transit_and_at_rest_controls: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          at_rest_encryption_required: boolean
+          key_rotation_days: number
+          organization_id: string
+          tls_required: boolean
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          tls_required?: boolean
+          at_rest_encryption_required?: boolean
+          key_rotation_days?: number
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      role_based_access_control_assignments: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          organization_id: string
+          role_slug: string
+          scope_level: string
+          user_id: string
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          organization_id: string
+          role_slug: string
+          user_id: string
+          scope_level?: string
+          workspace_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
+      saas_feature_flags: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          flag_code: string
+          flag_state: string
+          organization_id: string | null
+          user_id: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          flag_code: string
+          flag_state?: string
+          organization_id?: string | null
+          workspace_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          organization_id?: string
+          workspace_id?: string | null
+        }
+        Relationships: []
+      }
       organizations: {
         Row: {
           created_at: string
@@ -5970,8 +7029,10 @@ export type Database = {
           id: string
           legal_name: string | null
           name: string
+          platform_owner_managed: boolean
           slug: string
           status: Database["public"]["Enums"]["record_status"]
+          tenant_type: string
           updated_at: string
           updated_by: string | null
           version: number
@@ -5985,8 +7046,10 @@ export type Database = {
           id?: string
           legal_name?: string | null
           name: string
+          platform_owner_managed?: boolean
           slug: string
           status?: Database["public"]["Enums"]["record_status"]
+          tenant_type?: string
           updated_at?: string
           updated_by?: string | null
           version?: number
@@ -6000,8 +7063,10 @@ export type Database = {
           id?: string
           legal_name?: string | null
           name?: string
+          platform_owner_managed?: boolean
           slug?: string
           status?: Database["public"]["Enums"]["record_status"]
+          tenant_type?: string
           updated_at?: string
           updated_by?: string | null
           version?: number

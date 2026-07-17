@@ -107,9 +107,9 @@ export function LoginForm({ locale, labels, experience }: LoginFormProps) {
           </Button>
 
           <AuthFooter>
-            {labels.registerPrompt}{" "}
-            <Link href={`/${locale}${AUTH_ROUTES.register}`} className="text-primary hover:underline">
-              {labels.registerLink}
+            Access is invitation-only.{" "}
+            <Link href={`/${locale}/contact`} className="text-primary hover:underline">
+              Contact sales
             </Link>
           </AuthFooter>
         </form>

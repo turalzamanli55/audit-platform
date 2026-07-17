@@ -25,11 +25,10 @@ type PublicHeaderProps = {
 };
 
 const navItems = [
-  { key: "overview", href: "#overview" },
-  { key: "features", href: "#features" },
-  { key: "enterprise", href: "#enterprise" },
-  { key: "ai", href: "#ai" },
-  { key: "security", href: "#security" },
+  { key: "features", path: "features", label: "Features" },
+  { key: "pricing", path: "pricing", label: "Pricing" },
+  { key: "documentation", path: "documentation", label: "Documentation" },
+  { key: "contact", path: "contact", label: "Contact" },
 ] as const;
 
 export function PublicHeader({ locale, labels }: PublicHeaderProps) {
@@ -54,7 +53,8 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
     };
   }, [mobileOpen]);
 
-  const navLabel = (key: (typeof navItems)[number]["key"]) => labels[key];
+  const navLabel = (item: (typeof navItems)[number]) =>
+    item.key === "features" ? labels.features : item.label;
 
   return (
     <header
@@ -78,13 +78,13 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label={labels.primaryNav}>
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.key}
-              href={item.href}
+              href={`/${locale}/${item.path}`}
               className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground"
             >
-              {navLabel(item.key)}
-            </a>
+              {navLabel(item)}
+            </Link>
           ))}
         </nav>
 
@@ -122,8 +122,8 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
           <PublicLinkButton href={`/${locale}/login`} variant="ghost" size="md">
             {labels.signIn}
           </PublicLinkButton>
-          <PublicLinkButton href={`/${locale}/register`} size="md">
-            {labels.register}
+          <PublicLinkButton href={`/${locale}/contact`} size="md">
+            Contact
           </PublicLinkButton>
         </div>
 
@@ -143,14 +143,14 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
         <div className="border-t border-border/60 bg-background/95 px-4 py-5 backdrop-blur-xl md:hidden">
           <nav className="space-y-1" aria-label={labels.primaryNav}>
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.key}
-                href={item.href}
+                href={`/${locale}/${item.path}`}
                 onClick={() => setMobileOpen(false)}
                 className="block rounded-xl px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted"
               >
-                {navLabel(item.key)}
-              </a>
+                {navLabel(item)}
+              </Link>
             ))}
           </nav>
           <div className="mt-5 space-y-4 border-t border-border/60 pt-5">
@@ -164,15 +164,15 @@ export function PublicHeader({ locale, labels }: PublicHeaderProps) {
               layout="stacked"
             />
             <div className="grid gap-2">
-            <PublicLinkButton href={`/${locale}/login`} variant="outline" className="w-full">
-              {labels.signIn}
-            </PublicLinkButton>
-            <PublicLinkButton href={`/${locale}/register`} className="w-full">
-              {labels.register}
-            </PublicLinkButton>
-            <PublicLinkButton href="mailto:hello@audit.platform" variant="ghost" className="w-full">
-              {labels.requestDemo}
-            </PublicLinkButton>
+              <PublicLinkButton href={`/${locale}/login`} variant="outline" className="w-full">
+                {labels.signIn}
+              </PublicLinkButton>
+              <PublicLinkButton href={`/${locale}/pricing`} className="w-full">
+                Pricing
+              </PublicLinkButton>
+              <PublicLinkButton href={`/${locale}/contact`} variant="ghost" className="w-full">
+                {labels.requestDemo}
+              </PublicLinkButton>
             </div>
           </div>
         </div>
