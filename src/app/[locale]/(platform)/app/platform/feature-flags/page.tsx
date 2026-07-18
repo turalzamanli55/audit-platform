@@ -1,35 +1,24 @@
-import { loadPlatformFeatureFlags } from "@/lib/platform-console/data";
-import { DataTable, PlatformPageHeader, StatusPill } from "@/components/platform-console/platform-primitives";
+import { loadPlatformFeatureFlags, loadOrganizationOptions } from "@/lib/platform-console/data";
+import { PlatformPageHeader } from "@/components/platform-console/platform-primitives";
+import { FeatureFlagManager } from "@/components/platform-console/managers/feature-flag-manager";
 
 export const dynamic = "force-dynamic";
 
-function flagTone(state: string): "ok" | "warn" | "down" | "neutral" {
-  if (state === "enabled") return "ok";
-  if (state === "preview" || state === "experimental") return "warn";
-  if (state === "deprecated") return "down";
-  return "neutral";
-}
-
 export default async function PlatformFeatureFlagsPage() {
-  const flags = await loadPlatformFeatureFlags();
+  const [flags, organizations] = await Promise.all([
+    loadPlatformFeatureFlags(),
+    loadOrganizationOptions(),
+  ]);
+  // Module access flags are managed on the Modules page; keep them out of here.
+  const productFlags = flags.filter((flag) => !flag.flagCode.startsWith("module:"));
 
   return (
     <div className="space-y-8">
       <PlatformPageHeader
         title="Feature Flags"
-        description="Platform, tenant, workspace, and user scoped feature flags with lifecycle states."
+        description="Create, enable, disable, and retire platform and tenant scoped feature flags. Changes apply immediately."
       />
-      <DataTable
-        columns={["Flag", "Scope", "State"]}
-        empty="No feature flags configured."
-        rows={flags.map((flag) => [
-          <span key="f" className="font-medium text-foreground">
-            {flag.flagCode}
-          </span>,
-          <StatusPill key="sc" label={flag.scope} tone="neutral" />,
-          <StatusPill key="st" label={flag.flagState} tone={flagTone(flag.flagState)} />,
-        ])}
-      />
+      <FeatureFlagManager flags={productFlags} organizations={organizations} />
     </div>
   );
 }

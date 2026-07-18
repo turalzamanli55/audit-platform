@@ -121,32 +121,37 @@ export async function loadPlatformLicenses(): Promise<LicenseRow[]> {
 }
 
 export type FeatureFlagRow = {
+  id: string;
   flagCode: string;
   flagState: string;
   scope: string;
+  organizationId: string | null;
 };
 
-/** Lists feature flags across all scopes. */
+/** Lists feature flags across all scopes (including `module:*` flags). */
 export async function loadPlatformFeatureFlags(): Promise<FeatureFlagRow[]> {
   const client = createServiceClient();
   const { data } = await client
     .from("saas_feature_flags")
-    .select("flag_code, flag_state, organization_id, workspace_id, user_id")
+    .select("id, flag_code, flag_state, organization_id, workspace_id, user_id")
     .is("deleted_at", null)
     .order("flag_code", { ascending: true })
     .limit(200);
 
-  return (data ?? []).map((row) => ({
-    flagCode: row.flag_code,
-    flagState: row.flag_state,
-    scope: row.user_id
-      ? "user"
-      : row.workspace_id
-        ? "workspace"
-        : row.organization_id
-          ? "tenant"
-          : "platform",
-  }));
+  return (data ?? [])
+    .map((row) => ({
+      id: row.id,
+      flagCode: row.flag_code,
+      flagState: row.flag_state,
+      scope: row.user_id
+        ? "user"
+        : row.workspace_id
+          ? "workspace"
+          : row.organization_id
+            ? "tenant"
+            : "platform",
+      organizationId: row.organization_id,
+    }));
 }
 
 export type SubscriptionRow = {
@@ -271,6 +276,53 @@ export async function loadPlatformSecurityEvents(): Promise<SecurityEventRow[]> 
   }));
 }
 
+export type ActivityRow = {
+  id: string;
+  eventCode: string;
+  severity: string;
+  actorEmail: string;
+  organizationName: string;
+  createdAt: string;
+};
+
+/** Rich activity feed (security/audit events) with resolved actor and company. */
+export async function loadPlatformActivity(): Promise<ActivityRow[]> {
+  const client = createServiceClient();
+  const { data } = await client
+    .from("security_event_monitoring_events")
+    .select("id, event_code, severity, actor_user_id, organization_id, created_at")
+    .is("deleted_at", null)
+    .order("created_at", { ascending: false })
+    .limit(500);
+
+  const rows = data ?? [];
+
+  const orgIds = Array.from(new Set(rows.map((r) => r.organization_id).filter((v): v is string => Boolean(v))));
+  const orgNameById = new Map<string, string>();
+  if (orgIds.length > 0) {
+    const { data: orgs } = await client.from("organizations").select("id, name").in("id", orgIds);
+    for (const org of orgs ?? []) orgNameById.set(org.id, org.name);
+  }
+
+  const actorIds = Array.from(new Set(rows.map((r) => r.actor_user_id).filter((v): v is string => Boolean(v))));
+  const emailById = new Map<string, string>();
+  await Promise.all(
+    actorIds.map(async (id) => {
+      const { data: user } = await client.auth.admin.getUserById(id);
+      if (user.user?.email) emailById.set(id, user.user.email);
+    }),
+  );
+
+  return rows.map((row) => ({
+    id: row.id,
+    eventCode: row.event_code,
+    severity: row.severity,
+    actorEmail: (row.actor_user_id ? emailById.get(row.actor_user_id) : null) ?? "System",
+    organizationName: (row.organization_id ? orgNameById.get(row.organization_id) : null) ?? "Platform",
+    createdAt: row.created_at,
+  }));
+}
+
 export type PlatformMetrics = {
   totalTenants: number;
   enterpriseTenants: number;
@@ -280,22 +332,30 @@ export type PlatformMetrics = {
   users: number;
   activeSubscriptions: number;
   activeLicenses: number;
+  expiredLicenses: number;
+  expiringLicenses: number;
+  seatsPurchased: number;
+  seatsUsed: number;
+  seatsAvailable: number;
+  securityEvents: number;
+  criticalEvents: number;
   auditEvents: number;
+  recentLogins: number;
+  storageBuckets: number;
   platformVersion: string;
   environment: string;
   databaseHealthy: boolean;
-  // Foundation metrics — not yet metered. Surfaced honestly as unavailable.
-  activeSessions: number | null;
-  revenue: number | null;
-  storageGb: number | null;
-  queueHealthy: boolean | null;
-  backgroundJobs: number | null;
-  deployments: string;
 };
+
+type CountableTable =
+  | "organizations"
+  | "subscription_and_licensing_plans"
+  | "security_event_monitoring_events"
+  | "audit_logs";
 
 async function countWhere(
   client: ReturnType<typeof createServiceClient>,
-  table: "organizations" | "subscription_and_licensing_plans" | "security_event_monitoring_events",
+  table: CountableTable,
   filter?: { column: string; value: string },
 ): Promise<number> {
   let query = client.from(table).select("*", { count: "exact", head: true }).is("deleted_at", null);
@@ -304,10 +364,14 @@ async function countWhere(
   return error ? 0 : count ?? 0;
 }
 
-/** Real business metrics for the Platform Dashboard (no estimates). */
+/** Real business metrics for the Platform Dashboard (all values read from the database). */
 export async function loadPlatformMetrics(): Promise<PlatformMetrics> {
   const client = createServiceClient();
   const { PLATFORM_VERSION } = await import("./version");
+  const now = Date.now();
+  const in30Days = new Date(now + 30 * 24 * 60 * 60 * 1000).toISOString();
+  const nowIso = new Date(now).toISOString();
+  const since24h = new Date(now - 24 * 60 * 60 * 1000).toISOString();
 
   const [
     totalTenants,
@@ -315,8 +379,11 @@ export async function loadPlatformMetrics(): Promise<PlatformMetrics> {
     businessTenants,
     soloTenants,
     activeSubscriptions,
+    securityEvents,
+    criticalEvents,
     auditEvents,
     users,
+    subscriptions,
   ] = await Promise.all([
     countWhere(client, "organizations"),
     countWhere(client, "organizations", { column: "tenant_type", value: "enterprise" }),
@@ -324,8 +391,47 @@ export async function loadPlatformMetrics(): Promise<PlatformMetrics> {
     countWhere(client, "organizations", { column: "tenant_type", value: "solo" }),
     countWhere(client, "subscription_and_licensing_plans", { column: "subscription_status", value: "active" }),
     countWhere(client, "security_event_monitoring_events"),
+    countWhere(client, "security_event_monitoring_events", { column: "severity", value: "critical" }),
+    countWhere(client, "audit_logs"),
     loadPlatformUsers().then((rows) => rows.length),
+    loadPlatformSubscriptions(),
   ]);
+
+  // Seat aggregation across non-terminated subscriptions.
+  const liveSubs = subscriptions.filter((s) => s.subscriptionStatus !== "cancelled");
+  const seatsPurchased = liveSubs.reduce((sum, s) => sum + s.seatLimit, 0);
+  const seatsUsed = liveSubs.reduce((sum, s) => sum + s.seatsUsed, 0);
+  const seatsAvailable = Math.max(seatsPurchased - seatsUsed, 0);
+
+  // License expiration (real, from subscription ends_at / status).
+  const expiredLicenses = subscriptions.filter(
+    (s) => s.subscriptionStatus === "expired" || (s.endsAt !== null && s.endsAt < nowIso),
+  ).length;
+  const expiringLicenses = subscriptions.filter(
+    (s) =>
+      s.subscriptionStatus !== "cancelled" &&
+      s.subscriptionStatus !== "expired" &&
+      s.endsAt !== null &&
+      s.endsAt >= nowIso &&
+      s.endsAt <= in30Days,
+  ).length;
+
+  // Recent authentication activity (real login events in the last 24h).
+  const recentLoginQuery = await client
+    .from("audit_logs")
+    .select("id", { count: "exact", head: true })
+    .eq("action", "auth.login")
+    .gte("created_at", since24h);
+  const recentLogins = recentLoginQuery.error ? 0 : recentLoginQuery.count ?? 0;
+
+  // Storage: count of configured storage buckets (real infrastructure metric).
+  let storageBuckets = 0;
+  try {
+    const buckets = await client.storage.listBuckets();
+    storageBuckets = buckets.data?.length ?? 0;
+  } catch {
+    storageBuckets = 0;
+  }
 
   const probe = await client.from("organizations").select("id", { head: true, count: "exact" });
 
@@ -338,15 +444,91 @@ export async function loadPlatformMetrics(): Promise<PlatformMetrics> {
     users,
     activeSubscriptions,
     activeLicenses: activeSubscriptions,
+    expiredLicenses,
+    expiringLicenses,
+    seatsPurchased,
+    seatsUsed,
+    seatsAvailable,
+    securityEvents,
+    criticalEvents,
     auditEvents,
+    recentLogins,
+    storageBuckets,
     platformVersion: PLATFORM_VERSION,
     environment: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
     databaseHealthy: !probe.error,
-    activeSessions: null,
-    revenue: null,
-    storageGb: null,
-    queueHealthy: null,
-    backgroundJobs: null,
-    deployments: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
   };
+}
+
+export type LoginHistoryRow = {
+  id: string;
+  userId: string | null;
+  email: string;
+  ip: string;
+  device: string;
+  browser: string;
+  result: string;
+  createdAt: string;
+};
+
+function parseUserAgent(userAgent: string | null): { device: string; browser: string } {
+  if (!userAgent) return { device: "Unknown", browser: "Unknown" };
+  const ua = userAgent.toLowerCase();
+  const device = /mobile|android|iphone|ipad/.test(ua)
+    ? "Mobile"
+    : /macintosh|windows|linux|x11/.test(ua)
+      ? "Desktop"
+      : "Unknown";
+  const browser = ua.includes("edg")
+    ? "Edge"
+    : ua.includes("chrome")
+      ? "Chrome"
+      : ua.includes("firefox")
+        ? "Firefox"
+        : ua.includes("safari")
+          ? "Safari"
+          : "Other";
+  return { device, browser };
+}
+
+/** Real login history sourced from authentication audit events. */
+export async function loadPlatformLoginHistory(): Promise<LoginHistoryRow[]> {
+  const client = createServiceClient();
+  const { data } = await client
+    .from("audit_logs")
+    .select("id, user_id, action, ip_address, user_agent, metadata, created_at")
+    .in("action", ["auth.login", "auth.logout", "auth.register"])
+    .order("created_at", { ascending: false })
+    .limit(200);
+
+  const rows = data ?? [];
+  const userIds = Array.from(new Set(rows.map((r) => r.user_id).filter((v): v is string => Boolean(v))));
+  const emailById = new Map<string, string>();
+  await Promise.all(
+    userIds.map(async (id) => {
+      const { data: user } = await client.auth.admin.getUserById(id);
+      if (user.user?.email) emailById.set(id, user.user.email);
+    }),
+  );
+
+  return rows.map((row) => {
+    const { device, browser } = parseUserAgent(row.user_agent);
+    const meta = (row.metadata ?? {}) as Record<string, unknown>;
+    const metaEmail = typeof meta.email === "string" ? meta.email : null;
+    return {
+      id: row.id,
+      userId: row.user_id,
+      email: (row.user_id ? emailById.get(row.user_id) : null) ?? metaEmail ?? "—",
+      ip: row.ip_address ? String(row.ip_address) : "—",
+      device,
+      browser,
+      result:
+        row.action === "auth.login"
+          ? "Success"
+          : row.action === "auth.logout"
+            ? "Sign-out"
+            : "Registered",
+      createdAt: row.created_at,
+    };
+  });
 }

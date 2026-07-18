@@ -2,12 +2,32 @@
 
 import { createPlatformAction, type PlatformActionContext } from "../platform-action";
 import { recordPlatformEvent } from "../events";
+import { assertSeatAvailable, syncSeatUsage } from "../seats";
 import { ValidationError, NotFoundError } from "@/lib/errors";
 import { isValidEmail, isValidPassword } from "@/utils/auth-validation";
 import {
   PLATFORM_OWNER_METADATA_KEY,
   PLATFORM_OWNER_METADATA_VALUE,
 } from "@/lib/platform-bootstrap";
+
+/** Narrow typed view over `service.rpc` for the session-management functions. */
+type SessionRpc = {
+  rpc: (
+    fn: "platform_force_user_logout" | "platform_revoke_session",
+    args: Record<string, string>,
+  ) => Promise<{ data: number | null; error: { message: string } | null }>;
+};
+
+async function resolveGlobalRoleId(ctx: PlatformActionContext, slug: string): Promise<string> {
+  const role = await ctx.service
+    .from("roles")
+    .select("id")
+    .eq("slug", slug)
+    .is("organization_id", null)
+    .maybeSingle();
+  if (!role.data) throw new ValidationError(`Unknown role: ${slug}`);
+  return role.data.id;
+}
 
 function resolveSiteOrigin(): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL;
@@ -154,6 +174,11 @@ export const createUserAction = createPlatformAction<CreateUserInput, { userId: 
     if (!isValidEmail(email)) throw new ValidationError("Enter a valid email address");
     if (!isValidPassword(input.password)) throw new ValidationError("Password does not meet policy");
 
+    // Enforce real seat limits before consuming an auth user for a tenant.
+    if (input.organizationId && input.roleSlug) {
+      await assertSeatAvailable(ctx.service, input.organizationId);
+    }
+
     const { data, error } = await ctx.service.auth.admin.createUser({
       email,
       password: input.password,
@@ -166,21 +191,12 @@ export const createUserAction = createPlatformAction<CreateUserInput, { userId: 
 
     // Optional tenant assignment: organization + role membership.
     if (input.organizationId && input.roleSlug) {
-      const role = await ctx.service
-        .from("roles")
-        .select("id")
-        .eq("slug", input.roleSlug)
-        .is("organization_id", null)
-        .maybeSingle();
-
-      if (!role.data) {
-        throw new ValidationError(`Unknown role: ${input.roleSlug}`);
-      }
+      const roleId = await resolveGlobalRoleId(ctx, input.roleSlug);
 
       const membership = await ctx.service.from("memberships").insert({
         user_id: userId,
         organization_id: input.organizationId,
-        role_id: role.data.id,
+        role_id: roleId,
         membership_scope: "organization",
         created_by: ctx.ownerUserId,
         updated_by: ctx.ownerUserId,
@@ -189,6 +205,8 @@ export const createUserAction = createPlatformAction<CreateUserInput, { userId: 
       if (membership.error) {
         throw new ValidationError(`User created, but membership failed: ${membership.error.message}`);
       }
+
+      await syncSeatUsage(ctx.service, input.organizationId);
     }
 
     await recordPlatformEvent(ctx.service, {
@@ -272,5 +290,199 @@ export const resetPasswordAction = createPlatformAction<{ email: string }, { ema
     });
 
     return { email };
+  },
+);
+
+// ---------------------------------------------------------------------------
+// Membership: assign company administrator, transfer between companies
+// ---------------------------------------------------------------------------
+
+export type AssignCompanyAdminInput = {
+  userId: string;
+  organizationId: string;
+};
+
+/** Promotes an existing user to Company Administrator of a tenant. */
+export const assignCompanyAdminAction = createPlatformAction<AssignCompanyAdminInput, { userId: string }>(
+  { module: "platform.users.assign-admin" },
+  async (input, ctx) => {
+    if (!input.userId) throw new ValidationError("Missing user id");
+    if (!input.organizationId) throw new ValidationError("Select a company");
+    await assertNotPlatformOwner(ctx, input.userId);
+
+    const org = await ctx.service
+      .from("organizations")
+      .select("id")
+      .eq("id", input.organizationId)
+      .is("deleted_at", null)
+      .maybeSingle();
+    if (!org.data) throw new NotFoundError("Company not found");
+
+    const roleId = await resolveGlobalRoleId(ctx, "organization_admin");
+
+    const existing = await ctx.service
+      .from("memberships")
+      .select("id")
+      .eq("user_id", input.userId)
+      .eq("organization_id", input.organizationId)
+      .eq("membership_scope", "organization")
+      .is("deleted_at", null)
+      .maybeSingle();
+
+    if (existing.data) {
+      const { error } = await ctx.service
+        .from("memberships")
+        .update({ role_id: roleId, updated_by: ctx.ownerUserId })
+        .eq("id", existing.data.id);
+      if (error) throw new ValidationError(error.message);
+    } else {
+      await assertSeatAvailable(ctx.service, input.organizationId);
+      const { error } = await ctx.service.from("memberships").insert({
+        user_id: input.userId,
+        organization_id: input.organizationId,
+        role_id: roleId,
+        membership_scope: "organization",
+        created_by: ctx.ownerUserId,
+        updated_by: ctx.ownerUserId,
+      });
+      if (error) throw new ValidationError(error.message);
+    }
+
+    await syncSeatUsage(ctx.service, input.organizationId);
+    await recordPlatformEvent(ctx.service, {
+      eventCode: "user.admin.assigned",
+      actorUserId: ctx.ownerUserId,
+      organizationId: input.organizationId,
+      details: { targetUserId: input.userId },
+    });
+
+    return { userId: input.userId };
+  },
+);
+
+export type TransferUserInput = {
+  userId: string;
+  toOrganizationId: string;
+  roleSlug?: string;
+};
+
+/** Transfers a user's organization membership from any company to another. */
+export const transferUserAction = createPlatformAction<TransferUserInput, { userId: string }>(
+  { module: "platform.users.transfer" },
+  async (input, ctx) => {
+    if (!input.userId) throw new ValidationError("Missing user id");
+    if (!input.toOrganizationId) throw new ValidationError("Select a destination company");
+    await assertNotPlatformOwner(ctx, input.userId);
+
+    const org = await ctx.service
+      .from("organizations")
+      .select("id")
+      .eq("id", input.toOrganizationId)
+      .is("deleted_at", null)
+      .maybeSingle();
+    if (!org.data) throw new NotFoundError("Destination company not found");
+
+    const roleId = await resolveGlobalRoleId(ctx, input.roleSlug?.trim() || "member");
+
+    // Capture current org memberships so seats can be re-synced afterwards.
+    const current = await ctx.service
+      .from("memberships")
+      .select("id, organization_id")
+      .eq("user_id", input.userId)
+      .eq("membership_scope", "organization")
+      .is("deleted_at", null);
+    const sourceOrgIds = Array.from(
+      new Set((current.data ?? []).map((m) => m.organization_id).filter((id) => id !== input.toOrganizationId)),
+    );
+
+    const alreadyThere = (current.data ?? []).some((m) => m.organization_id === input.toOrganizationId);
+    if (!alreadyThere) {
+      await assertSeatAvailable(ctx.service, input.toOrganizationId);
+    }
+
+    // Retire memberships in other companies (a user belongs to one company).
+    const now = new Date().toISOString();
+    for (const m of current.data ?? []) {
+      if (m.organization_id === input.toOrganizationId) continue;
+      const { error } = await ctx.service
+        .from("memberships")
+        .update({ deleted_at: now, deleted_by: ctx.ownerUserId })
+        .eq("id", m.id);
+      if (error) throw new ValidationError(error.message);
+    }
+
+    if (!alreadyThere) {
+      const { error } = await ctx.service.from("memberships").insert({
+        user_id: input.userId,
+        organization_id: input.toOrganizationId,
+        role_id: roleId,
+        membership_scope: "organization",
+        created_by: ctx.ownerUserId,
+        updated_by: ctx.ownerUserId,
+      });
+      if (error) throw new ValidationError(error.message);
+    }
+
+    await syncSeatUsage(ctx.service, input.toOrganizationId);
+    for (const orgId of sourceOrgIds) {
+      await syncSeatUsage(ctx.service, orgId);
+    }
+
+    await recordPlatformEvent(ctx.service, {
+      eventCode: "user.transferred",
+      actorUserId: ctx.ownerUserId,
+      organizationId: input.toOrganizationId,
+      severity: "warning",
+      details: { targetUserId: input.userId, fromOrganizationIds: sourceOrgIds },
+    });
+
+    return { userId: input.userId };
+  },
+);
+
+// ---------------------------------------------------------------------------
+// Session management: force logout, revoke single session
+// ---------------------------------------------------------------------------
+
+export const forceLogoutAction = createPlatformAction<{ userId: string }, { userId: string; revoked: number }>(
+  { module: "platform.users.force-logout" },
+  async (input, ctx) => {
+    if (!input.userId) throw new ValidationError("Missing user id");
+    await assertNotPlatformOwner(ctx, input.userId);
+
+    const { data, error } = await (ctx.service as unknown as SessionRpc).rpc("platform_force_user_logout", {
+      target_user: input.userId,
+    });
+    if (error) throw new ValidationError(error.message);
+
+    await recordPlatformEvent(ctx.service, {
+      eventCode: "user.sessions.revoked",
+      actorUserId: ctx.ownerUserId,
+      severity: "warning",
+      details: { targetUserId: input.userId, revoked: data ?? 0 },
+    });
+
+    return { userId: input.userId, revoked: data ?? 0 };
+  },
+);
+
+export const revokeSessionAction = createPlatformAction<{ sessionId: string; userId: string }, { sessionId: string }>(
+  { module: "platform.users.revoke-session" },
+  async (input, ctx) => {
+    if (!input.sessionId) throw new ValidationError("Missing session id");
+
+    const { error } = await (ctx.service as unknown as SessionRpc).rpc("platform_revoke_session", {
+      target_session: input.sessionId,
+    });
+    if (error) throw new ValidationError(error.message);
+
+    await recordPlatformEvent(ctx.service, {
+      eventCode: "user.session.revoked",
+      actorUserId: ctx.ownerUserId,
+      severity: "warning",
+      details: { sessionId: input.sessionId, targetUserId: input.userId },
+    });
+
+    return { sessionId: input.sessionId };
   },
 );

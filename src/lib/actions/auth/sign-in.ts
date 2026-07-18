@@ -52,13 +52,16 @@ export const signInAction = createPublicAction<SignInInput, SignInResult>(
     }
 
     const requestHeaders = await headers();
+    const forwardedFor = requestHeaders.get("x-forwarded-for");
+    const ipAddress = forwardedFor?.split(",")[0]?.trim() || requestHeaders.get("x-real-ip") || null;
     await emitAuditEvent({
       action: AUDIT_ACTIONS.LOGIN,
       resourceType: "user",
       resourceId: data.user?.id ?? null,
       userId: data.user?.id ?? null,
       userAgent: requestHeaders.get("user-agent"),
-      metadata: { rememberMe: Boolean(input.rememberMe) },
+      ipAddress,
+      metadata: { rememberMe: Boolean(input.rememberMe), email },
     });
 
     return { email };

@@ -20,6 +20,9 @@ import {
   sendInvitationAction,
   resendInvitationAction,
   revokeInvitationAction,
+  forceLogoutAction,
+  assignCompanyAdminAction,
+  transferUserAction,
 } from "@/lib/platform-console/actions/users";
 import { useActionRunner } from "./use-action-runner";
 
@@ -40,6 +43,7 @@ export function UserManager({
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
+  const [membershipUser, setMembershipUser] = useState<PlatformUserRow | null>(null);
 
   return (
     <Tabs defaultValue="users">
@@ -133,6 +137,27 @@ export function UserManager({
                                   }
                                 >
                                   Reset password
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  loading={pendingId === `${user.id}:logout`}
+                                  disabled={busy}
+                                  onClick={() =>
+                                    run(`${user.id}:logout`, () => forceLogoutAction({ userId: user.id }), {
+                                      success: "Sessions revoked",
+                                    })
+                                  }
+                                >
+                                  Force logout
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  disabled={busy || organizations.length === 0}
+                                  onClick={() => setMembershipUser(user)}
+                                >
+                                  Membership
                                 </Button>
                                 <Button
                                   size="sm"
@@ -262,7 +287,97 @@ export function UserManager({
           })
         }
       />
+
+      <MembershipModal
+        user={membershipUser}
+        onClose={() => setMembershipUser(null)}
+        organizations={organizations}
+        pending={pendingId === "assign-admin" || pendingId === "transfer-user"}
+        onAssignAdmin={(organizationId) =>
+          membershipUser &&
+          run("assign-admin", () => assignCompanyAdminAction({ userId: membershipUser.id, organizationId }), {
+            success: "Company administrator assigned",
+            onSuccess: () => setMembershipUser(null),
+          })
+        }
+        onTransfer={(toOrganizationId, roleSlug) =>
+          membershipUser &&
+          run(
+            "transfer-user",
+            () => transferUserAction({ userId: membershipUser.id, toOrganizationId, roleSlug }),
+            { success: "User transferred", onSuccess: () => setMembershipUser(null) },
+          )
+        }
+      />
     </Tabs>
+  );
+}
+
+function MembershipModal({
+  user,
+  onClose,
+  organizations,
+  onAssignAdmin,
+  onTransfer,
+  pending,
+}: {
+  user: PlatformUserRow | null;
+  onClose: () => void;
+  organizations: OrganizationOption[];
+  onAssignAdmin: (organizationId: string) => void;
+  onTransfer: (toOrganizationId: string, roleSlug: string) => void;
+  pending: boolean;
+}) {
+  const [organizationId, setOrganizationId] = useState(organizations[0]?.id ?? "");
+  const [roleSlug, setRoleSlug] = useState("member");
+
+  return (
+    <Modal
+      open={user !== null}
+      onOpenChange={(next) => (next ? null : onClose())}
+      title="Manage membership"
+      description={user ? `Assign or transfer ${user.email} between companies.` : ""}
+      footer={
+        <>
+          <Button variant="outline" size="sm" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button variant="outline" size="sm" loading={pending} disabled={!organizationId} onClick={() => onAssignAdmin(organizationId)}>
+            Assign as admin
+          </Button>
+          <Button size="sm" loading={pending} disabled={!organizationId} onClick={() => onTransfer(organizationId, roleSlug)}>
+            Transfer here
+          </Button>
+        </>
+      }
+    >
+      <div className="space-y-3">
+        <div className="space-y-1">
+          <Label htmlFor="member-org">Company</Label>
+          <Select id="member-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
+            {organizations.map((org) => (
+              <option key={org.id} value={org.id}>
+                {org.name}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="space-y-1">
+          <Label htmlFor="member-role">Role on transfer</Label>
+          <Select id="member-role" value={roleSlug} onChange={(e) => setRoleSlug(e.target.value)}>
+            {ASSIGNABLE_ROLE_OPTIONS.map((role) => (
+              <option key={role.value} value={role.value}>
+                {role.label}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          &ldquo;Assign as admin&rdquo; grants Company Administrator on the selected company. &ldquo;Transfer here&rdquo;
+          moves the user&rsquo;s company membership to the selected company with the chosen role.
+        </p>
+      </div>
+    </Modal>
   );
 }
 
