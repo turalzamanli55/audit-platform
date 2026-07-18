@@ -7,6 +7,7 @@
     "build": "next build",
     "typecheck": "tsc --noEmit",
     "start": "next start",
+    "bootstrap:platform": "npx tsx scripts/bootstrap-platform.mts",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",

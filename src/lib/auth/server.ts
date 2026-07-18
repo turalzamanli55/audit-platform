@@ -25,3 +25,5 @@ export {
   requireOrganization,
   requireWorkspace,
 } from "./authorize";
+export { isPlatformOwner, getPlatformOwnerIdentity } from "./platform-owner";
+export type { PlatformOwnerIdentity } from "./platform-owner";

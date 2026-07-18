@@ -17,6 +17,13 @@ export const PROTECTED_PREFIX = "/app";
 export const ONBOARDING_PATH = "/app/onboarding";
 export const DASHBOARD_PATH = "/app/dashboard";
 
+/** Platform Owner administration console — above all tenants, no onboarding. */
+export const PLATFORM_DASHBOARD_PATH = "/app/platform";
+
+/** Platform Owner login entrypoints (normal users must never use these). */
+export const PLATFORM_LOGIN_PATH = "/platform/login";
+export const ADMIN_LOGIN_PATH = "/admin";
+
 export const PUBLIC_PATHS = [
   "/",
   "/about",

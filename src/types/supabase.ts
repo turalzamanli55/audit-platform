@@ -6378,6 +6378,168 @@ export type Database = {
         }
         Relationships: []
       }
+      platform_bootstrap_status: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          bootstrap_completed: boolean
+          completed_at: string | null
+          details: Json
+          environment: string
+          last_run_at: string | null
+          owner_email: string | null
+          owner_user_id: string | null
+          singleton: boolean
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          bootstrap_completed?: boolean
+          completed_at?: string | null
+          details?: Json
+          environment?: string
+          last_run_at?: string | null
+          owner_email?: string | null
+          owner_user_id?: string | null
+          singleton?: boolean
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          bootstrap_completed?: boolean
+          completed_at?: string | null
+          details?: Json
+          environment?: string
+          last_run_at?: string | null
+          owner_email?: string | null
+          owner_user_id?: string | null
+          singleton?: boolean
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Relationships: []
+      }
+      platform_plan_templates: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          is_default: boolean
+          module_entitlements: Json
+          plan_code: string
+          plan_name: string
+          seat_limit: number
+          tenant_type: string
+          usage_limits: Json
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          is_default?: boolean
+          module_entitlements?: Json
+          plan_code: string
+          plan_name: string
+          seat_limit?: number
+          tenant_type?: string
+          usage_limits?: Json
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          is_default?: boolean
+          module_entitlements?: Json
+          plan_code?: string
+          plan_name?: string
+          seat_limit?: number
+          tenant_type?: string
+          usage_limits?: Json
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Relationships: []
+      }
+      platform_license_templates: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          deleted_by: string | null
+          id: string
+          status: Database["public"]["Enums"]["record_status"]
+          updated_at: string
+          updated_by: string | null
+          version: number
+          default_plan_code: string | null
+          duration_days: number | null
+          entitlements: Json
+          is_default: boolean
+          is_trial: boolean
+          license_code: string
+          license_name: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          default_plan_code?: string | null
+          duration_days?: number | null
+          entitlements?: Json
+          is_default?: boolean
+          is_trial?: boolean
+          license_code: string
+          license_name: string
+        }
+        Update: {
+          id?: string
+          status?: Database["public"]["Enums"]["record_status"]
+          default_plan_code?: string | null
+          duration_days?: number | null
+          entitlements?: Json
+          is_default?: boolean
+          is_trial?: boolean
+          license_code?: string
+          license_name?: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Relationships: []
+      }
       user_provisioning_invitations: {
         Row: {
           created_at: string

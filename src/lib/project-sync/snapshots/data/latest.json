@@ -1,6 +1,6 @@
 {
-  "id": "sync_1784249069137",
-  "timestamp": "2026-07-17T00:44:29.137Z",
+  "id": "sync_1784409646173",
+  "timestamp": "2026-07-18T21:20:46.173Z",
   "documentVersions": {
     "PROJECT_BIBLE": {
       "path": "C:\\Users\\Tural\\audit\\docs\\PROJECT_BIBLE.md",
@@ -2071,6 +2071,8 @@
           "src/components/company/settings/sections/company-settings-financial-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -2088,9 +2090,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx"
         ],
         "tests": [
           "src/lib/security/multi-tenant-isolation.test.ts",
@@ -2272,6 +2272,8 @@
           "src/components/company/settings/sections/company-settings-financial-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -2289,9 +2291,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx"
         ],
         "tests": [
           "src/lib/financial-reporting/financial-reporting-pipeline.test.ts",
@@ -2472,6 +2472,8 @@
           "src/components/company/settings/sections/company-settings-general-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
@@ -2694,6 +2696,8 @@
           "src/components/financial-statements/command-center/financial-statements-command-center.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/versions/page.tsx",
@@ -2711,9 +2715,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/accounts/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx"
         ],
         "tests": [
           "src/lib/workspace-management/workspace-management.test.ts",
@@ -2923,6 +2925,8 @@
           "src/components/company/settings/sections/company-settings-financial-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -2940,9 +2944,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/adjustments/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/adjustments/page.tsx"
         ],
         "tests": [
           "src/lib/financial-reporting/financial-reporting-pipeline.test.ts",
@@ -3142,6 +3144,8 @@
           "src/components/company/settings/sections/company-settings-financial-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -3159,9 +3163,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/periods/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/periods/page.tsx"
         ],
         "tests": [
           "src/lib/workspace-management/workspace-management.test.ts",
@@ -3373,6 +3375,8 @@
           "src/components/company/identity/company-identity-chrome.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -3390,9 +3394,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx"
         ],
         "tests": [
           "src/lib/security/multi-tenant-isolation.test.ts",
@@ -3597,6 +3599,8 @@
           "src/components/company/workspace/company-workspace-metadata-panel.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/mappings/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/mappings/page.tsx",
@@ -3614,9 +3618,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/settings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/history/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx"
         ],
         "tests": [
           "src/lib/fs-mapping/fs-mapping-engine.test.ts",
@@ -3819,6 +3821,8 @@
           "src/components/company/workspace/company-workspace-metadata-panel.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/reclassifications/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
@@ -3836,9 +3840,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/settings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/history/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/cross-references/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx"
         ],
         "tests": [
           "src/lib/ifrs-notes/ifrs-notes-engine.test.ts",
@@ -4031,6 +4033,8 @@
           "src/components/company/settings/sections/company-settings-financial-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -4048,9 +4052,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx"
         ],
         "tests": [
           "src/lib/financial-reporting/financial-reporting-pipeline.test.ts",
@@ -4249,6 +4251,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/page.tsx",
@@ -4265,9 +4269,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/comparatives/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/adjustments/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/accounts/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/settings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/significant-risks/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/settings/page.tsx"
         ],
         "tests": [
           "src/lib/workspace-management/workspace-management.test.ts",
@@ -4480,6 +4482,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/timeline/page.tsx",
@@ -4496,9 +4500,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/documents/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/checklist/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
-          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
-          "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
-          "src/app/[locale]/(protected)/app/audit-engine/audit-committee-dashboards/page.tsx"
+          "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx"
         ],
         "tests": [
           "src/lib/uaie/uaie-engine.test.ts",
@@ -4689,6 +4691,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/program/page.tsx",
@@ -4908,6 +4912,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
@@ -5124,6 +5130,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/balance-sheet/page.tsx",
@@ -5337,6 +5345,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
@@ -5557,6 +5567,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/review-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/versions/page.tsx",
@@ -5779,6 +5791,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/review-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/versions/page.tsx",
@@ -6005,6 +6019,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/versions/page.tsx",
@@ -6212,6 +6228,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
@@ -6403,6 +6421,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/procedures/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
@@ -6591,6 +6611,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
@@ -6782,6 +6804,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/open-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/recommendations/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
@@ -6943,6 +6967,7 @@
         ],
         "workspace": [
           "src/app/[locale]/(public)/documentation/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/search/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/search/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/documents/page.tsx",
@@ -7048,6 +7073,7 @@
           "src/components/dashboard/workspace/workspace-continue-working.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/fieldwork/working-papers/page.tsx"
         ],
         "tests": [
@@ -7141,6 +7167,7 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/detection-risks/page.tsx"
         ],
         "documentation": [
@@ -7242,6 +7269,7 @@
           "src/components/risk-assessment/command-center/risk-assessment-command-center.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/significant-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/settings/page.tsx",
@@ -7260,8 +7288,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/detection-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/compliance-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/comments/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/categories/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/comments/page.tsx"
         ],
         "tests": [
           "src/lib/risk-assessment/risk-assessment-rules.test.ts"
@@ -7408,6 +7435,7 @@
           "src/components/ifrs-notes/index.ts"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/reclassifications/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/ifrs-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/page.tsx",
@@ -7553,6 +7581,7 @@
         ],
         "workspace": [
           "src/app/[locale]/(public)/documentation/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/documents/page.tsx"
         ],
         "permissions": [
@@ -7611,13 +7640,13 @@
         "serverAction": false,
         "rules": false,
         "validation": false,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": false,
         "localization": true,
         "tests": false,
         "documentation": true,
-        "integration": false,
+        "integration": true,
         "security": false,
         "performance": false,
         "monitoring": false,
@@ -7626,6 +7655,9 @@
       "evidencePaths": {
         "ui": [
           "src/components/ui/modal.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "documentation": [
           "docs/PROJECT_BIBLE.md#13.3 AI"
@@ -7649,9 +7681,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 18.75,
-      "healthScore": 18.75,
-      "status": "foundation"
+      "completionPct": 31.25,
+      "healthScore": 31.25,
+      "status": "partial"
     },
     {
       "id": "cap_ai-interaction-audit-trail",
@@ -7733,6 +7765,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
@@ -7853,13 +7887,13 @@
         "serverAction": false,
         "rules": false,
         "validation": false,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
         "tests": true,
         "documentation": true,
-        "integration": false,
+        "integration": true,
         "security": true,
         "performance": false,
         "monitoring": false,
@@ -7870,6 +7904,9 @@
           "src/components/ui/modal.tsx",
           "src/components/company/identity/company-lifecycle-confirmation-panel.tsx",
           "src/components/ai/knowledge/knowledge-panel.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/ai/knowledge-graph/knowledge-graph.test.ts"
@@ -7901,8 +7938,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 37.5,
-      "healthScore": 37.5,
+      "completionPct": 50,
+      "healthScore": 50,
       "status": "partial"
     },
     {
@@ -7925,13 +7962,13 @@
         "serverAction": false,
         "rules": false,
         "validation": false,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": false,
         "localization": true,
         "tests": true,
         "documentation": true,
-        "integration": false,
+        "integration": true,
         "security": false,
         "performance": false,
         "monitoring": false,
@@ -7940,6 +7977,9 @@
       "evidencePaths": {
         "ui": [
           "src/components/ui/modal.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/engagement/engagement-workspace-display.test.ts"
@@ -7966,9 +8006,9 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 25,
-      "healthScore": 25,
-      "status": "foundation"
+      "completionPct": 37.5,
+      "healthScore": 37.5,
+      "status": "partial"
     },
     {
       "id": "cap_board-reporting-packages",
@@ -8057,12 +8097,13 @@
           "src/components/reporting/create/reporting-create-experience.tsx",
           "src/components/reporting/command-center/reporting-command-center.tsx",
           "src/components/platform-inventory/platform-inventory-dashboard.tsx",
+          "src/components/platform-console/platform-dashboard.tsx",
           "src/components/platform-audit/platform-audit-dashboard.tsx",
           "src/components/onboarding/onboarding-wizard.tsx",
-          "src/components/implementation-intelligence/implementation-intelligence-dashboard.tsx",
-          "src/components/engagement/workspace/engagement-phase-dashboard.tsx"
+          "src/components/implementation-intelligence/implementation-intelligence-dashboard.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/onboarding/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
@@ -8269,6 +8310,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
@@ -8461,6 +8504,7 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/representation-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
@@ -8608,6 +8652,7 @@
         ],
         "workspace": [
           "src/app/[locale]/(public)/documentation/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx",
           "src/app/[locale]/(protected)/app/administration/role-based-access-control/page.tsx"
         ],
@@ -8735,6 +8780,7 @@
           "src/components/public/public-locale-theme-controls.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/framework/page.tsx",
           "src/app/[locale]/(protected)/app/administration/role-based-access-control/page.tsx"
@@ -8824,7 +8870,7 @@
         "serverAction": true,
         "rules": true,
         "validation": true,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
@@ -8854,6 +8900,9 @@
         ],
         "ui": [
           "src/components/ui/modal.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/database-governance/database-governance.test.ts",
@@ -8905,8 +8954,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -8959,7 +9008,8 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
-          "src/app/[locale]/(public)/documentation/page.tsx"
+          "src/app/[locale]/(public)/documentation/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/database-governance/database-governance.test.ts",
@@ -9090,6 +9140,7 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx"
@@ -9280,6 +9331,7 @@
           "src/components/financial-statements/workspace/financial-statements-workspace-section-shell.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
@@ -9298,8 +9350,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/settings/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx"
         ],
         "tests": [
           "src/lib/regulatory-reporting-support/regulatory-reporting-support.test.ts",
@@ -9513,6 +9564,7 @@
           "src/components/company/settings/sections/company-settings-reporting-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/trial-balance/reclassifications/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/review-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/review/reviewer-notes/page.tsx",
@@ -9531,8 +9583,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/planning/notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/versions/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/validation/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/search/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/ifrs-notes/validation/page.tsx"
         ],
         "tests": [
           "src/lib/workspace-management/workspace-management.test.ts",
@@ -9748,6 +9799,7 @@
           "src/components/company/settings/sections/company-settings-reporting-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/settings/page.tsx",
@@ -9972,6 +10024,8 @@
         ],
         "workspace": [
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/settings/page.tsx",
@@ -10178,6 +10232,7 @@
           "src/components/company/settings/sections/company-settings-reporting-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/settings/page.tsx",
@@ -10389,6 +10444,7 @@
           "src/components/financial-statements/workspace/financial-statements-workspace-section-shell.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
@@ -10407,8 +10463,7 @@
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/settings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/notes-links/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/history/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/income-statement/page.tsx"
         ],
         "tests": [
           "src/lib/regulatory-reporting-support/regulatory-reporting-support.test.ts",
@@ -10585,6 +10640,7 @@
           "src/components/company/settings/sections/company-settings-reporting-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/settings/page.tsx",
@@ -10772,6 +10828,7 @@
           "src/components/company/settings/sections/company-settings-reporting-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/versions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/settings/page.tsx",
@@ -10962,6 +11019,8 @@
           "src/components/dashboard/organization-switcher.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx",
@@ -11140,6 +11199,7 @@
           "src/components/role-based-access-control/role-based-access-control-workspace-provider.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx",
@@ -11312,6 +11372,8 @@
           "src/components/company/identity/index.ts"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/companies/[slug]/identity/page.tsx",
@@ -11441,6 +11503,8 @@
           "src/components/shell/user-menu.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/users/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx",
           "src/app/[locale]/(protected)/app/administration/role-based-access-control/page.tsx"
         ],
@@ -11576,6 +11640,8 @@
           "src/components/auth/role-guard.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx",
@@ -11710,6 +11776,8 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx",
           "src/app/[locale]/(protected)/app/administration/role-based-access-control/page.tsx"
         ],
@@ -11801,7 +11869,9 @@
           "template_management_items",
           "role_and_permission_management_bundles",
           "workspace_management_settings",
-          "session_management_policies"
+          "session_management_policies",
+          "platform_plan_templates",
+          "platform_license_templates"
         ],
         "repository": [
           "src/repositories/workspace-management/workspace-management-repository.ts",
@@ -11833,6 +11903,8 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/erp-templates/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/customer-templates/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
@@ -11965,6 +12037,9 @@
           "src/components/ui/modal.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/subscriptions/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/administration/workspace-management/page.tsx",
           "src/app/[locale]/(protected)/app/administration/role-based-access-control/page.tsx"
         ],
@@ -12081,6 +12156,7 @@
           "src/components/engagement/command-center/engagement-audit-pipeline.tsx",
           "src/components/company/history/company-audit-summary.tsx",
           "src/components/auth/login-form.tsx",
+          "src/components/auth/platform-login-form.tsx",
           "src/components/audit-engine/audit-committee-dashboards-panel.tsx",
           "src/components/audit-engine/audit-committee-dashboards-workspace-provider.tsx",
           "src/components/audit-engine/audit-committee-dashboards-workspace.tsx",
@@ -12093,8 +12169,11 @@
           "src/components/audit-engine/index.ts"
         ],
         "workspace": [
+          "src/app/[locale]/platform/login/page.tsx",
           "src/app/[locale]/login/page.tsx",
           "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/audit-findings/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/key-audit-matters/page.tsx",
           "src/app/[locale]/(protected)/app/audit-engine/audit-opinion-formation/page.tsx",
@@ -12230,7 +12309,7 @@
         "serverAction": true,
         "rules": true,
         "validation": true,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
@@ -12260,6 +12339,10 @@
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/public/sections/security-section.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/tenants/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
@@ -12320,8 +12403,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -12393,6 +12476,7 @@
           "src/components/audit-engine/audit-log-access-workspace.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/control-risks/page.tsx",
           "src/app/[locale]/(protected)/app/audit-engine/audit-log-access/page.tsx",
           "src/app/[locale]/(protected)/app/administration/role-based-access-control/page.tsx"
@@ -12496,7 +12580,7 @@
         "serverAction": true,
         "rules": true,
         "validation": true,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
@@ -12529,6 +12613,9 @@
           "src/components/public/sections/security-section.tsx",
           "src/components/engagement/engagement-restore-banner.tsx",
           "src/components/company/company-restore-banner.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
@@ -12617,8 +12704,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -12700,6 +12787,7 @@
           "src/components/public/sections/security-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/sessions/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/management-letter/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/management-letter/page.tsx",
@@ -12813,7 +12901,7 @@
         "serverAction": true,
         "rules": true,
         "validation": true,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
@@ -12840,6 +12928,9 @@
         "ui": [
           "src/components/ui/modal.tsx",
           "src/components/public/sections/security-section.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
@@ -12895,8 +12986,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -12945,6 +13036,7 @@
         "serverAction": [
           "src/lib/actions/single-sign-on-integration/single-sign-on-integration-actions.ts",
           "src/lib/actions/security-event-monitoring/security-event-monitoring-actions.ts",
+          "src/lib/actions/auth/platform-sign-in.ts",
           "src/lib/actions/auth/sign-in.ts",
           "src/lib/actions/auth/sign-out.ts",
           "src/lib/actions/auth/sign-up.ts"
@@ -12955,6 +13047,7 @@
           "src/components/planning/integration/planning-integration-placeholder.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/significant-risks/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/opinion/signature/page.tsx"
         ],
@@ -13006,6 +13099,7 @@
         "validation": [
           "src/lib/actions/single-sign-on-integration/single-sign-on-integration-actions.ts",
           "src/lib/actions/security-event-monitoring/security-event-monitoring-actions.ts",
+          "src/lib/actions/auth/platform-sign-in.ts",
           "src/lib/actions/auth/sign-in.ts",
           "src/lib/actions/auth/sign-out.ts",
           "src/lib/actions/auth/sign-up.ts",
@@ -13138,6 +13232,8 @@
           "src/components/company/settings/sections/company-settings-financial-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/database/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/unknown-headers/page.tsx",
@@ -13155,9 +13251,7 @@
           "src/app/[locale]/(protected)/app/import-intelligence/analytics/page.tsx",
           "src/app/[locale]/(protected)/app/import-intelligence/admin/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/reporting/financial-statements/page.tsx",
-          "src/app/[locale]/(protected)/app/engagements/[slug]/financial-statements/page.tsx"
+          "src/app/[locale]/(protected)/app/engagements/[slug]/risk-assessment/financial-statement-risks/page.tsx"
         ],
         "tests": [
           "src/lib/security-event-monitoring/security-event-monitoring.test.ts",
@@ -13271,7 +13365,7 @@
         "serverAction": true,
         "rules": true,
         "validation": true,
-        "workspace": false,
+        "workspace": true,
         "ui": true,
         "permissions": true,
         "localization": true,
@@ -13301,6 +13395,9 @@
           "src/components/public/ui/illustration-placeholder.tsx",
           "src/components/public/sections/security-section.tsx",
           "src/components/planning/integration/planning-integration-placeholder.tsx"
+        ],
+        "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx"
         ],
         "tests": [
           "src/lib/sql-foundation/sql-foundation.test.ts",
@@ -13362,8 +13459,8 @@
         "monitoring": [],
         "telemetry": []
       },
-      "completionPct": 75,
-      "healthScore": 75,
+      "completionPct": 81.25,
+      "healthScore": 81.25,
       "status": "enterprise"
     },
     {
@@ -13418,6 +13515,7 @@
           "src/components/export-to-publication-formats/export-to-publication-formats-workspace-provider.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/financial-statements/export-to-publication-formats/page.tsx"
         ],
         "tests": [
@@ -13533,6 +13631,8 @@
           "src/components/public/sections/security-section.tsx"
         ],
         "workspace": [
+          "src/app/[locale]/(protected)/app/platform/monitoring/page.tsx",
+          "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
           "src/app/[locale]/(protected)/app/engagements/[slug]/completion/subsequent-events/page.tsx"
         ],
         "tests": [
@@ -13592,7 +13692,7 @@
   ],
   "requirements": [],
   "evidenceIndex": {
-    "scannedAt": "2026-07-17T00:44:29.078Z",
+    "scannedAt": "2026-07-18T21:20:46.117Z",
     "tables": [
       "organizations",
       "workspaces",
@@ -13723,7 +13823,10 @@
       "export_and_portability_requests",
       "encryption_in_transit_and_at_rest_controls",
       "role_based_access_control_assignments",
-      "saas_feature_flags"
+      "saas_feature_flags",
+      "platform_bootstrap_status",
+      "platform_plan_templates",
+      "platform_license_templates"
     ],
     "repositories": [
       "src/repositories/index.ts",
@@ -13947,6 +14050,7 @@
       "src/lib/actions/company/update-company.ts",
       "src/lib/actions/auth/forgot-password.ts",
       "src/lib/actions/auth/multi-factor-authentication-actions.ts",
+      "src/lib/actions/auth/platform-sign-in.ts",
       "src/lib/actions/auth/resend-verification.ts",
       "src/lib/actions/auth/reset-password.ts",
       "src/lib/actions/auth/sign-in.ts",
@@ -14112,6 +14216,9 @@
       "src/components/public/sections/security-section.tsx",
       "src/components/platform-inventory/index.ts",
       "src/components/platform-inventory/platform-inventory-dashboard.tsx",
+      "src/components/platform-console/platform-dashboard.tsx",
+      "src/components/platform-console/platform-primitives.tsx",
+      "src/components/platform-console/platform-sidebar.tsx",
       "src/components/platform-audit/index.ts",
       "src/components/platform-audit/platform-audit-dashboard.tsx",
       "src/components/planning/index.ts",
@@ -14388,6 +14495,7 @@
       "src/components/auth/login-form.tsx",
       "src/components/auth/onboarding-guard.tsx",
       "src/components/auth/permission-guard.tsx",
+      "src/components/auth/platform-login-form.tsx",
       "src/components/auth/protected-route-guard.tsx",
       "src/components/auth/register-form.tsx",
       "src/components/auth/reset-password-form.tsx",
@@ -14472,9 +14580,11 @@
       "src/app/[locale]/verify-email/page.tsx",
       "src/app/[locale]/reset-password/page.tsx",
       "src/app/[locale]/register/page.tsx",
+      "src/app/[locale]/platform/login/page.tsx",
       "src/app/[locale]/login/page.tsx",
       "src/app/[locale]/invite/page.tsx",
       "src/app/[locale]/forgot-password/page.tsx",
+      "src/app/[locale]/admin/page.tsx",
       "src/app/[locale]/(public)/page.tsx",
       "src/app/[locale]/(public)/pricing/page.tsx",
       "src/app/[locale]/(public)/features/page.tsx",
@@ -14484,6 +14594,24 @@
       "src/app/[locale]/(protected)/app/platform-readiness/page.tsx",
       "src/app/[locale]/(protected)/app/platform-inventory/page.tsx",
       "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/users/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/tenants/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/subscriptions/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/storage/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/settings/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/plans/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/monitoring/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/marketplace/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/licenses/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/impersonation/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/feature-flags/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/devops/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/database/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/billing/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
       "src/app/[locale]/(protected)/app/onboarding/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
@@ -14693,9 +14821,11 @@
       "src/app/[locale]/verify-email/page.tsx",
       "src/app/[locale]/reset-password/page.tsx",
       "src/app/[locale]/register/page.tsx",
+      "src/app/[locale]/platform/login/page.tsx",
       "src/app/[locale]/login/page.tsx",
       "src/app/[locale]/invite/page.tsx",
       "src/app/[locale]/forgot-password/page.tsx",
+      "src/app/[locale]/admin/page.tsx",
       "src/app/[locale]/(public)/page.tsx",
       "src/app/[locale]/(public)/pricing/page.tsx",
       "src/app/[locale]/(public)/features/page.tsx",
@@ -14705,6 +14835,24 @@
       "src/app/[locale]/(protected)/app/platform-readiness/page.tsx",
       "src/app/[locale]/(protected)/app/platform-inventory/page.tsx",
       "src/app/[locale]/(protected)/app/platform-audit/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/users/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/tenants/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/subscriptions/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/storage/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/settings/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/plans/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/organizations/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/monitoring/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/modules/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/marketplace/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/licenses/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/impersonation/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/feature-flags/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/devops/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/database/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/billing/page.tsx",
+      "src/app/[locale]/(protected)/app/platform/audit-logs/page.tsx",
       "src/app/[locale]/(protected)/app/onboarding/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/page.tsx",
       "src/app/[locale]/(protected)/app/import-intelligence/unknown-words/page.tsx",
@@ -15464,7 +15612,8 @@
       "supabase/migrations/20260717180004_role_and_permission_management.sql",
       "supabase/migrations/20260717180005_methodology_configuration.sql",
       "supabase/migrations/20260717180006_template_management.sql",
-      "supabase/migrations/20260717180007_subscription_and_licensing.sql"
+      "supabase/migrations/20260717180007_subscription_and_licensing.sql",
+      "supabase/migrations/20260718120001_platform_bootstrap.sql"
     ],
     "locales": [
       "src/i18n/messages/ai-workspace-az.json",
@@ -15536,6 +15685,8 @@
       "organization-management",
       "planning",
       "platform-audit",
+      "platform-bootstrap",
+      "platform-console",
       "platform-inventory",
       "platform-registry",
       "project-sync",
@@ -15586,14 +15737,14 @@
       }
     ]
   },
-  "platformCompletionPct": 76.75,
+  "platformCompletionPct": 77.76,
   "architectureHealthPct": 92.65,
-  "implementationHealthPct": 93.24,
+  "implementationHealthPct": 95.59,
   "documentationCoveragePct": 100,
   "testingCoveragePct": 95.59,
   "localizationCoveragePct": 100,
   "securityCoveragePct": 92.65,
   "performanceCoveragePct": 0,
-  "integrationCoveragePct": 95.59,
+  "integrationCoveragePct": 100,
   "technicalDebtScore": 3.82
 }

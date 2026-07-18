@@ -3,7 +3,12 @@
 import { useEffect, type ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/providers";
-import { DASHBOARD_PATH, ONBOARDING_PATH, stripLocalePrefix } from "@/config/auth";
+import {
+  DASHBOARD_PATH,
+  ONBOARDING_PATH,
+  PLATFORM_DASHBOARD_PATH,
+  stripLocalePrefix,
+} from "@/config/auth";
 import { isSessionAuthenticated } from "@/lib/auth/session-state";
 import { LoadingShell } from "@/components/layout/shells/loading-shell";
 import { defaultLocale, isValidLocale } from "@/i18n";
@@ -39,7 +44,15 @@ export function OnboardingGuard({
     const onboardingPath = ONBOARDING_PATH;
     const dashboardPath = DASHBOARD_PATH;
 
-    if (!onboardingComplete && normalized !== onboardingPath && normalized.startsWith("/app")) {
+    // The Platform Owner exists above all tenants and never onboards a tenant.
+    const isPlatformArea = normalized.startsWith(PLATFORM_DASHBOARD_PATH);
+
+    if (
+      !onboardingComplete &&
+      normalized !== onboardingPath &&
+      normalized.startsWith("/app") &&
+      !isPlatformArea
+    ) {
       router.replace(withLocale(pathname, onboardingPath));
       return;
     }
