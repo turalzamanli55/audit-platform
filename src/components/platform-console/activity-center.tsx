@@ -7,16 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
+import { downloadCsv, downloadJson, timestampedName } from "@/lib/platform-console/export-utils";
 import type { ActivityRow } from "@/lib/platform-console/data";
 
 function severityVariant(severity: string): "success" | "warning" | "destructive" | "secondary" {
   if (severity === "critical") return "destructive";
   if (severity === "warning") return "warning";
   return "secondary";
-}
-
-function toCsvValue(value: string): string {
-  return `"${value.replace(/"/g, '""')}"`;
 }
 
 export function ActivityCenter({ events }: { events: ActivityRow[] }) {
@@ -52,20 +49,11 @@ export function ActivityCenter({ events }: { events: ActivityRow[] }) {
   }, [events, search, severity, company, actor, from, to]);
 
   function exportCsv() {
-    const header = ["Timestamp", "Event", "Severity", "Actor", "Company"];
-    const lines = filtered.map((e) =>
-      [new Date(e.createdAt).toISOString(), e.eventCode, e.severity, e.actorEmail, e.organizationName]
-        .map(toCsvValue)
-        .join(","),
+    downloadCsv(
+      timestampedName("platform-activity", "csv"),
+      ["Timestamp", "Event", "Severity", "Actor", "Company"],
+      filtered.map((e) => [new Date(e.createdAt).toISOString(), e.eventCode, e.severity, e.actorEmail, e.organizationName]),
     );
-    const csv = [header.map(toCsvValue).join(","), ...lines].join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `platform-activity-${new Date().toISOString().slice(0, 10)}.csv`;
-    link.click();
-    URL.revokeObjectURL(url);
   }
 
   function resetFilters() {
@@ -135,6 +123,14 @@ export function ActivityCenter({ events }: { events: ActivityRow[] }) {
           </Button>
           <Button size="sm" variant="outline" onClick={exportCsv} disabled={filtered.length === 0}>
             Export CSV
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => downloadJson(timestampedName("platform-activity", "json"), filtered)}
+            disabled={filtered.length === 0}
+          >
+            Export JSON
           </Button>
         </div>
       </div>

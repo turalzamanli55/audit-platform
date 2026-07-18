@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServiceClient } from "@/lib/supabase/service";
+import { parseUserAgent } from "./user-agent";
 import {
   getPlatformHealth,
   validatePlatformBootstrap,
@@ -470,26 +471,6 @@ export type LoginHistoryRow = {
   result: string;
   createdAt: string;
 };
-
-function parseUserAgent(userAgent: string | null): { device: string; browser: string } {
-  if (!userAgent) return { device: "Unknown", browser: "Unknown" };
-  const ua = userAgent.toLowerCase();
-  const device = /mobile|android|iphone|ipad/.test(ua)
-    ? "Mobile"
-    : /macintosh|windows|linux|x11/.test(ua)
-      ? "Desktop"
-      : "Unknown";
-  const browser = ua.includes("edg")
-    ? "Edge"
-    : ua.includes("chrome")
-      ? "Chrome"
-      : ua.includes("firefox")
-        ? "Firefox"
-        : ua.includes("safari")
-          ? "Safari"
-          : "Other";
-  return { device, browser };
-}
 
 /** Real login history sourced from authentication audit events. */
 export async function loadPlatformLoginHistory(): Promise<LoginHistoryRow[]> {

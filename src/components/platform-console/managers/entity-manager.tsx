@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,7 +31,15 @@ const STATUS_VARIANT: Record<string, "success" | "warning" | "secondary" | "dest
   inactive: "secondary",
 };
 
-export function EntityManager({ entities, mode }: { entities: TenantRow[]; mode: Mode }) {
+export function EntityManager({
+  entities,
+  mode,
+  detailBasePath,
+}: {
+  entities: TenantRow[];
+  mode: Mode;
+  detailBasePath?: string;
+}) {
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const [editing, setEditing] = useState<TenantRow | null>(null);
@@ -67,7 +76,15 @@ export function EntityManager({ entities, mode }: { entities: TenantRow[]; mode:
                 const busy = pendingId?.startsWith(entity.id) ?? false;
                 return (
                   <tr key={entity.id}>
-                    <td className="px-4 py-2.5 font-medium">{entity.name}</td>
+                    <td className="px-4 py-2.5 font-medium">
+                      {detailBasePath ? (
+                        <Link href={`${detailBasePath}/companies/${entity.id}`} className="text-foreground hover:underline">
+                          {entity.name}
+                        </Link>
+                      ) : (
+                        entity.name
+                      )}
+                    </td>
                     <td className="px-4 py-2.5 text-muted-foreground">{entity.slug}</td>
                     <td className="px-4 py-2.5 capitalize">{entity.tenantType}</td>
                     <td className="px-4 py-2.5">

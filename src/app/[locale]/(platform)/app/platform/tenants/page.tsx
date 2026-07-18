@@ -4,16 +4,21 @@ import { EntityManager } from "@/components/platform-console/managers/entity-man
 
 export const dynamic = "force-dynamic";
 
-export default async function PlatformTenantsPage() {
+export default async function PlatformTenantsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const tenants = await loadPlatformTenants();
 
   return (
     <div className="space-y-8">
       <PlatformPageHeader
         title="Tenants"
-        description="Every audit firm is an isolated tenant. Create, edit, suspend, activate, archive, and delete tenants here."
+        description="Every audit firm is an isolated tenant. Open a company to inspect its full administration workspace."
       />
-      <EntityManager entities={tenants} mode="tenant" />
+      <EntityManager entities={tenants} mode="tenant" detailBasePath={`/${locale}/app/platform`} />
     </div>
   );
 }

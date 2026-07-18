@@ -11,7 +11,8 @@ export type PlatformNavItem = {
  */
 export const PLATFORM_NAV_ITEMS: PlatformNavItem[] = [
   { href: PLATFORM_DASHBOARD_PATH, label: "Dashboard" },
-  { href: `${PLATFORM_DASHBOARD_PATH}/tenants`, label: "Tenants" },
+  { href: `${PLATFORM_DASHBOARD_PATH}/search`, label: "Search" },
+  { href: `${PLATFORM_DASHBOARD_PATH}/tenants`, label: "Companies" },
   { href: `${PLATFORM_DASHBOARD_PATH}/organizations`, label: "Organizations" },
   { href: `${PLATFORM_DASHBOARD_PATH}/users`, label: "Users" },
   { href: `${PLATFORM_DASHBOARD_PATH}/subscriptions`, label: "Subscriptions" },

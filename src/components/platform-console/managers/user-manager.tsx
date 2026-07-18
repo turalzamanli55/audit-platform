@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,10 +36,12 @@ export function UserManager({
   users,
   invitations,
   organizations,
+  detailBasePath,
 }: {
   users: PlatformUserRow[];
   invitations: InvitationRow[];
   organizations: OrganizationOption[];
+  detailBasePath?: string;
 }) {
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
@@ -78,7 +81,15 @@ export function UserManager({
                     const busy = pendingId?.startsWith(user.id) ?? false;
                     return (
                       <tr key={user.id}>
-                        <td className="px-4 py-2.5 font-medium">{user.email}</td>
+                        <td className="px-4 py-2.5 font-medium">
+                          {detailBasePath ? (
+                            <Link href={`${detailBasePath}/users/${user.id}`} className="text-foreground hover:underline">
+                              {user.email}
+                            </Link>
+                          ) : (
+                            user.email
+                          )}
+                        </td>
                         <td className="px-4 py-2.5 text-muted-foreground">{user.fullName ?? "—"}</td>
                         <td className="px-4 py-2.5 text-muted-foreground">{formatDate(user.lastSignInAt)}</td>
                         <td className="px-4 py-2.5">
