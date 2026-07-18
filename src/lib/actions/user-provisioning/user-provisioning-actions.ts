@@ -6,10 +6,11 @@ import {
   assertUserProvisioningInvitation,
   createInvitationToken,
 } from "@/lib/user-provisioning/user-provisioning";
+import { acceptUserProvisioningInvitation } from "@/lib/user-provisioning/accept-invitation";
 import { createServerClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 import { UserProvisioningRepository } from "@/repositories/user-provisioning/user-provisioning-repository";
 import type { TenantType } from "@/constants/saas";
-import { ValidationError } from "@/lib/errors";
 import type { RepositoryContext } from "@/types/context";
 
 export type InviteUserProvisioningInput = {
@@ -84,13 +85,17 @@ export type AcceptUserProvisioningInput = {
 
 export const acceptUserProvisioningInvitationAction = createPublicAction<
   AcceptUserProvisioningInput,
-  { invitationToken: string; accepted: true }
+  { invitationToken: string; accepted: true; userId: string; organizationId: string }
 >({ module: "saas.user-provisioning.accept" }, async (input) => {
-  if (!input.invitationToken?.trim()) {
-    throw new ValidationError("Invitation token is required");
-  }
-  if (!input.password || input.password.length < 12) {
-    throw new ValidationError("Password must be at least 12 characters");
-  }
-  return { invitationToken: input.invitationToken, accepted: true as const };
+  const service = createServiceClient();
+  const result = await acceptUserProvisioningInvitation(service, {
+    invitationToken: input.invitationToken,
+    password: input.password,
+  });
+  return {
+    invitationToken: input.invitationToken,
+    accepted: true as const,
+    userId: result.userId,
+    organizationId: result.organizationId,
+  };
 });

@@ -6371,9 +6371,26 @@ export type Database = {
           workspace_id?: string | null
         }
         Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
           id?: string
           status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
           organization_id?: string
+          plan_code?: string
+          seat_limit?: number
+          seats_used?: number
+          subscription_status?: string
+          tenant_type?: string
+          module_entitlements?: Json
+          usage_limits?: Json
+          starts_at?: string
+          ends_at?: string | null
+          trial_ends_at?: string | null
           workspace_id?: string | null
         }
         Relationships: []
@@ -6584,10 +6601,25 @@ export type Database = {
           accepted_at?: string | null
         }
         Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
           id?: string
           status?: Database["public"]["Enums"]["record_status"]
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          email?: string
+          expires_at?: string
+          invitation_token?: string
           organization_id?: string
+          role_slug?: string
+          invitation_status?: string
           workspace_id?: string | null
+          invited_by?: string | null
+          accepted_by?: string | null
+          accepted_at?: string | null
         }
         Relationships: []
       }
@@ -7174,10 +7206,20 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          deleted_by?: string | null
           id?: string
           status?: Database["public"]["Enums"]["record_status"]
-          organization_id?: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+          flag_code?: string
+          flag_state?: string
+          organization_id?: string | null
           workspace_id?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }

@@ -28,6 +28,7 @@ export type TenantRow = {
   name: string;
   slug: string;
   tenantType: string;
+  status: string;
   platformManaged: boolean;
   createdAt: string;
 };
@@ -37,7 +38,7 @@ export async function loadPlatformTenants(): Promise<TenantRow[]> {
   const client = createServiceClient();
   const { data } = await client
     .from("organizations")
-    .select("id, name, slug, tenant_type, platform_owner_managed, created_at")
+    .select("id, name, slug, tenant_type, status, platform_owner_managed, created_at")
     .is("deleted_at", null)
     .order("created_at", { ascending: false })
     .limit(200);
@@ -47,9 +48,24 @@ export async function loadPlatformTenants(): Promise<TenantRow[]> {
     name: row.name,
     slug: String(row.slug),
     tenantType: row.tenant_type,
+    status: row.status,
     platformManaged: row.platform_owner_managed,
     createdAt: row.created_at,
   }));
+}
+
+export type OrganizationOption = { id: string; name: string };
+
+/** Lightweight organization options for admin form dropdowns. */
+export async function loadOrganizationOptions(): Promise<OrganizationOption[]> {
+  const client = createServiceClient();
+  const { data } = await client
+    .from("organizations")
+    .select("id, name")
+    .is("deleted_at", null)
+    .order("name", { ascending: true })
+    .limit(500);
+  return (data ?? []).map((row) => ({ id: row.id, name: row.name }));
 }
 
 export type PlanRow = {
@@ -134,11 +150,14 @@ export async function loadPlatformFeatureFlags(): Promise<FeatureFlagRow[]> {
 }
 
 export type SubscriptionRow = {
+  id: string;
+  organizationId: string;
   planCode: string;
   tenantType: string;
   subscriptionStatus: string;
   seatLimit: number;
   seatsUsed: number;
+  endsAt: string | null;
 };
 
 /** Lists tenant subscription instances. */
@@ -146,21 +165,25 @@ export async function loadPlatformSubscriptions(): Promise<SubscriptionRow[]> {
   const client = createServiceClient();
   const { data } = await client
     .from("subscription_and_licensing_plans")
-    .select("plan_code, tenant_type, subscription_status, seat_limit, seats_used")
+    .select("id, organization_id, plan_code, tenant_type, subscription_status, seat_limit, seats_used, ends_at")
     .is("deleted_at", null)
     .order("created_at", { ascending: false })
     .limit(200);
 
   return (data ?? []).map((row) => ({
+    id: row.id,
+    organizationId: row.organization_id,
     planCode: row.plan_code,
     tenantType: row.tenant_type,
     subscriptionStatus: row.subscription_status,
     seatLimit: row.seat_limit,
     seatsUsed: row.seats_used,
+    endsAt: row.ends_at,
   }));
 }
 
 export type InvitationRow = {
+  id: string;
   email: string;
   roleSlug: string;
   invitationStatus: string;
@@ -172,17 +195,57 @@ export async function loadPlatformInvitations(): Promise<InvitationRow[]> {
   const client = createServiceClient();
   const { data } = await client
     .from("user_provisioning_invitations")
-    .select("email, role_slug, invitation_status, expires_at")
+    .select("id, email, role_slug, invitation_status, expires_at")
     .is("deleted_at", null)
     .order("created_at", { ascending: false })
     .limit(200);
 
   return (data ?? []).map((row) => ({
+    id: row.id,
     email: String(row.email),
     roleSlug: row.role_slug,
     invitationStatus: row.invitation_status,
     expiresAt: row.expires_at,
   }));
+}
+
+export type PlatformUserRow = {
+  id: string;
+  email: string;
+  fullName: string | null;
+  createdAt: string;
+  lastSignInAt: string | null;
+  suspended: boolean;
+  isPlatformOwner: boolean;
+};
+
+/** Lists auth users via the admin API (first page). */
+export async function loadPlatformUsers(): Promise<PlatformUserRow[]> {
+  const client = createServiceClient();
+  const rows: PlatformUserRow[] = [];
+  const perPage = 200;
+
+  for (let page = 1; page <= 10; page += 1) {
+    const { data, error } = await client.auth.admin.listUsers({ page, perPage });
+    if (error) break;
+    for (const user of data.users) {
+      const metadata = (user.app_metadata ?? {}) as Record<string, unknown>;
+      const userMeta = (user.user_metadata ?? {}) as Record<string, unknown>;
+      const bannedUntil = (user as { banned_until?: string | null }).banned_until ?? null;
+      rows.push({
+        id: user.id,
+        email: user.email ?? "—",
+        fullName: typeof userMeta.full_name === "string" ? userMeta.full_name : null,
+        createdAt: user.created_at,
+        lastSignInAt: user.last_sign_in_at ?? null,
+        suspended: Boolean(bannedUntil && new Date(bannedUntil).getTime() > Date.now()),
+        isPlatformOwner: metadata.platform_role === "platform_owner",
+      });
+    }
+    if (data.users.length < perPage) break;
+  }
+
+  return rows;
 }
 
 export type SecurityEventRow = {
@@ -206,4 +269,84 @@ export async function loadPlatformSecurityEvents(): Promise<SecurityEventRow[]> 
     severity: row.severity,
     createdAt: row.created_at,
   }));
+}
+
+export type PlatformMetrics = {
+  totalTenants: number;
+  enterpriseTenants: number;
+  businessTenants: number;
+  soloTenants: number;
+  organizations: number;
+  users: number;
+  activeSubscriptions: number;
+  activeLicenses: number;
+  auditEvents: number;
+  platformVersion: string;
+  environment: string;
+  databaseHealthy: boolean;
+  // Foundation metrics — not yet metered. Surfaced honestly as unavailable.
+  activeSessions: number | null;
+  revenue: number | null;
+  storageGb: number | null;
+  queueHealthy: boolean | null;
+  backgroundJobs: number | null;
+  deployments: string;
+};
+
+async function countWhere(
+  client: ReturnType<typeof createServiceClient>,
+  table: "organizations" | "subscription_and_licensing_plans" | "security_event_monitoring_events",
+  filter?: { column: string; value: string },
+): Promise<number> {
+  let query = client.from(table).select("*", { count: "exact", head: true }).is("deleted_at", null);
+  if (filter) query = query.eq(filter.column, filter.value);
+  const { count, error } = await query;
+  return error ? 0 : count ?? 0;
+}
+
+/** Real business metrics for the Platform Dashboard (no estimates). */
+export async function loadPlatformMetrics(): Promise<PlatformMetrics> {
+  const client = createServiceClient();
+  const { PLATFORM_VERSION } = await import("./version");
+
+  const [
+    totalTenants,
+    enterpriseTenants,
+    businessTenants,
+    soloTenants,
+    activeSubscriptions,
+    auditEvents,
+    users,
+  ] = await Promise.all([
+    countWhere(client, "organizations"),
+    countWhere(client, "organizations", { column: "tenant_type", value: "enterprise" }),
+    countWhere(client, "organizations", { column: "tenant_type", value: "business" }),
+    countWhere(client, "organizations", { column: "tenant_type", value: "solo" }),
+    countWhere(client, "subscription_and_licensing_plans", { column: "subscription_status", value: "active" }),
+    countWhere(client, "security_event_monitoring_events"),
+    loadPlatformUsers().then((rows) => rows.length),
+  ]);
+
+  const probe = await client.from("organizations").select("id", { head: true, count: "exact" });
+
+  return {
+    totalTenants,
+    enterpriseTenants,
+    businessTenants,
+    soloTenants,
+    organizations: totalTenants,
+    users,
+    activeSubscriptions,
+    activeLicenses: activeSubscriptions,
+    auditEvents,
+    platformVersion: PLATFORM_VERSION,
+    environment: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
+    databaseHealthy: !probe.error,
+    activeSessions: null,
+    revenue: null,
+    storageGb: null,
+    queueHealthy: null,
+    backgroundJobs: null,
+    deployments: process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
+  };
 }

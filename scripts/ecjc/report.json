@@ -1,0 +1,321 @@
+{
+  "runId": "mrqyjwgw",
+  "uninterrupted": true,
+  "results": [
+    {
+      "step": "STEP 1",
+      "title": "Platform Owner logs in",
+      "status": "PASS",
+      "evidence": {
+        "ownerUserId": "3279a49c-dd23-4fc2-b7dd-818ce15ae4ad",
+        "sessionEstablished": true,
+        "platformOwnerMetadata": "platform_owner",
+        "ownerRlsCannotReadPlatformTables": true
+      }
+    },
+    {
+      "step": "STEP 2",
+      "title": "Owner creates Enterprise / Business / Solo tenants (+ subscriptions, plans, licenses, audit logs)",
+      "status": "PASS",
+      "evidence": {
+        "tenants": {
+          "ent": "ec069e82-4a8e-4313-b9e2-92e168f9face",
+          "biz": "1e48fead-0aac-4bd6-95a3-ba6777e66751",
+          "solo": "60ee3f09-f020-494a-80b3-6ba30c5c23bc"
+        },
+        "subscriptions": {
+          "ent": "a096d970-0c39-4595-927d-ba219d25f0fb",
+          "biz": "529dd6cd-696a-4e52-898b-c9f4cbffccdb",
+          "solo": "dd542a38-0d64-44d1-8017-77d696bbafe5"
+        },
+        "plansSeeded": 3,
+        "licensesSeeded": 3,
+        "auditEventsEnterprise": 2,
+        "seatCheckConstraintBlocksOverfill": true
+      }
+    },
+    {
+      "step": "STEP 3",
+      "title": "Owner creates Organization (entity) inside the enterprise tenant (CRUD, relationships)",
+      "status": "PASS",
+      "evidence": {
+        "organizationProfileId": "a37c1a7f-1a72-4067-9426-ed2b70226832",
+        "entityUnitId": "b9c51dfa-6a44-4f47-ad76-c240ffa26b2c",
+        "versionBefore": 1,
+        "versionAfterUpdate": 2,
+        "versionIncremented": true,
+        "relatedToTenant": true
+      }
+    },
+    {
+      "step": "STEP 4",
+      "title": "Owner creates Tenant Administrator invitation (email, expiration, seat/license/module assignment)",
+      "status": "PASS",
+      "evidence": {
+        "invitationId": "4702bf8b-5fb8-41a2-b86e-abb3c28b5f64",
+        "email": "ecjc-mrqyjwgw.admin@example.com",
+        "expiresAt": "2026-08-01T22:48:16.741+00:00",
+        "notExpired": true,
+        "status": "pending",
+        "seatLimit": 25,
+        "moduleEntitlementsAssigned": 12
+      }
+    },
+    {
+      "step": "STEP 5",
+      "title": "Tenant Administrator accepts invitation, sets password, first login, session/permissions",
+      "status": "PASS",
+      "evidence": {
+        "adminUserId": "48df1571-47f6-41a5-a1a7-3da394407e77",
+        "membershipId": "6ef2bfe4-c217-48ea-ae1d-43d46e9ffb2d",
+        "firstLoginSession": true,
+        "loginAllowedWhileActive": true,
+        "organizationAdminPermissionCount": 129,
+        "invitationStatus": "accepted",
+        "seatsUsedAfterAccept": 1
+      }
+    },
+    {
+      "step": "STEP 6",
+      "title": "Tenant Administrator creates Auditors/Managers/Reviewers/Guests (seat/license limits, permission inheritance)",
+      "status": "PASS",
+      "evidence": {
+        "team": {
+          "auditor": {
+            "role": "manager",
+            "userId": "5482f42f-9c21-42bc-b9ee-7789a5f77a5c"
+          },
+          "manager": {
+            "role": "workspace_admin",
+            "userId": "004a1314-9109-4ddd-ac76-3e750adb0f70"
+          },
+          "reviewer": {
+            "role": "organization_admin",
+            "userId": "d0aa8c93-2369-4d46-8302-a71e63577fff"
+          },
+          "guest": {
+            "role": "viewer",
+            "userId": "d6bc65d3-f176-4ac5-bfe3-57b20071ed33"
+          }
+        },
+        "permissionInheritanceByRole": {
+          "manager": 87,
+          "workspace_admin": 125,
+          "organization_admin": 129,
+          "viewer": 23
+        },
+        "seatsUsed": 5,
+        "seatLimit": 25,
+        "seatsWithinLimit": true,
+        "soloTenantBlockedFromInviting": true,
+        "businessAtCapacityBlocked": true
+      }
+    },
+    {
+      "step": "STEP 7",
+      "title": "Tenant Administrator creates Workspace, Company, Engagement (relationships, permissions, DB)",
+      "status": "PASS",
+      "evidence": {
+        "workspaceId": "11488c6c-2e76-40b7-94be-76b1ba52890e",
+        "companyId": "b938a9a2-99d6-43d4-a6d2-d4a0875c8b1f",
+        "engagementId": "43738034-9adf-430c-8170-b94e895813bc",
+        "workspaceMembersGranted": 4,
+        "engagementCreatedUnderRls": true
+      }
+    },
+    {
+      "step": "STEP 8",
+      "title": "Auditor logs in — NO platform access, NO owner access, tenant & organization isolation",
+      "status": "PASS",
+      "evidence": {
+        "auditorSession": true,
+        "isNotPlatformOwner": true,
+        "platformTablesReadable": false,
+        "canSeeOtherTenant": false,
+        "canSeeOwnTenant": true,
+        "canSeeOtherTenantMembers": false
+      }
+    },
+    {
+      "step": "STEP 9",
+      "title": "Auditor creates Audit content — Planning, Working Papers, Trial Balance, Financial Statements, Opinion (open/save/update)",
+      "status": "PASS",
+      "evidence": {
+        "modules": {
+          "planning": {
+            "id": "8d852b4b-f665-4351-a289-0b15ad4892e4",
+            "created": true,
+            "updateSaved": true
+          },
+          "workingPaper": {
+            "id": "c2ae2c6a-966e-4016-971d-abd36a069e94",
+            "created": true,
+            "updateSaved": true
+          },
+          "trialBalance": {
+            "id": "f41fa7b9-4442-4ab1-bcef-89b3f421bf4c",
+            "created": true,
+            "updateSaved": true
+          },
+          "financialStatements": {
+            "id": "2bf3b87d-7e2e-4ce6-8cdf-462f059e0d08",
+            "created": true,
+            "updateSaved": true
+          },
+          "opinion": {
+            "id": "ec434c51-f9e9-4d2d-839d-a83795b57052",
+            "created": true,
+            "updateSaved": true
+          }
+        },
+        "auditorCanReadEngagement": true
+      }
+    },
+    {
+      "step": "STEP 10",
+      "title": "Reviewer reviews Audit — approve, reject, history, versioning",
+      "status": "PASS",
+      "evidence": {
+        "reviewPackageId": "8d62f349-1891-4505-a19b-2be6fd6e755f",
+        "rejectedThenApproved": true,
+        "finalStatus": "approved",
+        "versionSnapshots": 1,
+        "historyEvents": [
+          "returned",
+          "approved"
+        ]
+      }
+    },
+    {
+      "step": "STEP 11",
+      "title": "Owner suspends tenant — tenant users cannot login",
+      "status": "PASS",
+      "evidence": {
+        "tenantStatus": "suspended",
+        "auditorLoginBlocked": true,
+        "blockMessage": "Your organization has been suspended. Contact your platform administrator.",
+        "ownerStillAllowed": true
+      }
+    },
+    {
+      "step": "STEP 12",
+      "title": "Owner reactivates tenant — users recover, sessions work",
+      "status": "PASS",
+      "evidence": {
+        "tenantStatus": "active",
+        "auditorLoginRecovered": true,
+        "sessionEstablished": true
+      }
+    },
+    {
+      "step": "STEP 13",
+      "title": "Owner expires subscription — license/access/modules",
+      "status": "PASS",
+      "evidence": {
+        "subscriptionStatus": "expired",
+        "licenseEndsAt": "2026-07-18T22:48:49.592+00:00",
+        "activeSubscriptionsRemaining": 0
+      }
+    },
+    {
+      "step": "STEP 14",
+      "title": "Owner renews subscription — everything restored",
+      "status": "PASS",
+      "evidence": {
+        "subscriptionStatus": "active",
+        "activeSubscriptions": 1,
+        "seatsRetained": 5,
+        "seatLimit": 25
+      }
+    },
+    {
+      "step": "STEP 15",
+      "title": "Owner archives tenant — retention, audit logs, history",
+      "status": "PASS",
+      "evidence": {
+        "tenantStatus": "archived",
+        "auditEventsBefore": 12,
+        "auditEventsAfter": 13,
+        "historyRetained": true,
+        "engagementRetained": true,
+        "eventHistory": [
+          "tenant.created",
+          "subscription.created",
+          "user.invited",
+          "user.invitation.accepted",
+          "user.invitation.accepted",
+          "user.invitation.accepted",
+          "user.invitation.accepted",
+          "user.invitation.accepted",
+          "tenant.suspended",
+          "tenant.activated",
+          "subscription.expired",
+          "subscription.resumed",
+          "tenant.archived"
+        ]
+      }
+    },
+    {
+      "step": "STEP 16",
+      "title": "Owner exports tenant/audit/license/subscription — export + permissions",
+      "status": "PASS",
+      "evidence": {
+        "exportRequestId": "5fb31c59-7f1f-43e6-b92c-5afdc953f8fc",
+        "exportFile": "C:\\Users\\Tural\\audit\\scripts\\ecjc\\export-ecjc-mrqyjwgw.json",
+        "exportedEntities": [
+          "tenant",
+          "auditEvents",
+          "subscriptions",
+          "invitations",
+          "memberships"
+        ],
+        "auditEventsExported": 13,
+        "crossTenantCannotReadExport": true
+      }
+    }
+  ],
+  "context": {
+    "ownerUserId": "3279a49c-dd23-4fc2-b7dd-818ce15ae4ad",
+    "tenants": {
+      "ent": "ec069e82-4a8e-4313-b9e2-92e168f9face",
+      "biz": "1e48fead-0aac-4bd6-95a3-ba6777e66751",
+      "solo": "60ee3f09-f020-494a-80b3-6ba30c5c23bc"
+    },
+    "subs": {
+      "ent": "a096d970-0c39-4595-927d-ba219d25f0fb",
+      "biz": "529dd6cd-696a-4e52-898b-c9f4cbffccdb",
+      "solo": "dd542a38-0d64-44d1-8017-77d696bbafe5"
+    },
+    "entityUnit": "b9c51dfa-6a44-4f47-ad76-c240ffa26b2c",
+    "adminInvite": {
+      "id": "4702bf8b-5fb8-41a2-b86e-abb3c28b5f64",
+      "token": "inv_mrqyjwgw_admin"
+    },
+    "adminUserId": "48df1571-47f6-41a5-a1a7-3da394407e77",
+    "team": {
+      "auditor": {
+        "userId": "5482f42f-9c21-42bc-b9ee-7789a5f77a5c",
+        "role": "manager"
+      },
+      "manager": {
+        "userId": "004a1314-9109-4ddd-ac76-3e750adb0f70",
+        "role": "workspace_admin"
+      },
+      "reviewer": {
+        "userId": "d0aa8c93-2369-4d46-8302-a71e63577fff",
+        "role": "organization_admin"
+      },
+      "guest": {
+        "userId": "d6bc65d3-f176-4ac5-bfe3-57b20071ed33",
+        "role": "viewer"
+      }
+    },
+    "workspaceId": "11488c6c-2e76-40b7-94be-76b1ba52890e",
+    "companyId": "b938a9a2-99d6-43d4-a6d2-d4a0875c8b1f",
+    "engagementId": "43738034-9adf-430c-8170-b94e895813bc",
+    "auditPlanId": "8d852b4b-f665-4351-a289-0b15ad4892e4",
+    "fieldworkId": "306aa638-da79-40ba-b7cb-9a266af436a2",
+    "workingPaperId": "c2ae2c6a-966e-4016-971d-abd36a069e94",
+    "reviewPkgId": "8d62f349-1891-4505-a19b-2be6fd6e755f"
+  }
+}

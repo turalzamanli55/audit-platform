@@ -2,9 +2,11 @@
 
 import { headers } from "next/headers";
 import { createServerClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 import { createPublicAction } from "@/lib/actions/public-action";
 import { AUDIT_ACTIONS, emitAuditEvent } from "@/lib/audit";
 import { ValidationError } from "@/lib/errors";
+import { assertTenantLoginAllowed } from "@/lib/auth/login-guard";
 import { isValidEmail, isValidPassword } from "@/utils/auth-validation";
 
 export type SignInInput = {
@@ -36,6 +38,17 @@ export const signInAction = createPublicAction<SignInInput, SignInResult>(
 
     if (error) {
       throw new ValidationError(error.message);
+    }
+
+    // Enforce tenant-level suspension: a suspended organization must block its
+    // users from establishing a session, not merely change a status flag.
+    if (data.user) {
+      try {
+        await assertTenantLoginAllowed(createServiceClient(), data.user.id);
+      } catch (guardError) {
+        await supabase.auth.signOut();
+        throw guardError;
+      }
     }
 
     const requestHeaders = await headers();
