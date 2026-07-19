@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n";
 import type { AuthSession } from "@/types/auth";
+import type { ThemeMode } from "@/types/theme";
 import { ContextMenuProvider } from "@/components/ui/context-menu";
 import { ToastProvider } from "@/components/ui/toast";
 import { ThemeProvider } from "./theme-provider";
@@ -13,6 +14,8 @@ type AppProvidersProps = {
   children: ReactNode;
   locale: Locale;
   initialSession?: AuthSession;
+  /** Persisted appearance preference, read from the theme cookie on the server. */
+  initialThemeMode?: ThemeMode;
 };
 
 function buildAuthProviderKey(session: AuthSession | undefined): string {
@@ -30,11 +33,16 @@ function buildAuthProviderKey(session: AuthSession | undefined): string {
   ].join(":");
 }
 
-export function AppProviders({ children, locale, initialSession }: AppProvidersProps) {
+export function AppProviders({
+  children,
+  locale,
+  initialSession,
+  initialThemeMode,
+}: AppProvidersProps) {
   const authKey = buildAuthProviderKey(initialSession);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider defaultMode={initialThemeMode}>
       <LanguageProvider locale={locale}>
         <AuthProvider key={authKey} initialSession={initialSession}>
           <SettingsProvider initialLocale={locale}>

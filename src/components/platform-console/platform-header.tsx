@@ -1,57 +1,112 @@
 "use client";
 
-import { useTransition } from "react";
-import { useRouter } from "next/navigation";
-import { signOutAction } from "@/lib/actions/auth/sign-out";
-import { Button } from "@/components/ui/button";
-import { PLATFORM_LOGIN_PATH } from "@/config/auth";
+import { useState } from "react";
+import { Modal } from "@/components/ui/modal";
+import {
+  PlatformAccountMenu,
+  PlatformDetailRow,
+} from "@/components/platform-console/platform-account-menu";
+import { getConsoleStrings, type ConsoleLocale } from "@/lib/platform-console/i18n";
 
 /**
- * The single Platform Console header. No tenant/workspace/company switchers,
- * no environment switcher, no language selector — Platform Owner only, English.
+ * The single Platform Console header. No tenant/workspace/company switchers.
+ * Platform Owner only. Language and appearance are user-interface preferences
+ * exposed through the account menu and never affect business logic.
  */
 export function PlatformHeader({
   locale,
+  consoleLocale,
   ownerEmail,
   environment,
   version,
+  buildDate,
+  gitCommit,
+  databaseVersion,
 }: {
   locale: string;
+  consoleLocale: ConsoleLocale;
   ownerEmail: string;
   environment: string;
   version: string;
+  buildDate?: string;
+  gitCommit?: string;
+  databaseVersion?: string;
 }) {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-
-  function handleSignOut() {
-    startTransition(async () => {
-      await signOutAction({});
-      router.push(`/${locale}${PLATFORM_LOGIN_PATH}`);
-      router.refresh();
-    });
-  }
+  const t = getConsoleStrings(consoleLocale);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const displayName = deriveDisplayName(ownerEmail);
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-border/60 bg-background/80 px-4 backdrop-blur-xl lg:px-6">
-      <div className="flex items-center gap-3">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-sm font-semibold text-primary-foreground">
+    <header className="sticky top-0 z-40 flex h-14 items-center justify-between gap-3 border-b border-border/60 bg-background/80 px-4 backdrop-blur-xl lg:px-6">
+      <div className="flex min-w-0 items-center gap-3">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-semibold text-primary-foreground">
           P
         </span>
-        <span className="text-sm font-semibold tracking-tight">Platform Owner Console</span>
-        <span className="rounded-full border border-border/60 px-2 py-0.5 text-xs text-muted-foreground">
+        <span className="truncate text-sm font-semibold tracking-tight text-foreground">
+          {t.header.console}
+        </span>
+        <span className="hidden shrink-0 rounded-full border border-border/60 px-2 py-0.5 text-xs font-medium text-muted-foreground sm:inline">
           {environment}
         </span>
-        <span className="hidden rounded-full border border-border/60 px-2 py-0.5 text-xs text-muted-foreground sm:inline">
+        <button
+          type="button"
+          onClick={() => setAboutOpen(true)}
+          aria-label={t.about.title}
+          className="hidden shrink-0 rounded-full border border-border/60 px-2 py-0.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:inline"
+        >
           v{version}
-        </span>
+        </button>
       </div>
-      <div className="flex items-center gap-3">
-        <span className="hidden text-xs text-muted-foreground sm:inline">{ownerEmail}</span>
-        <Button variant="outline" size="sm" onClick={handleSignOut} loading={isPending}>
-          Sign out
-        </Button>
+
+      <div className="flex shrink-0 items-center gap-2">
+        <PlatformAccountMenu
+          locale={locale}
+          consoleLocale={consoleLocale}
+          displayName={displayName}
+          email={ownerEmail}
+          environment={environment}
+          onAbout={() => setAboutOpen(true)}
+        />
       </div>
+
+      <Modal open={aboutOpen} onOpenChange={setAboutOpen} title={t.about.title} size="sm">
+        <dl className="space-y-3 text-sm">
+          <PlatformDetailRow label={t.about.version} value={`v${version}`} />
+          <PlatformDetailRow label={t.about.environment} value={environment} />
+          <PlatformDetailRow
+            label={t.about.buildDate}
+            value={formatBuildDate(buildDate) ?? t.about.notAvailable}
+            muted={!buildDate}
+          />
+          <PlatformDetailRow
+            label={t.about.gitCommit}
+            value={gitCommit ? gitCommit.slice(0, 12) : t.about.notAvailable}
+            mono={Boolean(gitCommit)}
+            muted={!gitCommit}
+          />
+          <PlatformDetailRow
+            label={t.about.databaseVersion}
+            value={databaseVersion || t.about.notAvailable}
+            muted={!databaseVersion}
+          />
+        </dl>
+      </Modal>
     </header>
   );
+}
+
+function deriveDisplayName(email: string): string {
+  const local = email.split("@")[0] ?? email;
+  const words = local
+    .split(/[._-]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+  return words.join(" ") || email;
+}
+
+function formatBuildDate(value?: string): string | null {
+  if (!value) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return value;
+  return parsed.toLocaleString();
 }

@@ -4,19 +4,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PLATFORM_NAV_ITEMS } from "@/config/platform-navigation";
 import { stripLocalePrefix } from "@/config/auth";
+import { getConsoleStrings, type ConsoleLocale } from "@/lib/platform-console/i18n";
 import { cn } from "@/lib/ui/cn";
 
-export function PlatformSidebar({ locale }: { locale: string }) {
+export function PlatformSidebar({
+  locale,
+  consoleLocale,
+}: {
+  locale: string;
+  consoleLocale: ConsoleLocale;
+}) {
   const pathname = usePathname();
   const current = stripLocalePrefix(pathname);
+  const t = getConsoleStrings(consoleLocale);
 
   return (
     <nav
-      aria-label="Platform navigation"
-      className="flex w-full shrink-0 flex-col gap-1 rounded-xl border bg-card p-2 lg:w-60"
+      aria-label={t.sidebar.platform}
+      className="flex w-full shrink-0 flex-col gap-1 rounded-xl border border-border/60 bg-card p-2 lg:w-60"
     >
       <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        Platform
+        {t.sidebar.platform}
       </p>
       {PLATFORM_NAV_ITEMS.map((item) => {
         const active =
@@ -29,13 +37,13 @@ export function PlatformSidebar({ locale }: { locale: string }) {
             href={`/${locale}${item.href}`}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "rounded-lg px-3 py-2 text-sm transition-colors",
+              "rounded-lg px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-card",
               active
-                ? "bg-primary text-primary-foreground"
+                ? "bg-primary font-medium text-primary-foreground"
                 : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
             )}
           >
-            {item.label}
+            {t.nav[item.key] ?? item.label}
           </Link>
         );
       })}
