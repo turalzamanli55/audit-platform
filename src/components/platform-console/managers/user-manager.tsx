@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ASSIGNABLE_ROLE_OPTIONS } from "@/config/platform-options";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
+import { fillPlatform } from "@/i18n/platform-labels";
 import type { PlatformUserRow, InvitationRow, OrganizationOption } from "@/lib/platform-console/data";
 import {
   createUserAction,
@@ -43,6 +45,7 @@ export function UserManager({
   organizations: OrganizationOption[];
   detailBasePath?: string;
 }) {
+  const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
@@ -51,29 +54,29 @@ export function UserManager({
   return (
     <Tabs defaultValue="users">
       <TabsList>
-        <TabsTrigger value="users">Users ({users.length})</TabsTrigger>
-        <TabsTrigger value="invitations">Invitations ({invitations.length})</TabsTrigger>
+        <TabsTrigger value="users">{fillPlatform(t.userManager.tabUsers, { count: users.length })}</TabsTrigger>
+        <TabsTrigger value="invitations">{fillPlatform(t.userManager.tabInvitations, { count: invitations.length })}</TabsTrigger>
       </TabsList>
 
       <TabsContent value="users">
         <div className="space-y-4">
           <div className="flex justify-end">
             <Button size="sm" onClick={() => setCreateOpen(true)}>
-              Create user
+              {t.userManager.createUser}
             </Button>
           </div>
           {users.length === 0 ? (
-            <EmptyState title="No users" description="Create a user or send an invitation." />
+            <EmptyState title={t.userManager.usersEmptyTitle} description={t.userManager.usersEmptyDescription} />
           ) : (
             <div className="overflow-x-auto rounded-xl border border-border/60">
               <table className="w-full text-sm">
                 <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
                   <tr>
-                    <th className="px-4 py-2.5">Email</th>
-                    <th className="px-4 py-2.5">Name</th>
-                    <th className="px-4 py-2.5">Last sign-in</th>
-                    <th className="px-4 py-2.5">Status</th>
-                    <th className="px-4 py-2.5 text-right">Actions</th>
+                    <th className="px-4 py-2.5">{t.userManager.colEmail}</th>
+                    <th className="px-4 py-2.5">{t.userManager.colName}</th>
+                    <th className="px-4 py-2.5">{t.userManager.colLastSignIn}</th>
+                    <th className="px-4 py-2.5">{t.common.status}</th>
+                    <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
@@ -94,17 +97,17 @@ export function UserManager({
                         <td className="px-4 py-2.5 text-muted-foreground">{formatDate(user.lastSignInAt)}</td>
                         <td className="px-4 py-2.5">
                           {user.isPlatformOwner ? (
-                            <Badge variant="info">Platform Owner</Badge>
+                            <Badge variant="info">{t.common.platformOwner}</Badge>
                           ) : user.suspended ? (
-                            <Badge variant="warning">Suspended</Badge>
+                            <Badge variant="warning">{t.common.suspended}</Badge>
                           ) : (
-                            <Badge variant="success">Active</Badge>
+                            <Badge variant="success">{t.common.active}</Badge>
                           )}
                         </td>
                         <td className="px-4 py-2.5">
                           <div className="flex flex-wrap justify-end gap-1.5">
                             {user.isPlatformOwner ? (
-                              <span className="text-xs text-muted-foreground">Protected</span>
+                              <span className="text-xs text-muted-foreground">{t.common.protected}</span>
                             ) : (
                               <>
                                 {user.suspended ? (
@@ -115,11 +118,11 @@ export function UserManager({
                                     disabled={busy}
                                     onClick={() =>
                                       run(`${user.id}:activate`, () => activateUserAction({ userId: user.id }), {
-                                        success: "User activated",
+                                        success: t.userManager.toastActivated,
                                       })
                                     }
                                   >
-                                    Activate
+                                    {t.common.activate}
                                   </Button>
                                 ) : (
                                   <Button
@@ -129,11 +132,11 @@ export function UserManager({
                                     disabled={busy}
                                     onClick={() =>
                                       run(`${user.id}:suspend`, () => suspendUserAction({ userId: user.id }), {
-                                        success: "User suspended",
+                                        success: t.userManager.toastSuspended,
                                       })
                                     }
                                   >
-                                    Suspend
+                                    {t.common.suspend}
                                   </Button>
                                 )}
                                 <Button
@@ -143,11 +146,11 @@ export function UserManager({
                                   disabled={busy}
                                   onClick={() =>
                                     run(`${user.id}:reset`, () => resetPasswordAction({ email: user.email }), {
-                                      success: "Password reset email sent",
+                                      success: t.userManager.toastResetSent,
                                     })
                                   }
                                 >
-                                  Reset password
+                                  {t.common.resetPassword}
                                 </Button>
                                 <Button
                                   size="sm"
@@ -156,11 +159,11 @@ export function UserManager({
                                   disabled={busy}
                                   onClick={() =>
                                     run(`${user.id}:logout`, () => forceLogoutAction({ userId: user.id }), {
-                                      success: "Sessions revoked",
+                                      success: t.userManager.toastSessionsRevoked,
                                     })
                                   }
                                 >
-                                  Force logout
+                                  {t.common.forceLogout}
                                 </Button>
                                 <Button
                                   size="sm"
@@ -168,7 +171,7 @@ export function UserManager({
                                   disabled={busy || organizations.length === 0}
                                   onClick={() => setMembershipUser(user)}
                                 >
-                                  Membership
+                                  {t.userManager.membership}
                                 </Button>
                                 <Button
                                   size="sm"
@@ -176,13 +179,13 @@ export function UserManager({
                                   loading={pendingId === `${user.id}:delete`}
                                   disabled={busy}
                                   onClick={() => {
-                                    if (!window.confirm(`Delete ${user.email}? This cannot be undone.`)) return;
+                                    if (!window.confirm(fillPlatform(t.userManager.deleteConfirm, { email: user.email }))) return;
                                     void run(`${user.id}:delete`, () => deleteUserAction({ userId: user.id }), {
-                                      success: "User deleted",
+                                      success: t.userManager.toastDeleted,
                                     });
                                   }}
                                 >
-                                  Delete
+                                  {t.common.delete}
                                 </Button>
                               </>
                             )}
@@ -202,21 +205,21 @@ export function UserManager({
         <div className="space-y-4">
           <div className="flex justify-end">
             <Button size="sm" onClick={() => setInviteOpen(true)} disabled={organizations.length === 0}>
-              Send invitation
+              {t.userManager.sendInvitation}
             </Button>
           </div>
           {invitations.length === 0 ? (
-            <EmptyState title="No invitations" description="Invite a tenant user to get started." />
+            <EmptyState title={t.userManager.invitationsEmptyTitle} description={t.userManager.invitationsEmptyDescription} />
           ) : (
             <div className="overflow-x-auto rounded-xl border border-border/60">
               <table className="w-full text-sm">
                 <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
                   <tr>
-                    <th className="px-4 py-2.5">Email</th>
-                    <th className="px-4 py-2.5">Role</th>
-                    <th className="px-4 py-2.5">Status</th>
-                    <th className="px-4 py-2.5">Expires</th>
-                    <th className="px-4 py-2.5 text-right">Actions</th>
+                    <th className="px-4 py-2.5">{t.userManager.colEmail}</th>
+                    <th className="px-4 py-2.5">{t.userManager.colRole}</th>
+                    <th className="px-4 py-2.5">{t.common.status}</th>
+                    <th className="px-4 py-2.5">{t.common.expires}</th>
+                    <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
@@ -242,11 +245,11 @@ export function UserManager({
                               disabled={busy || revoked}
                               onClick={() =>
                                 run(`${invite.id}:resend`, () => resendInvitationAction({ id: invite.id }), {
-                                  success: "Invitation resent",
+                                  success: t.userManager.toastInviteResent,
                                 })
                               }
                             >
-                              Resend
+                              {t.common.resend}
                             </Button>
                             <Button
                               size="sm"
@@ -255,11 +258,11 @@ export function UserManager({
                               disabled={busy || revoked}
                               onClick={() =>
                                 run(`${invite.id}:revoke`, () => revokeInvitationAction({ id: invite.id }), {
-                                  success: "Invitation revoked",
+                                  success: t.userManager.toastInviteRevoked,
                                 })
                               }
                             >
-                              Revoke
+                              {t.common.revoke}
                             </Button>
                           </div>
                         </td>
@@ -280,7 +283,7 @@ export function UserManager({
         pending={pendingId === "create-user"}
         onSubmit={(values) =>
           run("create-user", () => createUserAction(values), {
-            success: "User created",
+            success: t.userManager.toastCreated,
             onSuccess: () => setCreateOpen(false),
           })
         }
@@ -293,7 +296,7 @@ export function UserManager({
         pending={pendingId === "invite"}
         onSubmit={(values) =>
           run("invite", () => sendInvitationAction(values), {
-            success: "Invitation sent",
+            success: t.userManager.toastInviteSent,
             onSuccess: () => setInviteOpen(false),
           })
         }
@@ -307,7 +310,7 @@ export function UserManager({
         onAssignAdmin={(organizationId) =>
           membershipUser &&
           run("assign-admin", () => assignCompanyAdminAction({ userId: membershipUser.id, organizationId }), {
-            success: "Company administrator assigned",
+            success: t.userManager.toastAdminAssigned,
             onSuccess: () => setMembershipUser(null),
           })
         }
@@ -316,7 +319,7 @@ export function UserManager({
           run(
             "transfer-user",
             () => transferUserAction({ userId: membershipUser.id, toOrganizationId, roleSlug }),
-            { success: "User transferred", onSuccess: () => setMembershipUser(null) },
+            { success: t.userManager.toastTransferred, onSuccess: () => setMembershipUser(null) },
           )
         }
       />
@@ -339,6 +342,7 @@ function MembershipModal({
   onTransfer: (toOrganizationId: string, roleSlug: string) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [organizationId, setOrganizationId] = useState(organizations[0]?.id ?? "");
   const [roleSlug, setRoleSlug] = useState("member");
 
@@ -346,25 +350,25 @@ function MembershipModal({
     <Modal
       open={user !== null}
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Manage membership"
-      description={user ? `Assign or transfer ${user.email} between companies.` : ""}
+      title={t.userManager.membershipTitle}
+      description={user ? fillPlatform(t.userManager.membershipDescription, { email: user.email }) : ""}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button variant="outline" size="sm" loading={pending} disabled={!organizationId} onClick={() => onAssignAdmin(organizationId)}>
-            Assign as admin
+            {t.userManager.assignAsAdmin}
           </Button>
           <Button size="sm" loading={pending} disabled={!organizationId} onClick={() => onTransfer(organizationId, roleSlug)}>
-            Transfer here
+            {t.userManager.transferHere}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="member-org">Company</Label>
+          <Label htmlFor="member-org">{t.common.company}</Label>
           <Select id="member-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
             {organizations.map((org) => (
               <option key={org.id} value={org.id}>
@@ -374,18 +378,17 @@ function MembershipModal({
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="member-role">Role on transfer</Label>
+          <Label htmlFor="member-role">{t.userManager.roleOnTransfer}</Label>
           <Select id="member-role" value={roleSlug} onChange={(e) => setRoleSlug(e.target.value)}>
             {ASSIGNABLE_ROLE_OPTIONS.map((role) => (
               <option key={role.value} value={role.value}>
-                {role.label}
+                {t.options.roles[role.value] ?? role.label}
               </option>
             ))}
           </Select>
         </div>
         <p className="text-xs text-muted-foreground">
-          &ldquo;Assign as admin&rdquo; grants Company Administrator on the selected company. &ldquo;Transfer here&rdquo;
-          moves the user&rsquo;s company membership to the selected company with the chosen role.
+          {t.userManager.membershipHint}
         </p>
       </div>
     </Modal>
@@ -411,6 +414,7 @@ function CreateUserModal({
   }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -421,12 +425,12 @@ function CreateUserModal({
     <Modal
       open={open}
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Create user"
-      description="Creates an authenticated user and optionally assigns a tenant, organization, and role."
+      title={t.userManager.createUserTitle}
+      description={t.userManager.createUserDescription}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button
             size="sm"
@@ -441,28 +445,28 @@ function CreateUserModal({
               })
             }
           >
-            Create
+            {t.common.create}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="user-email">Email</Label>
+          <Label htmlFor="user-email">{t.common.email}</Label>
           <Input id="user-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="user-password">Temporary password</Label>
+          <Label htmlFor="user-password">{t.userManager.tempPassword}</Label>
           <Input id="user-password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="user-name">Full name (optional)</Label>
+          <Label htmlFor="user-name">{t.userManager.fullNameOptional}</Label>
           <Input id="user-name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="user-org">Assign organization (optional)</Label>
+          <Label htmlFor="user-org">{t.userManager.assignOrgOptional}</Label>
           <Select id="user-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
-            <option value="">No assignment</option>
+            <option value="">{t.userManager.noAssignment}</option>
             {organizations.map((org) => (
               <option key={org.id} value={org.id}>
                 {org.name}
@@ -472,11 +476,11 @@ function CreateUserModal({
         </div>
         {organizationId ? (
           <div className="space-y-1">
-            <Label htmlFor="user-role">Role</Label>
+            <Label htmlFor="user-role">{t.common.role}</Label>
             <Select id="user-role" value={roleSlug} onChange={(e) => setRoleSlug(e.target.value)}>
               {ASSIGNABLE_ROLE_OPTIONS.map((role) => (
                 <option key={role.value} value={role.value}>
-                  {role.label}
+                  {t.options.roles[role.value] ?? role.label}
                 </option>
               ))}
             </Select>
@@ -505,6 +509,7 @@ function InviteModal({
   }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [email, setEmail] = useState("");
   const [organizationId, setOrganizationId] = useState(organizations[0]?.id ?? "");
   const [roleSlug, setRoleSlug] = useState("member");
@@ -514,30 +519,30 @@ function InviteModal({
     <Modal
       open={open}
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Send invitation"
-      description="Invite a tenant user by email."
+      title={t.userManager.inviteTitle}
+      description={t.userManager.inviteDescription}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button
             size="sm"
             loading={pending}
             onClick={() => onSubmit({ email, organizationId, roleSlug, expiresInDays })}
           >
-            Send
+            {t.common.send}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="invite-email">Email</Label>
+          <Label htmlFor="invite-email">{t.common.email}</Label>
           <Input id="invite-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="invite-org">Organization</Label>
+          <Label htmlFor="invite-org">{t.common.organization}</Label>
           <Select id="invite-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
             {organizations.map((org) => (
               <option key={org.id} value={org.id}>
@@ -547,17 +552,17 @@ function InviteModal({
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="invite-role">Role</Label>
+          <Label htmlFor="invite-role">{t.common.role}</Label>
           <Select id="invite-role" value={roleSlug} onChange={(e) => setRoleSlug(e.target.value)}>
             {ASSIGNABLE_ROLE_OPTIONS.map((role) => (
               <option key={role.value} value={role.value}>
-                {role.label}
+                {t.options.roles[role.value] ?? role.label}
               </option>
             ))}
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="invite-days">Expires in (days)</Label>
+          <Label htmlFor="invite-days">{t.userManager.expiresInDays}</Label>
           <Input
             id="invite-days"
             type="number"

@@ -6646,5 +6646,363 @@
         "allTypes": "Все типы"
       }
     }
+  },
+  "platform": {
+    "eyebrow": "Консоль владельца платформы",
+    "header": {
+      "console": "Консоль владельца платформы",
+      "account": "Учётная запись",
+      "profile": "Профиль",
+      "language": "Язык",
+      "appearance": "Оформление",
+      "about": "О платформе",
+      "signOut": "Выйти",
+      "signingOut": "Выполняется выход…"
+    },
+    "appearance": { "system": "Системное", "light": "Светлое", "dark": "Тёмное" },
+    "about": {
+      "title": "О платформе",
+      "version": "Версия платформы",
+      "environment": "Среда",
+      "buildDate": "Дата сборки",
+      "gitCommit": "Git Commit",
+      "databaseVersion": "Версия базы данных",
+      "notAvailable": "Недоступно"
+    },
+    "profileDialog": {
+      "title": "Профиль",
+      "email": "Эл. почта",
+      "role": "Роль",
+      "owner": "Владелец платформы",
+      "environment": "Среда"
+    },
+    "nav": {
+      "heading": "Платформа",
+      "dashboard": "Панель мониторинга",
+      "search": "Поиск",
+      "companies": "Компании",
+      "organizations": "Организации",
+      "users": "Пользователи",
+      "subscriptions": "Подписки",
+      "licenses": "Лицензии",
+      "plans": "Тарифные планы",
+      "modules": "Модули",
+      "featureFlags": "Флаги функций",
+      "security": "События безопасности",
+      "activity": "Активность",
+      "loginHistory": "История входов",
+      "database": "База данных",
+      "devops": "DevOps",
+      "settings": "Настройки"
+    },
+    "common": {
+      "create": "Создать", "edit": "Изменить", "save": "Сохранить", "cancel": "Отмена", "delete": "Удалить",
+      "suspend": "Приостановить", "activate": "Активировать", "archive": "Архивировать", "restore": "Восстановить",
+      "enable": "Включить", "disable": "Отключить", "reset": "Сбросить", "revoke": "Отозвать", "resend": "Отправить повторно",
+      "send": "Отправить", "transfer": "Перенести", "assign": "Назначить", "pause": "Приостановить", "resume": "Возобновить", "expire": "Завершить срок",
+      "exportCsv": "Экспорт в CSV", "exportJson": "Экспорт в JSON",
+      "actions": "Действия", "status": "Статус", "name": "Имя", "slug": "Слаг", "type": "Тип",
+      "role": "Роль", "scope": "Область", "workspace": "Рабочее пространство", "company": "Компания", "email": "Эл. почта",
+      "plan": "Тарифный план", "seats": "Места", "expires": "Истекает", "expiration": "Срок действия",
+      "all": "Все", "yes": "Да", "no": "Нет", "none": "Нет", "perpetual": "Бессрочно",
+      "protected": "Защищено", "active": "Активно", "suspended": "Приостановлено", "platformOwner": "Владелец платформы",
+      "search": "Поиск", "tenant": "Арендатор", "organization": "Организация", "user": "Пользователь",
+      "created": "Создано", "updated": "Обновлено", "date": "Дата", "ip": "IP", "device": "Устройство",
+      "browser": "Браузер", "result": "Результат", "state": "Состояние", "module": "Модуль", "value": "Значение",
+      "setting": "Настройка", "notReady": "Не готово", "systemReady": "Система готова",
+      "operational": "Работает", "attention": "Требует внимания", "down": "Не работает", "healthy": "Исправно",
+      "pass": "УСПЕШНО", "fail": "ОШИБКА", "info": "Информация", "warning": "Предупреждение", "critical": "Критично",
+      "forceLogout": "Принудительный выход", "resetPassword": "Сбросить пароль", "code": "Код", "model": "Модель",
+      "seatLimit": "Лимит мест", "default": "По умолчанию", "members": "Участники", "client": "Клиент",
+      "lastSignIn": "Последний вход", "lastLogin": "Последний вход", "action": "Действие", "resource": "Ресурс",
+      "event": "Событие", "severity": "Серьёзность", "timestamp": "Метка времени", "actor": "Инициатор"
+    },
+    "dataTable": { "empty": "Записей пока нет." },
+    "timeline": { "noEventsTitle": "Нет событий", "empty": "Активность пока не зафиксирована." },
+    "options": {
+      "tenantType": { "solo": "Индивидуальный", "business": "Бизнес", "enterprise": "Корпоративный" },
+      "roles": {
+        "organization_owner": "Владелец организации",
+        "organization_admin": "Администратор организации",
+        "workspace_admin": "Администратор рабочего пространства",
+        "manager": "Менеджер",
+        "member": "Участник",
+        "viewer": "Наблюдатель"
+      },
+      "modules": {
+        "planning": "Планирование", "materiality": "Существенность", "risk": "Риски", "working_papers": "Рабочие документы",
+        "lead_sheets": "Ведущие таблицы", "reporting": "Отчётность", "financial_statements": "Финансовая отчётность",
+        "ifrs_notes": "Примечания IFRS", "ai": "AI", "ocr": "OCR", "import": "Импорт", "analytics": "Аналитика"
+      }
+    },
+    "pages": {
+      "dashboard": {
+        "title": "Панель платформы",
+        "description": "Актуальные бизнес-метрики всей SaaS-платформы. Каждое значение считывается напрямую из базы данных."
+      },
+      "activity": {
+        "title": "Центр активности",
+        "description": "Поиск, фильтрация и экспорт всех событий аудита и безопасности платформы. Для каждого изменения определяются инициатор и компания."
+      },
+      "database": {
+        "title": "База данных",
+        "description": "Подключение к базе данных, состояние миграций и объём данных платформы.",
+        "dbStatus": "Статус базы данных", "migrationStatus": "Статус миграций", "tenants": "Арендаторы",
+        "subscriptions": "Подписки", "planTemplates": "Шаблоны тарифных планов", "licenseTemplates": "Шаблоны лицензий",
+        "featureFlags": "Флаги функций", "invitations": "Приглашения"
+      },
+      "loginHistory": {
+        "title": "История входов",
+        "description": "Реальные события аутентификации по всем арендаторам, полученные из журнала аудита.",
+        "empty": "События аутентификации пока не зафиксированы."
+      },
+      "modules": {
+        "title": "Модули",
+        "description": "Включение или отключение модулей на уровне платформы, арендатора, рабочего пространства или пользователя. Переопределения накладываются поверх прав тарифного плана."
+      },
+      "monitoring": {
+        "title": "Мониторинг",
+        "description": "Актуальный поток событий безопасности и мониторинга платформы по всем арендаторам.",
+        "empty": "События мониторинга не зафиксированы."
+      },
+      "search": {
+        "title": "Глобальный поиск",
+        "description": "Мгновенный поиск по всем компаниям, пользователям, организациям, рабочим пространствам, заданиям, приглашениям, лицензиям и событиям."
+      },
+      "featureFlags": {
+        "title": "Флаги функций",
+        "description": "Создание, включение, отключение и вывод из эксплуатации флагов функций на уровне платформы и арендатора. Изменения применяются немедленно."
+      },
+      "settings": {
+        "title": "Настройки",
+        "description": "Конфигурация уровня платформы и текущее состояние инициализации.",
+        "owner": "Владелец платформы", "environment": "Среда", "deployment": "Развёртывание",
+        "bootstrapCompleted": "Инициализация завершена", "systemReady": "Система готова"
+      },
+      "users": {
+        "title": "Пользователи",
+        "description": "Откройте любого пользователя, чтобы просмотреть его полный профиль, сеансы, разрешения и активность."
+      },
+      "organizations": {
+        "title": "Организации",
+        "description": "Записи организаций лежат в основе каждого арендатора. Здесь можно создавать, изменять, архивировать, восстанавливать и удалять организации."
+      },
+      "licenses": {
+        "title": "Лицензии",
+        "description": "Назначайте шаблоны лицензий арендаторам, рассчитывайте использование мест и срок действия, а также отзывайте лицензии."
+      },
+      "devops": {
+        "title": "DevOps",
+        "description": "Профиль развёртывания и операции платформы. Одна и та же кодовая база обслуживает каждый профиль развёртывания.",
+        "environment": "Среда", "deployment": "Развёртывание", "bootstrap": "Инициализация",
+        "complete": "Завершено", "pending": "В ожидании", "profilesTitle": "Поддерживаемые профили развёртывания",
+        "colProfile": "Профиль", "colDescription": "Описание",
+        "cloudSaas": "Cloud SaaS", "dedicatedCloud": "Выделенное облако", "onPremise": "Локальное размещение",
+        "cloudSaasDesc": "Общий мультиарендный хостинг", "dedicatedCloudDesc": "Изолированный одноарендный хостинг",
+        "onPremiseDesc": "Развёртывание под управлением клиента"
+      },
+      "tenants": {
+        "title": "Арендаторы",
+        "description": "Каждая аудиторская фирма — это изолированный арендатор. Откройте компанию, чтобы просмотреть её полное административное рабочее пространство."
+      },
+      "plans": {
+        "title": "Тарифные планы",
+        "description": "Шаблоны тарифных планов по умолчанию для индивидуальной, бизнес- и корпоративной моделей арендаторов.",
+        "colCode": "Код", "colName": "Название", "colModel": "Модель", "colSeatLimit": "Лимит мест", "colDefault": "По умолчанию",
+        "empty": "Шаблоны тарифных планов не заданы."
+      },
+      "subscriptions": {
+        "title": "Подписки",
+        "description": "Создавайте подписки, повышайте или понижайте тарифные планы и количество мест, а также приостанавливайте, возобновляйте, завершайте или отменяйте их."
+      },
+      "companyDetailPage": {
+        "back": "← Назад к компаниям",
+        "description": "Административное рабочее пространство компании · {slug}"
+      },
+      "userDetailPage": {
+        "back": "← Назад к пользователям",
+        "description": "Административный профиль пользователя · {email}"
+      }
+    },
+    "dashboard": {
+      "sections": {
+        "tenants": "Арендаторы", "accountsSeats": "Учётные записи и места", "licenses": "Лицензии",
+        "securityHealth": "Безопасность и состояние", "bootstrapValidation": "Проверка инициализации"
+      },
+      "totalCompanies": "Всего компаний", "enterprise": "Корпоративный", "business": "Бизнес", "solo": "Индивидуальный",
+      "users": "Пользователи", "seatsUsed": "Использовано мест", "ofPurchased": "из {count} приобретённых",
+      "seatsAvailable": "Доступно мест", "sessions24h": "Сеансы (24 ч)", "loginEvents": "События входа",
+      "activeLicenses": "Активные лицензии", "expiring30": "Истекают (30 дней)", "expiredLicenses": "Истёкшие лицензии",
+      "storageBuckets": "Хранилища", "auditEvents": "События аудита", "securityEvents": "События безопасности",
+      "criticalDetail": "{count} критических", "databaseHealth": "Состояние базы данных", "healthy": "Исправно", "down": "Не работает",
+      "platformVersion": "Версия платформы"
+    },
+    "entityManager": {
+      "create": "Создать {label}", "createTitle": "Создать {label}", "editTitle": "Изменить {label}",
+      "createDescription": "Подготовьте новую организацию-арендатора.",
+      "emptyTitle": "{label} пока нет", "emptyDescription": "Создайте первый(ую) {label}, чтобы начать подготовку.",
+      "nameLabel": "Название", "slugLabel": "Слаг", "tenantTypeLabel": "Тип арендатора", "legalNameLabel": "Юридическое наименование (необязательно)",
+      "namePlaceholder": "Acme Audit LLP", "slugPlaceholder": "acme-audit",
+      "deleteConfirm": "Удалить {name}? Это выполнит мягкое удаление {label}.",
+      "toastSuspended": "{label} приостановлен(а)", "toastActivated": "{label} активирован(а)", "toastArchived": "{label} заархивирован(а)",
+      "toastRestored": "{label} восстановлен(а)", "toastDeleted": "{label} удалён(а)", "toastCreated": "{label} создан(а)",
+      "toastUpdated": "{label} обновлён(а)"
+    },
+    "userManager": {
+      "tabUsers": "Пользователи ({count})", "tabInvitations": "Приглашения ({count})",
+      "createUser": "Создать пользователя", "membership": "Членство", "sendInvitation": "Отправить приглашение",
+      "colEmail": "Эл. почта", "colName": "Имя", "colLastSignIn": "Последний вход", "colRole": "Роль",
+      "usersEmptyTitle": "Нет пользователей", "usersEmptyDescription": "Создайте пользователя или отправьте приглашение.",
+      "invitationsEmptyTitle": "Нет приглашений", "invitationsEmptyDescription": "Пригласите пользователя-арендатора, чтобы начать.",
+      "membershipTitle": "Управление членством", "membershipDescription": "Назначьте или перенесите {email} между компаниями.",
+      "assignAsAdmin": "Назначить администратором", "transferHere": "Перенести сюда",
+      "membershipHint": "\u201cНазначить администратором\u201d предоставляет роль администратора компании в выбранной компании. \u201cПеренести сюда\u201d переносит членство пользователя в выбранную компанию с указанной ролью.",
+      "roleOnTransfer": "Роль при переносе",
+      "createUserTitle": "Создать пользователя",
+      "createUserDescription": "Создаёт аутентифицированного пользователя и при необходимости назначает арендатора, организацию и роль.",
+      "tempPassword": "Временный пароль", "fullNameOptional": "Полное имя (необязательно)",
+      "assignOrgOptional": "Назначить организацию (необязательно)", "noAssignment": "Без назначения",
+      "inviteTitle": "Отправить приглашение", "inviteDescription": "Пригласите пользователя-арендатора по электронной почте.",
+      "expiresInDays": "Истекает через (дней)",
+      "deleteConfirm": "Удалить {email}? Это действие нельзя отменить.",
+      "toastActivated": "Пользователь активирован", "toastSuspended": "Пользователь приостановлен", "toastResetSent": "Письмо для сброса пароля отправлено",
+      "toastSessionsRevoked": "Сеансы отозваны", "toastDeleted": "Пользователь удалён", "toastInviteResent": "Приглашение отправлено повторно",
+      "toastInviteRevoked": "Приглашение отозвано", "toastCreated": "Пользователь создан", "toastInviteSent": "Приглашение отправлено",
+      "toastAdminAssigned": "Администратор компании назначен", "toastTransferred": "Пользователь перенесён"
+    },
+    "licenseManager": {
+      "sectionTitle": "Назначенные лицензии (использование мест и срок действия)",
+      "assign": "Назначить лицензию", "colTenant": "Арендатор", "colPlan": "Тарифный план", "colSeats": "Места", "colExpires": "Истекает",
+      "emptyTitle": "Нет назначенных лицензий", "emptyDescription": "Назначьте шаблон лицензии арендатору.",
+      "assignTitle": "Назначить лицензию", "assignDescription": "Создаёт подписку из шаблона лицензии с рассчитанным сроком действия.",
+      "templateLabel": "Шаблон лицензии", "seatsFree": "{used}/{limit} ({free} свободно)",
+      "revokeConfirm": "Отозвать эту лицензию?", "toastRevoked": "Лицензия отозвана", "toastAssigned": "Лицензия назначена"
+    },
+    "moduleManager": {
+      "setAccess": "Настроить доступ к модулю", "currentFlags": "Текущие флаги модулей",
+      "scopeLabel": "Область", "scopePlatform": "Платформа (все арендаторы)", "scopeTenant": "Арендатор",
+      "moduleLabel": "Модуль", "colModule": "Модуль", "colScope": "Область", "colState": "Состояние",
+      "emptyTitle": "Нет переопределений модулей", "emptyDescription": "Модули по умолчанию используют права тарифного плана.",
+      "hint": "Переопределения на уровне рабочего пространства и пользователя поддерживаются действием, но пока не доступны в этой форме.",
+      "toastEnabled": "Модуль включён", "toastDisabled": "Модуль отключён"
+    },
+    "subscriptionManager": {
+      "create": "Создать подписку", "changePlan": "Изменить тарифный план", "cancelAction": "Отменить",
+      "colTenant": "Арендатор", "colPlan": "Тарифный план", "colSeats": "Места",
+      "emptyTitle": "Нет подписок", "emptyDescription": "Создайте подписку для арендатора.",
+      "createTitle": "Создать подписку", "changeTitle": "Изменить тарифный план / места",
+      "changeDescription": "Повышение или понижение путём изменения тарифного плана или лимита мест.",
+      "tenantTypeLabel": "Тип арендатора", "seatLimitLabel": "Лимит мест", "expirationOptional": "Дата окончания срока действия (необязательно)",
+      "cancelConfirm": "Отменить эту подписку?",
+      "toastPaused": "Подписка приостановлена", "toastResumed": "Подписка возобновлена", "toastExpired": "Срок подписки завершён",
+      "toastCancelled": "Подписка отменена", "toastCreated": "Подписка создана", "toastUpdated": "Подписка обновлена"
+    },
+    "featureFlagManager": {
+      "create": "Создать флаг", "colFlag": "Флаг", "colScope": "Область", "colState": "Состояние",
+      "emptyTitle": "Нет флагов функций", "emptyDescription": "Создайте флаг функции для платформы или арендатора.",
+      "createTitle": "Создать флаг функции",
+      "createDescription": "Флаги уровня платформы применяются везде; флаги уровня арендатора переопределяют отдельную компанию.",
+      "flagCodeLabel": "Код флага", "stateLabel": "Состояние", "scopeLabel": "Область",
+      "scopePlatform": "Платформа (все арендаторы)", "scopeTenant": "Арендатор", "flagCodePlaceholder": "new_dashboard",
+      "setFlagState": "Задать состояние флага", "deleteConfirm": "Удалить флаг {code}?",
+      "states": { "enabled": "включён", "disabled": "отключён", "preview": "предварительный просмотр", "experimental": "экспериментальный", "deprecated": "устаревший" },
+      "toastDisabled": "Флаг отключён", "toastEnabled": "Флаг включён", "toastStateUpdated": "Состояние флага обновлено",
+      "toastDeleted": "Флаг удалён", "toastCreated": "Флаг функции создан"
+    },
+    "activityCenter": {
+      "searchPlaceholder": "Событие, инициатор, компания",
+      "from": "С", "to": "По", "summary": "{count} из {total} событий", "reset": "Сбросить",
+      "emptyTitle": "Нет подходящей активности", "emptyDescription": "Измените фильтры, чтобы увидеть больше событий.",
+      "csvCompany": "Компания"
+    },
+    "globalSearch": {
+      "placeholder": "Поиск компаний, пользователей, рабочих пространств, заданий, лицензий, событий…",
+      "summaryOne": "{count} результат", "summaryMany": "{count} результатов",
+      "prompt": "Начните вводить текст для поиска по всей платформе.",
+      "emptyTitle": "Нет результатов", "emptyDescription": "Попробуйте другой запрос или фильтр.",
+      "types": {
+        "Company": "Компания", "User": "Пользователь", "Organization": "Организация", "Workspace": "Рабочее пространство",
+        "Engagement": "Задание", "Invitation": "Приглашение", "License": "Лицензия",
+        "Security Event": "Событие безопасности", "Audit Event": "Событие аудита"
+      }
+    },
+    "companyDetail": {
+      "tabs": {
+        "overview": "Обзор", "users": "Пользователи ({count})", "organizations": "Организации ({count})",
+        "workspaces": "Рабочие пространства ({count})", "engagements": "Задания ({count})", "license": "Лицензия",
+        "seats": "Места", "modules": "Модули ({count})", "activity": "Активность", "auditLogs": "Журналы аудита",
+        "loginHistory": "История входов", "security": "Безопасность", "settings": "Настройки"
+      },
+      "overview": {
+        "company": "Компания", "licenseSeats": "Лицензия и места", "details": "Сведения", "recentTimeline": "Недавняя хронология",
+        "status": "Статус", "type": "Тип", "activeUsers": "Активные пользователи", "workspaces": "Рабочие пространства",
+        "engagements": "Задания", "modulesOn": "Включено модулей", "security": "Безопасность", "lastActivity": "Последняя активность",
+        "riskSuffix": "{count} риск", "clear": "Нет рисков",
+        "plan": "Тарифный план", "seatsPurchased": "Приобретено мест", "seatsUsed": "Использовано мест", "seatsAvailable": "Доступно мест",
+        "licenseStatus": "Статус лицензии", "expiration": "Срок действия",
+        "legalName": "Юридическое наименование", "slug": "Слаг", "created": "Создано", "createdBy": "Создатель",
+        "platformManaged": "Управляется платформой", "description": "Описание",
+        "timelineEmpty": "Активность пока не зафиксирована."
+      },
+      "organizations": { "colOrganization": "Организация", "colWorkspace": "Рабочее пространство", "colStatus": "Статус", "empty": "Клиентских организаций пока нет." },
+      "workspaces": { "colWorkspace": "Рабочее пространство", "colMembers": "Участники", "colStatus": "Статус", "colCreated": "Создано", "empty": "Рабочих пространств пока нет." },
+      "engagements": { "colEngagement": "Аудит / Задание", "colClient": "Клиент", "colType": "Тип", "colStatus": "Статус", "colUpdated": "Обновлено", "empty": "Заданий пока нет." },
+      "modules": { "colModule": "Модуль", "colState": "Состояние", "colScope": "Область", "colUpdated": "Обновлено", "empty": "Нет переопределений модулей — модули следуют правам тарифного плана." },
+      "activity": { "timelineEmpty": "Активность для этой компании не зафиксирована." },
+      "auditLogs": { "colTimestamp": "Метка времени", "colAction": "Действие", "colResource": "Ресурс", "colActor": "Инициатор", "empty": "События аудита не зафиксированы." },
+      "loginHistory": { "colDate": "Дата", "colUser": "Пользователь", "colIp": "IP", "colDevice": "Устройство", "colBrowser": "Браузер", "colResult": "Результат", "empty": "События входа не зафиксированы." },
+      "users": {
+        "invite": "Пригласить пользователя", "createUser": "Создать пользователя", "emptyTitle": "Нет пользователей",
+        "emptyDescription": "Пригласите или создайте первого пользователя для этой компании.",
+        "colUser": "Пользователь", "colRole": "Роль", "colScope": "Область", "colWorkspace": "Рабочее пространство",
+        "colLastLogin": "Последний вход", "colStatus": "Статус", "colActions": "Действия",
+        "makeAdmin": "Сделать администратором", "deleteConfirm": "Удалить {email}?",
+        "toastEnabled": "Пользователь включён", "toastDisabled": "Пользователь отключён", "toastResetSent": "Письмо для сброса отправлено",
+        "toastSessionsRevoked": "Сеансы отозваны", "toastAdminAssigned": "Администратор назначен", "toastCreated": "Пользователь создан",
+        "toastInviteSent": "Приглашение отправлено", "toastTransferred": "Пользователь перенесён", "toastDeleted": "Пользователь удалён"
+      },
+      "license": { "enabledModules": "Включённые модули", "planDefaults": "Значения тарифного плана по умолчанию", "timelineTitle": "Хронология лицензии", "timelineEmpty": "Изменения лицензии пока не зафиксированы." },
+      "seats": { "purchased": "Приобретено", "used": "Использовано", "available": "Доступно", "timelineTitle": "Хронология мест (изменения членства и лицензий)", "timelineEmpty": "Активность по местам пока не зафиксирована." },
+      "security": { "suspensions": "Приостановки", "reactivations": "Повторные активации", "passwordResets": "Сбросы паролей", "forceLogouts": "Принудительные выходы", "securityEvents": "События безопасности", "riskEvents": "События риска", "timelineTitle": "События риска и безопасности", "timelineEmpty": "Нет повышенных событий безопасности." },
+      "settings": {
+        "statusHeading": "Статус компании", "currentStatus": "Текущий статус:", "reactivate": "Повторно активировать",
+        "deleteConfirm": "Удалить {name}? Это выполнит мягкое удаление компании.",
+        "exportHeading": "Экспорт", "exportText": "Скачайте полный пакет администрирования компании.", "exportUsersCsv": "Экспорт пользователей в CSV",
+        "toastSuspended": "Компания приостановлена", "toastReactivated": "Компания повторно активирована", "toastArchived": "Компания заархивирована",
+        "toastRestored": "Компания восстановлена", "toastDeleted": "Компания удалена"
+      },
+      "createUserModal": { "title": "Создать пользователя", "description": "Создаёт пользователя внутри этой компании. Лимиты мест применяются.", "email": "Эл. почта", "tempPassword": "Временный пароль", "fullName": "Полное имя (необязательно)", "role": "Роль" },
+      "inviteModal": { "title": "Пригласить пользователя", "description": "Пригласите пользователя в эту компанию по электронной почте.", "email": "Эл. почта", "role": "Роль", "expiresDays": "Истекает через (дней)" },
+      "transferModal": { "title": "Перенести пользователя", "description": "Перенесите членство этого пользователя в другую компанию.", "destination": "Целевая компания", "role": "Роль" }
+    },
+    "userDetail": {
+      "tabs": {
+        "profile": "Профиль", "organizations": "Организации ({count})", "workspaces": "Рабочие пространства",
+        "permissions": "Разрешения ({count})", "role": "Роль", "sessions": "Сеансы ({count})",
+        "loginHistory": "История входов", "activity": "Активность", "auditHistory": "История аудита",
+        "modules": "Модули ({count})", "license": "Лицензия", "security": "Безопасность"
+      },
+      "profile": {
+        "status": "Статус", "primaryRole": "Основная роль", "company": "Компания", "created": "Создано", "lastLogin": "Последний вход",
+        "resetPassword": "Сбросить пароль", "exportJson": "Экспорт в JSON",
+        "toastEnabled": "Пользователь включён", "toastDisabled": "Пользователь отключён", "toastResetSent": "Письмо для сброса отправлено", "toastSessionsRevoked": "Сеансы отозваны"
+      },
+      "organizations": { "colCompany": "Компания", "colRole": "Роль", "colScope": "Область", "colWorkspace": "Рабочее пространство", "empty": "Нет членств." },
+      "workspaces": { "colWorkspace": "Рабочее пространство", "colCompany": "Компания", "colRole": "Роль", "empty": "Нет членств в рабочих пространствах." },
+      "permissions": { "colPermission": "Разрешение", "colName": "Название", "colSource": "Источник (роль)", "empty": "Унаследованных разрешений нет." },
+      "role": { "colRole": "Роль", "colScope": "Область", "colCompany": "Компания", "empty": "Роли не назначены." },
+      "loginHistory": { "colDate": "Дата", "colIp": "IP", "colDevice": "Устройство", "colBrowser": "Браузер", "colResult": "Результат", "empty": "События входа не зафиксированы." },
+      "activity": { "timelineEmpty": "Активность для этого пользователя не зафиксирована." },
+      "auditHistory": { "colTimestamp": "Метка времени", "colAction": "Действие", "colResource": "Ресурс", "empty": "Истории аудита нет." },
+      "modules": { "colModule": "Модуль", "colState": "Состояние", "colScope": "Область", "empty": "Нет прав на модули." },
+      "license": { "company": "Компания", "plan": "Тарифный план", "seat": "Место", "status": "Статус", "expiration": "Срок действия", "noLicense": "У компании этого пользователя нет активной лицензии." },
+      "security": { "failedLogins": "Неудачные входы", "suspensions": "Приостановки", "passwordChanges": "Изменения пароля", "forceLogouts": "Принудительные выходы", "timelineTitle": "Хронология безопасности", "timelineEmpty": "Нет повышенных событий безопасности." },
+      "sessions": {
+        "notice": "Отслеживание активных сеансов требует применения миграции управления сеансами платформы. Принудительный выход по-прежнему отзывает все сеансы после развёртывания.",
+        "forceLogoutAll": "Принудительный выход (все сеансы)", "toastAllRevoked": "Все сеансы отозваны",
+        "colSession": "Сеанс", "colStarted": "Начат", "colLastSeen": "Последняя активность", "colExpires": "Истекает", "colAge": "Возраст",
+        "empty": "Нет активных сеансов.", "ageMinutes": "{count} мин", "toastRevoked": "Сеанс отозван"
+      }
+    }
   }
 }

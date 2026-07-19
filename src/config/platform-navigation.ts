@@ -1,10 +1,10 @@
 import { PLATFORM_DASHBOARD_PATH } from "@/config/auth";
-import type { NavKey } from "@/lib/platform-console/i18n";
+import type { PlatformNavKey } from "@/i18n/platform-labels";
 
 export type PlatformNavItem = {
   href: string;
-  /** Stable key used to look up an interface translation. */
-  key: NavKey;
+  /** Stable key used to look up the interface translation in the shared dictionary. */
+  key: PlatformNavKey;
   /** English label; also the fallback when a translation is unavailable. */
   label: string;
 };

@@ -9,11 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import type { LicenseRow, SubscriptionRow, OrganizationOption } from "@/lib/platform-console/data";
 import { assignLicenseAction, revokeLicenseAction } from "@/lib/platform-console/actions/licenses";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
+import { fillPlatform } from "@/i18n/platform-labels";
 import { useActionRunner } from "./use-action-runner";
-
-function formatDate(value: string | null): string {
-  return value ? new Date(value).toLocaleDateString() : "Perpetual";
-}
 
 export function LicenseManager({
   licenses,
@@ -24,34 +22,37 @@ export function LicenseManager({
   subscriptions: SubscriptionRow[];
   organizations: OrganizationOption[];
 }) {
+  const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
   const [assignOpen, setAssignOpen] = useState(false);
   const orgName = (id: string) => organizations.find((o) => o.id === id)?.name ?? id;
   const active = subscriptions.filter((s) => s.subscriptionStatus !== "cancelled");
+  const formatDate = (value: string | null): string =>
+    value ? new Date(value).toLocaleDateString() : t.common.perpetual;
 
   return (
     <div className="space-y-6">
       <div className="flex justify-end">
         <Button size="sm" onClick={() => setAssignOpen(true)} disabled={organizations.length === 0 || licenses.length === 0}>
-          Assign license
+          {t.licenseManager.assign}
         </Button>
       </div>
 
       <section className="space-y-3">
-        <h3 className="text-sm font-semibold">Assigned licenses (seat usage &amp; expiration)</h3>
+        <h3 className="text-sm font-semibold">{t.licenseManager.sectionTitle}</h3>
         {active.length === 0 ? (
-          <EmptyState title="No assigned licenses" description="Assign a license template to a tenant." />
+          <EmptyState title={t.licenseManager.emptyTitle} description={t.licenseManager.emptyDescription} />
         ) : (
           <div className="overflow-x-auto rounded-xl border border-border/60">
             <table className="w-full text-sm">
               <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
                 <tr>
-                  <th className="px-4 py-2.5">Tenant</th>
-                  <th className="px-4 py-2.5">Plan</th>
-                  <th className="px-4 py-2.5">Seats</th>
-                  <th className="px-4 py-2.5">Expires</th>
-                  <th className="px-4 py-2.5">Status</th>
-                  <th className="px-4 py-2.5 text-right">Actions</th>
+                  <th className="px-4 py-2.5">{t.licenseManager.colTenant}</th>
+                  <th className="px-4 py-2.5">{t.licenseManager.colPlan}</th>
+                  <th className="px-4 py-2.5">{t.licenseManager.colSeats}</th>
+                  <th className="px-4 py-2.5">{t.licenseManager.colExpires}</th>
+                  <th className="px-4 py-2.5">{t.common.status}</th>
+                  <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/50">
@@ -60,7 +61,11 @@ export function LicenseManager({
                     <td className="px-4 py-2.5 font-medium">{orgName(sub.organizationId)}</td>
                     <td className="px-4 py-2.5">{sub.planCode}</td>
                     <td className="px-4 py-2.5 text-muted-foreground">
-                      {sub.seatsUsed}/{sub.seatLimit} ({Math.max(sub.seatLimit - sub.seatsUsed, 0)} free)
+                      {fillPlatform(t.licenseManager.seatsFree, {
+                        used: sub.seatsUsed,
+                        limit: sub.seatLimit,
+                        free: Math.max(sub.seatLimit - sub.seatsUsed, 0),
+                      })}
                     </td>
                     <td className="px-4 py-2.5 text-muted-foreground">{formatDate(sub.endsAt)}</td>
                     <td className="px-4 py-2.5">
@@ -74,13 +79,13 @@ export function LicenseManager({
                         variant="destructive"
                         loading={pendingId === `${sub.id}:revoke`}
                         onClick={() => {
-                          if (!window.confirm("Revoke this license?")) return;
+                          if (!window.confirm(t.licenseManager.revokeConfirm)) return;
                           void run(`${sub.id}:revoke`, () => revokeLicenseAction({ subscriptionId: sub.id }), {
-                            success: "License revoked",
+                            success: t.licenseManager.toastRevoked,
                           });
                         }}
                       >
-                        Revoke
+                        {t.common.revoke}
                       </Button>
                     </td>
                   </tr>
@@ -99,7 +104,7 @@ export function LicenseManager({
         pending={pendingId === "assign"}
         onSubmit={(values) =>
           run("assign", () => assignLicenseAction(values), {
-            success: "License assigned",
+            success: t.licenseManager.toastAssigned,
             onSuccess: () => setAssignOpen(false),
           })
         }
@@ -123,6 +128,7 @@ function AssignLicenseModal({
   onSubmit: (values: { organizationId: string; licenseCode: string }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [organizationId, setOrganizationId] = useState(organizations[0]?.id ?? "");
   const [licenseCode, setLicenseCode] = useState(licenses[0]?.licenseCode ?? "");
 
@@ -130,22 +136,22 @@ function AssignLicenseModal({
     <Modal
       open={open}
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Assign license"
-      description="Instantiates a subscription from the license template with computed expiration."
+      title={t.licenseManager.assignTitle}
+      description={t.licenseManager.assignDescription}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button size="sm" loading={pending} onClick={() => onSubmit({ organizationId, licenseCode })}>
-            Assign
+            {t.common.assign}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="lic-org">Tenant</Label>
+          <Label htmlFor="lic-org">{t.licenseManager.colTenant}</Label>
           <Select id="lic-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
             {organizations.map((org) => (
               <option key={org.id} value={org.id}>
@@ -155,7 +161,7 @@ function AssignLicenseModal({
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="lic-code">License template</Label>
+          <Label htmlFor="lic-code">{t.licenseManager.templateLabel}</Label>
           <Select id="lic-code" value={licenseCode} onChange={(e) => setLicenseCode(e.target.value)}>
             {licenses.map((license) => (
               <option key={license.licenseCode} value={license.licenseCode}>

@@ -1,86 +1,97 @@
 import { StatCard, PlatformSection, PlatformPageHeader, StatusPill } from "./platform-primitives";
 import type { PlatformMetrics } from "@/lib/platform-console/data";
 import type { ValidationReport } from "@/lib/platform-bootstrap";
+import { getPlatformLabels, fillPlatform } from "@/i18n/platform-labels";
 
 export function PlatformMetricsDashboard({
   metrics,
   validation,
+  locale,
 }: {
   metrics: PlatformMetrics;
   validation: ValidationReport;
+  locale: string;
 }) {
+  const t = getPlatformLabels(locale);
+  const d = t.dashboard;
+
   return (
     <div className="space-y-8">
       <PlatformPageHeader
-        title="Platform Dashboard"
-        description="Live business metrics for the entire SaaS platform. Every value is read directly from the database."
+        eyebrow={t.eyebrow}
+        title={t.pages.dashboard.title}
+        description={t.pages.dashboard.description}
       />
 
-      <PlatformSection title="Tenants">
+      <PlatformSection title={d.sections.tenants}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StatCard label="Total Companies" value={metrics.totalTenants.toLocaleString()} />
-          <StatCard label="Enterprise" value={metrics.enterpriseTenants.toLocaleString()} tone="ok" />
-          <StatCard label="Business" value={metrics.businessTenants.toLocaleString()} tone="ok" />
-          <StatCard label="Solo" value={metrics.soloTenants.toLocaleString()} tone="neutral" />
+          <StatCard label={d.totalCompanies} value={metrics.totalTenants.toLocaleString()} />
+          <StatCard label={d.enterprise} value={metrics.enterpriseTenants.toLocaleString()} tone="ok" />
+          <StatCard label={d.business} value={metrics.businessTenants.toLocaleString()} tone="ok" />
+          <StatCard label={d.solo} value={metrics.soloTenants.toLocaleString()} tone="neutral" />
         </div>
       </PlatformSection>
 
-      <PlatformSection title="Accounts & Seats">
+      <PlatformSection title={d.sections.accountsSeats}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StatCard label="Users" value={metrics.users.toLocaleString()} />
-          <StatCard label="Seats Used" value={metrics.seatsUsed.toLocaleString()} detail={`of ${metrics.seatsPurchased.toLocaleString()} purchased`} />
+          <StatCard label={d.users} value={metrics.users.toLocaleString()} />
           <StatCard
-            label="Seats Available"
+            label={d.seatsUsed}
+            value={metrics.seatsUsed.toLocaleString()}
+            detail={fillPlatform(d.ofPurchased, { count: metrics.seatsPurchased.toLocaleString() })}
+          />
+          <StatCard
+            label={d.seatsAvailable}
             value={metrics.seatsAvailable.toLocaleString()}
             tone={metrics.seatsAvailable === 0 ? "warn" : "ok"}
           />
-          <StatCard label="Sessions (24h)" value={metrics.recentLogins.toLocaleString()} detail="Login events" />
+          <StatCard label={d.sessions24h} value={metrics.recentLogins.toLocaleString()} detail={d.loginEvents} />
         </div>
       </PlatformSection>
 
-      <PlatformSection title="Licenses">
+      <PlatformSection title={d.sections.licenses}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StatCard label="Active Licenses" value={metrics.activeLicenses.toLocaleString()} tone="ok" />
+          <StatCard label={d.activeLicenses} value={metrics.activeLicenses.toLocaleString()} tone="ok" />
           <StatCard
-            label="Expiring (30 days)"
+            label={d.expiring30}
             value={metrics.expiringLicenses.toLocaleString()}
             tone={metrics.expiringLicenses > 0 ? "warn" : "neutral"}
           />
           <StatCard
-            label="Expired Licenses"
+            label={d.expiredLicenses}
             value={metrics.expiredLicenses.toLocaleString()}
             tone={metrics.expiredLicenses > 0 ? "down" : "neutral"}
           />
-          <StatCard label="Storage Buckets" value={metrics.storageBuckets.toLocaleString()} />
+          <StatCard label={d.storageBuckets} value={metrics.storageBuckets.toLocaleString()} />
         </div>
       </PlatformSection>
 
-      <PlatformSection title="Security & Health">
+      <PlatformSection title={d.sections.securityHealth}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StatCard label="Audit Events" value={metrics.auditEvents.toLocaleString()} />
+          <StatCard label={d.auditEvents} value={metrics.auditEvents.toLocaleString()} />
           <StatCard
-            label="Security Events"
+            label={d.securityEvents}
             value={metrics.securityEvents.toLocaleString()}
-            detail={`${metrics.criticalEvents.toLocaleString()} critical`}
+            detail={fillPlatform(d.criticalDetail, { count: metrics.criticalEvents.toLocaleString() })}
             tone={metrics.criticalEvents > 0 ? "warn" : "neutral"}
           />
           <StatCard
-            label="Database Health"
-            value={metrics.databaseHealthy ? "Healthy" : "Down"}
+            label={d.databaseHealth}
+            value={metrics.databaseHealthy ? d.healthy : d.down}
             tone={metrics.databaseHealthy ? "ok" : "down"}
           />
-          <StatCard label="Platform Version" value={`v${metrics.platformVersion}`} detail={metrics.environment} />
+          <StatCard label={d.platformVersion} value={`v${metrics.platformVersion}`} detail={metrics.environment} />
         </div>
       </PlatformSection>
 
-      <PlatformSection title="Bootstrap Validation">
+      <PlatformSection title={d.sections.bootstrapValidation}>
         <div className="space-y-2 rounded-xl border border-border/60 p-4">
           {validation.checks.map((check) => (
             <div key={check.key} className="flex items-center justify-between gap-4 text-sm">
               <span className="text-muted-foreground">{check.label}</span>
               <div className="flex items-center gap-3">
                 <span className="text-xs text-muted-foreground">{check.detail}</span>
-                <StatusPill label={check.passed ? "PASS" : "FAIL"} tone={check.passed ? "ok" : "down"} />
+                <StatusPill label={check.passed ? t.common.pass : t.common.fail} tone={check.passed ? "ok" : "down"} />
               </div>
             </div>
           ))}

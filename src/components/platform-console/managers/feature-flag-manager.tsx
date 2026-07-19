@@ -16,6 +16,8 @@ import {
   disableFeatureFlagAction,
   deleteFeatureFlagAction,
 } from "@/lib/platform-console/actions/feature-flags";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
+import { fillPlatform } from "@/i18n/platform-labels";
 import { useActionRunner } from "./use-action-runner";
 
 const FLAG_STATES = ["enabled", "disabled", "preview", "experimental", "deprecated"] as const;
@@ -34,6 +36,7 @@ export function FeatureFlagManager({
   flags: FeatureFlagRow[];
   organizations: OrganizationOption[];
 }) {
+  const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const orgName = (id: string | null) => (id ? organizations.find((o) => o.id === id)?.name ?? id : null);
@@ -42,21 +45,21 @@ export function FeatureFlagManager({
     <div className="space-y-6">
       <div className="flex justify-end">
         <Button size="sm" onClick={() => setCreateOpen(true)}>
-          Create flag
+          {t.featureFlagManager.create}
         </Button>
       </div>
 
       {flags.length === 0 ? (
-        <EmptyState title="No feature flags" description="Create a platform or tenant feature flag." />
+        <EmptyState title={t.featureFlagManager.emptyTitle} description={t.featureFlagManager.emptyDescription} />
       ) : (
         <div className="overflow-x-auto rounded-xl border border-border/60">
           <table className="w-full text-sm">
             <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
               <tr>
-                <th className="px-4 py-2.5">Flag</th>
-                <th className="px-4 py-2.5">Scope</th>
-                <th className="px-4 py-2.5">State</th>
-                <th className="px-4 py-2.5 text-right">Actions</th>
+                <th className="px-4 py-2.5">{t.featureFlagManager.colFlag}</th>
+                <th className="px-4 py-2.5">{t.featureFlagManager.colScope}</th>
+                <th className="px-4 py-2.5">{t.featureFlagManager.colState}</th>
+                <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
@@ -84,11 +87,11 @@ export function FeatureFlagManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${flag.id}:disable`, () => disableFeatureFlagAction({ id: flag.id }), {
-                                success: "Flag disabled",
+                                success: t.featureFlagManager.toastDisabled,
                               })
                             }
                           >
-                            Disable
+                            {t.common.disable}
                           </Button>
                         ) : (
                           <Button
@@ -98,27 +101,27 @@ export function FeatureFlagManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${flag.id}:enable`, () => enableFeatureFlagAction({ id: flag.id }), {
-                                success: "Flag enabled",
+                                success: t.featureFlagManager.toastEnabled,
                               })
                             }
                           >
-                            Enable
+                            {t.common.enable}
                           </Button>
                         )}
                         <Select
-                          aria-label="Set flag state"
+                          aria-label={t.featureFlagManager.setFlagState}
                           className="h-8 w-36"
                           value={flag.flagState}
                           disabled={busy}
                           onChange={(e) =>
                             run(`${flag.id}:state`, () => updateFeatureFlagAction({ id: flag.id, flagState: e.target.value }), {
-                              success: "Flag state updated",
+                              success: t.featureFlagManager.toastStateUpdated,
                             })
                           }
                         >
                           {FLAG_STATES.map((state) => (
                             <option key={state} value={state}>
-                              {state}
+                              {t.featureFlagManager.states[state]}
                             </option>
                           ))}
                         </Select>
@@ -128,13 +131,13 @@ export function FeatureFlagManager({
                           loading={pendingId === `${flag.id}:delete`}
                           disabled={busy}
                           onClick={() => {
-                            if (!window.confirm(`Delete flag ${flag.flagCode}?`)) return;
+                            if (!window.confirm(fillPlatform(t.featureFlagManager.deleteConfirm, { code: flag.flagCode }))) return;
                             void run(`${flag.id}:delete`, () => deleteFeatureFlagAction({ id: flag.id }), {
-                              success: "Flag deleted",
+                              success: t.featureFlagManager.toastDeleted,
                             });
                           }}
                         >
-                          Delete
+                          {t.common.delete}
                         </Button>
                       </div>
                     </td>
@@ -153,7 +156,7 @@ export function FeatureFlagManager({
         pending={pendingId === "create-flag"}
         onSubmit={(values) =>
           run("create-flag", () => createFeatureFlagAction(values), {
-            success: "Feature flag created",
+            success: t.featureFlagManager.toastCreated,
             onSuccess: () => setCreateOpen(false),
           })
         }
@@ -175,6 +178,7 @@ function CreateFlagModal({
   onSubmit: (values: { flagCode: string; flagState: string; organizationId: string | null }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [flagCode, setFlagCode] = useState("");
   const [flagState, setFlagState] = useState<string>("enabled");
   const [scope, setScope] = useState<"platform" | "tenant">("platform");
@@ -184,12 +188,12 @@ function CreateFlagModal({
     <Modal
       open={open}
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Create feature flag"
-      description="Platform-scoped flags apply everywhere; tenant-scoped flags override a single company."
+      title={t.featureFlagManager.createTitle}
+      description={t.featureFlagManager.createDescription}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button
             size="sm"
@@ -202,36 +206,36 @@ function CreateFlagModal({
               })
             }
           >
-            Create
+            {t.common.create}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="flag-code">Flag code</Label>
-          <Input id="flag-code" value={flagCode} onChange={(e) => setFlagCode(e.target.value)} placeholder="new_dashboard" />
+          <Label htmlFor="flag-code">{t.featureFlagManager.flagCodeLabel}</Label>
+          <Input id="flag-code" value={flagCode} onChange={(e) => setFlagCode(e.target.value)} placeholder={t.featureFlagManager.flagCodePlaceholder} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="flag-state">State</Label>
+          <Label htmlFor="flag-state">{t.featureFlagManager.stateLabel}</Label>
           <Select id="flag-state" value={flagState} onChange={(e) => setFlagState(e.target.value)}>
             {FLAG_STATES.map((state) => (
               <option key={state} value={state}>
-                {state}
+                {t.featureFlagManager.states[state]}
               </option>
             ))}
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="flag-scope">Scope</Label>
+          <Label htmlFor="flag-scope">{t.featureFlagManager.scopeLabel}</Label>
           <Select id="flag-scope" value={scope} onChange={(e) => setScope(e.target.value as "platform" | "tenant")}>
-            <option value="platform">Platform (all tenants)</option>
-            <option value="tenant">Tenant</option>
+            <option value="platform">{t.featureFlagManager.scopePlatform}</option>
+            <option value="tenant">{t.featureFlagManager.scopeTenant}</option>
           </Select>
         </div>
         {scope === "tenant" ? (
           <div className="space-y-1">
-            <Label htmlFor="flag-org">Tenant</Label>
+            <Label htmlFor="flag-org">{t.common.tenant}</Label>
             <Select id="flag-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
               {organizations.map((org) => (
                 <option key={org.id} value={org.id}>

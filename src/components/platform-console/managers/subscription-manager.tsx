@@ -9,6 +9,7 @@ import { Modal } from "@/components/ui/modal";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { TENANT_TYPE_OPTIONS } from "@/config/platform-options";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import type { SubscriptionRow, OrganizationOption, PlanRow } from "@/lib/platform-console/data";
 import {
   createSubscriptionAction,
@@ -37,6 +38,7 @@ export function SubscriptionManager({
   organizations: OrganizationOption[];
   plans: PlanRow[];
 }) {
+  const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const [editing, setEditing] = useState<SubscriptionRow | null>(null);
@@ -46,22 +48,22 @@ export function SubscriptionManager({
     <div className="space-y-4">
       <div className="flex justify-end">
         <Button size="sm" onClick={() => setCreateOpen(true)} disabled={organizations.length === 0}>
-          Create subscription
+          {t.subscriptionManager.create}
         </Button>
       </div>
 
       {subscriptions.length === 0 ? (
-        <EmptyState title="No subscriptions" description="Create a subscription for a tenant." />
+        <EmptyState title={t.subscriptionManager.emptyTitle} description={t.subscriptionManager.emptyDescription} />
       ) : (
         <div className="overflow-x-auto rounded-xl border border-border/60">
           <table className="w-full text-sm">
             <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
               <tr>
-                <th className="px-4 py-2.5">Tenant</th>
-                <th className="px-4 py-2.5">Plan</th>
-                <th className="px-4 py-2.5">Seats</th>
-                <th className="px-4 py-2.5">Status</th>
-                <th className="px-4 py-2.5 text-right">Actions</th>
+                <th className="px-4 py-2.5">{t.subscriptionManager.colTenant}</th>
+                <th className="px-4 py-2.5">{t.subscriptionManager.colPlan}</th>
+                <th className="px-4 py-2.5">{t.subscriptionManager.colSeats}</th>
+                <th className="px-4 py-2.5">{t.common.status}</th>
+                <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
@@ -83,7 +85,7 @@ export function SubscriptionManager({
                     <td className="px-4 py-2.5">
                       <div className="flex flex-wrap justify-end gap-1.5">
                         <Button size="sm" variant="ghost" disabled={busy} onClick={() => setEditing(sub)}>
-                          Change plan
+                          {t.subscriptionManager.changePlan}
                         </Button>
                         {active ? (
                           <Button
@@ -93,11 +95,11 @@ export function SubscriptionManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${sub.id}:pause`, () => pauseSubscriptionAction({ id: sub.id }), {
-                                success: "Subscription paused",
+                                success: t.subscriptionManager.toastPaused,
                               })
                             }
                           >
-                            Pause
+                            {t.common.pause}
                           </Button>
                         ) : (
                           <Button
@@ -107,11 +109,11 @@ export function SubscriptionManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${sub.id}:resume`, () => resumeSubscriptionAction({ id: sub.id }), {
-                                success: "Subscription resumed",
+                                success: t.subscriptionManager.toastResumed,
                               })
                             }
                           >
-                            Resume
+                            {t.common.resume}
                           </Button>
                         )}
                         <Button
@@ -121,11 +123,11 @@ export function SubscriptionManager({
                           disabled={busy}
                           onClick={() =>
                             run(`${sub.id}:expire`, () => expireSubscriptionAction({ id: sub.id }), {
-                              success: "Subscription expired",
+                              success: t.subscriptionManager.toastExpired,
                             })
                           }
                         >
-                          Expire
+                          {t.common.expire}
                         </Button>
                         <Button
                           size="sm"
@@ -133,13 +135,13 @@ export function SubscriptionManager({
                           loading={pendingId === `${sub.id}:cancel`}
                           disabled={busy}
                           onClick={() => {
-                            if (!window.confirm("Cancel this subscription?")) return;
+                            if (!window.confirm(t.subscriptionManager.cancelConfirm)) return;
                             void run(`${sub.id}:cancel`, () => cancelSubscriptionAction({ id: sub.id }), {
-                              success: "Subscription cancelled",
+                              success: t.subscriptionManager.toastCancelled,
                             });
                           }}
                         >
-                          Cancel
+                          {t.common.cancel}
                         </Button>
                       </div>
                     </td>
@@ -159,7 +161,7 @@ export function SubscriptionManager({
         pending={pendingId === "create-sub"}
         onSubmit={(values) =>
           run("create-sub", () => createSubscriptionAction(values), {
-            success: "Subscription created",
+            success: t.subscriptionManager.toastCreated,
             onSuccess: () => setCreateOpen(false),
           })
         }
@@ -173,7 +175,7 @@ export function SubscriptionManager({
           pending={pendingId === "edit-sub"}
           onSubmit={(values) =>
             run("edit-sub", () => updateSubscriptionAction({ id: editing.id, ...values }), {
-              success: "Subscription updated",
+              success: t.subscriptionManager.toastUpdated,
               onSuccess: () => setEditing(null),
             })
           }
@@ -204,6 +206,7 @@ function CreateSubscriptionModal({
   }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [organizationId, setOrganizationId] = useState(organizations[0]?.id ?? "");
   const [planCode, setPlanCode] = useState(plans[0]?.planCode ?? "business");
   const [tenantType, setTenantType] = useState("business");
@@ -214,11 +217,11 @@ function CreateSubscriptionModal({
     <Modal
       open={open}
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Create subscription"
+      title={t.subscriptionManager.createTitle}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button
             size="sm"
@@ -233,14 +236,14 @@ function CreateSubscriptionModal({
               })
             }
           >
-            Create
+            {t.common.create}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="sub-org">Tenant</Label>
+          <Label htmlFor="sub-org">{t.subscriptionManager.colTenant}</Label>
           <Select id="sub-org" value={organizationId} onChange={(e) => setOrganizationId(e.target.value)}>
             {organizations.map((org) => (
               <option key={org.id} value={org.id}>
@@ -250,7 +253,7 @@ function CreateSubscriptionModal({
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="sub-plan">Plan</Label>
+          <Label htmlFor="sub-plan">{t.common.plan}</Label>
           <Select id="sub-plan" value={planCode} onChange={(e) => setPlanCode(e.target.value)}>
             {plans.map((plan) => (
               <option key={plan.planCode} value={plan.planCode}>
@@ -260,17 +263,17 @@ function CreateSubscriptionModal({
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="sub-type">Tenant type</Label>
+          <Label htmlFor="sub-type">{t.subscriptionManager.tenantTypeLabel}</Label>
           <Select id="sub-type" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
             {TENANT_TYPE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {t.options.tenantType[option.value]}
               </option>
             ))}
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="sub-seats">Seat limit</Label>
+          <Label htmlFor="sub-seats">{t.subscriptionManager.seatLimitLabel}</Label>
           <Input
             id="sub-seats"
             type="number"
@@ -280,7 +283,7 @@ function CreateSubscriptionModal({
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="sub-ends">Expiration date (optional)</Label>
+          <Label htmlFor="sub-ends">{t.subscriptionManager.expirationOptional}</Label>
           <Input id="sub-ends" type="date" value={endsAt} onChange={(e) => setEndsAt(e.target.value)} />
         </div>
       </div>
@@ -301,6 +304,7 @@ function ChangePlanModal({
   onSubmit: (values: { planCode?: string; seatLimit?: number }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [planCode, setPlanCode] = useState(subscription.planCode);
   const [seatLimit, setSeatLimit] = useState(subscription.seatLimit);
 
@@ -308,22 +312,22 @@ function ChangePlanModal({
     <Modal
       open
       onOpenChange={(next) => (next ? null : onClose())}
-      title="Change plan / seats"
-      description="Upgrade or downgrade by changing the plan or seat limit."
+      title={t.subscriptionManager.changeTitle}
+      description={t.subscriptionManager.changeDescription}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button size="sm" loading={pending} onClick={() => onSubmit({ planCode, seatLimit })}>
-            Save
+            {t.common.save}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="edit-sub-plan">Plan</Label>
+          <Label htmlFor="edit-sub-plan">{t.common.plan}</Label>
           <Select id="edit-sub-plan" value={planCode} onChange={(e) => setPlanCode(e.target.value)}>
             {plans.map((plan) => (
               <option key={plan.planCode} value={plan.planCode}>
@@ -333,7 +337,7 @@ function ChangePlanModal({
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="edit-sub-seats">Seat limit</Label>
+          <Label htmlFor="edit-sub-seats">{t.subscriptionManager.seatLimitLabel}</Label>
           <Input
             id="edit-sub-seats"
             type="number"

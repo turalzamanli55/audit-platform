@@ -6646,5 +6646,363 @@
         "allTypes": "Bütün növlər"
       }
     }
+  },
+  "platform": {
+    "eyebrow": "Platforma Sahibi Konsolu",
+    "header": {
+      "console": "Platforma Sahibi Konsolu",
+      "account": "Hesab",
+      "profile": "Profil",
+      "language": "Dil",
+      "appearance": "Görünüş",
+      "about": "Platforma haqqında",
+      "signOut": "Çıxış",
+      "signingOut": "Çıxılır…"
+    },
+    "appearance": { "system": "Sistem", "light": "İşıqlı", "dark": "Qaranlıq" },
+    "about": {
+      "title": "Platforma haqqında",
+      "version": "Platforma Versiyası",
+      "environment": "Mühit",
+      "buildDate": "Yığılma Tarixi",
+      "gitCommit": "Git Commit",
+      "databaseVersion": "Verilənlər Bazası Versiyası",
+      "notAvailable": "Mövcud deyil"
+    },
+    "profileDialog": {
+      "title": "Profil",
+      "email": "E-poçt",
+      "role": "Rol",
+      "owner": "Platforma Sahibi",
+      "environment": "Mühit"
+    },
+    "nav": {
+      "heading": "Platforma",
+      "dashboard": "İdarə paneli",
+      "search": "Axtarış",
+      "companies": "Şirkətlər",
+      "organizations": "Təşkilatlar",
+      "users": "İstifadəçilər",
+      "subscriptions": "Abunəliklər",
+      "licenses": "Lisenziyalar",
+      "plans": "Planlar",
+      "modules": "Modullar",
+      "featureFlags": "Funksiya Bayraqları",
+      "security": "Təhlükəsizlik Hadisələri",
+      "activity": "Fəaliyyət",
+      "loginHistory": "Giriş Tarixçəsi",
+      "database": "Verilənlər Bazası",
+      "devops": "DevOps",
+      "settings": "Parametrlər"
+    },
+    "common": {
+      "create": "Yarat", "edit": "Redaktə et", "save": "Yadda saxla", "cancel": "Ləğv et", "delete": "Sil",
+      "suspend": "Dayandır", "activate": "Aktivləşdir", "archive": "Arxivlə", "restore": "Bərpa et",
+      "enable": "Aktiv et", "disable": "Deaktiv et", "reset": "Sıfırla", "revoke": "Ləğv et", "resend": "Yenidən göndər",
+      "send": "Göndər", "transfer": "Köçür", "assign": "Təyin et", "pause": "Fasilə", "resume": "Davam et", "expire": "Bitir",
+      "exportCsv": "CSV ixrac et", "exportJson": "JSON ixrac et",
+      "actions": "Əməliyyatlar", "status": "Status", "name": "Ad", "slug": "Slug", "type": "Növ",
+      "role": "Rol", "scope": "Əhatə", "workspace": "İş sahəsi", "company": "Şirkət", "email": "E-poçt",
+      "plan": "Plan", "seats": "Yerlər", "expires": "Bitmə tarixi", "expiration": "Bitmə",
+      "all": "Hamısı", "yes": "Bəli", "no": "Xeyr", "none": "Yoxdur", "perpetual": "Daimi",
+      "protected": "Qorunan", "active": "Aktiv", "suspended": "Dayandırılıb", "platformOwner": "Platforma Sahibi",
+      "search": "Axtarış", "tenant": "Kirayəçi", "organization": "Təşkilat", "user": "İstifadəçi",
+      "created": "Yaradılıb", "updated": "Yeniləndi", "date": "Tarix", "ip": "IP", "device": "Cihaz",
+      "browser": "Brauzer", "result": "Nəticə", "state": "Vəziyyət", "module": "Modul", "value": "Dəyər",
+      "setting": "Parametr", "notReady": "Hazır deyil", "systemReady": "Sistem hazırdır",
+      "operational": "İşlək", "attention": "Diqqət", "down": "Sıradan çıxıb", "healthy": "Sağlam",
+      "pass": "KEÇDİ", "fail": "UĞURSUZ", "info": "Məlumat", "warning": "Xəbərdarlıq", "critical": "Kritik",
+      "forceLogout": "Məcburi çıxış", "resetPassword": "Parolu sıfırla", "code": "Kod", "model": "Model",
+      "seatLimit": "Yer limiti", "default": "Standart", "members": "Üzvlər", "client": "Müştəri",
+      "lastSignIn": "Son giriş", "lastLogin": "Son giriş", "action": "Əməliyyat", "resource": "Resurs",
+      "event": "Hadisə", "severity": "Ciddilik", "timestamp": "Vaxt möhürü", "actor": "İcraçı"
+    },
+    "dataTable": { "empty": "Hələ qeyd yoxdur." },
+    "timeline": { "noEventsTitle": "Hadisə yoxdur", "empty": "Hələ heç bir fəaliyyət qeydə alınmayıb." },
+    "options": {
+      "tenantType": { "solo": "Fərdi", "business": "Biznes", "enterprise": "Korporativ" },
+      "roles": {
+        "organization_owner": "Təşkilat Sahibi",
+        "organization_admin": "Təşkilat Administratoru",
+        "workspace_admin": "İş Sahəsi Administratoru",
+        "manager": "Menecer",
+        "member": "Üzv",
+        "viewer": "İzləyici"
+      },
+      "modules": {
+        "planning": "Planlaşdırma", "materiality": "Əhəmiyyətlilik", "risk": "Risk", "working_papers": "İş Sənədləri",
+        "lead_sheets": "Aparıcı Cədvəllər", "reporting": "Hesabatlıq", "financial_statements": "Maliyyə Hesabatları",
+        "ifrs_notes": "IFRS Qeydləri", "ai": "AI", "ocr": "OCR", "import": "İdxal", "analytics": "Analitika"
+      }
+    },
+    "pages": {
+      "dashboard": {
+        "title": "Platforma İdarə Paneli",
+        "description": "Bütün SaaS platforması üçün canlı biznes göstəriciləri. Hər dəyər birbaşa verilənlər bazasından oxunur."
+      },
+      "activity": {
+        "title": "Fəaliyyət Mərkəzi",
+        "description": "Hər platforma audit və təhlükəsizlik hadisəsini axtarın, süzün və ixrac edin. Hər dəyişiklik üçün icraçı və şirkət müəyyən edilir."
+      },
+      "database": {
+        "title": "Verilənlər Bazası",
+        "description": "Verilənlər bazası əlaqəsi, miqrasiya vəziyyəti və platforma məlumat həcmi.",
+        "dbStatus": "Verilənlər Bazası Statusu", "migrationStatus": "Miqrasiya Statusu", "tenants": "Kirayəçilər",
+        "subscriptions": "Abunəliklər", "planTemplates": "Plan Şablonları", "licenseTemplates": "Lisenziya Şablonları",
+        "featureFlags": "Funksiya Bayraqları", "invitations": "Dəvətlər"
+      },
+      "loginHistory": {
+        "title": "Giriş Tarixçəsi",
+        "description": "Audit jurnalından götürülmüş, bütün kirayəçilər üzrə real autentifikasiya hadisələri.",
+        "empty": "Hələ autentifikasiya hadisəsi qeydə alınmayıb."
+      },
+      "modules": {
+        "title": "Modullar",
+        "description": "Modulları platforma, kirayəçi, iş sahəsi və ya istifadəçi üzrə aktiv və ya deaktiv edin. Ləğvetmələr plan hüquqlarının üzərinə əlavə olunur."
+      },
+      "monitoring": {
+        "title": "Monitorinq",
+        "description": "Bütün kirayəçilər üzrə canlı platforma təhlükəsizlik və monitorinq hadisə axını.",
+        "empty": "Monitorinq hadisəsi qeydə alınmayıb."
+      },
+      "search": {
+        "title": "Qlobal Axtarış",
+        "description": "Hər şirkəti, istifadəçini, təşkilatı, iş sahəsini, tapşırığı, dəvəti, lisenziyanı və hadisəni ani axtarın."
+      },
+      "featureFlags": {
+        "title": "Funksiya Bayraqları",
+        "description": "Platforma və kirayəçi əhatəli funksiya bayraqlarını yaradın, aktiv edin, deaktiv edin və ləğv edin. Dəyişikliklər dərhal tətbiq olunur."
+      },
+      "settings": {
+        "title": "Parametrlər",
+        "description": "Platforma səviyyəsində konfiqurasiya və cari başlanğıc vəziyyəti.",
+        "owner": "Platforma Sahibi", "environment": "Mühit", "deployment": "Yerləşdirmə",
+        "bootstrapCompleted": "Başlanğıc Tamamlandı", "systemReady": "Sistem Hazırdır"
+      },
+      "users": {
+        "title": "İstifadəçilər",
+        "description": "İstənilən istifadəçini açaraq onun tam profilini, sessiyalarını, icazələrini və fəaliyyətini yoxlayın."
+      },
+      "organizations": {
+        "title": "Təşkilatlar",
+        "description": "Təşkilat qeydləri hər kirayəçinin əsasını təşkil edir. Təşkilatları burada yaradın, redaktə edin, arxivləyin, bərpa edin və silin."
+      },
+      "licenses": {
+        "title": "Lisenziyalar",
+        "description": "Lisenziya şablonlarını kirayəçilərə təyin edin, yer istifadəsini və bitmə tarixini hesablayın və lisenziyaları ləğv edin."
+      },
+      "devops": {
+        "title": "DevOps",
+        "description": "Yerləşdirmə profili və platforma əməliyyatları. Eyni kod bazası hər yerləşdirmə profilinə xidmət edir.",
+        "environment": "Mühit", "deployment": "Yerləşdirmə", "bootstrap": "Başlanğıc",
+        "complete": "Tamamlandı", "pending": "Gözləmədə", "profilesTitle": "Dəstəklənən Yerləşdirmə Profilləri",
+        "colProfile": "Profil", "colDescription": "Təsvir",
+        "cloudSaas": "Cloud SaaS", "dedicatedCloud": "Xüsusi Bulud", "onPremise": "Lokal (On-Premise)",
+        "cloudSaasDesc": "Paylaşılan çox-kirayəçili hostinq", "dedicatedCloudDesc": "İzolyasiya edilmiş tək-kirayəçili hostinq",
+        "onPremiseDesc": "Müştəri tərəfindən idarə olunan yerləşdirmə"
+      },
+      "tenants": {
+        "title": "Kirayəçilər",
+        "description": "Hər audit firması izolyasiya edilmiş kirayəçidir. Onun tam idarəetmə iş sahəsini yoxlamaq üçün şirkəti açın."
+      },
+      "plans": {
+        "title": "Planlar",
+        "description": "Fərdi, biznes və korporativ kirayəçi modelləri üçün standart abunəlik plan şablonları.",
+        "colCode": "Kod", "colName": "Ad", "colModel": "Model", "colSeatLimit": "Yer Limiti", "colDefault": "Standart",
+        "empty": "Plan şablonu əlavə edilməyib."
+      },
+      "subscriptions": {
+        "title": "Abunəliklər",
+        "description": "Abunəliklər yaradın, planları və yerləri yüksəldin və ya endirin, habelə fasilə verin, davam etdirin, bitirin və ya ləğv edin."
+      },
+      "companyDetailPage": {
+        "back": "← Şirkətlərə qayıt",
+        "description": "Şirkət idarəetmə iş sahəsi · {slug}"
+      },
+      "userDetailPage": {
+        "back": "← İstifadəçilərə qayıt",
+        "description": "İstifadəçi idarəetmə profili · {email}"
+      }
+    },
+    "dashboard": {
+      "sections": {
+        "tenants": "Kirayəçilər", "accountsSeats": "Hesablar və Yerlər", "licenses": "Lisenziyalar",
+        "securityHealth": "Təhlükəsizlik və Sağlamlıq", "bootstrapValidation": "Başlanğıc Yoxlaması"
+      },
+      "totalCompanies": "Ümumi Şirkətlər", "enterprise": "Korporativ", "business": "Biznes", "solo": "Fərdi",
+      "users": "İstifadəçilər", "seatsUsed": "İstifadə Olunan Yerlər", "ofPurchased": "{count} alınmışdan",
+      "seatsAvailable": "Mövcud Yerlər", "sessions24h": "Sessiyalar (24 saat)", "loginEvents": "Giriş hadisələri",
+      "activeLicenses": "Aktiv Lisenziyalar", "expiring30": "Bitən (30 gün)", "expiredLicenses": "Bitmiş Lisenziyalar",
+      "storageBuckets": "Saxlama Səbətləri", "auditEvents": "Audit Hadisələri", "securityEvents": "Təhlükəsizlik Hadisələri",
+      "criticalDetail": "{count} kritik", "databaseHealth": "Verilənlər Bazası Sağlamlığı", "healthy": "Sağlam", "down": "Sıradan çıxıb",
+      "platformVersion": "Platforma Versiyası"
+    },
+    "entityManager": {
+      "create": "{label} yarat", "createTitle": "{label} yarat", "editTitle": "{label} redaktə et",
+      "createDescription": "Yeni kirayəçi təşkilatı təmin edin.",
+      "emptyTitle": "Hələ {label} yoxdur", "emptyDescription": "Təminata başlamaq üçün ilk {label} yaradın.",
+      "nameLabel": "Ad", "slugLabel": "Slug", "tenantTypeLabel": "Kirayəçi növü", "legalNameLabel": "Hüquqi ad (istəyə bağlı)",
+      "namePlaceholder": "Acme Audit LLP", "slugPlaceholder": "acme-audit",
+      "deleteConfirm": "{name} silinsin? Bu, {label} obyektini yumşaq silir.",
+      "toastSuspended": "{label} dayandırıldı", "toastActivated": "{label} aktivləşdirildi", "toastArchived": "{label} arxivləndi",
+      "toastRestored": "{label} bərpa edildi", "toastDeleted": "{label} silindi", "toastCreated": "{label} yaradıldı",
+      "toastUpdated": "{label} yeniləndi"
+    },
+    "userManager": {
+      "tabUsers": "İstifadəçilər ({count})", "tabInvitations": "Dəvətlər ({count})",
+      "createUser": "İstifadəçi yarat", "membership": "Üzvlük", "sendInvitation": "Dəvət göndər",
+      "colEmail": "E-poçt", "colName": "Ad", "colLastSignIn": "Son giriş", "colRole": "Rol",
+      "usersEmptyTitle": "İstifadəçi yoxdur", "usersEmptyDescription": "İstifadəçi yaradın və ya dəvət göndərin.",
+      "invitationsEmptyTitle": "Dəvət yoxdur", "invitationsEmptyDescription": "Başlamaq üçün kirayəçi istifadəçisini dəvət edin.",
+      "membershipTitle": "Üzvlüyü idarə et", "membershipDescription": "{email} istifadəçisini şirkətlər arasında təyin edin və ya köçürün.",
+      "assignAsAdmin": "Administrator kimi təyin et", "transferHere": "Bura köçür",
+      "membershipHint": "\u201cAdministrator kimi təyin et\u201d seçilmiş şirkətdə Şirkət Administratoru rolu verir. \u201cBura köçür\u201d istifadəçinin şirkət üzvlüyünü seçilmiş rolla seçilmiş şirkətə köçürür.",
+      "roleOnTransfer": "Köçürmə zamanı rol",
+      "createUserTitle": "İstifadəçi yarat",
+      "createUserDescription": "Autentifikasiya olunmuş istifadəçi yaradır və istəyə görə kirayəçi, təşkilat və rol təyin edir.",
+      "tempPassword": "Müvəqqəti parol", "fullNameOptional": "Tam ad (istəyə bağlı)",
+      "assignOrgOptional": "Təşkilat təyin et (istəyə bağlı)", "noAssignment": "Təyinat yoxdur",
+      "inviteTitle": "Dəvət göndər", "inviteDescription": "Kirayəçi istifadəçisini e-poçtla dəvət edin.",
+      "expiresInDays": "Bitmə müddəti (gün)",
+      "deleteConfirm": "{email} silinsin? Bu, geri qaytarıla bilməz.",
+      "toastActivated": "İstifadəçi aktivləşdirildi", "toastSuspended": "İstifadəçi dayandırıldı", "toastResetSent": "Parol sıfırlama e-poçtu göndərildi",
+      "toastSessionsRevoked": "Sessiyalar ləğv edildi", "toastDeleted": "İstifadəçi silindi", "toastInviteResent": "Dəvət yenidən göndərildi",
+      "toastInviteRevoked": "Dəvət ləğv edildi", "toastCreated": "İstifadəçi yaradıldı", "toastInviteSent": "Dəvət göndərildi",
+      "toastAdminAssigned": "Şirkət administratoru təyin edildi", "toastTransferred": "İstifadəçi köçürüldü"
+    },
+    "licenseManager": {
+      "sectionTitle": "Təyin edilmiş lisenziyalar (yer istifadəsi və bitmə)",
+      "assign": "Lisenziya təyin et", "colTenant": "Kirayəçi", "colPlan": "Plan", "colSeats": "Yerlər", "colExpires": "Bitmə tarixi",
+      "emptyTitle": "Təyin edilmiş lisenziya yoxdur", "emptyDescription": "Kirayəçiyə lisenziya şablonu təyin edin.",
+      "assignTitle": "Lisenziya təyin et", "assignDescription": "Lisenziya şablonundan hesablanmış bitmə tarixi ilə abunəlik yaradır.",
+      "templateLabel": "Lisenziya şablonu", "seatsFree": "{used}/{limit} ({free} boş)",
+      "revokeConfirm": "Bu lisenziya ləğv edilsin?", "toastRevoked": "Lisenziya ləğv edildi", "toastAssigned": "Lisenziya təyin edildi"
+    },
+    "moduleManager": {
+      "setAccess": "Modul girişini təyin et", "currentFlags": "Cari modul bayraqları",
+      "scopeLabel": "Əhatə", "scopePlatform": "Platforma (bütün kirayəçilər)", "scopeTenant": "Kirayəçi",
+      "moduleLabel": "Modul", "colModule": "Modul", "colScope": "Əhatə", "colState": "Vəziyyət",
+      "emptyTitle": "Modul ləğvetməsi yoxdur", "emptyDescription": "Modullar öz plan hüququna görə standart olaraq təyin olunur.",
+      "hint": "İş sahəsi və istifadəçi üzrə ləğvetmələr əməliyyat tərəfindən dəstəklənir, lakin hələ bu formada göstərilmir.",
+      "toastEnabled": "Modul aktiv edildi", "toastDisabled": "Modul deaktiv edildi"
+    },
+    "subscriptionManager": {
+      "create": "Abunəlik yarat", "changePlan": "Planı dəyiş", "cancelAction": "Ləğv et",
+      "colTenant": "Kirayəçi", "colPlan": "Plan", "colSeats": "Yerlər",
+      "emptyTitle": "Abunəlik yoxdur", "emptyDescription": "Kirayəçi üçün abunəlik yaradın.",
+      "createTitle": "Abunəlik yarat", "changeTitle": "Planı / yerləri dəyiş",
+      "changeDescription": "Planı və ya yer limitini dəyişərək yüksəldin və ya endirin.",
+      "tenantTypeLabel": "Kirayəçi növü", "seatLimitLabel": "Yer limiti", "expirationOptional": "Bitmə tarixi (istəyə bağlı)",
+      "cancelConfirm": "Bu abunəlik ləğv edilsin?",
+      "toastPaused": "Abunəlik dayandırıldı", "toastResumed": "Abunəlik davam etdirildi", "toastExpired": "Abunəliyin müddəti bitdi",
+      "toastCancelled": "Abunəlik ləğv edildi", "toastCreated": "Abunəlik yaradıldı", "toastUpdated": "Abunəlik yeniləndi"
+    },
+    "featureFlagManager": {
+      "create": "Bayraq yarat", "colFlag": "Bayraq", "colScope": "Əhatə", "colState": "Vəziyyət",
+      "emptyTitle": "Funksiya bayrağı yoxdur", "emptyDescription": "Platforma və ya kirayəçi funksiya bayrağı yaradın.",
+      "createTitle": "Funksiya bayrağı yarat",
+      "createDescription": "Platforma əhatəli bayraqlar hər yerdə tətbiq olunur; kirayəçi əhatəli bayraqlar tək bir şirkəti ləğv edir.",
+      "flagCodeLabel": "Bayraq kodu", "stateLabel": "Vəziyyət", "scopeLabel": "Əhatə",
+      "scopePlatform": "Platforma (bütün kirayəçilər)", "scopeTenant": "Kirayəçi", "flagCodePlaceholder": "new_dashboard",
+      "setFlagState": "Bayraq vəziyyətini təyin et", "deleteConfirm": "{code} bayrağı silinsin?",
+      "states": { "enabled": "aktiv", "disabled": "deaktiv", "preview": "önizləmə", "experimental": "eksperimental", "deprecated": "köhnəlmiş" },
+      "toastDisabled": "Bayraq deaktiv edildi", "toastEnabled": "Bayraq aktiv edildi", "toastStateUpdated": "Bayraq vəziyyəti yeniləndi",
+      "toastDeleted": "Bayraq silindi", "toastCreated": "Funksiya bayrağı yaradıldı"
+    },
+    "activityCenter": {
+      "searchPlaceholder": "Hadisə, icraçı, şirkət",
+      "from": "Başlanğıc", "to": "Son", "summary": "{total} hadisədən {count}", "reset": "Sıfırla",
+      "emptyTitle": "Uyğun fəaliyyət yoxdur", "emptyDescription": "Daha çox hadisə görmək üçün süzgəcləri tənzimləyin.",
+      "csvCompany": "Şirkət"
+    },
+    "globalSearch": {
+      "placeholder": "Şirkətlər, istifadəçilər, iş sahələri, tapşırıqlar, lisenziyalar, hadisələr axtar…",
+      "summaryOne": "{count} nəticə", "summaryMany": "{count} nəticə",
+      "prompt": "Bütün platforma üzrə axtarmaq üçün yazmağa başlayın.",
+      "emptyTitle": "Nəticə yoxdur", "emptyDescription": "Fərqli termin və ya süzgəc sınayın.",
+      "types": {
+        "Company": "Şirkət", "User": "İstifadəçi", "Organization": "Təşkilat", "Workspace": "İş sahəsi",
+        "Engagement": "Tapşırıq", "Invitation": "Dəvət", "License": "Lisenziya",
+        "Security Event": "Təhlükəsizlik Hadisəsi", "Audit Event": "Audit Hadisəsi"
+      }
+    },
+    "companyDetail": {
+      "tabs": {
+        "overview": "İcmal", "users": "İstifadəçilər ({count})", "organizations": "Təşkilatlar ({count})",
+        "workspaces": "İş sahələri ({count})", "engagements": "Tapşırıqlar ({count})", "license": "Lisenziya",
+        "seats": "Yerlər", "modules": "Modullar ({count})", "activity": "Fəaliyyət", "auditLogs": "Audit Jurnalları",
+        "loginHistory": "Giriş Tarixçəsi", "security": "Təhlükəsizlik", "settings": "Parametrlər"
+      },
+      "overview": {
+        "company": "Şirkət", "licenseSeats": "Lisenziya və Yerlər", "details": "Təfərrüatlar", "recentTimeline": "Son Zaman Xətti",
+        "status": "Status", "type": "Növ", "activeUsers": "Aktiv İstifadəçilər", "workspaces": "İş sahələri",
+        "engagements": "Tapşırıqlar", "modulesOn": "Aktiv Modullar", "security": "Təhlükəsizlik", "lastActivity": "Son Fəaliyyət",
+        "riskSuffix": "{count} risk", "clear": "Təmiz",
+        "plan": "Plan", "seatsPurchased": "Alınmış Yerlər", "seatsUsed": "İstifadə Olunan Yerlər", "seatsAvailable": "Mövcud Yerlər",
+        "licenseStatus": "Lisenziya Statusu", "expiration": "Bitmə",
+        "legalName": "Hüquqi ad", "slug": "Slug", "created": "Yaradılıb", "createdBy": "Yaradan",
+        "platformManaged": "Platforma tərəfindən idarə olunur", "description": "Təsvir",
+        "timelineEmpty": "Hələ qeydə alınmış fəaliyyət yoxdur."
+      },
+      "organizations": { "colOrganization": "Təşkilat", "colWorkspace": "İş sahəsi", "colStatus": "Status", "empty": "Hələ müştəri təşkilatı yoxdur." },
+      "workspaces": { "colWorkspace": "İş sahəsi", "colMembers": "Üzvlər", "colStatus": "Status", "colCreated": "Yaradılıb", "empty": "Hələ iş sahəsi yoxdur." },
+      "engagements": { "colEngagement": "Audit / Tapşırıq", "colClient": "Müştəri", "colType": "Növ", "colStatus": "Status", "colUpdated": "Yeniləndi", "empty": "Hələ tapşırıq yoxdur." },
+      "modules": { "colModule": "Modul", "colState": "Vəziyyət", "colScope": "Əhatə", "colUpdated": "Yeniləndi", "empty": "Modul ləğvetməsi yoxdur — modullar plan hüquqlarına uyğundur." },
+      "activity": { "timelineEmpty": "Bu şirkət üçün qeydə alınmış fəaliyyət yoxdur." },
+      "auditLogs": { "colTimestamp": "Vaxt möhürü", "colAction": "Əməliyyat", "colResource": "Resurs", "colActor": "İcraçı", "empty": "Audit hadisəsi qeydə alınmayıb." },
+      "loginHistory": { "colDate": "Tarix", "colUser": "İstifadəçi", "colIp": "IP", "colDevice": "Cihaz", "colBrowser": "Brauzer", "colResult": "Nəticə", "empty": "Giriş hadisəsi qeydə alınmayıb." },
+      "users": {
+        "invite": "İstifadəçi dəvət et", "createUser": "İstifadəçi yarat", "emptyTitle": "İstifadəçi yoxdur",
+        "emptyDescription": "Bu şirkət üçün ilk istifadəçini dəvət edin və ya yaradın.",
+        "colUser": "İstifadəçi", "colRole": "Rol", "colScope": "Əhatə", "colWorkspace": "İş sahəsi",
+        "colLastLogin": "Son giriş", "colStatus": "Status", "colActions": "Əməliyyatlar",
+        "makeAdmin": "Administrator et", "deleteConfirm": "{email} silinsin?",
+        "toastEnabled": "İstifadəçi aktiv edildi", "toastDisabled": "İstifadəçi deaktiv edildi", "toastResetSent": "Sıfırlama e-poçtu göndərildi",
+        "toastSessionsRevoked": "Sessiyalar ləğv edildi", "toastAdminAssigned": "Administrator təyin edildi", "toastCreated": "İstifadəçi yaradıldı",
+        "toastInviteSent": "Dəvət göndərildi", "toastTransferred": "İstifadəçi köçürüldü", "toastDeleted": "İstifadəçi silindi"
+      },
+      "license": { "enabledModules": "Aktiv modullar", "planDefaults": "Plan standartları", "timelineTitle": "Lisenziya Zaman Xətti", "timelineEmpty": "Hələ lisenziya dəyişikliyi qeydə alınmayıb." },
+      "seats": { "purchased": "Alınmış", "used": "İstifadə olunmuş", "available": "Mövcud", "timelineTitle": "Yer Zaman Xətti (üzvlük və lisenziya dəyişiklikləri)", "timelineEmpty": "Hələ yer fəaliyyəti qeydə alınmayıb." },
+      "security": { "suspensions": "Dayandırmalar", "reactivations": "Yenidən aktivləşdirmələr", "passwordResets": "Parol Sıfırlamaları", "forceLogouts": "Məcburi Çıxışlar", "securityEvents": "Təhlükəsizlik Hadisələri", "riskEvents": "Risk Hadisələri", "timelineTitle": "Risk və Təhlükəsizlik Hadisələri", "timelineEmpty": "Yüksək təhlükəsizlik hadisəsi yoxdur." },
+      "settings": {
+        "statusHeading": "Şirkət statusu", "currentStatus": "Cari status:", "reactivate": "Yenidən aktivləşdir",
+        "deleteConfirm": "{name} silinsin? Bu, şirkəti yumşaq silir.",
+        "exportHeading": "İxrac", "exportText": "Tam şirkət idarəetmə paketini yükləyin.", "exportUsersCsv": "İstifadəçiləri CSV kimi ixrac et",
+        "toastSuspended": "Şirkət dayandırıldı", "toastReactivated": "Şirkət yenidən aktivləşdirildi", "toastArchived": "Şirkət arxivləndi",
+        "toastRestored": "Şirkət bərpa edildi", "toastDeleted": "Şirkət silindi"
+      },
+      "createUserModal": { "title": "İstifadəçi yarat", "description": "Bu şirkət daxilində istifadəçi yaradır. Yer limitləri tətbiq olunur.", "email": "E-poçt", "tempPassword": "Müvəqqəti parol", "fullName": "Tam ad (istəyə bağlı)", "role": "Rol" },
+      "inviteModal": { "title": "İstifadəçi dəvət et", "description": "Bu şirkətə istifadəçini e-poçtla dəvət edin.", "email": "E-poçt", "role": "Rol", "expiresDays": "Bitmə müddəti (gün)" },
+      "transferModal": { "title": "İstifadəçini köçür", "description": "Bu istifadəçinin şirkət üzvlüyünü başqa şirkətə köçürün.", "destination": "Təyinat şirkəti", "role": "Rol" }
+    },
+    "userDetail": {
+      "tabs": {
+        "profile": "Profil", "organizations": "Təşkilatlar ({count})", "workspaces": "İş sahələri",
+        "permissions": "İcazələr ({count})", "role": "Rol", "sessions": "Sessiyalar ({count})",
+        "loginHistory": "Giriş Tarixçəsi", "activity": "Fəaliyyət", "auditHistory": "Audit Tarixçəsi",
+        "modules": "Modullar ({count})", "license": "Lisenziya", "security": "Təhlükəsizlik"
+      },
+      "profile": {
+        "status": "Status", "primaryRole": "Əsas rol", "company": "Şirkət", "created": "Yaradılıb", "lastLogin": "Son giriş",
+        "resetPassword": "Parolu sıfırla", "exportJson": "JSON ixrac et",
+        "toastEnabled": "İstifadəçi aktiv edildi", "toastDisabled": "İstifadəçi deaktiv edildi", "toastResetSent": "Sıfırlama e-poçtu göndərildi", "toastSessionsRevoked": "Sessiyalar ləğv edildi"
+      },
+      "organizations": { "colCompany": "Şirkət", "colRole": "Rol", "colScope": "Əhatə", "colWorkspace": "İş sahəsi", "empty": "Üzvlük yoxdur." },
+      "workspaces": { "colWorkspace": "İş sahəsi", "colCompany": "Şirkət", "colRole": "Rol", "empty": "İş sahəsi üzvlüyü yoxdur." },
+      "permissions": { "colPermission": "İcazə", "colName": "Ad", "colSource": "Mənbə (rol)", "empty": "Miras alınmış icazə yoxdur." },
+      "role": { "colRole": "Rol", "colScope": "Əhatə", "colCompany": "Şirkət", "empty": "Təyin edilmiş rol yoxdur." },
+      "loginHistory": { "colDate": "Tarix", "colIp": "IP", "colDevice": "Cihaz", "colBrowser": "Brauzer", "colResult": "Nəticə", "empty": "Giriş hadisəsi qeydə alınmayıb." },
+      "activity": { "timelineEmpty": "Bu istifadəçi üçün qeydə alınmış fəaliyyət yoxdur." },
+      "auditHistory": { "colTimestamp": "Vaxt möhürü", "colAction": "Əməliyyat", "colResource": "Resurs", "empty": "Audit tarixçəsi yoxdur." },
+      "modules": { "colModule": "Modul", "colState": "Vəziyyət", "colScope": "Əhatə", "empty": "Modul hüququ yoxdur." },
+      "license": { "company": "Şirkət", "plan": "Plan", "seat": "Yer", "status": "Status", "expiration": "Bitmə", "noLicense": "Bu istifadəçinin şirkətinin aktiv lisenziyası yoxdur." },
+      "security": { "failedLogins": "Uğursuz Girişlər", "suspensions": "Dayandırmalar", "passwordChanges": "Parol Dəyişiklikləri", "forceLogouts": "Məcburi Çıxışlar", "timelineTitle": "Təhlükəsizlik Zaman Xətti", "timelineEmpty": "Yüksək təhlükəsizlik hadisəsi yoxdur." },
+      "sessions": {
+        "notice": "Canlı sessiya izləməsi platforma sessiya-idarəetmə miqrasiyasının tətbiqini tələb edir. Məcburi çıxış tətbiq edildikdən sonra da bütün sessiyaları ləğv edir.",
+        "forceLogoutAll": "Məcburi çıxış (bütün sessiyalar)", "toastAllRevoked": "Bütün sessiyalar ləğv edildi",
+        "colSession": "Sessiya", "colStarted": "Başlanğıc", "colLastSeen": "Son görülmə", "colExpires": "Bitmə", "colAge": "Yaş",
+        "empty": "Aktiv sessiya yoxdur.", "ageMinutes": "{count} dəq", "toastRevoked": "Sessiya ləğv edildi"
+      }
+    }
   }
 }

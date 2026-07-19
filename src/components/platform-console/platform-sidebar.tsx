@@ -4,27 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PLATFORM_NAV_ITEMS } from "@/config/platform-navigation";
 import { stripLocalePrefix } from "@/config/auth";
-import { getConsoleStrings, type ConsoleLocale } from "@/lib/platform-console/i18n";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import { cn } from "@/lib/ui/cn";
 
-export function PlatformSidebar({
-  locale,
-  consoleLocale,
-}: {
-  locale: string;
-  consoleLocale: ConsoleLocale;
-}) {
+export function PlatformSidebar({ locale }: { locale: string }) {
   const pathname = usePathname();
   const current = stripLocalePrefix(pathname);
-  const t = getConsoleStrings(consoleLocale);
+  const t = usePlatformLabels();
 
   return (
     <nav
-      aria-label={t.sidebar.platform}
+      aria-label={t.nav.heading}
       className="flex w-full shrink-0 flex-col gap-1 rounded-xl border border-border/60 bg-card p-2 lg:w-60"
     >
       <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        {t.sidebar.platform}
+        {t.nav.heading}
       </p>
       {PLATFORM_NAV_ITEMS.map((item) => {
         const active =

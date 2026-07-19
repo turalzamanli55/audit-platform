@@ -21,21 +21,13 @@ import {
 } from "@/components/ui/icons";
 import { signOutAction } from "@/lib/actions/auth/sign-out";
 import { PLATFORM_LOGIN_PATH } from "@/config/auth";
-import { useTheme } from "@/providers";
+import { useLanguage, useTheme } from "@/providers";
+import { locales } from "@/i18n";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import type { ThemeMode } from "@/types/theme";
 import { cn } from "@/lib/ui/cn";
-import {
-  CONSOLE_LOCALES,
-  getConsoleStrings,
-  persistConsoleLocale,
-  type ConsoleLocale,
-} from "@/lib/platform-console/i18n";
 
 type PlatformAccountMenuProps = {
-  /** URL locale segment, used only to build the post-sign-out redirect. */
-  locale: string;
-  /** Current console interface language. */
-  consoleLocale: ConsoleLocale;
   displayName: string;
   email: string;
   environment: string;
@@ -46,16 +38,15 @@ type PlatformAccountMenuProps = {
 const APPEARANCE_MODES: ThemeMode[] = ["system", "light", "dark"];
 
 export function PlatformAccountMenu({
-  locale,
-  consoleLocale,
   displayName,
   email,
   environment,
   onAbout,
 }: PlatformAccountMenuProps) {
   const router = useRouter();
+  const { locale, setLocale } = useLanguage();
   const { mode, setMode } = useTheme();
-  const t = getConsoleStrings(consoleLocale);
+  const t = usePlatformLabels();
   const [isPending, startTransition] = useTransition();
   const [profileOpen, setProfileOpen] = useState(false);
 
@@ -67,12 +58,6 @@ export function PlatformAccountMenu({
     });
   }
 
-  function handleLocaleSelect(next: ConsoleLocale) {
-    if (next === consoleLocale) return;
-    persistConsoleLocale(next);
-    router.refresh();
-  }
-
   return (
     <>
       <DropdownMenu
@@ -81,7 +66,7 @@ export function PlatformAccountMenu({
           <Button
             variant="ghost"
             className="group h-10 gap-2 rounded-lg px-1.5 font-normal text-muted-foreground data-[state=open]:text-foreground sm:px-2"
-            aria-label={t.account.menu}
+            aria-label={t.header.account}
           >
             <Avatar name={displayName} size="sm" />
             <span className="hidden max-w-[10rem] truncate text-sm font-medium text-foreground sm:inline">
@@ -107,24 +92,24 @@ export function PlatformAccountMenu({
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => setProfileOpen(true)}>
           <IconUser width={16} height={16} className="shrink-0" />
-          <span className="flex-1">{t.account.profile}</span>
+          <span className="flex-1">{t.header.profile}</span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
         <DropdownMenuLabel>
           <span className="inline-flex items-center gap-1.5">
             <IconGlobe width={14} height={14} />
-            {t.account.language}
+            {t.header.language}
           </span>
         </DropdownMenuLabel>
-        {CONSOLE_LOCALES.map((item) => (
+        {locales.map((item) => (
           <DropdownMenuItem
             key={item.code}
-            selected={item.code === consoleLocale}
-            onSelect={() => handleLocaleSelect(item.code)}
+            selected={item.code === locale}
+            onSelect={() => setLocale(item.code)}
           >
             <span className="flex-1">{item.label}</span>
-            {item.code === consoleLocale ? (
+            {item.code === locale ? (
               <IconCheck width={16} height={16} className="text-primary" />
             ) : null}
           </DropdownMenuItem>
@@ -134,7 +119,7 @@ export function PlatformAccountMenu({
         <DropdownMenuLabel>
           <span className="inline-flex items-center gap-1.5">
             <IconSun width={14} height={14} />
-            {t.account.appearance}
+            {t.header.appearance}
           </span>
         </DropdownMenuLabel>
         {APPEARANCE_MODES.map((value) => (
@@ -147,16 +132,16 @@ export function PlatformAccountMenu({
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={onAbout}>
           <IconInfo width={16} height={16} className="shrink-0" />
-          <span className="flex-1">{t.account.about}</span>
+          <span className="flex-1">{t.header.about}</span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem destructive disabled={isPending} onSelect={handleSignOut}>
-          {isPending ? t.account.signingOut : t.account.signOut}
+          {isPending ? t.header.signingOut : t.header.signOut}
         </DropdownMenuItem>
       </DropdownMenu>
 
-      <Modal open={profileOpen} onOpenChange={setProfileOpen} title={t.profile.title} size="sm">
+      <Modal open={profileOpen} onOpenChange={setProfileOpen} title={t.profileDialog.title} size="sm">
         <div className="flex items-center gap-3">
           <Avatar name={displayName} size="lg" />
           <div className="min-w-0">
@@ -165,9 +150,9 @@ export function PlatformAccountMenu({
           </div>
         </div>
         <dl className="mt-5 space-y-3 text-sm">
-          <PlatformDetailRow label={t.profile.email} value={email} />
-          <PlatformDetailRow label={t.profile.role} value={t.profile.owner} />
-          <PlatformDetailRow label={t.profile.environment} value={environment} />
+          <PlatformDetailRow label={t.profileDialog.email} value={email} />
+          <PlatformDetailRow label={t.profileDialog.role} value={t.profileDialog.owner} />
+          <PlatformDetailRow label={t.profileDialog.environment} value={environment} />
         </dl>
       </Modal>
     </>

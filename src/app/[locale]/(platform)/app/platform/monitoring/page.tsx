@@ -1,5 +1,6 @@
 import { loadPlatformSecurityEvents } from "@/lib/platform-console/data";
 import { DataTable, PlatformPageHeader, StatusPill } from "@/components/platform-console/platform-primitives";
+import { getPlatformLabels } from "@/i18n/platform-labels";
 
 export const dynamic = "force-dynamic";
 
@@ -9,18 +10,21 @@ function severityTone(severity: string): "ok" | "warn" | "down" | "neutral" {
   return "neutral";
 }
 
-export default async function PlatformMonitoringPage() {
+export default async function PlatformMonitoringPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = getPlatformLabels(locale);
   const events = await loadPlatformSecurityEvents();
 
   return (
     <div className="space-y-8">
       <PlatformPageHeader
-        title="Monitoring"
-        description="Live platform security and monitoring event stream across all tenants."
+        eyebrow={t.eyebrow}
+        title={t.pages.monitoring.title}
+        description={t.pages.monitoring.description}
       />
       <DataTable
-        columns={["Event", "Severity", "Timestamp"]}
-        empty="No monitoring events recorded."
+        columns={[t.common.event, t.common.severity, t.common.timestamp]}
+        empty={t.pages.monitoring.empty}
         rows={events.map((event) => [
           <span key="e" className="font-medium text-foreground">
             {event.eventCode}

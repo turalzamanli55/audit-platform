@@ -6348,5 +6348,363 @@
         "allTypes": "All types"
       }
     }
+  },
+  "platform": {
+    "eyebrow": "Platform Owner Console",
+    "header": {
+      "console": "Platform Owner Console",
+      "account": "Account",
+      "profile": "Profile",
+      "language": "Language",
+      "appearance": "Appearance",
+      "about": "About Platform",
+      "signOut": "Sign out",
+      "signingOut": "Signing out…"
+    },
+    "appearance": { "system": "System", "light": "Light", "dark": "Dark" },
+    "about": {
+      "title": "About Platform",
+      "version": "Platform Version",
+      "environment": "Environment",
+      "buildDate": "Build Date",
+      "gitCommit": "Git Commit",
+      "databaseVersion": "Database Version",
+      "notAvailable": "Not available"
+    },
+    "profileDialog": {
+      "title": "Profile",
+      "email": "Email",
+      "role": "Role",
+      "owner": "Platform Owner",
+      "environment": "Environment"
+    },
+    "nav": {
+      "heading": "Platform",
+      "dashboard": "Dashboard",
+      "search": "Search",
+      "companies": "Companies",
+      "organizations": "Organizations",
+      "users": "Users",
+      "subscriptions": "Subscriptions",
+      "licenses": "Licenses",
+      "plans": "Plans",
+      "modules": "Modules",
+      "featureFlags": "Feature Flags",
+      "security": "Security Events",
+      "activity": "Activity",
+      "loginHistory": "Login History",
+      "database": "Database",
+      "devops": "DevOps",
+      "settings": "Settings"
+    },
+    "common": {
+      "create": "Create", "edit": "Edit", "save": "Save", "cancel": "Cancel", "delete": "Delete",
+      "suspend": "Suspend", "activate": "Activate", "archive": "Archive", "restore": "Restore",
+      "enable": "Enable", "disable": "Disable", "reset": "Reset", "revoke": "Revoke", "resend": "Resend",
+      "send": "Send", "transfer": "Transfer", "assign": "Assign", "pause": "Pause", "resume": "Resume", "expire": "Expire",
+      "exportCsv": "Export CSV", "exportJson": "Export JSON",
+      "actions": "Actions", "status": "Status", "name": "Name", "slug": "Slug", "type": "Type",
+      "role": "Role", "scope": "Scope", "workspace": "Workspace", "company": "Company", "email": "Email",
+      "plan": "Plan", "seats": "Seats", "expires": "Expires", "expiration": "Expiration",
+      "all": "All", "yes": "Yes", "no": "No", "none": "None", "perpetual": "Perpetual",
+      "protected": "Protected", "active": "Active", "suspended": "Suspended", "platformOwner": "Platform Owner",
+      "search": "Search", "tenant": "Tenant", "organization": "Organization", "user": "User",
+      "created": "Created", "updated": "Updated", "date": "Date", "ip": "IP", "device": "Device",
+      "browser": "Browser", "result": "Result", "state": "State", "module": "Module", "value": "Value",
+      "setting": "Setting", "notReady": "Not Ready", "systemReady": "System Ready",
+      "operational": "Operational", "attention": "Attention", "down": "Down", "healthy": "Healthy",
+      "pass": "PASS", "fail": "FAIL", "info": "Info", "warning": "Warning", "critical": "Critical",
+      "forceLogout": "Force logout", "resetPassword": "Reset password", "code": "Code", "model": "Model",
+      "seatLimit": "Seat Limit", "default": "Default", "members": "Members", "client": "Client",
+      "lastSignIn": "Last sign-in", "lastLogin": "Last login", "action": "Action", "resource": "Resource",
+      "event": "Event", "severity": "Severity", "timestamp": "Timestamp", "actor": "Actor"
+    },
+    "dataTable": { "empty": "No records yet." },
+    "timeline": { "noEventsTitle": "No events", "empty": "No activity has been recorded yet." },
+    "options": {
+      "tenantType": { "solo": "Solo", "business": "Business", "enterprise": "Enterprise" },
+      "roles": {
+        "organization_owner": "Organization Owner",
+        "organization_admin": "Organization Admin",
+        "workspace_admin": "Workspace Admin",
+        "manager": "Manager",
+        "member": "Member",
+        "viewer": "Viewer"
+      },
+      "modules": {
+        "planning": "Planning", "materiality": "Materiality", "risk": "Risk", "working_papers": "Working Papers",
+        "lead_sheets": "Lead Sheets", "reporting": "Reporting", "financial_statements": "Financial Statements",
+        "ifrs_notes": "IFRS Notes", "ai": "AI", "ocr": "OCR", "import": "Import", "analytics": "Analytics"
+      }
+    },
+    "pages": {
+      "dashboard": {
+        "title": "Platform Dashboard",
+        "description": "Live business metrics for the entire SaaS platform. Every value is read directly from the database."
+      },
+      "activity": {
+        "title": "Activity Center",
+        "description": "Search, filter, and export every platform audit and security event. Actor and company are resolved for each mutation."
+      },
+      "database": {
+        "title": "Database",
+        "description": "Database connectivity, migration state, and platform data footprint.",
+        "dbStatus": "Database Status", "migrationStatus": "Migration Status", "tenants": "Tenants",
+        "subscriptions": "Subscriptions", "planTemplates": "Plan Templates", "licenseTemplates": "License Templates",
+        "featureFlags": "Feature Flags", "invitations": "Invitations"
+      },
+      "loginHistory": {
+        "title": "Login History",
+        "description": "Real authentication events across every tenant, sourced from the audit log.",
+        "empty": "No authentication events recorded yet."
+      },
+      "modules": {
+        "title": "Modules",
+        "description": "Enable or disable modules per platform, tenant, workspace, or user. Overrides layer on top of plan entitlements."
+      },
+      "monitoring": {
+        "title": "Monitoring",
+        "description": "Live platform security and monitoring event stream across all tenants.",
+        "empty": "No monitoring events recorded."
+      },
+      "search": {
+        "title": "Global Search",
+        "description": "Instantly search every company, user, organization, workspace, engagement, invitation, license, and event."
+      },
+      "featureFlags": {
+        "title": "Feature Flags",
+        "description": "Create, enable, disable, and retire platform and tenant scoped feature flags. Changes apply immediately."
+      },
+      "settings": {
+        "title": "Settings",
+        "description": "Platform-level configuration and the current bootstrap state.",
+        "owner": "Platform Owner", "environment": "Environment", "deployment": "Deployment",
+        "bootstrapCompleted": "Bootstrap Completed", "systemReady": "System Ready"
+      },
+      "users": {
+        "title": "Users",
+        "description": "Open any user to inspect their full profile, sessions, permissions, and activity."
+      },
+      "organizations": {
+        "title": "Organizations",
+        "description": "Organization records back every tenant. Create, edit, archive, restore, and delete organizations here."
+      },
+      "licenses": {
+        "title": "Licenses",
+        "description": "Assign license templates to tenants, compute seat usage and expiration, and revoke licenses."
+      },
+      "devops": {
+        "title": "DevOps",
+        "description": "Deployment profile and platform operations. The same codebase serves every deployment profile.",
+        "environment": "Environment", "deployment": "Deployment", "bootstrap": "Bootstrap",
+        "complete": "Complete", "pending": "Pending", "profilesTitle": "Supported Deployment Profiles",
+        "colProfile": "Profile", "colDescription": "Description",
+        "cloudSaas": "Cloud SaaS", "dedicatedCloud": "Dedicated Cloud", "onPremise": "On-Premise",
+        "cloudSaasDesc": "Shared multi-tenant hosting", "dedicatedCloudDesc": "Isolated single-tenant hosting",
+        "onPremiseDesc": "Customer-managed deployment"
+      },
+      "tenants": {
+        "title": "Tenants",
+        "description": "Every audit firm is an isolated tenant. Open a company to inspect its full administration workspace."
+      },
+      "plans": {
+        "title": "Plans",
+        "description": "Default subscription plan templates for solo, business, and enterprise tenant models.",
+        "colCode": "Code", "colName": "Name", "colModel": "Model", "colSeatLimit": "Seat Limit", "colDefault": "Default",
+        "empty": "No plan templates seeded."
+      },
+      "subscriptions": {
+        "title": "Subscriptions",
+        "description": "Create subscriptions, upgrade or downgrade plans and seats, and pause, resume, expire, or cancel."
+      },
+      "companyDetailPage": {
+        "back": "← Back to companies",
+        "description": "Company administration workspace · {slug}"
+      },
+      "userDetailPage": {
+        "back": "← Back to users",
+        "description": "User administration profile · {email}"
+      }
+    },
+    "dashboard": {
+      "sections": {
+        "tenants": "Tenants", "accountsSeats": "Accounts & Seats", "licenses": "Licenses",
+        "securityHealth": "Security & Health", "bootstrapValidation": "Bootstrap Validation"
+      },
+      "totalCompanies": "Total Companies", "enterprise": "Enterprise", "business": "Business", "solo": "Solo",
+      "users": "Users", "seatsUsed": "Seats Used", "ofPurchased": "of {count} purchased",
+      "seatsAvailable": "Seats Available", "sessions24h": "Sessions (24h)", "loginEvents": "Login events",
+      "activeLicenses": "Active Licenses", "expiring30": "Expiring (30 days)", "expiredLicenses": "Expired Licenses",
+      "storageBuckets": "Storage Buckets", "auditEvents": "Audit Events", "securityEvents": "Security Events",
+      "criticalDetail": "{count} critical", "databaseHealth": "Database Health", "healthy": "Healthy", "down": "Down",
+      "platformVersion": "Platform Version"
+    },
+    "entityManager": {
+      "create": "Create {label}", "createTitle": "Create {label}", "editTitle": "Edit {label}",
+      "createDescription": "Provision a new tenant organization.",
+      "emptyTitle": "No {label} yet", "emptyDescription": "Create the first {label} to begin provisioning.",
+      "nameLabel": "Name", "slugLabel": "Slug", "tenantTypeLabel": "Tenant type", "legalNameLabel": "Legal name (optional)",
+      "namePlaceholder": "Acme Audit LLP", "slugPlaceholder": "acme-audit",
+      "deleteConfirm": "Delete {name}? This soft-deletes the {label}.",
+      "toastSuspended": "{label} suspended", "toastActivated": "{label} activated", "toastArchived": "{label} archived",
+      "toastRestored": "{label} restored", "toastDeleted": "{label} deleted", "toastCreated": "{label} created",
+      "toastUpdated": "{label} updated"
+    },
+    "userManager": {
+      "tabUsers": "Users ({count})", "tabInvitations": "Invitations ({count})",
+      "createUser": "Create user", "membership": "Membership", "sendInvitation": "Send invitation",
+      "colEmail": "Email", "colName": "Name", "colLastSignIn": "Last sign-in", "colRole": "Role",
+      "usersEmptyTitle": "No users", "usersEmptyDescription": "Create a user or send an invitation.",
+      "invitationsEmptyTitle": "No invitations", "invitationsEmptyDescription": "Invite a tenant user to get started.",
+      "membershipTitle": "Manage membership", "membershipDescription": "Assign or transfer {email} between companies.",
+      "assignAsAdmin": "Assign as admin", "transferHere": "Transfer here",
+      "membershipHint": "\u201cAssign as admin\u201d grants Company Administrator on the selected company. \u201cTransfer here\u201d moves the user's company membership to the selected company with the chosen role.",
+      "roleOnTransfer": "Role on transfer",
+      "createUserTitle": "Create user",
+      "createUserDescription": "Creates an authenticated user and optionally assigns a tenant, organization, and role.",
+      "tempPassword": "Temporary password", "fullNameOptional": "Full name (optional)",
+      "assignOrgOptional": "Assign organization (optional)", "noAssignment": "No assignment",
+      "inviteTitle": "Send invitation", "inviteDescription": "Invite a tenant user by email.",
+      "expiresInDays": "Expires in (days)",
+      "deleteConfirm": "Delete {email}? This cannot be undone.",
+      "toastActivated": "User activated", "toastSuspended": "User suspended", "toastResetSent": "Password reset email sent",
+      "toastSessionsRevoked": "Sessions revoked", "toastDeleted": "User deleted", "toastInviteResent": "Invitation resent",
+      "toastInviteRevoked": "Invitation revoked", "toastCreated": "User created", "toastInviteSent": "Invitation sent",
+      "toastAdminAssigned": "Company administrator assigned", "toastTransferred": "User transferred"
+    },
+    "licenseManager": {
+      "sectionTitle": "Assigned licenses (seat usage & expiration)",
+      "assign": "Assign license", "colTenant": "Tenant", "colPlan": "Plan", "colSeats": "Seats", "colExpires": "Expires",
+      "emptyTitle": "No assigned licenses", "emptyDescription": "Assign a license template to a tenant.",
+      "assignTitle": "Assign license", "assignDescription": "Instantiates a subscription from the license template with computed expiration.",
+      "templateLabel": "License template", "seatsFree": "{used}/{limit} ({free} free)",
+      "revokeConfirm": "Revoke this license?", "toastRevoked": "License revoked", "toastAssigned": "License assigned"
+    },
+    "moduleManager": {
+      "setAccess": "Set module access", "currentFlags": "Current module flags",
+      "scopeLabel": "Scope", "scopePlatform": "Platform (all tenants)", "scopeTenant": "Tenant",
+      "moduleLabel": "Module", "colModule": "Module", "colScope": "Scope", "colState": "State",
+      "emptyTitle": "No module overrides", "emptyDescription": "Modules default to their plan entitlement.",
+      "hint": "Per-workspace and per-user overrides are supported by the action but not yet exposed in this form.",
+      "toastEnabled": "Module enabled", "toastDisabled": "Module disabled"
+    },
+    "subscriptionManager": {
+      "create": "Create subscription", "changePlan": "Change plan", "cancelAction": "Cancel",
+      "colTenant": "Tenant", "colPlan": "Plan", "colSeats": "Seats",
+      "emptyTitle": "No subscriptions", "emptyDescription": "Create a subscription for a tenant.",
+      "createTitle": "Create subscription", "changeTitle": "Change plan / seats",
+      "changeDescription": "Upgrade or downgrade by changing the plan or seat limit.",
+      "tenantTypeLabel": "Tenant type", "seatLimitLabel": "Seat limit", "expirationOptional": "Expiration date (optional)",
+      "cancelConfirm": "Cancel this subscription?",
+      "toastPaused": "Subscription paused", "toastResumed": "Subscription resumed", "toastExpired": "Subscription expired",
+      "toastCancelled": "Subscription cancelled", "toastCreated": "Subscription created", "toastUpdated": "Subscription updated"
+    },
+    "featureFlagManager": {
+      "create": "Create flag", "colFlag": "Flag", "colScope": "Scope", "colState": "State",
+      "emptyTitle": "No feature flags", "emptyDescription": "Create a platform or tenant feature flag.",
+      "createTitle": "Create feature flag",
+      "createDescription": "Platform-scoped flags apply everywhere; tenant-scoped flags override a single company.",
+      "flagCodeLabel": "Flag code", "stateLabel": "State", "scopeLabel": "Scope",
+      "scopePlatform": "Platform (all tenants)", "scopeTenant": "Tenant", "flagCodePlaceholder": "new_dashboard",
+      "setFlagState": "Set flag state", "deleteConfirm": "Delete flag {code}?",
+      "states": { "enabled": "enabled", "disabled": "disabled", "preview": "preview", "experimental": "experimental", "deprecated": "deprecated" },
+      "toastDisabled": "Flag disabled", "toastEnabled": "Flag enabled", "toastStateUpdated": "Flag state updated",
+      "toastDeleted": "Flag deleted", "toastCreated": "Feature flag created"
+    },
+    "activityCenter": {
+      "searchPlaceholder": "Event, actor, company",
+      "from": "From", "to": "To", "summary": "{count} of {total} events", "reset": "Reset",
+      "emptyTitle": "No matching activity", "emptyDescription": "Adjust the filters to see more events.",
+      "csvCompany": "Company"
+    },
+    "globalSearch": {
+      "placeholder": "Search companies, users, workspaces, engagements, licenses, events…",
+      "summaryOne": "{count} result", "summaryMany": "{count} results",
+      "prompt": "Start typing to search across the entire platform.",
+      "emptyTitle": "No results", "emptyDescription": "Try a different term or filter.",
+      "types": {
+        "Company": "Company", "User": "User", "Organization": "Organization", "Workspace": "Workspace",
+        "Engagement": "Engagement", "Invitation": "Invitation", "License": "License",
+        "Security Event": "Security Event", "Audit Event": "Audit Event"
+      }
+    },
+    "companyDetail": {
+      "tabs": {
+        "overview": "Overview", "users": "Users ({count})", "organizations": "Organizations ({count})",
+        "workspaces": "Workspaces ({count})", "engagements": "Engagements ({count})", "license": "License",
+        "seats": "Seats", "modules": "Modules ({count})", "activity": "Activity", "auditLogs": "Audit Logs",
+        "loginHistory": "Login History", "security": "Security", "settings": "Settings"
+      },
+      "overview": {
+        "company": "Company", "licenseSeats": "License & Seats", "details": "Details", "recentTimeline": "Recent Timeline",
+        "status": "Status", "type": "Type", "activeUsers": "Active Users", "workspaces": "Workspaces",
+        "engagements": "Engagements", "modulesOn": "Modules On", "security": "Security", "lastActivity": "Last Activity",
+        "riskSuffix": "{count} risk", "clear": "Clear",
+        "plan": "Plan", "seatsPurchased": "Seats Purchased", "seatsUsed": "Seats Used", "seatsAvailable": "Seats Available",
+        "licenseStatus": "License Status", "expiration": "Expiration",
+        "legalName": "Legal name", "slug": "Slug", "created": "Created", "createdBy": "Created by",
+        "platformManaged": "Platform managed", "description": "Description",
+        "timelineEmpty": "No recorded activity yet."
+      },
+      "organizations": { "colOrganization": "Organization", "colWorkspace": "Workspace", "colStatus": "Status", "empty": "No client organizations yet." },
+      "workspaces": { "colWorkspace": "Workspace", "colMembers": "Members", "colStatus": "Status", "colCreated": "Created", "empty": "No workspaces yet." },
+      "engagements": { "colEngagement": "Audit / Engagement", "colClient": "Client", "colType": "Type", "colStatus": "Status", "colUpdated": "Updated", "empty": "No engagements yet." },
+      "modules": { "colModule": "Module", "colState": "State", "colScope": "Scope", "colUpdated": "Updated", "empty": "No module overrides — modules follow plan entitlements." },
+      "activity": { "timelineEmpty": "No activity recorded for this company." },
+      "auditLogs": { "colTimestamp": "Timestamp", "colAction": "Action", "colResource": "Resource", "colActor": "Actor", "empty": "No audit events recorded." },
+      "loginHistory": { "colDate": "Date", "colUser": "User", "colIp": "IP", "colDevice": "Device", "colBrowser": "Browser", "colResult": "Result", "empty": "No login events recorded." },
+      "users": {
+        "invite": "Invite user", "createUser": "Create user", "emptyTitle": "No users",
+        "emptyDescription": "Invite or create the first user for this company.",
+        "colUser": "User", "colRole": "Role", "colScope": "Scope", "colWorkspace": "Workspace",
+        "colLastLogin": "Last login", "colStatus": "Status", "colActions": "Actions",
+        "makeAdmin": "Make admin", "deleteConfirm": "Delete {email}?",
+        "toastEnabled": "User enabled", "toastDisabled": "User disabled", "toastResetSent": "Reset email sent",
+        "toastSessionsRevoked": "Sessions revoked", "toastAdminAssigned": "Admin assigned", "toastCreated": "User created",
+        "toastInviteSent": "Invitation sent", "toastTransferred": "User transferred", "toastDeleted": "User deleted"
+      },
+      "license": { "enabledModules": "Enabled modules", "planDefaults": "Plan defaults", "timelineTitle": "License Timeline", "timelineEmpty": "No license changes recorded yet." },
+      "seats": { "purchased": "Purchased", "used": "Used", "available": "Available", "timelineTitle": "Seat Timeline (membership & license changes)", "timelineEmpty": "No seat activity recorded yet." },
+      "security": { "suspensions": "Suspensions", "reactivations": "Reactivations", "passwordResets": "Password Resets", "forceLogouts": "Force Logouts", "securityEvents": "Security Events", "riskEvents": "Risk Events", "timelineTitle": "Risk & Security Events", "timelineEmpty": "No elevated security events." },
+      "settings": {
+        "statusHeading": "Company status", "currentStatus": "Current status:", "reactivate": "Reactivate",
+        "deleteConfirm": "Delete {name}? This soft-deletes the company.",
+        "exportHeading": "Export", "exportText": "Download the full company administration bundle.", "exportUsersCsv": "Export users CSV",
+        "toastSuspended": "Company suspended", "toastReactivated": "Company reactivated", "toastArchived": "Company archived",
+        "toastRestored": "Company restored", "toastDeleted": "Company deleted"
+      },
+      "createUserModal": { "title": "Create user", "description": "Creates a user inside this company. Seat limits are enforced.", "email": "Email", "tempPassword": "Temporary password", "fullName": "Full name (optional)", "role": "Role" },
+      "inviteModal": { "title": "Invite user", "description": "Invite a user by email to this company.", "email": "Email", "role": "Role", "expiresDays": "Expires in (days)" },
+      "transferModal": { "title": "Transfer user", "description": "Move this user's company membership to another company.", "destination": "Destination company", "role": "Role" }
+    },
+    "userDetail": {
+      "tabs": {
+        "profile": "Profile", "organizations": "Organizations ({count})", "workspaces": "Workspaces",
+        "permissions": "Permissions ({count})", "role": "Role", "sessions": "Sessions ({count})",
+        "loginHistory": "Login History", "activity": "Activity", "auditHistory": "Audit History",
+        "modules": "Modules ({count})", "license": "License", "security": "Security"
+      },
+      "profile": {
+        "status": "Status", "primaryRole": "Primary role", "company": "Company", "created": "Created", "lastLogin": "Last login",
+        "resetPassword": "Reset password", "exportJson": "Export JSON",
+        "toastEnabled": "User enabled", "toastDisabled": "User disabled", "toastResetSent": "Reset email sent", "toastSessionsRevoked": "Sessions revoked"
+      },
+      "organizations": { "colCompany": "Company", "colRole": "Role", "colScope": "Scope", "colWorkspace": "Workspace", "empty": "No memberships." },
+      "workspaces": { "colWorkspace": "Workspace", "colCompany": "Company", "colRole": "Role", "empty": "No workspace memberships." },
+      "permissions": { "colPermission": "Permission", "colName": "Name", "colSource": "Source (role)", "empty": "No permissions inherited." },
+      "role": { "colRole": "Role", "colScope": "Scope", "colCompany": "Company", "empty": "No roles assigned." },
+      "loginHistory": { "colDate": "Date", "colIp": "IP", "colDevice": "Device", "colBrowser": "Browser", "colResult": "Result", "empty": "No login events recorded." },
+      "activity": { "timelineEmpty": "No activity recorded for this user." },
+      "auditHistory": { "colTimestamp": "Timestamp", "colAction": "Action", "colResource": "Resource", "empty": "No audit history." },
+      "modules": { "colModule": "Module", "colState": "State", "colScope": "Scope", "empty": "No module entitlements." },
+      "license": { "company": "Company", "plan": "Plan", "seat": "Seat", "status": "Status", "expiration": "Expiration", "noLicense": "This user's company has no active license." },
+      "security": { "failedLogins": "Failed Logins", "suspensions": "Suspensions", "passwordChanges": "Password Changes", "forceLogouts": "Force Logouts", "timelineTitle": "Security Timeline", "timelineEmpty": "No elevated security events." },
+      "sessions": {
+        "notice": "Live session tracking requires the platform session-management migration to be applied. Force logout still revokes all sessions once deployed.",
+        "forceLogoutAll": "Force logout (all sessions)", "toastAllRevoked": "All sessions revoked",
+        "colSession": "Session", "colStarted": "Started", "colLastSeen": "Last seen", "colExpires": "Expires", "colAge": "Age",
+        "empty": "No active sessions.", "ageMinutes": "{count} min", "toastRevoked": "Session revoked"
+      }
+    }
   }
 }

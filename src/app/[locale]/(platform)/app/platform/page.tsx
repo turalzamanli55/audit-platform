@@ -3,10 +3,15 @@ import { PlatformMetricsDashboard } from "@/components/platform-console/platform
 
 export const dynamic = "force-dynamic";
 
-export default async function PlatformDashboardPage() {
+export default async function PlatformDashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const [{ validation }, metrics] = await Promise.all([
     loadPlatformDashboard(),
     loadPlatformMetrics(),
   ]);
-  return <PlatformMetricsDashboard metrics={metrics} validation={validation} />;
+  return <PlatformMetricsDashboard metrics={metrics} validation={validation} locale={locale} />;
 }

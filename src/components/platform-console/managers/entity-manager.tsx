@@ -10,6 +10,8 @@ import { Modal } from "@/components/ui/modal";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { TENANT_TYPE_OPTIONS } from "@/config/platform-options";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
+import { fillPlatform } from "@/i18n/platform-labels";
 import type { TenantRow } from "@/lib/platform-console/data";
 import {
   createTenantAction,
@@ -40,35 +42,36 @@ export function EntityManager({
   mode: Mode;
   detailBasePath?: string;
 }) {
+  const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const [editing, setEditing] = useState<TenantRow | null>(null);
 
-  const label = mode === "tenant" ? "Tenant" : "Organization";
+  const label = mode === "tenant" ? t.common.tenant : t.common.organization;
 
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
         <Button size="sm" onClick={() => setCreateOpen(true)}>
-          Create {label}
+          {fillPlatform(t.entityManager.create, { label })}
         </Button>
       </div>
 
       {entities.length === 0 ? (
         <EmptyState
-          title={`No ${label.toLowerCase()}s yet`}
-          description={`Create the first ${label.toLowerCase()} to begin provisioning.`}
+          title={fillPlatform(t.entityManager.emptyTitle, { label })}
+          description={fillPlatform(t.entityManager.emptyDescription, { label })}
         />
       ) : (
         <div className="overflow-x-auto rounded-xl border border-border/60">
           <table className="w-full text-sm">
             <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
               <tr>
-                <th className="px-4 py-2.5">Name</th>
-                <th className="px-4 py-2.5">Slug</th>
-                <th className="px-4 py-2.5">Type</th>
-                <th className="px-4 py-2.5">Status</th>
-                <th className="px-4 py-2.5 text-right">Actions</th>
+                <th className="px-4 py-2.5">{t.common.name}</th>
+                <th className="px-4 py-2.5">{t.common.slug}</th>
+                <th className="px-4 py-2.5">{t.common.type}</th>
+                <th className="px-4 py-2.5">{t.common.status}</th>
+                <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
@@ -93,7 +96,7 @@ export function EntityManager({
                     <td className="px-4 py-2.5">
                       <div className="flex flex-wrap justify-end gap-1.5">
                         <Button size="sm" variant="ghost" disabled={busy} onClick={() => setEditing(entity)}>
-                          Edit
+                          {t.common.edit}
                         </Button>
                         {mode === "tenant" && entity.status !== "suspended" ? (
                           <Button
@@ -103,11 +106,11 @@ export function EntityManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${entity.id}:suspend`, () => suspendTenantAction({ id: entity.id }), {
-                                success: `${label} suspended`,
+                                success: fillPlatform(t.entityManager.toastSuspended, { label }),
                               })
                             }
                           >
-                            Suspend
+                            {t.common.suspend}
                           </Button>
                         ) : null}
                         {entity.status === "suspended" || entity.status === "inactive" ? (
@@ -118,11 +121,11 @@ export function EntityManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${entity.id}:activate`, () => activateTenantAction({ id: entity.id }), {
-                                success: `${label} activated`,
+                                success: fillPlatform(t.entityManager.toastActivated, { label }),
                               })
                             }
                           >
-                            Activate
+                            {t.common.activate}
                           </Button>
                         ) : null}
                         {entity.status !== "archived" ? (
@@ -133,11 +136,11 @@ export function EntityManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${entity.id}:archive`, () => archiveTenantAction({ id: entity.id }), {
-                                success: `${label} archived`,
+                                success: fillPlatform(t.entityManager.toastArchived, { label }),
                               })
                             }
                           >
-                            Archive
+                            {t.common.archive}
                           </Button>
                         ) : (
                           <Button
@@ -147,11 +150,11 @@ export function EntityManager({
                             disabled={busy}
                             onClick={() =>
                               run(`${entity.id}:restore`, () => restoreTenantAction({ id: entity.id }), {
-                                success: `${label} restored`,
+                                success: fillPlatform(t.entityManager.toastRestored, { label }),
                               })
                             }
                           >
-                            Restore
+                            {t.common.restore}
                           </Button>
                         )}
                         <Button
@@ -160,13 +163,13 @@ export function EntityManager({
                           loading={pendingId === `${entity.id}:delete`}
                           disabled={busy}
                           onClick={() => {
-                            if (!window.confirm(`Delete ${entity.name}? This soft-deletes the ${label.toLowerCase()}.`)) return;
+                            if (!window.confirm(fillPlatform(t.entityManager.deleteConfirm, { name: entity.name, label }))) return;
                             void run(`${entity.id}:delete`, () => deleteTenantAction({ id: entity.id }), {
-                              success: `${label} deleted`,
+                              success: fillPlatform(t.entityManager.toastDeleted, { label }),
                             });
                           }}
                         >
-                          Delete
+                          {t.common.delete}
                         </Button>
                       </div>
                     </td>
@@ -184,7 +187,7 @@ export function EntityManager({
         label={label}
         onSubmit={(values) =>
           run("create", () => createTenantAction(values), {
-            success: `${label} created`,
+            success: fillPlatform(t.entityManager.toastCreated, { label }),
             onSuccess: () => setCreateOpen(false),
           })
         }
@@ -198,7 +201,7 @@ export function EntityManager({
           onClose={() => setEditing(null)}
           onSubmit={(values) =>
             run("edit", () => updateTenantAction({ id: editing.id, ...values }), {
-              success: `${label} updated`,
+              success: fillPlatform(t.entityManager.toastUpdated, { label }),
               onSuccess: () => setEditing(null),
             })
           }
@@ -222,6 +225,7 @@ function CreateEntityModal({
   onSubmit: (values: { name: string; slug: string; tenantType: string; legalName?: string }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [tenantType, setTenantType] = useState("business");
@@ -231,40 +235,40 @@ function CreateEntityModal({
     <Modal
       open={open}
       onOpenChange={(next) => (next ? null : onClose())}
-      title={`Create ${label}`}
-      description="Provision a new tenant organization."
+      title={fillPlatform(t.entityManager.createTitle, { label })}
+      description={t.entityManager.createDescription}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button size="sm" loading={pending} onClick={() => onSubmit({ name, slug, tenantType, legalName })}>
-            Create
+            {t.common.create}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="entity-name">Name</Label>
-          <Input id="entity-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Acme Audit LLP" />
+          <Label htmlFor="entity-name">{t.entityManager.nameLabel}</Label>
+          <Input id="entity-name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t.entityManager.namePlaceholder} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="entity-slug">Slug</Label>
-          <Input id="entity-slug" value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="acme-audit" />
+          <Label htmlFor="entity-slug">{t.entityManager.slugLabel}</Label>
+          <Input id="entity-slug" value={slug} onChange={(e) => setSlug(e.target.value)} placeholder={t.entityManager.slugPlaceholder} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="entity-type">Tenant type</Label>
+          <Label htmlFor="entity-type">{t.entityManager.tenantTypeLabel}</Label>
           <Select id="entity-type" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
             {TENANT_TYPE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {t.options.tenantType[option.value]}
               </option>
             ))}
           </Select>
         </div>
         <div className="space-y-1">
-          <Label htmlFor="entity-legal">Legal name (optional)</Label>
+          <Label htmlFor="entity-legal">{t.entityManager.legalNameLabel}</Label>
           <Input id="entity-legal" value={legalName} onChange={(e) => setLegalName(e.target.value)} />
         </div>
       </div>
@@ -285,6 +289,7 @@ function EditEntityModal({
   onSubmit: (values: { name?: string; tenantType?: string }) => void;
   pending: boolean;
 }) {
+  const t = usePlatformLabels();
   const [name, setName] = useState(entity.name);
   const [tenantType, setTenantType] = useState(entity.tenantType);
 
@@ -292,29 +297,29 @@ function EditEntityModal({
     <Modal
       open
       onOpenChange={(next) => (next ? null : onClose())}
-      title={`Edit ${label}`}
+      title={fillPlatform(t.entityManager.editTitle, { label })}
       footer={
         <>
           <Button variant="outline" size="sm" onClick={onClose}>
-            Cancel
+            {t.common.cancel}
           </Button>
           <Button size="sm" loading={pending} onClick={() => onSubmit({ name, tenantType })}>
-            Save
+            {t.common.save}
           </Button>
         </>
       }
     >
       <div className="space-y-3">
         <div className="space-y-1">
-          <Label htmlFor="edit-name">Name</Label>
+          <Label htmlFor="edit-name">{t.entityManager.nameLabel}</Label>
           <Input id="edit-name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="edit-type">Tenant type</Label>
+          <Label htmlFor="edit-type">{t.entityManager.tenantTypeLabel}</Label>
           <Select id="edit-type" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
             {TENANT_TYPE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {t.options.tenantType[option.value]}
               </option>
             ))}
           </Select>

@@ -1,10 +1,13 @@
 import { loadPlatformFeatureFlags, loadOrganizationOptions } from "@/lib/platform-console/data";
 import { PlatformPageHeader } from "@/components/platform-console/platform-primitives";
 import { FeatureFlagManager } from "@/components/platform-console/managers/feature-flag-manager";
+import { getPlatformLabels } from "@/i18n/platform-labels";
 
 export const dynamic = "force-dynamic";
 
-export default async function PlatformFeatureFlagsPage() {
+export default async function PlatformFeatureFlagsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = getPlatformLabels(locale);
   const [flags, organizations] = await Promise.all([
     loadPlatformFeatureFlags(),
     loadOrganizationOptions(),
@@ -15,8 +18,9 @@ export default async function PlatformFeatureFlagsPage() {
   return (
     <div className="space-y-8">
       <PlatformPageHeader
-        title="Feature Flags"
-        description="Create, enable, disable, and retire platform and tenant scoped feature flags. Changes apply immediately."
+        eyebrow={t.eyebrow}
+        title={t.pages.featureFlags.title}
+        description={t.pages.featureFlags.description}
       />
       <FeatureFlagManager flags={productFlags} organizations={organizations} />
     </div>

@@ -51,10 +51,12 @@ export function PlatformSection(props: { title: string; description?: string; ch
   );
 }
 
-export function PlatformPageHeader(props: { title: string; description: string }) {
+export function PlatformPageHeader(props: { title: string; description: string; eyebrow?: string }) {
   return (
     <header className="space-y-2">
-      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Platform Owner Console</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+        {props.eyebrow ?? "Platform Owner Console"}
+      </p>
       <h1 className="text-3xl font-semibold tracking-tight">{props.title}</h1>
       <p className="max-w-3xl text-sm text-muted-foreground">{props.description}</p>
     </header>

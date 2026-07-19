@@ -6,16 +6,15 @@ import {
   PlatformAccountMenu,
   PlatformDetailRow,
 } from "@/components/platform-console/platform-account-menu";
-import { getConsoleStrings, type ConsoleLocale } from "@/lib/platform-console/i18n";
+import { usePlatformLabels } from "@/i18n/use-platform-labels";
 
 /**
  * The single Platform Console header. No tenant/workspace/company switchers.
- * Platform Owner only. Language and appearance are user-interface preferences
- * exposed through the account menu and never affect business logic.
+ * Platform Owner only. Language follows the current URL locale (switched via the
+ * account menu using the shared application localization); appearance is a
+ * user-interface preference. Neither affects business logic.
  */
 export function PlatformHeader({
-  locale,
-  consoleLocale,
   ownerEmail,
   environment,
   version,
@@ -23,8 +22,6 @@ export function PlatformHeader({
   gitCommit,
   databaseVersion,
 }: {
-  locale: string;
-  consoleLocale: ConsoleLocale;
   ownerEmail: string;
   environment: string;
   version: string;
@@ -32,7 +29,7 @@ export function PlatformHeader({
   gitCommit?: string;
   databaseVersion?: string;
 }) {
-  const t = getConsoleStrings(consoleLocale);
+  const t = usePlatformLabels();
   const [aboutOpen, setAboutOpen] = useState(false);
   const displayName = deriveDisplayName(ownerEmail);
 
@@ -60,8 +57,6 @@ export function PlatformHeader({
 
       <div className="flex shrink-0 items-center gap-2">
         <PlatformAccountMenu
-          locale={locale}
-          consoleLocale={consoleLocale}
           displayName={displayName}
           email={ownerEmail}
           environment={environment}

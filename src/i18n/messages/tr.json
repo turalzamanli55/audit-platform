@@ -6646,5 +6646,363 @@
         "allTypes": "Tüm türler"
       }
     }
+  },
+  "platform": {
+    "eyebrow": "Platform Sahibi Konsolu",
+    "header": {
+      "console": "Platform Sahibi Konsolu",
+      "account": "Hesap",
+      "profile": "Profil",
+      "language": "Dil",
+      "appearance": "Görünüm",
+      "about": "Platform Hakkında",
+      "signOut": "Oturumu kapat",
+      "signingOut": "Oturum kapatılıyor…"
+    },
+    "appearance": { "system": "Sistem", "light": "Açık", "dark": "Koyu" },
+    "about": {
+      "title": "Platform Hakkında",
+      "version": "Platform Sürümü",
+      "environment": "Ortam",
+      "buildDate": "Derleme Tarihi",
+      "gitCommit": "Git Commit",
+      "databaseVersion": "Veritabanı Sürümü",
+      "notAvailable": "Kullanılamıyor"
+    },
+    "profileDialog": {
+      "title": "Profil",
+      "email": "E-posta",
+      "role": "Rol",
+      "owner": "Platform Sahibi",
+      "environment": "Ortam"
+    },
+    "nav": {
+      "heading": "Platform",
+      "dashboard": "Kontrol Paneli",
+      "search": "Arama",
+      "companies": "Şirketler",
+      "organizations": "Organizasyonlar",
+      "users": "Kullanıcılar",
+      "subscriptions": "Abonelikler",
+      "licenses": "Lisanslar",
+      "plans": "Planlar",
+      "modules": "Modüller",
+      "featureFlags": "Özellik Bayrakları",
+      "security": "Güvenlik Olayları",
+      "activity": "Etkinlik",
+      "loginHistory": "Oturum Açma Geçmişi",
+      "database": "Veritabanı",
+      "devops": "DevOps",
+      "settings": "Ayarlar"
+    },
+    "common": {
+      "create": "Oluştur", "edit": "Düzenle", "save": "Kaydet", "cancel": "İptal", "delete": "Sil",
+      "suspend": "Askıya al", "activate": "Etkinleştir", "archive": "Arşivle", "restore": "Geri yükle",
+      "enable": "Etkinleştir", "disable": "Devre dışı bırak", "reset": "Sıfırla", "revoke": "İptal et", "resend": "Yeniden gönder",
+      "send": "Gönder", "transfer": "Aktar", "assign": "Ata", "pause": "Duraklat", "resume": "Devam ettir", "expire": "Süresini doldur",
+      "exportCsv": "CSV Dışa Aktar", "exportJson": "JSON Dışa Aktar",
+      "actions": "İşlemler", "status": "Durum", "name": "Ad", "slug": "Slug", "type": "Tür",
+      "role": "Rol", "scope": "Kapsam", "workspace": "Çalışma Alanı", "company": "Şirket", "email": "E-posta",
+      "plan": "Plan", "seats": "Koltuklar", "expires": "Sona Erer", "expiration": "Sona Erme",
+      "all": "Tümü", "yes": "Evet", "no": "Hayır", "none": "Yok", "perpetual": "Süresiz",
+      "protected": "Korumalı", "active": "Etkin", "suspended": "Askıya alındı", "platformOwner": "Platform Sahibi",
+      "search": "Arama", "tenant": "Kiracı", "organization": "Organizasyon", "user": "Kullanıcı",
+      "created": "Oluşturuldu", "updated": "Güncellendi", "date": "Tarih", "ip": "IP", "device": "Cihaz",
+      "browser": "Tarayıcı", "result": "Sonuç", "state": "Durum", "module": "Modül", "value": "Değer",
+      "setting": "Ayar", "notReady": "Hazır Değil", "systemReady": "Sistem Hazır",
+      "operational": "Çalışıyor", "attention": "Dikkat", "down": "Kapalı", "healthy": "Sağlıklı",
+      "pass": "GEÇTİ", "fail": "BAŞARISIZ", "info": "Bilgi", "warning": "Uyarı", "critical": "Kritik",
+      "forceLogout": "Zorla oturumu kapat", "resetPassword": "Parolayı sıfırla", "code": "Kod", "model": "Model",
+      "seatLimit": "Koltuk Sınırı", "default": "Varsayılan", "members": "Üyeler", "client": "Müşteri",
+      "lastSignIn": "Son giriş", "lastLogin": "Son oturum açma", "action": "İşlem", "resource": "Kaynak",
+      "event": "Olay", "severity": "Önem", "timestamp": "Zaman Damgası", "actor": "Aktör"
+    },
+    "dataTable": { "empty": "Henüz kayıt yok." },
+    "timeline": { "noEventsTitle": "Olay yok", "empty": "Henüz herhangi bir etkinlik kaydedilmedi." },
+    "options": {
+      "tenantType": { "solo": "Bireysel", "business": "İşletme", "enterprise": "Kurumsal" },
+      "roles": {
+        "organization_owner": "Organizasyon Sahibi",
+        "organization_admin": "Organizasyon Yöneticisi",
+        "workspace_admin": "Çalışma Alanı Yöneticisi",
+        "manager": "Yönetici",
+        "member": "Üye",
+        "viewer": "Görüntüleyici"
+      },
+      "modules": {
+        "planning": "Planlama", "materiality": "Önemlilik", "risk": "Risk", "working_papers": "Çalışma Kâğıtları",
+        "lead_sheets": "Ana Sayfalar", "reporting": "Raporlama", "financial_statements": "Finansal Tablolar",
+        "ifrs_notes": "IFRS Notları", "ai": "AI", "ocr": "OCR", "import": "İçe Aktarma", "analytics": "Analitik"
+      }
+    },
+    "pages": {
+      "dashboard": {
+        "title": "Platform Kontrol Paneli",
+        "description": "Tüm SaaS platformu için canlı iş metrikleri. Her değer doğrudan veritabanından okunur."
+      },
+      "activity": {
+        "title": "Etkinlik Merkezi",
+        "description": "Her platform denetim ve güvenlik olayını arayın, filtreleyin ve dışa aktarın. Her değişiklik için aktör ve şirket çözümlenir."
+      },
+      "database": {
+        "title": "Veritabanı",
+        "description": "Veritabanı bağlantısı, geçiş durumu ve platform veri ayak izi.",
+        "dbStatus": "Veritabanı Durumu", "migrationStatus": "Geçiş Durumu", "tenants": "Kiracılar",
+        "subscriptions": "Abonelikler", "planTemplates": "Plan Şablonları", "licenseTemplates": "Lisans Şablonları",
+        "featureFlags": "Özellik Bayrakları", "invitations": "Davetler"
+      },
+      "loginHistory": {
+        "title": "Oturum Açma Geçmişi",
+        "description": "Denetim günlüğünden alınan, her kiracıdaki gerçek kimlik doğrulama olayları.",
+        "empty": "Henüz kimlik doğrulama olayı kaydedilmedi."
+      },
+      "modules": {
+        "title": "Modüller",
+        "description": "Modülleri platform, kiracı, çalışma alanı veya kullanıcı bazında etkinleştirin ya da devre dışı bırakın. Geçersiz kılmalar plan yetkilerinin üzerine katman oluşturur."
+      },
+      "monitoring": {
+        "title": "İzleme",
+        "description": "Tüm kiracılar genelinde canlı platform güvenliği ve izleme olay akışı.",
+        "empty": "İzleme olayı kaydedilmedi."
+      },
+      "search": {
+        "title": "Genel Arama",
+        "description": "Her şirketi, kullanıcıyı, organizasyonu, çalışma alanını, görevi, daveti, lisansı ve olayı anında arayın."
+      },
+      "featureFlags": {
+        "title": "Özellik Bayrakları",
+        "description": "Platform ve kiracı kapsamlı özellik bayraklarını oluşturun, etkinleştirin, devre dışı bırakın ve emekliye ayırın. Değişiklikler anında uygulanır."
+      },
+      "settings": {
+        "title": "Ayarlar",
+        "description": "Platform düzeyinde yapılandırma ve mevcut önyükleme durumu.",
+        "owner": "Platform Sahibi", "environment": "Ortam", "deployment": "Dağıtım",
+        "bootstrapCompleted": "Önyükleme Tamamlandı", "systemReady": "Sistem Hazır"
+      },
+      "users": {
+        "title": "Kullanıcılar",
+        "description": "Tam profilini, oturumlarını, izinlerini ve etkinliğini incelemek için herhangi bir kullanıcıyı açın."
+      },
+      "organizations": {
+        "title": "Organizasyonlar",
+        "description": "Organizasyon kayıtları her kiracının temelini oluşturur. Organizasyonları burada oluşturun, düzenleyin, arşivleyin, geri yükleyin ve silin."
+      },
+      "licenses": {
+        "title": "Lisanslar",
+        "description": "Kiracılara lisans şablonları atayın, koltuk kullanımını ve sona erme tarihini hesaplayın ve lisansları iptal edin."
+      },
+      "devops": {
+        "title": "DevOps",
+        "description": "Dağıtım profili ve platform operasyonları. Aynı kod tabanı her dağıtım profiline hizmet eder.",
+        "environment": "Ortam", "deployment": "Dağıtım", "bootstrap": "Önyükleme",
+        "complete": "Tamamlandı", "pending": "Beklemede", "profilesTitle": "Desteklenen Dağıtım Profilleri",
+        "colProfile": "Profil", "colDescription": "Açıklama",
+        "cloudSaas": "Cloud SaaS", "dedicatedCloud": "Özel Bulut", "onPremise": "Yerinde",
+        "cloudSaasDesc": "Paylaşımlı çok kiracılı barındırma", "dedicatedCloudDesc": "İzole tek kiracılı barındırma",
+        "onPremiseDesc": "Müşteri tarafından yönetilen dağıtım"
+      },
+      "tenants": {
+        "title": "Kiracılar",
+        "description": "Her denetim firması izole bir kiracıdır. Tam yönetim çalışma alanını incelemek için bir şirket açın."
+      },
+      "plans": {
+        "title": "Planlar",
+        "description": "Bireysel, işletme ve kurumsal kiracı modelleri için varsayılan abonelik plan şablonları.",
+        "colCode": "Kod", "colName": "Ad", "colModel": "Model", "colSeatLimit": "Koltuk Sınırı", "colDefault": "Varsayılan",
+        "empty": "Tohumlanmış plan şablonu yok."
+      },
+      "subscriptions": {
+        "title": "Abonelikler",
+        "description": "Abonelikler oluşturun, planları ve koltukları yükseltin veya düşürün ve duraklatın, devam ettirin, süresini doldurun ya da iptal edin."
+      },
+      "companyDetailPage": {
+        "back": "← Şirketlere dön",
+        "description": "Şirket yönetimi çalışma alanı · {slug}"
+      },
+      "userDetailPage": {
+        "back": "← Kullanıcılara dön",
+        "description": "Kullanıcı yönetimi profili · {email}"
+      }
+    },
+    "dashboard": {
+      "sections": {
+        "tenants": "Kiracılar", "accountsSeats": "Hesaplar ve Koltuklar", "licenses": "Lisanslar",
+        "securityHealth": "Güvenlik ve Sağlık", "bootstrapValidation": "Önyükleme Doğrulaması"
+      },
+      "totalCompanies": "Toplam Şirket", "enterprise": "Kurumsal", "business": "İşletme", "solo": "Bireysel",
+      "users": "Kullanıcılar", "seatsUsed": "Kullanılan Koltuklar", "ofPurchased": "satın alınan {count} adetten",
+      "seatsAvailable": "Kullanılabilir Koltuklar", "sessions24h": "Oturumlar (24s)", "loginEvents": "Oturum açma olayları",
+      "activeLicenses": "Etkin Lisanslar", "expiring30": "Sona Eriyor (30 gün)", "expiredLicenses": "Süresi Dolmuş Lisanslar",
+      "storageBuckets": "Depolama Kovaları", "auditEvents": "Denetim Olayları", "securityEvents": "Güvenlik Olayları",
+      "criticalDetail": "{count} kritik", "databaseHealth": "Veritabanı Sağlığı", "healthy": "Sağlıklı", "down": "Kapalı",
+      "platformVersion": "Platform Sürümü"
+    },
+    "entityManager": {
+      "create": "{label} Oluştur", "createTitle": "{label} Oluştur", "editTitle": "{label} Düzenle",
+      "createDescription": "Yeni bir kiracı organizasyonu sağlayın.",
+      "emptyTitle": "Henüz {label} yok", "emptyDescription": "Sağlamaya başlamak için ilk {label} öğesini oluşturun.",
+      "nameLabel": "Ad", "slugLabel": "Slug", "tenantTypeLabel": "Kiracı türü", "legalNameLabel": "Yasal ad (isteğe bağlı)",
+      "namePlaceholder": "Acme Audit LLP", "slugPlaceholder": "acme-audit",
+      "deleteConfirm": "{name} silinsin mi? Bu, {label} öğesini geçici olarak siler.",
+      "toastSuspended": "{label} askıya alındı", "toastActivated": "{label} etkinleştirildi", "toastArchived": "{label} arşivlendi",
+      "toastRestored": "{label} geri yüklendi", "toastDeleted": "{label} silindi", "toastCreated": "{label} oluşturuldu",
+      "toastUpdated": "{label} güncellendi"
+    },
+    "userManager": {
+      "tabUsers": "Kullanıcılar ({count})", "tabInvitations": "Davetler ({count})",
+      "createUser": "Kullanıcı oluştur", "membership": "Üyelik", "sendInvitation": "Davet gönder",
+      "colEmail": "E-posta", "colName": "Ad", "colLastSignIn": "Son giriş", "colRole": "Rol",
+      "usersEmptyTitle": "Kullanıcı yok", "usersEmptyDescription": "Bir kullanıcı oluşturun veya bir davet gönderin.",
+      "invitationsEmptyTitle": "Davet yok", "invitationsEmptyDescription": "Başlamak için bir kiracı kullanıcısını davet edin.",
+      "membershipTitle": "Üyeliği yönet", "membershipDescription": "{email} kullanıcısını şirketler arasında atayın veya aktarın.",
+      "assignAsAdmin": "Yönetici olarak ata", "transferHere": "Buraya aktar",
+      "membershipHint": "\u201cYönetici olarak ata\u201d seçilen şirkette Şirket Yöneticisi yetkisi verir. \u201cBuraya aktar\u201d kullanıcının şirket üyeliğini seçilen role sahip olarak seçilen şirkete taşır.",
+      "roleOnTransfer": "Aktarımdaki rol",
+      "createUserTitle": "Kullanıcı oluştur",
+      "createUserDescription": "Kimliği doğrulanmış bir kullanıcı oluşturur ve isteğe bağlı olarak bir kiracı, organizasyon ve rol atar.",
+      "tempPassword": "Geçici parola", "fullNameOptional": "Tam ad (isteğe bağlı)",
+      "assignOrgOptional": "Organizasyon ata (isteğe bağlı)", "noAssignment": "Atama yok",
+      "inviteTitle": "Davet gönder", "inviteDescription": "Bir kiracı kullanıcısını e-posta ile davet edin.",
+      "expiresInDays": "Sona erme (gün)",
+      "deleteConfirm": "{email} silinsin mi? Bu geri alınamaz.",
+      "toastActivated": "Kullanıcı etkinleştirildi", "toastSuspended": "Kullanıcı askıya alındı", "toastResetSent": "Parola sıfırlama e-postası gönderildi",
+      "toastSessionsRevoked": "Oturumlar iptal edildi", "toastDeleted": "Kullanıcı silindi", "toastInviteResent": "Davet yeniden gönderildi",
+      "toastInviteRevoked": "Davet iptal edildi", "toastCreated": "Kullanıcı oluşturuldu", "toastInviteSent": "Davet gönderildi",
+      "toastAdminAssigned": "Şirket yöneticisi atandı", "toastTransferred": "Kullanıcı aktarıldı"
+    },
+    "licenseManager": {
+      "sectionTitle": "Atanan lisanslar (koltuk kullanımı ve sona erme)",
+      "assign": "Lisans ata", "colTenant": "Kiracı", "colPlan": "Plan", "colSeats": "Koltuklar", "colExpires": "Sona Erer",
+      "emptyTitle": "Atanan lisans yok", "emptyDescription": "Bir kiracıya lisans şablonu atayın.",
+      "assignTitle": "Lisans ata", "assignDescription": "Hesaplanmış sona erme tarihiyle lisans şablonundan bir abonelik oluşturur.",
+      "templateLabel": "Lisans şablonu", "seatsFree": "{used}/{limit} ({free} boş)",
+      "revokeConfirm": "Bu lisans iptal edilsin mi?", "toastRevoked": "Lisans iptal edildi", "toastAssigned": "Lisans atandı"
+    },
+    "moduleManager": {
+      "setAccess": "Modül erişimini ayarla", "currentFlags": "Mevcut modül bayrakları",
+      "scopeLabel": "Kapsam", "scopePlatform": "Platform (tüm kiracılar)", "scopeTenant": "Kiracı",
+      "moduleLabel": "Modül", "colModule": "Modül", "colScope": "Kapsam", "colState": "Durum",
+      "emptyTitle": "Modül geçersiz kılması yok", "emptyDescription": "Modüller varsayılan olarak plan yetkilerini kullanır.",
+      "hint": "Çalışma alanı ve kullanıcı bazlı geçersiz kılmalar işlem tarafından desteklenir ancak henüz bu formda gösterilmez.",
+      "toastEnabled": "Modül etkinleştirildi", "toastDisabled": "Modül devre dışı bırakıldı"
+    },
+    "subscriptionManager": {
+      "create": "Abonelik oluştur", "changePlan": "Planı değiştir", "cancelAction": "İptal",
+      "colTenant": "Kiracı", "colPlan": "Plan", "colSeats": "Koltuklar",
+      "emptyTitle": "Abonelik yok", "emptyDescription": "Bir kiracı için abonelik oluşturun.",
+      "createTitle": "Abonelik oluştur", "changeTitle": "Planı / koltukları değiştir",
+      "changeDescription": "Planı veya koltuk sınırını değiştirerek yükseltin ya da düşürün.",
+      "tenantTypeLabel": "Kiracı türü", "seatLimitLabel": "Koltuk sınırı", "expirationOptional": "Sona erme tarihi (isteğe bağlı)",
+      "cancelConfirm": "Bu abonelik iptal edilsin mi?",
+      "toastPaused": "Abonelik duraklatıldı", "toastResumed": "Abonelik devam ettirildi", "toastExpired": "Aboneliğin süresi doldu",
+      "toastCancelled": "Abonelik iptal edildi", "toastCreated": "Abonelik oluşturuldu", "toastUpdated": "Abonelik güncellendi"
+    },
+    "featureFlagManager": {
+      "create": "Bayrak oluştur", "colFlag": "Bayrak", "colScope": "Kapsam", "colState": "Durum",
+      "emptyTitle": "Özellik bayrağı yok", "emptyDescription": "Bir platform veya kiracı özellik bayrağı oluşturun.",
+      "createTitle": "Özellik bayrağı oluştur",
+      "createDescription": "Platform kapsamlı bayraklar her yerde geçerlidir; kiracı kapsamlı bayraklar tek bir şirketi geçersiz kılar.",
+      "flagCodeLabel": "Bayrak kodu", "stateLabel": "Durum", "scopeLabel": "Kapsam",
+      "scopePlatform": "Platform (tüm kiracılar)", "scopeTenant": "Kiracı", "flagCodePlaceholder": "new_dashboard",
+      "setFlagState": "Bayrak durumunu ayarla", "deleteConfirm": "{code} bayrağı silinsin mi?",
+      "states": { "enabled": "etkin", "disabled": "devre dışı", "preview": "önizleme", "experimental": "deneysel", "deprecated": "kullanımdan kaldırıldı" },
+      "toastDisabled": "Bayrak devre dışı bırakıldı", "toastEnabled": "Bayrak etkinleştirildi", "toastStateUpdated": "Bayrak durumu güncellendi",
+      "toastDeleted": "Bayrak silindi", "toastCreated": "Özellik bayrağı oluşturuldu"
+    },
+    "activityCenter": {
+      "searchPlaceholder": "Olay, aktör, şirket",
+      "from": "Başlangıç", "to": "Bitiş", "summary": "{total} olaydan {count} tanesi", "reset": "Sıfırla",
+      "emptyTitle": "Eşleşen etkinlik yok", "emptyDescription": "Daha fazla olay görmek için filtreleri ayarlayın.",
+      "csvCompany": "Şirket"
+    },
+    "globalSearch": {
+      "placeholder": "Şirketleri, kullanıcıları, çalışma alanlarını, görevleri, lisansları, olayları arayın…",
+      "summaryOne": "{count} sonuç", "summaryMany": "{count} sonuç",
+      "prompt": "Tüm platformda arama yapmak için yazmaya başlayın.",
+      "emptyTitle": "Sonuç yok", "emptyDescription": "Farklı bir terim veya filtre deneyin.",
+      "types": {
+        "Company": "Şirket", "User": "Kullanıcı", "Organization": "Organizasyon", "Workspace": "Çalışma Alanı",
+        "Engagement": "Görev", "Invitation": "Davet", "License": "Lisans",
+        "Security Event": "Güvenlik Olayı", "Audit Event": "Denetim Olayı"
+      }
+    },
+    "companyDetail": {
+      "tabs": {
+        "overview": "Genel Bakış", "users": "Kullanıcılar ({count})", "organizations": "Organizasyonlar ({count})",
+        "workspaces": "Çalışma Alanları ({count})", "engagements": "Görevler ({count})", "license": "Lisans",
+        "seats": "Koltuklar", "modules": "Modüller ({count})", "activity": "Etkinlik", "auditLogs": "Denetim Günlükleri",
+        "loginHistory": "Oturum Açma Geçmişi", "security": "Güvenlik", "settings": "Ayarlar"
+      },
+      "overview": {
+        "company": "Şirket", "licenseSeats": "Lisans ve Koltuklar", "details": "Ayrıntılar", "recentTimeline": "Son Zaman Çizelgesi",
+        "status": "Durum", "type": "Tür", "activeUsers": "Etkin Kullanıcılar", "workspaces": "Çalışma Alanları",
+        "engagements": "Görevler", "modulesOn": "Etkin Modüller", "security": "Güvenlik", "lastActivity": "Son Etkinlik",
+        "riskSuffix": "{count} risk", "clear": "Temiz",
+        "plan": "Plan", "seatsPurchased": "Satın Alınan Koltuklar", "seatsUsed": "Kullanılan Koltuklar", "seatsAvailable": "Kullanılabilir Koltuklar",
+        "licenseStatus": "Lisans Durumu", "expiration": "Sona Erme",
+        "legalName": "Yasal ad", "slug": "Slug", "created": "Oluşturuldu", "createdBy": "Oluşturan",
+        "platformManaged": "Platform tarafından yönetiliyor", "description": "Açıklama",
+        "timelineEmpty": "Henüz kayıtlı etkinlik yok."
+      },
+      "organizations": { "colOrganization": "Organizasyon", "colWorkspace": "Çalışma Alanı", "colStatus": "Durum", "empty": "Henüz müşteri organizasyonu yok." },
+      "workspaces": { "colWorkspace": "Çalışma Alanı", "colMembers": "Üyeler", "colStatus": "Durum", "colCreated": "Oluşturuldu", "empty": "Henüz çalışma alanı yok." },
+      "engagements": { "colEngagement": "Denetim / Görev", "colClient": "Müşteri", "colType": "Tür", "colStatus": "Durum", "colUpdated": "Güncellendi", "empty": "Henüz görev yok." },
+      "modules": { "colModule": "Modül", "colState": "Durum", "colScope": "Kapsam", "colUpdated": "Güncellendi", "empty": "Modül geçersiz kılması yok — modüller plan yetkilerini takip eder." },
+      "activity": { "timelineEmpty": "Bu şirket için kaydedilmiş etkinlik yok." },
+      "auditLogs": { "colTimestamp": "Zaman Damgası", "colAction": "İşlem", "colResource": "Kaynak", "colActor": "Aktör", "empty": "Kaydedilmiş denetim olayı yok." },
+      "loginHistory": { "colDate": "Tarih", "colUser": "Kullanıcı", "colIp": "IP", "colDevice": "Cihaz", "colBrowser": "Tarayıcı", "colResult": "Sonuç", "empty": "Kaydedilmiş oturum açma olayı yok." },
+      "users": {
+        "invite": "Kullanıcı davet et", "createUser": "Kullanıcı oluştur", "emptyTitle": "Kullanıcı yok",
+        "emptyDescription": "Bu şirket için ilk kullanıcıyı davet edin veya oluşturun.",
+        "colUser": "Kullanıcı", "colRole": "Rol", "colScope": "Kapsam", "colWorkspace": "Çalışma Alanı",
+        "colLastLogin": "Son oturum açma", "colStatus": "Durum", "colActions": "İşlemler",
+        "makeAdmin": "Yönetici yap", "deleteConfirm": "{email} silinsin mi?",
+        "toastEnabled": "Kullanıcı etkinleştirildi", "toastDisabled": "Kullanıcı devre dışı bırakıldı", "toastResetSent": "Sıfırlama e-postası gönderildi",
+        "toastSessionsRevoked": "Oturumlar iptal edildi", "toastAdminAssigned": "Yönetici atandı", "toastCreated": "Kullanıcı oluşturuldu",
+        "toastInviteSent": "Davet gönderildi", "toastTransferred": "Kullanıcı aktarıldı", "toastDeleted": "Kullanıcı silindi"
+      },
+      "license": { "enabledModules": "Etkin modüller", "planDefaults": "Plan varsayılanları", "timelineTitle": "Lisans Zaman Çizelgesi", "timelineEmpty": "Henüz lisans değişikliği kaydedilmedi." },
+      "seats": { "purchased": "Satın Alınan", "used": "Kullanılan", "available": "Kullanılabilir", "timelineTitle": "Koltuk Zaman Çizelgesi (üyelik ve lisans değişiklikleri)", "timelineEmpty": "Henüz koltuk etkinliği kaydedilmedi." },
+      "security": { "suspensions": "Askıya Almalar", "reactivations": "Yeniden Etkinleştirmeler", "passwordResets": "Parola Sıfırlamaları", "forceLogouts": "Zorla Oturum Kapatmalar", "securityEvents": "Güvenlik Olayları", "riskEvents": "Risk Olayları", "timelineTitle": "Risk ve Güvenlik Olayları", "timelineEmpty": "Yüksek düzeyli güvenlik olayı yok." },
+      "settings": {
+        "statusHeading": "Şirket durumu", "currentStatus": "Mevcut durum:", "reactivate": "Yeniden etkinleştir",
+        "deleteConfirm": "{name} silinsin mi? Bu, şirketi geçici olarak siler.",
+        "exportHeading": "Dışa Aktar", "exportText": "Tam şirket yönetimi paketini indirin.", "exportUsersCsv": "Kullanıcıları CSV olarak dışa aktar",
+        "toastSuspended": "Şirket askıya alındı", "toastReactivated": "Şirket yeniden etkinleştirildi", "toastArchived": "Şirket arşivlendi",
+        "toastRestored": "Şirket geri yüklendi", "toastDeleted": "Şirket silindi"
+      },
+      "createUserModal": { "title": "Kullanıcı oluştur", "description": "Bu şirket içinde bir kullanıcı oluşturur. Koltuk sınırları uygulanır.", "email": "E-posta", "tempPassword": "Geçici parola", "fullName": "Tam ad (isteğe bağlı)", "role": "Rol" },
+      "inviteModal": { "title": "Kullanıcı davet et", "description": "Bu şirkete e-posta ile bir kullanıcı davet edin.", "email": "E-posta", "role": "Rol", "expiresDays": "Sona erme (gün)" },
+      "transferModal": { "title": "Kullanıcıyı aktar", "description": "Bu kullanıcının şirket üyeliğini başka bir şirkete taşıyın.", "destination": "Hedef şirket", "role": "Rol" }
+    },
+    "userDetail": {
+      "tabs": {
+        "profile": "Profil", "organizations": "Organizasyonlar ({count})", "workspaces": "Çalışma Alanları",
+        "permissions": "İzinler ({count})", "role": "Rol", "sessions": "Oturumlar ({count})",
+        "loginHistory": "Oturum Açma Geçmişi", "activity": "Etkinlik", "auditHistory": "Denetim Geçmişi",
+        "modules": "Modüller ({count})", "license": "Lisans", "security": "Güvenlik"
+      },
+      "profile": {
+        "status": "Durum", "primaryRole": "Birincil rol", "company": "Şirket", "created": "Oluşturuldu", "lastLogin": "Son oturum açma",
+        "resetPassword": "Parolayı sıfırla", "exportJson": "JSON Dışa Aktar",
+        "toastEnabled": "Kullanıcı etkinleştirildi", "toastDisabled": "Kullanıcı devre dışı bırakıldı", "toastResetSent": "Sıfırlama e-postası gönderildi", "toastSessionsRevoked": "Oturumlar iptal edildi"
+      },
+      "organizations": { "colCompany": "Şirket", "colRole": "Rol", "colScope": "Kapsam", "colWorkspace": "Çalışma Alanı", "empty": "Üyelik yok." },
+      "workspaces": { "colWorkspace": "Çalışma Alanı", "colCompany": "Şirket", "colRole": "Rol", "empty": "Çalışma alanı üyeliği yok." },
+      "permissions": { "colPermission": "İzin", "colName": "Ad", "colSource": "Kaynak (rol)", "empty": "Devralınan izin yok." },
+      "role": { "colRole": "Rol", "colScope": "Kapsam", "colCompany": "Şirket", "empty": "Atanmış rol yok." },
+      "loginHistory": { "colDate": "Tarih", "colIp": "IP", "colDevice": "Cihaz", "colBrowser": "Tarayıcı", "colResult": "Sonuç", "empty": "Kaydedilmiş oturum açma olayı yok." },
+      "activity": { "timelineEmpty": "Bu kullanıcı için kaydedilmiş etkinlik yok." },
+      "auditHistory": { "colTimestamp": "Zaman Damgası", "colAction": "İşlem", "colResource": "Kaynak", "empty": "Denetim geçmişi yok." },
+      "modules": { "colModule": "Modül", "colState": "Durum", "colScope": "Kapsam", "empty": "Modül yetkisi yok." },
+      "license": { "company": "Şirket", "plan": "Plan", "seat": "Koltuk", "status": "Durum", "expiration": "Sona Erme", "noLicense": "Bu kullanıcının şirketinin etkin bir lisansı yok." },
+      "security": { "failedLogins": "Başarısız Oturum Açmalar", "suspensions": "Askıya Almalar", "passwordChanges": "Parola Değişiklikleri", "forceLogouts": "Zorla Oturum Kapatmalar", "timelineTitle": "Güvenlik Zaman Çizelgesi", "timelineEmpty": "Yüksek düzeyli güvenlik olayı yok." },
+      "sessions": {
+        "notice": "Canlı oturum takibi, platform oturum yönetimi geçişinin uygulanmasını gerektirir. Zorla oturum kapatma, dağıtıldıktan sonra tüm oturumları iptal etmeye devam eder.",
+        "forceLogoutAll": "Zorla oturumu kapat (tüm oturumlar)", "toastAllRevoked": "Tüm oturumlar iptal edildi",
+        "colSession": "Oturum", "colStarted": "Başlangıç", "colLastSeen": "Son görülme", "colExpires": "Sona Erer", "colAge": "Süre",
+        "empty": "Etkin oturum yok.", "ageMinutes": "{count} dk", "toastRevoked": "Oturum iptal edildi"
+      }
+    }
   }
 }

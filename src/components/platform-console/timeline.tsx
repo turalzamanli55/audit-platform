@@ -8,9 +8,22 @@ function dotClass(severity: string): string {
 }
 
 /** Chronological event timeline used across company / user / license views. */
-export function Timeline({ events, empty }: { events: TimelineEvent[]; empty?: string }) {
+export function Timeline({
+  events,
+  empty,
+  emptyTitle,
+}: {
+  events: TimelineEvent[];
+  empty?: string;
+  emptyTitle?: string;
+}) {
   if (events.length === 0) {
-    return <EmptyState title="No events" description={empty ?? "No activity has been recorded yet."} />;
+    return (
+      <EmptyState
+        title={emptyTitle ?? "No events"}
+        description={empty ?? "No activity has been recorded yet."}
+      />
+    );
   }
 
   return (
