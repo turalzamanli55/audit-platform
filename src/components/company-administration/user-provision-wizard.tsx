@@ -15,7 +15,7 @@ type Props = {
   mode: "create" | "invite";
   open: boolean;
   onClose: () => void;
-  onDone: () => void;
+  onDone: (kind: "create" | "invite") => void;
   onError: (message: string) => void;
 };
 
@@ -38,11 +38,13 @@ export function UserProvisionWizard({
   const [roleSlug, setRoleSlug] = useState(data.roles[3]?.slug ?? "member");
   const [workspaceId, setWorkspaceId] = useState("");
 
+  const selectedRole = data.roles.find((r) => r.slug === roleSlug);
   const modulePreview = useMemo(() => {
-    const role = data.roles.find((r) => r.slug === roleSlug);
-    const codes = role?.permissions.map((p) => p.code) ?? [];
+    const codes = selectedRole?.permissions.map((p) => p.code) ?? [];
     return resolveModuleAccess(data.license?.moduleEntitlements ?? {}, codes);
-  }, [data.license?.moduleEntitlements, data.roles, roleSlug]);
+  }, [data.license?.moduleEntitlements, selectedRole]);
+
+  const includedModules = modulePreview.filter((m) => m.state !== "disabled");
 
   if (!open) return null;
 
@@ -78,16 +80,8 @@ export function UserProvisionWizard({
         return;
       }
 
-      if (mode === "invite" && workspaceId) {
-        // Workspace assignment after invite acceptance is done from Team → Assign workspace.
-      }
-
-      if (mode === "create" && workspaceId) {
-        // create action already assigns workspace when provided
-      }
-
       reset();
-      onDone();
+      onDone(mode);
     });
   }
 
@@ -108,17 +102,26 @@ export function UserProvisionWizard({
         aria-label={labels.wizard.cancel}
         onClick={close}
       />
-      <div className="relative z-10 flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-border bg-card shadow-2xl sm:rounded-2xl">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="user-wizard-title"
+        className="relative z-10 flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl border border-border bg-card shadow-2xl sm:rounded-3xl"
+      >
         <div className="border-b border-border px-5 py-4">
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
             {mode === "invite" ? labels.wizard.inviteTitle : labels.wizard.title}
           </p>
-          <h2 className="mt-1 text-lg font-semibold tracking-tight">{stepLabel}</h2>
-          <div className="mt-4 flex gap-1.5">
+          <h2 id="user-wizard-title" className="mt-1 text-lg font-semibold tracking-tight">
+            {stepLabel}
+          </h2>
+          <div className="mt-4 flex gap-1.5" aria-hidden>
             {STEPS.map((key, index) => (
               <div
                 key={key}
-                className={`h-1 flex-1 rounded-full ${index <= step ? "bg-foreground" : "bg-muted"}`}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
+                  index <= step ? "bg-foreground" : "bg-muted"
+                }`}
               />
             ))}
           </div>
@@ -132,9 +135,10 @@ export function UserProvisionWizard({
                 <input
                   required
                   type="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="h-11 rounded-xl border border-border bg-background px-3"
+                  className="h-11 rounded-2xl border border-border bg-background px-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </label>
               {mode === "create" ? (
@@ -143,9 +147,10 @@ export function UserProvisionWizard({
                     <span className="text-muted-foreground">{labels.wizard.fullName}</span>
                     <input
                       type="text"
+                      autoComplete="name"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="h-11 rounded-xl border border-border bg-background px-3"
+                      className="h-11 rounded-2xl border border-border bg-background px-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     />
                   </label>
                   <label className="grid gap-1.5 text-sm">
@@ -153,9 +158,10 @@ export function UserProvisionWizard({
                     <input
                       required
                       type="password"
+                      autoComplete="new-password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="h-11 rounded-xl border border-border bg-background px-3"
+                      className="h-11 rounded-2xl border border-border bg-background px-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     />
                   </label>
                 </>
@@ -166,23 +172,50 @@ export function UserProvisionWizard({
           {step === 1 ? (
             <div className="grid gap-3">
               <p className="text-sm text-muted-foreground">{labels.wizard.roleHint}</p>
-              <div className="grid gap-2">
-                {data.roles.map((role) => (
-                  <button
-                    key={role.slug}
-                    type="button"
-                    onClick={() => setRoleSlug(role.slug)}
-                    className={`rounded-xl border px-4 py-3 text-left transition ${
-                      roleSlug === role.slug
-                        ? "border-foreground bg-foreground/5"
-                        : "border-border hover:bg-muted/40"
-                    }`}
-                  >
-                    <p className="text-sm font-medium">{role.label}</p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{role.description}</p>
-                  </button>
-                ))}
+              <div className="grid gap-2" role="radiogroup" aria-label={labels.wizard.stepRole}>
+                {data.roles.map((role) => {
+                  const selected = roleSlug === role.slug;
+                  return (
+                    <button
+                      key={role.slug}
+                      type="button"
+                      role="radio"
+                      aria-checked={selected}
+                      onClick={() => setRoleSlug(role.slug)}
+                      className={`rounded-2xl border px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        selected
+                          ? "border-foreground bg-foreground/5 shadow-sm"
+                          : "border-border hover:bg-muted/40"
+                      }`}
+                    >
+                      <p className="text-sm font-semibold">{role.label}</p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">{role.description}</p>
+                    </button>
+                  );
+                })}
               </div>
+              {selectedRole ? (
+                <div className="rounded-2xl border border-border bg-muted/30 p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    {labels.wizard.includesHeading}
+                  </p>
+                  <p className="mt-1 text-sm font-medium">{selectedRole.label}</p>
+                  <ul className="mt-3 flex flex-wrap gap-1.5">
+                    {includedModules.length === 0 ? (
+                      <li className="text-xs text-muted-foreground">{labels.wizard.moduleDisabled}</li>
+                    ) : (
+                      includedModules.map((module) => (
+                        <li
+                          key={module.key}
+                          className="rounded-full bg-background px-2.5 py-1 text-[11px] font-medium"
+                        >
+                          {module.label}
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </div>
+              ) : null}
             </div>
           ) : null}
 
@@ -194,7 +227,7 @@ export function UserProvisionWizard({
                 <select
                   value={workspaceId}
                   onChange={(e) => setWorkspaceId(e.target.value)}
-                  className="h-11 rounded-xl border border-border bg-background px-3"
+                  className="h-11 rounded-2xl border border-border bg-background px-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <option value="">{labels.wizard.workspaceOptional}</option>
                   {data.workspaces.map((ws) => (
@@ -210,17 +243,23 @@ export function UserProvisionWizard({
           {step === 3 ? (
             <div className="grid gap-3">
               <p className="text-sm text-muted-foreground">{labels.wizard.modulesHint}</p>
+              <div className="rounded-2xl border border-border bg-muted/20 p-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                  {labels.wizard.effectiveAccess}
+                </p>
+                <p className="mt-1 text-sm font-medium">{selectedRole?.label}</p>
+              </div>
               <ul className="grid gap-2">
                 {modulePreview.map((module) => (
                   <li
                     key={module.key}
-                    className="flex items-start justify-between gap-3 rounded-xl border border-border px-4 py-3"
+                    className="flex items-start justify-between gap-3 rounded-2xl border border-border px-4 py-3"
                   >
                     <div>
                       <p className="text-sm font-medium">{module.label}</p>
                       <p className="mt-0.5 text-xs text-muted-foreground">{module.reason}</p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                    <span className="shrink-0 rounded-full bg-muted px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                       {module.state === "inherited"
                         ? labels.wizard.moduleInherited
                         : module.state === "enabled"
@@ -238,7 +277,7 @@ export function UserProvisionWizard({
           <button
             type="button"
             onClick={close}
-            className="h-10 rounded-xl px-3 text-sm text-muted-foreground hover:text-foreground"
+            className="h-11 rounded-2xl px-3 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {labels.wizard.cancel}
           </button>
@@ -247,7 +286,7 @@ export function UserProvisionWizard({
               <button
                 type="button"
                 onClick={() => setStep((s) => s - 1)}
-                className="h-10 rounded-xl border border-border px-4 text-sm"
+                className="h-11 rounded-2xl border border-border px-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {labels.wizard.back}
               </button>
@@ -257,7 +296,7 @@ export function UserProvisionWizard({
                 type="button"
                 disabled={step === 0 && (!email || (mode === "create" && !password))}
                 onClick={() => setStep((s) => s + 1)}
-                className="h-10 rounded-xl bg-foreground px-4 text-sm text-background disabled:opacity-40"
+                className="h-11 rounded-2xl bg-foreground px-4 text-sm font-medium text-background disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {labels.wizard.next}
               </button>
@@ -266,9 +305,10 @@ export function UserProvisionWizard({
                 type="button"
                 disabled={pending}
                 onClick={submit}
-                className="h-10 rounded-xl bg-foreground px-4 text-sm text-background disabled:opacity-40"
+                aria-busy={pending}
+                className="h-11 rounded-2xl bg-foreground px-4 text-sm font-medium text-background disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                {mode === "invite" ? labels.wizard.submitInvite : labels.wizard.submitCreate}
+                {pending ? labels.a11y.loading : mode === "invite" ? labels.wizard.submitInvite : labels.wizard.submitCreate}
               </button>
             )}
           </div>

@@ -139,7 +139,10 @@
       "healthy": "Healthy",
       "attention": "Needs attention",
       "critical": "Critical",
-      "label": "Status"
+      "label": "Status",
+      "score": "Company health score",
+      "deductions": "Why this score",
+      "noDeductions": "No deductions — everything looks healthy."
     },
     "sections": {
       "overview": "Overview",
@@ -156,27 +159,52 @@
       "companyName": "Company",
       "companyStatus": "Status",
       "plan": "Plan",
-      "expiration": "Expires",
+      "license": "License",
+      "expiration": "Expiration",
       "noPlan": "No plan assigned",
-      "purchasedSeats": "Purchased seats",
-      "usedSeats": "Used seats",
-      "availableSeats": "Available seats",
+      "administrator": "Administrator",
+      "purchasedSeats": "Purchased",
+      "usedSeats": "Used",
+      "availableSeats": "Available",
+      "usagePercent": "Usage",
+      "seatsWarning": "Seats are nearly full. Free unused accounts or request more seats.",
       "administrators": "Administrators",
-      "activeUsers": "Active users",
+      "activeUsers": "Active",
+      "disabledUsers": "Disabled",
+      "pendingInvitations": "Pending invitations",
+      "recentJoiners": "Recent joiners",
       "activeAudits": "Active audits",
+      "todaysActivity": "Today's activity",
+      "openEngagements": "Open engagements",
+      "completedReviews": "Completed reviews",
+      "recentChanges": "Recent changes",
       "workspaces": "Workspaces",
       "recentActivity": "Recent activity",
       "recentLogins": "Recent logins",
-      "securityStatus": "Security",
+      "securityStatus": "Security status",
+      "securityScore": "Security score",
+      "failedLogins": "Failed logins",
+      "passwordResets": "Password resets",
+      "forceLogout": "Force logout",
+      "alerts": "Alerts",
+      "systemHealth": "System health",
       "viewAll": "View all",
-      "none": "None"
+      "none": "None",
+      "cardCompany": "Company",
+      "cardSeats": "Seats",
+      "cardUsers": "Users",
+      "cardAudit": "Audit activity",
+      "cardSecurity": "Security",
+      "cardHealth": "System health"
     },
     "team": {
       "heading": "Team",
       "addUser": "Add user",
       "inviteUser": "Invite",
       "search": "Search team",
-      "empty": "No team members yet.",
+      "empty": "No team members yet",
+      "emptyHint": "Invite your first colleague to start collaborating on audits.",
+      "emptyCta": "Add first user",
       "email": "Email",
       "name": "Name",
       "role": "Role",
@@ -192,10 +220,14 @@
       "delete": "Remove",
       "resetPassword": "Reset password",
       "changeRole": "Change role",
-      "viewPermissions": "Permissions & access",
+      "viewPermissions": "Permissions and access",
       "confirmDelete": "Remove this person from your company? One seat will be freed.",
       "pendingInvites": "Pending invitations",
-      "revokeInvite": "Revoke"
+      "revokeInvite": "Revoke",
+      "lastLogin": "Last login",
+      "memberSince": "Member since",
+      "neverLoggedIn": "Never",
+      "modulesEnabled": "Modules"
     },
     "wizard": {
       "title": "Add team member",
@@ -221,7 +253,9 @@
       "moduleDisabled": "Disabled",
       "moduleInherited": "Inherited",
       "submitCreate": "Create user",
-      "submitInvite": "Send invitation"
+      "submitInvite": "Send invitation",
+      "includesHeading": "Automatically includes",
+      "effectiveAccess": "Effective access"
     },
     "roles": {
       "heading": "Roles",
@@ -230,20 +264,29 @@
       "scopeCompany": "Company-wide",
       "scopeWorkspace": "Workspace",
       "scopeEither": "Company or workspace",
-      "empty": "No permissions listed for this role."
+      "empty": "No permissions listed for this role.",
+      "search": "Search roles"
     },
     "seats": {
       "heading": "Seat usage",
       "purchased": "Purchased",
       "used": "Used",
       "available": "Available",
+      "usage": "Usage",
       "none": "No active plan is attached yet.",
       "holder": "User",
       "role": "Role",
+      "workspace": "Workspace",
       "created": "Created",
       "status": "Status",
       "lastLogin": "Last login",
-      "never": "Never"
+      "never": "Never",
+      "search": "Search seats",
+      "sortName": "Name",
+      "sortLogin": "Last login",
+      "sortCreated": "Created",
+      "inactiveHighlight": "Inactive or never signed in",
+      "empty": "No seat holders match your search."
     },
     "workspaces": {
       "heading": "Workspaces",
@@ -251,9 +294,11 @@
       "assign": "Assign",
       "remove": "Remove",
       "transfer": "Transfer",
-      "empty": "No workspaces yet.",
+      "empty": "No workspaces yet",
+      "emptyHint": "Workspaces organize your audit teams. Create one from your workspace setup.",
       "current": "Current workspaces",
-      "role": "Role"
+      "role": "Role",
+      "search": "Search workspaces"
     },
     "activity": {
       "heading": "Company activity",
@@ -262,14 +307,20 @@
       "filterUser": "By user",
       "filterAction": "By action",
       "export": "Export",
-      "empty": "No company activity yet.",
+      "empty": "No company activity yet",
+      "emptyHint": "Activity appears here as your team works across audits and administration.",
       "actor": "User",
       "action": "Action",
-      "when": "Date"
+      "when": "Date",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "lastWeek": "Last week",
+      "earlier": "Earlier"
     },
     "logins": {
       "heading": "Login history",
-      "empty": "No login events yet.",
+      "empty": "No login events yet",
+      "emptyHint": "Sign-in and sign-out events for your company will appear here.",
       "user": "User",
       "event": "Event",
       "ip": "IP",
@@ -304,7 +355,11 @@
       "alerts": "Security alerts",
       "failedLogins": "Failed logins",
       "suspicious": "Suspicious activity",
-      "empty": "No security events for this company."
+      "empty": "No security issues detected for this company.",
+      "noAlerts": "No Alerts",
+      "minorIssues": "Minor Issues",
+      "criticalIssues": "Critical Issues",
+      "why": "Why"
     },
     "settings": {
       "heading": "Company settings",
@@ -320,7 +375,30 @@
       "success": "Saved.",
       "forbidden": "You do not have permission for this action.",
       "readOnly": "You can view this company. Changes require administration access.",
-      "noSeats": "No seats available. Free a seat or ask your provider to increase the plan."
+      "noSeats": "No seats available. Free a seat or ask your provider to increase the plan.",
+      "userCreated": "User created successfully.",
+      "invitationSent": "Invitation sent.",
+      "roleUpdated": "Role updated.",
+      "workspaceAssigned": "Workspace updated.",
+      "passwordReset": "Password reset email sent.",
+      "userDisabled": "User disabled.",
+      "userEnabled": "User enabled.",
+      "userRemoved": "User removed from company.",
+      "dismiss": "Dismiss"
+    },
+    "search": {
+      "placeholder": "Search users, roles, workspaces, activity…",
+      "noResults": "No matches found",
+      "results": "Results"
+    },
+    "a11y": {
+      "mainNav": "Company administration sections",
+      "healthScore": "Company health score",
+      "seatProgress": "Seat usage progress",
+      "loading": "Working…",
+      "closeBanner": "Dismiss message",
+      "userAvatar": "User avatar",
+      "openSection": "Open section"
     }
   },
   "companies": {

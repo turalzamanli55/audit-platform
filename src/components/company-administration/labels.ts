@@ -7,6 +7,9 @@ export type CompanyAdministrationLabels = {
     attention: string;
     critical: string;
     label: string;
+    score: string;
+    deductions: string;
+    noDeductions: string;
   };
   sections: {
     overview: string;
@@ -23,20 +26,43 @@ export type CompanyAdministrationLabels = {
     companyName: string;
     companyStatus: string;
     plan: string;
+    license: string;
     expiration: string;
     noPlan: string;
+    administrator: string;
     purchasedSeats: string;
     usedSeats: string;
     availableSeats: string;
+    usagePercent: string;
+    seatsWarning: string;
     administrators: string;
     activeUsers: string;
+    disabledUsers: string;
+    pendingInvitations: string;
+    recentJoiners: string;
     activeAudits: string;
+    todaysActivity: string;
+    openEngagements: string;
+    completedReviews: string;
+    recentChanges: string;
     workspaces: string;
     recentActivity: string;
     recentLogins: string;
     securityStatus: string;
+    securityScore: string;
+    failedLogins: string;
+    passwordResets: string;
+    forceLogout: string;
+    alerts: string;
+    systemHealth: string;
     viewAll: string;
     none: string;
+    cardCompany: string;
+    cardSeats: string;
+    cardUsers: string;
+    cardAudit: string;
+    cardSecurity: string;
+    cardHealth: string;
   };
   team: {
     heading: string;
@@ -44,6 +70,8 @@ export type CompanyAdministrationLabels = {
     inviteUser: string;
     search: string;
     empty: string;
+    emptyHint: string;
+    emptyCta: string;
     email: string;
     name: string;
     role: string;
@@ -63,6 +91,10 @@ export type CompanyAdministrationLabels = {
     confirmDelete: string;
     pendingInvites: string;
     revokeInvite: string;
+    lastLogin: string;
+    memberSince: string;
+    neverLoggedIn: string;
+    modulesEnabled: string;
   };
   wizard: {
     title: string;
@@ -89,6 +121,8 @@ export type CompanyAdministrationLabels = {
     moduleInherited: string;
     submitCreate: string;
     submitInvite: string;
+    includesHeading: string;
+    effectiveAccess: string;
   };
   roles: {
     heading: string;
@@ -98,19 +132,28 @@ export type CompanyAdministrationLabels = {
     scopeWorkspace: string;
     scopeEither: string;
     empty: string;
+    search: string;
   };
   seats: {
     heading: string;
     purchased: string;
     used: string;
     available: string;
+    usage: string;
     none: string;
     holder: string;
     role: string;
+    workspace: string;
     created: string;
     status: string;
     lastLogin: string;
     never: string;
+    search: string;
+    sortName: string;
+    sortLogin: string;
+    sortCreated: string;
+    inactiveHighlight: string;
+    empty: string;
   };
   workspaces: {
     heading: string;
@@ -119,8 +162,10 @@ export type CompanyAdministrationLabels = {
     remove: string;
     transfer: string;
     empty: string;
+    emptyHint: string;
     current: string;
     role: string;
+    search: string;
   };
   activity: {
     heading: string;
@@ -130,13 +175,19 @@ export type CompanyAdministrationLabels = {
     filterAction: string;
     export: string;
     empty: string;
+    emptyHint: string;
     actor: string;
     action: string;
     when: string;
+    today: string;
+    yesterday: string;
+    lastWeek: string;
+    earlier: string;
   };
   logins: {
     heading: string;
     empty: string;
+    emptyHint: string;
     user: string;
     event: string;
     ip: string;
@@ -172,6 +223,10 @@ export type CompanyAdministrationLabels = {
     failedLogins: string;
     suspicious: string;
     empty: string;
+    noAlerts: string;
+    minorIssues: string;
+    criticalIssues: string;
+    why: string;
   };
   settings: {
     heading: string;
@@ -188,5 +243,28 @@ export type CompanyAdministrationLabels = {
     forbidden: string;
     readOnly: string;
     noSeats: string;
+    userCreated: string;
+    invitationSent: string;
+    roleUpdated: string;
+    workspaceAssigned: string;
+    passwordReset: string;
+    userDisabled: string;
+    userEnabled: string;
+    userRemoved: string;
+    dismiss: string;
+  };
+  search: {
+    placeholder: string;
+    noResults: string;
+    results: string;
+  };
+  a11y: {
+    mainNav: string;
+    healthScore: string;
+    seatProgress: string;
+    loading: string;
+    closeBanner: string;
+    userAvatar: string;
+    openSection: string;
   };
 };

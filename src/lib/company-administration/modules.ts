@@ -85,7 +85,7 @@ export function resolveModuleAccess(
         key: module.key,
         label: module.label,
         state: "disabled" as const,
-        reason: "Not included in your company's plan",
+        reason: "Current plan does not include this module",
       };
     }
 
@@ -103,7 +103,7 @@ export function resolveModuleAccess(
       key: module.key,
       label: module.label,
       state: "inherited" as const,
-      reason: "Included in plan and inherited from role",
+      reason: "Inherited from role and company plan",
     };
   });
 }
