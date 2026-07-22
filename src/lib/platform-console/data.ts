@@ -8,6 +8,12 @@ import {
   type PlatformHealthModel,
   type ValidationReport,
 } from "@/lib/platform-bootstrap";
+import {
+  daysUntil,
+  expirationWarningKey,
+  resolveTenantDisplayStatus,
+  resolveTenantHealth,
+} from "./tenant-lifecycle";
 
 export type PlatformDashboardData = {
   health: PlatformHealthModel;
@@ -30,11 +36,25 @@ export type TenantRow = {
   slug: string;
   tenantType: string;
   status: string;
+  displayStatus: "active" | "suspended" | "expired" | "archived";
   platformManaged: boolean;
   createdAt: string;
+  planCode: string | null;
+  planName: string | null;
+  licenseStatus: string | null;
+  endsAt: string | null;
+  daysRemaining: number | null;
+  seatLimit: number;
+  seatsUsed: number;
+  seatsAvailable: number;
+  administratorEmail: string | null;
+  administratorName: string | null;
+  health: "healthy" | "attention" | "critical";
+  healthReasons: string[];
+  warningKey: string | null;
 };
 
-/** Lists tenant organizations with their tenant model. */
+/** Lists tenant organizations with plan, seats, admin, and health signals. */
 export async function loadPlatformTenants(): Promise<TenantRow[]> {
   const client = createServiceClient();
   const { data } = await client
@@ -44,15 +64,119 @@ export async function loadPlatformTenants(): Promise<TenantRow[]> {
     .order("created_at", { ascending: false })
     .limit(200);
 
-  return (data ?? []).map((row) => ({
-    id: row.id,
-    name: row.name,
-    slug: String(row.slug),
-    tenantType: row.tenant_type,
-    status: row.status,
-    platformManaged: row.platform_owner_managed,
-    createdAt: row.created_at,
-  }));
+  const orgs = data ?? [];
+  if (orgs.length === 0) return [];
+
+  const orgIds = orgs.map((o) => o.id);
+
+  const [subscriptions, planTemplates, memberships, roles] = await Promise.all([
+    client
+      .from("subscription_and_licensing_plans")
+      .select("organization_id, plan_code, subscription_status, seat_limit, seats_used, ends_at, created_at")
+      .in("organization_id", orgIds)
+      .is("deleted_at", null)
+      .order("created_at", { ascending: false }),
+    client.from("platform_plan_templates").select("plan_code, plan_name").is("deleted_at", null),
+    client
+      .from("memberships")
+      .select("organization_id, user_id, role_id, membership_scope")
+      .in("organization_id", orgIds)
+      .eq("membership_scope", "organization")
+      .is("deleted_at", null)
+      .limit(5000),
+    client.from("roles").select("id, slug").is("deleted_at", null).limit(500),
+  ]);
+
+  const planNameByCode = new Map((planTemplates.data ?? []).map((p) => [p.plan_code, p.plan_name]));
+  const roleSlugById = new Map((roles.data ?? []).map((r) => [r.id, r.slug]));
+
+  const latestSubByOrg = new Map<
+    string,
+    {
+      planCode: string;
+      status: string;
+      seatLimit: number;
+      seatsUsed: number;
+      endsAt: string | null;
+    }
+  >();
+  for (const row of subscriptions.data ?? []) {
+    if (latestSubByOrg.has(row.organization_id)) continue;
+    latestSubByOrg.set(row.organization_id, {
+      planCode: row.plan_code,
+      status: row.subscription_status,
+      seatLimit: row.seat_limit,
+      seatsUsed: row.seats_used,
+      endsAt: row.ends_at,
+    });
+  }
+
+  const adminUserIds = new Set<string>();
+  const adminByOrg = new Map<string, string>();
+  for (const m of memberships.data ?? []) {
+    if (roleSlugById.get(m.role_id) === "organization_admin" && !adminByOrg.has(m.organization_id)) {
+      adminByOrg.set(m.organization_id, m.user_id);
+      adminUserIds.add(m.user_id);
+    }
+  }
+
+  const adminIdentity = new Map<string, { email: string; name: string | null }>();
+  await Promise.all(
+    [...adminUserIds].map(async (userId) => {
+      const { data: auth } = await client.auth.admin.getUserById(userId);
+      if (!auth.user) return;
+      const meta = (auth.user.user_metadata ?? {}) as Record<string, unknown>;
+      adminIdentity.set(userId, {
+        email: auth.user.email ?? "—",
+        name: typeof meta.full_name === "string" ? meta.full_name : null,
+      });
+    }),
+  );
+
+  return orgs.map((row) => {
+    const sub = latestSubByOrg.get(row.id);
+    const daysRemaining = daysUntil(sub?.endsAt ?? null);
+    const displayStatus = resolveTenantDisplayStatus({
+      orgStatus: row.status,
+      licenseStatus: sub?.status ?? null,
+      endsAt: sub?.endsAt ?? null,
+    });
+    const adminId = adminByOrg.get(row.id);
+    const admin = adminId ? adminIdentity.get(adminId) : null;
+    const seatLimit = sub?.seatLimit ?? 0;
+    const seatsUsed = sub?.seatsUsed ?? 0;
+    const health = resolveTenantHealth({
+      displayStatus,
+      daysRemaining,
+      seatsUsed,
+      seatLimit,
+      hasAdministrator: Boolean(adminId),
+    });
+
+    return {
+      id: row.id,
+      name: row.name,
+      slug: String(row.slug),
+      tenantType: row.tenant_type,
+      status: row.status,
+      displayStatus,
+      platformManaged: row.platform_owner_managed,
+      createdAt: row.created_at,
+      planCode: sub?.planCode ?? null,
+      planName: sub?.planCode ? (planNameByCode.get(sub.planCode) ?? sub.planCode) : null,
+      licenseStatus: sub?.status ?? null,
+      endsAt: sub?.endsAt ?? null,
+      daysRemaining,
+      seatLimit,
+      seatsUsed,
+      seatsAvailable: Math.max(seatLimit - seatsUsed, 0),
+      administratorEmail: admin?.email ?? null,
+      administratorName: admin?.name ?? null,
+      health: health.level,
+      healthReasons: health.reasons,
+      warningKey: expirationWarningKey(daysRemaining),
+    };
+  });
 }
 
 export type OrganizationOption = { id: string; name: string };
@@ -223,13 +347,21 @@ export type PlatformUserRow = {
   lastSignInAt: string | null;
   suspended: boolean;
   isPlatformOwner: boolean;
+  companyId: string | null;
+  companyName: string | null;
+  roleName: string | null;
+  workspaceNames: string[];
+  planCode: string | null;
+  seatConsuming: boolean;
+  membershipCreatedAt: string | null;
 };
 
-/** Lists auth users via the admin API (first page). */
+/** Lists auth users via the admin API with primary company affiliation. */
 export async function loadPlatformUsers(): Promise<PlatformUserRow[]> {
   const client = createServiceClient();
   const rows: PlatformUserRow[] = [];
   const perPage = 200;
+  const userIds: string[] = [];
 
   for (let page = 1; page <= 10; page += 1) {
     const { data, error } = await client.auth.admin.listUsers({ page, perPage });
@@ -238,6 +370,7 @@ export async function loadPlatformUsers(): Promise<PlatformUserRow[]> {
       const metadata = (user.app_metadata ?? {}) as Record<string, unknown>;
       const userMeta = (user.user_metadata ?? {}) as Record<string, unknown>;
       const bannedUntil = (user as { banned_until?: string | null }).banned_until ?? null;
+      userIds.push(user.id);
       rows.push({
         id: user.id,
         email: user.email ?? "—",
@@ -246,12 +379,90 @@ export async function loadPlatformUsers(): Promise<PlatformUserRow[]> {
         lastSignInAt: user.last_sign_in_at ?? null,
         suspended: Boolean(bannedUntil && new Date(bannedUntil).getTime() > Date.now()),
         isPlatformOwner: metadata.platform_role === "platform_owner",
+        companyId: null,
+        companyName: null,
+        roleName: null,
+        workspaceNames: [],
+        planCode: null,
+        seatConsuming: false,
+        membershipCreatedAt: null,
       });
     }
     if (data.users.length < perPage) break;
   }
 
-  return rows;
+  if (userIds.length === 0) return rows;
+
+  const { data: memberships } = await client
+    .from("memberships")
+    .select("user_id, organization_id, workspace_id, role_id, membership_scope, created_at")
+    .in("user_id", userIds)
+    .is("deleted_at", null)
+    .limit(8000);
+
+  const orgIds = [...new Set((memberships ?? []).map((m) => m.organization_id))];
+  const workspaceIds = [
+    ...new Set((memberships ?? []).map((m) => m.workspace_id).filter((id): id is string => Boolean(id))),
+  ];
+  const roleIds = [...new Set((memberships ?? []).map((m) => m.role_id))];
+
+  const [orgs, workspaces, roles, subscriptions] = await Promise.all([
+    orgIds.length
+      ? client.from("organizations").select("id, name").in("id", orgIds)
+      : Promise.resolve({ data: [] as { id: string; name: string }[] }),
+    workspaceIds.length
+      ? client.from("workspaces").select("id, name").in("id", workspaceIds)
+      : Promise.resolve({ data: [] as { id: string; name: string }[] }),
+    roleIds.length
+      ? client.from("roles").select("id, name").in("id", roleIds)
+      : Promise.resolve({ data: [] as { id: string; name: string }[] }),
+    orgIds.length
+      ? client
+          .from("subscription_and_licensing_plans")
+          .select("organization_id, plan_code, created_at")
+          .in("organization_id", orgIds)
+          .is("deleted_at", null)
+          .order("created_at", { ascending: false })
+      : Promise.resolve({ data: [] as { organization_id: string; plan_code: string }[] }),
+  ]);
+
+  const orgNameById = new Map((orgs.data ?? []).map((o) => [o.id, o.name]));
+  const workspaceNameById = new Map((workspaces.data ?? []).map((w) => [w.id, w.name]));
+  const roleNameById = new Map((roles.data ?? []).map((r) => [r.id, r.name]));
+  const planByOrg = new Map<string, string>();
+  for (const sub of subscriptions.data ?? []) {
+    if (!planByOrg.has(sub.organization_id)) planByOrg.set(sub.organization_id, sub.plan_code);
+  }
+
+  const byUser = new Map<string, NonNullable<typeof memberships>>();
+  for (const m of memberships ?? []) {
+    const list = byUser.get(m.user_id) ?? [];
+    list.push(m);
+    byUser.set(m.user_id, list);
+  }
+
+  return rows.map((row) => {
+    const list = byUser.get(row.id) ?? [];
+    const orgMembership = list.find((m) => m.membership_scope === "organization") ?? list[0] ?? null;
+    const workspaceNames = [
+      ...new Set(
+        list
+          .filter((m) => m.workspace_id)
+          .map((m) => workspaceNameById.get(m.workspace_id!) ?? null)
+          .filter((n): n is string => Boolean(n)),
+      ),
+    ];
+    return {
+      ...row,
+      companyId: orgMembership?.organization_id ?? null,
+      companyName: orgMembership ? (orgNameById.get(orgMembership.organization_id) ?? null) : null,
+      roleName: orgMembership ? (roleNameById.get(orgMembership.role_id) ?? null) : null,
+      workspaceNames,
+      planCode: orgMembership ? (planByOrg.get(orgMembership.organization_id) ?? null) : null,
+      seatConsuming: Boolean(orgMembership && orgMembership.membership_scope === "organization"),
+      membershipCreatedAt: orgMembership?.created_at ?? null,
+    };
+  });
 }
 
 export type SecurityEventRow = {

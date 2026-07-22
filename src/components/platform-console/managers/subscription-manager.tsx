@@ -19,6 +19,10 @@ import {
   expireSubscriptionAction,
   cancelSubscriptionAction,
 } from "@/lib/platform-console/actions/subscriptions";
+import {
+  LICENSE_DURATION_OPTIONS,
+  computeEndsAtFromDuration,
+} from "@/lib/platform-console/tenant-lifecycle";
 import { useActionRunner } from "./use-action-runner";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "destructive" | "secondary"> = {
@@ -211,7 +215,8 @@ function CreateSubscriptionModal({
   const [planCode, setPlanCode] = useState(plans[0]?.planCode ?? "business");
   const [tenantType, setTenantType] = useState("business");
   const [seatLimit, setSeatLimit] = useState(25);
-  const [endsAt, setEndsAt] = useState("");
+  const [duration, setDuration] = useState("365");
+  const [customEndsAt, setCustomEndsAt] = useState("");
 
   return (
     <Modal
@@ -226,15 +231,20 @@ function CreateSubscriptionModal({
           <Button
             size="sm"
             loading={pending}
-            onClick={() =>
+            onClick={() => {
+              const endsAt = computeEndsAtFromDuration(
+                duration,
+                duration === "custom" ? customEndsAt : null,
+              );
+              if (!endsAt) return;
               onSubmit({
                 organizationId,
                 planCode,
                 tenantType,
                 seatLimit,
-                endsAt: endsAt ? new Date(endsAt).toISOString() : null,
-              })
-            }
+                endsAt,
+              });
+            }}
           >
             {t.common.create}
           </Button>
@@ -283,9 +293,22 @@ function CreateSubscriptionModal({
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="sub-ends">{t.subscriptionManager.expirationOptional}</Label>
-          <Input id="sub-ends" type="date" value={endsAt} onChange={(e) => setEndsAt(e.target.value)} />
+          <Label htmlFor="sub-duration">{t.ux.wizardDuration}</Label>
+          <Select id="sub-duration" value={duration} onChange={(e) => setDuration(e.target.value)}>
+            {LICENSE_DURATION_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {t.ux.duration[option.labelKey]}
+              </option>
+            ))}
+          </Select>
         </div>
+        {duration === "custom" ? (
+          <div className="space-y-1">
+            <Label htmlFor="sub-ends">{t.ux.wizardCustomExpiration}</Label>
+            <Input id="sub-ends" type="date" value={customEndsAt} onChange={(e) => setCustomEndsAt(e.target.value)} />
+          </div>
+        ) : null}
+        <p className="text-xs text-muted-foreground">{t.ux.wizardDurationHint}</p>
       </div>
     </Modal>
   );
@@ -301,12 +324,21 @@ function ChangePlanModal({
   subscription: SubscriptionRow;
   plans: PlanRow[];
   onClose: () => void;
-  onSubmit: (values: { planCode?: string; seatLimit?: number }) => void;
+  onSubmit: (values: {
+    planCode?: string;
+    seatLimit?: number;
+    endsAt?: string | null;
+    status?: string;
+  }) => void;
   pending: boolean;
 }) {
   const t = usePlatformLabels();
   const [planCode, setPlanCode] = useState(subscription.planCode);
   const [seatLimit, setSeatLimit] = useState(subscription.seatLimit);
+  const [duration, setDuration] = useState("365");
+  const [customEndsAt, setCustomEndsAt] = useState(
+    subscription.endsAt ? subscription.endsAt.slice(0, 10) : "",
+  );
 
   return (
     <Modal
@@ -319,8 +351,24 @@ function ChangePlanModal({
           <Button variant="outline" size="sm" onClick={onClose}>
             {t.common.cancel}
           </Button>
-          <Button size="sm" loading={pending} onClick={() => onSubmit({ planCode, seatLimit })}>
-            {t.common.save}
+          <Button
+            size="sm"
+            loading={pending}
+            onClick={() => {
+              const endsAt = computeEndsAtFromDuration(
+                duration,
+                duration === "custom" ? customEndsAt : null,
+              );
+              if (!endsAt) return;
+              onSubmit({
+                planCode,
+                seatLimit,
+                endsAt,
+                status: "active",
+              });
+            }}
+          >
+            {t.subscriptionManager.renewLicense}
           </Button>
         </>
       }
@@ -346,6 +394,28 @@ function ChangePlanModal({
             onChange={(e) => setSeatLimit(Number(e.target.value))}
           />
         </div>
+        <div className="space-y-1">
+          <Label htmlFor="edit-sub-duration">{t.ux.wizardDuration}</Label>
+          <Select id="edit-sub-duration" value={duration} onChange={(e) => setDuration(e.target.value)}>
+            {LICENSE_DURATION_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {t.ux.duration[option.labelKey]}
+              </option>
+            ))}
+          </Select>
+        </div>
+        {duration === "custom" ? (
+          <div className="space-y-1">
+            <Label htmlFor="edit-sub-ends">{t.ux.wizardCustomExpiration}</Label>
+            <Input
+              id="edit-sub-ends"
+              type="date"
+              value={customEndsAt}
+              onChange={(e) => setCustomEndsAt(e.target.value)}
+            />
+          </div>
+        ) : null}
+        <p className="text-xs text-muted-foreground">{t.ux.wizardDurationHint}</p>
       </div>
     </Modal>
   );

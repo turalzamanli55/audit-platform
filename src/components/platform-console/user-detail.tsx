@@ -85,6 +85,37 @@ export function UserDetailView({ user, basePath }: { user: UserDetail; basePath:
               value={primary?.organizationName ?? "—"}
               href={primary ? `${basePath}/companies/${primary.organizationId}` : undefined}
             />
+            <Field
+              label={t.userDetail.profile.administrator}
+              value={
+                user.companyAdministrator
+                  ? user.companyAdministrator.fullName || user.companyAdministrator.email
+                  : "—"
+              }
+            />
+            <Field
+              label={t.userDetail.profile.workspaces}
+              value={
+                user.memberships
+                  .filter((m) => m.workspaceName)
+                  .map((m) => m.workspaceName)
+                  .filter(Boolean)
+                  .join(", ") || "—"
+              }
+            />
+            <Field label={t.userDetail.profile.plan} value={user.license?.planCode ?? "—"} />
+            <Field
+              label={t.userDetail.profile.seat}
+              value={
+                primary?.scope === "organization"
+                  ? t.userDetail.profile.seatYes
+                  : t.userDetail.profile.seatNo
+              }
+            />
+            <Field
+              label={t.userDetail.profile.membershipDate}
+              value={primary?.createdAt ? fmt(primary.createdAt) : "—"}
+            />
             <Field label={t.userDetail.profile.created} value={fmt(user.createdAt)} />
             <Field label={t.userDetail.profile.lastLogin} value={fmt(user.lastSignInAt)} />
           </div>

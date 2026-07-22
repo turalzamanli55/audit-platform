@@ -81,6 +81,8 @@ export type UpdateSubscriptionInput = {
   id: string;
   planCode?: string;
   seatLimit?: number;
+  endsAt?: string | null;
+  status?: string;
 };
 
 export const updateSubscriptionAction = createPlatformAction<UpdateSubscriptionInput, { id: string }>(
@@ -97,6 +99,13 @@ export const updateSubscriptionAction = createPlatformAction<UpdateSubscriptionI
         throw new ValidationError("Seat limit must be a non-negative integer");
       }
       patch.seat_limit = input.seatLimit;
+    }
+    if (input.endsAt !== undefined) {
+      patch.ends_at = input.endsAt;
+    }
+    if (input.status !== undefined) {
+      if (!STATUSES.has(input.status)) throw new ValidationError("Invalid subscription status");
+      patch.subscription_status = input.status;
     }
 
     const { data, error } = await ctx.service

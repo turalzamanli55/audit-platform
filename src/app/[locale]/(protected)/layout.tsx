@@ -15,9 +15,11 @@ import {
   defaultDashboardNavItems,
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
-import { getTenantBootstrap } from "@/lib/auth/server";
+import { getTenantBootstrap, getCurrentUser } from "@/lib/auth/server";
 import { authorizePermissionCodes } from "@/lib/auth/permissions";
 import { MEMBERSHIP_PERMISSIONS } from "@/constants/membership";
+import { resolveTenantLicenseAccess } from "@/lib/auth/license-access";
+import { redirect } from "next/navigation";
 import { readCompanySlugCookie, readEngagementSlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
@@ -34,7 +36,7 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
   const headerStore = await headers();
   const localeHeader = headerStore.get("x-locale");
   const locale = (localeHeader && isValidLocale(localeHeader) ? localeHeader : defaultLocale) as Locale;
-  const [dictionary, bootstrap, companyResult, engagementResult, preferredCompanySlug, preferredEngagementSlug] =
+  const [dictionary, bootstrap, companyResult, engagementResult, preferredCompanySlug, preferredEngagementSlug, currentUser] =
     await Promise.all([
     getDictionary(locale),
     getTenantBootstrap(),
@@ -42,7 +44,15 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
     loadEngagementList(),
     readCompanySlugCookie(),
     readEngagementSlugCookie(),
+    getCurrentUser(),
   ]);
+
+  if (currentUser) {
+    const licenseAccess = await resolveTenantLicenseAccess(currentUser.id);
+    if (!licenseAccess.allowed) {
+      redirect(`/${locale}/license-expired`);
+    }
+  }
 
   const tenantBootstrap = bootstrap ?? {
     organizations: [],

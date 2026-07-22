@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServiceClient } from "@/lib/supabase/service";
+import { resolveModuleAccess } from "@/lib/company-administration/modules";
 import { getSeatUsage } from "./seats";
 import { parseUserAgent } from "./user-agent";
 
@@ -67,6 +68,9 @@ export type CompanyMember = {
   lastSignInAt: string | null;
   suspended: boolean;
   isPlatformOwner: boolean;
+  createdAt: string;
+  /** Enabled business module labels for this member (plan + role). */
+  modules: string[];
 };
 
 export type CompanyWorkspace = {
@@ -142,6 +146,7 @@ export type CompanyDetail = {
     riskEvents: number;
   };
   activeUsers: number;
+  administrator: { userId: string; email: string; fullName: string | null } | null;
 };
 
 export type LoginHistoryEntry = {
@@ -177,7 +182,7 @@ export async function loadCompanyDetail(organizationId: string): Promise<Company
     await Promise.all([
       client
         .from("subscription_and_licensing_plans")
-        .select("id, plan_code, subscription_status, seat_limit, seats_used, ends_at, created_at")
+        .select("id, plan_code, subscription_status, seat_limit, seats_used, ends_at, created_at, module_entitlements")
         .eq("organization_id", organizationId)
         .is("deleted_at", null)
         .in("subscription_status", ["active", "trial", "expired", "suspended"])
@@ -207,7 +212,7 @@ export async function loadCompanyDetail(organizationId: string): Promise<Company
         .limit(200),
       client
         .from("memberships")
-        .select("id, user_id, role_id, membership_scope, workspace_id")
+        .select("id, user_id, role_id, membership_scope, workspace_id, created_at")
         .eq("organization_id", organizationId)
         .is("deleted_at", null)
         .limit(500),
@@ -240,10 +245,34 @@ export async function loadCompanyDetail(organizationId: string): Promise<Company
   const roleById = new Map((roles.data ?? []).map((r) => [r.id, { name: r.name, slug: r.slug }]));
   const clientNameById = new Map((clients.data ?? []).map((c) => [c.id, c.name]));
 
+  const entitlementsRaw = subscription.data?.module_entitlements;
+  const entitlements: Record<string, boolean> =
+    entitlementsRaw && typeof entitlementsRaw === "object" && !Array.isArray(entitlementsRaw)
+      ? (entitlementsRaw as Record<string, boolean>)
+      : {};
+
+  const memberRoleIds = Array.from(new Set((memberships.data ?? []).map((m) => m.role_id)));
+  const permissionsByRoleId = new Map<string, string[]>();
+  if (memberRoleIds.length > 0) {
+    const { data: rolePermRows } = await client
+      .from("role_permissions")
+      .select("role_id, permissions(code)")
+      .in("role_id", memberRoleIds);
+    for (const row of rolePermRows ?? []) {
+      const rel = row.permissions as unknown;
+      const permission = (Array.isArray(rel) ? rel[0] : rel) as { code: string } | null;
+      if (!permission?.code) continue;
+      const list = permissionsByRoleId.get(row.role_id) ?? [];
+      list.push(permission.code);
+      permissionsByRoleId.set(row.role_id, list);
+    }
+  }
+
   // Members (organization-scoped are seats; include workspace-scoped for completeness).
   const members: CompanyMember[] = (memberships.data ?? []).map((m) => {
     const identity = userMap.get(m.user_id);
     const role = roleById.get(m.role_id);
+    const moduleRows = resolveModuleAccess(entitlements, permissionsByRoleId.get(m.role_id) ?? []);
     return {
       membershipId: m.id,
       userId: m.user_id,
@@ -256,6 +285,8 @@ export async function loadCompanyDetail(organizationId: string): Promise<Company
       lastSignInAt: identity?.lastSignInAt ?? null,
       suspended: identity?.suspended ?? false,
       isPlatformOwner: identity?.isPlatformOwner ?? false,
+      createdAt: m.created_at,
+      modules: moduleRows.filter((row) => row.state !== "disabled").map((row) => row.label),
     };
   });
 
@@ -359,6 +390,10 @@ export async function loadCompanyDetail(organizationId: string): Promise<Company
 
   const lastActivityAt = timeline[0]?.timestamp ?? null;
   const orgMembers = members.filter((m) => m.scope === "organization");
+  const administratorMember =
+    orgMembers.find((m) => m.roleSlug === "organization_admin" && !m.suspended) ??
+    orgMembers.find((m) => m.roleSlug === "organization_admin") ??
+    null;
 
   return {
     id: org.id,
@@ -392,6 +427,13 @@ export async function loadCompanyDetail(organizationId: string): Promise<Company
     timeline,
     security,
     activeUsers: orgMembers.filter((m) => !m.suspended).length,
+    administrator: administratorMember
+      ? {
+          userId: administratorMember.userId,
+          email: administratorMember.email,
+          fullName: administratorMember.fullName,
+        }
+      : null,
   };
 }
 
@@ -407,6 +449,7 @@ export type UserMembership = {
   roleName: string;
   roleSlug: string;
   scope: string;
+  createdAt: string;
 };
 
 export type UserPermission = {
@@ -447,6 +490,7 @@ export type UserDetail = {
     endsAt: string | null;
     status: string | null;
   } | null;
+  companyAdministrator: { email: string; fullName: string | null } | null;
   security: {
     failedLogins: number;
     suspensions: number;
@@ -478,7 +522,7 @@ export async function loadUserDetail(userId: string): Promise<UserDetail | null>
   const [memberships, roles, securityEvents, auditRows, userFlags] = await Promise.all([
     client
       .from("memberships")
-      .select("id, organization_id, workspace_id, role_id, membership_scope")
+      .select("id, organization_id, workspace_id, role_id, membership_scope, created_at")
       .eq("user_id", userId)
       .is("deleted_at", null)
       .limit(200),
@@ -532,6 +576,7 @@ export async function loadUserDetail(userId: string): Promise<UserDetail | null>
       roleName: role?.name ?? "—",
       roleSlug: role?.slug ?? "—",
       scope: m.membership_scope,
+      createdAt: m.created_at,
     };
   });
 
@@ -614,7 +659,10 @@ export async function loadUserDetail(userId: string): Promise<UserDetail | null>
   }));
 
   // Modules: direct user flags + inherited tenant/platform module flags for the primary org.
-  const primaryOrgId = membershipRows[0]?.organizationId ?? null;
+  const primaryOrgId =
+    membershipRows.find((m) => m.scope === "organization")?.organizationId ??
+    membershipRows[0]?.organizationId ??
+    null;
   const moduleRows: { code: string; state: string; scope: string }[] = (userFlags.data ?? [])
     .filter((f) => f.flag_code.startsWith("module:"))
     .map((f) => ({ code: f.flag_code.replace("module:", ""), state: f.flag_state, scope: "direct" }));
@@ -638,6 +686,7 @@ export async function loadUserDetail(userId: string): Promise<UserDetail | null>
 
   // License = primary org subscription.
   let license: UserDetail["license"] = null;
+  let companyAdministrator: UserDetail["companyAdministrator"] = null;
   if (primaryOrgId) {
     const { data } = await client
       .from("subscription_and_licensing_plans")
@@ -656,6 +705,29 @@ export async function loadUserDetail(userId: string): Promise<UserDetail | null>
         endsAt: data.ends_at,
         status: data.subscription_status,
       };
+    }
+
+    const adminRole = [...roleById.entries()].find(([, role]) => role.slug === "organization_admin");
+    if (adminRole) {
+      const { data: adminMembership } = await client
+        .from("memberships")
+        .select("user_id")
+        .eq("organization_id", primaryOrgId)
+        .eq("role_id", adminRole[0])
+        .eq("membership_scope", "organization")
+        .is("deleted_at", null)
+        .limit(1)
+        .maybeSingle();
+      if (adminMembership?.user_id) {
+        const { data: adminUser } = await client.auth.admin.getUserById(adminMembership.user_id);
+        if (adminUser.user) {
+          const adminMeta = (adminUser.user.user_metadata ?? {}) as Record<string, unknown>;
+          companyAdministrator = {
+            email: adminUser.user.email ?? "—",
+            fullName: typeof adminMeta.full_name === "string" ? adminMeta.full_name : null,
+          };
+        }
+      }
     }
   }
 
@@ -699,6 +771,7 @@ export async function loadUserDetail(userId: string): Promise<UserDetail | null>
     auditHistory,
     modules: moduleRows,
     license,
+    companyAdministrator,
     security,
     timeline,
   };

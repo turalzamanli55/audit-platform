@@ -107,6 +107,9 @@ export function UserManager({
                   <tr>
                     <th className="px-4 py-3">{t.userManager.colEmail}</th>
                     <th className="hidden px-4 py-3 sm:table-cell">{t.userManager.colName}</th>
+                    <th className="px-4 py-3">{t.common.company}</th>
+                    <th className="hidden px-4 py-3 lg:table-cell">{t.common.role}</th>
+                    <th className="hidden px-4 py-3 xl:table-cell">{t.common.workspace}</th>
                     <th className="hidden px-4 py-3 md:table-cell">{t.userManager.colLastSignIn}</th>
                     <th className="px-4 py-3">{t.common.status}</th>
                     <th className="px-4 py-3 text-right">{t.common.actions}</th>
@@ -128,6 +131,27 @@ export function UserManager({
                           <p className="mt-0.5 text-xs text-muted-foreground sm:hidden">{user.fullName ?? "—"}</p>
                         </td>
                         <td className="hidden px-4 py-3 text-muted-foreground sm:table-cell">{user.fullName ?? "—"}</td>
+                        <td className="px-4 py-3">
+                          {user.companyId && detailBasePath ? (
+                            <Link
+                              href={`${detailBasePath}/companies/${user.companyId}`}
+                              className="text-foreground hover:underline"
+                            >
+                              {user.companyName ?? t.common.none}
+                            </Link>
+                          ) : (
+                            <span className="text-muted-foreground">{user.companyName ?? t.common.none}</span>
+                          )}
+                          {user.planCode ? (
+                            <p className="text-xs text-muted-foreground">{user.planCode}</p>
+                          ) : null}
+                        </td>
+                        <td className="hidden px-4 py-3 text-muted-foreground lg:table-cell">
+                          {user.roleName ?? "—"}
+                        </td>
+                        <td className="hidden max-w-[12rem] truncate px-4 py-3 text-muted-foreground xl:table-cell">
+                          {user.workspaceNames.length > 0 ? user.workspaceNames.join(", ") : "—"}
+                        </td>
                         <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{formatDate(user.lastSignInAt)}</td>
                         <td className="px-4 py-3">
                           {user.isPlatformOwner ? (

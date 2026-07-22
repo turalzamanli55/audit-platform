@@ -36,6 +36,14 @@ import {
   restoreTenantAction,
   deleteTenantAction,
 } from "@/lib/platform-console/actions/organizations";
+import { updateSubscriptionAction } from "@/lib/platform-console/actions/subscriptions";
+import {
+  LICENSE_DURATION_OPTIONS,
+  computeEndsAtFromDuration,
+  resolveTenantDisplayStatus,
+  daysUntil,
+  expirationWarningKey,
+} from "@/lib/platform-console/tenant-lifecycle";
 
 function fmt(value: string | null): string {
   return value ? new Date(value).toLocaleString() : "—";
@@ -96,12 +104,43 @@ export function CompanyDetail({
 function OverviewTab({ company }: { company: CompanyDetail }) {
   const t = usePlatformLabels();
   const [showStructure, setShowStructure] = useState(false);
+  const displayStatus = resolveTenantDisplayStatus({
+    orgStatus: company.status,
+    licenseStatus: company.license.status,
+    endsAt: company.license.endsAt,
+  });
+  const remaining = daysUntil(company.license.endsAt);
+  const warnKey = expirationWarningKey(remaining);
+  const warnText =
+    warnKey && t.entityManager.warnings[warnKey as keyof typeof t.entityManager.warnings]
+      ? fillPlatform(t.entityManager.warnings[warnKey as keyof typeof t.entityManager.warnings], {
+          days: Math.abs(remaining ?? 0),
+        })
+      : null;
+
   return (
     <div className="space-y-8">
+      {warnText ? (
+        <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-900 dark:text-amber-100">
+          {warnText}
+        </p>
+      ) : null}
       <PlatformSection title={t.companyDetail.overview.company}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StatCard label={t.companyDetail.overview.status} value={company.status} tone={company.status === "active" ? "ok" : "warn"} />
+          <StatCard
+            label={t.companyDetail.overview.status}
+            value={t.entityManager.status[displayStatus] ?? displayStatus}
+            tone={displayStatus === "active" ? "ok" : "warn"}
+          />
           <StatCard label={t.companyDetail.overview.type} value={company.tenantType} />
+          <StatCard
+            label={t.companyDetail.overview.administrator}
+            value={
+              company.administrator
+                ? company.administrator.fullName || company.administrator.email
+                : t.common.none
+            }
+          />
           <StatCard label={t.companyDetail.overview.activeUsers} value={company.activeUsers.toLocaleString()} />
           <StatCard label={t.companyDetail.overview.workspaces} value={company.workspaces.length.toLocaleString()} />
           <StatCard label={t.companyDetail.overview.engagements} value={company.engagements.length.toLocaleString()} />
@@ -111,7 +150,6 @@ function OverviewTab({ company }: { company: CompanyDetail }) {
             value={company.security.riskEvents > 0 ? fillPlatform(t.companyDetail.overview.riskSuffix, { count: company.security.riskEvents }) : t.companyDetail.overview.clear}
             tone={company.security.riskEvents > 0 ? "warn" : "ok"}
           />
-          <StatCard label={t.companyDetail.overview.lastActivity} value={company.lastActivityAt ? new Date(company.lastActivityAt).toLocaleDateString() : "—"} />
         </div>
       </PlatformSection>
 
@@ -239,14 +277,88 @@ function UsersTab({
       {company.members.length === 0 ? (
         <EmptyState title={t.companyDetail.users.emptyTitle} description={t.companyDetail.users.emptyDescription} />
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-border/60">
+        <>
+          <div className="space-y-3 lg:hidden">
+            {company.members.map((m) => {
+              const busy = pendingId?.startsWith(m.userId) ?? false;
+              const avatar = (m.fullName || m.email)
+                .split(/\s+/)
+                .slice(0, 2)
+                .map((p) => p[0]?.toUpperCase() ?? "")
+                .join("");
+              return (
+                <article key={m.membershipId} className="rounded-xl border border-border/60 p-4">
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                      {avatar || "?"}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <Link href={`${basePath}/users/${m.userId}`} className="font-medium hover:underline">
+                        {m.fullName || m.email}
+                      </Link>
+                      {m.fullName ? <p className="truncate text-xs text-muted-foreground">{m.email}</p> : null}
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {m.roleName} · {m.workspaceName ?? "—"}
+                      </p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {t.companyDetail.users.colLastLogin}: {fmt(m.lastSignInAt)}
+                      </p>
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        {m.modules.length === 0 ? (
+                          <span className="text-xs text-muted-foreground">—</span>
+                        ) : (
+                          m.modules.map((mod) => (
+                            <Badge key={mod} variant="secondary">
+                              {mod}
+                            </Badge>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                    {m.isPlatformOwner ? (
+                      <Badge variant="info">{t.common.platformOwner}</Badge>
+                    ) : m.suspended ? (
+                      <Badge variant="warning">{t.common.suspended}</Badge>
+                    ) : (
+                      <Badge variant="success">{t.common.active}</Badge>
+                    )}
+                  </div>
+                  {!m.isPlatformOwner ? (
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {m.suspended ? (
+                        <Button size="sm" variant="ghost" className="min-h-11" loading={pendingId === `${m.userId}:enable`} disabled={busy}
+                          onClick={() => run(`${m.userId}:enable`, () => activateUserAction({ userId: m.userId }), { success: t.companyDetail.users.toastEnabled })}>
+                          {t.common.enable}
+                        </Button>
+                      ) : (
+                        <Button size="sm" variant="ghost" className="min-h-11" loading={pendingId === `${m.userId}:disable`} disabled={busy}
+                          onClick={() => run(`${m.userId}:disable`, () => suspendUserAction({ userId: m.userId }), { success: t.companyDetail.users.toastDisabled })}>
+                          {t.common.disable}
+                        </Button>
+                      )}
+                      <Button size="sm" variant="ghost" className="min-h-11" loading={pendingId === `${m.userId}:reset`} disabled={busy}
+                        onClick={() => run(`${m.userId}:reset`, () => resetPasswordAction({ email: m.email }), { success: t.companyDetail.users.toastResetSent })}>
+                        {t.common.reset}
+                      </Button>
+                      <Button size="sm" variant="ghost" className="min-h-11" disabled={busy} onClick={() => setTransferUser(m.userId)}>
+                        {t.common.transfer}
+                      </Button>
+                    </div>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="hidden overflow-x-auto rounded-xl border border-border/60 lg:block">
           <table className="w-full text-sm">
             <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
               <tr>
                 <th className="px-4 py-2.5">{t.companyDetail.users.colUser}</th>
                 <th className="px-4 py-2.5">{t.companyDetail.users.colRole}</th>
-                <th className="px-4 py-2.5">{t.companyDetail.users.colScope}</th>
                 <th className="px-4 py-2.5">{t.companyDetail.users.colWorkspace}</th>
+                <th className="px-4 py-2.5">{t.nav.modules}</th>
+                <th className="px-4 py-2.5">{t.companyDetail.users.colCreated}</th>
                 <th className="px-4 py-2.5">{t.companyDetail.users.colLastLogin}</th>
                 <th className="px-4 py-2.5">{t.companyDetail.users.colStatus}</th>
                 <th className="px-4 py-2.5 text-right">{t.companyDetail.users.colActions}</th>
@@ -255,17 +367,42 @@ function UsersTab({
             <tbody className="divide-y divide-border/50">
               {company.members.map((m) => {
                 const busy = pendingId?.startsWith(m.userId) ?? false;
+                const avatar = (m.fullName || m.email)
+                  .split(/\s+/)
+                  .slice(0, 2)
+                  .map((p) => p[0]?.toUpperCase() ?? "")
+                  .join("");
                 return (
                   <tr key={m.membershipId}>
                     <td className="px-4 py-2.5">
-                      <Link href={`${basePath}/users/${m.userId}`} className="font-medium text-foreground hover:underline">
-                        {m.email}
-                      </Link>
-                      {m.fullName ? <div className="text-xs text-muted-foreground">{m.fullName}</div> : null}
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                          {avatar || "?"}
+                        </span>
+                        <div className="min-w-0">
+                          <Link href={`${basePath}/users/${m.userId}`} className="font-medium text-foreground hover:underline">
+                            {m.fullName || m.email}
+                          </Link>
+                          {m.fullName ? <div className="truncate text-xs text-muted-foreground">{m.email}</div> : null}
+                        </div>
+                      </div>
                     </td>
                     <td className="px-4 py-2.5 text-muted-foreground">{m.roleName}</td>
-                    <td className="px-4 py-2.5 capitalize text-muted-foreground">{m.scope}</td>
                     <td className="px-4 py-2.5 text-muted-foreground">{m.workspaceName ?? "—"}</td>
+                    <td className="px-4 py-2.5">
+                      <div className="flex max-w-[14rem] flex-wrap gap-1">
+                        {m.modules.length === 0 ? (
+                          <span className="text-muted-foreground">—</span>
+                        ) : (
+                          m.modules.map((mod) => (
+                            <Badge key={mod} variant="secondary">
+                              {mod}
+                            </Badge>
+                          ))
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-4 py-2.5 text-muted-foreground">{fmt(m.createdAt)}</td>
                     <td className="px-4 py-2.5 text-muted-foreground">{fmt(m.lastSignInAt)}</td>
                     <td className="px-4 py-2.5">
                       {m.isPlatformOwner ? (
@@ -322,7 +459,8 @@ function UsersTab({
               })}
             </tbody>
           </table>
-        </div>
+          </div>
+        </>
       )}
 
       <CreateUserModal
@@ -432,9 +570,14 @@ function ActivityTab({ company }: { company: CompanyDetail }) {
 
 function LicenseTab({ company }: { company: CompanyDetail }) {
   const t = usePlatformLabels();
+  const { run, pendingId } = useActionRunner();
+  const [duration, setDuration] = useState("365");
+  const [customEndsAt, setCustomEndsAt] = useState("");
   const licenseEvents = company.timeline.filter(
     (e) => e.title.startsWith("subscription.") || e.title.startsWith("license") || e.category === "subscription",
   );
+  const canRenew = Boolean(company.license.subscriptionId);
+
   return (
     <div className="space-y-8">
       <div className="grid gap-x-8 gap-y-3 rounded-xl border border-border/60 p-4 text-sm md:grid-cols-2">
@@ -444,6 +587,60 @@ function LicenseTab({ company }: { company: CompanyDetail }) {
         <Field label={t.common.expiration} value={company.license.endsAt ? new Date(company.license.endsAt).toLocaleDateString() : t.common.perpetual} />
         <Field label={t.companyDetail.license.enabledModules} value={company.modules.filter((m) => m.state === "enabled").map((m) => m.code).join(", ") || t.companyDetail.license.planDefaults} />
       </div>
+
+      {canRenew ? (
+        <PlatformSection title={t.ux.wizardDuration}>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="space-y-1">
+              <Label htmlFor="renew-duration">{t.ux.wizardDuration}</Label>
+              <Select id="renew-duration" value={duration} onChange={(e) => setDuration(e.target.value)}>
+                {LICENSE_DURATION_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {t.ux.duration[option.labelKey]}
+                  </option>
+                ))}
+              </Select>
+            </div>
+            {duration === "custom" ? (
+              <div className="space-y-1">
+                <Label htmlFor="renew-custom">{t.ux.wizardCustomExpiration}</Label>
+                <Input
+                  id="renew-custom"
+                  type="date"
+                  value={customEndsAt}
+                  onChange={(e) => setCustomEndsAt(e.target.value)}
+                />
+              </div>
+            ) : null}
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">{t.ux.wizardDurationHint}</p>
+          <Button
+            className="mt-4 min-h-11"
+            size="sm"
+            loading={pendingId === "renew-license"}
+            onClick={() => {
+              const endsAt = computeEndsAtFromDuration(
+                duration,
+                duration === "custom" ? customEndsAt : null,
+              );
+              if (!endsAt || !company.license.subscriptionId) return;
+              void run(
+                "renew-license",
+                () =>
+                  updateSubscriptionAction({
+                    id: company.license.subscriptionId!,
+                    endsAt,
+                    status: "active",
+                  }),
+                { success: t.subscriptionManager.toastUpdated },
+              );
+            }}
+          >
+            {t.subscriptionManager.renewLicense}
+          </Button>
+        </PlatformSection>
+      ) : null}
+
       <PlatformSection title={t.companyDetail.license.timelineTitle}>
         <Timeline events={licenseEvents} empty={t.companyDetail.license.timelineEmpty} emptyTitle={t.timeline.noEventsTitle} />
       </PlatformSection>

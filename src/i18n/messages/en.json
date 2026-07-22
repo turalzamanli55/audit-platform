@@ -6712,7 +6712,21 @@
       "showAdvanced": "Show advanced",
       "hideAdvanced": "Hide advanced",
       "viewActivity": "Activity",
-      "viewLoginHistory": "Login history"
+      "viewLoginHistory": "Login history",
+      "wizardDuration": "License duration",
+      "wizardCustomExpiration": "Custom expiration date",
+      "wizardDurationHint": "The company can work until this date. After expiration, access is blocked but data remains intact.",
+      "duration": {
+        "duration30": "30 Days",
+        "duration90": "90 Days",
+        "duration180": "180 Days",
+        "duration1y": "1 Year",
+        "duration2y": "2 Years",
+        "duration3y": "3 Years",
+        "duration5y": "5 Years",
+        "duration10y": "10 Years",
+        "durationCustom": "Custom Expiration Date"
+      }
     },
     "common": {
       "create": "Create",
@@ -6998,7 +7012,29 @@
       "toastRestored": "{label} restored",
       "toastDeleted": "{label} deleted",
       "toastCreated": "{label} created",
-      "toastUpdated": "{label} updated"
+      "toastUpdated": "{label} updated",
+      "colAdmin": "Administrator",
+      "colHealth": "Health",
+      "daysRemaining": "{days} days left",
+      "seatsAvailable": "{count} available",
+      "health": {
+        "healthy": "Healthy",
+        "attention": "Attention",
+        "critical": "Critical"
+      },
+      "status": {
+        "active": "Active",
+        "suspended": "Suspended",
+        "expired": "Expired",
+        "archived": "Archived"
+      },
+      "warnings": {
+        "expiresIn30": "License expires in {days} days",
+        "expiresIn7": "License expires in {days} days",
+        "expiresTomorrow": "License expires tomorrow",
+        "expiresToday": "License expires today",
+        "expired": "License expired"
+      }
     },
     "userManager": {
       "tabUsers": "Users ({count})",
@@ -7096,7 +7132,8 @@
       "toastExpired": "Subscription expired",
       "toastCancelled": "Subscription cancelled",
       "toastCreated": "Subscription created",
-      "toastUpdated": "Subscription updated"
+      "toastUpdated": "Subscription updated",
+      "renewLicense": "Renew / extend license"
     },
     "featureFlagManager": {
       "create": "Create flag",
@@ -7201,7 +7238,8 @@
         "createdBy": "Created by",
         "platformManaged": "Platform managed",
         "description": "Description",
-        "timelineEmpty": "No recorded activity yet."
+        "timelineEmpty": "No recorded activity yet.",
+        "administrator": "Administrator"
       },
       "organizations": {
         "colOrganization": "Organization",
@@ -7272,7 +7310,8 @@
         "toastCreated": "User created",
         "toastInviteSent": "Invitation sent",
         "toastTransferred": "User transferred",
-        "toastDeleted": "User deleted"
+        "toastDeleted": "User deleted",
+        "colCreated": "Created"
       },
       "license": {
         "enabledModules": "Enabled modules",
@@ -7359,7 +7398,14 @@
         "toastEnabled": "User enabled",
         "toastDisabled": "User disabled",
         "toastResetSent": "Reset email sent",
-        "toastSessionsRevoked": "Sessions revoked"
+        "toastSessionsRevoked": "Sessions revoked",
+        "administrator": "Company administrator",
+        "workspaces": "Workspaces",
+        "plan": "Plan",
+        "seat": "Seat consumption",
+        "seatYes": "Uses a seat",
+        "seatNo": "Does not use a seat",
+        "membershipDate": "Membership date"
       },
       "organizations": {
         "colCompany": "Company",
@@ -7439,5 +7485,18 @@
         "toastRevoked": "Session revoked"
       }
     }
+  },
+  "licenseExpired": {
+    "eyebrow": "Access paused",
+    "title": "License expired",
+    "description": "Your subscription has expired. Company data is safe and unchanged. Please contact your administrator or renew your license to continue.",
+    "company": "Company",
+    "expiration": "Expiration date",
+    "daysExpired": "Days expired",
+    "contactAdmin": "Contact your company administrator to renew access.",
+    "contactOwner": "Or ask the platform provider to extend your license.",
+    "signOutHint": "Back to sign in",
+    "retry": "Check again",
+    "dataSafe": "No audits, working papers, reports, or history were deleted."
   }
 }

@@ -1741,6 +1741,19 @@ export type Dictionary = {
     welcomeDescription: string;
   };
   companyAdmin: CompanyAdministrationLabels;
+  licenseExpired: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    company: string;
+    expiration: string;
+    daysExpired: string;
+    contactAdmin: string;
+    contactOwner: string;
+    signOutHint: string;
+    retry: string;
+    dataSafe: string;
+  };
   companies: {
     navCompanies: string;
     title: string;

@@ -10,6 +10,10 @@ import { TENANT_TYPE_OPTIONS } from "@/config/platform-options";
 import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import { fillPlatform } from "@/i18n/platform-labels";
 import type { PlanRow } from "@/lib/platform-console/data";
+import {
+  LICENSE_DURATION_OPTIONS,
+  computeEndsAtFromDuration,
+} from "@/lib/platform-console/tenant-lifecycle";
 import { createTenantAction } from "@/lib/platform-console/actions/organizations";
 import { createSubscriptionAction } from "@/lib/platform-console/actions/subscriptions";
 import { createUserAction } from "@/lib/platform-console/actions/users";
@@ -41,6 +45,8 @@ export function CreateCompanyWizard({
   const [legalName, setLegalName] = useState("");
   const [planCode, setPlanCode] = useState(plans.find((p) => p.isDefault)?.planCode ?? plans[0]?.planCode ?? "");
   const [seatLimit, setSeatLimit] = useState(plans.find((p) => p.isDefault)?.seatLimit ?? plans[0]?.seatLimit ?? 5);
+  const [duration, setDuration] = useState("365");
+  const [customEndsAt, setCustomEndsAt] = useState("");
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
   const [adminName, setAdminName] = useState("");
@@ -55,6 +61,8 @@ export function CreateCompanyWizard({
     setLegalName("");
     setPlanCode(plans.find((p) => p.isDefault)?.planCode ?? plans[0]?.planCode ?? "");
     setSeatLimit(plans.find((p) => p.isDefault)?.seatLimit ?? plans[0]?.seatLimit ?? 5);
+    setDuration("365");
+    setCustomEndsAt("");
     setAdminEmail("");
     setAdminPassword("");
     setAdminName("");
@@ -87,11 +95,22 @@ export function CreateCompanyWizard({
         if (!tenant.success) return tenant;
 
         const orgId = tenant.data.id;
+        const endsAt = computeEndsAtFromDuration(
+          duration,
+          duration === "custom" ? customEndsAt : null,
+        );
+        if (!endsAt) {
+          return {
+            success: false as const,
+            error: { message: t.ux.wizardDurationHint, code: "VALIDATION_ERROR" as const },
+          };
+        }
         const sub = await createSubscriptionAction({
           organizationId: orgId,
           planCode,
           tenantType,
           seatLimit,
+          endsAt,
         });
         if (!sub.success) return sub;
 
@@ -146,7 +165,7 @@ export function CreateCompanyWizard({
               <Button
                 size="sm"
                 className="min-h-11"
-                disabled={!canContinue(step, { name, slug, planCode, seatLimit })}
+                disabled={!canContinue(step, { name, slug, planCode, seatLimit, duration, customEndsAt })}
                 onClick={() => setStep((s) => (s < 4 ? ((s + 1) as Step) : s))}
               >
                 {t.ux.wizardNext}
@@ -254,13 +273,42 @@ export function CreateCompanyWizard({
               {selectedPlan.tenantType} · {selectedPlan.seatLimit} {t.common.seats.toLowerCase()}
             </p>
           ) : null}
+          <div className="space-y-1">
+            <Label htmlFor="wiz-duration">{t.ux.wizardDuration}</Label>
+            <Select
+              id="wiz-duration"
+              className="min-h-11"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            >
+              {LICENSE_DURATION_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {t.ux.duration[option.labelKey as keyof typeof t.ux.duration]}
+                </option>
+              ))}
+            </Select>
+          </div>
+          {duration === "custom" ? (
+            <div className="space-y-1">
+              <Label htmlFor="wiz-custom-end">{t.ux.wizardCustomExpiration}</Label>
+              <Input
+                id="wiz-custom-end"
+                type="date"
+                className="min-h-11"
+                value={customEndsAt}
+                onChange={(e) => setCustomEndsAt(e.target.value)}
+                required
+              />
+            </div>
+          ) : null}
+          <p className="text-xs text-muted-foreground">{t.ux.wizardDurationHint}</p>
         </div>
       ) : null}
 
       {step === 3 ? (
         <div className="space-y-3">
           <div className="space-y-1">
-            <Label htmlFor="wiz-seats">{t.common.seatLimit}</Label>
+            <Label htmlFor="wiz-seats">{t.common.seats}</Label>
             <Input
               id="wiz-seats"
               type="number"
@@ -313,10 +361,21 @@ export function CreateCompanyWizard({
 
 function canContinue(
   step: Step,
-  values: { name: string; slug: string; planCode: string; seatLimit: number },
+  values: {
+    name: string;
+    slug: string;
+    planCode: string;
+    seatLimit: number;
+    duration: string;
+    customEndsAt: string;
+  },
 ): boolean {
   if (step === 1) return values.name.trim().length >= 2 && values.slug.trim().length >= 2;
-  if (step === 2) return Boolean(values.planCode);
+  if (step === 2) {
+    if (!values.planCode) return false;
+    if (values.duration === "custom") return Boolean(values.customEndsAt);
+    return Boolean(values.duration);
+  }
   if (step === 3) return Number.isInteger(values.seatLimit) && values.seatLimit >= 0;
   return true;
 }

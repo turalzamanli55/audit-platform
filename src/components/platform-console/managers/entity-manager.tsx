@@ -37,7 +37,20 @@ const STATUS_VARIANT: Record<string, "success" | "warning" | "secondary" | "dest
   suspended: "warning",
   archived: "secondary",
   inactive: "secondary",
+  expired: "destructive",
 };
+
+function warningText(
+  key: string | null,
+  daysRemaining: number | null,
+  t: ReturnType<typeof usePlatformLabels>,
+): string | null {
+  if (!key) return null;
+  const map = t.entityManager.warnings as Record<string, string>;
+  const template = map?.[key];
+  if (!template) return null;
+  return fillPlatform(template, { days: Math.abs(daysRemaining ?? 0) });
+}
 
 export function EntityManager({
   entities,
@@ -73,21 +86,26 @@ export function EntityManager({
         />
       ) : (
         <>
-          {/* Desktop table */}
-          <div className="hidden overflow-hidden rounded-xl border border-border/60 md:block">
+          <div className="hidden overflow-hidden rounded-xl border border-border/60 lg:block">
             <table className="w-full text-sm">
               <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
                 <tr>
-                  <th className="px-4 py-3">{t.common.name}</th>
-                  <th className="px-4 py-3">{t.common.type}</th>
-                  <th className="px-4 py-3">{t.common.status}</th>
-                  <th className="px-4 py-3 text-right">{t.common.actions}</th>
+                  <th className="px-3 py-3">{t.common.name}</th>
+                  <th className="px-3 py-3">{t.common.plan}</th>
+                  <th className="px-3 py-3">{t.common.expiration}</th>
+                  <th className="px-3 py-3">{t.common.seats}</th>
+                  <th className="px-3 py-3">{t.entityManager.colAdmin}</th>
+                  <th className="px-3 py-3">{t.entityManager.colHealth}</th>
+                  <th className="px-3 py-3">{t.common.status}</th>
+                  <th className="px-3 py-3 text-right">{t.common.actions}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/50">
-                {entities.map((entity) => (
+                {entities.map((entity) => {
+                  const warn = warningText(entity.warningKey, entity.daysRemaining, t);
+                  return (
                   <tr key={entity.id} className="hover:bg-muted/20">
-                    <td className="px-4 py-3">
+                    <td className="px-3 py-3">
                       <div className="min-w-0">
                         {detailBasePath ? (
                           <Link
@@ -99,14 +117,49 @@ export function EntityManager({
                         ) : (
                           <span className="font-medium">{entity.name}</span>
                         )}
-                        <p className="truncate text-xs text-muted-foreground">{entity.slug}</p>
+                        <p className="truncate text-xs capitalize text-muted-foreground">{entity.tenantType}</p>
                       </div>
                     </td>
-                    <td className="px-4 py-3 capitalize">{entity.tenantType}</td>
-                    <td className="px-4 py-3">
-                      <Badge variant={STATUS_VARIANT[entity.status] ?? "secondary"}>{entity.status}</Badge>
+                    <td className="px-3 py-3">{entity.planName ?? t.common.none}</td>
+                    <td className="px-3 py-3">
+                      <div className="text-sm">
+                        {entity.endsAt ? new Date(entity.endsAt).toLocaleDateString() : t.common.perpetual}
+                      </div>
+                      {entity.daysRemaining !== null ? (
+                        <p className="text-xs text-muted-foreground">
+                          {fillPlatform(t.entityManager.daysRemaining, { days: entity.daysRemaining })}
+                        </p>
+                      ) : null}
+                      {warn ? <p className="text-xs text-amber-700 dark:text-amber-300">{warn}</p> : null}
                     </td>
-                    <td className="px-4 py-3 text-right">
+                    <td className="px-3 py-3 tabular-nums">
+                      {entity.seatsUsed}/{entity.seatLimit || "—"}
+                      <p className="text-xs text-muted-foreground">
+                        {fillPlatform(t.entityManager.seatsAvailable, { count: entity.seatsAvailable })}
+                      </p>
+                    </td>
+                    <td className="max-w-[10rem] truncate px-3 py-3 text-xs">
+                      {entity.administratorName || entity.administratorEmail || t.common.none}
+                    </td>
+                    <td className="px-3 py-3">
+                      <Badge
+                        variant={
+                          entity.health === "healthy"
+                            ? "success"
+                            : entity.health === "attention"
+                              ? "warning"
+                              : "destructive"
+                        }
+                      >
+                        {t.entityManager.health[entity.health]}
+                      </Badge>
+                    </td>
+                    <td className="px-3 py-3">
+                      <Badge variant={STATUS_VARIANT[entity.displayStatus] ?? "secondary"}>
+                        {t.entityManager.status[entity.displayStatus] ?? entity.displayStatus}
+                      </Badge>
+                    </td>
+                    <td className="px-3 py-3 text-right">
                       <EntityActions
                         entity={entity}
                         mode={mode}
@@ -118,20 +171,23 @@ export function EntityManager({
                       />
                     </td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>
 
-          {/* Mobile cards */}
-          <div className="space-y-3 md:hidden">
-            {entities.map((entity) => (
+          {/* Tablet/mobile cards */}
+          <div className="space-y-3 lg:hidden">
+            {entities.map((entity) => {
+              const warn = warningText(entity.warningKey, entity.daysRemaining, t);
+              return (
               <article
                 key={entity.id}
                 className="rounded-xl border border-border/60 bg-card p-4"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
+                  <div className="min-w-0 space-y-2">
                     {detailBasePath ? (
                       <Link
                         href={`${detailBasePath}/companies/${entity.id}`}
@@ -142,13 +198,47 @@ export function EntityManager({
                     ) : (
                       <p className="text-base font-medium">{entity.name}</p>
                     )}
-                    <p className="mt-0.5 text-xs text-muted-foreground">{entity.slug}</p>
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
-                      <Badge variant="secondary" className="capitalize">
-                        {entity.tenantType}
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant={STATUS_VARIANT[entity.displayStatus] ?? "secondary"}>
+                        {t.entityManager.status[entity.displayStatus] ?? entity.displayStatus}
                       </Badge>
-                      <Badge variant={STATUS_VARIANT[entity.status] ?? "secondary"}>{entity.status}</Badge>
+                      <Badge
+                        variant={
+                          entity.health === "healthy"
+                            ? "success"
+                            : entity.health === "attention"
+                              ? "warning"
+                              : "destructive"
+                        }
+                      >
+                        {t.entityManager.health[entity.health]}
+                      </Badge>
                     </div>
+                    <dl className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+                      <div>
+                        <dt>{t.common.plan}</dt>
+                        <dd className="font-medium text-foreground">{entity.planName ?? t.common.none}</dd>
+                      </div>
+                      <div>
+                        <dt>{t.common.seats}</dt>
+                        <dd className="font-medium text-foreground">
+                          {entity.seatsUsed}/{entity.seatLimit || "—"}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>{t.common.expiration}</dt>
+                        <dd className="font-medium text-foreground">
+                          {entity.endsAt ? new Date(entity.endsAt).toLocaleDateString() : t.common.perpetual}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>{t.entityManager.colAdmin}</dt>
+                        <dd className="truncate font-medium text-foreground">
+                          {entity.administratorEmail ?? t.common.none}
+                        </dd>
+                      </div>
+                    </dl>
+                    {warn ? <p className="text-xs text-amber-700 dark:text-amber-300">{warn}</p> : null}
                   </div>
                   <EntityActions
                     entity={entity}
@@ -161,7 +251,8 @@ export function EntityManager({
                   />
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </>
       )}
