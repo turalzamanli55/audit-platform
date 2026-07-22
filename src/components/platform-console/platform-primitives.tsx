@@ -73,12 +73,12 @@ export function DataTable(props: { columns: string[]; rows: ReactNode[][]; empty
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border">
+    <div className="overflow-x-auto rounded-xl border border-border/60 [-webkit-overflow-scrolling:touch]">
       <table className="min-w-full text-sm">
         <thead className="bg-muted/40 text-left text-xs uppercase tracking-wide text-muted-foreground">
           <tr>
             {props.columns.map((column) => (
-              <th key={column} className="px-3 py-2 font-medium">
+              <th key={column} className="whitespace-nowrap px-3 py-3 font-medium sm:px-4">
                 {column}
               </th>
             ))}
@@ -86,9 +86,9 @@ export function DataTable(props: { columns: string[]; rows: ReactNode[][]; empty
         </thead>
         <tbody>
           {props.rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="border-t">
+            <tr key={rowIndex} className="border-t border-border/50">
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="px-3 py-2 align-top">
+                <td key={cellIndex} className="px-3 py-3 align-top sm:px-4">
                   {cell}
                 </td>
               ))}

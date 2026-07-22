@@ -10,10 +10,14 @@ import {
   ENGAGEMENTS_PATH,
   IMPORT_INTELLIGENCE_PATH,
   AI_WORKSPACE_PATH,
+  ADMINISTRATION_USERS_PATH,
+  administrationNavItem,
   defaultDashboardNavItems,
 } from "@/config/dashboard-navigation";
 import { TenantProvider } from "@/providers/tenant-provider";
 import { getTenantBootstrap } from "@/lib/auth/server";
+import { authorizePermissionCodes } from "@/lib/auth/permissions";
+import { MEMBERSHIP_PERMISSIONS } from "@/constants/membership";
 import { readCompanySlugCookie, readEngagementSlugCookie } from "@/lib/auth/tenant-cookies";
 import { loadCompanyList } from "@/lib/company/load-company-list";
 import type { CompanyListLoadReason } from "@/lib/company/company-list-item";
@@ -90,8 +94,18 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
     ? undefined
     : companyResult.reason;
 
+  const canViewAdministration = authorizePermissionCodes(tenantBootstrap.permissionCodes, [
+    MEMBERSHIP_PERMISSIONS.READ,
+    MEMBERSHIP_PERMISSIONS.ADMINISTER,
+  ]);
+
+  const baseNav = [
+    ...(Array.isArray(defaultDashboardNavItems) ? defaultDashboardNavItems : []),
+    ...(canViewAdministration ? [administrationNavItem] : []),
+  ];
+
   const navItems = coerceDashboardNavItems(
-    (Array.isArray(defaultDashboardNavItems) ? defaultDashboardNavItems : []).map((item) => ({
+    baseNav.map((item) => ({
       ...item,
       label:
         item.href === COMPANIES_PATH
@@ -102,7 +116,9 @@ export default async function ProtectedLayout({ children }: ProtectedLayoutProps
               ? dictionary.dashboard.navImportIntelligence
               : item.href === AI_WORKSPACE_PATH
                 ? dictionary.dashboard.navAiWorkspace
-                : dictionary.dashboard.navDashboard,
+                : item.href === ADMINISTRATION_USERS_PATH
+                  ? dictionary.companyAdmin.navAdministration
+                  : dictionary.dashboard.navDashboard,
     })),
   );
 

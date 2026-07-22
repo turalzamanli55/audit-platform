@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Modal } from "@/components/ui/modal";
+import { IconMenu, IconSearch } from "@/components/ui/icons";
 import {
   PlatformAccountMenu,
   PlatformDetailRow,
@@ -10,9 +12,8 @@ import { usePlatformLabels } from "@/i18n/use-platform-labels";
 
 /**
  * The single Platform Console header. No tenant/workspace/company switchers.
- * Platform Owner only. Language follows the current URL locale (switched via the
- * account menu using the shared application localization); appearance is a
- * user-interface preference. Neither affects business logic.
+ * Platform Owner only. Language follows the current URL locale; appearance is a
+ * UI preference. Neither affects business logic.
  */
 export function PlatformHeader({
   ownerEmail,
@@ -21,6 +22,8 @@ export function PlatformHeader({
   buildDate,
   gitCommit,
   databaseVersion,
+  searchHref,
+  onOpenNav,
 }: {
   ownerEmail: string;
   environment: string;
@@ -28,14 +31,26 @@ export function PlatformHeader({
   buildDate?: string;
   gitCommit?: string;
   databaseVersion?: string;
+  searchHref?: string;
+  onOpenNav?: () => void;
 }) {
   const t = usePlatformLabels();
   const [aboutOpen, setAboutOpen] = useState(false);
   const displayName = deriveDisplayName(ownerEmail);
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 items-center justify-between gap-3 border-b border-border/60 bg-background/80 px-4 backdrop-blur-xl lg:px-6">
-      <div className="flex min-w-0 items-center gap-3">
+    <header className="sticky top-0 z-40 flex h-14 items-center justify-between gap-2 border-b border-border/60 bg-background/80 px-3 backdrop-blur-xl sm:gap-3 sm:px-4 lg:px-6">
+      <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+        {onOpenNav ? (
+          <button
+            type="button"
+            onClick={onOpenNav}
+            aria-label={t.ux.openMenu}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+          >
+            <IconMenu width={20} height={20} />
+          </button>
+        ) : null}
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-semibold text-primary-foreground">
           P
         </span>
@@ -55,7 +70,16 @@ export function PlatformHeader({
         </button>
       </div>
 
-      <div className="flex shrink-0 items-center gap-2">
+      <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+        {searchHref ? (
+          <Link
+            href={searchHref}
+            aria-label={t.ux.search}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <IconSearch width={18} height={18} />
+          </Link>
+        ) : null}
         <PlatformAccountMenu
           displayName={displayName}
           email={ownerEmail}

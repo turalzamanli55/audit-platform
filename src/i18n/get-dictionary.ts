@@ -1739,6 +1739,89 @@ export type Dictionary = {
     welcomeTitle: string;
     welcomeDescription: string;
   };
+  companyAdmin: {
+    title: string;
+    subtitle: string;
+    navAdministration: string;
+    tabs: {
+      users: string;
+      invitations: string;
+      roles: string;
+      activity: string;
+      logins: string;
+      seats: string;
+    };
+    seats: {
+      purchased: string;
+      used: string;
+      available: string;
+      none: string;
+    };
+    users: {
+      heading: string;
+      email: string;
+      name: string;
+      role: string;
+      workspace: string;
+      status: string;
+      actions: string;
+      active: string;
+      suspended: string;
+      inactive: string;
+      invite: string;
+      create: string;
+      disable: string;
+      reactivate: string;
+      delete: string;
+      resetPassword: string;
+      changeRole: string;
+      assignWorkspace: string;
+      empty: string;
+      confirmDelete: string;
+    };
+    forms: {
+      email: string;
+      password: string;
+      fullName: string;
+      role: string;
+      workspace: string;
+      workspaceOptional: string;
+      submitInvite: string;
+      submitCreate: string;
+      submitRole: string;
+      submitWorkspace: string;
+      cancel: string;
+    };
+    invitations: {
+      heading: string;
+      empty: string;
+      revoke: string;
+      expires: string;
+    };
+    roles: {
+      heading: string;
+      description: string;
+      permissionsNote: string;
+    };
+    activity: {
+      heading: string;
+      empty: string;
+      actor: string;
+      action: string;
+      when: string;
+    };
+    logins: {
+      heading: string;
+      empty: string;
+      ip: string;
+      agent: string;
+    };
+    messages: {
+      success: string;
+      forbidden: string;
+      readOnly: string;
+    };
+  };
   companies: {
     navCompanies: string;
     title: string;

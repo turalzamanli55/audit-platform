@@ -2,8 +2,7 @@ import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { forbidden } from "next/navigation";
 import { getPlatformOwnerIdentity } from "@/lib/auth/server";
-import { PlatformSidebar } from "@/components/platform-console/platform-sidebar";
-import { PlatformHeader } from "@/components/platform-console/platform-header";
+import { PlatformShell } from "@/components/platform-console/platform-shell";
 import { PLATFORM_OWNER_EMAIL } from "@/lib/platform-bootstrap";
 import { BUILD_DATE, GIT_COMMIT, PLATFORM_VERSION } from "@/lib/platform-console/version";
 import { isValidLocale, type Locale } from "@/i18n";
@@ -29,18 +28,17 @@ export default async function PlatformLayout({ children }: { children: ReactNode
   const environment = process.env.VERCEL_ENV ?? process.env.NODE_ENV ?? "development";
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <PlatformHeader
-        ownerEmail={owner.email ?? PLATFORM_OWNER_EMAIL}
-        environment={environment}
-        version={PLATFORM_VERSION}
-        buildDate={BUILD_DATE}
-        gitCommit={GIT_COMMIT}
-      />
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 p-4 lg:flex-row lg:p-6">
-        <PlatformSidebar locale={locale} />
-        <main className="min-w-0 flex-1">{children}</main>
-      </div>
-    </div>
+    <PlatformShell
+      locale={locale}
+      header={{
+        ownerEmail: owner.email ?? PLATFORM_OWNER_EMAIL,
+        environment,
+        version: PLATFORM_VERSION,
+        buildDate: BUILD_DATE,
+        gitCommit: GIT_COMMIT,
+      }}
+    >
+      {children}
+    </PlatformShell>
   );
 }

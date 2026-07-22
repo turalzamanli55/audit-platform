@@ -131,6 +131,89 @@
     "navImportIntelligence": "Import Intelligence",
     "navAiWorkspace": "AI Workspace"
   },
+  "companyAdmin": {
+    "title": "Company Administration",
+    "subtitle": "Manage users, roles, seats, and activity for your company only.",
+    "navAdministration": "Administration",
+    "tabs": {
+      "users": "Users",
+      "invitations": "Invitations",
+      "roles": "Roles",
+      "activity": "Activity",
+      "logins": "Login history",
+      "seats": "Seats"
+    },
+    "seats": {
+      "purchased": "Purchased",
+      "used": "Used",
+      "available": "Available",
+      "none": "No active license is attached to this company yet."
+    },
+    "users": {
+      "heading": "Company users",
+      "email": "Email",
+      "name": "Name",
+      "role": "Role",
+      "workspace": "Workspace",
+      "status": "Status",
+      "actions": "Actions",
+      "active": "Active",
+      "suspended": "Disabled",
+      "inactive": "Inactive",
+      "invite": "Invite user",
+      "create": "Create user",
+      "disable": "Disable",
+      "reactivate": "Reactivate",
+      "delete": "Delete",
+      "resetPassword": "Reset password",
+      "changeRole": "Change role",
+      "assignWorkspace": "Assign workspace",
+      "empty": "No users in this company yet.",
+      "confirmDelete": "Remove this user from your company? This frees one seat."
+    },
+    "forms": {
+      "email": "Email",
+      "password": "Temporary password",
+      "fullName": "Full name",
+      "role": "Role",
+      "workspace": "Workspace",
+      "workspaceOptional": "Workspace (optional)",
+      "submitInvite": "Send invitation",
+      "submitCreate": "Create user",
+      "submitRole": "Save role",
+      "submitWorkspace": "Assign",
+      "cancel": "Cancel"
+    },
+    "invitations": {
+      "heading": "Pending invitations",
+      "empty": "No pending invitations.",
+      "revoke": "Revoke",
+      "expires": "Expires"
+    },
+    "roles": {
+      "heading": "Assignable roles",
+      "description": "Company Administrators may assign only these tenant roles. Platform Owner and Organization Owner cannot be assigned here.",
+      "permissionsNote": "Permissions come from the seeded role catalog. Custom platform permissions cannot be created from Company Administration."
+    },
+    "activity": {
+      "heading": "Company activity",
+      "empty": "No recent activity.",
+      "actor": "Actor",
+      "action": "Action",
+      "when": "When"
+    },
+    "logins": {
+      "heading": "Login history",
+      "empty": "No login events recorded yet.",
+      "ip": "IP address",
+      "agent": "User agent"
+    },
+    "messages": {
+      "success": "Saved.",
+      "forbidden": "You do not have permission for this action.",
+      "readOnly": "You can view company users. Write actions require membership administration permission."
+    }
+  },
   "companies": {
     "navCompanies": "Companies",
     "title": "Companies",
@@ -6390,12 +6473,55 @@
       "plans": "Plans",
       "modules": "Modules",
       "featureFlags": "Feature Flags",
-      "security": "Security Events",
+      "security": "Security",
       "activity": "Activity",
       "loginHistory": "Login History",
       "database": "Database",
       "devops": "DevOps",
       "settings": "Settings"
+    },
+    "ux": {
+      "openMenu": "Open menu",
+      "search": "Search",
+      "moreActions": "Actions",
+      "settingsHubTitle": "Settings",
+      "settingsHubDescription": "Platform status and advanced administration tools. Daily work lives under Companies.",
+      "platformStatus": "Platform status",
+      "advancedTools": "Advanced tools",
+      "toolPlans": "Plan templates for solo, business, and enterprise.",
+      "toolModules": "Module entitlements and overrides.",
+      "toolFeatureFlags": "Feature flags for platform and tenants.",
+      "toolOrganizations": "Organization records behind every tenant.",
+      "toolSubscriptions": "Subscriptions, seats, and plan changes.",
+      "toolLicenses": "License assignment and expiration.",
+      "toolActivity": "Platform activity and audit events.",
+      "toolLoginHistory": "Authentication events across tenants.",
+      "toolDatabase": "Database connectivity and footprint.",
+      "toolDevops": "Deployment profiles and operations.",
+      "securityLinksTitle": "Related",
+      "wizardTitle": "Create company",
+      "wizardCompany": "Company",
+      "wizardPlan": "Plan",
+      "wizardSeats": "Seats",
+      "wizardAdmin": "Administrator",
+      "wizardNext": "Continue",
+      "wizardBack": "Back",
+      "wizardFinish": "Finish",
+      "wizardSkipAdmin": "Skip administrator",
+      "wizardAdminHint": "Create the company administrator. You can also do this later from Company Details.",
+      "wizardAdminEmail": "Administrator email",
+      "wizardAdminPassword": "Temporary password",
+      "wizardAdminName": "Full name (optional)",
+      "subscription": "Subscription",
+      "structure": "Company structure",
+      "allUsers": "All users",
+      "platformRoles": "Platform roles",
+      "usersFocusHint": "Focus on platform owners first. Company auditors live inside each company.",
+      "activeCompanies": "Active companies",
+      "showAdvanced": "Show advanced",
+      "hideAdvanced": "Hide advanced",
+      "viewActivity": "Activity",
+      "viewLoginHistory": "Login history"
     },
     "common": {
       "create": "Create", "edit": "Edit", "save": "Save", "cancel": "Cancel", "delete": "Delete",
@@ -6632,7 +6758,8 @@
       "tabs": {
         "overview": "Overview", "users": "Users ({count})", "organizations": "Organizations ({count})",
         "workspaces": "Workspaces ({count})", "engagements": "Engagements ({count})", "license": "License",
-        "seats": "Seats", "modules": "Modules ({count})", "activity": "Activity", "auditLogs": "Audit Logs",
+        "seats": "Seats", "modules": "Modules ({count})", "subscription": "Subscription",
+        "activity": "Activity", "auditLogs": "Audit Logs",
         "loginHistory": "Login History", "security": "Security", "settings": "Settings"
       },
       "overview": {

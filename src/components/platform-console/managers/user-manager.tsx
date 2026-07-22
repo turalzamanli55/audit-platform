@@ -10,6 +10,11 @@ import { Modal } from "@/components/ui/modal";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import { ASSIGNABLE_ROLE_OPTIONS } from "@/config/platform-options";
 import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import { fillPlatform } from "@/i18n/platform-labels";
@@ -50,41 +55,69 @@ export function UserManager({
   const [createOpen, setCreateOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
   const [membershipUser, setMembershipUser] = useState<PlatformUserRow | null>(null);
+  const [focusPlatformRoles, setFocusPlatformRoles] = useState(true);
+
+  const visibleUsers = focusPlatformRoles ? users.filter((u) => u.isPlatformOwner) : users;
+  const ownerCount = users.filter((u) => u.isPlatformOwner).length;
 
   return (
     <Tabs defaultValue="users">
-      <TabsList>
-        <TabsTrigger value="users">{fillPlatform(t.userManager.tabUsers, { count: users.length })}</TabsTrigger>
-        <TabsTrigger value="invitations">{fillPlatform(t.userManager.tabInvitations, { count: invitations.length })}</TabsTrigger>
+      <TabsList className="flex flex-wrap">
+        <TabsTrigger value="users" className="min-h-11">
+          {fillPlatform(t.userManager.tabUsers, { count: visibleUsers.length })}
+        </TabsTrigger>
+        <TabsTrigger value="invitations" className="min-h-11">
+          {fillPlatform(t.userManager.tabInvitations, { count: invitations.length })}
+        </TabsTrigger>
       </TabsList>
 
       <TabsContent value="users">
         <div className="space-y-4">
-          <div className="flex justify-end">
-            <Button size="sm" onClick={() => setCreateOpen(true)}>
+          <p className="text-sm text-muted-foreground">{t.ux.usersFocusHint}</p>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap gap-2">
+              <Button
+                size="sm"
+                className="min-h-11"
+                variant={focusPlatformRoles ? "primary" : "outline"}
+                onClick={() => setFocusPlatformRoles(true)}
+              >
+                {t.ux.platformRoles}
+                {ownerCount > 0 ? ` (${ownerCount})` : ""}
+              </Button>
+              <Button
+                size="sm"
+                className="min-h-11"
+                variant={!focusPlatformRoles ? "primary" : "outline"}
+                onClick={() => setFocusPlatformRoles(false)}
+              >
+                {t.ux.allUsers} ({users.length})
+              </Button>
+            </div>
+            <Button size="sm" className="min-h-11" onClick={() => setCreateOpen(true)}>
               {t.userManager.createUser}
             </Button>
           </div>
-          {users.length === 0 ? (
+          {visibleUsers.length === 0 ? (
             <EmptyState title={t.userManager.usersEmptyTitle} description={t.userManager.usersEmptyDescription} />
           ) : (
-            <div className="overflow-x-auto rounded-xl border border-border/60">
+            <div className="overflow-x-auto rounded-xl border border-border/60 [-webkit-overflow-scrolling:touch]">
               <table className="w-full text-sm">
                 <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
                   <tr>
-                    <th className="px-4 py-2.5">{t.userManager.colEmail}</th>
-                    <th className="px-4 py-2.5">{t.userManager.colName}</th>
-                    <th className="px-4 py-2.5">{t.userManager.colLastSignIn}</th>
-                    <th className="px-4 py-2.5">{t.common.status}</th>
-                    <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
+                    <th className="px-4 py-3">{t.userManager.colEmail}</th>
+                    <th className="hidden px-4 py-3 sm:table-cell">{t.userManager.colName}</th>
+                    <th className="hidden px-4 py-3 md:table-cell">{t.userManager.colLastSignIn}</th>
+                    <th className="px-4 py-3">{t.common.status}</th>
+                    <th className="px-4 py-3 text-right">{t.common.actions}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
-                  {users.map((user) => {
+                  {visibleUsers.map((user) => {
                     const busy = pendingId?.startsWith(user.id) ?? false;
                     return (
-                      <tr key={user.id}>
-                        <td className="px-4 py-2.5 font-medium">
+                      <tr key={user.id} className="hover:bg-muted/20">
+                        <td className="px-4 py-3 font-medium">
                           {detailBasePath ? (
                             <Link href={`${detailBasePath}/users/${user.id}`} className="text-foreground hover:underline">
                               {user.email}
@@ -92,10 +125,11 @@ export function UserManager({
                           ) : (
                             user.email
                           )}
+                          <p className="mt-0.5 text-xs text-muted-foreground sm:hidden">{user.fullName ?? "—"}</p>
                         </td>
-                        <td className="px-4 py-2.5 text-muted-foreground">{user.fullName ?? "—"}</td>
-                        <td className="px-4 py-2.5 text-muted-foreground">{formatDate(user.lastSignInAt)}</td>
-                        <td className="px-4 py-2.5">
+                        <td className="hidden px-4 py-3 text-muted-foreground sm:table-cell">{user.fullName ?? "—"}</td>
+                        <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{formatDate(user.lastSignInAt)}</td>
+                        <td className="px-4 py-3">
                           {user.isPlatformOwner ? (
                             <Badge variant="info">{t.common.platformOwner}</Badge>
                           ) : user.suspended ? (
@@ -104,92 +138,77 @@ export function UserManager({
                             <Badge variant="success">{t.common.active}</Badge>
                           )}
                         </td>
-                        <td className="px-4 py-2.5">
-                          <div className="flex flex-wrap justify-end gap-1.5">
-                            {user.isPlatformOwner ? (
-                              <span className="text-xs text-muted-foreground">{t.common.protected}</span>
-                            ) : (
-                              <>
-                                {user.suspended ? (
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    loading={pendingId === `${user.id}:activate`}
-                                    disabled={busy}
-                                    onClick={() =>
-                                      run(`${user.id}:activate`, () => activateUserAction({ userId: user.id }), {
-                                        success: t.userManager.toastActivated,
-                                      })
-                                    }
-                                  >
-                                    {t.common.activate}
-                                  </Button>
-                                ) : (
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    loading={pendingId === `${user.id}:suspend`}
-                                    disabled={busy}
-                                    onClick={() =>
-                                      run(`${user.id}:suspend`, () => suspendUserAction({ userId: user.id }), {
-                                        success: t.userManager.toastSuspended,
-                                      })
-                                    }
-                                  >
-                                    {t.common.suspend}
-                                  </Button>
-                                )}
-                                <Button
-                                  size="sm"
-                                  variant="ghost"
-                                  loading={pendingId === `${user.id}:reset`}
-                                  disabled={busy}
-                                  onClick={() =>
-                                    run(`${user.id}:reset`, () => resetPasswordAction({ email: user.email }), {
-                                      success: t.userManager.toastResetSent,
+                        <td className="px-4 py-3 text-right">
+                          {user.isPlatformOwner ? (
+                            <span className="text-xs text-muted-foreground">{t.common.protected}</span>
+                          ) : (
+                            <DropdownMenu
+                              align="end"
+                              trigger={
+                                <Button variant="outline" size="sm" className="min-h-11" disabled={busy}>
+                                  {t.ux.moreActions}
+                                </Button>
+                              }
+                            >
+                              {user.suspended ? (
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    void run(`${user.id}:activate`, () => activateUserAction({ userId: user.id }), {
+                                      success: t.userManager.toastActivated,
                                     })
                                   }
                                 >
-                                  {t.common.resetPassword}
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="ghost"
-                                  loading={pendingId === `${user.id}:logout`}
-                                  disabled={busy}
-                                  onClick={() =>
-                                    run(`${user.id}:logout`, () => forceLogoutAction({ userId: user.id }), {
-                                      success: t.userManager.toastSessionsRevoked,
+                                  {t.common.activate}
+                                </DropdownMenuItem>
+                              ) : (
+                                <DropdownMenuItem
+                                  onSelect={() =>
+                                    void run(`${user.id}:suspend`, () => suspendUserAction({ userId: user.id }), {
+                                      success: t.userManager.toastSuspended,
                                     })
                                   }
                                 >
-                                  {t.common.forceLogout}
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="ghost"
-                                  disabled={busy || organizations.length === 0}
-                                  onClick={() => setMembershipUser(user)}
-                                >
-                                  {t.userManager.membership}
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="destructive"
-                                  loading={pendingId === `${user.id}:delete`}
-                                  disabled={busy}
-                                  onClick={() => {
-                                    if (!window.confirm(fillPlatform(t.userManager.deleteConfirm, { email: user.email }))) return;
-                                    void run(`${user.id}:delete`, () => deleteUserAction({ userId: user.id }), {
-                                      success: t.userManager.toastDeleted,
-                                    });
-                                  }}
-                                >
-                                  {t.common.delete}
-                                </Button>
-                              </>
-                            )}
-                          </div>
+                                  {t.common.suspend}
+                                </DropdownMenuItem>
+                              )}
+                              <DropdownMenuItem
+                                onSelect={() =>
+                                  void run(`${user.id}:reset`, () => resetPasswordAction({ email: user.email }), {
+                                    success: t.userManager.toastResetSent,
+                                  })
+                                }
+                              >
+                                {t.common.resetPassword}
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onSelect={() =>
+                                  void run(`${user.id}:logout`, () => forceLogoutAction({ userId: user.id }), {
+                                    success: t.userManager.toastSessionsRevoked,
+                                  })
+                                }
+                              >
+                                {t.common.forceLogout}
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                disabled={organizations.length === 0}
+                                onSelect={() => setMembershipUser(user)}
+                              >
+                                {t.userManager.membership}
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem
+                                destructive
+                                onSelect={() => {
+                                  if (!window.confirm(fillPlatform(t.userManager.deleteConfirm, { email: user.email }))) return;
+                                  void run(`${user.id}:delete`, () => deleteUserAction({ userId: user.id }), {
+                                    success: t.userManager.toastDeleted,
+                                  });
+                                }}
+                              >
+                                {t.common.delete}
+                              </DropdownMenuItem>
+                            </DropdownMenu>
+                          )}
                         </td>
                       </tr>
                     );

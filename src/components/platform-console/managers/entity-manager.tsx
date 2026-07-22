@@ -9,10 +9,15 @@ import { Select } from "@/components/ui/select";
 import { Modal } from "@/components/ui/modal";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import { TENANT_TYPE_OPTIONS } from "@/config/platform-options";
 import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import { fillPlatform } from "@/i18n/platform-labels";
-import type { TenantRow } from "@/lib/platform-console/data";
+import type { PlanRow, TenantRow } from "@/lib/platform-console/data";
 import {
   createTenantAction,
   updateTenantAction,
@@ -23,6 +28,7 @@ import {
   deleteTenantAction,
 } from "@/lib/platform-console/actions/organizations";
 import { useActionRunner } from "./use-action-runner";
+import { CreateCompanyWizard } from "./create-company-wizard";
 
 type Mode = "tenant" | "organization";
 
@@ -37,10 +43,13 @@ export function EntityManager({
   entities,
   mode,
   detailBasePath,
+  plans = [],
 }: {
   entities: TenantRow[];
   mode: Mode;
   detailBasePath?: string;
+  /** Required for tenant create wizard (plan + seats steps). */
+  plans?: PlanRow[];
 }) {
   const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
@@ -52,7 +61,7 @@ export function EntityManager({
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button size="sm" onClick={() => setCreateOpen(true)}>
+        <Button size="sm" className="min-h-11" onClick={() => setCreateOpen(true)}>
           {fillPlatform(t.entityManager.create, { label })}
         </Button>
       </div>
@@ -63,136 +72,116 @@ export function EntityManager({
           description={fillPlatform(t.entityManager.emptyDescription, { label })}
         />
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-border/60">
-          <table className="w-full text-sm">
-            <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
-              <tr>
-                <th className="px-4 py-2.5">{t.common.name}</th>
-                <th className="px-4 py-2.5">{t.common.slug}</th>
-                <th className="px-4 py-2.5">{t.common.type}</th>
-                <th className="px-4 py-2.5">{t.common.status}</th>
-                <th className="px-4 py-2.5 text-right">{t.common.actions}</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/50">
-              {entities.map((entity) => {
-                const busy = pendingId?.startsWith(entity.id) ?? false;
-                return (
-                  <tr key={entity.id}>
-                    <td className="px-4 py-2.5 font-medium">
-                      {detailBasePath ? (
-                        <Link href={`${detailBasePath}/companies/${entity.id}`} className="text-foreground hover:underline">
-                          {entity.name}
-                        </Link>
-                      ) : (
-                        entity.name
-                      )}
-                    </td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{entity.slug}</td>
-                    <td className="px-4 py-2.5 capitalize">{entity.tenantType}</td>
-                    <td className="px-4 py-2.5">
-                      <Badge variant={STATUS_VARIANT[entity.status] ?? "secondary"}>{entity.status}</Badge>
-                    </td>
-                    <td className="px-4 py-2.5">
-                      <div className="flex flex-wrap justify-end gap-1.5">
-                        <Button size="sm" variant="ghost" disabled={busy} onClick={() => setEditing(entity)}>
-                          {t.common.edit}
-                        </Button>
-                        {mode === "tenant" && entity.status !== "suspended" ? (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            loading={pendingId === `${entity.id}:suspend`}
-                            disabled={busy}
-                            onClick={() =>
-                              run(`${entity.id}:suspend`, () => suspendTenantAction({ id: entity.id }), {
-                                success: fillPlatform(t.entityManager.toastSuspended, { label }),
-                              })
-                            }
+        <>
+          {/* Desktop table */}
+          <div className="hidden overflow-hidden rounded-xl border border-border/60 md:block">
+            <table className="w-full text-sm">
+              <thead className="bg-muted/40 text-left text-xs uppercase text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-3">{t.common.name}</th>
+                  <th className="px-4 py-3">{t.common.type}</th>
+                  <th className="px-4 py-3">{t.common.status}</th>
+                  <th className="px-4 py-3 text-right">{t.common.actions}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/50">
+                {entities.map((entity) => (
+                  <tr key={entity.id} className="hover:bg-muted/20">
+                    <td className="px-4 py-3">
+                      <div className="min-w-0">
+                        {detailBasePath ? (
+                          <Link
+                            href={`${detailBasePath}/companies/${entity.id}`}
+                            className="font-medium text-foreground hover:underline"
                           >
-                            {t.common.suspend}
-                          </Button>
-                        ) : null}
-                        {entity.status === "suspended" || entity.status === "inactive" ? (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            loading={pendingId === `${entity.id}:activate`}
-                            disabled={busy}
-                            onClick={() =>
-                              run(`${entity.id}:activate`, () => activateTenantAction({ id: entity.id }), {
-                                success: fillPlatform(t.entityManager.toastActivated, { label }),
-                              })
-                            }
-                          >
-                            {t.common.activate}
-                          </Button>
-                        ) : null}
-                        {entity.status !== "archived" ? (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            loading={pendingId === `${entity.id}:archive`}
-                            disabled={busy}
-                            onClick={() =>
-                              run(`${entity.id}:archive`, () => archiveTenantAction({ id: entity.id }), {
-                                success: fillPlatform(t.entityManager.toastArchived, { label }),
-                              })
-                            }
-                          >
-                            {t.common.archive}
-                          </Button>
+                            {entity.name}
+                          </Link>
                         ) : (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            loading={pendingId === `${entity.id}:restore`}
-                            disabled={busy}
-                            onClick={() =>
-                              run(`${entity.id}:restore`, () => restoreTenantAction({ id: entity.id }), {
-                                success: fillPlatform(t.entityManager.toastRestored, { label }),
-                              })
-                            }
-                          >
-                            {t.common.restore}
-                          </Button>
+                          <span className="font-medium">{entity.name}</span>
                         )}
-                        <Button
-                          size="sm"
-                          variant="destructive"
-                          loading={pendingId === `${entity.id}:delete`}
-                          disabled={busy}
-                          onClick={() => {
-                            if (!window.confirm(fillPlatform(t.entityManager.deleteConfirm, { name: entity.name, label }))) return;
-                            void run(`${entity.id}:delete`, () => deleteTenantAction({ id: entity.id }), {
-                              success: fillPlatform(t.entityManager.toastDeleted, { label }),
-                            });
-                          }}
-                        >
-                          {t.common.delete}
-                        </Button>
+                        <p className="truncate text-xs text-muted-foreground">{entity.slug}</p>
                       </div>
                     </td>
+                    <td className="px-4 py-3 capitalize">{entity.tenantType}</td>
+                    <td className="px-4 py-3">
+                      <Badge variant={STATUS_VARIANT[entity.status] ?? "secondary"}>{entity.status}</Badge>
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <EntityActions
+                        entity={entity}
+                        mode={mode}
+                        label={label}
+                        busy={pendingId?.startsWith(entity.id) ?? false}
+                        pendingId={pendingId}
+                        run={run}
+                        onEdit={() => setEditing(entity)}
+                      />
+                    </td>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile cards */}
+          <div className="space-y-3 md:hidden">
+            {entities.map((entity) => (
+              <article
+                key={entity.id}
+                className="rounded-xl border border-border/60 bg-card p-4"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    {detailBasePath ? (
+                      <Link
+                        href={`${detailBasePath}/companies/${entity.id}`}
+                        className="text-base font-medium text-foreground hover:underline"
+                      >
+                        {entity.name}
+                      </Link>
+                    ) : (
+                      <p className="text-base font-medium">{entity.name}</p>
+                    )}
+                    <p className="mt-0.5 text-xs text-muted-foreground">{entity.slug}</p>
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <Badge variant="secondary" className="capitalize">
+                        {entity.tenantType}
+                      </Badge>
+                      <Badge variant={STATUS_VARIANT[entity.status] ?? "secondary"}>{entity.status}</Badge>
+                    </div>
+                  </div>
+                  <EntityActions
+                    entity={entity}
+                    mode={mode}
+                    label={label}
+                    busy={pendingId?.startsWith(entity.id) ?? false}
+                    pendingId={pendingId}
+                    run={run}
+                    onEdit={() => setEditing(entity)}
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
       )}
 
-      <CreateEntityModal
-        open={createOpen}
-        onClose={() => setCreateOpen(false)}
-        label={label}
-        onSubmit={(values) =>
-          run("create", () => createTenantAction(values), {
-            success: fillPlatform(t.entityManager.toastCreated, { label }),
-            onSuccess: () => setCreateOpen(false),
-          })
-        }
-        pending={pendingId === "create"}
-      />
+      {mode === "tenant" ? (
+        <CreateCompanyWizard open={createOpen} onClose={() => setCreateOpen(false)} plans={plans} />
+      ) : (
+        <CreateEntityModal
+          open={createOpen}
+          onClose={() => setCreateOpen(false)}
+          label={label}
+          onSubmit={(values) =>
+            run("create", () => createTenantAction(values), {
+              success: fillPlatform(t.entityManager.toastCreated, { label }),
+              onSuccess: () => setCreateOpen(false),
+            })
+          }
+          pending={pendingId === "create"}
+        />
+      )}
 
       {editing ? (
         <EditEntityModal
@@ -209,6 +198,102 @@ export function EntityManager({
         />
       ) : null}
     </div>
+  );
+}
+
+type Runner = ReturnType<typeof useActionRunner>["run"];
+
+function EntityActions({
+  entity,
+  mode,
+  label,
+  busy,
+  pendingId,
+  run,
+  onEdit,
+}: {
+  entity: TenantRow;
+  mode: Mode;
+  label: string;
+  busy: boolean;
+  pendingId: string | null;
+  run: Runner;
+  onEdit: () => void;
+}) {
+  const t = usePlatformLabels();
+
+  return (
+    <DropdownMenu
+      align="end"
+      trigger={
+        <Button variant="outline" size="sm" className="min-h-11" disabled={busy}>
+          {t.ux.moreActions}
+        </Button>
+      }
+    >
+      <DropdownMenuItem onSelect={onEdit}>{t.common.edit}</DropdownMenuItem>
+      <DropdownMenuSeparator />
+      {mode === "tenant" && entity.status !== "suspended" ? (
+        <DropdownMenuItem
+          disabled={busy}
+          onSelect={() =>
+            void run(`${entity.id}:suspend`, () => suspendTenantAction({ id: entity.id }), {
+              success: fillPlatform(t.entityManager.toastSuspended, { label }),
+            })
+          }
+        >
+          {t.common.suspend}
+        </DropdownMenuItem>
+      ) : null}
+      {entity.status === "suspended" || entity.status === "inactive" ? (
+        <DropdownMenuItem
+          disabled={busy}
+          onSelect={() =>
+            void run(`${entity.id}:activate`, () => activateTenantAction({ id: entity.id }), {
+              success: fillPlatform(t.entityManager.toastActivated, { label }),
+            })
+          }
+        >
+          {t.common.activate}
+        </DropdownMenuItem>
+      ) : null}
+      {entity.status !== "archived" ? (
+        <DropdownMenuItem
+          disabled={busy}
+          onSelect={() =>
+            void run(`${entity.id}:archive`, () => archiveTenantAction({ id: entity.id }), {
+              success: fillPlatform(t.entityManager.toastArchived, { label }),
+            })
+          }
+        >
+          {t.common.archive}
+        </DropdownMenuItem>
+      ) : (
+        <DropdownMenuItem
+          disabled={busy}
+          onSelect={() =>
+            void run(`${entity.id}:restore`, () => restoreTenantAction({ id: entity.id }), {
+              success: fillPlatform(t.entityManager.toastRestored, { label }),
+            })
+          }
+        >
+          {t.common.restore}
+        </DropdownMenuItem>
+      )}
+      <DropdownMenuSeparator />
+      <DropdownMenuItem
+        destructive
+        disabled={busy || pendingId === `${entity.id}:delete`}
+        onSelect={() => {
+          if (!window.confirm(fillPlatform(t.entityManager.deleteConfirm, { name: entity.name, label }))) return;
+          void run(`${entity.id}:delete`, () => deleteTenantAction({ id: entity.id }), {
+            success: fillPlatform(t.entityManager.toastDeleted, { label }),
+          });
+        }}
+      >
+        {t.common.delete}
+      </DropdownMenuItem>
+    </DropdownMenu>
   );
 }
 
@@ -239,10 +324,15 @@ function CreateEntityModal({
       description={t.entityManager.createDescription}
       footer={
         <>
-          <Button variant="outline" size="sm" onClick={onClose}>
+          <Button variant="outline" size="sm" className="min-h-11" onClick={onClose}>
             {t.common.cancel}
           </Button>
-          <Button size="sm" loading={pending} onClick={() => onSubmit({ name, slug, tenantType, legalName })}>
+          <Button
+            size="sm"
+            className="min-h-11"
+            loading={pending}
+            onClick={() => onSubmit({ name, slug, tenantType, legalName })}
+          >
             {t.common.create}
           </Button>
         </>
@@ -251,15 +341,27 @@ function CreateEntityModal({
       <div className="space-y-3">
         <div className="space-y-1">
           <Label htmlFor="entity-name">{t.entityManager.nameLabel}</Label>
-          <Input id="entity-name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t.entityManager.namePlaceholder} />
+          <Input
+            id="entity-name"
+            className="min-h-11"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={t.entityManager.namePlaceholder}
+          />
         </div>
         <div className="space-y-1">
           <Label htmlFor="entity-slug">{t.entityManager.slugLabel}</Label>
-          <Input id="entity-slug" value={slug} onChange={(e) => setSlug(e.target.value)} placeholder={t.entityManager.slugPlaceholder} />
+          <Input
+            id="entity-slug"
+            className="min-h-11"
+            value={slug}
+            onChange={(e) => setSlug(e.target.value)}
+            placeholder={t.entityManager.slugPlaceholder}
+          />
         </div>
         <div className="space-y-1">
           <Label htmlFor="entity-type">{t.entityManager.tenantTypeLabel}</Label>
-          <Select id="entity-type" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
+          <Select id="entity-type" className="min-h-11" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
             {TENANT_TYPE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {t.options.tenantType[option.value]}
@@ -269,7 +371,7 @@ function CreateEntityModal({
         </div>
         <div className="space-y-1">
           <Label htmlFor="entity-legal">{t.entityManager.legalNameLabel}</Label>
-          <Input id="entity-legal" value={legalName} onChange={(e) => setLegalName(e.target.value)} />
+          <Input id="entity-legal" className="min-h-11" value={legalName} onChange={(e) => setLegalName(e.target.value)} />
         </div>
       </div>
     </Modal>
@@ -300,10 +402,10 @@ function EditEntityModal({
       title={fillPlatform(t.entityManager.editTitle, { label })}
       footer={
         <>
-          <Button variant="outline" size="sm" onClick={onClose}>
+          <Button variant="outline" size="sm" className="min-h-11" onClick={onClose}>
             {t.common.cancel}
           </Button>
-          <Button size="sm" loading={pending} onClick={() => onSubmit({ name, tenantType })}>
+          <Button size="sm" className="min-h-11" loading={pending} onClick={() => onSubmit({ name, tenantType })}>
             {t.common.save}
           </Button>
         </>
@@ -312,11 +414,11 @@ function EditEntityModal({
       <div className="space-y-3">
         <div className="space-y-1">
           <Label htmlFor="edit-name">{t.entityManager.nameLabel}</Label>
-          <Input id="edit-name" value={name} onChange={(e) => setName(e.target.value)} />
+          <Input id="edit-name" className="min-h-11" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="space-y-1">
           <Label htmlFor="edit-type">{t.entityManager.tenantTypeLabel}</Label>
-          <Select id="edit-type" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
+          <Select id="edit-type" className="min-h-11" value={tenantType} onChange={(e) => setTenantType(e.target.value)}>
             {TENANT_TYPE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {t.options.tenantType[option.value]}

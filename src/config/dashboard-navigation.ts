@@ -7,6 +7,7 @@ export const ENGAGEMENTS_NEW_PATH = "/app/engagements/new";
 
 export const IMPORT_INTELLIGENCE_PATH = "/app/import-intelligence";
 export const AI_WORKSPACE_PATH = "/ai";
+export const ADMINISTRATION_USERS_PATH = "/app/administration/users";
 
 export type DashboardNavItem = {
   href: string;
@@ -24,6 +25,12 @@ export const defaultDashboardNavItems: DashboardNavItem[] = [
   { href: IMPORT_INTELLIGENCE_PATH, label: "Import Intelligence" },
   { href: AI_WORKSPACE_PATH, label: "AI Workspace" },
 ];
+
+/** Extra nav item shown when the user can read company memberships. */
+export const administrationNavItem: DashboardNavItem = {
+  href: ADMINISTRATION_USERS_PATH,
+  label: "Administration",
+};
 
 export function coerceDashboardNavItems(items: unknown): DashboardNavItem[] {
   if (!Array.isArray(items)) {

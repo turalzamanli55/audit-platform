@@ -1,4 +1,4 @@
-import { loadPlatformTenants } from "@/lib/platform-console/data";
+import { loadPlatformPlans, loadPlatformTenants } from "@/lib/platform-console/data";
 import { PlatformPageHeader } from "@/components/platform-console/platform-primitives";
 import { EntityManager } from "@/components/platform-console/managers/entity-manager";
 import { getPlatformLabels } from "@/i18n/platform-labels";
@@ -12,16 +12,21 @@ export default async function PlatformTenantsPage({
 }) {
   const { locale } = await params;
   const t = getPlatformLabels(locale);
-  const tenants = await loadPlatformTenants();
+  const [tenants, plans] = await Promise.all([loadPlatformTenants(), loadPlatformPlans()]);
 
   return (
     <div className="space-y-8">
       <PlatformPageHeader
         eyebrow={t.eyebrow}
-        title={t.pages.tenants.title}
+        title={t.nav.companies}
         description={t.pages.tenants.description}
       />
-      <EntityManager entities={tenants} mode="tenant" detailBasePath={`/${locale}/app/platform`} />
+      <EntityManager
+        entities={tenants}
+        mode="tenant"
+        detailBasePath={`/${locale}/app/platform`}
+        plans={plans}
+      />
     </div>
   );
 }

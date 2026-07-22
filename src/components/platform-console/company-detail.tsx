@@ -55,20 +55,15 @@ export function CompanyDetail({
 
   return (
     <Tabs defaultValue="overview">
-      <TabsList className="flex flex-wrap">
-        <TabsTrigger value="overview">{t.companyDetail.tabs.overview}</TabsTrigger>
-        <TabsTrigger value="users">{fillPlatform(t.companyDetail.tabs.users, { count: company.members.length })}</TabsTrigger>
-        <TabsTrigger value="organizations">{fillPlatform(t.companyDetail.tabs.organizations, { count: company.clients.length })}</TabsTrigger>
-        <TabsTrigger value="workspaces">{fillPlatform(t.companyDetail.tabs.workspaces, { count: company.workspaces.length })}</TabsTrigger>
-        <TabsTrigger value="engagements">{fillPlatform(t.companyDetail.tabs.engagements, { count: company.engagements.length })}</TabsTrigger>
-        <TabsTrigger value="licenses">{t.companyDetail.tabs.license}</TabsTrigger>
-        <TabsTrigger value="seats">{t.companyDetail.tabs.seats}</TabsTrigger>
-        <TabsTrigger value="modules">{fillPlatform(t.companyDetail.tabs.modules, { count: company.modules.length })}</TabsTrigger>
-        <TabsTrigger value="activity">{t.companyDetail.tabs.activity}</TabsTrigger>
-        <TabsTrigger value="audit">{t.companyDetail.tabs.auditLogs}</TabsTrigger>
-        <TabsTrigger value="logins">{t.companyDetail.tabs.loginHistory}</TabsTrigger>
-        <TabsTrigger value="security">{t.companyDetail.tabs.security}</TabsTrigger>
-        <TabsTrigger value="settings">{t.companyDetail.tabs.settings}</TabsTrigger>
+      <TabsList className="flex w-full flex-nowrap gap-1 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible">
+        <TabsTrigger value="overview" className="min-h-11 shrink-0">{t.companyDetail.tabs.overview}</TabsTrigger>
+        <TabsTrigger value="users" className="min-h-11 shrink-0">
+          {fillPlatform(t.companyDetail.tabs.users, { count: company.members.length })}
+        </TabsTrigger>
+        <TabsTrigger value="subscription" className="min-h-11 shrink-0">{t.companyDetail.tabs.subscription}</TabsTrigger>
+        <TabsTrigger value="activity" className="min-h-11 shrink-0">{t.companyDetail.tabs.activity}</TabsTrigger>
+        <TabsTrigger value="security" className="min-h-11 shrink-0">{t.companyDetail.tabs.security}</TabsTrigger>
+        <TabsTrigger value="settings" className="min-h-11 shrink-0">{t.companyDetail.tabs.settings}</TabsTrigger>
       </TabsList>
 
       <TabsContent value="overview">
@@ -79,112 +74,12 @@ export function CompanyDetail({
         <UsersTab company={company} organizations={organizations} basePath={basePath} run={run} pendingId={pendingId} />
       </TabsContent>
 
-      <TabsContent value="organizations">
-        <DataTable
-          columns={[t.companyDetail.organizations.colOrganization, t.companyDetail.organizations.colWorkspace, t.companyDetail.organizations.colStatus]}
-          empty={t.companyDetail.organizations.empty}
-          rows={company.clients.map((c) => [
-            <span key="n" className="font-medium text-foreground">{c.name}</span>,
-            c.workspaceName ?? "—",
-            <Badge key="s" variant="secondary">{c.status}</Badge>,
-          ])}
-        />
-      </TabsContent>
-
-      <TabsContent value="workspaces">
-        <DataTable
-          columns={[t.companyDetail.workspaces.colWorkspace, t.companyDetail.workspaces.colMembers, t.companyDetail.workspaces.colStatus, t.companyDetail.workspaces.colCreated]}
-          empty={t.companyDetail.workspaces.empty}
-          rows={company.workspaces.map((w) => [
-            <span key="n" className="font-medium text-foreground">{w.name}</span>,
-            w.members.toLocaleString(),
-            <Badge key="s" variant="secondary">{w.status}</Badge>,
-            fmt(w.createdAt),
-          ])}
-        />
-      </TabsContent>
-
-      <TabsContent value="engagements">
-        <DataTable
-          columns={[t.companyDetail.engagements.colEngagement, t.companyDetail.engagements.colClient, t.companyDetail.engagements.colType, t.companyDetail.engagements.colStatus, t.companyDetail.engagements.colUpdated]}
-          empty={t.companyDetail.engagements.empty}
-          rows={company.engagements.map((e) => [
-            <span key="n" className="font-medium text-foreground">{e.name}</span>,
-            e.clientName,
-            <span key="t" className="capitalize">{e.type.replace(/_/g, " ")}</span>,
-            <Badge key="s" variant="secondary">{e.status}</Badge>,
-            fmt(e.updatedAt),
-          ])}
-        />
-      </TabsContent>
-
-      <TabsContent value="licenses">
-        <LicenseTab company={company} />
-      </TabsContent>
-
-      <TabsContent value="seats">
-        <SeatsTab company={company} />
-      </TabsContent>
-
-      <TabsContent value="modules">
-        <DataTable
-          columns={[t.companyDetail.modules.colModule, t.companyDetail.modules.colState, t.companyDetail.modules.colScope, t.companyDetail.modules.colUpdated]}
-          empty={t.companyDetail.modules.empty}
-          rows={company.modules.map((m) => [
-            <span key="n" className="font-medium capitalize text-foreground">{m.code.replace(/_/g, " ")}</span>,
-            <Badge key="s" variant={m.state === "enabled" ? "success" : "secondary"}>{m.state}</Badge>,
-            <span key="sc" className="capitalize">{m.scope}</span>,
-            fmt(m.updatedAt),
-          ])}
-        />
+      <TabsContent value="subscription">
+        <SubscriptionTab company={company} />
       </TabsContent>
 
       <TabsContent value="activity">
-        <div className="mb-4 flex justify-end">
-          <Button
-            size="sm"
-            variant="outline"
-            disabled={company.activity.length === 0}
-            onClick={() =>
-              downloadCsv(
-                timestampedName(`activity-${company.slug}`, "csv"),
-                [t.common.timestamp, t.common.event, t.common.severity, t.common.actor],
-                company.activity.map((e) => [e.timestamp, e.title, e.severity, e.detail]),
-              )
-            }
-          >
-            {t.common.exportCsv}
-          </Button>
-        </div>
-        <Timeline events={company.activity} empty={t.companyDetail.activity.timelineEmpty} emptyTitle={t.timeline.noEventsTitle} />
-      </TabsContent>
-
-      <TabsContent value="audit">
-        <DataTable
-          columns={[t.companyDetail.auditLogs.colTimestamp, t.companyDetail.auditLogs.colAction, t.companyDetail.auditLogs.colResource, t.companyDetail.auditLogs.colActor]}
-          empty={t.companyDetail.auditLogs.empty}
-          rows={company.auditLogs.map((a) => [
-            fmt(a.createdAt),
-            <span key="a" className="font-medium text-foreground">{a.action}</span>,
-            a.resource,
-            a.actorEmail,
-          ])}
-        />
-      </TabsContent>
-
-      <TabsContent value="logins">
-        <DataTable
-          columns={[t.companyDetail.loginHistory.colDate, t.companyDetail.loginHistory.colUser, t.companyDetail.loginHistory.colIp, t.companyDetail.loginHistory.colDevice, t.companyDetail.loginHistory.colBrowser, t.companyDetail.loginHistory.colResult]}
-          empty={t.companyDetail.loginHistory.empty}
-          rows={company.loginHistory.map((l) => [
-            fmt(l.createdAt),
-            l.email,
-            l.ip,
-            l.device,
-            l.browser,
-            <Badge key="r" variant={l.result === "Success" ? "success" : "secondary"}>{l.result}</Badge>,
-          ])}
-        />
+        <ActivityTab company={company} />
       </TabsContent>
 
       <TabsContent value="security">
@@ -200,6 +95,7 @@ export function CompanyDetail({
 
 function OverviewTab({ company }: { company: CompanyDetail }) {
   const t = usePlatformLabels();
+  const [showStructure, setShowStructure] = useState(false);
   return (
     <div className="space-y-8">
       <PlatformSection title={t.companyDetail.overview.company}>
@@ -244,6 +140,58 @@ function OverviewTab({ company }: { company: CompanyDetail }) {
           <Field label={t.companyDetail.overview.description} value={company.description ?? "—"} />
         </div>
       </PlatformSection>
+
+      <div>
+        <Button
+          type="button"
+          size="sm"
+          variant="ghost"
+          className="mb-3 min-h-11"
+          onClick={() => setShowStructure((v) => !v)}
+        >
+          {showStructure ? t.ux.hideAdvanced : t.ux.structure}
+        </Button>
+        {showStructure ? (
+          <div className="space-y-6">
+            <PlatformSection title={fillPlatform(t.companyDetail.tabs.organizations, { count: company.clients.length })}>
+              <DataTable
+                columns={[t.companyDetail.organizations.colOrganization, t.companyDetail.organizations.colWorkspace, t.companyDetail.organizations.colStatus]}
+                empty={t.companyDetail.organizations.empty}
+                rows={company.clients.map((c) => [
+                  <span key="n" className="font-medium text-foreground">{c.name}</span>,
+                  c.workspaceName ?? "—",
+                  <Badge key="s" variant="secondary">{c.status}</Badge>,
+                ])}
+              />
+            </PlatformSection>
+            <PlatformSection title={fillPlatform(t.companyDetail.tabs.workspaces, { count: company.workspaces.length })}>
+              <DataTable
+                columns={[t.companyDetail.workspaces.colWorkspace, t.companyDetail.workspaces.colMembers, t.companyDetail.workspaces.colStatus, t.companyDetail.workspaces.colCreated]}
+                empty={t.companyDetail.workspaces.empty}
+                rows={company.workspaces.map((w) => [
+                  <span key="n" className="font-medium text-foreground">{w.name}</span>,
+                  w.members.toLocaleString(),
+                  <Badge key="s" variant="secondary">{w.status}</Badge>,
+                  fmt(w.createdAt),
+                ])}
+              />
+            </PlatformSection>
+            <PlatformSection title={fillPlatform(t.companyDetail.tabs.engagements, { count: company.engagements.length })}>
+              <DataTable
+                columns={[t.companyDetail.engagements.colEngagement, t.companyDetail.engagements.colClient, t.companyDetail.engagements.colType, t.companyDetail.engagements.colStatus, t.companyDetail.engagements.colUpdated]}
+                empty={t.companyDetail.engagements.empty}
+                rows={company.engagements.map((e) => [
+                  <span key="n" className="font-medium text-foreground">{e.name}</span>,
+                  e.clientName,
+                  <span key="t" className="capitalize">{e.type.replace(/_/g, " ")}</span>,
+                  <Badge key="s" variant="secondary">{e.status}</Badge>,
+                  fmt(e.updatedAt),
+                ])}
+              />
+            </PlatformSection>
+          </div>
+        ) : null}
+      </div>
 
       <PlatformSection title={t.companyDetail.overview.recentTimeline}>
         <Timeline events={company.timeline.slice(0, 25)} empty={t.companyDetail.overview.timelineEmpty} emptyTitle={t.timeline.noEventsTitle} />
@@ -404,6 +352,80 @@ function UsersTab({
           })
         }
       />
+    </div>
+  );
+}
+
+function SubscriptionTab({ company }: { company: CompanyDetail }) {
+  const t = usePlatformLabels();
+  return (
+    <div className="space-y-8">
+      <LicenseTab company={company} />
+      <SeatsTab company={company} />
+      <PlatformSection title={fillPlatform(t.companyDetail.tabs.modules, { count: company.modules.length })}>
+        <DataTable
+          columns={[t.companyDetail.modules.colModule, t.companyDetail.modules.colState, t.companyDetail.modules.colScope, t.companyDetail.modules.colUpdated]}
+          empty={t.companyDetail.modules.empty}
+          rows={company.modules.map((m) => [
+            <span key="n" className="font-medium capitalize text-foreground">{m.code.replace(/_/g, " ")}</span>,
+            <Badge key="s" variant={m.state === "enabled" ? "success" : "secondary"}>{m.state}</Badge>,
+            <span key="sc" className="capitalize">{m.scope}</span>,
+            fmt(m.updatedAt),
+          ])}
+        />
+      </PlatformSection>
+    </div>
+  );
+}
+
+function ActivityTab({ company }: { company: CompanyDetail }) {
+  const t = usePlatformLabels();
+  return (
+    <div className="space-y-8">
+      <div className="flex justify-end">
+        <Button
+          size="sm"
+          variant="outline"
+          className="min-h-11"
+          disabled={company.activity.length === 0}
+          onClick={() =>
+            downloadCsv(
+              timestampedName(`activity-${company.slug}`, "csv"),
+              [t.common.timestamp, t.common.event, t.common.severity, t.common.actor],
+              company.activity.map((e) => [e.timestamp, e.title, e.severity, e.detail]),
+            )
+          }
+        >
+          {t.common.exportCsv}
+        </Button>
+      </div>
+      <Timeline events={company.activity} empty={t.companyDetail.activity.timelineEmpty} emptyTitle={t.timeline.noEventsTitle} />
+      <PlatformSection title={t.companyDetail.tabs.auditLogs}>
+        <DataTable
+          columns={[t.companyDetail.auditLogs.colTimestamp, t.companyDetail.auditLogs.colAction, t.companyDetail.auditLogs.colResource, t.companyDetail.auditLogs.colActor]}
+          empty={t.companyDetail.auditLogs.empty}
+          rows={company.auditLogs.map((a) => [
+            fmt(a.createdAt),
+            <span key="a" className="font-medium text-foreground">{a.action}</span>,
+            a.resource,
+            a.actorEmail,
+          ])}
+        />
+      </PlatformSection>
+      <PlatformSection title={t.companyDetail.tabs.loginHistory}>
+        <DataTable
+          columns={[t.companyDetail.loginHistory.colDate, t.companyDetail.loginHistory.colUser, t.companyDetail.loginHistory.colIp, t.companyDetail.loginHistory.colDevice, t.companyDetail.loginHistory.colBrowser, t.companyDetail.loginHistory.colResult]}
+          empty={t.companyDetail.loginHistory.empty}
+          rows={company.loginHistory.map((l) => [
+            fmt(l.createdAt),
+            l.email,
+            l.ip,
+            l.device,
+            l.browser,
+            <Badge key="r" variant={l.result === "Success" ? "success" : "secondary"}>{l.result}</Badge>,
+          ])}
+        />
+      </PlatformSection>
     </div>
   );
 }
