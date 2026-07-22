@@ -18,7 +18,6 @@ import { PLATFORM_ROLE_SLUGS } from "@/types/auth";
 import type { RepositoryContext } from "@/types/context";
 import type { TenantType } from "@/constants/saas";
 import {
-  COMPANY_ADMINISTRATION_PATH,
   MEMBERSHIP_PERMISSIONS,
 } from "@/constants/membership";
 import {
@@ -52,8 +51,9 @@ function resolveSiteOrigin(): string {
 }
 
 function revalidateCompanyAdministration(): void {
-  revalidatePath(`/[locale]${COMPANY_ADMINISTRATION_PATH}`, "page");
-  revalidatePath(COMPANY_ADMINISTRATION_PATH);
+  revalidatePath("/[locale]/app/administration", "page");
+  revalidatePath("/app/administration");
+  revalidatePath("/[locale]/app/administration/users", "page");
 }
 
 async function resolveGlobalRoleId(
@@ -658,6 +658,138 @@ export const companyAssignWorkspaceMembershipAction = createAuthenticatedAction<
       targetUserId: input.userId,
       roleSlug: input.roleSlug,
       via: "company_admin_workspace",
+    },
+  });
+
+  revalidateCompanyAdministration();
+  return { membershipId: created.id };
+});
+
+// ---------------------------------------------------------------------------
+// Remove workspace membership
+// ---------------------------------------------------------------------------
+
+export type CompanyRemoveWorkspaceInput = {
+  membershipId: string;
+  userId: string;
+};
+
+export const companyRemoveWorkspaceMembershipAction = createAuthenticatedAction<
+  CompanyRemoveWorkspaceInput,
+  { membershipId: string }
+>({ module: "company.administration.remove-workspace" }, async (input) => {
+  const actor = await requireCompanyAdministrator();
+  const supabase = await createServerClient();
+  const service = createServiceClient();
+  const membershipRepo = new MembershipRepository(
+    supabase,
+    repoContext(actor.id, actor.organizationId),
+  );
+
+  const membership = await loadTargetMembershipInOrg(
+    membershipRepo,
+    input.membershipId,
+    actor.organizationId,
+  );
+  if (membership.user_id !== input.userId) {
+    throw new ValidationError("Membership does not match the selected user");
+  }
+  if (membership.membership_scope !== "workspace") {
+    throw new ValidationError("Only workspace memberships can be removed here");
+  }
+
+  const roleSlug = await loadTargetRoleSlug(service, membership.role_id);
+  assertTargetRoleMutable(roleSlug);
+
+  await membershipRepo.softDelete(membership.id, membership.version);
+
+  await emitAuditEvent({
+    action: "membership.workspace_removed",
+    resourceType: "membership",
+    resourceId: membership.id,
+    organizationId: actor.organizationId,
+    workspaceId: membership.workspace_id,
+    userId: actor.id,
+    metadata: { targetUserId: input.userId },
+  });
+
+  revalidateCompanyAdministration();
+  return { membershipId: membership.id };
+});
+
+// ---------------------------------------------------------------------------
+// Transfer workspace membership (move user from one workspace to another)
+// ---------------------------------------------------------------------------
+
+export type CompanyTransferWorkspaceInput = {
+  membershipId: string;
+  userId: string;
+  toWorkspaceId: string;
+  roleSlug: string;
+};
+
+export const companyTransferWorkspaceMembershipAction = createAuthenticatedAction<
+  CompanyTransferWorkspaceInput,
+  { membershipId: string }
+>({ module: "company.administration.transfer-workspace" }, async (input) => {
+  const actor = await requireCompanyAdministrator();
+  assertAssignableCompanyRole(input.roleSlug);
+
+  const supabase = await createServerClient();
+  const service = createServiceClient();
+  const membershipRepo = new MembershipRepository(
+    supabase,
+    repoContext(actor.id, actor.organizationId),
+  );
+
+  const membership = await loadTargetMembershipInOrg(
+    membershipRepo,
+    input.membershipId,
+    actor.organizationId,
+  );
+  if (membership.user_id !== input.userId) {
+    throw new ValidationError("Membership does not match the selected user");
+  }
+  if (membership.membership_scope !== "workspace") {
+    throw new ValidationError("Only workspace memberships can be transferred");
+  }
+
+  const roleSlug = await loadTargetRoleSlug(service, membership.role_id);
+  assertTargetRoleMutable(roleSlug);
+
+  const workspace = await service
+    .from("workspaces")
+    .select("id")
+    .eq("id", input.toWorkspaceId)
+    .eq("organization_id", actor.organizationId)
+    .is("deleted_at", null)
+    .maybeSingle();
+  if (!workspace.data) throw new ValidationError("Target workspace not found in your company");
+
+  await membershipRepo.softDelete(membership.id, membership.version);
+
+  const roleId = await resolveGlobalRoleId(service, input.roleSlug);
+  const created = await membershipRepo.create({
+    user_id: input.userId,
+    organization_id: actor.organizationId,
+    workspace_id: input.toWorkspaceId,
+    company_id: null,
+    role_id: roleId,
+    membership_scope: "workspace",
+  });
+
+  await emitAuditEvent({
+    action: "membership.workspace_transferred",
+    resourceType: "membership",
+    resourceId: created.id,
+    organizationId: actor.organizationId,
+    workspaceId: input.toWorkspaceId,
+    userId: actor.id,
+    metadata: {
+      targetUserId: input.userId,
+      fromWorkspaceId: membership.workspace_id,
+      toWorkspaceId: input.toWorkspaceId,
+      roleSlug: input.roleSlug,
     },
   });
 

@@ -133,85 +133,194 @@
   },
   "companyAdmin": {
     "title": "Company Administration",
-    "subtitle": "Manage users, roles, seats, and activity for your company only.",
+    "subtitle": "Everything you need to run your company team — seats, access, and activity.",
     "navAdministration": "Administration",
-    "tabs": {
-      "users": "Users",
-      "invitations": "Invitations",
+    "health": {
+      "healthy": "Healthy",
+      "attention": "Needs attention",
+      "critical": "Critical",
+      "label": "Status"
+    },
+    "sections": {
+      "overview": "Overview",
+      "team": "Team",
       "roles": "Roles",
+      "seats": "Seats",
+      "workspaces": "Workspaces",
       "activity": "Activity",
-      "logins": "Login history",
-      "seats": "Seats"
+      "logins": "Logins",
+      "security": "Security",
+      "settings": "Settings"
     },
-    "seats": {
-      "purchased": "Purchased",
-      "used": "Used",
-      "available": "Available",
-      "none": "No active license is attached to this company yet."
+    "overview": {
+      "companyName": "Company",
+      "companyStatus": "Status",
+      "plan": "Plan",
+      "expiration": "Expires",
+      "noPlan": "No plan assigned",
+      "purchasedSeats": "Purchased seats",
+      "usedSeats": "Used seats",
+      "availableSeats": "Available seats",
+      "administrators": "Administrators",
+      "activeUsers": "Active users",
+      "activeAudits": "Active audits",
+      "workspaces": "Workspaces",
+      "recentActivity": "Recent activity",
+      "recentLogins": "Recent logins",
+      "securityStatus": "Security",
+      "viewAll": "View all",
+      "none": "None"
     },
-    "users": {
-      "heading": "Company users",
+    "team": {
+      "heading": "Team",
+      "addUser": "Add user",
+      "inviteUser": "Invite",
+      "search": "Search team",
+      "empty": "No team members yet.",
       "email": "Email",
       "name": "Name",
       "role": "Role",
       "workspace": "Workspace",
       "status": "Status",
+      "modules": "Modules",
       "actions": "Actions",
       "active": "Active",
-      "suspended": "Disabled",
+      "disabled": "Disabled",
       "inactive": "Inactive",
-      "invite": "Invite user",
-      "create": "Create user",
       "disable": "Disable",
-      "reactivate": "Reactivate",
-      "delete": "Delete",
+      "enable": "Enable",
+      "delete": "Remove",
       "resetPassword": "Reset password",
       "changeRole": "Change role",
-      "assignWorkspace": "Assign workspace",
-      "empty": "No users in this company yet.",
-      "confirmDelete": "Remove this user from your company? This frees one seat."
+      "viewPermissions": "Permissions & access",
+      "confirmDelete": "Remove this person from your company? One seat will be freed.",
+      "pendingInvites": "Pending invitations",
+      "revokeInvite": "Revoke"
     },
-    "forms": {
+    "wizard": {
+      "title": "Add team member",
+      "inviteTitle": "Invite team member",
+      "stepInfo": "User information",
+      "stepRole": "Role",
+      "stepWorkspace": "Workspace",
+      "stepModules": "Module access",
+      "finish": "Finish",
+      "next": "Continue",
+      "back": "Back",
+      "cancel": "Cancel",
       "email": "Email",
-      "password": "Temporary password",
       "fullName": "Full name",
-      "role": "Role",
-      "workspace": "Workspace",
-      "workspaceOptional": "Workspace (optional)",
-      "submitInvite": "Send invitation",
+      "password": "Temporary password",
+      "modeCreate": "Create now",
+      "modeInvite": "Send invite",
+      "roleHint": "Choose the role that matches their responsibilities. Permissions come from the role.",
+      "workspaceHint": "Optionally place them in a workspace now. You can change this later.",
+      "workspaceOptional": "No workspace yet",
+      "modulesHint": "Module access is determined by your plan and the selected role. Individual permissions cannot be edited.",
+      "moduleEnabled": "Enabled",
+      "moduleDisabled": "Disabled",
+      "moduleInherited": "Inherited",
       "submitCreate": "Create user",
-      "submitRole": "Save role",
-      "submitWorkspace": "Assign",
-      "cancel": "Cancel"
-    },
-    "invitations": {
-      "heading": "Pending invitations",
-      "empty": "No pending invitations.",
-      "revoke": "Revoke",
-      "expires": "Expires"
+      "submitInvite": "Send invitation"
     },
     "roles": {
-      "heading": "Assignable roles",
-      "description": "Company Administrators may assign only these tenant roles. Platform Owner and Organization Owner cannot be assigned here.",
-      "permissionsNote": "Permissions come from the seeded role catalog. Custom platform permissions cannot be created from Company Administration."
+      "heading": "Roles",
+      "description": "Only company roles can be assigned. Permissions are inherited from each role.",
+      "permissions": "Inherited permissions",
+      "scopeCompany": "Company-wide",
+      "scopeWorkspace": "Workspace",
+      "scopeEither": "Company or workspace",
+      "empty": "No permissions listed for this role."
+    },
+    "seats": {
+      "heading": "Seat usage",
+      "purchased": "Purchased",
+      "used": "Used",
+      "available": "Available",
+      "none": "No active plan is attached yet.",
+      "holder": "User",
+      "role": "Role",
+      "created": "Created",
+      "status": "Status",
+      "lastLogin": "Last login",
+      "never": "Never"
+    },
+    "workspaces": {
+      "heading": "Workspaces",
+      "members": "Members",
+      "assign": "Assign",
+      "remove": "Remove",
+      "transfer": "Transfer",
+      "empty": "No workspaces yet.",
+      "current": "Current workspaces",
+      "role": "Role"
     },
     "activity": {
       "heading": "Company activity",
-      "empty": "No recent activity.",
-      "actor": "Actor",
+      "search": "Search activity",
+      "filterAll": "All",
+      "filterUser": "By user",
+      "filterAction": "By action",
+      "export": "Export",
+      "empty": "No company activity yet.",
+      "actor": "User",
       "action": "Action",
-      "when": "When"
+      "when": "Date"
     },
     "logins": {
       "heading": "Login history",
-      "empty": "No login events recorded yet.",
-      "ip": "IP address",
-      "agent": "User agent"
+      "empty": "No login events yet.",
+      "user": "User",
+      "event": "Event",
+      "ip": "IP",
+      "browser": "Browser",
+      "device": "Device",
+      "result": "Result",
+      "when": "Date"
+    },
+    "permissions": {
+      "heading": "Effective permissions",
+      "effective": "Permission",
+      "source": "Source",
+      "inheritedRole": "Inherited role",
+      "workspace": "Workspace",
+      "readOnly": "Permissions are role-based and cannot be edited individually.",
+      "empty": "No permissions for this role."
+    },
+    "modules": {
+      "heading": "Modules",
+      "planning": "Planning",
+      "workingPapers": "Working Papers",
+      "financialReporting": "Financial Reporting",
+      "riskAssessment": "Risk Assessment",
+      "analytics": "Analytics",
+      "ai": "AI"
+    },
+    "security": {
+      "heading": "Company security",
+      "passwordResets": "Password resets",
+      "disabledUsers": "Disabled users",
+      "forceLogout": "Force logout events",
+      "alerts": "Security alerts",
+      "failedLogins": "Failed logins",
+      "suspicious": "Suspicious activity",
+      "empty": "No security events for this company."
+    },
+    "settings": {
+      "heading": "Company settings",
+      "general": "General",
+      "administrator": "Administrator",
+      "licenseSummary": "Plan summary",
+      "seatSummary": "Seat summary",
+      "companyStatus": "Company status",
+      "dangerZone": "Danger zone",
+      "dangerHint": "Plan changes, seat increases, and company deletion are managed by the platform provider — not from here."
     },
     "messages": {
       "success": "Saved.",
       "forbidden": "You do not have permission for this action.",
-      "readOnly": "You can view company users. Write actions require membership administration permission."
+      "readOnly": "You can view this company. Changes require administration access.",
+      "noSeats": "No seats available. Free a seat or ask your provider to increase the plan."
     }
   },
   "companies": {

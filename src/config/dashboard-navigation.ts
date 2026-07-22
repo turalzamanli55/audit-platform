@@ -7,7 +7,7 @@ export const ENGAGEMENTS_NEW_PATH = "/app/engagements/new";
 
 export const IMPORT_INTELLIGENCE_PATH = "/app/import-intelligence";
 export const AI_WORKSPACE_PATH = "/ai";
-export const ADMINISTRATION_USERS_PATH = "/app/administration/users";
+export const ADMINISTRATION_USERS_PATH = "/app/administration";
 
 export type DashboardNavItem = {
   href: string;

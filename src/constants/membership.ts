@@ -14,14 +14,15 @@ export const AUDIT_LOG_PERMISSIONS = {
  * Excludes platform_owner and organization_owner to prevent privilege escalation.
  */
 export const COMPANY_ADMIN_ASSIGNABLE_ROLES = [
-  { value: "organization_admin", label: "Organization Admin" },
-  { value: "workspace_admin", label: "Workspace Admin" },
+  { value: "organization_admin", label: "Company Administrator" },
+  { value: "workspace_admin", label: "Workspace Lead" },
   { value: "manager", label: "Manager" },
-  { value: "member", label: "Member" },
+  { value: "member", label: "Team Member" },
   { value: "viewer", label: "Viewer" },
 ] as const;
 
 export type CompanyAdminAssignableRole =
   (typeof COMPANY_ADMIN_ASSIGNABLE_ROLES)[number]["value"];
 
-export const COMPANY_ADMINISTRATION_PATH = "/app/administration/users";
+export const COMPANY_ADMINISTRATION_PATH = "/app/administration";
+export const COMPANY_ADMINISTRATION_USERS_PATH = "/app/administration/users";

@@ -1743,68 +1743,133 @@ export type Dictionary = {
     title: string;
     subtitle: string;
     navAdministration: string;
-    tabs: {
-      users: string;
-      invitations: string;
+    health: {
+      healthy: string;
+      attention: string;
+      critical: string;
+      label: string;
+    };
+    sections: {
+      overview: string;
+      team: string;
       roles: string;
+      seats: string;
+      workspaces: string;
       activity: string;
       logins: string;
-      seats: string;
+      security: string;
+      settings: string;
     };
-    seats: {
-      purchased: string;
-      used: string;
-      available: string;
+    overview: {
+      companyName: string;
+      companyStatus: string;
+      plan: string;
+      expiration: string;
+      noPlan: string;
+      purchasedSeats: string;
+      usedSeats: string;
+      availableSeats: string;
+      administrators: string;
+      activeUsers: string;
+      activeAudits: string;
+      workspaces: string;
+      recentActivity: string;
+      recentLogins: string;
+      securityStatus: string;
+      viewAll: string;
       none: string;
     };
-    users: {
+    team: {
       heading: string;
+      addUser: string;
+      inviteUser: string;
+      search: string;
+      empty: string;
       email: string;
       name: string;
       role: string;
       workspace: string;
       status: string;
+      modules: string;
       actions: string;
       active: string;
-      suspended: string;
+      disabled: string;
       inactive: string;
-      invite: string;
-      create: string;
       disable: string;
-      reactivate: string;
+      enable: string;
       delete: string;
       resetPassword: string;
       changeRole: string;
-      assignWorkspace: string;
-      empty: string;
+      viewPermissions: string;
       confirmDelete: string;
+      pendingInvites: string;
+      revokeInvite: string;
     };
-    forms: {
-      email: string;
-      password: string;
-      fullName: string;
-      role: string;
-      workspace: string;
-      workspaceOptional: string;
-      submitInvite: string;
-      submitCreate: string;
-      submitRole: string;
-      submitWorkspace: string;
+    wizard: {
+      title: string;
+      inviteTitle: string;
+      stepInfo: string;
+      stepRole: string;
+      stepWorkspace: string;
+      stepModules: string;
+      finish: string;
+      next: string;
+      back: string;
       cancel: string;
-    };
-    invitations: {
-      heading: string;
-      empty: string;
-      revoke: string;
-      expires: string;
+      email: string;
+      fullName: string;
+      password: string;
+      modeCreate: string;
+      modeInvite: string;
+      roleHint: string;
+      workspaceHint: string;
+      workspaceOptional: string;
+      modulesHint: string;
+      moduleEnabled: string;
+      moduleDisabled: string;
+      moduleInherited: string;
+      submitCreate: string;
+      submitInvite: string;
     };
     roles: {
       heading: string;
       description: string;
-      permissionsNote: string;
+      permissions: string;
+      scopeCompany: string;
+      scopeWorkspace: string;
+      scopeEither: string;
+      empty: string;
+    };
+    seats: {
+      heading: string;
+      purchased: string;
+      used: string;
+      available: string;
+      none: string;
+      holder: string;
+      role: string;
+      created: string;
+      status: string;
+      lastLogin: string;
+      never: string;
+    };
+    workspaces: {
+      heading: string;
+      members: string;
+      assign: string;
+      remove: string;
+      transfer: string;
+      empty: string;
+      current: string;
+      role: string;
     };
     activity: {
       heading: string;
+      search: string;
+      filterAll: string;
+      filterUser: string;
+      filterAction: string;
+      export: string;
       empty: string;
       actor: string;
       action: string;
@@ -1813,13 +1878,57 @@ export type Dictionary = {
     logins: {
       heading: string;
       empty: string;
+      user: string;
+      event: string;
       ip: string;
-      agent: string;
+      browser: string;
+      device: string;
+      result: string;
+      when: string;
+    };
+    permissions: {
+      heading: string;
+      effective: string;
+      source: string;
+      inheritedRole: string;
+      workspace: string;
+      readOnly: string;
+      empty: string;
+    };
+    modules: {
+      heading: string;
+      planning: string;
+      workingPapers: string;
+      financialReporting: string;
+      riskAssessment: string;
+      analytics: string;
+      ai: string;
+    };
+    security: {
+      heading: string;
+      passwordResets: string;
+      disabledUsers: string;
+      forceLogout: string;
+      alerts: string;
+      failedLogins: string;
+      suspicious: string;
+      empty: string;
+    };
+    settings: {
+      heading: string;
+      general: string;
+      administrator: string;
+      licenseSummary: string;
+      seatSummary: string;
+      companyStatus: string;
+      dangerZone: string;
+      dangerHint: string;
     };
     messages: {
       success: string;
       forbidden: string;
       readOnly: string;
+      noSeats: string;
     };
   };
   companies: {
