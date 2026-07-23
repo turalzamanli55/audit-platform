@@ -9,11 +9,7 @@ import { Select } from "@/components/ui/select";
 import { Modal } from "@/components/ui/modal";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { TENANT_TYPE_OPTIONS } from "@/config/platform-options";
 import { usePlatformLabels } from "@/i18n/use-platform-labels";
 import { fillPlatform } from "@/i18n/platform-labels";
@@ -23,13 +19,13 @@ import {
   updateTenantAction,
   suspendTenantAction,
   activateTenantAction,
-  archiveTenantAction,
-  restoreTenantAction,
 } from "@/lib/platform-console/actions/organizations";
 import { useActionRunner } from "./use-action-runner";
 import { CreateCompanyWizard } from "./create-company-wizard";
 import { GovernanceUndoToast } from "@/components/governance/undo-toast";
-import { softDeleteGovernedAction, restoreGovernedAction } from "@/lib/platform-console/actions/governance";
+import { BoundEntityLifecycleMenu } from "@/components/governance/bound-entity-lifecycle-menu";
+import { restoreGovernedAction } from "@/lib/platform-console/actions/governance";
+import { useLanguage } from "@/providers";
 
 type Mode = "tenant" | "organization";
 
@@ -58,12 +54,18 @@ export function EntityManager({
   mode,
   detailBasePath,
   plans = [],
+  objectType = "organization",
 }: {
   entities: TenantRow[];
   mode: Mode;
   detailBasePath?: string;
   /** Required for tenant create wizard (plan + seats steps). */
   plans?: PlanRow[];
+  /**
+   * Registered lifecycle object type. EntityManager never hardcodes domain
+   * lifecycle buttons — BoundEntityLifecycleMenu asks the registry.
+   */
+  objectType?: "organization";
 }) {
   const t = usePlatformLabels();
   const { run, pendingId } = useActionRunner();
@@ -182,9 +184,11 @@ export function EntityManager({
                         entity={entity}
                         mode={mode}
                         label={label}
+                        objectType={objectType}
                         busy={pendingId?.startsWith(entity.id) ?? false}
                         pendingId={pendingId}
                         run={run}
+                        detailBasePath={detailBasePath}
                         onEdit={() => setEditing(entity)}
                         onSoftDeleted={(row) => setUndo({ id: row.id, organizationId: row.id })}
                       />
@@ -263,9 +267,11 @@ export function EntityManager({
                     entity={entity}
                     mode={mode}
                     label={label}
+                    objectType={objectType}
                     busy={pendingId?.startsWith(entity.id) ?? false}
                     pendingId={pendingId}
                     run={run}
+                    detailBasePath={detailBasePath}
                     onEdit={() => setEditing(entity)}
                     onSoftDeleted={(row) => setUndo({ id: row.id, organizationId: row.id })}
                   />
@@ -314,110 +320,94 @@ export function EntityManager({
 
 type Runner = ReturnType<typeof useActionRunner>["run"];
 
+/**
+ * Lifecycle chrome for a registered object. Domain extras (suspend/activate)
+ * are tenant-license controls — not lifecycle registry actions.
+ */
 function EntityActions({
   entity,
   mode,
   label,
+  objectType,
   busy,
-  pendingId,
   run,
   onEdit,
   onSoftDeleted,
+  detailBasePath,
 }: {
   entity: TenantRow;
   mode: Mode;
   label: string;
+  objectType: "organization";
   busy: boolean;
   pendingId: string | null;
   run: Runner;
   onEdit: () => void;
   onSoftDeleted?: (entity: TenantRow) => void;
+  detailBasePath?: string;
 }) {
   const t = usePlatformLabels();
+  const { locale } = useLanguage();
+  const historyHref = detailBasePath
+    ? `${detailBasePath}/companies/${entity.id}`
+    : `/${locale}/app/platform/companies/${entity.id}`;
+  const isArchived = entity.status === "archived" || entity.displayStatus === "archived";
 
   return (
-    <DropdownMenu
-      align="end"
+    <BoundEntityLifecycleMenu
+      objectType={objectType}
+      actor="platform_owner"
+      target={{
+        id: entity.id,
+        organizationId: entity.id,
+        slug: entity.slug,
+        name: entity.name,
+      }}
+      state={{ isArchived, isSoftDeleted: false, status: entity.status }}
+      hrefs={{ history: historyHref }}
+      onEdit={onEdit}
+      enableUndoToast={false}
+      onSoftDeleted={() => onSoftDeleted?.(entity)}
+      labelOverrides={{
+        deleteConfirm: fillPlatform(t.entityManager.deleteConfirm, { name: entity.name, label }),
+        toastArchived: fillPlatform(t.entityManager.toastArchived, { label }),
+        toastRestored: fillPlatform(t.entityManager.toastRestored, { label }),
+        toastDeleted: fillPlatform(t.entityManager.toastDeleted, { label }),
+      }}
       trigger={
         <Button variant="outline" size="sm" className="min-h-11" disabled={busy}>
           {t.ux.moreActions}
         </Button>
       }
-    >
-      <DropdownMenuItem onSelect={onEdit}>{t.common.edit}</DropdownMenuItem>
-      <DropdownMenuSeparator />
-      {mode === "tenant" && entity.status !== "suspended" ? (
-        <DropdownMenuItem
-          disabled={busy}
-          onSelect={() =>
-            void run(`${entity.id}:suspend`, () => suspendTenantAction({ id: entity.id }), {
-              success: fillPlatform(t.entityManager.toastSuspended, { label }),
-            })
-          }
-        >
-          {t.common.suspend}
-        </DropdownMenuItem>
-      ) : null}
-      {entity.status === "suspended" || entity.status === "inactive" ? (
-        <DropdownMenuItem
-          disabled={busy}
-          onSelect={() =>
-            void run(`${entity.id}:activate`, () => activateTenantAction({ id: entity.id }), {
-              success: fillPlatform(t.entityManager.toastActivated, { label }),
-            })
-          }
-        >
-          {t.common.activate}
-        </DropdownMenuItem>
-      ) : null}
-      {entity.status !== "archived" ? (
-        <DropdownMenuItem
-          disabled={busy}
-          onSelect={() =>
-            void run(`${entity.id}:archive`, () => archiveTenantAction({ id: entity.id }), {
-              success: fillPlatform(t.entityManager.toastArchived, { label }),
-            })
-          }
-        >
-          {t.common.archive}
-        </DropdownMenuItem>
-      ) : (
-        <DropdownMenuItem
-          disabled={busy}
-          onSelect={() =>
-            void run(`${entity.id}:restore`, () => restoreTenantAction({ id: entity.id }), {
-              success: fillPlatform(t.entityManager.toastRestored, { label }),
-            })
-          }
-        >
-          {t.common.restore}
-        </DropdownMenuItem>
-      )}
-      <DropdownMenuSeparator />
-      <DropdownMenuItem
-        destructive
-        disabled={busy || pendingId === `${entity.id}:delete`}
-        onSelect={() => {
-          if (!window.confirm(fillPlatform(t.entityManager.deleteConfirm, { name: entity.name, label }))) return;
-          void run(
-            `${entity.id}:delete`,
-            () =>
-              softDeleteGovernedAction({
-                objectType: "organization",
-                objectId: entity.id,
-                organizationId: entity.id,
-                reason: { code: "other", customText: "Platform Owner soft delete" },
-              }),
-            {
-              success: fillPlatform(t.entityManager.toastDeleted, { label }),
-              onSuccess: () => onSoftDeleted?.(entity),
-            },
-          );
-        }}
-      >
-        {t.common.delete}
-      </DropdownMenuItem>
-    </DropdownMenu>
+      leadingExtraItems={
+        <>
+          {mode === "tenant" && entity.status !== "suspended" ? (
+            <DropdownMenuItem
+              disabled={busy}
+              onSelect={() =>
+                void run(`${entity.id}:suspend`, () => suspendTenantAction({ id: entity.id }), {
+                  success: fillPlatform(t.entityManager.toastSuspended, { label }),
+                })
+              }
+            >
+              {t.common.suspend}
+            </DropdownMenuItem>
+          ) : null}
+          {entity.status === "suspended" || entity.status === "inactive" ? (
+            <DropdownMenuItem
+              disabled={busy}
+              onSelect={() =>
+                void run(`${entity.id}:activate`, () => activateTenantAction({ id: entity.id }), {
+                  success: fillPlatform(t.entityManager.toastActivated, { label }),
+                })
+              }
+            >
+              {t.common.activate}
+            </DropdownMenuItem>
+          ) : null}
+        </>
+      }
+    />
   );
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { EngagementListItem } from "@/lib/engagement/engagement-list-item";
 import {
   EngagementArchiveBadge,
@@ -14,6 +14,7 @@ import {
   formatLifecycleStatusLabel,
 } from "@/lib/engagement/format-engagement-workspace";
 import type { EngagementListLabels } from "./engagement-list-experience";
+import { BoundEntityLifecycleMenu } from "@/components/governance/bound-entity-lifecycle-menu";
 
 type EngagementListRowProps = {
   item: EngagementListItem;
@@ -74,41 +75,16 @@ export function EngagementListRow({
   onToggleSelect,
   onFocus,
 }: EngagementListRowProps) {
-  const menuId = useId();
   const rowRef = useRef<HTMLDivElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const href = `/${locale}/app/engagements/${item.slug}`;
+  const editHref = `/${locale}/app/engagements/${item.slug}/settings`;
+  const historyHref = `/${locale}/app/engagements/${item.slug}/history`;
 
   useEffect(() => {
     if (focused) {
       rowRef.current?.scrollIntoView({ block: "nearest" });
     }
   }, [focused]);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      return;
-    }
-
-    const handlePointerDown = (event: MouseEvent) => {
-      if (!rowRef.current?.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handlePointerDown);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [menuOpen]);
 
   return (
     <div
@@ -117,10 +93,6 @@ export function EngagementListRow({
       aria-selected={selected}
       data-focused={focused}
       onMouseEnter={onFocus}
-      onContextMenu={(event) => {
-        event.preventDefault();
-        setMenuOpen(true);
-      }}
       className={`group relative rounded-2xl border bg-card transition-all duration-200 ${
         selected
           ? "border-primary/30 bg-accent/20 shadow-sm"
@@ -198,45 +170,29 @@ export function EngagementListRow({
             <span>{formatUpdatedAt(item.updatedAt, locale)}</span>
           </div>
 
-          <div className="relative flex items-center gap-1">
+          <div className="relative flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
             <Link
               href={href}
               className="hidden rounded-lg px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex"
             >
               {labels.viewEngagement}
             </Link>
-            <button
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded={menuOpen}
-              aria-controls={menuId}
-              onClick={(event) => {
-                event.stopPropagation();
-                setMenuOpen((open) => !open);
-              }}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <span className="sr-only">{labels.openMenu}</span>
-              <MoreIcon />
-            </button>
-
-            {menuOpen ? (
-              <div
-                id={menuId}
-                role="menu"
-                aria-label={labels.quickActions}
-                className="absolute right-0 top-full z-20 mt-2 min-w-[10rem] rounded-xl border border-border/60 bg-card p-1 shadow-lg"
-              >
-                <Link
-                  href={href}
-                  role="menuitem"
-                  className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  onClick={() => setMenuOpen(false)}
+            <BoundEntityLifecycleMenu
+              objectType="engagement"
+              actor="tenant"
+              target={{ id: item.id, version: item.version, slug: item.slug, name: item.name }}
+              state={{ isArchived: item.isArchived, isSoftDeleted: item.isArchived }}
+              hrefs={{ edit: editHref, history: historyHref }}
+              trigger={
+                <button
+                  type="button"
+                  aria-label={labels.openMenu}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  {labels.viewEngagement}
-                </Link>
-              </div>
-            ) : null}
+                  <MoreIcon />
+                </button>
+              }
+            />
           </div>
         </div>
       </div>

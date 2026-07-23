@@ -9,7 +9,6 @@ import type {
 import {
   companyDisableUserAction,
   companyReactivateUserAction,
-  companyDeleteUserAction,
   companyResetPasswordAction,
   companyChangeRoleAction,
   companyAssignWorkspaceMembershipAction,
@@ -17,6 +16,8 @@ import {
   companyTransferWorkspaceMembershipAction,
   companyRevokeInvitationAction,
 } from "@/lib/actions/company-administration/company-administration-actions";
+import { createLifecycleActionDispatch } from "@/lib/object-lifecycle/lifecycle-handlers";
+import { BoundEntityLifecycleMenu } from "@/components/governance/bound-entity-lifecycle-menu";
 import {
   activityDayGroup,
   avatarInitials,
@@ -34,6 +35,7 @@ import type { CompanyAdministrationLabels } from "./labels";
 import { CompanyRecycleBinClient } from "@/components/governance/company-recycle-bin-client";
 import type { GovernanceLabels } from "@/components/governance/recycle-bin-experience";
 import type { RecycleBinItem } from "@/lib/object-lifecycle";
+import { Button } from "@/components/ui/button";
 
 type Section =
   | "overview"
@@ -950,11 +952,16 @@ function TeamSection({
                           disabled={pending}
                           onClick={() => {
                             if (!window.confirm(labels.team.confirmDelete)) return;
+                            const dispatch = createLifecycleActionDispatch({
+                              objectType: "membership",
+                              actor: "company_admin",
+                              target: { id: user.membershipId },
+                            });
                             onRun(
                               async () =>
-                                companyDeleteUserAction({
-                                  membershipId: user.membershipId,
-                                  userId: user.userId,
+                                dispatch.softDelete({
+                                  code: "other",
+                                  customText: "Company administrator soft-deleted membership",
                                 }),
                               labels.messages.userRemoved,
                             );
@@ -1299,6 +1306,29 @@ function WorkspacesSection({
                     {labels.workspaces.members}: {workspace.memberCount}
                   </p>
                 </div>
+                {data.canAdminister ? (
+                  <BoundEntityLifecycleMenu
+                    objectType="workspace"
+                    actor="company_admin"
+                    target={{
+                      id: workspace.id,
+                      workspaceId: workspace.id,
+                      name: workspace.name,
+                    }}
+                    state={{ isArchived: false, isSoftDeleted: false }}
+                    trigger={
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="min-h-11 w-11 px-0"
+                        disabled={pending}
+                        aria-label="More actions"
+                      >
+                        ⋮
+                      </Button>
+                    }
+                  />
+                ) : null}
               </div>
               <ul className="mt-3 space-y-2">
                 {members.map((user) => {
