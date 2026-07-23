@@ -20,6 +20,7 @@ export type CompanyAdministrationLabels = {
     activity: string;
     logins: string;
     security: string;
+    recycleBin: string;
     settings: string;
   };
   overview: {

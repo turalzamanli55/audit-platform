@@ -10,7 +10,8 @@ import { IconChevronRight } from "@/components/ui/icons";
 
 export const dynamic = "force-dynamic";
 
-const TOOL_BLURB: Record<string, "toolPlans" | "toolModules" | "toolFeatureFlags" | "toolOrganizations" | "toolSubscriptions" | "toolLicenses" | "toolActivity" | "toolLoginHistory" | "toolDatabase" | "toolDevops"> = {
+const TOOL_BLURB: Record<string, "toolPlans" | "toolModules" | "toolFeatureFlags" | "toolOrganizations" | "toolSubscriptions" | "toolLicenses" | "toolActivity" | "toolLoginHistory" | "toolDatabase" | "toolDevops" | "toolRetention"> = {
+  retention: "toolRetention",
   plans: "toolPlans",
   modules: "toolModules",
   featureFlags: "toolFeatureFlags",

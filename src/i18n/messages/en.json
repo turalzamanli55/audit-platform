@@ -153,7 +153,8 @@
       "activity": "Activity",
       "logins": "Logins",
       "security": "Security",
-      "settings": "Settings"
+      "settings": "Settings",
+      "recycleBin": "Recycle Bin"
     },
     "overview": {
       "companyName": "Company",
@@ -6669,7 +6670,9 @@
       "loginHistory": "Login History",
       "database": "Database",
       "devops": "DevOps",
-      "settings": "Settings"
+      "settings": "Settings",
+      "recycleBin": "Recycle Bin",
+      "retention": "Retention"
     },
     "ux": {
       "openMenu": "Open menu",
@@ -6726,7 +6729,9 @@
         "duration5y": "5 Years",
         "duration10y": "10 Years",
         "durationCustom": "Custom Expiration Date"
-      }
+      },
+      "toolRetention": "Retention-ready objects and permanent deletion.",
+      "toolRecycleBin": "Global soft-deleted objects and restore."
     },
     "common": {
       "create": "Create",
@@ -6960,6 +6965,12 @@
       "userDetailPage": {
         "back": "← Back to users",
         "description": "User administration profile · {email}"
+      },
+      "recycleBin": {
+        "description": "Review and restore soft-deleted objects across the platform."
+      },
+      "retention": {
+        "description": "Objects past retention that are eligible for permanent deletion."
       }
     },
     "dashboard": {
@@ -7483,6 +7494,105 @@
         "empty": "No active sessions.",
         "ageMinutes": "{count} min",
         "toastRevoked": "Session revoked"
+      }
+    },
+    "governance": {
+      "recycleBinTitle": "Recycle Bin",
+      "recycleBinDescription": "Soft-deleted records remain recoverable until retention ends or permanent deletion.",
+      "search": "Search deleted objects",
+      "emptyTitle": "Recycle Bin is empty",
+      "emptyDescription": "Deleted objects will appear here and stay recoverable.",
+      "colObject": "Object",
+      "colType": "Type",
+      "colCompany": "Company",
+      "colDeletedAt": "Deleted",
+      "colDeletedBy": "Deleted by",
+      "colReason": "Reason",
+      "colRetention": "Retention",
+      "colLegalHold": "Legal Hold",
+      "colActions": "Actions",
+      "restore": "Restore",
+      "restoreOnly": "Restore only this object",
+      "restoreChildren": "Restore with children",
+      "restoreHierarchy": "Restore entire hierarchy",
+      "previewTitle": "Restore preview",
+      "permanentDelete": "Permanent delete",
+      "export": "Export",
+      "legalHold": "Enable Legal Hold",
+      "clearLegalHold": "Clear Legal Hold",
+      "legalHoldOn": "On hold",
+      "legalHoldOff": "Not on hold",
+      "selected": "{count} selected",
+      "bulkRestore": "Restore selected",
+      "bulkExport": "Export selected",
+      "bulkPermanentDelete": "Permanently delete selected",
+      "retentionExpired": "Ready for permanent deletion",
+      "retentionRemaining": "{years}y {months}m {days}d remaining",
+      "years": "Years",
+      "months": "Months",
+      "days": "Days",
+      "typeDelete": "Type DELETE to confirm",
+      "typeDeleteHint": "This action is irreversible.",
+      "finalConfirm": "Permanently delete",
+      "cancel": "Cancel",
+      "confirm": "Confirm restore",
+      "reasonLabel": "Delete reason",
+      "reasonOther": "Describe the reason",
+      "objectsToRestore": "Objects to restore",
+      "dependencies": "Dependencies",
+      "engagements": "Engagements",
+      "users": "Users",
+      "workspaces": "Workspaces",
+      "companies": "Companies",
+      "workingPapers": "Working papers",
+      "reports": "Reports",
+      "documents": "Documents",
+      "allowBeforeRetention": "Allow deletion before retention ends",
+      "readyTotal": "Ready for permanent deletion",
+      "undoMessage": "Object deleted.",
+      "undoAction": "Undo",
+      "toastRestored": "Object restored",
+      "toastDeleted": "Object permanently deleted",
+      "toastExported": "Export requested",
+      "toastHoldUpdated": "Legal Hold updated",
+      "activityTitle": "Activity",
+      "activityDescription": "Lifecycle events from the audit trail.",
+      "activityEmptyTitle": "No activity yet",
+      "activityEmptyDescription": "Create, edit, archive, and restore events appear here.",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "lastWeek": "Last week",
+      "lastMonth": "Last month",
+      "earlier": "Earlier",
+      "feedUser": "User",
+      "feedAction": "Action",
+      "feedObject": "Object",
+      "feedReason": "Reason",
+      "reasons": {
+        "duplicate": "Duplicate",
+        "mistaken_entry": "Mistaken entry",
+        "merged": "Merged",
+        "client_request": "Client request",
+        "test_data": "Test data",
+        "compliance_request": "Compliance request",
+        "other": "Other"
+      },
+      "objectTypes": {
+        "organization": "Company (tenant)",
+        "company": "Audit client",
+        "engagement": "Engagement",
+        "workspace": "Workspace",
+        "membership": "User membership",
+        "working_paper": "Working paper",
+        "risk_assessment": "Risk assessment",
+        "financial_statement": "Financial statement",
+        "document": "Document",
+        "report": "Report",
+        "template": "Template",
+        "folder": "Folder",
+        "evidence": "Evidence",
+        "comment": "Comment",
+        "task": "Task"
       }
     }
   },

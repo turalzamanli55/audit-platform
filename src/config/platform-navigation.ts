@@ -17,12 +17,14 @@ export const PLATFORM_PRIMARY_NAV: PlatformNavItem[] = [
   { href: PLATFORM_DASHBOARD_PATH, key: "dashboard", label: "Dashboard" },
   { href: `${PLATFORM_DASHBOARD_PATH}/tenants`, key: "companies", label: "Companies" },
   { href: `${PLATFORM_DASHBOARD_PATH}/users`, key: "users", label: "Users" },
+  { href: `${PLATFORM_DASHBOARD_PATH}/recycle-bin`, key: "recycleBin", label: "Recycle Bin" },
   { href: `${PLATFORM_DASHBOARD_PATH}/monitoring`, key: "security", label: "Security" },
   { href: `${PLATFORM_DASHBOARD_PATH}/settings`, key: "settings", label: "Settings" },
 ];
 
 /** Advanced tools surfaced from the Settings hub (routes preserved). */
 export const PLATFORM_SETTINGS_TOOLS: PlatformNavItem[] = [
+  { href: `${PLATFORM_DASHBOARD_PATH}/retention`, key: "retention", label: "Retention" },
   { href: `${PLATFORM_DASHBOARD_PATH}/plans`, key: "plans", label: "Plans" },
   { href: `${PLATFORM_DASHBOARD_PATH}/modules`, key: "modules", label: "Modules" },
   { href: `${PLATFORM_DASHBOARD_PATH}/feature-flags`, key: "featureFlags", label: "Feature Flags" },

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { getDictionary, type Locale } from "@/i18n";
 import { loadCompanyAdministration } from "@/lib/company-administration/load-company-administration";
+import { loadCompanyRecycleBin } from "@/lib/platform-console/governance-data";
 import { CompanyAdministrationExperience } from "@/components/company-administration/company-administration-experience";
 import type { CompanyAdministrationLabels } from "@/components/company-administration/labels";
+import { getPlatformLabels } from "@/i18n/platform-labels";
+import { governanceLabelsFromPlatform } from "@/lib/object-lifecycle/labels";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -53,5 +56,17 @@ export default async function CompanyAdministrationPage({ params }: PageProps) {
     );
   }
 
-  return <CompanyAdministrationExperience data={result.data} labels={labels} />;
+  const recycleBinItems = await loadCompanyRecycleBin(result.data.organizationId, 200);
+  const platformLabels = getPlatformLabels(locale);
+  const recycleBinLabels = governanceLabelsFromPlatform(platformLabels);
+
+  return (
+    <CompanyAdministrationExperience
+      data={result.data}
+      labels={labels}
+      recycleBinItems={recycleBinItems}
+      recycleBinLabels={recycleBinLabels}
+      locale={locale}
+    />
+  );
 }

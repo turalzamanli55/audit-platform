@@ -31,6 +31,9 @@ import {
 } from "@/lib/company-administration/presentation";
 import { UserProvisionWizard } from "./user-provision-wizard";
 import type { CompanyAdministrationLabels } from "./labels";
+import { CompanyRecycleBinClient } from "@/components/governance/company-recycle-bin-client";
+import type { GovernanceLabels } from "@/components/governance/recycle-bin-experience";
+import type { RecycleBinItem } from "@/lib/object-lifecycle";
 
 type Section =
   | "overview"
@@ -41,11 +44,15 @@ type Section =
   | "activity"
   | "logins"
   | "security"
+  | "recycleBin"
   | "settings";
 
 type Props = {
   data: CompanyAdministrationData;
   labels: CompanyAdministrationLabels;
+  recycleBinItems?: RecycleBinItem[];
+  recycleBinLabels?: GovernanceLabels;
+  locale?: string;
 };
 
 function friendlyAction(action: string): string {
@@ -145,7 +152,13 @@ function Banner({
   );
 }
 
-export function CompanyAdministrationExperience({ data, labels }: Props) {
+export function CompanyAdministrationExperience({
+  data,
+  labels,
+  recycleBinItems = [],
+  recycleBinLabels,
+  locale = "en",
+}: Props) {
   const router = useRouter();
   const [section, setSection] = useState<Section>("overview");
   const [pending, startTransition] = useTransition();
@@ -173,6 +186,7 @@ export function CompanyAdministrationExperience({ data, labels }: Props) {
     { id: "activity", label: labels.sections.activity },
     { id: "logins", label: labels.sections.logins },
     { id: "security", label: labels.sections.security },
+    { id: "recycleBin", label: labels.sections.recycleBin },
     { id: "settings", label: labels.sections.settings },
   ];
 
@@ -435,6 +449,17 @@ export function CompanyAdministrationExperience({ data, labels }: Props) {
 
       {section === "logins" ? <LoginsSection data={data} labels={labels} /> : null}
       {section === "security" ? <SecuritySection data={data} labels={labels} security={security} /> : null}
+      {section === "recycleBin" && recycleBinLabels ? (
+        <CompanyRecycleBinClient
+          items={recycleBinItems}
+          labels={{
+            ...recycleBinLabels,
+            title: labels.sections.recycleBin,
+            description: recycleBinLabels.description,
+          }}
+          locale={locale}
+        />
+      ) : null}
       {section === "settings" ? <SettingsSection data={data} labels={labels} /> : null}
 
       {data.canAdminister ? (

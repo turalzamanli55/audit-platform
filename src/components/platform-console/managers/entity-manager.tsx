@@ -25,10 +25,11 @@ import {
   activateTenantAction,
   archiveTenantAction,
   restoreTenantAction,
-  deleteTenantAction,
 } from "@/lib/platform-console/actions/organizations";
 import { useActionRunner } from "./use-action-runner";
 import { CreateCompanyWizard } from "./create-company-wizard";
+import { GovernanceUndoToast } from "@/components/governance/undo-toast";
+import { softDeleteGovernedAction, restoreGovernedAction } from "@/lib/platform-console/actions/governance";
 
 type Mode = "tenant" | "organization";
 
@@ -68,11 +69,28 @@ export function EntityManager({
   const { run, pendingId } = useActionRunner();
   const [createOpen, setCreateOpen] = useState(false);
   const [editing, setEditing] = useState<TenantRow | null>(null);
+  const [undo, setUndo] = useState<{ id: string; organizationId: string } | null>(null);
 
   const label = mode === "tenant" ? t.common.tenant : t.common.organization;
 
   return (
     <div className="space-y-4">
+      {undo ? (
+        <GovernanceUndoToast
+          message={t.governance.undoMessage}
+          undoLabel={t.governance.undoAction}
+          onUndo={async () => {
+            await restoreGovernedAction({
+              objectType: "organization",
+              objectId: undo.id,
+              organizationId: undo.organizationId,
+              mode: "only",
+            });
+            setUndo(null);
+          }}
+          onDismiss={() => setUndo(null)}
+        />
+      ) : null}
       <div className="flex justify-end">
         <Button size="sm" className="min-h-11" onClick={() => setCreateOpen(true)}>
           {fillPlatform(t.entityManager.create, { label })}
@@ -168,6 +186,7 @@ export function EntityManager({
                         pendingId={pendingId}
                         run={run}
                         onEdit={() => setEditing(entity)}
+                        onSoftDeleted={(row) => setUndo({ id: row.id, organizationId: row.id })}
                       />
                     </td>
                   </tr>
@@ -248,6 +267,7 @@ export function EntityManager({
                     pendingId={pendingId}
                     run={run}
                     onEdit={() => setEditing(entity)}
+                    onSoftDeleted={(row) => setUndo({ id: row.id, organizationId: row.id })}
                   />
                 </div>
               </article>
@@ -302,6 +322,7 @@ function EntityActions({
   pendingId,
   run,
   onEdit,
+  onSoftDeleted,
 }: {
   entity: TenantRow;
   mode: Mode;
@@ -310,6 +331,7 @@ function EntityActions({
   pendingId: string | null;
   run: Runner;
   onEdit: () => void;
+  onSoftDeleted?: (entity: TenantRow) => void;
 }) {
   const t = usePlatformLabels();
 
@@ -377,9 +399,20 @@ function EntityActions({
         disabled={busy || pendingId === `${entity.id}:delete`}
         onSelect={() => {
           if (!window.confirm(fillPlatform(t.entityManager.deleteConfirm, { name: entity.name, label }))) return;
-          void run(`${entity.id}:delete`, () => deleteTenantAction({ id: entity.id }), {
-            success: fillPlatform(t.entityManager.toastDeleted, { label }),
-          });
+          void run(
+            `${entity.id}:delete`,
+            () =>
+              softDeleteGovernedAction({
+                objectType: "organization",
+                objectId: entity.id,
+                organizationId: entity.id,
+                reason: { code: "other", customText: "Platform Owner soft delete" },
+              }),
+            {
+              success: fillPlatform(t.entityManager.toastDeleted, { label }),
+              onSuccess: () => onSoftDeleted?.(entity),
+            },
+          );
         }}
       >
         {t.common.delete}
