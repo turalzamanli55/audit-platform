@@ -17,6 +17,8 @@ This is not a README. It is not a technical specification. It is the enduring pr
 | Last Updated | 2026-06-30 |
 | Owner | Chief Software Architect / Product Architect |
 
+**Related (mandatory for implementation):** [Enterprise Architecture Constitution](ENTERPRISE_ARCHITECTURE_CONSTITUTION.md) — governs how every feature must be implemented (reuse-first, no duplication, system-first). That constitution has higher priority than individual feature requests when they conflict with architecture.
+
 ## Table of Contents
 
 ### Part 1 — Foundation (This Document)

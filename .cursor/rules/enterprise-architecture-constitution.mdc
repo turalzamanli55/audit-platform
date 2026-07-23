@@ -1,0 +1,39 @@
+---
+description: Mandatory Enterprise Architecture Constitution — reuse-first, no duplication, inspect system before coding
+alwaysApply: true
+---
+
+# Enterprise Architecture Constitution (Mandatory)
+
+Full text: `docs/ENTERPRISE_ARCHITECTURE_CONSTITUTION.md`
+
+This constitution has **higher priority than individual feature requests**.
+
+## Before ANY implementation
+
+1. Inspect the whole system first (Platform Owner, Company Administration, auth, permissions, licensing, seats, workspaces, orgs, audit, history, i18n, nav, repos, DB, actions, UI, policies, workflows).
+2. Read `docs/PROJECT_BIBLE.md`, `docs/MASTER_PRD.md`, `docs/SYSTEM_ARCHITECTURE.md` (or `architecture/SYSTEM_ARCHITECTURE.md`) when relevant.
+3. Answer reuse questions: Does it exist? Extend? Reuse? Compose? Generalize? Only if all are NO may new code be introduced.
+
+## Absolute prohibitions
+
+- Do not sacrifice architecture for speed.
+- Do not create competing implementations of auth, audit, history, timeline, activity, localization, permissions, delete/restore/lifecycle/retention, seats, licensing, navigation, theme, notifications, validation, search, export/import.
+- Do not create new tables / repositories / services unless existing ones cannot support the requirement — document justification if unavoidable.
+- Do not duplicate Platform Owner Console or build a second Company Administration platform (Company Admin = permission-scoped subset of Platform capabilities).
+- Do not create another audit system — reuse `emitAuditEvent()` and `audit_logs`.
+- Do not create another history/timeline/activity system — derive version history from audit.
+- Never hardcode UI strings — every feature must ship EN / AZ / RU / TR.
+- Every UI must be responsive (desktop/laptop/tablet/mobile), dark-mode safe, no horizontal scroll.
+
+## Decision rule
+
+When approaches are equivalent, choose the one that reduces complexity and duplicated state, reuses infrastructure, preserves business logic, avoids new persistence, and improves maintainability.
+
+## Conflict handling
+
+If a request violates this constitution: **STOP**, explain the conflict, propose an architecture-compliant alternative.
+
+## After implementation
+
+Verify no duplicates, no regressions, localization complete (4 languages), responsive, dark mode, security, and architecture consistency. Features must feel native to one cohesive enterprise platform.
