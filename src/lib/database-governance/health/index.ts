@@ -64,11 +64,12 @@ export function calculateMigrationHealth(input: {
     if (!migration.filename.includes("_foundation.sql")) continue;
     if (migration.layer === "compatibility" || migration.bytes === 0) continue;
     coverageChecks += 1;
-    const hasTable = /CREATE\s+TABLE/i.test(migration.sql);
-    const hasRls = /ENABLE\s+ROW\s+LEVEL\s+SECURITY/i.test(migration.sql);
-    const hasPolicy = /CREATE\s+POLICY/i.test(migration.sql);
-    const hasGrant = /GRANT\s+/i.test(migration.sql);
-    const hasPerms = /INSERT\s+INTO\s+(?:public\.)?permissions/i.test(migration.sql);
+    const kinds = new Set(migration.operations.map((operation) => operation.kind));
+    const hasTable = kinds.has("CreateTable");
+    const hasRls = kinds.has("EnableRLS");
+    const hasPolicy = kinds.has("CreatePolicy");
+    const hasGrant = kinds.has("Grant");
+    const hasPerms = kinds.has("InsertPermissions");
     const score =
       Number(hasTable) + Number(hasRls) + Number(hasPolicy) + Number(hasGrant) + Number(hasPerms);
     if (score < 3) missingCoverageHits += 1;

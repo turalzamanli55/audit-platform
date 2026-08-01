@@ -5,6 +5,7 @@
 
 export * from "@/lib/database-governance/types";
 export * from "@/lib/database-governance/utils";
+export * from "@/lib/database-governance/parser";
 export * from "@/lib/database-governance/audit";
 export * from "@/lib/database-governance/dependency";
 export * from "@/lib/database-governance/ordering";

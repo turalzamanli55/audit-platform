@@ -1,5 +1,6 @@
 import { SQL_FOUNDATION_REQUIRED_HELPERS } from "@/lib/sql-foundation/catalog";
 import type { MigrationFinding, ParsedMigration } from "@/lib/database-governance/types";
+import type { NormalizedOperation } from "@/lib/database-governance/parser/types";
 
 const SQL_FOUNDATION_MIGRATION_HINT = "enterprise_sql_foundation";
 
@@ -8,6 +9,8 @@ const SHARED_HELPER_SET = new Set<string>(SQL_FOUNDATION_REQUIRED_HELPERS);
 /**
  * Enterprise migration object governance — every future migration is validated against
  * chronological order, dependency graph, SQL objects, RLS, permissions, and foundation rules.
+ *
+ * Rules consume normalized operations only — never raw SQL.
  */
 export function auditMigrationGovernance(migrations: ParsedMigration[]): MigrationFinding[] {
   const findings: MigrationFinding[] = [];
@@ -28,8 +31,13 @@ export function auditMigrationGovernance(migrations: ParsedMigration[]): Migrati
   return findings;
 }
 
+function ops(migration: ParsedMigration): NormalizedOperation[] {
+  return migration.operations ?? [];
+}
+
 function auditSqlObjects(migration: ParsedMigration): MigrationFinding[] {
   const findings: MigrationFinding[] = [];
+  const operations = ops(migration);
 
   for (const extension of migration.creates.extensions) {
     if (!/^[a-z0-9_]+$/i.test(extension)) {
@@ -53,63 +61,48 @@ function auditSqlObjects(migration: ParsedMigration): MigrationFinding[] {
     }
   }
 
-  const sequenceCreates = matchAll(
-    migration.sql,
-    /CREATE\s+SEQUENCE\s+(?:IF\s+NOT\s+EXISTS\s+)?(?:public\.)?([a-zA-Z0-9_]+)/gi,
-  );
-  for (const sequence of sequenceCreates) {
-    if (!/^[a-z0-9_]+$/i.test(sequence)) {
+  for (const sequence of operations.filter((operation) => operation.kind === "CreateSequence")) {
+    const name = sequence.name ?? "";
+    if (!/^[a-z0-9_]+$/i.test(name)) {
       findings.push({
         code: "invalid_sequence_name",
         severity: "error",
         migrationId: migration.id,
-        message: `Invalid sequence name: ${sequence}`,
+        message: `Invalid sequence name: ${name}`,
       });
     }
   }
 
-  const constraints = matchAll(
-    migration.sql,
-    /(?:CONSTRAINT|ADD)\s+([a-zA-Z0-9_]+)\s+(?:PRIMARY\s+KEY|UNIQUE|CHECK|FOREIGN\s+KEY)/gi,
-  );
-  for (const constraint of constraints) {
-    if (constraint.length > 63) {
+  for (const constraint of operations.filter((operation) => operation.kind === "AddConstraint")) {
+    const name = constraint.name ?? "";
+    if (name.length > 63) {
       findings.push({
         code: "constraint_name_too_long",
         severity: "warning",
         migrationId: migration.id,
-        message: `Constraint name exceeds PostgreSQL limit: ${constraint}`,
+        message: `Constraint name exceeds PostgreSQL limit: ${name}`,
       });
     }
   }
 
-  const generatedColumns = matchAll(
-    migration.sql,
-    /([a-zA-Z0-9_]+)\s+[a-zA-Z0-9_()]+\s+GENERATED\s+ALWAYS\s+AS/gi,
-  );
-  for (const column of generatedColumns) {
+  for (const column of operations.filter((operation) => operation.kind === "GeneratedColumn")) {
     findings.push({
       code: "generated_column_declared",
       severity: "info",
       migrationId: migration.id,
-      message: `Generated column declared: ${column}`,
-      details: { column },
+      message: `Generated column declared: ${column.name}`,
+      details: { column: column.name },
     });
   }
 
-  const defaultExpressions = matchAll(
-    migration.sql,
-    /([a-zA-Z0-9_]+)\s+[a-zA-Z0-9_()]+\s+(?:NOT\s+NULL\s+)?DEFAULT\s+([^,\n;]+)/gi,
-  );
-  for (const match of defaultExpressions) {
-    const column = match[0];
-    const expression = match[1]?.trim();
-    if (expression && /now\(\)/i.test(expression) && !/utc_now\(\)/i.test(expression)) {
+  for (const columnDefault of operations.filter((operation) => operation.kind === "ColumnDefault")) {
+    const expression = String(columnDefault.metadata.expression ?? "");
+    if (/now\(\)/i.test(expression) && !/utc_now\(\)/i.test(expression)) {
       findings.push({
         code: "default_uses_now_not_utc",
         severity: "warning",
         migrationId: migration.id,
-        message: `${column} DEFAULT should prefer public.utc_now() for UTC consistency`,
+        message: `${columnDefault.name} DEFAULT should prefer public.utc_now() for UTC consistency`,
       });
     }
   }
@@ -147,7 +140,10 @@ function auditSqlObjects(migration: ParsedMigration): MigrationFinding[] {
     }
   }
 
-  if (migration.storageBuckets.length > 0 && !/storage\.buckets/i.test(migration.sql)) {
+  if (
+    migration.storageBuckets.length > 0 &&
+    !operations.some((operation) => operation.kind === "ReferenceStorageBucket")
+  ) {
     findings.push({
       code: "storage_bucket_reference",
       severity: "warning",
@@ -159,7 +155,7 @@ function auditSqlObjects(migration: ParsedMigration): MigrationFinding[] {
   return findings;
 }
 
-function auditRlsAndPolicies(migration: ParsedMigration): MigrationFinding[] {
+function auditRlsAndPolicies(_migration: ParsedMigration): MigrationFinding[] {
   return [];
 }
 
@@ -172,6 +168,12 @@ function auditGlobalRlsCoverage(migrations: ParsedMigration[]): MigrationFinding
     for (const table of migration.creates.tables) {
       createdTables.add(table);
     }
+    for (const operation of ops(migration)) {
+      if (operation.kind === "EnableRLS") {
+        rlsEnabled.add((operation.table ?? operation.name ?? "").toLowerCase());
+      }
+    }
+    // Compatibility: also honor projected enablesRls
     for (const table of migration.enablesRls) {
       rlsEnabled.add(table.toLowerCase());
     }
@@ -225,7 +227,7 @@ function isLegacyFoundationMigration(filename: string): boolean {
   return [...LEGACY_SQL_FOUNDATION_MIGRATIONS].some((hint) => filename.includes(hint));
 }
 
-function auditFoundationDependencies(migration: ParsedMigration): MigrationFinding[] {
+function auditFoundationDependencies(_migration: ParsedMigration): MigrationFinding[] {
   return [];
 }
 
@@ -285,9 +287,12 @@ function auditSharedHelperProvenance(migrations: ParsedMigration[]): MigrationFi
 
 function auditCompatibilityExpressions(migration: ParsedMigration): MigrationFinding[] {
   const findings: MigrationFinding[] = [];
+  const operations = ops(migration);
 
-  const hasDestructiveDrop = /DROP\s+TABLE\s+(?!IF\s+EXISTS)/i.test(migration.sql);
-  if (hasDestructiveDrop) {
+  const destructiveDrops = operations.filter(
+    (operation) => operation.kind === "DropTable" && !operation.metadata.ifExists,
+  );
+  if (destructiveDrops.length > 0) {
     findings.push({
       code: "forward_compat_destructive_drop",
       severity: "warning",
@@ -296,8 +301,9 @@ function auditCompatibilityExpressions(migration: ParsedMigration): MigrationFin
     });
   }
 
-  const hasAlterAdd = /ALTER\s+TABLE[\s\S]+ADD\s+COLUMN/i.test(migration.sql);
-  const hasIfNotExists = /ADD\s+COLUMN\s+IF\s+NOT\s+EXISTS/i.test(migration.sql);
+  const addColumns = operations.filter((operation) => operation.kind === "AddColumn");
+  const hasAlterAdd = addColumns.length > 0;
+  const hasIfNotExists = addColumns.some((operation) => operation.metadata.ifNotExists);
   if (
     hasAlterAdd &&
     !hasIfNotExists &&
@@ -311,7 +317,7 @@ function auditCompatibilityExpressions(migration: ParsedMigration): MigrationFin
     });
   }
 
-  if (/DROP\s+COLUMN/i.test(migration.sql)) {
+  if (operations.some((operation) => operation.kind === "DropColumn")) {
     findings.push({
       code: "backward_compat_drop_column",
       severity: "warning",
@@ -342,14 +348,4 @@ function auditGlobalFoundationRules(migrations: ParsedMigration[]): MigrationFin
   }
 
   return findings;
-}
-
-function matchAll(sql: string, pattern: RegExp): string[] {
-  const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
-  const re = new RegExp(pattern.source, flags);
-  const out: string[] = [];
-  for (const match of sql.matchAll(re)) {
-    if (match[1]) out.push(match[1]);
-  }
-  return out;
 }

@@ -1,3 +1,5 @@
+import type { NormalizedOperation } from "@/lib/database-governance/parser/types";
+
 /**
  * Database Migration Governance — shared types.
  */
@@ -37,6 +39,8 @@ export type ParsedMigration = {
   hash: string;
   sql: string;
   layer: MigrationLayer;
+  /** Normalized governance operations — rules must consume these, not raw SQL. */
+  operations: NormalizedOperation[];
   creates: {
     extensions: string[];
     enums: string[];

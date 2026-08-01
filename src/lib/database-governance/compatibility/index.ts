@@ -50,7 +50,12 @@ export function auditCompatibility(migrations: ParsedMigration[]): MigrationFind
       }
     }
 
-    if (/ON CONFLICT\s*\(\s*code\s*\)/i.test(migration.sql)) {
+    if (
+      migration.operations.some(
+        (operation) =>
+          operation.kind === "OnConflict" && operation.metadata.target === "code",
+      )
+    ) {
       findings.push({
         code: "on_conflict_code_partial_index",
         severity: "warning",
