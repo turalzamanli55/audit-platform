@@ -106,8 +106,8 @@ export function summarizeRemainingWork(
   report: Pick<PlatformAuditReport, "modules" | "capabilities" | "findings">,
 ): string[] {
   const work: string[] = [];
-  for (const module of report.modules) {
-    work.push(...module.remainingWork.slice(0, 8));
+  for (const auditModule of report.modules) {
+    work.push(...auditModule.remainingWork.slice(0, 8));
   }
   for (const capability of report.capabilities) {
     if (capability.verifiedCompletionPct < 100) {

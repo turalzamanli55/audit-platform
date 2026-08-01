@@ -53,13 +53,15 @@ export function validatePlatformRegistry(
     errors.push(`Dependency cycle detected at module ${node}.`);
   }
 
-  for (const module of modules) {
-    if (module.parent && !ids.has(module.parent)) {
-      warnings.push(`Module ${module.id} parent ${module.parent} is not registered.`);
+  for (const registryModule of modules) {
+    if (registryModule.parent && !ids.has(registryModule.parent)) {
+      warnings.push(
+        `Module ${registryModule.id} parent ${registryModule.parent} is not registered.`,
+      );
     }
-    for (const child of module.children) {
+    for (const child of registryModule.children) {
       if (!ids.has(child)) {
-        warnings.push(`Module ${module.id} child ${child} is not registered.`);
+        warnings.push(`Module ${registryModule.id} child ${child} is not registered.`);
       }
     }
   }

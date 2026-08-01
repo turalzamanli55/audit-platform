@@ -23,10 +23,10 @@ export function buildCrossReference(
 
   const unmatchedBibleModules: string[] = [];
   let matchedModules = 0;
-  for (const module of extraction.modules) {
-    const resolved = resolveModuleRoots(module.id, module.name, roots);
+  for (const extractedModule of extraction.modules) {
+    const resolved = resolveModuleRoots(extractedModule.id, extractedModule.name, roots);
     if (resolved.matchedRoots.length > 0) matchedModules += 1;
-    else unmatchedBibleModules.push(module.id);
+    else unmatchedBibleModules.push(extractedModule.id);
   }
 
   const documentedNorm = new Set(

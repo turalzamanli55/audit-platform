@@ -156,8 +156,8 @@ export class DevOpsEngine {
 
   getEdRPCompletion(): number | null {
     const report = platformRegistryEngine.buildReport();
-    const module = report.modules.find((m) => m.id === "devops");
-    return module?.completionPct ?? null;
+    const devopsModule = report.modules.find((m) => m.id === "devops");
+    return devopsModule?.completionPct ?? null;
   }
 
   canPromote(environment: "development" | "staging" | "production") {

@@ -27,11 +27,8 @@ export function GlobalSearch({ items, basePath }: { items: SearchItem[]; basePat
   const [type, setType] = useState<string>("all");
 
   const typeLabel = (value: string) => t.globalSearch.types[value as keyof typeof t.globalSearch.types] ?? value;
-
-  const types = useMemo(() => {
-    const present = new Set(items.map((i) => i.type));
-    return TYPE_ORDER.filter((t) => present.has(t));
-  }, [items]);
+  const presentTypes = new Set(items.map((item) => item.type));
+  const types = TYPE_ORDER.filter((itemType) => presentTypes.has(itemType));
 
   const results = useMemo(() => {
     const term = query.trim().toLowerCase();

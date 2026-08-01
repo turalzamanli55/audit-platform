@@ -149,9 +149,9 @@ describe("FSRE engine", () => {
 
 describe("Platform Registry reports FSRE completion automatically", () => {
   it("returns calculated completion for fs-rendering and platform", () => {
-    const module = platformRegistryEngine.getModule("fs-rendering");
-    expect(module).not.toBeNull();
-    expect(module!.completionPct).toBe(
+    const registryModule = platformRegistryEngine.getModule("fs-rendering");
+    expect(registryModule).not.toBeNull();
+    expect(registryModule!.completionPct).toBe(
       platformRegistryEngine.getModuleCompletion("fs-rendering"),
     );
     expect(platformRegistryEngine.getPlatformCompletion()).toBe(

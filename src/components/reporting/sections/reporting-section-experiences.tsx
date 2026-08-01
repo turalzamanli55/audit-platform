@@ -282,14 +282,9 @@ function ReviewNotesSection(
   const [replyParentId, setReplyParentId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const { error, setError, clearError } = useMutationError();
-
-  if (typeof workspace !== "object" || !("id" in workspace)) return workspace;
-
-  const mutable = (props.canComment ?? false) && !workspace.isArchived;
   const visibleNotes = props.includeArchived
     ? props.notes
     : props.notes.filter((note) => !note.isArchived);
-
   const roots = visibleNotes.filter((note) => !note.parentCommentId);
   const childrenByParent = useMemo(() => {
     const map = new Map<string, ReportCommentView[]>();
@@ -301,6 +296,10 @@ function ReviewNotesSection(
     }
     return map;
   }, [visibleNotes]);
+
+  if (typeof workspace !== "object" || !("id" in workspace)) return workspace;
+
+  const mutable = (props.canComment ?? false) && !workspace.isArchived;
 
   const addNote = () => {
     if (!body.trim()) return;
@@ -591,18 +590,19 @@ export function ReportVersionsExperience(
   const [restoreId, setRestoreId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const { error, setError, clearError } = useMutationError();
-
-  if (typeof workspace !== "object" || !("versions" in workspace)) return workspace;
-
+  const versions =
+    typeof workspace === "object" && "versions" in workspace ? workspace.versions : null;
   const diffText = useMemo(() => {
-    const a = workspace.versions.find((v) => v.id === compareA);
-    const b = workspace.versions.find((v) => v.id === compareB);
+    const a = versions?.find((v) => v.id === compareA);
+    const b = versions?.find((v) => v.id === compareB);
     if (!a || !b) return null;
     const aJson = JSON.stringify(a.snapshot ?? {}, null, 2);
     const bJson = JSON.stringify(b.snapshot ?? {}, null, 2);
     if (aJson === bJson) return props.versionLabels.noDiff;
     return `v${a.versionNumber} ↔ v${b.versionNumber}\n\n--- v${a.versionNumber} ---\n${aJson}\n\n--- v${b.versionNumber} ---\n${bJson}`;
-  }, [compareA, compareB, workspace.versions, props.versionLabels.noDiff]);
+  }, [compareA, compareB, versions, props.versionLabels.noDiff]);
+
+  if (typeof workspace !== "object" || !("versions" in workspace)) return workspace;
 
   const restore = () => {
     if (!restoreId) return;

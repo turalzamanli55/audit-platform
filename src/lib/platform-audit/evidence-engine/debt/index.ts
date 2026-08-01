@@ -77,12 +77,15 @@ export function classifyTechnicalDebt(input: {
     }
   }
 
-  for (const module of input.modules) {
-    if (module.matchedRoots.length === 0 && module.verifiedCompletionPct === 0) {
+  for (const evidenceModule of input.modules) {
+    if (
+      evidenceModule.matchedRoots.length === 0 &&
+      evidenceModule.verifiedCompletionPct === 0
+    ) {
       items.push({
         code: "unimplemented_bible_module",
         severity: "high",
-        message: `Bible module ${module.moduleId} has no resolved implementation roots`,
+        message: `Bible module ${evidenceModule.moduleId} has no resolved implementation roots`,
         rootCause: "No alias-matched lib/repository/component evidence",
         paths: [],
         weight: WEIGHT.high,

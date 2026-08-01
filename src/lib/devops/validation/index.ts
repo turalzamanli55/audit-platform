@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { execSync } from "node:child_process";
 import { databaseGovernanceEngine } from "@/lib/database-governance/engine";
 import { auditSchemaDrift } from "@/lib/database-governance/schema-drift";
 import { verifySupabaseTypesFile } from "@/lib/database-governance/lifecycle";
@@ -413,7 +414,6 @@ export function validateBuild(cwd: string, options: PipelineRunOptions): Pipelin
       };
     }
     try {
-      const { execSync } = require("node:child_process") as typeof import("node:child_process");
       execSync("npm run build", { cwd, stdio: "pipe" });
       return { ok: true, message: "npm run build passed" };
     } catch (error) {
@@ -443,7 +443,6 @@ export function validateUnitTests(
       };
     }
     try {
-      const { execSync } = require("node:child_process") as typeof import("node:child_process");
       execSync("npm run test", { cwd, stdio: "pipe" });
       return { ok: true, message: "Unit tests passed" };
     } catch (error) {
@@ -483,7 +482,6 @@ export function validateIntegrationTests(
       };
     }
     try {
-      const { execSync } = require("node:child_process") as typeof import("node:child_process");
       execSync("npm run validate:database", { cwd, stdio: "pipe" });
       return { ok: true, message: "Integration validation suites passed" };
     } catch (error) {

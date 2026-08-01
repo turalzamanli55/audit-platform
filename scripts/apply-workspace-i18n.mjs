@@ -4856,18 +4856,6 @@ const MODULES = ["companies", "engagements", "planning", "fieldwork", "riskAsses
 const NAV_GROUP_MODULES = new Set(["planning", "fieldwork", "riskAssessment", "materiality"]);
 const CONDITIONAL_MODULES = new Set(["planning", "fieldwork", "riskAssessment", "materiality"]);
 
-function deepMerge(target, source) {
-  for (const [key, value] of Object.entries(source)) {
-    if (value && typeof value === "object" && !Array.isArray(value)) {
-      if (!target[key] || typeof target[key] !== "object") target[key] = {};
-      deepMerge(target[key], value);
-    } else {
-      target[key] = value;
-    }
-  }
-  return target;
-}
-
 function countStringLeaves(obj) {
   let n = 0;
   for (const v of Object.values(obj)) {
@@ -4877,7 +4865,7 @@ function countStringLeaves(obj) {
   return n;
 }
 
-function applyConditionalWorkspaceKeys(localeObj, enWs, patchWs, enRoot) {
+function applyConditionalWorkspaceKeys(localeObj, enWs, patchWs) {
   let updated = 0;
   if (patchWs.heroEyebrow && localeObj.heroEyebrow === enWs.heroEyebrow) {
     localeObj.heroEyebrow = patchWs.heroEyebrow;
@@ -4939,7 +4927,7 @@ function applyPatches(localeCode) {
     }
 
     if (CONDITIONAL_MODULES.has(moduleName)) {
-      updated += applyConditionalWorkspaceKeys(localeWs, enWs, patch, en);
+      updated += applyConditionalWorkspaceKeys(localeWs, enWs, patch);
     }
   }
 

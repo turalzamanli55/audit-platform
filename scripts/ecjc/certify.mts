@@ -19,6 +19,61 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { assertTenantLoginAllowed } from "@/lib/auth/login-guard";
 import { acceptUserProvisioningInvitation } from "@/lib/user-provisioning/accept-invitation";
 import { canInviteUser } from "@/lib/subscription-and-licensing/subscription-and-licensing";
+import type { Database } from "@/types/supabase";
+
+/** Typed client required by shared auth/provisioning helpers. */
+type TypedServiceClient = SupabaseClient<Database>;
+/**
+ * Script client — intentionally schema-loose so certification can exercise
+ * dynamic tables without fighting generated Update/Insert shapes.
+ */
+type ScriptClient = SupabaseClient;
+
+type TeamMember = { userId: string; role: string };
+type InviteRef = { id: string; token: string };
+type ModuleEvidence = { id: string; created: boolean; updateSaved: boolean };
+
+type CertContext = {
+  createdUsers: string[];
+  ownerUserId: string;
+  tenants: Record<string, string>;
+  subs: Record<string, string>;
+  entityUnit: string;
+  adminInvite: InviteRef;
+  adminUserId: string;
+  adminClient: ScriptClient | null;
+  team: Record<string, TeamMember>;
+  workspaceId: string;
+  companyId: string;
+  engagementId: string;
+  auditorClient: ScriptClient | null;
+  auditPlanId: string;
+  fieldworkId: string;
+  workingPaperId: string;
+  reviewPkgId: string;
+};
+
+function asRecord(value: unknown): Record<string, unknown> | null {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    return value as Record<string, unknown>;
+  }
+  return null;
+}
+
+function isClientLike(value: unknown): boolean {
+  const row = asRecord(value);
+  if (!row) return false;
+  return typeof row.from === "function" || typeof row.auth === "object";
+}
+
+function asTypedService(client: ScriptClient): TypedServiceClient {
+  return client as TypedServiceClient;
+}
+
+function requireClient(client: ScriptClient | null, label: string): ScriptClient {
+  if (!client) throw new Error(`${label} client is not initialized`);
+  return client;
+}
 
 // ── Supabase clients + env loader (credentials ONLY from .env.local) ─────────
 function loadEnvLocal(): void {
@@ -50,15 +105,22 @@ const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 if (!SUPA_URL || !SERVICE_KEY || !ANON_KEY) throw new Error("Missing Supabase env in .env.local");
 
 /** Service-role client — bypasses RLS (mirrors createServiceClient()). */
-function service(): SupabaseClient {
-  return createClient(SUPA_URL, SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false } });
+function service(): ScriptClient {
+  return createClient(SUPA_URL, SERVICE_KEY, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
 }
 /** Fresh anon client — RLS enforced. */
-function anon(): SupabaseClient {
-  return createClient(SUPA_URL, ANON_KEY, { auth: { autoRefreshToken: false, persistSession: false } });
+function anon(): ScriptClient {
+  return createClient(SUPA_URL, ANON_KEY, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
 }
 /** Signs a user in against real Supabase Auth; retries to absorb auth-propagation lag. */
-async function signedInClient(userEmail: string, password: string): Promise<{ client: SupabaseClient; userId: string }> {
+async function signedInClient(
+  userEmail: string,
+  password: string,
+): Promise<{ client: ScriptClient; userId: string }> {
   const client = anon();
   let lastError = "no session returned";
   for (let attempt = 0; attempt < 6; attempt += 1) {
@@ -85,8 +147,26 @@ const USER_PW = `Ecjc-Cert-${RUN}-9x`; // >= 12 chars
 
 const email = (who: string) => `${TAG}.${who}@example.com`;
 
-// Shared state across steps.
-const ctx: Record<string, any> = { createdUsers: [] as string[] };
+// Shared state across steps (fields filled by STEP order; defaults keep types definite).
+const ctx: CertContext = {
+  createdUsers: [],
+  ownerUserId: "",
+  tenants: {},
+  subs: {},
+  entityUnit: "",
+  adminInvite: { id: "", token: "" },
+  adminUserId: "",
+  adminClient: null,
+  team: {},
+  workspaceId: "",
+  companyId: "",
+  engagementId: "",
+  auditorClient: null,
+  auditPlanId: "",
+  fieldworkId: "",
+  workingPaperId: "",
+  reviewPkgId: "",
+};
 
 function log(...m: unknown[]) {
   console.log(...m);
@@ -117,13 +197,16 @@ async function recordEvent(eventCode: string, orgId: string | null, severity = "
 
 async function versionOf(table: string, id: string, col = "version"): Promise<number> {
   const { data } = await s.from(table).select(col).eq("id", id).single();
-  return (data as any)?.[col] ?? -1;
+  const row = asRecord(data);
+  const value = row?.[col];
+  return typeof value === "number" ? value : -1;
 }
 
 /** Confirms an UPDATE persisted by reading the column back through the service client. */
 async function persisted(table: string, id: string, col: string, expected: unknown): Promise<boolean> {
   const { data } = await s.from(table).select(col).eq("id", id).single();
-  return (data as any)?.[col] === expected;
+  const row = asRecord(data);
+  return row?.[col] === expected;
 }
 
 async function step(id: string, title: string, fn: () => Promise<Evidence>): Promise<void> {
@@ -161,7 +244,7 @@ function sanitizeCtx() {
   for (const [k, v] of Object.entries(ctx)) {
     if (k === "createdUsers") continue;
     // Skip live Supabase clients (they hold circular references).
-    if (v && typeof v === "object" && (typeof (v as any).from === "function" || typeof (v as any).auth === "object")) continue;
+    if (isClientLike(v)) continue;
     out[k] = v;
   }
   return out;
@@ -353,7 +436,7 @@ async function main() {
   // ── STEP 5 ────────────────────────────────────────────────────────────────
   await step("STEP 5", "Tenant Administrator accepts invitation, sets password, first login, session/permissions", async () => {
     // Executes the REAL repaired acceptance workflow.
-    const accepted = await acceptUserProvisioningInvitation(s as any, {
+    const accepted = await acceptUserProvisioningInvitation(asTypedService(s), {
       invitationToken: ctx.adminInvite.token,
       password: USER_PW,
       fullName: "ECJC Tenant Admin",
@@ -362,7 +445,7 @@ async function main() {
     ctx.createdUsers.push(accepted.userId);
     // First login — real session.
     const { client: c } = await signedInClient(email("admin"), USER_PW);
-    await assertTenantLoginAllowed(s as any, ctx.adminUserId); // must not throw (org active)
+    await assertTenantLoginAllowed(asTypedService(s), ctx.adminUserId); // must not throw (org active)
     // Permissions inherited from organization_admin role.
     const role = await s.from("roles").select("id").eq("slug", "organization_admin").is("organization_id", null).single();
     const perms = await s.from("role_permissions").select("id", { count: "exact", head: true }).eq("role_id", role.data!.id).is("deleted_at", null);
@@ -409,7 +492,11 @@ async function main() {
         .select("id")
         .single();
       assert(!inv.error, `invite ${t.who}: ${inv.error?.message}`);
-      const accepted = await acceptUserProvisioningInvitation(s as any, { invitationToken: token, password: USER_PW, fullName: `ECJC ${t.who}` });
+      const accepted = await acceptUserProvisioningInvitation(asTypedService(s), {
+        invitationToken: token,
+        password: USER_PW,
+        fullName: `ECJC ${t.who}`,
+      });
       ctx.team[t.who] = { userId: accepted.userId, role: t.role };
       ctx.createdUsers.push(accepted.userId);
     }
@@ -426,7 +513,9 @@ async function main() {
     const soloCanInvite = canInviteUser({ tenantType: "solo", seatLimit: 1, seatsUsed: 0 });
     const atCapacityCanInvite = canInviteUser({ tenantType: "business", seatLimit: 2, seatsUsed: 2 });
     return {
-      team: Object.fromEntries(Object.entries(ctx.team).map(([k, v]: any) => [k, { role: v.role, userId: v.userId }])),
+      team: Object.fromEntries(
+        Object.entries(ctx.team).map(([k, v]) => [k, { role: v.role, userId: v.userId }]),
+      ),
       permissionInheritanceByRole: permsByRole,
       seatsUsed: sub.data!.seats_used,
       seatLimit: sub.data!.seat_limit,
@@ -479,7 +568,7 @@ async function main() {
     ctx.companyId = co.data!.id;
 
     // Engagement — created by the tenant admin's own RLS session (workspace member).
-    const eng = await ctx.adminClient
+    const eng = await requireClient(ctx.adminClient, "admin")
       .from("engagements")
       .insert({ organization_id: ctx.tenants.ent, workspace_id: ctx.workspaceId, company_id: ctx.companyId, name: `ECJC FY Audit ${RUN}`, slug: `${TAG}-eng`, engagement_type: "statutory_audit" })
       .select("id")
@@ -531,9 +620,9 @@ async function main() {
 
   // ── STEP 9 ────────────────────────────────────────────────────────────────
   await step("STEP 9", "Auditor creates Audit content — Planning, Working Papers, Trial Balance, Financial Statements, Opinion (open/save/update)", async () => {
-    const c = ctx.auditorClient; // RLS-enforced auditor session (workspace member)
+    const c = requireClient(ctx.auditorClient, "auditor"); // RLS-enforced auditor session
     const base = { organization_id: ctx.tenants.ent, workspace_id: ctx.workspaceId, engagement_id: ctx.engagementId };
-    const modules: Record<string, any> = {};
+    const modules: Record<string, ModuleEvidence> = {};
 
     // Planning
     const plan = await c.from("audit_plans").insert({ ...base, audit_strategy: "Risk-based strategy", planning_status: "in_progress" }).select("id, version").single();
@@ -577,7 +666,7 @@ async function main() {
     modules.opinion = { id: op.data!.id, created: true, updateSaved: await persisted("opinion_packages", op.data!.id, "summary_notes", "Draft unqualified opinion.") };
 
     for (const [name, m] of Object.entries(modules)) {
-      assert((m as any).created && (m as any).updateSaved, `module ${name} did not save/update`);
+      assert(m.created && m.updateSaved, `module ${name} did not save/update`);
     }
     // Auditor can read back everything it created (RLS grant).
     const readback = await c.from("engagements").select("id").eq("id", ctx.engagementId);
@@ -615,7 +704,7 @@ async function main() {
       rejectedThenApproved: true,
       finalStatus: appr.data!.package_status,
       versionSnapshots: versions.data?.length ?? 0,
-      historyEvents: (history.data ?? []).map((h: any) => h.action),
+      historyEvents: (history.data ?? []).map((h) => h.action),
     };
   });
 
@@ -628,7 +717,7 @@ async function main() {
     let blocked = false;
     let blockMessage = "";
     try {
-      await assertTenantLoginAllowed(s as any, ctx.team.auditor.userId);
+      await assertTenantLoginAllowed(asTypedService(s), ctx.team.auditor.userId);
     } catch (e) {
       blocked = true;
       blockMessage = e instanceof Error ? e.message : String(e);
@@ -637,7 +726,7 @@ async function main() {
     // Owner still allowed (bypasses tenant gating).
     let ownerAllowed = true;
     try {
-      await assertTenantLoginAllowed(s as any, ctx.ownerUserId);
+      await assertTenantLoginAllowed(asTypedService(s), ctx.ownerUserId);
     } catch {
       ownerAllowed = false;
     }
@@ -649,7 +738,7 @@ async function main() {
     const upd = await s.from("organizations").update({ status: "active", updated_by: ctx.ownerUserId }).eq("id", ctx.tenants.ent).select("status").single();
     assert(!upd.error && upd.data?.status === "active", `reactivate: ${upd.error?.message}`);
     await recordEvent("tenant.activated", ctx.tenants.ent, "info");
-    await assertTenantLoginAllowed(s as any, ctx.team.auditor.userId); // must not throw
+    await assertTenantLoginAllowed(asTypedService(s), ctx.team.auditor.userId); // must not throw
     await signedInClient(email("auditor"), USER_PW);
     return { tenantStatus: "active", auditorLoginRecovered: true, sessionEstablished: true };
   });
@@ -688,7 +777,7 @@ async function main() {
       auditEventsAfter: after,
       historyRetained: after >= before && after > 0,
       engagementRetained: (eng.data?.length ?? 0) === 1,
-      eventHistory: (codes.data ?? []).map((r: any) => r.event_code),
+      eventHistory: (codes.data ?? []).map((r) => r.event_code),
     };
   });
 
@@ -713,7 +802,11 @@ async function main() {
     // Export permission isolation: a DIFFERENT tenant's user cannot read this export request.
     const bizToken = `inv_${RUN}_bizuser`;
     await s.from("user_provisioning_invitations").insert({ organization_id: ctx.tenants.biz, email: email("bizuser"), role_slug: "organization_admin", invitation_token: bizToken, invitation_status: "pending", invited_by: ctx.ownerUserId, expires_at: new Date(Date.now() + 6e8).toISOString(), created_by: ctx.ownerUserId, updated_by: ctx.ownerUserId });
-    const bizAccepted = await acceptUserProvisioningInvitation(s as any, { invitationToken: bizToken, password: USER_PW, fullName: "Biz User" });
+    const bizAccepted = await acceptUserProvisioningInvitation(asTypedService(s), {
+      invitationToken: bizToken,
+      password: USER_PW,
+      fullName: "Biz User",
+    });
     ctx.createdUsers.push(bizAccepted.userId);
     const { client: bc } = await signedInClient(email("bizuser"), USER_PW);
     const crossRead = await bc.from("export_and_portability_requests").select("id").eq("id", req.data!.id);

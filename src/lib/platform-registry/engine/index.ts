@@ -77,8 +77,8 @@ export class PlatformRegistryEngine {
   getModuleCompletion(moduleId: string): number | null {
     const fromCapabilities = capabilityRegistryEngine.getModuleCompletion(moduleId);
     if (fromCapabilities != null) return fromCapabilities;
-    const module = this.getModule(moduleId);
-    return module ? module.completionPct : null;
+    const registryModule = this.getModule(moduleId);
+    return registryModule ? registryModule.completionPct : null;
   }
 
   /** Automatically calculated via Capability Registry domain roll-up. */
@@ -92,8 +92,8 @@ export class PlatformRegistryEngine {
     const byStatus = Object.fromEntries(
       PLATFORM_MODULE_STATUSES.map((status) => [status, 0]),
     ) as Record<PlatformModuleStatus, number>;
-    for (const module of modules) {
-      byStatus[module.status] += 1;
+    for (const registryModule of modules) {
+      byStatus[registryModule.status] += 1;
     }
 
     return {

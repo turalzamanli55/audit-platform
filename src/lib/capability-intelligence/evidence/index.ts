@@ -41,7 +41,7 @@ export function satisfyEvidenceRequirements(
   evidenceReport: EvidenceEngineReport,
 ): EvidenceSatisfaction[] {
   const capability = evidenceReport.capabilities.find((c) => c.capabilityId === capabilityId);
-  const module = evidenceReport.modules.find((m) => m.moduleId === moduleId);
+  const evidenceModule = evidenceReport.modules.find((m) => m.moduleId === moduleId);
 
   const dimMap = new Map<EvidenceKind, { verified: boolean; present: boolean; confidencePct: number; paths: string[] }>();
 
@@ -72,8 +72,8 @@ export function satisfyEvidenceRequirements(
       );
     }
   }
-  if (module) {
-    for (const dim of module.dimensions) {
+  if (evidenceModule) {
+    for (const dim of evidenceModule.dimensions) {
       ingest(
         dim.dimension,
         dim.present,
@@ -83,21 +83,21 @@ export function satisfyEvidenceRequirements(
       );
     }
     // AI module roots
-    if (module.matchedRoots.includes("ai")) {
+    if (evidenceModule.matchedRoots.includes("ai")) {
       const aiPresent = evidenceReport.aiAreas.some((a) => a.present);
       ingest("ai", aiPresent, aiPresent ? "strong" : "missing", aiPresent ? 90 : 0, ["src/lib/ai"]);
     }
   }
 
   // history/versioning from module evidence item paths
-  if (module) {
-    const historyPaths = module.evidenceItems
+  if (evidenceModule) {
+    const historyPaths = evidenceModule.evidenceItems
       .filter((i) => /history/i.test(i.path))
       .map((i) => i.path);
     if (historyPaths.length) {
       ingest("history", true, "strong", 90, historyPaths);
     }
-    const versionPaths = module.evidenceItems
+    const versionPaths = evidenceModule.evidenceItems
       .filter((i) => /version/i.test(i.path))
       .map((i) => i.path);
     if (versionPaths.length) {

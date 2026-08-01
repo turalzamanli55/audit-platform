@@ -38,14 +38,14 @@ export function extractCapabilities(
         const name = row[0];
         const description = row[1];
         if (!name || !description) continue;
-        const module = resolveModule(category, name, modules);
-        const featureId = stableId("feat", `${module.name}-${category}`);
+        const extractedModule = resolveModule(category, name, modules);
+        const featureId = stableId("feat", `${extractedModule.name}-${category}`);
         capabilities.push({
           id: stableId("cap", name),
           name,
           description,
-          moduleId: module.id,
-          domainId: module.domainId,
+          moduleId: extractedModule.id,
+          domainId: extractedModule.domainId,
           featureId,
           category: table.sectionTitle,
           priority: inferPriority(name, category),
@@ -78,10 +78,10 @@ export function extractFeatures(
   const moduleById = new Map(modules.map((module) => [module.id, module]));
   return [...byFeature.entries()].map(([featureId, caps]) => {
     const first = caps[0]!;
-    const module = moduleById.get(first.moduleId);
+    const extractedModule = moduleById.get(first.moduleId);
     return {
       id: featureId,
-      name: `${module?.name ?? first.moduleId} · ${first.category}`,
+      name: `${extractedModule?.name ?? first.moduleId} · ${first.category}`,
       description: `Capabilities synchronized from ${first.sourceSection}`,
       moduleId: first.moduleId,
       domainId: first.domainId,

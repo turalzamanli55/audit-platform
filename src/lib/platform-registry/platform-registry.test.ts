@@ -36,7 +36,7 @@ describe("Platform Registry progress engine", () => {
   });
 
   it("derives status and milestones without hardcoded percentages in callers", () => {
-    const module = materializeModule({
+    const registryModule = materializeModule({
       id: "demo",
       name: "Demo",
       domain: "test",
@@ -48,13 +48,13 @@ describe("Platform Registry progress engine", () => {
       updatedAt: new Date().toISOString(),
       evidence: emptyEvidence({ planning: true, foundation: true, database: true }),
     });
-    expect(module.completionPct).toBe(
+    expect(registryModule.completionPct).toBe(
       Number(((3 / PLATFORM_COMPLETION_DIMENSIONS.length) * 100).toFixed(2)),
     );
-    expect(module.planned).toBe(true);
-    expect(module.foundation).toBe(true);
-    expect(module.completed).toBe(false);
-    expect(module.status).toBe("foundation");
+    expect(registryModule.planned).toBe(true);
+    expect(registryModule.foundation).toBe(true);
+    expect(registryModule.completed).toBe(false);
+    expect(registryModule.status).toBe("foundation");
   });
 
   it("calculates platform completion as the average of active modules", () => {

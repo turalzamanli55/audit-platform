@@ -294,16 +294,17 @@ export function AiWorkspaceHostProvider({
 
   useEffect(() => {
     const boot = bootstrapAiFoundation();
-    setCore(boot.core);
-    setLlm(boot.llm.platform);
-    setModules(boot.core.knowledgeEngine.listModules());
-    setReady(true);
-
     const stored = readSession();
-    setConversations(stored.conversations);
-    setMessagesById(stored.messagesById);
-    setActiveConversationId(stored.activeId);
-    setShowWelcome(!readWelcomeHidden());
+    void Promise.resolve().then(() => {
+      setCore(boot.core);
+      setLlm(boot.llm.platform);
+      setModules(boot.core.knowledgeEngine.listModules());
+      setReady(true);
+      setConversations(stored.conversations);
+      setMessagesById(stored.messagesById);
+      setActiveConversationId(stored.activeId);
+      setShowWelcome(!readWelcomeHidden());
+    });
 
     void getLlmProviderStatusAction()
       .then((status) => {
@@ -343,11 +344,9 @@ export function AiWorkspaceHostProvider({
       hasUnsavedChanges: false,
       navigationPath: pathname.split("/").filter(Boolean),
     });
-    setContext(collected);
 
     const defs = core.actionRegistry.list();
-    setActions(
-      defs.map((definition) => {
+    const nextActions = defs.map((definition) => {
         const permission = evaluateAiPermission({
           context: collected,
           requirement: definition.permission,
@@ -357,11 +356,9 @@ export function AiWorkspaceHostProvider({
           permission,
           estimatedResult: `Would emit ${definition.kind} instruction.`,
         };
-      }),
-    );
+      });
 
-    setSuggestions(
-      AI_WORKSPACE_SUGGESTION_SEEDS.map((utterance, index) => ({
+    const nextSuggestions = AI_WORKSPACE_SUGGESTION_SEEDS.map((utterance, index) => ({
         id: `suggestion-${index}`,
         utterance,
         decision: core.planner.plan({
@@ -370,8 +367,12 @@ export function AiWorkspaceHostProvider({
           availableModules: core.knowledgeEngine.listModules(),
           availableActionIds: core.actionRegistry.listIds(),
         }),
-      })),
-    );
+      }));
+    void Promise.resolve().then(() => {
+      setContext(collected);
+      setActions(nextActions);
+      setSuggestions(nextSuggestions);
+    });
   }, [
     core,
     pathname,
@@ -394,7 +395,7 @@ export function AiWorkspaceHostProvider({
   const knowledge = useMemo(() => {
     if (!context?.moduleId) return modules[0] ?? null;
     return modules.find((module) => module.id === context.moduleId) ?? modules[0] ?? null;
-  }, [context?.moduleId, modules]);
+  }, [context, modules]);
 
   const ensureConversation = useCallback(() => {
     if (activeConversationId) return activeConversationId;

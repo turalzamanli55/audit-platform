@@ -44,7 +44,7 @@ await page.goto("http://localhost:3000/en/app/companies", {
 });
 const slug =
   (await page
-    .$eval('a[href*="/app/companies/"]', (as) => {
+    .$eval('a[href*="/app/companies/"]', () => {
       const hrefs = [...document.querySelectorAll('a[href*="/app/companies/"]')].map((a) =>
         a.getAttribute("href"),
       );

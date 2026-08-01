@@ -49,8 +49,8 @@ export function runPlatformAudit(options: RunPlatformAuditOptions = {}): Platfor
   const domainByModule = new Map(
     documentation.extraction.modules.map((m) => [m.id, m.domainId] as const),
   );
-  for (const module of modules.modules) {
-    module.domainId = domainByModule.get(module.id) ?? module.domainId;
+  for (const auditModule of modules.modules) {
+    auditModule.domainId = domainByModule.get(auditModule.id) ?? auditModule.domainId;
   }
   const capabilities = auditCapabilitiesFromEvidence(evidence);
   const capDomain = new Map(

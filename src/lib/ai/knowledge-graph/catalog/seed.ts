@@ -23,62 +23,62 @@ function buildModuleNodes(): { nodes: KgNode[]; edges: KgEdge[] } {
   const nodes: KgNode[] = [];
   const edges: KgEdge[] = [];
 
-  for (const module of AI_MODULE_CATALOG) {
+  for (const catalogModule of AI_MODULE_CATALOG) {
     const moduleNode = createKgNode({
       type: "module",
-      slug: module.id,
-      title: module.name,
-      summary: module.purpose,
-      moduleId: module.id,
-      keywords: [module.id, module.name, ...module.navigation.sections],
-      permissionCodes: module.permissions,
+      slug: catalogModule.id,
+      title: catalogModule.name,
+      summary: catalogModule.purpose,
+      moduleId: catalogModule.id,
+      keywords: [catalogModule.id, catalogModule.name, ...catalogModule.navigation.sections],
+      permissionCodes: catalogModule.permissions,
       metadata: {
-        basePath: module.navigation.basePath,
-        sections: module.navigation.sections,
-        inputs: module.inputs,
-        outputs: module.outputs,
+        basePath: catalogModule.navigation.basePath,
+        sections: catalogModule.navigation.sections,
+        inputs: catalogModule.inputs,
+        outputs: catalogModule.outputs,
       },
     });
     nodes.push(moduleNode);
 
     const routeNode = createKgNode({
       type: "route",
-      slug: module.id,
-      title: `${module.name} Route`,
-      summary: `Primary route ${module.navigation.basePath}`,
-      moduleId: module.id,
-      keywords: [module.navigation.basePath, "route", module.id],
-      metadata: { path: module.navigation.basePath },
+      slug: catalogModule.id,
+      title: `${catalogModule.name} Route`,
+      summary: `Primary route ${catalogModule.navigation.basePath}`,
+      moduleId: catalogModule.id,
+      keywords: [catalogModule.navigation.basePath, "route", catalogModule.id],
+      metadata: { path: catalogModule.navigation.basePath },
     });
     nodes.push(routeNode);
     edges.push(createKgEdge("belongs_to", routeNode.id, moduleNode.id, 1));
 
-    for (const [index, step] of module.workflow.entries()) {
+    for (const [index, step] of catalogModule.workflow.entries()) {
       const workflowNode = createKgNode({
         type: "workflow",
-        slug: `${module.id}.${index}`,
-        title: `${module.name}: ${step}`,
+        slug: `${catalogModule.id}.${index}`,
+        title: `${catalogModule.name}: ${step}`,
         summary: step,
-        moduleId: module.id,
-        keywords: [step, "workflow", module.id],
-        metadata: { stepIndex: index, workflowId: `${module.id}:${index}` },
+        moduleId: catalogModule.id,
+        keywords: [step, "workflow", catalogModule.id],
+        metadata: { stepIndex: index, workflowId: `${catalogModule.id}:${index}` },
       });
       nodes.push(workflowNode);
       edges.push(createKgEdge("belongs_to", workflowNode.id, moduleNode.id, 1));
       if (index > 0) {
-        const prevId = kgNodeId("workflow", `${module.id}.${index - 1}`);
+        const prevId = kgNodeId("workflow", `${catalogModule.id}.${index - 1}`);
         edges.push(createKgEdge("previous_step", workflowNode.id, prevId, 1));
         edges.push(createKgEdge("next_step", prevId, workflowNode.id, 1));
       }
     }
 
-    for (const permission of module.permissions.slice(0, 8)) {
+    for (const permission of catalogModule.permissions.slice(0, 8)) {
       const permissionNode = createKgNode({
         type: "permission",
         slug: permission.replace(/[.:]/g, "-"),
         title: permission,
         summary: `Permission code ${permission}`,
-        moduleId: module.id,
+        moduleId: catalogModule.id,
         keywords: [permission, "permission"],
         permissionCodes: [permission],
       });
@@ -86,12 +86,12 @@ function buildModuleNodes(): { nodes: KgNode[]; edges: KgEdge[] } {
       edges.push(createKgEdge("requires", moduleNode.id, permissionNode.id, 1));
     }
 
-    for (const related of module.relatedModules) {
+    for (const related of catalogModule.relatedModules) {
       edges.push(
         createKgEdge("related_to", moduleNode.id, kgNodeId("module", related), 0.8),
       );
     }
-    for (const dep of module.dependencies) {
+    for (const dep of catalogModule.dependencies) {
       edges.push(createKgEdge("depends_on", moduleNode.id, kgNodeId("module", dep), 1));
     }
   }
@@ -353,12 +353,12 @@ function buildPlatformDocumentBundle(): {
   }
 
   // Platform docs explain the whole product surface.
-  for (const module of AI_MODULE_CATALOG) {
+  for (const catalogModule of AI_MODULE_CATALOG) {
     edges.push(
       createKgEdge(
         "explains",
         kgNodeId("documentation", "project-bible"),
-        kgNodeId("module", module.id),
+        kgNodeId("module", catalogModule.id),
         0.5,
       ),
     );

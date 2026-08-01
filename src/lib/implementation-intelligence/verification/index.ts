@@ -61,7 +61,9 @@ function epacDimension(
 ): { present: boolean; verified: boolean; confidencePct: number; paths: string[] } {
   const mapped = EPAC_KIND[clause] ?? clause;
   const capability = ctx.evidence.capabilities.find((c) => c.capabilityId === ctx.intent.id);
-  const module = ctx.evidence.modules.find((m) => m.moduleId === ctx.intent.moduleId);
+  const evidenceModule = ctx.evidence.modules.find(
+    (m) => m.moduleId === ctx.intent.moduleId,
+  );
 
   const fromDims = (dims: Array<{ dimension: string; present: boolean; confidence: string; confidencePct: number; items: Array<{ path: string }> }>) => {
     const dim = dims.find((d) => d.dimension === mapped || d.dimension === clause);
@@ -79,8 +81,8 @@ function epacDimension(
     const hit = fromDims(capability.dimensions);
     if (hit) return hit;
   }
-  if (module) {
-    const hit = fromDims(module.dimensions);
+  if (evidenceModule) {
+    const hit = fromDims(evidenceModule.dimensions);
     if (hit) return hit;
   }
 
@@ -127,8 +129,8 @@ function epacDimension(
       }
     }
     // Also check module roots from evidence
-    if (module) {
-      for (const item of module.evidenceItems) {
+    if (evidenceModule) {
+      for (const item of evidenceModule.evidenceItems) {
         if (token.test(item.path)) paths.push(item.path);
       }
     }

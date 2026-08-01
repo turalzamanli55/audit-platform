@@ -12,9 +12,9 @@ export function listMissingDependencies(
 
 export function buildDependencyEdges(modules: PlatformModule[]): Array<{ from: string; to: string }> {
   const edges: Array<{ from: string; to: string }> = [];
-  for (const module of modules) {
-    for (const dependency of module.dependencies) {
-      edges.push({ from: module.id, to: dependency });
+  for (const registryModule of modules) {
+    for (const dependency of registryModule.dependencies) {
+      edges.push({ from: registryModule.id, to: dependency });
     }
   }
   return edges;
@@ -22,8 +22,8 @@ export function buildDependencyEdges(modules: PlatformModule[]): Array<{ from: s
 
 export function detectDependencyCycles(modules: PlatformModule[]): string[] {
   const graph = new Map<string, string[]>();
-  for (const module of modules) {
-    graph.set(module.id, [...module.dependencies]);
+  for (const registryModule of modules) {
+    graph.set(registryModule.id, [...registryModule.dependencies]);
   }
 
   const visiting = new Set<string>();

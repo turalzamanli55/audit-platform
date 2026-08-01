@@ -109,7 +109,7 @@ for (const locale of LOCALES) {
             timeout: 60000,
           });
           break;
-        } catch (err) {
+        } catch {
           if (attempt === 2) {
             issues.push({ type: "timeout", locale, viewport: vp.name, theme });
             console.log(`TIMEOUT ${locale} ${vp.name} ${theme}`);

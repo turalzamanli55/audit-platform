@@ -17,31 +17,36 @@ export function detectFalsePositives(input: {
 }): FalsePositiveFinding[] {
   const findings: FalsePositiveFinding[] = [];
 
-  for (const module of input.modules) {
-    const trustedDims = module.dimensions.filter((d) => d.present && isTrusted(d.confidence));
-    if (module.matchedRoots.length > 0 && trustedDims.length >= 2) {
+  for (const evidenceModule of input.modules) {
+    const trustedDims = evidenceModule.dimensions.filter(
+      (d) => d.present && isTrusted(d.confidence),
+    );
+    if (evidenceModule.matchedRoots.length > 0 && trustedDims.length >= 2) {
       // Would have been "missing" under filename-only matching
-      if (module.moduleId.startsWith("mod_") && module.verifiedCompletionPct > 0) {
+      if (
+        evidenceModule.moduleId.startsWith("mod_") &&
+        evidenceModule.verifiedCompletionPct > 0
+      ) {
         findings.push({
           code: "corrected_module_mismatch",
           severity: "medium",
-          message: `Module ${module.moduleId} resolved via aliases ${module.matchedRoots.join(", ")}`,
+          message: `Module ${evidenceModule.moduleId} resolved via aliases ${evidenceModule.matchedRoots.join(", ")}`,
           rootCause:
             "v1 filename/token matching falsely treated bible module IDs as missing implementation",
-          entityId: module.moduleId,
-          correctedBy: `aliases→${module.matchedRoots.join("|")}`,
+          entityId: evidenceModule.moduleId,
+          correctedBy: `aliases→${evidenceModule.matchedRoots.join("|")}`,
         });
       }
     }
 
     // False "duplicate" risk: same root claimed by multiple modules is OK if aliases overlap intentionally
-    if (module.falsePositiveRisk) {
+    if (evidenceModule.falsePositiveRisk) {
       findings.push({
         code: "ambiguous_module_root",
         severity: "low",
-        message: `Module ${module.moduleId} shares roots ambiguously`,
+        message: `Module ${evidenceModule.moduleId} shares roots ambiguously`,
         rootCause: "Multiple bible modules resolve to overlapping filesystem roots",
-        entityId: module.moduleId,
+        entityId: evidenceModule.moduleId,
       });
     }
   }

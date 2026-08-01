@@ -233,7 +233,6 @@ function copyDirectory(srcDir, destRoot, { routeMode = false } = {}) {
     const destFile = path.join(destRoot, transformedRelative);
 
     if (routeMode && segments.length > 1) {
-      const routeKey = segments.slice(0, -1).join("/");
       const mappedRoute = segments
         .slice(0, -1)
         .map((s) => ROUTE_DIR_MAP[s] ?? s)

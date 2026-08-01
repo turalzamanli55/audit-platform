@@ -49,16 +49,19 @@ export function buildCapabilityGraph(input: {
     });
   }
 
-  for (const module of input.modules) {
+  for (const capabilityModule of input.modules) {
     add({
-      id: `module:${module.id}`,
+      id: `module:${capabilityModule.id}`,
       kind: "module",
-      label: module.name,
-      meta: { completionPct: module.completionPct, readiness: module.readiness },
+      label: capabilityModule.name,
+      meta: {
+        completionPct: capabilityModule.completionPct,
+        readiness: capabilityModule.readiness,
+      },
     });
     edges.push({
-      from: `domain:${module.domainId}`,
-      to: `module:${module.id}`,
+      from: `domain:${capabilityModule.domainId}`,
+      to: `module:${capabilityModule.id}`,
       relation: "contains",
     });
   }

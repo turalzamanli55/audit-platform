@@ -33,7 +33,6 @@ async function checkPage(page, name) {
   const overflow = await page.evaluate(() => {
     const doc = document.documentElement;
     const hasH = doc.scrollWidth > doc.clientWidth + 2;
-    const hasV = doc.scrollHeight > doc.clientHeight + 2;
     const broken = [...document.querySelectorAll("*")].filter((el) => {
       const r = el.getBoundingClientRect();
       return r.width > window.innerWidth + 4 && el.children.length > 0;
@@ -84,11 +83,11 @@ async function main() {
     console.log(`Login: ${authed ? "success" : "failed"} -> ${page.url()}`);
 
     if (authed) {
-      const companies = await page.goto(`${baseUrl}/en/app/companies`, { waitUntil: "networkidle" });
+      await page.goto(`${baseUrl}/en/app/companies`, { waitUntil: "networkidle" });
       const links = await page.$$eval('a[href*="/app/companies/"]', (as) =>
         [...new Set(as.map((a) => a.getAttribute("href")).filter(Boolean))].slice(0, 3),
       );
-      const engagements = await page.goto(`${baseUrl}/en/app/engagements`, { waitUntil: "networkidle" });
+      await page.goto(`${baseUrl}/en/app/engagements`, { waitUntil: "networkidle" });
       const engLinks = await page.$$eval('a[href*="/app/engagements/"]', (as) =>
         [...new Set(as.map((a) => a.getAttribute("href")).filter(Boolean))].slice(0, 2),
       );

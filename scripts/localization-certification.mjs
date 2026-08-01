@@ -20,7 +20,6 @@ const root = path.resolve(__dirname, "..");
 const messagesDir = path.join(root, "src/i18n/messages");
 const srcDir = path.join(root, "src");
 
-const LOCALES = ["en", "az", "ru", "tr"];
 const SATELLITES = ["", "auth-experience-", "marketing-", "dashboard-workspace-"];
 
 /** Intentionally allowed English tokens (standards / product names / tech). */
@@ -110,20 +109,6 @@ function flatten(obj, prefix = "", out = {}) {
   return out;
 }
 
-function unflatten(flat) {
-  const rootObj = {};
-  for (const [key, value] of Object.entries(flat)) {
-    const parts = key.split(".");
-    let cur = rootObj;
-    for (let i = 0; i < parts.length - 1; i++) {
-      cur[parts[i]] ??= {};
-      cur = cur[parts[i]];
-    }
-    cur[parts[parts.length - 1]] = value;
-  }
-  return rootObj;
-}
-
 function deepMergeMissing(target, source) {
   if (source === null || typeof source !== "object" || Array.isArray(source)) {
     return target === undefined ? source : target;
@@ -174,9 +159,6 @@ function loadMessageBundle(locale) {
     const file = path.join(messagesDir, `${sat}${locale}.json`);
     if (!fs.existsSync(file)) continue;
     const json = JSON.parse(fs.readFileSync(file, "utf8"));
-    const prefix = sat
-      ? sat.replace(/-$/, "").replace(/-/g, ".")
-      : "";
     // main en.json has no prefix; satellites are merged at runtime under marketing/authExperience/dashboardWorkspace
     if (!sat) bundles.push({ file, prefix: "", json, flatPrefix: "" });
     else if (sat.startsWith("auth-experience"))
@@ -276,23 +258,6 @@ function lookupTranslation(books, english, locale) {
   return null;
 }
 
-function applyTranslationsToTree(node, books, locale, stats) {
-  if (typeof node === "string") {
-    const t = lookupTranslation(books, node, locale);
-    if (t && t !== node) {
-      stats.applied += 1;
-      return t;
-    }
-    return node;
-  }
-  if (node === null || typeof node !== "object" || Array.isArray(node)) return node;
-  const out = Array.isArray(node) ? [...node] : { ...node };
-  for (const k of Object.keys(out)) {
-    out[k] = applyTranslationsToTree(out[k], books, locale, stats);
-  }
-  return out;
-}
-
 function setByPath(obj, dotted, value) {
   const parts = dotted.split(".");
   let cur = obj;
@@ -301,16 +266,6 @@ function setByPath(obj, dotted, value) {
     cur = cur[parts[i]];
   }
   cur[parts[parts.length - 1]] = value;
-}
-
-function getByPath(obj, dotted) {
-  const parts = dotted.split(".");
-  let cur = obj;
-  for (const p of parts) {
-    if (cur == null || typeof cur !== "object") return undefined;
-    cur = cur[p];
-  }
-  return cur;
 }
 
 async function main() {

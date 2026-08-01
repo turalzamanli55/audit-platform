@@ -35,9 +35,11 @@ export function validateSynchronization(input: {
     errors.push("No capabilities extracted from PROJECT_BIBLE functional scope.");
   }
 
-  for (const module of input.modules) {
-    if (!domainIds.has(module.domainId)) {
-      errors.push(`Module ${module.id} references missing domain ${module.domainId}.`);
+  for (const extractedModule of input.modules) {
+    if (!domainIds.has(extractedModule.domainId)) {
+      errors.push(
+        `Module ${extractedModule.id} references missing domain ${extractedModule.domainId}.`,
+      );
     }
   }
   for (const feature of input.features) {

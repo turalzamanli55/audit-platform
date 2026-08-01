@@ -25,16 +25,17 @@ export function buildRoadmap(
   const started = Date.now();
   const roadmap: RoadmapItem[] = [];
 
-  for (const module of modules) {
-    const blocked = module.completionPct === 0 && module.remainingWork.length > 0;
+  for (const auditModule of modules) {
+    const blocked =
+      auditModule.completionPct === 0 && auditModule.remainingWork.length > 0;
     roadmap.push({
-      id: `module:${module.id}`,
+      id: `module:${auditModule.id}`,
       kind: "module",
-      name: module.name,
-      status: statusFromCompletion(module.completionPct, false),
-      completionPct: module.completionPct,
-      blockedBy: blocked ? module.remainingWork.slice(0, 5) : [],
-      evidenceSummary: `${module.dimensions.filter((d) => d.present).length}/${module.dimensions.length} dimensions present`,
+      name: auditModule.name,
+      status: statusFromCompletion(auditModule.completionPct, false),
+      completionPct: auditModule.completionPct,
+      blockedBy: blocked ? auditModule.remainingWork.slice(0, 5) : [],
+      evidenceSummary: `${auditModule.dimensions.filter((d) => d.present).length}/${auditModule.dimensions.length} dimensions present`,
     });
   }
 

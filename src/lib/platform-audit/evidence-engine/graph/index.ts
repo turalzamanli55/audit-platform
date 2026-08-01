@@ -23,17 +23,17 @@ export function buildEvidenceGraph(input: {
     nodes.push(node);
   };
 
-  for (const module of input.modules) {
+  for (const evidenceModule of input.modules) {
     addNode({
-      id: `module:${module.moduleId}`,
+      id: `module:${evidenceModule.moduleId}`,
       kind: "module",
-      label: module.name,
+      label: evidenceModule.name,
       meta: {
-        confidencePct: module.confidencePct,
-        verifiedCompletionPct: module.verifiedCompletionPct,
+        confidencePct: evidenceModule.confidencePct,
+        verifiedCompletionPct: evidenceModule.verifiedCompletionPct,
       },
     });
-    for (const root of module.matchedRoots) {
+    for (const root of evidenceModule.matchedRoots) {
       const implId = `impl:${root}`;
       addNode({
         id: implId,
@@ -41,12 +41,12 @@ export function buildEvidenceGraph(input: {
         label: root,
       });
       edges.push({
-        from: `module:${module.moduleId}`,
+        from: `module:${evidenceModule.moduleId}`,
         to: implId,
         relation: "implemented_by",
       });
     }
-    for (const dim of module.dimensions) {
+    for (const dim of evidenceModule.dimensions) {
       if (!dim.present) continue;
       for (const item of dim.items.slice(0, 3)) {
         const evId = `evidence:${item.kind}:${item.path}`;
@@ -57,7 +57,7 @@ export function buildEvidenceGraph(input: {
           meta: { confidencePct: item.confidencePct },
         });
         edges.push({
-          from: `module:${module.moduleId}`,
+          from: `module:${evidenceModule.moduleId}`,
           to: evId,
           relation: "has_evidence",
         });

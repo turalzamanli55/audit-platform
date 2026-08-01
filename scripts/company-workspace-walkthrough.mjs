@@ -109,7 +109,7 @@ function countEnglishLeaks(text, locale) {
   return count;
 }
 
-async function auditPage(page, locale) {
+async function auditPage(page) {
   return page.evaluate(() => {
     const doc = document.documentElement;
     const bodyText = document.body?.innerText ?? "";
@@ -244,7 +244,7 @@ async function main() {
 
           const bodyText = await page.evaluate(() => document.body?.innerText ?? "");
           const leaks = countEnglishLeaks(bodyText, locale);
-          const audit = await auditPage(page, locale);
+          const audit = await auditPage(page);
 
           if (leaks > 0 && locale !== "en") {
             issues.push({ type: "i18n", leaks, path, locale, viewport: vp.name, theme });

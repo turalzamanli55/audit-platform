@@ -40,18 +40,20 @@ export function validateCapabilityRegistry(input: {
     }
   }
 
-  for (const module of input.modules) {
-    if (!domainIds.has(module.domainId)) {
-      errors.push(`Module ${module.id} references missing domain ${module.domainId}.`);
+  for (const registryModule of input.modules) {
+    if (!domainIds.has(registryModule.domainId)) {
+      errors.push(
+        `Module ${registryModule.id} references missing domain ${registryModule.domainId}.`,
+      );
     }
-    for (const featureId of module.featureIds) {
+    for (const featureId of registryModule.featureIds) {
       if (!featureIds.has(featureId)) {
-        errors.push(`Module ${module.id} references missing feature ${featureId}.`);
+        errors.push(`Module ${registryModule.id} references missing feature ${featureId}.`);
       }
     }
-    for (const dependency of module.dependencies) {
+    for (const dependency of registryModule.dependencies) {
       if (!moduleIds.has(dependency)) {
-        errors.push(`Module ${module.id} depends on missing module ${dependency}.`);
+        errors.push(`Module ${registryModule.id} depends on missing module ${dependency}.`);
       }
     }
   }

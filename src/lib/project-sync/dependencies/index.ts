@@ -13,8 +13,8 @@ export function extractCapabilityDependencies(
 
   return capabilities.map((capability) => {
     const deps: string[] = [];
-    const module = moduleById.get(capability.moduleId);
-    for (const moduleDep of module?.dependencies ?? []) {
+    const extractedModule = moduleById.get(capability.moduleId);
+    for (const moduleDep of extractedModule?.dependencies ?? []) {
       const related = capabilities.find((entry) => entry.moduleId === moduleDep);
       if (related) deps.push(related.id);
     }

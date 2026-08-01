@@ -158,7 +158,7 @@ export class OpenAiCompatibleLiveAdapter extends UnconfiguredLlmAdapter {
 
   override async *stream(request: LlmStreamRequest): AsyncIterable<LlmStreamChunk> {
     const started = Date.now();
-    let retries = 0;
+    const retries = 0;
     try {
       const stream = await this.client.chat.completions.create(
         {

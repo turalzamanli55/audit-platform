@@ -28,12 +28,15 @@ export function GovernanceUndoToast({
 
   useEffect(() => {
     if (!visible) return;
-    if (remaining <= 0) {
-      setVisible(false);
-      onDismiss?.();
-      return;
-    }
-    const id = window.setTimeout(() => setRemaining((v) => v - 1), 1000);
+    const id = window.setTimeout(() => {
+      if (remaining <= 1) {
+        setRemaining(0);
+        setVisible(false);
+        onDismiss?.();
+        return;
+      }
+      setRemaining((value) => value - 1);
+    }, remaining <= 0 ? 0 : 1000);
     return () => window.clearTimeout(id);
   }, [remaining, visible, onDismiss]);
 
